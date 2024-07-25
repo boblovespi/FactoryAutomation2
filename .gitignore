@@ -24,3 +24,7 @@ runs
 run-data
 
 repo
+
+# macOS files
+.DS_Store
+/src/generated/

@@ -1,3 +1,20 @@
 {
+	// BLOCKS
+	
+	"block.factoryautomation.cobblestone_rock": "Rock",
+	"block.factoryautomation.stone_rock": "Stone Rock",
+	"block.factoryautomation.andesite_rock": "Andesite Rock",
+	"block.factoryautomation.diorite_rock": "Diorite Rock",
+	"block.factoryautomation.granite_rock": "Granite Rock",
+	"block.factoryautomation.tuff_rock": "Tuff Rock",
+	"block.factoryautomation.calcite_rock": "Calcite Rock",
+	"block.factoryautomation.sandstone_rock": "Sandstone Rock",
+	"block.factoryautomation.mossy_cobblestone_rock": "Mossy Cobblestone Rock",
+	"block.factoryautomation.terracotta_rock": "Terracotta Rock",
+	
+	// ITEMS
+	
+	"item.factoryautomation.rock": "Rock",
+	
 	"factoryautomation:guidebook": "F. A. Guidebook"
 }

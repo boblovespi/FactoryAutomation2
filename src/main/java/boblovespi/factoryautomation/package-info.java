@@ -1,0 +1,7 @@
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+package boblovespi.factoryautomation;
+
+import net.minecraft.MethodsReturnNonnullByDefault;
+
+import javax.annotation.ParametersAreNonnullByDefault;
