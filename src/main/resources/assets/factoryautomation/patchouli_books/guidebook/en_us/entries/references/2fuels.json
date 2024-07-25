@@ -1,0 +1,34 @@
+{
+	"name": "Properties of Fuels",
+	"icon": "minecraft:coal",
+	"category": "factoryautomation:references",
+	"sortnum": 2,
+	"pages": [
+		{
+			"type": "text",
+			"title": "Properties of Fuels",
+			"text": "The different fuels, along with their statistics.$(br)$(li)$(l:references/2fuels#coal)Coal$(li)$(l:references/2fuels#charcoal)Charcoal$(li)$(l:references/2fuels#coal_coke)Coal Coke"
+		},
+		{
+			"type": "spotlight",
+			"anchor": "coal",
+			"title": "Coal",
+			"item": "minecraft:coal",
+			"text": "Properties of coal:$(br)$(li)Maximum temperature of 2172 \u00B0C$(li)Burns for 1600 ticks (80 seconds)$(li)Total energy of 4,300 MJ"
+		},
+		{
+			"type": "spotlight",
+			"anchor": "charcoal",
+			"title": "Charcoal",
+			"item": "minecraft:charcoal",
+			"text": "Properties of charcoal:$(br)$(li)Maximum temperature of 2012 \u00B0C$(li)Burns for 1600 ticks (80 seconds)$(li)Total energy of 4,300 MJ"
+		},
+		{
+			"type": "spotlight",
+			"anchor": "coal_coke",
+			"title": "Coal Coke",
+			"item": "factoryautomation:coal_coke",
+			"text": "Properties of coal coke:$(br)$(li)Maximum temperature of 2400 \u00B0C$(li)Burns for 2000 ticks (100 seconds)$(li)Total energy of 7,300 MJ"
+		}
+	]
+}

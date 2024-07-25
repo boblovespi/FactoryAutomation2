@@ -1,0 +1,30 @@
+{
+	"name": "Mining Ores",
+	"icon": "minecraft:stone_pickaxe",
+	"category": "factoryautomation:age1",
+	"sortnum": 0,
+	"pages": [
+		{
+			"type": "spotlight",
+			"item": "factoryautomation:ore_metal_tin",
+			"text": "Welcome to the Age of Metals! Well, don't expect anything too fancy yet, because you can only start with copper, and maybe some tin.",
+			"title": "Mining Ores"
+		},
+		{
+			"type": "spotlight",
+			"item": "minecraft:copper_ore",
+			"text": "You can mine these malachite and cassiterite ores with your flint pickaxe, but it would be faster with a stone one.",
+			"title": "Resources Around You"
+		},
+		{
+			"type": "image",
+			"images": ["factoryautomation:textures/patchouli/resources_tin_copper.png"],
+			"title": "In the caves"
+		},
+		{
+			"type": "text",
+			"text": "Malachite is a green-ish ore, which is the mineral form of the well known copper; And there is cassiterite which is a blue-ish light-gray ore, alias tin.",
+			"title": "Some facts"
+		}
+	]
+}
