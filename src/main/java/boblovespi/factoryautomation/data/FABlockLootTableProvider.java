@@ -5,6 +5,7 @@ import boblovespi.factoryautomation.common.item.FAItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -29,5 +30,6 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 	{
 		for (var rock : FABlocks.ROCKS)
 			dropOther(rock.get(), FAItems.ROCK);
+		dropOther(FABlocks.FLINT_ROCK.get(), Items.FLINT);
 	}
 }

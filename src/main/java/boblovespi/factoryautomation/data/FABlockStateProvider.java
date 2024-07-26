@@ -19,11 +19,17 @@ public class FABlockStateProvider extends BlockStateProvider
 	protected void registerStatesAndModels()
 	{
 		FABlocks.ROCKS.forEach(this::rock);
+		existingBlockModel(FABlocks.FLINT_ROCK);
 	}
 
 	private void rock(DeferredBlock<Rock> rock)
 	{
 		var realRock = rock.get();
 		simpleBlock(realRock, models().singleTexture(rock.getRegisteredName(), modLoc("block/rock"), mcLoc("block/"+realRock.variant.getSerializedName())));
+	}
+
+	private void existingBlockModel(DeferredBlock<?> block)
+	{
+		simpleBlock(block.get(), models().getExistingFile(block.getId().withPrefix("block/")));
 	}
 }

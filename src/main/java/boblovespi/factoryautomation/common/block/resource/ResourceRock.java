@@ -1,9 +1,8 @@
 package boblovespi.factoryautomation.common.block.resource;
 
-import boblovespi.factoryautomation.common.block.BlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -13,15 +12,23 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class Rock extends Block
+import java.util.function.Supplier;
+
+public class ResourceRock extends Block
 {
 	private static final VoxelShape BOUNDING_BOX = Block.box(3, 0, 3, 13, 5, 13);
-	public final Variants variant;
+	private final Supplier<Item> mainDrop;
 
-	public Rock(Variants variant)
+	public ResourceRock(Properties p, Supplier<Item> mainDrop)
 	{
-		super(BlockProperties.ROCK);
-		this.variant = variant;
+		super(p);
+		this.mainDrop = mainDrop;
+	}
+
+	public ResourceRock(Properties p, Item mainDrop)
+	{
+		super(p);
+		this.mainDrop = () -> mainDrop;
 	}
 
 	@Override
@@ -42,41 +49,9 @@ public class Rock extends Block
 		return pLevel.getBlockState(pPos.below()).isFaceSturdy(pLevel, pPos.below(), Direction.UP);
 	}
 
-	public enum Variants implements StringRepresentable
+	@Override
+	public Item asItem()
 	{
-		COBBLESTONE("cobblestone"),
-		STONE("stone"),
-		ANDESITE("andesite"),
-		DIORITE("diorite"),
-		GRANITE("granite"),
-		TUFF("tuff"),
-		CALCITE("calcite"),
-		SANDSTONE("sandstone"),
-		MOSSY_COBBLESTONE("mossy_cobblestone"),
-		TERRACOTTA("terracotta");
-
-		private final String name;
-
-		Variants(String name)
-		{
-			this.name = name;
-		}
-
-		@Override
-		public String getSerializedName()
-		{
-			return name;
-		}
-
-		@Override
-		public String toString()
-		{
-			return name;
-		}
-
-		public String getRockName()
-		{
-			return name + "_rock";
-		}
+		return mainDrop.get();
 	}
 }

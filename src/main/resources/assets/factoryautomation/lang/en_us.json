@@ -1,5 +1,5 @@
 {
-	// BLOCKS
+	// Blocks
 	
 	"block.factoryautomation.cobblestone_rock": "Rock",
 	"block.factoryautomation.stone_rock": "Stone Rock",
@@ -12,7 +12,9 @@
 	"block.factoryautomation.mossy_cobblestone_rock": "Mossy Cobblestone Rock",
 	"block.factoryautomation.terracotta_rock": "Terracotta Rock",
 	
-	// ITEMS
+	"block.factoryautomation.flint_rock": "Flint Rock",
+	
+	// Items
 	
 	"item.factoryautomation.rock": "Rock",
 	
