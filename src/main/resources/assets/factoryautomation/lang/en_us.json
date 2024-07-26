@@ -18,5 +18,9 @@
 	
 	"item.factoryautomation.rock": "Rock",
 	
+	// Creative tabs
+	
+	"itemGroup.factoryautomation.resources": "F. A. Resources",
+	
 	"factoryautomation:guidebook": "F. A. Guidebook"
 }
