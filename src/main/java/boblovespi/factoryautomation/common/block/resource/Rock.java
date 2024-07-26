@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.block.resource;
 
+import boblovespi.factoryautomation.common.sound.FASoundTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
@@ -20,7 +21,7 @@ public class Rock extends Block
 
 	public Rock(Variants variant)
 	{
-		super(Properties.of().destroyTime(0.1f).explosionResistance(0.1f).replaceable());
+		super(Properties.of().destroyTime(0.1f).explosionResistance(0.1f).replaceable().sound(FASoundTypes.ROCK));
 		this.variant = variant;
 	}
 

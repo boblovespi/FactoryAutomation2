@@ -20,6 +20,9 @@ public class DataProvider
 		var lookupProvider = event.getLookupProvider();
 		gen.addProvider(event.includeClient(), new FABlockStateProvider(output, efh));
 		gen.addProvider(event.includeClient(), new FAItemModelProvider(output, efh));
+		gen.addProvider(event.includeClient(), new FASoundDefinitionProvider(output, efh));
+
 		gen.addProvider(event.includeServer(), new FALootTableProvider(output, lookupProvider));
+		gen.addProvider(event.includeServer(), new FARecipeProvider(output, lookupProvider));
 	}
 }

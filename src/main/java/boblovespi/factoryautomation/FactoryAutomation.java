@@ -2,14 +2,13 @@ package boblovespi.factoryautomation;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;
-import boblovespi.factoryautomation.data.FABlockStateProvider;
-import boblovespi.factoryautomation.data.FAItemModelProvider;
-import boblovespi.factoryautomation.data.FALootTableProvider;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -25,7 +24,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -74,6 +72,8 @@ public class FactoryAutomation
 		// Register the Deferred Register to the mod event bus so tabs get registered
 		CREATIVE_MODE_TABS.register(modEventBus);
 
+		FASounds.SOUND_EVENTS.register(modEventBus);
+
 		// Register ourselves for server and other game events we are interested in.
 		// Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
 		// Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
@@ -84,6 +84,16 @@ public class FactoryAutomation
 
 		// Register our mod's ModConfigSpec so that FML can create and load the config file for us
 		modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+	}
+
+	public static ResourceLocation name(String location)
+	{
+		return ResourceLocation.fromNamespaceAndPath(MODID, location);
+	}
+
+	public static String locString(String prefix, String postfix)
+	{
+		return prefix + "." + MODID + "." + postfix;
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event)
