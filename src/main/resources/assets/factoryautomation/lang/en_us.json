@@ -18,6 +18,12 @@
 	
 	"item.factoryautomation.rock": "Rock",
 	
+	"item.factoryautomation.flint_shovel": "Flint Shovel",
+	"item.factoryautomation.flint_pickaxe": "Flint Pickaxe",
+	"item.factoryautomation.flint_axe": "Flint Axe",
+	"item.factoryautomation.flint_hoe": "Flint Hoe",
+	"item.factoryautomation.flint_sword": "Flint Sword",
+	
 	// Creative tabs
 	
 	"itemGroup.factoryautomation.resources": "F. A. Resources",

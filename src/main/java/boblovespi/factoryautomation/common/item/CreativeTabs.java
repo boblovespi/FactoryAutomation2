@@ -5,6 +5,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -27,6 +29,24 @@ public class CreativeTabs
 	@SubscribeEvent
 	public static void addCreative(BuildCreativeModeTabContentsEvent event)
 	{
+		if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES)
+		{
+			insertAfter(event, Items.WOODEN_HOE, FAItems.FLINT_SHOVEL, FAItems.FLINT_PICKAXE, FAItems.FLINT_AXE, FAItems.FLINT_HOE);
+		}
 
+		if (event.getTabKey() == CreativeModeTabs.COMBAT)
+		{
+			insertAfter(event, Items.WOODEN_SWORD, FAItems.FLINT_SWORD);
+		}
+	}
+
+	private static void insertAfter(BuildCreativeModeTabContentsEvent event, ItemLike target, ItemLike... items)
+	{
+		var before = target;
+		for (var item : items)
+		{
+			event.insertAfter(before.asItem().getDefaultInstance(), item.asItem().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+			before = item;
+		}
 	}
 }

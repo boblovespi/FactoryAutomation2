@@ -1,6 +1,8 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.data.tag.FABlockTagProvider;
+import boblovespi.factoryautomation.data.tag.FAItemTagProvider;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -24,5 +26,9 @@ public class DataProvider
 
 		gen.addProvider(event.includeServer(), new FALootTableProvider(output, lookupProvider));
 		gen.addProvider(event.includeServer(), new FARecipeProvider(output, lookupProvider));
+
+		var blockTags = new FABlockTagProvider(output, lookupProvider, efh);
+		gen.addProvider(event.includeServer(), blockTags);
+		gen.addProvider(event.includeServer(), new FAItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), efh));
 	}
 }
