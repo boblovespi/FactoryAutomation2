@@ -20,6 +20,8 @@ public class FAItemModelProvider extends ItemModelProvider
 	{
 		withExistingParent(FAItems.ROCK.getRegisteredName(), modLoc("block/cobblestone_rock"));
 
+		basicItem(FAItems.PLANT_FIBER.get());
+
 		handheld(FAItems.CHOPPING_BLADE);
 		handheld(FAItems.FLINT_SHOVEL);
 		handheld(FAItems.FLINT_PICKAXE);

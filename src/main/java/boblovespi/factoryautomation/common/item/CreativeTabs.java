@@ -23,6 +23,7 @@ public class CreativeTabs
 								 .icon(() -> FAItems.ROCK.get().getDefaultInstance()).displayItems((p, o) ->
 					{
 						o.accept(FAItems.ROCK.get());
+						o.accept(FAItems.PLANT_FIBER.get());
 					}).build());
 
 

@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -24,11 +25,61 @@ public class FARecipeProvider extends RecipeProvider
 	{
 		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, Blocks.GRAVEL, FAItems.ROCK);
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
-				.pattern("rf")
-				.pattern("r ")
-				.define('r', FAItems.ROCK)
-				.define('f', Items.FLINT)
-				.unlockedBy("has_flint", has(Items.FLINT))
-				.save(output);
+						   .pattern("rf")
+						   .pattern("r ")
+						   .define('r', FAItems.ROCK)
+						   .define('f', Items.FLINT)
+						   .unlockedBy("has_flint", has(Items.FLINT))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.FLINT_SHOVEL)
+						   .pattern(" f ")
+						   .pattern("psp")
+						   .pattern(" s ")
+						   .define('f', Items.FLINT)
+						   .define('p', FAItems.PLANT_FIBER)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_flint", has(Items.FLINT))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.FLINT_PICKAXE)
+						   .pattern("fff")
+						   .pattern("psp")
+						   .pattern(" s ")
+						   .define('f', Items.FLINT)
+						   .define('p', FAItems.PLANT_FIBER)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_flint", has(Items.FLINT))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.FLINT_AXE)
+						   .pattern("ffp")
+						   .pattern("fsp")
+						   .pattern(" s ")
+						   .define('f', Items.FLINT)
+						   .define('p', FAItems.PLANT_FIBER)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_flint", has(Items.FLINT))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.FLINT_HOE)
+						   .pattern("ff ")
+						   .pattern("psp")
+						   .pattern(" s ")
+						   .define('f', Items.FLINT)
+						   .define('p', FAItems.PLANT_FIBER)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_flint", has(Items.FLINT))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.FLINT_SWORD)
+						   .pattern(" f ")
+						   .pattern("pfp")
+						   .pattern(" s ")
+						   .define('f', Items.FLINT)
+						   .define('p', FAItems.PLANT_FIBER)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_flint", has(Items.FLINT))
+						   .save(output);
 	}
 }
