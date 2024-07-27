@@ -1,4 +1,4 @@
-package boblovespi.factoryautomation.data;
+package boblovespi.factoryautomation.data.loot;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -13,6 +13,9 @@ public class FALootTableProvider extends LootTableProvider
 {
 	public FALootTableProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries)
 	{
-		super(pOutput, Set.of(), List.of(new LootTableProvider.SubProviderEntry(FABlockLootTableProvider::new, LootContextParamSets.BLOCK)), pRegistries);
+		super(pOutput, Set.of(), List.of(
+				new LootTableProvider.SubProviderEntry(FABlockLootTableProvider::new, LootContextParamSets.BLOCK),
+				new LootTableProvider.SubProviderEntry(OverridesLootTableProvider::new, LootContextParamSets.BLOCK)
+										), pRegistries);
 	}
 }

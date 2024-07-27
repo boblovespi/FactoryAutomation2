@@ -4,7 +4,9 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.CreativeTabs;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.sound.FASounds;
+import boblovespi.factoryautomation.data.loot.AlternateDropsLootModifier;
 import com.mojang.logging.LogUtils;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +21,11 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.slf4j.Logger;
 
 @Mod(FactoryAutomation.MODID)
@@ -27,6 +33,12 @@ public class FactoryAutomation
 {
 	public static final String MODID = "factoryautomation";
 	public static final Logger LOGGER = LogUtils.getLogger();
+
+	private static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIER_SERIALIZERS = DeferredRegister.create(
+			NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
+
+	public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<AlternateDropsLootModifier>> ADD_TABLE_LOOT_MODIFIER_TYPE = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(
+			"alternate_drops", () -> AlternateDropsLootModifier.CODEC);
 
 	// The constructor for the mod class is the first code that is run when your mod is loaded.
 	// FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -40,6 +52,7 @@ public class FactoryAutomation
 		FAItems.ITEMS.register(modEventBus);
 		CreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 		FASounds.SOUND_EVENTS.register(modEventBus);
+		GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
 
 		// Register ourselves for server and other game events we are interested in.
 		// Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

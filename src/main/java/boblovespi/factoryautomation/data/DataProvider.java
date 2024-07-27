@@ -1,6 +1,8 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.data.loot.FAGlobalLootModifierProvider;
+import boblovespi.factoryautomation.data.loot.FALootTableProvider;
 import boblovespi.factoryautomation.data.tag.FABlockTagProvider;
 import boblovespi.factoryautomation.data.tag.FAItemTagProvider;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -25,6 +27,7 @@ public class DataProvider
 		gen.addProvider(event.includeClient(), new FASoundDefinitionProvider(output, efh));
 
 		gen.addProvider(event.includeServer(), new FALootTableProvider(output, lookupProvider));
+		gen.addProvider(event.includeServer(), new FAGlobalLootModifierProvider(output, lookupProvider));
 		gen.addProvider(event.includeServer(), new FARecipeProvider(output, lookupProvider));
 
 		var blockTags = new FABlockTagProvider(output, lookupProvider, efh);

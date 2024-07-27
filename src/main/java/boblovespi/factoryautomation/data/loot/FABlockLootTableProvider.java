@@ -1,4 +1,4 @@
-package boblovespi.factoryautomation.data;
+package boblovespi.factoryautomation.data.loot;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;

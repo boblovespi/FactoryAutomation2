@@ -31,6 +31,7 @@ public class CreativeTabs
 	{
 		if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES)
 		{
+			event.insertFirst(FAItems.CHOPPING_BLADE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 			insertAfter(event, Items.WOODEN_HOE, FAItems.FLINT_SHOVEL, FAItems.FLINT_PICKAXE, FAItems.FLINT_AXE, FAItems.FLINT_HOE);
 		}
 

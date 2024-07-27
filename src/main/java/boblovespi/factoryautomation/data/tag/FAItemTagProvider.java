@@ -1,11 +1,13 @@
 package boblovespi.factoryautomation.data.tag;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.item.FAItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -26,8 +28,10 @@ public class FAItemTagProvider extends ItemTagsProvider
 	{
 		tag(ItemTags.SHOVELS).add(FAItems.FLINT_SHOVEL.get());
 		tag(ItemTags.PICKAXES).add(FAItems.FLINT_PICKAXE.get());
-		tag(ItemTags.AXES).add(FAItems.FLINT_AXE.get());
+		tag(ItemTags.AXES).add(FAItems.CHOPPING_BLADE.get(), FAItems.FLINT_AXE.get());
 		tag(ItemTags.HOES).add(FAItems.FLINT_HOE.get());
 		tag(ItemTags.SWORDS).add(FAItems.FLINT_SWORD.get());
+
+		tag(FATags.SILKS_GRASS).add(Items.SHEARS, FAItems.CHOPPING_BLADE.get());
 	}
 }

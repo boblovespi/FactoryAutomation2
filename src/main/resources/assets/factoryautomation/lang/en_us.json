@@ -18,6 +18,10 @@
 	
 	"item.factoryautomation.rock": "Rock",
 	
+	// Items - Tools
+	
+	"item.factoryautomation.chopping_blade": "Chopping Blade",
+	
 	"item.factoryautomation.flint_shovel": "Flint Shovel",
 	"item.factoryautomation.flint_pickaxe": "Flint Pickaxe",
 	"item.factoryautomation.flint_axe": "Flint Axe",
