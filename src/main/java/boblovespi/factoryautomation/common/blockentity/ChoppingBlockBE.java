@@ -94,6 +94,13 @@ public class ChoppingBlockBE extends FABE
 		}
 	}
 
+	public ItemStack getRenderStack()
+	{
+		if (level.isClientSide)
+			return inv.getStackInSlot(0);
+		return ItemStack.EMPTY;
+	}
+
 	@Override
 	protected void save(CompoundTag tag, HolderLookup.Provider registries)
 	{
