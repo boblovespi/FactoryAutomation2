@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.data;
 
+import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.item.FAItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -10,6 +11,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
+import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -23,6 +25,14 @@ public class FARecipeProvider extends RecipeProvider
 	@Override
 	protected void buildRecipes(RecipeOutput output)
 	{
+		// TODO: make not break if patchouli is not loaded
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PatchouliAPI.get().getBookStack(FactoryAutomation.name("guidebook")))
+						   .pattern("rd")
+						   .define('r', FAItems.ROCK)
+						   .define('d', Blocks.DIRT)
+						   .unlockedBy("has_rock", has(FAItems.ROCK))
+						   .save(output);
+
 		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, Blocks.GRAVEL, FAItems.ROCK);
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
 						   .pattern("rf")
