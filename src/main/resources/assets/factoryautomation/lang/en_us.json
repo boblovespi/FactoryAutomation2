@@ -14,6 +14,8 @@
 	
 	"block.factoryautomation.flint_rock": "Flint Rock",
 	
+	"block.factoryautomation.oak_chopping_block": "Oak Chopping Block",
+	
 	// Items
 	
 	"item.factoryautomation.rock": "Rock",
@@ -32,6 +34,7 @@
 	// Creative tabs
 	
 	"itemGroup.factoryautomation.resources": "F. A. Resources",
+	"itemGroup.factoryautomation.processing": "F. A. Processing",
 	
 	"factoryautomation:guidebook": "F. A. Guidebook"
 }

@@ -22,6 +22,8 @@ public class FABlocks
 	public static final DeferredBlock<Rock> COBBLESTONE_ROCK = ROCKS.getFirst();
 	public static final DeferredBlock<ResourceRock> FLINT_ROCK = register("flint_rock", p -> new ResourceRock(p, Items.FLINT), BlockProperties.ROCK);
 
+	public static final DeferredBlock<ChoppingBlock> CHOPPING_BLOCK = register("oak_chopping_block", ChoppingBlock::new, BlockProperties.LOG);
+
 	private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> supplier)
 	{
 		return BLOCKS.register(name, supplier);

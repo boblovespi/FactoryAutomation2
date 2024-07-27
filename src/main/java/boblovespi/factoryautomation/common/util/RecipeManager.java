@@ -1,0 +1,136 @@
+package boblovespi.factoryautomation.common.util;
+
+import boblovespi.factoryautomation.FactoryAutomation;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+
+import javax.annotation.Nullable;
+import java.util.Optional;
+
+public class RecipeManager<R extends Recipe<?>>
+{
+	private static final ResourceLocation NO_RECIPE = ResourceLocation.fromNamespaceAndPath("not_valid", "none");
+	private final String nbtId;
+	private final Validifier<RecipeHolder<R>> validifier;
+	private final RecipeMatcher<RecipeHolder<R>> recipeMatcher;
+	private final RecipeGrabber<Optional<RecipeHolder<?>>> recipeGrabber;
+	@Nullable
+	private RecipeHolder<R> currentRecipe;
+	private ResourceLocation currentRecipeName;
+	private int progress;
+
+	public RecipeManager(String nbtId, Validifier<RecipeHolder<R>> validifier, RecipeMatcher<RecipeHolder<R>> recipeMatcher, RecipeGrabber<Optional<RecipeHolder<?>>> recipeGrabber)
+	{
+		this.nbtId = nbtId;
+		this.validifier = validifier;
+		this.recipeMatcher = recipeMatcher;
+		this.recipeGrabber = recipeGrabber;
+		currentRecipeName = NO_RECIPE;
+	}
+
+	public void updateRecipe()
+	{
+		if (currentRecipe == null || !validifier.isValid(currentRecipe))
+		{
+			currentRecipe = recipeMatcher.findMatchingRecipe();
+			currentRecipeName = currentRecipe == null ? NO_RECIPE : currentRecipe.id();
+		}
+	}
+
+	public void progress()
+	{
+		progress(1);
+	}
+
+	public void progress(int i)
+	{
+		if (i > 0 && progress > 0)
+			progress -= i;
+	}
+
+	public boolean isComplete()
+	{
+		return currentRecipe != null && progress <= 0;
+	}
+
+	public RecipeHolder<R> complete()
+	{
+		if (currentRecipe == null)
+			throw new RuntimeException("Tried to complete a non-existent recipe!");
+		return currentRecipe;
+	}
+
+	public void clearRecipe()
+	{
+		currentRecipe = null;
+		currentRecipeName = NO_RECIPE;
+		progress = 0;
+	}
+
+	public boolean hasRecipe()
+	{
+		return currentRecipe != null;
+	}
+
+	public void onLoad()
+	{
+		if (currentRecipeName != NO_RECIPE)
+		{
+			var maybe = recipeGrabber.getRecipe(currentRecipeName);
+			if (maybe.isPresent())
+			{
+				var recipeHolder = maybe.get();
+				try
+				{
+					//noinspection unchecked
+					currentRecipe = (RecipeHolder<R>) recipeHolder;
+				} catch (ClassCastException e)
+				{
+					FactoryAutomation.LOGGER.warn("The recipe {} has somehow changed types! It is now a {}", currentRecipeName, recipeHolder.getClass().getName());
+					currentRecipeName = NO_RECIPE;
+				}
+			}
+			else
+			{
+				FactoryAutomation.LOGGER.warn("The recipe {} no longer exists!", currentRecipeName);
+				currentRecipeName = NO_RECIPE;
+			}
+		}
+	}
+
+	public void save(CompoundTag tag)
+	{
+		var nbt = new CompoundTag();
+		nbt.putString("recipe", currentRecipeName.toString());
+		nbt.putInt("progress", progress);
+		tag.put(nbtId, nbt);
+	}
+
+	public void load(CompoundTag tag)
+	{
+		var nbt = tag.getCompound(nbtId);
+		currentRecipeName = ResourceLocation.parse(nbt.getString("recipe"));
+		progress = nbt.getInt("progress");
+	}
+
+	@FunctionalInterface
+	public interface Validifier<R>
+	{
+		boolean isValid(R currentRecipe);
+	}
+
+	@FunctionalInterface
+	public interface RecipeMatcher<R>
+	{
+		@Nullable
+		R findMatchingRecipe();
+	}
+
+	@FunctionalInterface
+	public interface RecipeGrabber<R>
+	{
+		R getRecipe(ResourceLocation recipe);
+	}
+}

@@ -26,6 +26,13 @@ public class CreativeTabs
 						o.accept(FAItems.PLANT_FIBER.get());
 					}).build());
 
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PROCESSING = CREATIVE_MODE_TABS.register("processing",
+			() -> CreativeModeTab.builder().title(Component.translatable(FactoryAutomation.locString("itemGroup", "processing"))).withTabsBefore(RESOURCES.getId())
+								 .icon(() -> FAItems.CHOPPING_BLOCK.get().getDefaultInstance()).displayItems((p, o) ->
+					{
+						o.accept(FAItems.CHOPPING_BLOCK.get());
+					}).build());
+
 
 	@SubscribeEvent
 	public static void addCreative(BuildCreativeModeTabContentsEvent event)

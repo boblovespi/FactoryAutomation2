@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.data.tag;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
+import boblovespi.factoryautomation.common.block.FABlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -21,6 +22,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 	@Override
 	protected void addTags(HolderLookup.Provider pProvider)
 	{
+		tag(BlockTags.MINEABLE_WITH_AXE).add(FABlocks.CHOPPING_BLOCK.get());
 		tag(FATags.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);
 	}
 }

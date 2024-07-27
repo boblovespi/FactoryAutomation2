@@ -14,6 +14,10 @@ public class FAItems
 {
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(FactoryAutomation.MODID);
 
+	// Processing
+
+	public static final DeferredItem<BlockItem> CHOPPING_BLOCK = ITEMS.registerSimpleBlockItem("oak_chopping_block", FABlocks.CHOPPING_BLOCK);
+
 	// Resources
 
 	public static final DeferredItem<BlockItem> ROCK = ITEMS.registerSimpleBlockItem("rock", FABlocks.COBBLESTONE_ROCK);

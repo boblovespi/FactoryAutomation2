@@ -20,6 +20,7 @@ public class FABlockStateProvider extends BlockStateProvider
 	{
 		FABlocks.ROCKS.forEach(this::rock);
 		existingBlockModel(FABlocks.FLINT_ROCK);
+		simpleBlockWithItem(FABlocks.CHOPPING_BLOCK.get(), models().slab(FABlocks.CHOPPING_BLOCK.getRegisteredName(), mcLoc("block/oak_log"), mcLoc("block/oak_log_top"), mcLoc("block/oak_log_top")));
 	}
 
 	private void rock(DeferredBlock<Rock> rock)
