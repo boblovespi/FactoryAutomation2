@@ -36,5 +36,9 @@
 	"itemGroup.factoryautomation.resources": "F. A. Resources",
 	"itemGroup.factoryautomation.processing": "F. A. Processing",
 	
-	"factoryautomation:guidebook": "F. A. Guidebook"
+	"factoryautomation:guidebook": "F. A. Guidebook",
+	
+	// Subtitles
+	
+	"subtitles.block.factoryautomation.chopping_block.use": "Chopping block used"
 }

@@ -2,11 +2,14 @@ package boblovespi.factoryautomation.common.blockentity;
 
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -39,6 +42,7 @@ public class ChoppingBlockBE extends FABE
 		{
 			if (tool.is(ItemTags.AXES))
 			{
+				level.playSound(null, worldPosition, FASounds.USE_CHOPPING_BLOCK.get(), SoundSource.BLOCKS, 1, 1.1f + level.random.nextFloat() / 5);
 				tool.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
 				rm.progress();
 				if (rm.isComplete())
