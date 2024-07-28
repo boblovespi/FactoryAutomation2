@@ -49,5 +49,9 @@
 	
 	// Subtitles
 	
-	"subtitles.block.factoryautomation.chopping_block.use": "Chopping block used"
+	"subtitles.block.factoryautomation.chopping_block.use": "Chopping block used",
+	
+	// Jei handlers
+	
+	"jei.factoryautomation.chopping_block.name": "Chopping Block"
 }

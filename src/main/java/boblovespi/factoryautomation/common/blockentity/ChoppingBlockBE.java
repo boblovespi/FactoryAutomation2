@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
+import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.sound.FASounds;
@@ -37,26 +38,25 @@ public class ChoppingBlockBE extends FABE
 
 	public void leftClick(LivingEntity user, ItemStack tool)
 	{
-		if (rm.hasRecipe())
+		if (rm.hasRecipe() && tool.is(ItemTags.AXES))
 		{
-			if (tool.is(ItemTags.AXES))
+			level.playSound(null, worldPosition, FASounds.USE_CHOPPING_BLOCK.get(), SoundSource.BLOCKS, 1, 1.1f + level.random.nextFloat() / 5);
+			tool.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
+			rm.progress();
+			if (rm.isComplete())
 			{
-				level.playSound(null, worldPosition, FASounds.USE_CHOPPING_BLOCK.get(), SoundSource.BLOCKS, 1, 1.1f + level.random.nextFloat() / 5);
-				tool.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
-				rm.progress();
-				if (rm.isComplete())
-				{
-					var result = rm.complete();
-					rm.clearRecipe();
+				var result = rm.complete();
+				rm.clearRecipe();
 
-					// TODO: add good/bad axe logic
-					var input = new SingleRecipeInput(inv.getStackInSlot(0));
-					inv.setStackInSlot(0, result.value().assemble(input, level.registryAccess()));
-					setChangedAndUpdateClient();
-				}
-				else
-					setChanged();
+				var input = new SingleRecipeInput(inv.getStackInSlot(0));
+				var assembled = result.value().assemble(input, level.registryAccess());
+				if (tool.is(FATags.Items.GOOD_AXES))
+					assembled.setCount(assembled.getCount() * 2);
+				inv.setStackInSlot(0, assembled);
+				setChangedAndUpdateClient();
 			}
+			else
+				setChanged();
 		}
 	}
 

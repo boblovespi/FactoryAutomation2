@@ -33,7 +33,7 @@ public class FAItems
 
 	// Tools
 
-	public static final DeferredItem<DiggerItem> CHOPPING_BLADE = tieredTool("chopping_blade", (t, p) -> new DiggerItem(t, FATags.MINEABLE_WITH_CHOPPING_BLADE, p),
+	public static final DeferredItem<DiggerItem> CHOPPING_BLADE = tieredTool("chopping_blade", (t, p) -> new DiggerItem(t, FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE, p),
 			Tools.BAD_FLINT_TIER, new Item.Properties(), 2, -3.2f);
 
 	public static final DeferredItem<ShovelItem> FLINT_SHOVEL = tieredTool("flint_shovel", ShovelItem::new, Tools.FLINT_TIER, new Item.Properties(), 1.5f, -3f);

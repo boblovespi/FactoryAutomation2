@@ -9,9 +9,20 @@ import net.minecraft.world.level.block.Block;
 
 public class FATags
 {
-	public static final TagKey<Item> SILKS_GRASS = item("tools/silks_grass");
+	public static class Items
+	{
+		public static final TagKey<Item> SILKS_GRASS = item("tools/silks_grass");
+		public static final TagKey<Item> GOOD_AXES = item("tools/good_axes");
 
-	public static final TagKey<Block> MINEABLE_WITH_CHOPPING_BLADE = mcBlock("mineable/chopping_blade");
+		public static final TagKey<Item> CHOPPING_BLOCKS = item("chopping_blocks");
+	}
+
+	public static class Blocks
+	{
+		public static final TagKey<Block> MINEABLE_WITH_CHOPPING_BLADE = mcBlock("mineable/chopping_blade");
+
+		public static final TagKey<Block> CHOPPING_BLOCKS = block("chopping_blocks");
+	}
 
 	private static TagKey<Item> mcItem(String name)
 	{

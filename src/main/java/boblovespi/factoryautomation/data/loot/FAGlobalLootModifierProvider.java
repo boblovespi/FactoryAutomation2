@@ -31,7 +31,7 @@ public class FAGlobalLootModifierProvider extends GlobalLootModifierProvider
 		add("chopping_blade_silks_short_grass",
 				new AlternateDropsLootModifier(
 						new LootItemCondition[] {LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("blocks/short_grass")).build(),
-								MatchTool.toolMatches(ItemPredicate.Builder.item().of(FATags.SILKS_GRASS)).build()},
+								MatchTool.toolMatches(ItemPredicate.Builder.item().of(FATags.Items.SILKS_GRASS)).build()},
 						ResourceKey.create(Registries.LOOT_TABLE, FactoryAutomation.name("overrides/short_grass")),
 						HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.WHEAT_SEEDS))
 				)

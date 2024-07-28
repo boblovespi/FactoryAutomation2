@@ -12,7 +12,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Supplier;
 
-public class ChoppingBlockRecipe extends SingleItemRecipe
+public class ChoppingBlockRecipe extends SingleItemRecipe implements IProgressRecipe
 {
 	public ChoppingBlockRecipe(String pGroup, Ingredient pIngredient, ItemStack pResult)
 	{
@@ -33,6 +33,17 @@ public class ChoppingBlockRecipe extends SingleItemRecipe
 	public static SingleItemRecipeBuilder builder(RecipeCategory category, Ingredient ingredient, ItemLike result, int count)
 	{
 		return new SingleItemRecipeBuilder(category, ChoppingBlockRecipe::new, ingredient, result, count);
+	}
+
+	@Override
+	public int getProgress()
+	{
+		return 4;
+	}
+
+	public Ingredient getInput()
+	{
+		return getIngredients().getFirst();
 	}
 
 	public static class Serializer extends SingleItemRecipe.Serializer<ChoppingBlockRecipe>

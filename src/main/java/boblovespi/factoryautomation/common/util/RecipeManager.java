@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.util;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.recipe.IProgressRecipe;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
@@ -9,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class RecipeManager<R extends Recipe<?>>
+public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 {
 	private static final ResourceLocation NO_RECIPE = ResourceLocation.fromNamespaceAndPath("not_valid", "none");
 	private final String nbtId;
@@ -36,6 +37,7 @@ public class RecipeManager<R extends Recipe<?>>
 		{
 			currentRecipe = recipeMatcher.findMatchingRecipe();
 			currentRecipeName = currentRecipe == null ? NO_RECIPE : currentRecipe.id();
+			progress = currentRecipe == null ? 0 : currentRecipe.value().getProgress();
 		}
 	}
 

@@ -32,6 +32,9 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(ItemTags.HOES).add(FAItems.FLINT_HOE.get());
 		tag(ItemTags.SWORDS).add(FAItems.FLINT_SWORD.get());
 
-		tag(FATags.SILKS_GRASS).add(Items.SHEARS, FAItems.CHOPPING_BLADE.get());
+		tag(FATags.Items.SILKS_GRASS).add(Items.SHEARS, FAItems.CHOPPING_BLADE.get());
+		tag(FATags.Items.GOOD_AXES).add(Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
+
+		copy(FATags.Blocks.CHOPPING_BLOCKS, FATags.Items.CHOPPING_BLOCKS);
 	}
 }

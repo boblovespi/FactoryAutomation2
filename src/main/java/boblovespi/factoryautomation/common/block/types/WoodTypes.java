@@ -1,6 +1,9 @@
 package boblovespi.factoryautomation.common.block.types;
 
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MapColor;
@@ -78,6 +81,21 @@ public enum WoodTypes
 			case DARK_OAK -> Blocks.DARK_OAK_PLANKS;
 			case MANGROVE -> Blocks.MANGROVE_PLANKS;
 			case CHERRY -> Blocks.CHERRY_PLANKS;
+		};
+	}
+
+	public TagKey<Item> getLogsTag()
+	{
+		return switch (this)
+		{
+			case OAK -> ItemTags.OAK_LOGS;
+			case SPRUCE -> ItemTags.SPRUCE_LOGS;
+			case BIRCH -> ItemTags.BIRCH_LOGS;
+			case JUNGLE -> ItemTags.JUNGLE_LOGS;
+			case ACACIA -> ItemTags.ACACIA_LOGS;
+			case DARK_OAK -> ItemTags.DARK_OAK_LOGS;
+			case MANGROVE -> ItemTags.MANGROVE_LOGS;
+			case CHERRY -> ItemTags.CHERRY_LOGS;
 		};
 	}
 }
