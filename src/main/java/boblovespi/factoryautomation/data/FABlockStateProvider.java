@@ -22,6 +22,7 @@ public class FABlockStateProvider extends BlockStateProvider
 	{
 		FABlocks.ROCKS.forEach(this::rock);
 		existingBlockModel(FABlocks.FLINT_ROCK);
+		simpleBlockWithItem(FABlocks.GREEN_SAND.get(), cubeAll(FABlocks.GREEN_SAND.get()));
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
 	}
 

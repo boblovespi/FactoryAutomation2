@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
 import net.minecraft.core.HolderLookup;
@@ -36,6 +37,14 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output);
 
 		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, Blocks.GRAVEL, FAItems.ROCK);
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, FABlocks.GREEN_SAND, 4)
+						   .pattern("sc")
+						   .pattern("cs")
+						   .define('c', Blocks.CLAY)
+						   .define('s', Tags.Items.SANDS_COLORLESS)
+						   .unlockedBy("has_clay", has(Blocks.CLAY))
+						   .save(output);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
 						   .pattern("rf")
 						   .pattern("r ")

@@ -17,14 +17,19 @@ public class FAItems
 {
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(FactoryAutomation.MODID);
 
-	// Processing
-	public static final Map<WoodTypes, DeferredItem<BlockItem>> CHOPPING_BLOCKS = FABlocks.CHOPPING_BLOCKS.entrySet().stream().collect(
-			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue().getId().getPath(), e.getValue())));
-
 	// Resources
 
-	public static final DeferredItem<BlockItem> ROCK = ITEMS.registerSimpleBlockItem("rock", FABlocks.COBBLESTONE_ROCK);
 	public static final DeferredItem<Item> PLANT_FIBER = ITEMS.registerItem("plant_fiber", Item::new);
+	public static final DeferredItem<BlockItem> ROCK = ITEMS.registerSimpleBlockItem("rock", FABlocks.COBBLESTONE_ROCK);
+
+	// Refined materials
+
+	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem("green_sand", FABlocks.GREEN_SAND);
+
+	// Processing
+
+	public static final Map<WoodTypes, DeferredItem<BlockItem>> CHOPPING_BLOCKS = FABlocks.CHOPPING_BLOCKS.entrySet().stream().collect(
+			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue().getId().getPath(), e.getValue())));
 
 	// Tools
 
