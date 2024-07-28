@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.item;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -28,9 +29,9 @@ public class CreativeTabs
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PROCESSING = CREATIVE_MODE_TABS.register("processing",
 			() -> CreativeModeTab.builder().title(Component.translatable(FactoryAutomation.locString("itemGroup", "processing"))).withTabsBefore(RESOURCES.getId())
-								 .icon(() -> FAItems.CHOPPING_BLOCK.get().getDefaultInstance()).displayItems((p, o) ->
+								 .icon(() -> FAItems.CHOPPING_BLOCKS.get(WoodTypes.OAK).get().getDefaultInstance()).displayItems((p, o) ->
 					{
-						o.accept(FAItems.CHOPPING_BLOCK.get());
+						FAItems.CHOPPING_BLOCKS.values().forEach(o::accept);
 					}).build());
 
 

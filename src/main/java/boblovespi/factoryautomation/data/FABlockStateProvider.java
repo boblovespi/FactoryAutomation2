@@ -1,8 +1,10 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.ChoppingBlock;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.resource.Rock;
+import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -20,13 +22,21 @@ public class FABlockStateProvider extends BlockStateProvider
 	{
 		FABlocks.ROCKS.forEach(this::rock);
 		existingBlockModel(FABlocks.FLINT_ROCK);
-		simpleBlockWithItem(FABlocks.CHOPPING_BLOCK.get(), models().slab(FABlocks.CHOPPING_BLOCK.getRegisteredName(), mcLoc("block/oak_log"), mcLoc("block/oak_log_top"), mcLoc("block/oak_log_top")));
+		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
 	}
 
 	private void rock(DeferredBlock<Rock> rock)
 	{
 		var realRock = rock.get();
-		simpleBlock(realRock, models().singleTexture(rock.getRegisteredName(), modLoc("block/rock"), mcLoc("block/"+realRock.variant.getSerializedName())));
+		simpleBlock(realRock, models().singleTexture(rock.getRegisteredName(), modLoc("block/rock"), mcLoc("block/" + realRock.variant.getSerializedName())));
+	}
+
+	private void choppingBlock(WoodTypes type, DeferredBlock<ChoppingBlock> choppingBlock)
+	{
+		var realCb = choppingBlock.get();
+		var logLoc = mcLoc("block/" + type.getName() + "_log");
+		var topLoc = logLoc.withSuffix("_top");
+		simpleBlockWithItem(realCb, models().slab(choppingBlock.getRegisteredName(), logLoc, topLoc, topLoc));
 	}
 
 	private void existingBlockModel(DeferredBlock<?> block)
