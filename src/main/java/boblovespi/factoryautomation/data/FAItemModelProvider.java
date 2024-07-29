@@ -22,6 +22,8 @@ public class FAItemModelProvider extends ItemModelProvider
 
 		basicItem(FAItems.PLANT_FIBER.get());
 
+		basicItem(FAItems.TOASTED_BREAD.get());
+
 		handheld(FAItems.CHOPPING_BLADE);
 		handheld(FAItems.FLINT_SHOVEL);
 		handheld(FAItems.FLINT_PICKAXE);

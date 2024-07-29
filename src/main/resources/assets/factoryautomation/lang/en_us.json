@@ -30,6 +30,10 @@
 	"item.factoryautomation.rock": "Rock",
 	"item.factoryautomation.plant_fiber": "Plant Fiber",
 	
+	// Items - Food
+	
+	"item.factoryautomation.toasted_bread": "Toasted Bread",
+	
 	// Items - Tools
 	
 	"item.factoryautomation.chopping_blade": "Chopping Blade",

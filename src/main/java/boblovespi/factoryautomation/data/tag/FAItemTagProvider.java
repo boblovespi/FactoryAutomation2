@@ -9,6 +9,7 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,6 +32,8 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(ItemTags.AXES).add(FAItems.CHOPPING_BLADE.get(), FAItems.FLINT_AXE.get());
 		tag(ItemTags.HOES).add(FAItems.FLINT_HOE.get());
 		tag(ItemTags.SWORDS).add(FAItems.FLINT_SWORD.get());
+
+		tag(Tags.Items.FOODS_BREAD).add(FAItems.TOASTED_BREAD.get());
 
 		tag(FATags.Items.SILKS_GRASS).add(Items.SHEARS, FAItems.CHOPPING_BLADE.get());
 		tag(FATags.Items.GOOD_AXES).add(Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
