@@ -129,4 +129,10 @@ public class ChoppingBlockBE extends FABE
 	{
 		load(tag, registries);
 	}
+
+	@Override
+	public void onDestroy()
+	{
+		ItemHelper.dropAllItems(level, worldPosition.getCenter(), inv);
+	}
 }

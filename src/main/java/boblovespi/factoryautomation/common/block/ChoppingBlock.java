@@ -56,4 +56,11 @@ public class ChoppingBlock extends Block implements EntityBlock
 			return;
 		pLevel.getBlockEntity(pPos, FABETypes.CHOPPING_BLOCK_TYPE.get()).ifPresent(b -> b.leftClick(pPlayer, pPlayer.getMainHandItem()));
 	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		pLevel.getBlockEntity(pPos, FABETypes.CHOPPING_BLOCK_TYPE.get()).ifPresent(ChoppingBlockBE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+	}
 }

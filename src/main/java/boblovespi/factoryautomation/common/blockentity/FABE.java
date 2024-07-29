@@ -28,6 +28,8 @@ public abstract class FABE extends BlockEntity
 
 	protected abstract void loadMini(CompoundTag tag, HolderLookup.Provider registries);
 
+	public abstract void onDestroy();
+
 	@Override
 	protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries)
 	{
