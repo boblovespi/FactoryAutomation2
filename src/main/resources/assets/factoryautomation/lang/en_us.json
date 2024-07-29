@@ -49,6 +49,7 @@
 	
 	// Subtitles
 	
+	"subtitles.block.factoryautomation.chopping_block.make": "Chopping block made",
 	"subtitles.block.factoryautomation.chopping_block.use": "Chopping block used",
 	
 	// Jei handlers

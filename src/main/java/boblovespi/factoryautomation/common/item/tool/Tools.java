@@ -5,6 +5,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.SimpleTier;
 
 public class Tools
@@ -13,4 +14,6 @@ public class Tools
 			2, () -> Ingredient.of(Items.FLINT));
 	public static final Tier FLINT_TIER = new SimpleTier(BlockTags.INCORRECT_FOR_WOODEN_TOOL, Tiers.WOOD.getUses(), Tiers.WOOD.getSpeed(), Tiers.WOOD.getAttackDamageBonus(),
 			Tiers.WOOD.getEnchantmentValue(), () -> Ingredient.of(Items.FLINT));
+
+	public static final ItemAbility MAKE_CHOPPING_BLOCK = ItemAbility.get("make_chopping_block");
 }

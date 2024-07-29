@@ -21,6 +21,7 @@ public class FATags
 	{
 		public static final TagKey<Block> MINEABLE_WITH_CHOPPING_BLADE = mcBlock("mineable/chopping_blade");
 
+		public static final TagKey<Block> CHOPPING_BLOCK_LOGS = block("chopping_block_logs");
 		public static final TagKey<Block> CHOPPING_BLOCKS = block("chopping_blocks");
 	}
 

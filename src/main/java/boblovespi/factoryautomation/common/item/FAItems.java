@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.common.item;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import net.minecraft.world.item.*;
@@ -20,7 +21,7 @@ public class FAItems
 	// Resources
 
 	public static final DeferredItem<Item> PLANT_FIBER = ITEMS.registerItem("plant_fiber", Item::new);
-	public static final DeferredItem<BlockItem> ROCK = ITEMS.registerSimpleBlockItem("rock", FABlocks.COBBLESTONE_ROCK);
+	public static final DeferredItem<BlockItem> ROCK = ITEMS.registerItem("rock", p -> new Rock.Item(FABlocks.COBBLESTONE_ROCK.get(), p));
 
 	// Refined materials
 

@@ -1,9 +1,12 @@
 package boblovespi.factoryautomation.common.block.resource;
 
 import boblovespi.factoryautomation.common.block.BlockProperties;
+import boblovespi.factoryautomation.common.item.tool.Tools;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -12,6 +15,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.ItemAbility;
 
 public class Rock extends Block
 {
@@ -77,6 +81,20 @@ public class Rock extends Block
 		public String getRockName()
 		{
 			return name + "_rock";
+		}
+	}
+
+	public static class Item extends BlockItem
+	{
+		public Item(Block pBlock, Properties pProperties)
+		{
+			super(pBlock, pProperties);
+		}
+
+		@Override
+		public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility)
+		{
+			return itemAbility == Tools.MAKE_CHOPPING_BLOCK;
 		}
 	}
 }
