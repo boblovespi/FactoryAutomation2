@@ -23,7 +23,9 @@ public class FABlockStateProvider extends BlockStateProvider
 		FABlocks.ROCKS.forEach(this::rock);
 		existingBlockModel(FABlocks.FLINT_ROCK);
 		simpleBlockWithItem(FABlocks.GREEN_SAND.get(), cubeAll(FABlocks.GREEN_SAND.get()));
+		simpleBlock(FABlocks.CHARCOAL_PILE.get());
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
+		existingBlockModel(FABlocks.LOG_PILE); // TODO: make models for blockstates
 	}
 
 	private void rock(DeferredBlock<Rock> rock)

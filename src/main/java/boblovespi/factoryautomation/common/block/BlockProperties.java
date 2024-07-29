@@ -8,6 +8,6 @@ import net.minecraft.world.level.material.MapColor;
 public class BlockProperties
 {
 	public static final BlockBehaviour.Properties ROCK = BlockBehaviour.Properties.of().destroyTime(0.1f).explosionResistance(0.1f).replaceable().sound(FASoundTypes.ROCK);
-	public static final BlockBehaviour.Properties LOG = BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(b -> MapColor.WOOD);
+	public static final BlockBehaviour.Properties LOG = BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(b -> MapColor.WOOD); // TODO: replace constants with non-mutable ones (functions maybe)
 	public static final BlockBehaviour.Properties GREEN_SAND = BlockBehaviour.Properties.ofFullCopy(Blocks.CLAY).mapColor(MapColor.GLOW_LICHEN);
 }

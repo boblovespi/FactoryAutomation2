@@ -24,6 +24,8 @@ public class FAItemModelProvider extends ItemModelProvider
 
 		basicItem(FAItems.TOASTED_BREAD.get());
 
+		withExistingParent(FAItems.LOG_PILE.getRegisteredName(), modLoc("block/log_pile"));
+
 		handheld(FAItems.CHOPPING_BLADE);
 		handheld(FAItems.FLINT_SHOVEL);
 		handheld(FAItems.FLINT_PICKAXE);

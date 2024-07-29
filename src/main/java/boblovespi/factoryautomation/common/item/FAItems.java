@@ -26,7 +26,7 @@ public class FAItems
 
 	// Refined materials
 
-	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem("green_sand", FABlocks.GREEN_SAND);
+	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
 
 	// Food
 
@@ -36,7 +36,8 @@ public class FAItems
 	// Processing
 
 	public static final Map<WoodTypes, DeferredItem<BlockItem>> CHOPPING_BLOCKS = FABlocks.CHOPPING_BLOCKS.entrySet().stream().collect(
-			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue().getId().getPath(), e.getValue())));
+			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue())));
+	public static final DeferredItem<BlockItem> LOG_PILE = ITEMS.registerSimpleBlockItem(FABlocks.LOG_PILE);
 
 	// Tools
 
