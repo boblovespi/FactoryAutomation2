@@ -103,8 +103,8 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output);
 
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
-				.unlockedBy("has_bread", has(Items.BREAD))
-				.save(output, FactoryAutomation.name("campfire/toasted_bread"));
+								  .unlockedBy("has_bread", has(Items.BREAD))
+								  .save(output, FactoryAutomation.name("campfire/toasted_bread"));
 
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(Blocks.SHORT_GRASS), FAItems.PLANT_FIBER, 1).unlockedBy("has_short_grass", has(Blocks.SHORT_GRASS))
 						   .save(output, FactoryAutomation.name("chopping_block/plant_fiber"));
@@ -112,6 +112,15 @@ public class FARecipeProvider extends RecipeProvider
 		for (var wood : WoodTypes.values())
 			ChoppingBlockRecipe.builder(RecipeCategory.BUILDING_BLOCKS, Ingredient.of(wood.getLogsTag()), wood.getPlanks(), 2).unlockedBy("has_log", has(wood.getLogsTag()))
 							   .save(output, FactoryAutomation.name("chopping_block/" + wood.getName() + "_planks"));
+		ChoppingBlockRecipe.builder(RecipeCategory.BUILDING_BLOCKS, Ingredient.of(ItemTags.BAMBOO_BLOCKS), Blocks.BAMBOO_PLANKS, 1)
+						   .unlockedBy("has_bamboo_block", has(ItemTags.BAMBOO_BLOCKS))
+						   .save(output, FactoryAutomation.name("chopping_block/bamboo_planks"));
+		ChoppingBlockRecipe.builder(RecipeCategory.BUILDING_BLOCKS, Ingredient.of(ItemTags.CRIMSON_STEMS), Blocks.CRIMSON_PLANKS, 2)
+						   .unlockedBy("has_crimson_stem", has(ItemTags.CRIMSON_STEMS))
+						   .save(output, FactoryAutomation.name("chopping_block/crimson_planks"));
+		ChoppingBlockRecipe.builder(RecipeCategory.BUILDING_BLOCKS, Ingredient.of(ItemTags.WARPED_STEMS), Blocks.WARPED_PLANKS, 2)
+						   .unlockedBy("has_warped_stem", has(ItemTags.WARPED_STEMS))
+						   .save(output, FactoryAutomation.name("chopping_block/warped_planks"));
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS))
 						   .save(output, FactoryAutomation.name("chopping_block/sticks"));
 	}
