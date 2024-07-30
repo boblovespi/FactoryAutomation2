@@ -21,7 +21,7 @@ public class LogPile extends LogPileLike
 
 	public LogPile(Properties properties)
 	{
-		super(properties, 20 * 5); // 5 minutes
+		super(properties, 20 * 60 * 5); // 5 minutes
 	}
 
 	@Override

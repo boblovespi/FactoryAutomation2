@@ -27,11 +27,12 @@ public class FABlockTagProvider extends BlockTagsProvider
 	@Override
 	protected void addTags(HolderLookup.Provider pProvider)
 	{
-		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(FABlocks.GREEN_SAND.get());
 		var choppingBlocks = FABlocks.CHOPPING_BLOCKS.values().stream().map(DeferredHolder::get).toArray(ChoppingBlock[]::new);
-		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks);
-		tag(FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);
 
+		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(FABlocks.GREEN_SAND.get(), FABlocks.CHARCOAL_PILE.get());
+		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get());
+
+		tag(FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);
 		tag(FATags.Blocks.CHOPPING_BLOCK_LOGS).add(Arrays.stream(WoodTypes.values()).map(WoodTypes::getLog).toArray(Block[]::new));
 		tag(FATags.Blocks.CHOPPING_BLOCKS).add(choppingBlocks);
 	}

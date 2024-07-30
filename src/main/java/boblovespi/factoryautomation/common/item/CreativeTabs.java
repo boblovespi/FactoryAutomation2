@@ -23,9 +23,9 @@ public class CreativeTabs
 			() -> CreativeModeTab.builder().title(Component.translatable(FactoryAutomation.locString("itemGroup", "resources"))).withTabsBefore(CreativeModeTabs.COMBAT)
 								 .icon(() -> FAItems.ROCK.get().getDefaultInstance()).displayItems((p, o) ->
 					{
-						o.accept(FAItems.ROCK.get());
-						o.accept(FAItems.PLANT_FIBER.get());
-						o.accept(FAItems.GREEN_SAND.get());
+						o.accept(FAItems.ROCK);
+						o.accept(FAItems.PLANT_FIBER);
+						o.accept(FAItems.GREEN_SAND);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PROCESSING = CREATIVE_MODE_TABS.register("processing",
@@ -33,6 +33,7 @@ public class CreativeTabs
 								 .icon(() -> FAItems.CHOPPING_BLOCKS.get(WoodTypes.OAK).get().getDefaultInstance()).displayItems((p, o) ->
 					{
 						FAItems.CHOPPING_BLOCKS.values().forEach(o::accept);
+						o.accept(FAItems.LOG_PILE);
 					}).build());
 
 

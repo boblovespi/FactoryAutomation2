@@ -3,10 +3,12 @@ package boblovespi.factoryautomation.data;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.ChoppingBlock;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.processing.LogPileLike;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -25,7 +27,8 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlockWithItem(FABlocks.GREEN_SAND.get(), cubeAll(FABlocks.GREEN_SAND.get()));
 		simpleBlock(FABlocks.CHARCOAL_PILE.get());
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
-		existingBlockModel(FABlocks.LOG_PILE); // TODO: make models for blockstates
+		getVariantBuilder(FABlocks.LOG_PILE.get()).forAllStates(
+				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());
 	}
 
 	private void rock(DeferredBlock<Rock> rock)
