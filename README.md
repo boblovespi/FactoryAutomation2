@@ -1,27 +1,39 @@
+<p align="center"><img src="./logo_transparent.png" alt="Factory Automation logo"/></p>
 
-Installation information
-=======
+# Factory Automation
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions at [github](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+A project originally developed by boblovespi, merged with a MultiTeam project, and contiuned with King of Creepers, Blobbb and Gaborboy95.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+## Installation
 
-> **Note**: For Eclipse, use tasks in `Launch Group` instead of ones founds in `Java Application`. A preparation task must run before launching the game. NeoGradle uses launch groups to do these subsequently.
+This repository is a rewrite of the mod for NeoForge 1.21. For older versions, see
+the [Curseforge](https://www.curseforge.com/minecraft/mc-mods/mt-factory-automation).
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## Development
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+### Workspace setup for modders:
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+1. Clone the repository locally with git, or download the ZIP.
+2. Import the build.gradle project into your favorite IDE.
+3. Wait for this to finish, then you should be fully set up. Enjoy coding!
+
+### Building the mod without an IDE:
+
+1. To be documented later.
+
+## Other Information
+
+FactoryAutomation is coded by 2 developers, and two designers.
+
+| Name         | Role                          |
+|--------------|-------------------------------|
+| Boblovespi   | Lead Developer                |
+| LazTheArtist | Modeler, Artist, and Designer |
+| Gaborboy95   | Developer and Modeler         |
+| Blobbb       | Does stuff                    |
+| OroArmor     | Sound                         |
+
+## Contribution
+
+Want to contribute? Great!
+This is an open source project, this may change in the future, but help make this mod better!
