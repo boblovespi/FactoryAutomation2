@@ -114,6 +114,8 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 	{
 		var nbt = tag.getCompound(nbtId);
 		currentRecipeName = ResourceLocation.parse(nbt.getString("recipe"));
+		if (currentRecipeName.equals(NO_RECIPE))
+			currentRecipeName = NO_RECIPE;
 		progress = nbt.getInt("progress");
 	}
 
