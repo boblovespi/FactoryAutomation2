@@ -102,6 +102,13 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_flint", has(Items.FLINT))
 						   .save(output);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CRUCIBLE)
+						   .pattern("c c")
+						   .pattern("c c")
+						   .pattern("ccc")
+						   .define('c', ItemTags.STONE_CRAFTING_MATERIALS)
+						   .unlockedBy("has_cobblestone", has(ItemTags.STONE_CRAFTING_MATERIALS)).save(output);
+
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
 								  .unlockedBy("has_bread", has(Items.BREAD))
 								  .save(output, FactoryAutomation.name("campfire/toasted_bread"));
