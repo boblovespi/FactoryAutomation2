@@ -105,7 +105,10 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 	public void save(CompoundTag tag)
 	{
 		var nbt = new CompoundTag();
-		nbt.putString("recipe", currentRecipeName.toString());
+		if (currentRecipeName != NO_RECIPE)
+			nbt.putString("recipe", currentRecipeName.toString());
+		else
+			nbt.putString("recipe", "NONE!");
 		nbt.putInt("progress", progress);
 		tag.put(nbtId, nbt);
 	}
@@ -113,9 +116,11 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 	public void load(CompoundTag tag)
 	{
 		var nbt = tag.getCompound(nbtId);
-		currentRecipeName = ResourceLocation.parse(nbt.getString("recipe"));
-		if (currentRecipeName.equals(NO_RECIPE))
+		var recipeName = nbt.getString("recipe");
+		if ("NONE!".equals(recipeName))
 			currentRecipeName = NO_RECIPE;
+		else
+			currentRecipeName = ResourceLocation.parse(recipeName);
 		progress = nbt.getInt("progress");
 	}
 
