@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.common.blockentity;
 
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
+import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -9,6 +10,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class StoneCrucibleBE extends FABE implements IMultiblockBE
 {
+	private boolean breaking;
+
 	public StoneCrucibleBE(BlockPos pos, BlockState state)
 	{
 		super(FABETypes.STONE_CRUCIBLE_TYPE.get(), pos, state);
@@ -41,7 +44,11 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE
 	@Override
 	public void onDestroy()
 	{
-
+		if (getBlockState().getValue(StoneCrucible.MULTIBLOCK_COMPLETE))
+		{
+			breaking = true;
+			Multiblocks.STONE_CRUCIBLE.destroy(level, worldPosition, getBlockState().getValue(StoneCrucible.FACING));
+		}
 	}
 
 	@Override
@@ -53,6 +60,7 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE
 	@Override
 	public void onMultiblockDestroyed()
 	{
-		level.setBlock(worldPosition, getBlockState().setValue(StoneCrucible.MULTIBLOCK_COMPLETE, false), 2);
+		if (!breaking)
+			level.setBlock(worldPosition, getBlockState().setValue(StoneCrucible.MULTIBLOCK_COMPLETE, false), 2);
 	}
 }

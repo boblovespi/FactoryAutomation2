@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.block.processing;
 
+import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.StoneCrucibleBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
@@ -51,7 +52,16 @@ public class StoneCrucible extends Block implements EntityBlock
 				level.setBlock(pos, state.setValue(MULTIBLOCK_COMPLETE, true), 2);
 			}
 			return InteractionResult.CONSUME;
-		} return InteractionResult.SUCCESS;
+		}
+		return InteractionResult.SUCCESS;
+	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		if (!pState.is(pNewState.getBlock()))
+			pLevel.getBlockEntity(pPos, FABETypes.STONE_CRUCIBLE_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
 	}
 
 	@Nullable
