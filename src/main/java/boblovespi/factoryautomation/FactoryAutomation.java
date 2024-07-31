@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.item.CreativeTabs;
 import boblovespi.factoryautomation.common.item.FAItems;
+import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.data.loot.AlternateDropsLootModifier;
@@ -54,6 +55,7 @@ public class FactoryAutomation
 		FABETypes.BLOCK_ENTITY_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_SERIALIZERS.register(modEventBus);
+		Multiblocks.register();
 
 		// Register ourselves for server and other game events we are interested in.
 		// Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

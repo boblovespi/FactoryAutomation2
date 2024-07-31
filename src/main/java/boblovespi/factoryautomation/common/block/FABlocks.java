@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.common.block;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.processing.LogPile;
 import boblovespi.factoryautomation.common.block.processing.LogPileLike;
+import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.resource.ResourceRock;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
@@ -41,6 +42,11 @@ public class FABlocks
 			Collectors.toMap(v -> v, v -> register(v.getName() + "_chopping_block", ChoppingBlock::new, BlockProperties.LOG(v.getColor()))));
 	public static final DeferredBlock<ChoppingBlock> CHOPPING_BLOCK = CHOPPING_BLOCKS.get(WoodTypes.OAK);
 	public static final DeferredBlock<LogPile> LOG_PILE = register("log_pile", LogPile::new, BlockProperties.LOG(MapColor.WOOD).lightLevel(s -> s.getValue(LogPileLike.ACTIVATED) ? 3 : 0));
+	public static final DeferredBlock<StoneCrucible> STONE_CRUCIBLE = register("stone_crucible", StoneCrucible::new, BlockProperties.COBBLESTONE_MACHINE);
+
+	// Misc
+
+	public static final DeferredBlock<MultiblockPart> MULTIBLOCK_PART = register("multiblock_part", MultiblockPart::new, BlockBehaviour.Properties.of().noLootTable().noOcclusion());
 
 	private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> supplier)
 	{

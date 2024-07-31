@@ -30,6 +30,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 		var choppingBlocks = FABlocks.CHOPPING_BLOCKS.values().stream().map(DeferredHolder::get).toArray(ChoppingBlock[]::new);
 
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(FABlocks.GREEN_SAND.get(), FABlocks.CHARCOAL_PILE.get());
+		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(FABlocks.STONE_CRUCIBLE.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get());
 
 		tag(FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);

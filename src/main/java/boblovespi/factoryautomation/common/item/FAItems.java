@@ -38,6 +38,7 @@ public class FAItems
 	public static final Map<WoodTypes, DeferredItem<BlockItem>> CHOPPING_BLOCKS = FABlocks.CHOPPING_BLOCKS.entrySet().stream().collect(
 			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue())));
 	public static final DeferredItem<BlockItem> LOG_PILE = ITEMS.registerSimpleBlockItem(FABlocks.LOG_PILE);
+	public static final DeferredItem<BlockItem> STONE_CRUCIBLE = ITEMS.registerSimpleBlockItem(FABlocks.STONE_CRUCIBLE);
 
 	// Tools
 

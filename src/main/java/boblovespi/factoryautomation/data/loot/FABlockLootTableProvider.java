@@ -48,5 +48,6 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 						.apply(ApplyBonusCount.addUniformBonusCount(fortune))));
 		FABlocks.CHOPPING_BLOCKS.values().forEach(b -> dropSelf(b.get()));
 		dropSelf(FABlocks.LOG_PILE.get());
+		dropSelf(FABlocks.STONE_CRUCIBLE.get());
 	}
 }

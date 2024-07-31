@@ -4,13 +4,18 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.ChoppingBlock;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.LogPileLike;
+import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
+import java.util.function.Function;
 
 public class FABlockStateProvider extends BlockStateProvider
 {
@@ -29,6 +34,12 @@ public class FABlockStateProvider extends BlockStateProvider
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
 		getVariantBuilder(FABlocks.LOG_PILE.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());
+		horizontalBlock(FABlocks.STONE_CRUCIBLE.get(), multiblockComplete("stone_crucible", "stone_foundry_multiblock"));
+	}
+
+	private void existingBlockModel(DeferredBlock<?> block)
+	{
+		simpleBlock(block.get(), models().getExistingFile(block.getId().withPrefix("block/")));
 	}
 
 	private void rock(DeferredBlock<Rock> rock)
@@ -45,8 +56,8 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlockWithItem(realCb, models().slab(choppingBlock.getRegisteredName(), logLoc, topLoc, topLoc));
 	}
 
-	private void existingBlockModel(DeferredBlock<?> block)
+	private Function<BlockState, ModelFile> multiblockComplete(String base, String multiblock)
 	{
-		simpleBlock(block.get(), models().getExistingFile(block.getId().withPrefix("block/")));
+		return state -> models().getExistingFile(modLoc("block/" + (state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE) ? multiblock : base)));
 	}
 }

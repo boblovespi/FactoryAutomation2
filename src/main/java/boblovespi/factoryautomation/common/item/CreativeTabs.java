@@ -34,6 +34,7 @@ public class CreativeTabs
 					{
 						FAItems.CHOPPING_BLOCKS.values().forEach(o::accept);
 						o.accept(FAItems.LOG_PILE);
+						o.accept(FAItems.STONE_CRUCIBLE);
 					}).build());
 
 
