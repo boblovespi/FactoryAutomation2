@@ -5,9 +5,11 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
+import boblovespi.factoryautomation.common.recipe.RemovalRecipe;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -130,5 +132,30 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output, FactoryAutomation.name("chopping_block/warped_planks"));
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS))
 						   .save(output, FactoryAutomation.name("chopping_block/sticks"));
+
+		// Vanilla overrides
+		for (var wood : WoodTypes.values())
+			RemovalRecipe.unitFor(wood.getPlanks()).save(output);
+		RemovalRecipe.unitFor(Blocks.BAMBOO_PLANKS).save(output);
+		RemovalRecipe.unitFor(Blocks.CRIMSON_PLANKS).save(output);
+		RemovalRecipe.unitFor(Blocks.WARPED_PLANKS).save(output);
+		RemovalRecipe.unitFor(Items.STICK).save(output);
+		RemovalRecipe.unitFor(Items.WOODEN_SHOVEL).save(output);
+		RemovalRecipe.unitFor(Items.WOODEN_PICKAXE).save(output);
+		RemovalRecipe.unitFor(Items.WOODEN_AXE).save(output);
+		RemovalRecipe.unitFor(Items.WOODEN_HOE).save(output);
+		RemovalRecipe.unitFor(Items.WOODEN_SWORD).save(output);
+
+		// Smelting
+		VanillaRecipeProvider.COAL_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.COAL).forSmelting(output, i));
+		VanillaRecipeProvider.IRON_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.IRON_INGOT).forSmelting(output, i));
+		VanillaRecipeProvider.COPPER_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.COPPER_INGOT).forSmelting(output, i));
+		VanillaRecipeProvider.GOLD_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.GOLD_INGOT).forSmelting(output, i));
+		VanillaRecipeProvider.DIAMOND_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.DIAMOND).forSmelting(output, i));
+		VanillaRecipeProvider.LAPIS_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.LAPIS_LAZULI).forSmelting(output, i));
+		VanillaRecipeProvider.REDSTONE_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.REDSTONE).forSmelting(output, i));
+		VanillaRecipeProvider.EMERALD_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.EMERALD).forSmelting(output, i));
+		RemovalRecipe.unitFor(Items.CHARCOAL).save(output);
+		RemovalRecipe.unitFor(Items.BRICK).save(output);
 	}
 }

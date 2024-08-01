@@ -17,4 +17,7 @@ public class RecipeThings
 			() -> RecipeType.simple(FactoryAutomation.name("chopping_block")));
 	public static final Supplier<RecipeSerializer<ChoppingBlockRecipe>> CHOPPING_BLOCK_SERIALIZER = RECIPE_SERIALIZERS.register("chopping_block",
 			ChoppingBlockRecipe.makeSerializer());
+	public static final Supplier<RecipeType<RemovalRecipe>> REMOVAL_RECIPE_TYPE = RECIPE_TYPES.register("remove_recipe",
+			() -> RecipeType.simple(FactoryAutomation.name("remove_recipe")));
+	public static final Supplier<RecipeSerializer<RemovalRecipe>> REMOVAL_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("remove_recipe", () -> RemovalRecipe.Serializer.INSTANCE);
 }
