@@ -10,9 +10,7 @@ import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.data.loot.AlternateDropsLootModifier;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -78,15 +76,15 @@ public class FactoryAutomation
 
 	private void commonSetup(final FMLCommonSetupEvent event)
 	{
-		// Some common setup code
-		LOGGER.info("HELLO FROM COMMON SETUP");
-
-		if (Config.logDirtBlock)
-			LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
+		//		// Some common setup code
+		//		LOGGER.info("HELLO FROM COMMON SETUP");
+		//
+		//		if (Config.logDirtBlock)
+		//			LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
 
 		LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
-		Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+		//		Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -95,5 +93,14 @@ public class FactoryAutomation
 	{
 		// Do something when the server starts
 		LOGGER.info("HELLO from server starting");
+
+		/*var tags = List.of(BlockTags.NEEDS_STONE_TOOL, FATags.Blocks.NEEDS_COPPER_TOOL, BlockTags.NEEDS_IRON_TOOL, FATags.Blocks.NEEDS_BRONZE_TOOL, BlockTags.NEEDS_DIAMOND_TOOL,
+				FATags.Blocks.NEEDS_STEEL_TOOL, BlockTags.INCORRECT_FOR_WOODEN_TOOL, BlockTags.INCORRECT_FOR_STONE_TOOL, FATags.Blocks.INCORRECT_FOR_COPPER_TOOL,
+				BlockTags.INCORRECT_FOR_IRON_TOOL, FATags.Blocks.INCORRECT_FOR_BRONZE_TOOL, BlockTags.INCORRECT_FOR_DIAMOND_TOOL, FATags.Blocks.INCORRECT_FOR_STEEL_TOOL);
+		for (TagKey<Block> tag : tags)
+		{
+			LOGGER.info("Tag {}: ", tag.location());
+			BuiltInRegistries.BLOCK.getOrCreateTag(tag).stream().forEach(t -> LOGGER.info("\t- {}", t.getRegisteredName()));
+		}*/
 	}
 }
