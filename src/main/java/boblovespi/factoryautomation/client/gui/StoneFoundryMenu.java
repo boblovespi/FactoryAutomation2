@@ -3,9 +3,7 @@ package boblovespi.factoryautomation.client.gui;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -15,21 +13,24 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 public class StoneFoundryMenu extends AbstractContainerMenu
 {
 	private final int invSize;
+	private final ContainerData data;
 	private final ContainerLevelAccess access;
 
 	public StoneFoundryMenu(int containerId, Inventory playerInv)
 	{
-		this(containerId, playerInv, new ItemStackHandler(2), ContainerLevelAccess.NULL);
+		this(containerId, playerInv, new ItemStackHandler(2), new SimpleContainerData(5), ContainerLevelAccess.NULL);
 	}
 
-	public StoneFoundryMenu(int containerId, Inventory playerInv, IItemHandler inv, ContainerLevelAccess access)
+	public StoneFoundryMenu(int containerId, Inventory playerInv, IItemHandler inv, ContainerData data, ContainerLevelAccess access)
 	{
 		super(MenuTypes.STONE_FOUNDRY.get(), containerId);
+		this.data = data;
 		this.access = access;
 		invSize = inv.getSlots();
 
 		addSlot(new SlotItemHandler(inv, 1, 67, 18));
 		addSlot(new SlotItemHandler(inv, 0, 67, 60));
+		addDataSlots(data);
 
 		int x = 8;
 		int y = 98;
@@ -127,5 +128,10 @@ public class StoneFoundryMenu extends AbstractContainerMenu
 	public boolean stillValid(Player player)
 	{
 		return AbstractContainerMenu.stillValid(access, player, FABlocks.STONE_CRUCIBLE.get());
+	}
+
+	public int getData(int index)
+	{
+		return data.get(index);
 	}
 }

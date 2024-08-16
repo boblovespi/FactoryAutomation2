@@ -64,5 +64,9 @@
 	
 	// Jei handlers
 	
-	"jei.factoryautomation.chopping_block.name": "Chopping Block"
+	"jei.factoryautomation.chopping_block.name": "Chopping Block",
+	
+	// Gui things
+	
+	"misc.factoryautomation.temperature": "Temp: %s K"
 }

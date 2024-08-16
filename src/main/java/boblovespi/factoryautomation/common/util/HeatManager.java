@@ -47,4 +47,9 @@ public class HeatManager
 		heatCapacity = nbt.getFloat("heatCapacity");
 		conductivity = nbt.getFloat("conductivity");
 	}
+
+	public float getTemperature()
+	{
+		return temperature;
+	}
 }

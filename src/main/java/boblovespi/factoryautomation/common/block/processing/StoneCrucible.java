@@ -1,6 +1,5 @@
 package boblovespi.factoryautomation.common.block.processing;
 
-import boblovespi.factoryautomation.client.gui.StoneFoundryMenu;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
@@ -10,12 +9,9 @@ import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.Metal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -128,6 +124,6 @@ public class StoneCrucible extends Block implements EntityBlock
 	@Override
 	protected MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos)
 	{
-		return new SimpleMenuProvider((a, b, c) -> new StoneFoundryMenu(a, b,pLevel.getBlockEntity(pPos, FABETypes.STONE_CRUCIBLE_TYPE.get()).orElseThrow().getInv(), ContainerLevelAccess.create(pLevel, pPos)), Component.literal("REPLACE ME"));
+		return pLevel.getBlockEntity(pPos, FABETypes.STONE_CRUCIBLE_TYPE.get()).map(StoneCrucibleBE::getMenuProvider).orElse(null);
 	}
 }

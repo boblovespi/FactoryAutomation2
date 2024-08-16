@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
+import boblovespi.factoryautomation.client.gui.StoneFoundryMenu;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
@@ -7,12 +8,17 @@ import boblovespi.factoryautomation.common.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable
+public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, IMenuProviderProvider
 {
 	private boolean breaking;
 	private final CrucibleManager crucible;
@@ -24,7 +30,14 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable
 	{
 		super(FABETypes.STONE_CRUCIBLE_TYPE.get(), pos, state);
 		crucible = new CrucibleManager.Single("crucible", Form.INGOT.amount() * 9 * 3);
-		inv = new ItemStackHandler(2);
+		inv = new ItemStackHandler(2)
+		{
+			@Override
+			protected void onContentsChanged(int slot)
+			{
+				setChanged();
+			}
+		};
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), () -> inv.extractItem(0, 1, false));
 		heat = new HeatManager("heat", 2300, 300);
 	}
@@ -116,5 +129,37 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable
 	public IItemHandler getInv()
 	{
 		return inv;
+	}
+
+	@Override
+	public MenuProvider getMenuProvider()
+	{
+		return new SimpleMenuProvider((i, v, p) -> new StoneFoundryMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)), Component.literal("REPLACE ME"));
+	}
+
+	private class Data implements ContainerData
+	{
+		@Override
+		public int get(int index)
+		{
+			return switch (index)
+			{
+				case 0 -> Float.floatToIntBits(burner.getBurnTime());
+				case 1 -> Float.floatToIntBits(heat.getTemperature());
+				default -> 0;
+			};
+		}
+
+		@Override
+		public void set(int index, int value)
+		{
+
+		}
+
+		@Override
+		public int getCount()
+		{
+			return 5;
+		}
 	}
 }

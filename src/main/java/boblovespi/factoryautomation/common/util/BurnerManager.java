@@ -50,6 +50,11 @@ public class BurnerManager
 		burnTime = nbt.getInt("burnTime");
 	}
 
+	public float getBurnTime()
+	{
+		return burnTime / 20f;
+	}
+
 	@FunctionalInterface
 	public interface FuelFinder
 	{
