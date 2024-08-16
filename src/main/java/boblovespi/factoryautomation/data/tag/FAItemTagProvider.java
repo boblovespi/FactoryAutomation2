@@ -24,6 +24,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 		super(output, lookupProvider, blockTags, FactoryAutomation.MODID, existingFileHelper);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags(HolderLookup.Provider pProvider)
 	{
@@ -39,5 +40,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.GOOD_AXES).add(Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
 
 		copy(FATags.Blocks.CHOPPING_BLOCKS, FATags.Items.CHOPPING_BLOCKS);
+
+		tag(FATags.Items.IRON_MELTABLE).addTags(Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON);
 	}
 }

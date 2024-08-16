@@ -15,6 +15,13 @@ public class FATags
 		public static final TagKey<Item> GOOD_AXES = item("tools/good_axes");
 
 		public static final TagKey<Item> CHOPPING_BLOCKS = item("chopping_blocks");
+
+		public static final TagKey<Item> IRON_MELTABLE = item("meltables/iron");
+		public static final TagKey<Item> GOLD_MELTABLE = item("meltables/gold");
+		public static final TagKey<Item> COPPER_MELTABLE = item("meltables/copper");
+		public static final TagKey<Item> TIN_MELTABLE = item("meltables/tin");
+		public static final TagKey<Item> BRONZE_MELTABLE = item("meltables/bronze");
+		public static final TagKey<Item> STEEL_MELTABLE = item("meltables/steel");
 	}
 
 	public static class Blocks

@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation;
 
+import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.item.CreativeTabs;
@@ -10,7 +11,12 @@ import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.data.loot.AlternateDropsLootModifier;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -24,6 +30,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.slf4j.Logger;
+
+import java.util.List;
 
 @Mod(FactoryAutomation.MODID)
 public class FactoryAutomation
@@ -94,13 +102,11 @@ public class FactoryAutomation
 		// Do something when the server starts
 		LOGGER.info("HELLO from server starting");
 
-		/*var tags = List.of(BlockTags.NEEDS_STONE_TOOL, FATags.Blocks.NEEDS_COPPER_TOOL, BlockTags.NEEDS_IRON_TOOL, FATags.Blocks.NEEDS_BRONZE_TOOL, BlockTags.NEEDS_DIAMOND_TOOL,
-				FATags.Blocks.NEEDS_STEEL_TOOL, BlockTags.INCORRECT_FOR_WOODEN_TOOL, BlockTags.INCORRECT_FOR_STONE_TOOL, FATags.Blocks.INCORRECT_FOR_COPPER_TOOL,
-				BlockTags.INCORRECT_FOR_IRON_TOOL, FATags.Blocks.INCORRECT_FOR_BRONZE_TOOL, BlockTags.INCORRECT_FOR_DIAMOND_TOOL, FATags.Blocks.INCORRECT_FOR_STEEL_TOOL);
-		for (TagKey<Block> tag : tags)
+		var tags = List.of(FATags.Items.IRON_MELTABLE, FATags.Items.GOLD_MELTABLE);
+		for (TagKey<Item> tag : tags)
 		{
 			LOGGER.info("Tag {}: ", tag.location());
-			BuiltInRegistries.BLOCK.getOrCreateTag(tag).stream().forEach(t -> LOGGER.info("\t- {}", t.getRegisteredName()));
-		}*/
+			BuiltInRegistries.ITEM.getOrCreateTag(tag).stream().forEach(t -> LOGGER.info("\t- {}", t.getRegisteredName()));
+		}
 	}
 }
