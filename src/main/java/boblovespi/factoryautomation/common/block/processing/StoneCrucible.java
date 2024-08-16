@@ -1,26 +1,25 @@
 package boblovespi.factoryautomation.common.block.processing;
 
+import boblovespi.factoryautomation.client.gui.StoneFoundryMenu;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.StoneCrucibleBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.Form;
-import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.Metal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -68,9 +67,9 @@ public class StoneCrucible extends Block implements EntityBlock
 				}
 				else
 				{ // TODO: temporary; replace with casting vessel
-
-					var stack = be.pour();
-					ItemHelper.putItemsInInventoryOrDropAt(player, stack, level, pos.getCenter());
+					player.openMenu(state.getMenuProvider(level, pos));
+					/*var stack = be.pour();
+					ItemHelper.putItemsInInventoryOrDropAt(player, stack, level, pos.getCenter());*/
 				}
 			}
 			else if (Multiblocks.STONE_CRUCIBLE.isValid(level, pos, state.getValue(FACING)))
@@ -123,5 +122,12 @@ public class StoneCrucible extends Block implements EntityBlock
 	public BlockState getStateForPlacement(BlockPlaceContext context)
 	{
 		return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getCounterClockWise());
+	}
+
+	@Nullable
+	@Override
+	protected MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos)
+	{
+		return new SimpleMenuProvider((a, b, c) -> new StoneFoundryMenu(a, b,pLevel.getBlockEntity(pPos, FABETypes.STONE_CRUCIBLE_TYPE.get()).orElseThrow().getInv(), ContainerLevelAccess.create(pLevel, pPos)), Component.literal("REPLACE ME"));
 	}
 }

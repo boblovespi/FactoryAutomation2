@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation;
 
+import boblovespi.factoryautomation.client.gui.MenuTypes;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
@@ -13,10 +14,8 @@ import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -61,6 +60,7 @@ public class FactoryAutomation
 		FABETypes.BLOCK_ENTITY_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_SERIALIZERS.register(modEventBus);
+		MenuTypes.TYPES.register(modEventBus);
 		Multiblocks.register();
 
 		// Register ourselves for server and other game events we are interested in.

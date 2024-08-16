@@ -39,8 +39,9 @@ public abstract class CrucibleManager
 	/**
 	 * Melt a metal into the crucible. Note: users should handle melt progress and heat elsewhere.
 	 *
-	 * @param metal The metal that is being melted.
+	 * @param metal  The metal that is being melted.
 	 * @param amount The amount of metal to melt.
+	 *
 	 * @return The amount of metal was not successfully melted.
 	 */
 	public abstract int melt(Metal metal, int amount);
@@ -75,7 +76,8 @@ public abstract class CrucibleManager
 				this.amount += moved;
 				return moved;
 			}
-			else return amount;
+			else
+				return amount;
 		}
 
 		@Override

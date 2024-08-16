@@ -8,11 +8,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
-
-import java.util.Optional;
 
 public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable
 {
@@ -26,7 +24,7 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable
 	{
 		super(FABETypes.STONE_CRUCIBLE_TYPE.get(), pos, state);
 		crucible = new CrucibleManager.Single("crucible", Form.INGOT.amount() * 9 * 3);
-		inv = new ItemStackHandler(1);
+		inv = new ItemStackHandler(2);
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), () -> inv.extractItem(0, 1, false));
 		heat = new HeatManager("heat", 2300, 300);
 	}
@@ -113,5 +111,10 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable
 	public void addCoal(ItemStack coal)
 	{
 		inv.insertItem(0, coal, false);
+	}
+
+	public IItemHandler getInv()
+	{
+		return inv;
 	}
 }

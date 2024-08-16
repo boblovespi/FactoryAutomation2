@@ -18,7 +18,8 @@ public interface ITickable
 	{
 		if (maybe == type)
 			return ITickable::tick;
-		else return null;
+		else
+			return null;
 	}
 
 	private static <T extends BlockEntity> void tick(Level l, BlockPos p, BlockState s, T t)
