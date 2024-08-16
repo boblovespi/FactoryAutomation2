@@ -15,7 +15,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, IMenuProviderProvider
@@ -25,6 +24,7 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	private final BurnerManager burner;
 	private final HeatManager heat;
 	private final ItemStackHandler inv;
+	private final float efficiency = 0.5f;
 
 	public StoneCrucibleBE(BlockPos pos, BlockState state)
 	{
@@ -38,8 +38,11 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 				setChanged();
 			}
 		};
-		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), () -> inv.extractItem(0, 1, false));
-		heat = new HeatManager("heat", 2300, 300);
+		heat = new HeatManager("heat", 2300 * 1000, 300);
+		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), () -> inv.extractItem(0, 1, false), (t, e) -> {
+			if (t * efficiency >= heat.getTemperature())
+				heat.heat(e * efficiency);
+		});
 	}
 
 	@Override
@@ -117,18 +120,11 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	public void tick()
 	{
 		burner.progress();
-		if (burner.isBurning())
-			heat.heat(1000f / 20);
 	}
 
 	public void addCoal(ItemStack coal)
 	{
 		inv.insertItem(0, coal, false);
-	}
-
-	public IItemHandler getInv()
-	{
-		return inv;
 	}
 
 	@Override
