@@ -39,6 +39,7 @@ public class FAItems
 			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue())));
 	public static final DeferredItem<BlockItem> LOG_PILE = ITEMS.registerSimpleBlockItem(FABlocks.LOG_PILE);
 	public static final DeferredItem<BlockItem> STONE_CRUCIBLE = ITEMS.registerSimpleBlockItem(FABlocks.STONE_CRUCIBLE);
+	public static final DeferredItem<BlockItem> STONE_CASTING_VESSEL = ITEMS.registerSimpleBlockItem(FABlocks.STONE_CASTING_VESSEL);
 
 	// Tools
 

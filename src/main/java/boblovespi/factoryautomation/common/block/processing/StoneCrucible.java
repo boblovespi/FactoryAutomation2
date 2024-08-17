@@ -1,18 +1,16 @@
 package boblovespi.factoryautomation.common.block.processing;
 
+import boblovespi.factoryautomation.api.capability.CastingCapability;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.StoneCrucibleBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
-import boblovespi.factoryautomation.common.util.Form;
-import boblovespi.factoryautomation.common.util.Metal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -49,24 +47,13 @@ public class StoneCrucible extends Block implements EntityBlock
 		if (!level.isClientSide)
 		{
 			var be = level.getBlockEntity(pos, FABETypes.STONE_CRUCIBLE_TYPE.get()).orElseThrow();
+			var castingVessel = level.getCapability(CastingCapability.BLOCK, pos.relative(state.getValue(FACING)).below(), Direction.UP);
 			if (state.getValue(MULTIBLOCK_COMPLETE))
 			{
-				var metal = Metal.fromStack(player.getMainHandItem());
-				if (metal != Metal.UNKNOWN)
-				{
-					var stack = player.getMainHandItem().consumeAndReturn(1, player);
-					be.addMetal(metal, Form.fromStack(stack).amount());
-				}
-				else if (player.getMainHandItem().is(Items.COAL))
-				{
-					be.addCoal(player.getMainHandItem().consumeAndReturn(1, player));
-				}
+				if (pHitResult.getDirection() == state.getValue(FACING) && castingVessel != null)
+					be.pour(castingVessel);
 				else
-				{ // TODO: temporary; replace with casting vessel
 					player.openMenu(state.getMenuProvider(level, pos));
-					/*var stack = be.pour();
-					ItemHelper.putItemsInInventoryOrDropAt(player, stack, level, pos.getCenter());*/
-				}
 			}
 			else if (Multiblocks.STONE_CRUCIBLE.isValid(level, pos, state.getValue(FACING)))
 			{

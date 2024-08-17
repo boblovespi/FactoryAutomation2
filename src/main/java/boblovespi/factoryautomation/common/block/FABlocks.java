@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.common.block;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.processing.LogPile;
 import boblovespi.factoryautomation.common.block.processing.LogPileLike;
+import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.resource.ResourceRock;
 import boblovespi.factoryautomation.common.block.resource.Rock;
@@ -43,6 +44,7 @@ public class FABlocks
 	public static final DeferredBlock<ChoppingBlock> CHOPPING_BLOCK = CHOPPING_BLOCKS.get(WoodTypes.OAK);
 	public static final DeferredBlock<LogPile> LOG_PILE = register("log_pile", LogPile::new, BlockProperties.LOG(MapColor.WOOD).lightLevel(s -> s.getValue(LogPileLike.ACTIVATED) ? 3 : 0));
 	public static final DeferredBlock<StoneCrucible> STONE_CRUCIBLE = register("stone_crucible", StoneCrucible::new, BlockProperties.COBBLESTONE_MACHINE);
+	public static final DeferredBlock<StoneCastingVessel> STONE_CASTING_VESSEL = register("stone_casting_vessel", StoneCastingVessel::new, BlockProperties.COBBLESTONE_MACHINE);
 
 	// Misc
 

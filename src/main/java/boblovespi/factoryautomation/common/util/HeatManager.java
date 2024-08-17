@@ -52,4 +52,16 @@ public class HeatManager
 	{
 		return temperature;
 	}
+
+	public float getHeatCapacity()
+	{
+		return heatCapacity;
+	}
+
+	public void increaseHeatCapacity(float shc)
+	{
+		heatCapacity += shc;
+		if (heatCapacity < 0)
+			heatCapacity = 0;
+	}
 }

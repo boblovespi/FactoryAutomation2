@@ -48,6 +48,11 @@ public class Form
 		return amount;
 	}
 
+	public float fractionOfBlock()
+	{
+		return (float) amount / BLOCK.amount();
+	}
+
 	@Nullable
 	public TagKey<Item> getTag()
 	{

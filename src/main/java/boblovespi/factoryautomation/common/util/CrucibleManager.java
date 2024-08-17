@@ -50,6 +50,15 @@ public abstract class CrucibleManager
 
 	public abstract void load(CompoundTag tag);
 
+	public abstract Metal getCurrentMetal();
+
+	public abstract int getAmount();
+
+	public int getSpace()
+	{
+		return maxCapacity - getAmount();
+	}
+
 	public static class Single extends CrucibleManager
 	{
 		@Nullable
@@ -99,6 +108,18 @@ public abstract class CrucibleManager
 				metal = null;
 			else
 				metal = Metal.fromName(metalName);
+		}
+
+		@Override
+		public Metal getCurrentMetal()
+		{
+			return metal == null ? Metal.UNKNOWN : metal;
+		}
+
+		@Override
+		public int getAmount()
+		{
+			return amount;
 		}
 
 		@Override

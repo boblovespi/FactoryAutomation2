@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation;
 
+import boblovespi.factoryautomation.api.capability.CastingCapability;
 import boblovespi.factoryautomation.client.gui.MenuTypes;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
@@ -22,6 +23,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -50,6 +52,7 @@ public class FactoryAutomation
 	{
 		// Register the commonSetup method for mod loading
 		modEventBus.addListener(this::commonSetup);
+		modEventBus.addListener(this::onRegisterCapabilities);
 
 		// Add all registrars to the event bus
 		FABlocks.BLOCKS.register(modEventBus);
@@ -108,5 +111,10 @@ public class FactoryAutomation
 			LOGGER.info("Tag {}: ", tag.location());
 			BuiltInRegistries.ITEM.getOrCreateTag(tag).stream().forEach(t -> LOGGER.info("\t- {}", t.getRegisteredName()));
 		}
+	}
+
+	public void onRegisterCapabilities(RegisterCapabilitiesEvent event)
+	{
+		event.registerBlockEntity(CastingCapability.BLOCK, FABETypes.STONE_CASTING_VESSEL_TYPE.get(), (b, d) -> b);
 	}
 }
