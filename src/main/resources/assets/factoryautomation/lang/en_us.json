@@ -70,5 +70,16 @@
 	// Gui things
 	
 	"misc.factoryautomation.temperature": "Temp: %s K",
-	"info.too_hot": "Too hot: %s"
+	"info.too_hot": "Too hot: %s",
+	
+	// Advancements
+	
+	"advancements.factoryautomation.stone_age.root.title": "Stone Age",
+	"advancements.factoryautomation.stone_age.root.description": "Enter the stone age by obtaining a chopping block.",
+	"advancements.factoryautomation.stone_age.flint_pickaxe.title": "Flint Pickaxe",
+	"advancements.factoryautomation.stone_age.flint_pickaxe.description": "Make a flint pickaxe and begin to mine.",
+	"advancements.factoryautomation.stone_age.stone_foundry.title": "A Simple Foundry",
+	"advancements.factoryautomation.stone_age.stone_foundry.description": "Build a stone foundry.",
+	"advancements.factoryautomation.stone_age.copper_ingot.title": "Copper Age",
+	"advancements.factoryautomation.stone_age.copper_ingot.description": "Enter the copper age by obtaining a copper ingot."
 }

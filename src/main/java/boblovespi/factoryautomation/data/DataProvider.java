@@ -29,6 +29,7 @@ public class DataProvider
 		gen.addProvider(event.includeServer(), new FALootTableProvider(output, lookupProvider));
 		gen.addProvider(event.includeServer(), new FAGlobalLootModifierProvider(output, lookupProvider));
 		gen.addProvider(event.includeServer(), new FARecipeProvider(output, lookupProvider));
+		gen.addProvider(event.includeServer(), new FAAdvancementProvider(output, lookupProvider, efh));
 
 		var blockTags = new FABlockTagProvider(output, lookupProvider, efh);
 		gen.addProvider(event.includeServer(), blockTags);
