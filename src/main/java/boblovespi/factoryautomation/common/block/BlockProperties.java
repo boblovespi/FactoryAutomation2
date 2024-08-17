@@ -16,7 +16,7 @@ public class BlockProperties
 		return BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD).ignitedByLava().mapColor(c);
 	}
 
-	public static final BlockBehaviour.Properties GREEN_SAND = BlockBehaviour.Properties.of().strength(0.6f).sound(SoundType.GRAVEL).mapColor(MapColor.GLOW_LICHEN);
+	public static final BlockBehaviour.Properties GREEN_SAND = BlockBehaviour.Properties.of().strength(0.6f).sound(SoundType.PACKED_MUD).mapColor(MapColor.GLOW_LICHEN);
 	public static final BlockBehaviour.Properties CHARCOAL_PILE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.GRAVEL).strength(0.5f)
 																						   .requiresCorrectToolForDrops();
 

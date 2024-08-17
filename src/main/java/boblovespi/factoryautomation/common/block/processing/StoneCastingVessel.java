@@ -4,6 +4,8 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -75,7 +77,10 @@ public class StoneCastingVessel extends Block implements EntityBlock
 		if (level.isClientSide)
 			return ItemInteractionResult.SUCCESS;
 		if (stack.is(FABlocks.GREEN_SAND.asItem()) && state.getValue(MOLD) == CastingVesselStates.EMPTY)
+		{
 			level.setBlockAndUpdate(pos, state.setValue(MOLD, CastingVesselStates.SAND));
+			level.playSound(null, pos, SoundEvents.PACKED_MUD_PLACE, SoundSource.BLOCKS);
+		}
 		else if (stack.is(Items.STICK) && state.getValue(MOLD) != CastingVesselStates.EMPTY)
 			player.openMenu(state.getMenuProvider(level, pos));
 		else
@@ -88,6 +93,14 @@ public class StoneCastingVessel extends Block implements EntityBlock
 	protected MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos)
 	{
 		return pLevel.getBlockEntity(pPos, FABETypes.STONE_CASTING_VESSEL_TYPE.get()).map(IMenuProviderProvider::getMenuProvider).orElse(null);
+	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		if (!pState.is(pNewState.getBlock()))
+			pLevel.getBlockEntity(pPos, FABETypes.STONE_CASTING_VESSEL_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
 	}
 
 	public enum CastingVesselStates implements StringRepresentable

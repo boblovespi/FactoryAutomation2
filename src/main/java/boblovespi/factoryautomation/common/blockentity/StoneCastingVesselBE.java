@@ -65,6 +65,9 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 	{
 		if (temp < 40 + 273 - 300)
 			ItemHelper.dropAllItems(level, worldPosition.getCenter(), inv);
+		var mold = getBlockState().getValue(StoneCastingVessel.MOLD);
+		if (mold != StoneCastingVessel.CastingVesselStates.EMPTY)
+			ItemHelper.dropItem(level, worldPosition.getCenter(), new ItemStack(FABlocks.GREEN_SAND));
 	}
 
 	@Override
@@ -90,6 +93,7 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 				var taken = inv.extractItem(0, 64, false);
 				ItemHelper.putItemsInInventoryOrDrop(player, taken, level);
 				ItemHelper.putItemsInInventoryOrDrop(player, new ItemStack(FABlocks.GREEN_SAND), level);
+				level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCastingVessel.MOLD, StoneCastingVessel.CastingVesselStates.EMPTY));
 				setChangedAndUpdateClient();
 			}
 			else
@@ -138,13 +142,13 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 		@Override
 		public int get(int pIndex)
 		{
-			return getBlockState().getValue(StoneCastingVessel.MOLD).ordinal() - 2;
+			return getBlockState().getValue(StoneCastingVessel.MOLD).ordinal() - 1;
 		}
 
 		@Override
 		public void set(int pIndex, int pValue)
 		{
-			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCastingVessel.MOLD, StoneCastingVessel.CastingVesselStates.values()[pValue + 2]));
+			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCastingVessel.MOLD, StoneCastingVessel.CastingVesselStates.values()[pValue + 1]));
 		}
 
 		@Override

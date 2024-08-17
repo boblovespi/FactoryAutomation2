@@ -20,6 +20,7 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 	{
 		super(pMenu, pPlayerInventory, pTitle);
 		imageHeight = 180;
+		inventoryLabelY += 14;
 		flameBar = new GuiBar(BACKGROUND_TEXTURE, 67, 40, 176, 0, 14, 14, GuiBar.ProgressDirection.UP);
 		temperatureBar = new GuiBar(BACKGROUND_TEXTURE, 53, 16, 176, 17, 6, 61, GuiBar.ProgressDirection.UP);
 		progressBar = new GuiBar(BACKGROUND_TEXTURE, 84, 21, 194, 2, 22, 10, GuiBar.ProgressDirection.RIGHT);

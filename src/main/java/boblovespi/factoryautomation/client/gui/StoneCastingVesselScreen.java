@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.client.gui;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import com.google.common.collect.Lists;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -18,10 +19,13 @@ public class StoneCastingVesselScreen extends AbstractContainerScreen<StoneCasti
 	private Button sheet;
 	private Button coin;
 	private Button gear;
+	private GuiMultiImage image;
 
 	public StoneCastingVesselScreen(StoneCastingVesselMenu pMenu, Inventory pPlayerInventory, Component pTitle)
 	{
 		super(pMenu, pPlayerInventory, pTitle);
+		imageHeight = 180;
+		inventoryLabelY += 14;
 	}
 
 	@Override
@@ -40,6 +44,14 @@ public class StoneCastingVesselScreen extends AbstractContainerScreen<StoneCasti
 		addRenderableWidget(coin);
 		gear = new ExtendedButton(leftPos + 52, topPos + 58, 18, 18, Component.literal("Gear"), unused -> setForm(4));
 		addRenderableWidget(gear);
+		image = new GuiMultiImage(85, 16, 64, 64, 0, 0, 16, 16, Lists.newArrayList(
+				FactoryAutomation.name("textures/block/green_sand.png"),
+				FactoryAutomation.name("textures/block/casting_sand_ingot_pattern.png"),
+				FactoryAutomation.name("textures/block/casting_sand_nugget_pattern.png"),
+				FactoryAutomation.name("textures/block/casting_sand_rod_pattern.png"),
+				FactoryAutomation.name("textures/block/casting_sand_sheet_pattern.png"),
+				FactoryAutomation.name("textures/block/casting_sand_gear_pattern.png"),
+				FactoryAutomation.name("textures/block/casting_sand_coin_pattern.png")));
 	}
 
 	@Override
@@ -54,10 +66,13 @@ public class StoneCastingVesselScreen extends AbstractContainerScreen<StoneCasti
 	protected void renderBg(GuiGraphics graphics, float pPartialTick, int pMouseX, int pMouseY)
 	{
 		graphics.blit(BACKGROUND_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+		image.setTexture(menu.getForm());
+		image.draw(this, graphics);
 	}
 
 	private void setForm(int form)
 	{
-		minecraft.gameMode.handleInventoryButtonClick(menu.containerId, form);
+		image.setTexture(form + 1);
+		minecraft.gameMode.handleInventoryButtonClick(menu.containerId, form + 1);
 	}
 }

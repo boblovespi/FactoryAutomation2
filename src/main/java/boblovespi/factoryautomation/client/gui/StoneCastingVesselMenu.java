@@ -64,4 +64,9 @@ public class StoneCastingVesselMenu extends AbstractContainerMenu
 		data.set(0, id);
 		return true;
 	}
+
+	public int getForm()
+	{
+		return data.get(0);
+	}
 }

@@ -34,6 +34,11 @@ public class ItemHelper
 		}
 	}
 
+	public static void dropItem(Level level, Vec3 pos, ItemStack item)
+	{
+		Containers.dropItemStack(level, pos.x(), pos.y(), pos.z(), item);
+	}
+
 	public static void dropAllItems(Level level, Vec3 pos, ItemStackHandler items)
 	{
 		var count = items.getSlots();
