@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.client;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.client.ber.ChoppingBlockBER;
+import boblovespi.factoryautomation.client.ber.StoneCastingVesselBER;
 import boblovespi.factoryautomation.client.gui.MenuTypes;
 import boblovespi.factoryautomation.client.gui.StoneFoundryScreen;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
@@ -28,6 +29,7 @@ public class ClientHandler
 	public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event)
 	{
 		event.registerBlockEntityRenderer(FABETypes.CHOPPING_BLOCK_TYPE.get(), ChoppingBlockBER::new);
+		event.registerBlockEntityRenderer(FABETypes.STONE_CASTING_VESSEL_TYPE.get(), StoneCastingVesselBER::new);
 	}
 
 	@SubscribeEvent

@@ -1,16 +1,27 @@
 package boblovespi.factoryautomation.common.block.processing;
 
+import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.StoneCastingVesselBE;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -47,6 +58,27 @@ public class StoneCastingVessel extends Block implements EntityBlock
 	public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState)
 	{
 		return new StoneCastingVesselBE(pPos, pState);
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState pState, BlockEntityType<T> beType)
+	{
+		if (level.isClientSide || pState.getValue(MOLD) == CastingVesselStates.EMPTY || pState.getValue(MOLD) == CastingVesselStates.SAND)
+			return null;
+		return ITickable.makeTicker(FABETypes.STONE_CASTING_VESSEL_TYPE.get(), beType);
+	}
+
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHitResult)
+	{
+		if (level.isClientSide)
+			return ItemInteractionResult.SUCCESS;
+		if (stack.is(FABlocks.GREEN_SAND.asItem()) && state.getValue(MOLD) == CastingVesselStates.EMPTY)
+			level.setBlockAndUpdate(pos, state.setValue(MOLD, CastingVesselStates.SAND));
+		else
+			level.getBlockEntity(pos, FABETypes.STONE_CASTING_VESSEL_TYPE.get()).ifPresent(b -> b.takeItem(player));
+		return ItemInteractionResult.CONSUME;
 	}
 
 	public enum CastingVesselStates implements StringRepresentable

@@ -69,5 +69,6 @@
 	
 	// Gui things
 	
-	"misc.factoryautomation.temperature": "Temp: %s K"
+	"misc.factoryautomation.temperature": "Temp: %s K",
+	"info.too_hot": "Too hot: %s"
 }
