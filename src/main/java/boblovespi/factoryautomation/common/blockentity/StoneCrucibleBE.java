@@ -105,6 +105,7 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	{
 		setChangedAndUpdateClient();
 		castingVessel.cast(crucible::pour);
+		heat.setHeatCapacity(crucible.getHeatCapacity() + 2300 * 1000);
 	}
 
 	@Override

@@ -64,4 +64,11 @@ public class HeatManager
 		if (heatCapacity < 0)
 			heatCapacity = 0;
 	}
+
+	public void setHeatCapacity(float shc)
+	{
+		heatCapacity = shc;
+		if (heatCapacity < 0)
+			heatCapacity = 0;
+	}
 }

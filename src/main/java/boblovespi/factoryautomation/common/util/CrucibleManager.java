@@ -54,6 +54,8 @@ public abstract class CrucibleManager
 
 	public abstract int getAmount();
 
+	public abstract float getHeatCapacity();
+
 	public int getSpace()
 	{
 		return maxCapacity - getAmount();
@@ -120,6 +122,14 @@ public abstract class CrucibleManager
 		public int getAmount()
 		{
 			return amount;
+		}
+
+		@Override
+		public float getHeatCapacity()
+		{
+			if (amount == 0 || metal == null)
+				return 0;
+			return metal.massHeatCapacity() * metal.density() * amount / (Metal.UNITS_IN_INGOT * 9);
 		}
 
 		@Override
