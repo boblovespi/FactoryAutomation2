@@ -49,5 +49,6 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		FABlocks.CHOPPING_BLOCKS.values().forEach(b -> dropSelf(b.get()));
 		dropSelf(FABlocks.LOG_PILE.get());
 		dropSelf(FABlocks.STONE_CRUCIBLE.get());
+		dropSelf(FABlocks.STONE_CASTING_VESSEL.get());
 	}
 }

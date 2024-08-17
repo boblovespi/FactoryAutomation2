@@ -16,6 +16,9 @@ public class Form
 	public static final Form INGOT = new Form("ingot", Metal.UNITS_IN_INGOT, Tags.Items.INGOTS);
 	public static final Form NUGGET = new Form("nugget", Metal.UNITS_IN_INGOT / 9, Tags.Items.NUGGETS);
 	public static final Form BLOCK = new Form("block", Metal.UNITS_IN_INGOT * 9, Tags.Items.STORAGE_BLOCKS);
+	public static final Form SHEET = new Form("sheet", Metal.UNITS_IN_INGOT, null);
+	public static final Form ROD = new Form("rod", Metal.UNITS_IN_INGOT / 2, Tags.Items.RODS);
+	public static final Form GEAR = new Form("gear", Metal.UNITS_IN_INGOT * 4, null);
 	public static final Form NONE = new Form("none", Integer.MAX_VALUE, null);
 
 	private final String name;
