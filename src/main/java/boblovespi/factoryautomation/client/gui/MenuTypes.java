@@ -13,6 +13,7 @@ public class MenuTypes
 	public static final DeferredRegister<MenuType<?>> TYPES = DeferredRegister.create(Registries.MENU, FactoryAutomation.MODID);
 
 	public static final DeferredHolder<MenuType<?>, MenuType<StoneFoundryMenu>> STONE_FOUNDRY = register("stone_foundry", StoneFoundryMenu::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<StoneCastingVesselMenu>> STONE_CASTING_VESSEL = register("stone_casting_vessel", StoneCastingVesselMenu::new);
 
 	private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> register(String name, MenuType.MenuSupplier<T> supplier)
 	{

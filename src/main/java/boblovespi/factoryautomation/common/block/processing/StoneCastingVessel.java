@@ -1,16 +1,16 @@
 package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
-import boblovespi.factoryautomation.common.blockentity.StoneCastingVesselBE;
+import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -76,9 +76,18 @@ public class StoneCastingVessel extends Block implements EntityBlock
 			return ItemInteractionResult.SUCCESS;
 		if (stack.is(FABlocks.GREEN_SAND.asItem()) && state.getValue(MOLD) == CastingVesselStates.EMPTY)
 			level.setBlockAndUpdate(pos, state.setValue(MOLD, CastingVesselStates.SAND));
+		else if (stack.is(Items.STICK) && state.getValue(MOLD) != CastingVesselStates.EMPTY)
+			player.openMenu(state.getMenuProvider(level, pos));
 		else
 			level.getBlockEntity(pos, FABETypes.STONE_CASTING_VESSEL_TYPE.get()).ifPresent(b -> b.takeItem(player));
 		return ItemInteractionResult.CONSUME;
+	}
+
+	@Nullable
+	@Override
+	protected MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos)
+	{
+		return pLevel.getBlockEntity(pPos, FABETypes.STONE_CASTING_VESSEL_TYPE.get()).map(IMenuProviderProvider::getMenuProvider).orElse(null);
 	}
 
 	public enum CastingVesselStates implements StringRepresentable

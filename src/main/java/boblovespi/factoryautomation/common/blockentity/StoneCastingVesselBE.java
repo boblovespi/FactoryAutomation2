@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
+import boblovespi.factoryautomation.client.gui.StoneCastingVesselMenu;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.util.ICastingVessel;
@@ -9,7 +10,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -17,7 +22,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITickable
+public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITickable, IMenuProviderProvider
 {
 	private final ItemStackHandler inv;
 	private float temp;
@@ -120,5 +125,32 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 		if (level.isClientSide)
 			return temp;
 		return 0;
+	}
+
+	@Override
+	public MenuProvider getMenuProvider()
+	{
+		return new SimpleMenuProvider((i, v, p) -> new StoneCastingVesselMenu(i, v, new StoneCastingVesselBE.Data(), ContainerLevelAccess.create(level, worldPosition)), Component.literal("REPLACE ME"));
+	}
+
+	private class Data implements ContainerData
+	{
+		@Override
+		public int get(int pIndex)
+		{
+			return getBlockState().getValue(StoneCastingVessel.MOLD).ordinal() - 2;
+		}
+
+		@Override
+		public void set(int pIndex, int pValue)
+		{
+			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCastingVessel.MOLD, StoneCastingVessel.CastingVesselStates.values()[pValue + 2]));
+		}
+
+		@Override
+		public int getCount()
+		{
+			return 1;
+		}
 	}
 }

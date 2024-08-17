@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.client.ber.ChoppingBlockBER;
 import boblovespi.factoryautomation.client.ber.StoneCastingVesselBER;
 import boblovespi.factoryautomation.client.gui.MenuTypes;
+import boblovespi.factoryautomation.client.gui.StoneCastingVesselScreen;
 import boblovespi.factoryautomation.client.gui.StoneFoundryScreen;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import net.minecraft.client.Minecraft;
@@ -36,5 +37,6 @@ public class ClientHandler
 	public static void registerScreens(RegisterMenuScreensEvent event)
 	{
 		event.register(MenuTypes.STONE_FOUNDRY.get(), StoneFoundryScreen::new);
+		event.register(MenuTypes.STONE_CASTING_VESSEL.get(), StoneCastingVesselScreen::new);
 	}
 }
