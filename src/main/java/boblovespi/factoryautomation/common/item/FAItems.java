@@ -29,6 +29,7 @@ public class FAItems
 
 	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
 	public static final Map<Form, DeferredItem<Item>> COPPER_THINGS = Form.copper().stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem("copper_" + k.getName(), Item::new)));
+	public static final Map<Form, DeferredItem<Item>> TIN_THINGS = Form.most().stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem("tin_" + k.getName(), Item::new)));
 
 	// Food
 

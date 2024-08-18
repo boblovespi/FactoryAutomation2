@@ -43,6 +43,11 @@
 	"item.factoryautomation.copper_sheet": "Copper Sheet",
 	"item.factoryautomation.copper_rod": "Copper Rod",
 	
+	"item.factoryautomation.tin_ingot": "Tin Ingot",
+	"item.factoryautomation.tin_nugget": "Tin Nugget",
+	"item.factoryautomation.tin_sheet": "Tin Sheet",
+	"item.factoryautomation.tin_rod": "Tin Rod",
+	
 	// Items - Food
 	
 	"item.factoryautomation.toasted_bread": "Toasted Bread",

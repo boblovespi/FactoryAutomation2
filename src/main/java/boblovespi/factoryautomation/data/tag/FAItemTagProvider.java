@@ -37,9 +37,12 @@ public class FAItemTagProvider extends ItemTagsProvider
 
 		tag(Tags.Items.FOODS_BREAD).add(FAItems.TOASTED_BREAD.get());
 
-		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET);
+		tag(Tags.Items.INGOTS).addTags(FATags.Items.TIN_INGOT);
+		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET);
 
 		tag(FATags.Items.COPPER_NUGGET).add(FAItems.COPPER_THINGS.get(Form.NUGGET).get());
+		tag(FATags.Items.TIN_INGOT).add(FAItems.TIN_THINGS.get(Form.INGOT).get());
+		tag(FATags.Items.TIN_NUGGET).add(FAItems.TIN_THINGS.get(Form.NUGGET).get());
 
 		tag(FATags.Items.SILKS_GRASS).add(Items.SHEARS, FAItems.CHOPPING_BLADE.get());
 		tag(FATags.Items.GOOD_AXES).add(Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);

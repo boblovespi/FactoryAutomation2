@@ -20,8 +20,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredItem;
 import vazkii.patchouli.api.PatchouliAPI;
 
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class FARecipeProvider extends RecipeProvider
@@ -52,6 +54,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output);
 
 		ingot(Items.COPPER_INGOT, FAItems.COPPER_THINGS.get(Form.NUGGET), Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, "copper", output);
+		ingot(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, "tin", output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
 						   .pattern("rf")
@@ -174,6 +177,11 @@ public class FARecipeProvider extends RecipeProvider
 		VanillaRecipeProvider.EMERALD_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.EMERALD).forSmelting(output, i));
 		RemovalRecipe.unitFor(Items.CHARCOAL).save(output);
 		RemovalRecipe.unitFor(Items.BRICK).save(output);
+	}
+
+	private void ingot(Map<Form, DeferredItem<Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, String name, RecipeOutput output)
+	{
+		ingot(things.get(Form.INGOT), things.get(Form.NUGGET), ingot, nugget, name, output);
 	}
 
 	private void tool(ItemLike shovel, ItemLike pickaxe, ItemLike axe, ItemLike hoe, ItemLike sword, Ingredient mat, String matName, TagKey<Item> canonicalMat, RecipeOutput output)

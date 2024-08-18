@@ -24,6 +24,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.PLANT_FIBER.get());
 
 		FAItems.COPPER_THINGS.forEach(this::metal);
+		FAItems.TIN_THINGS.forEach(this::metal);
 
 		basicItem(FAItems.TOASTED_BREAD.get());
 
