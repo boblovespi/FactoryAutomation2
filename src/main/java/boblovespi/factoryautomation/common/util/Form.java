@@ -6,8 +6,10 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Form
 {
@@ -46,6 +48,11 @@ public class Form
 		return NONE;
 	}
 
+	public static Collection<Form> copper()
+	{
+		return LOOKUP_MAP.values().stream().filter(f -> f != INGOT && f != BLOCK && f != NONE && f != GEAR).collect(Collectors.toList());
+	}
+
 	public int amount()
 	{
 		return amount;
@@ -60,5 +67,10 @@ public class Form
 	public TagKey<Item> getTag()
 	{
 		return backingTag;
+	}
+
+	public String getName()
+	{
+		return name;
 	}
 }

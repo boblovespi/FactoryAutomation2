@@ -1,11 +1,13 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
 import boblovespi.factoryautomation.common.recipe.RemovalRecipe;
+import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -48,6 +50,8 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('s', Tags.Items.SANDS_COLORLESS)
 						   .unlockedBy("has_clay", has(Blocks.CLAY))
 						   .save(output);
+
+		ingot(Items.COPPER_INGOT, FAItems.COPPER_THINGS.get(Form.NUGGET), Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, "copper", output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
 						   .pattern("rf")
@@ -218,5 +222,22 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('s', Tags.Items.RODS_WOODEN)
 						   .unlockedBy("has_" + matName, has(canonicalMat))
 						   .save(output);
+	}
+
+	private void ingot(ItemLike ingot, ItemLike nugget, TagKey<Item> ingotI, TagKey<Item> nuggetI, String name, RecipeOutput output)
+	{
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, nugget, 9)
+							  .requires(ingotI)
+							  .group(name + "_nugget")
+							  .unlockedBy("has_" + name + "_ingot", has(ingotI))
+							  .save(output, FactoryAutomation.name(name + "_nugget_from_ingot"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ingot)
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .define('n', nuggetI)
+						   .group(name + "_ingot")
+						   .unlockedBy("has_" + name + "_nugget", has(nuggetI))
+						   .save(output, FactoryAutomation.name(name + "_ingot_from_nuggets"));
 	}
 }

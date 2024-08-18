@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.data.tag;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.item.FAItems;
+import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -36,6 +37,10 @@ public class FAItemTagProvider extends ItemTagsProvider
 
 		tag(Tags.Items.FOODS_BREAD).add(FAItems.TOASTED_BREAD.get());
 
+		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET);
+
+		tag(FATags.Items.COPPER_NUGGET).add(FAItems.COPPER_THINGS.get(Form.NUGGET).get());
+
 		tag(FATags.Items.SILKS_GRASS).add(Items.SHEARS, FAItems.CHOPPING_BLADE.get());
 		tag(FATags.Items.GOOD_AXES).add(Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
 
@@ -43,6 +48,6 @@ public class FAItemTagProvider extends ItemTagsProvider
 
 		tag(FATags.Items.IRON_MELTABLE).addTags(Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON);
 
-		tag(FATags.Items.COPPER_MELTABLE).addTags(Tags.Items.INGOTS_COPPER, Tags.Items.RAW_MATERIALS_COPPER);
+		tag(FATags.Items.COPPER_MELTABLE).addTags(Tags.Items.INGOTS_COPPER, Tags.Items.RAW_MATERIALS_COPPER, FATags.Items.COPPER_NUGGET);
 	}
 }

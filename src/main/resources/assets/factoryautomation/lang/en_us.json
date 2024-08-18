@@ -37,6 +37,12 @@
 	"item.factoryautomation.rock": "Rock",
 	"item.factoryautomation.plant_fiber": "Plant Fiber",
 	
+	// Items - Refined
+	
+	"item.factoryautomation.copper_nugget": "Copper Nugget",
+	"item.factoryautomation.copper_sheet": "Copper Sheet",
+	"item.factoryautomation.copper_rod": "Copper Rod",
+	
 	// Items - Food
 	
 	"item.factoryautomation.toasted_bread": "Toasted Bread",

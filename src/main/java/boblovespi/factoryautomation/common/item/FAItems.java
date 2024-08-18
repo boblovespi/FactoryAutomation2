@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.Tools;
+import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -27,6 +28,7 @@ public class FAItems
 	// Refined materials
 
 	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
+	public static final Map<Form, DeferredItem<Item>> COPPER_THINGS = Form.copper().stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem("copper_" + k.getName(), Item::new)));
 
 	// Food
 

@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.item.FAItems;
+import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -22,6 +23,8 @@ public class FAItemModelProvider extends ItemModelProvider
 
 		basicItem(FAItems.PLANT_FIBER.get());
 
+		FAItems.COPPER_THINGS.forEach(this::metal);
+
 		basicItem(FAItems.TOASTED_BREAD.get());
 
 		withExistingParent(FAItems.LOG_PILE.getRegisteredName(), modLoc("block/log_pile"));
@@ -38,6 +41,11 @@ public class FAItemModelProvider extends ItemModelProvider
 		handheld(FAItems.COPPER_AXE);
 		handheld(FAItems.COPPER_HOE);
 		handheld(FAItems.COPPER_SWORD);
+	}
+
+	private void metal(Form form, DeferredItem<Item> item)
+	{
+		basicItem(item.get());
 	}
 
 	private void handheld(DeferredItem<? extends Item> item)

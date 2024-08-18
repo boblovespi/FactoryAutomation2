@@ -26,6 +26,7 @@ public class CreativeTabs
 						o.accept(FAItems.ROCK);
 						o.accept(FAItems.PLANT_FIBER);
 						o.accept(FAItems.GREEN_SAND);
+						FAItems.COPPER_THINGS.values().forEach(o::accept);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PROCESSING = CREATIVE_MODE_TABS.register("processing",

@@ -23,6 +23,7 @@ public class FATags
 		public static final TagKey<Item> TIN_MELTABLE = item("meltables/tin");
 		public static final TagKey<Item> BRONZE_MELTABLE = item("meltables/bronze");
 		public static final TagKey<Item> STEEL_MELTABLE = item("meltables/steel");
+		public static final TagKey<Item> COPPER_NUGGET = cItem("nuggets/copper");
 	}
 
 	public static class Blocks
@@ -57,6 +58,11 @@ public class FATags
 	private static TagKey<Item> item(String name)
 	{
 		return TagKey.create(Registries.ITEM, FactoryAutomation.name(name));
+	}
+
+	private static TagKey<Item> cItem(String name)
+	{
+		return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
 	}
 
 	private static TagKey<Block> mcBlock(String name)
