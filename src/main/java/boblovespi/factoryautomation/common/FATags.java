@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
 public class FATags
@@ -39,6 +40,15 @@ public class FATags
 		public static final TagKey<Block> CHOPPING_BLOCKS = block("chopping_blocks");
 	}
 
+	public static class Biomes
+	{
+		public static final TagKey<Biome> IS_TYPICAL_OVERWORLD = biome("is_typical_overworld");
+		public static final TagKey<Biome> IS_YELLOW_DESERT_OVERWORLD = biome("is_yellow_desert_overworld");
+		public static final TagKey<Biome> IS_RED_DESERT_OVERWORLD = biome("is_red_desert_overworld");
+		public static final TagKey<Biome> IS_WET_OVERWORLD = biome("is_wet_overworld");
+		public static final TagKey<Biome> IS_SURFACE_OVERWORLD = biome("is_surface_overworld");
+	}
+
 	private static TagKey<Item> mcItem(String name)
 	{
 		return TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace(name));
@@ -57,5 +67,10 @@ public class FATags
 	private static TagKey<Block> block(String name)
 	{
 		return TagKey.create(Registries.BLOCK, FactoryAutomation.name(name));
+	}
+
+	private static TagKey<Biome> biome(String name)
+	{
+		return TagKey.create(Registries.BIOME, FactoryAutomation.name(name));
 	}
 }

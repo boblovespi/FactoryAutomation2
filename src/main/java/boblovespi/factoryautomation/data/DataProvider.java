@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.data;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.data.loot.FAGlobalLootModifierProvider;
 import boblovespi.factoryautomation.data.loot.FALootTableProvider;
+import boblovespi.factoryautomation.data.tag.FABiomeTagProvider;
 import boblovespi.factoryautomation.data.tag.FABlockTagProvider;
 import boblovespi.factoryautomation.data.tag.FAItemTagProvider;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -30,9 +31,11 @@ public class DataProvider
 		gen.addProvider(event.includeServer(), new FAGlobalLootModifierProvider(output, lookupProvider));
 		gen.addProvider(event.includeServer(), new FARecipeProvider(output, lookupProvider));
 		gen.addProvider(event.includeServer(), new FAAdvancementProvider(output, lookupProvider, efh));
+		gen.addProvider(event.includeServer(), new FAWorldgenProvider(output, lookupProvider));
 
 		var blockTags = new FABlockTagProvider(output, lookupProvider, efh);
 		gen.addProvider(event.includeServer(), blockTags);
 		gen.addProvider(event.includeServer(), new FAItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), efh));
+		gen.addProvider(event.includeServer(), new FABiomeTagProvider(output, lookupProvider, efh));
 	}
 }
