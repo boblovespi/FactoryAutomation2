@@ -33,6 +33,11 @@ public class FAItemModelProvider extends ItemModelProvider
 		handheld(FAItems.FLINT_AXE);
 		handheld(FAItems.FLINT_HOE);
 		handheld(FAItems.FLINT_SWORD);
+		handheld(FAItems.COPPER_SHOVEL);
+		handheld(FAItems.COPPER_PICKAXE);
+		handheld(FAItems.COPPER_AXE);
+		handheld(FAItems.COPPER_HOE);
+		handheld(FAItems.COPPER_SWORD);
 	}
 
 	private void handheld(DeferredItem<? extends Item> item)

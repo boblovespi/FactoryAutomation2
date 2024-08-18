@@ -35,6 +35,7 @@ public class CreativeTabs
 						FAItems.CHOPPING_BLOCKS.values().forEach(o::accept);
 						o.accept(FAItems.LOG_PILE);
 						o.accept(FAItems.STONE_CRUCIBLE);
+						o.accept(FAItems.STONE_CASTING_VESSEL);
 					}).build());
 
 
@@ -45,11 +46,13 @@ public class CreativeTabs
 		{
 			event.insertFirst(FAItems.CHOPPING_BLADE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 			insertAfter(event, Items.WOODEN_HOE, FAItems.FLINT_SHOVEL, FAItems.FLINT_PICKAXE, FAItems.FLINT_AXE, FAItems.FLINT_HOE);
+			insertAfter(event, Items.STONE_HOE, FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE);
 		}
 
 		if (event.getTabKey() == CreativeModeTabs.COMBAT)
 		{
 			insertAfter(event, Items.WOODEN_SWORD, FAItems.FLINT_SWORD);
+			insertAfter(event, Items.STONE_SWORD, FAItems.COPPER_SWORD);
 		}
 	}
 

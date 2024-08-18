@@ -11,8 +11,11 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -104,6 +107,9 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_flint", has(Items.FLINT))
 						   .save(output);
 
+		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, Ingredient.of(Tags.Items.INGOTS_COPPER), "copper",
+				Tags.Items.INGOTS_COPPER, output);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CRUCIBLE)
 						   .pattern("c c")
 						   .pattern("c c")
@@ -164,5 +170,53 @@ public class FARecipeProvider extends RecipeProvider
 		VanillaRecipeProvider.EMERALD_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.EMERALD).forSmelting(output, i));
 		RemovalRecipe.unitFor(Items.CHARCOAL).save(output);
 		RemovalRecipe.unitFor(Items.BRICK).save(output);
+	}
+
+	private void tool(ItemLike shovel, ItemLike pickaxe, ItemLike axe, ItemLike hoe, ItemLike sword, Ingredient mat, String matName, TagKey<Item> canonicalMat, RecipeOutput output)
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, shovel)
+						   .pattern("m")
+						   .pattern("s")
+						   .pattern("s")
+						   .define('m', mat)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_" + matName, has(canonicalMat))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, pickaxe)
+						   .pattern("mmm")
+						   .pattern(" s ")
+						   .pattern(" s ")
+						   .define('m', mat)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_" + matName, has(canonicalMat))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, axe)
+						   .pattern("mm")
+						   .pattern("ms")
+						   .pattern(" s")
+						   .define('m', mat)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_" + matName, has(canonicalMat))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, hoe)
+						   .pattern("mm")
+						   .pattern(" s")
+						   .pattern(" s")
+						   .define('m', mat)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_" + matName, has(canonicalMat))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, sword)
+						   .pattern("m")
+						   .pattern("m")
+						   .pattern("s")
+						   .define('m', mat)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_" + matName, has(canonicalMat))
+						   .save(output);
 	}
 }

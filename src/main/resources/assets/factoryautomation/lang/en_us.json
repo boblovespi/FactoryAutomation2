@@ -51,6 +51,12 @@
 	"item.factoryautomation.flint_hoe": "Flint Hoe",
 	"item.factoryautomation.flint_sword": "Flint Sword",
 	
+	"item.factoryautomation.copper_shovel": "Copper Shovel",
+	"item.factoryautomation.copper_pickaxe": "Copper Pickaxe",
+	"item.factoryautomation.copper_axe": "Copper Axe",
+	"item.factoryautomation.copper_hoe": "Copper Hoe",
+	"item.factoryautomation.copper_sword": "Copper Sword",
+	
 	// Creative tabs
 	
 	"itemGroup.factoryautomation.resources": "F. A. Resources",

@@ -28,11 +28,11 @@ public class FAItemTagProvider extends ItemTagsProvider
 	@Override
 	protected void addTags(HolderLookup.Provider pProvider)
 	{
-		tag(ItemTags.SHOVELS).add(FAItems.FLINT_SHOVEL.get());
-		tag(ItemTags.PICKAXES).add(FAItems.FLINT_PICKAXE.get());
-		tag(ItemTags.AXES).add(FAItems.CHOPPING_BLADE.get(), FAItems.FLINT_AXE.get());
-		tag(ItemTags.HOES).add(FAItems.FLINT_HOE.get());
-		tag(ItemTags.SWORDS).add(FAItems.FLINT_SWORD.get());
+		tag(ItemTags.SHOVELS).add(FAItems.FLINT_SHOVEL.get(), FAItems.COPPER_SHOVEL.get());
+		tag(ItemTags.PICKAXES).add(FAItems.FLINT_PICKAXE.get(), FAItems.COPPER_PICKAXE.get());
+		tag(ItemTags.AXES).add(FAItems.CHOPPING_BLADE.get(), FAItems.FLINT_AXE.get(), FAItems.COPPER_AXE.get());
+		tag(ItemTags.HOES).add(FAItems.FLINT_HOE.get(), FAItems.COPPER_HOE.get());
+		tag(ItemTags.SWORDS).add(FAItems.FLINT_SWORD.get(), FAItems.COPPER_SWORD.get());
 
 		tag(Tags.Items.FOODS_BREAD).add(FAItems.TOASTED_BREAD.get());
 

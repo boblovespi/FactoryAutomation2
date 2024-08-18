@@ -52,6 +52,12 @@ public class FAItems
 	public static final DeferredItem<HoeItem> FLINT_HOE = tieredTool("flint_hoe", HoeItem::new, Tools.FLINT_TIER, new Item.Properties(), 1, -3f);
 	public static final DeferredItem<SwordItem> FLINT_SWORD = tieredTool("flint_sword", SwordItem::new, Tools.FLINT_TIER, new Item.Properties(), 3, -2.4f);
 
+	public static final DeferredItem<ShovelItem> COPPER_SHOVEL = tieredTool("copper_shovel", ShovelItem::new, Tools.COPPER_TIER, new Item.Properties(), 1.5f, -3f);
+	public static final DeferredItem<PickaxeItem> COPPER_PICKAXE = tieredTool("copper_pickaxe", PickaxeItem::new, Tools.COPPER_TIER, new Item.Properties(), 1, -2.8f);
+	public static final DeferredItem<AxeItem> COPPER_AXE = tieredTool("copper_axe", AxeItem::new, Tools.COPPER_TIER, new Item.Properties(), 6.5f, -3.15f);
+	public static final DeferredItem<HoeItem> COPPER_HOE = tieredTool("copper_hoe", HoeItem::new, Tools.COPPER_TIER, new Item.Properties(), -1.5f, -1.5f);
+	public static final DeferredItem<SwordItem> COPPER_SWORD = tieredTool("copper_sword", SwordItem::new, Tools.COPPER_TIER, new Item.Properties(), 3, -2.4f);
+
 	private static <T extends TieredItem> DeferredItem<T> tieredTool(String name, BiFunction<Tier, Item.Properties, T> constructor, Tier tier, Item.Properties properties,
 																	 float damage, float as)
 	{
