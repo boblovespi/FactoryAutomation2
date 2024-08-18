@@ -32,8 +32,8 @@ public class FAItems
 	// Refined materials
 
 	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
-	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null);
-	public static final Map<Form, DeferredItem<? extends Item>> TIN_THINGS = metal("tin", Form.most(), FABlocks.TIN_BLOCK);
+	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null, FABlocks.COPPER_PLATE_BLOCK);
+	public static final Map<Form, DeferredItem<? extends Item>> TIN_THINGS = metal("tin", Form.most(), FABlocks.TIN_BLOCK, FABlocks.TIN_PLATE_BLOCK);
 
 	// Food
 
@@ -71,11 +71,13 @@ public class FAItems
 		return ITEMS.registerItem(name, p -> constructor.apply(tier, p), properties.attributes(SwordItem.createAttributes(tier, damage, as)));
 	}
 
-	private static Map<Form, DeferredItem<? extends Item>> metal(String name, Collection<Form> metals, @Nullable DeferredBlock<Block> block)
+	private static Map<Form, DeferredItem<? extends Item>> metal(String name, Collection<Form> metals, @Nullable DeferredBlock<Block> block, DeferredBlock<Block> plateBlock)
 	{
 		return metals.stream().collect(Collectors.toMap(k -> k, k -> {
 			if (k == Form.BLOCK && block != null)
 				return ITEMS.registerSimpleBlockItem(block);
+			else if (k == Form.PLATE_BLOCK)
+				return ITEMS.registerSimpleBlockItem(plateBlock);
 			return ITEMS.registerItem(name + "_" + k.getName(), Item::new);
 		}));
 	}

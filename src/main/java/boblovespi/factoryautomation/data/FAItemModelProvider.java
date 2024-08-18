@@ -46,7 +46,7 @@ public class FAItemModelProvider extends ItemModelProvider
 
 	private void metal(Form form, DeferredItem<? extends Item> item)
 	{
-		if (form == Form.BLOCK)
+		if (form == Form.BLOCK || form == Form.PLATE_BLOCK)
 			withExistingParent(item.getRegisteredName(), item.getId().withPrefix("block/"));
 		else
 			basicItem(item.get());

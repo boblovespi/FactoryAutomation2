@@ -21,6 +21,7 @@ public class Form
 	public static final Form SHEET = new Form("sheet", Metal.UNITS_IN_INGOT, null);
 	public static final Form ROD = new Form("rod", Metal.UNITS_IN_INGOT / 2, Tags.Items.RODS);
 	public static final Form GEAR = new Form("gear", Metal.UNITS_IN_INGOT * 4, null);
+	public static final Form PLATE_BLOCK = new Form("gear", Metal.UNITS_IN_INGOT * 6, null);
 	public static final Form NONE = new Form("none", Integer.MAX_VALUE, null);
 
 	private final String name;
