@@ -27,11 +27,14 @@ public class FATags
 		public static final TagKey<Item> COPPER_NUGGET = cItem("nuggets/copper");
 		public static final TagKey<Item> TIN_INGOT = cItem("ingots/tin");
 		public static final TagKey<Item> TIN_NUGGET = cItem("nuggets/tin");
+		public static final TagKey<Item> TIN_BLOCK = cItem("storage_blocks/tin");
 	}
 
 	public static class Blocks
 	{
 		public static final TagKey<Block> MINEABLE_WITH_CHOPPING_BLADE = mcBlock("mineable/chopping_blade");
+
+		public static final TagKey<Block> TIN_BLOCK = cBlock("storage_blocks/tin");
 
 		public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = block("incorrect_for_copper_tool");
 		public static final TagKey<Block> NEEDS_COPPER_TOOL = block("needs_copper_tool");
@@ -76,6 +79,11 @@ public class FATags
 	private static TagKey<Block> block(String name)
 	{
 		return TagKey.create(Registries.BLOCK, FactoryAutomation.name(name));
+	}
+
+	private static TagKey<Block> cBlock(String name)
+	{
+		return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", name));
 	}
 
 	private static TagKey<Biome> biome(String name)

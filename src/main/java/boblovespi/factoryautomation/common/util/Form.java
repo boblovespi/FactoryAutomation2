@@ -55,7 +55,7 @@ public class Form
 
 	public static Collection<Form> most()
 	{
-		return LOOKUP_MAP.values().stream().filter(f -> f != BLOCK && f != NONE && f != GEAR).collect(Collectors.toList());
+		return LOOKUP_MAP.values().stream().filter(f -> f != NONE && f != GEAR).collect(Collectors.toList());
 	}
 
 	public int amount()

@@ -9,9 +9,13 @@ import boblovespi.factoryautomation.common.item.tool.Tools;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
@@ -28,8 +32,8 @@ public class FAItems
 	// Refined materials
 
 	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
-	public static final Map<Form, DeferredItem<Item>> COPPER_THINGS = Form.copper().stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem("copper_" + k.getName(), Item::new)));
-	public static final Map<Form, DeferredItem<Item>> TIN_THINGS = Form.most().stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem("tin_" + k.getName(), Item::new)));
+	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null);
+	public static final Map<Form, DeferredItem<? extends Item>> TIN_THINGS = metal("tin", Form.most(), FABlocks.TIN_BLOCK);
 
 	// Food
 
@@ -65,5 +69,14 @@ public class FAItems
 																	 float damage, float as)
 	{
 		return ITEMS.registerItem(name, p -> constructor.apply(tier, p), properties.attributes(SwordItem.createAttributes(tier, damage, as)));
+	}
+
+	private static Map<Form, DeferredItem<? extends Item>> metal(String name, Collection<Form> metals, @Nullable DeferredBlock<Block> block)
+	{
+		return metals.stream().collect(Collectors.toMap(k -> k, k -> {
+			if (k == Form.BLOCK && block != null)
+				return ITEMS.registerSimpleBlockItem(block);
+			return ITEMS.registerItem(name + "_" + k.getName(), Item::new);
+		}));
 	}
 }

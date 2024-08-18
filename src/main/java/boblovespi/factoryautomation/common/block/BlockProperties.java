@@ -22,4 +22,9 @@ public class BlockProperties
 
 	public static final BlockBehaviour.Properties COBBLESTONE_MACHINE = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM)
 																								 .requiresCorrectToolForDrops().strength(3.5F);
+
+	public static BlockBehaviour.Properties LIGHT_METAL(MapColor c)
+	{
+		return BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 6.0F).sound(SoundType.COPPER).mapColor(c);
+	}
 }

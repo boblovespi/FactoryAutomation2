@@ -40,6 +40,8 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(Tags.Items.INGOTS).addTags(FATags.Items.TIN_INGOT);
 		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET);
 
+		copy(FATags.Blocks.TIN_BLOCK, FATags.Items.TIN_BLOCK);
+
 		tag(FATags.Items.COPPER_NUGGET).add(FAItems.COPPER_THINGS.get(Form.NUGGET).get());
 		tag(FATags.Items.TIN_INGOT).add(FAItems.TIN_THINGS.get(Form.INGOT).get());
 		tag(FATags.Items.TIN_NUGGET).add(FAItems.TIN_THINGS.get(Form.NUGGET).get());

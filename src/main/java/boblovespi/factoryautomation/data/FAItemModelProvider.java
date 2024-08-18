@@ -44,9 +44,12 @@ public class FAItemModelProvider extends ItemModelProvider
 		handheld(FAItems.COPPER_SWORD);
 	}
 
-	private void metal(Form form, DeferredItem<Item> item)
+	private void metal(Form form, DeferredItem<? extends Item> item)
 	{
-		basicItem(item.get());
+		if (form == Form.BLOCK)
+			withExistingParent(item.getRegisteredName(), item.getId().withPrefix("block/"));
+		else
+			basicItem(item.get());
 	}
 
 	private void handheld(DeferredItem<? extends Item> item)

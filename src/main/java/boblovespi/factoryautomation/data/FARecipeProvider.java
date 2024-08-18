@@ -54,7 +54,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output);
 
 		ingot(Items.COPPER_INGOT, FAItems.COPPER_THINGS.get(Form.NUGGET), Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, "copper", output);
-		ingot(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, "tin", output);
+		metal(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, "tin", output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
 						   .pattern("rf")
@@ -179,11 +179,6 @@ public class FARecipeProvider extends RecipeProvider
 		RemovalRecipe.unitFor(Items.BRICK).save(output);
 	}
 
-	private void ingot(Map<Form, DeferredItem<Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, String name, RecipeOutput output)
-	{
-		ingot(things.get(Form.INGOT), things.get(Form.NUGGET), ingot, nugget, name, output);
-	}
-
 	private void tool(ItemLike shovel, ItemLike pickaxe, ItemLike axe, ItemLike hoe, ItemLike sword, Ingredient mat, String matName, TagKey<Item> canonicalMat, RecipeOutput output)
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, shovel)
@@ -232,6 +227,12 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output);
 	}
 
+	private void metal(Map<Form, DeferredItem<? extends Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, TagKey<Item> block, String name, RecipeOutput output)
+	{
+		ingot(things.get(Form.INGOT), things.get(Form.NUGGET), ingot, nugget, name, output);
+		block(things.get(Form.BLOCK), things.get(Form.INGOT), block, ingot, name, output);
+	}
+
 	private void ingot(ItemLike ingot, ItemLike nugget, TagKey<Item> ingotI, TagKey<Item> nuggetI, String name, RecipeOutput output)
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, nugget, 9)
@@ -247,5 +248,22 @@ public class FARecipeProvider extends RecipeProvider
 						   .group(name + "_ingot")
 						   .unlockedBy("has_" + name + "_nugget", has(nuggetI))
 						   .save(output, FactoryAutomation.name(name + "_ingot_from_nuggets"));
+	}
+
+	private void block(ItemLike block, ItemLike ingot, TagKey<Item> blockI, TagKey<Item> ingotI, String name, RecipeOutput output)
+	{
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot, 9)
+							  .requires(blockI)
+							  .group(name + "_ingot")
+							  .unlockedBy("has_" + name + "_block", has(blockI))
+							  .save(output, FactoryAutomation.name(name + "_ingot_from_block"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, block)
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .define('n', ingotI)
+						   .group(name + "_block")
+						   .unlockedBy("has_" + name + "_ingot", has(ingotI))
+						   .save(output, FactoryAutomation.name(name + "_block_from_ingots"));
 	}
 }

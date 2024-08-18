@@ -46,6 +46,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 				LootPool.lootPool().add(LootItem.lootTableItem(Items.CHARCOAL))
 						.apply(SetItemCountFunction.setCount(UniformGenerator.between(7, 10)))
 						.apply(ApplyBonusCount.addUniformBonusCount(fortune))));
+		dropSelf(FABlocks.TIN_BLOCK.get());
 		FABlocks.CHOPPING_BLOCKS.values().forEach(b -> dropSelf(b.get()));
 		dropSelf(FABlocks.LOG_PILE.get());
 		dropSelf(FABlocks.STONE_CRUCIBLE.get());
