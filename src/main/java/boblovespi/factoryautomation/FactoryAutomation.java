@@ -9,6 +9,7 @@ import boblovespi.factoryautomation.common.item.CreativeTabs;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
+import boblovespi.factoryautomation.common.recipe.Workbench;
 import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.data.loot.AlternateDropsLootModifier;
 import com.mojang.logging.LogUtils;
@@ -30,6 +31,7 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import org.slf4j.Logger;
 
 import java.util.List;
@@ -53,6 +55,7 @@ public class FactoryAutomation
 		// Register the commonSetup method for mod loading
 		modEventBus.addListener(this::commonSetup);
 		modEventBus.addListener(this::onRegisterCapabilities);
+		modEventBus.addListener(this::onRegisterDataMapTypes);
 
 		// Add all registrars to the event bus
 		FABlocks.BLOCKS.register(modEventBus);
@@ -116,5 +119,11 @@ public class FactoryAutomation
 	public void onRegisterCapabilities(RegisterCapabilitiesEvent event)
 	{
 		event.registerBlockEntity(CastingCapability.BLOCK, FABETypes.STONE_CASTING_VESSEL_TYPE.get(), (b, d) -> b);
+	}
+
+	public void onRegisterDataMapTypes(RegisterDataMapTypesEvent event)
+	{
+		event.register(Workbench.PART_DATA);
+		event.register(Workbench.TOOL_DATA);
 	}
 }

@@ -20,4 +20,7 @@ public class RecipeThings
 	public static final Supplier<RecipeType<RemovalRecipe>> REMOVAL_RECIPE_TYPE = RECIPE_TYPES.register("remove_recipe",
 			() -> RecipeType.simple(FactoryAutomation.name("remove_recipe")));
 	public static final Supplier<RecipeSerializer<RemovalRecipe>> REMOVAL_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("remove_recipe", () -> RemovalRecipe.Serializer.INSTANCE);
+	public static final Supplier<RecipeType<WorkbenchRecipe>> WORKBENCH_RECIPE_TYPE = RECIPE_TYPES.register("workbench",
+			() -> RecipeType.simple(FactoryAutomation.name("workbench")));
+	public static final Supplier<RecipeSerializer<WorkbenchRecipe>> WORKBENCH_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("workbench", WorkbenchRecipe.Serializer::new);
 }

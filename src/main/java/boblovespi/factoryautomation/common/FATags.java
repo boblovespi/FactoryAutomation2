@@ -25,6 +25,7 @@ public class FATags
 		public static final TagKey<Item> STEEL_MELTABLE = item("meltables/steel");
 
 		public static final TagKey<Item> COPPER_NUGGET = cItem("nuggets/copper");
+		public static final TagKey<Item> COPPER_SHEET = cItem("sheets/copper");
 		public static final TagKey<Item> TIN_INGOT = cItem("ingots/tin");
 		public static final TagKey<Item> TIN_NUGGET = cItem("nuggets/tin");
 		public static final TagKey<Item> TIN_BLOCK = cItem("storage_blocks/tin");

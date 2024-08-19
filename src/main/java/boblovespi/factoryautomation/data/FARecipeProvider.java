@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
 import boblovespi.factoryautomation.common.recipe.RemovalRecipe;
+import boblovespi.factoryautomation.common.recipe.WorkbenchRecipeBuilder;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -119,6 +120,26 @@ public class FARecipeProvider extends RecipeProvider
 
 		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, Ingredient.of(Tags.Items.INGOTS_COPPER), "copper",
 				Tags.Items.INGOTS_COPPER, output);
+
+		// Workbench
+		WorkbenchRecipeBuilder.of(FAItems.LOG_PILE)
+							  .pattern("lll")
+							  .pattern("lll")
+							  .pattern("lll")
+							  .define('l', ItemTags.LOGS_THAT_BURN)
+							  .unlockedBy("has_log", has(ItemTags.LOGS_THAT_BURN))
+							  .save(output);
+
+		// TODO: inline in helper method
+		WorkbenchRecipeBuilder.of(FAItems.COPPER_THINGS.get(Form.PLATE_BLOCK))
+							  .pattern("sss")
+							  .pattern("sss")
+							  .pattern("sss")
+							  .define('s', FATags.Items.COPPER_SHEET)
+							  .tool("hammer", 1, 1)
+							  .part("screw", 1, 6)
+							  .unlockedBy("has_copper_sheet", has(FATags.Items.COPPER_SHEET))
+							  .save(output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CRUCIBLE)
 						   .pattern("c c")
