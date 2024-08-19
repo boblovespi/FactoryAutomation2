@@ -5,6 +5,7 @@ import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.Metal;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -51,12 +52,13 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 		super.renderTooltip(pGuiGraphics, mouseX, mouseY);
 		if (isHovering(53, 16, 6, 61, mouseX, mouseY))
 		{
-			var text = Component.translatable(FactoryAutomation.locString("misc", "temperature"), String.format("%1$.1f", Float.intBitsToFloat(menu.getData(1))));
+			var text = Component.translatable("misc.temperature", String.format("%1$.1f", Float.intBitsToFloat(menu.getData(1))));
 			pGuiGraphics.renderTooltip(font, text, mouseX, mouseY);
 		}
 		if (isHovering(107, 17, 16, 59, mouseX, mouseY))
 		{
-			var text = Component.literal(String.valueOf(menu.getData(3)));
+			var metal = Metal.fromId(menu.getData(4));
+			var text = Component.translatable("misc.metal_quantity", I18n.get("metal." + metal.getName() + ".name"), menu.getData(3));
 			pGuiGraphics.renderTooltip(font, text, mouseX, mouseY);
 		}
 	}

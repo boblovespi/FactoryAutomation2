@@ -136,7 +136,8 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 	@Override
 	public MenuProvider getMenuProvider()
 	{
-		return new SimpleMenuProvider((i, v, p) -> new StoneCastingVesselMenu(i, v, new StoneCastingVesselBE.Data(), ContainerLevelAccess.create(level, worldPosition)), Component.literal("REPLACE ME"));
+		return new SimpleMenuProvider((i, v, p) -> new StoneCastingVesselMenu(i, v, new StoneCastingVesselBE.Data(), ContainerLevelAccess.create(level, worldPosition)),
+				Component.translatable("gui.stone_casting_vessel.name"));
 	}
 
 	private class Data implements ContainerData

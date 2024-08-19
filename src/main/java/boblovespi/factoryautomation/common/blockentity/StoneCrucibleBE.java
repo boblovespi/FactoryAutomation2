@@ -41,7 +41,7 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		};
 		heat = new HeatManager("heat", 2300 * 1000, 300);
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), () -> inv.extractItem(0, 1, false), (t, e) -> {
-			if (t * efficiency >= heat.getTemperature())
+			if (t * efficiency + 273 * (1 - efficiency) >= heat.getTemperature())
 				heat.heat(e * efficiency);
 		});
 	}
@@ -160,7 +160,8 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	@Override
 	public MenuProvider getMenuProvider()
 	{
-		return new SimpleMenuProvider((i, v, p) -> new StoneFoundryMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)), Component.literal("REPLACE ME"));
+		return new SimpleMenuProvider((i, v, p) -> new StoneFoundryMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)),
+				Component.translatable("gui.stone_crucible.name"));
 	}
 
 	private class Data implements ContainerData

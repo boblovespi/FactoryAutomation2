@@ -22,9 +22,9 @@ public class FASoundDefinitionProvider extends SoundDefinitionsProvider
 		add(FASounds.PLACE_ROCK, SoundDefinition.definition().with(sound(FactoryAutomation.name("break/rock_1")), sound(FactoryAutomation.name("break/rock_2")))
 												.subtitle("subtitles.block.generic.place").replace(true));
 		add(FASounds.MAKE_CHOPPING_BLOCK, SoundDefinition.definition().with(sound("dig/wood1"), sound("dig/wood2"), sound("dig/wood3"), sound("dig/wood4"))
-														 .subtitle(FactoryAutomation.locString("subtitles.block", "chopping_block.make")).replace(true));
+														 .subtitle("subtitles.block.chopping_block.make").replace(true));
 		add(FASounds.USE_CHOPPING_BLOCK,
 				SoundDefinition.definition().with(sound(FactoryAutomation.name("use/chopping_block_1")), sound(FactoryAutomation.name("use/chopping_block_2")))
-							   .subtitle(FactoryAutomation.locString("subtitles.block", "chopping_block.use")).replace(true));
+							   .subtitle("subtitles.block.chopping_block.use").replace(true));
 	}
 }

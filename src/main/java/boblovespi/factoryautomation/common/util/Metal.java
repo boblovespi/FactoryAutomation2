@@ -22,15 +22,16 @@ public class Metal
 
 	static final int UNITS_IN_INGOT = 2 * 9;
 
-	public static final Metal IRON = new Metal("iron", 1538, 447, 7870, FATags.Items.IRON_MELTABLE);
-	public static final Metal GOLD = new Metal("gold", 10000, 0, 0, FATags.Items.GOLD_MELTABLE);
-	public static final Metal COPPER = new Metal("copper", 1048, 385, 8933, FATags.Items.COPPER_MELTABLE);
-	public static final Metal TIN = new Metal("tin", 232, 0, 0, FATags.Items.TIN_MELTABLE);
-	public static final Metal BRONZE = new Metal("bronze", 950, 0, 0, FATags.Items.BRONZE_MELTABLE);
-	public static final Metal STEEL = new Metal("steel", 10000, 0, 0, FATags.Items.STEEL_MELTABLE);
-	public static final Metal UNKNOWN = new Metal("unknown", 10000, 0, 0, null);
+	public static final Metal IRON = new Metal("iron", 0xFFEAEEF2, 1538, 447, 7870, FATags.Items.IRON_MELTABLE);
+	public static final Metal GOLD = new Metal("gold", 0xFFFAF437, 10000, 0, 0, FATags.Items.GOLD_MELTABLE);
+	public static final Metal COPPER = new Metal("copper", 0xFFFF973D, 1048, 385, 8933, FATags.Items.COPPER_MELTABLE);
+	public static final Metal TIN = new Metal("tin", 0xFFF7E8E8, 232, 227, 7310, FATags.Items.TIN_MELTABLE);
+	public static final Metal BRONZE = new Metal("bronze", 0xFFFFB201, 950, 0, 0, FATags.Items.BRONZE_MELTABLE);
+	public static final Metal STEEL = new Metal("steel", 0xFF000000, 10000, 0, 0, FATags.Items.STEEL_MELTABLE);
+	public static final Metal UNKNOWN = new Metal("unknown", 0x00000000, 10000, 0, 0, null);
 
 	private final String name;
+	private final int color;
 	private final int meltTemp;
 	@Nullable
 	private final TagKey<Item> meltables;
@@ -38,10 +39,11 @@ public class Metal
 	private final float massHeatCapacity;
 	private final float density;
 
-	public Metal(String name, int meltTemp, float massHeatCapacity, float density, @Nullable TagKey<Item> meltables)
+	public Metal(String name, int color, int meltTemp, float massHeatCapacity, float density, @Nullable TagKey<Item> meltables)
 	{
 		this.name = name;
-		this.meltTemp = meltTemp;
+		this.color = color;
+		this.meltTemp = meltTemp + 273;
 		this.meltables = meltables;
 		this.massHeatCapacity = massHeatCapacity;
 		this.density = density;
@@ -110,6 +112,6 @@ public class Metal
 
 	public int color()
 	{
-		return 0xFFFF973D;
+		return color;
 	}
 }

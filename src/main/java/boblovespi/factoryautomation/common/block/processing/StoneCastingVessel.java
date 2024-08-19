@@ -80,6 +80,7 @@ public class StoneCastingVessel extends Block implements EntityBlock
 		{
 			level.setBlockAndUpdate(pos, state.setValue(MOLD, CastingVesselStates.SAND));
 			level.playSound(null, pos, SoundEvents.PACKED_MUD_PLACE, SoundSource.BLOCKS);
+			stack.consume(1, player);
 		}
 		else if (stack.is(Items.STICK) && state.getValue(MOLD) != CastingVesselStates.EMPTY)
 			player.openMenu(state.getMenuProvider(level, pos));

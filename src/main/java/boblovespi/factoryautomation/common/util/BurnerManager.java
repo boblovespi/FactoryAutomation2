@@ -36,7 +36,7 @@ public class BurnerManager
 			{
 				maxBurnTime = burnTime = 1600; // TODO: replace with registry lookup
 				burnEnergy = 4_300_000_000f;
-				burnTemp = 2172;
+				burnTemp = 2445;
 				fuelExtractor.take();
 			}
 			else
