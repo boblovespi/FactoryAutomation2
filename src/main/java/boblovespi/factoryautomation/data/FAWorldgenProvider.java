@@ -12,6 +12,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.biome.Biome;
@@ -19,18 +21,20 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Set;
@@ -44,12 +48,14 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<ConfiguredFeature<?, ?>> MESA_ROCK_PATCH_CF = configured("mesa_rock_patch");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_ROCK_PATCH_CF = configured("swamp_rock_patch");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> FLINT_PATCH_CF = configured("flint_patch");
+	private static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_CASSITERITE_ORE_CF = configured("small_cassiterite_ore");
 
 	private static final ResourceKey<PlacedFeature> NORMAL_ROCK_PATCH_PF = placed("normal_rock_patch");
 	private static final ResourceKey<PlacedFeature> DESERT_ROCK_PATCH_PF = placed("desert_rock_patch");
 	private static final ResourceKey<PlacedFeature> MESA_ROCK_PATCH_PF = placed("mesa_rock_patch");
 	private static final ResourceKey<PlacedFeature> SWAMP_ROCK_PATCH_PF = placed("swamp_rock_patch");
 	private static final ResourceKey<PlacedFeature> NORMAL_FLINT_PATCH_PF = placed("normal_flint_patch");
+	private static final ResourceKey<PlacedFeature> SMALL_CASSITERITE_ORE_PF = placed("small_cassiterite_ore");
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> configured(String name)
 	{
@@ -78,6 +84,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(MESA_ROCK_PATCH_CF, rockPatch(4, b(FABlocks.ROCKS.get(Rock.Variants.TERRACOTTA.ordinal()))));
 			b.register(SWAMP_ROCK_PATCH_CF, rockPatch(5, b(FABlocks.ROCKS.get(Rock.Variants.MOSSY_COBBLESTONE.ordinal()))));
 			b.register(FLINT_PATCH_CF, rockPatch(2, b(FABlocks.FLINT_ROCK)));
+			b.register(SMALL_CASSITERITE_ORE_CF, ore(4, d(FABlocks.CASSITERITE_ORE)));
 		});
 		rsb.add(Registries.PLACED_FEATURE, b -> {
 			var configured = b.lookup(Registries.CONFIGURED_FEATURE);
@@ -86,10 +93,13 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(MESA_ROCK_PATCH_PF, placedRock(configured, MESA_ROCK_PATCH_CF, 2));
 			b.register(SWAMP_ROCK_PATCH_PF, placedRock(configured, SWAMP_ROCK_PATCH_CF, 2));
 			b.register(NORMAL_FLINT_PATCH_PF, placedRock(configured, FLINT_PATCH_CF, 1));
+			b.register(SMALL_CASSITERITE_ORE_PF, placedOre(configured, SMALL_CASSITERITE_ORE_CF, 4, getHeightRange(32, 96)));
 		});
 		rsb.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, b -> {
 			var biomes = b.lookup(Registries.BIOME);
 			var features = b.lookup(Registries.PLACED_FEATURE);
+			b.register(biome("is_overworld"), biomeModifier(biomes, features, BiomeTags.IS_OVERWORLD, GenerationStep.Decoration.UNDERGROUND_ORES, SMALL_CASSITERITE_ORE_PF));
+
 			b.register(biome("is_typical_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_TYPICAL_OVERWORLD, NORMAL_ROCK_PATCH_PF));
 			b.register(biome("is_yellow_desert_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_YELLOW_DESERT_OVERWORLD, DESERT_ROCK_PATCH_PF));
 			b.register(biome("is_red_desert_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_RED_DESERT_OVERWORLD, MESA_ROCK_PATCH_PF));
@@ -99,9 +109,14 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 		return rsb;
 	}
 
+	private static HeightRangePlacement getHeightRange(int bottom, int top)
+	{
+		return HeightRangePlacement.triangle(VerticalAnchor.absolute(bottom), VerticalAnchor.absolute(top));
+	}
+
 	@SafeVarargs
-	private static BiomeModifiers.@NotNull AddFeaturesBiomeModifier vegetalModifier(HolderGetter<Biome> biomes, HolderGetter<PlacedFeature> features, TagKey<Biome> biome,
-																					ResourceKey<PlacedFeature>... feature)
+	private static BiomeModifiers.AddFeaturesBiomeModifier vegetalModifier(HolderGetter<Biome> biomes, HolderGetter<PlacedFeature> features, TagKey<Biome> biome,
+																		   ResourceKey<PlacedFeature>... feature)
 	{
 		return biomeModifier(biomes, features, biome, GenerationStep.Decoration.VEGETAL_DECORATION, feature);
 	}
@@ -129,10 +144,22 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 				new RandomPatchConfiguration(tries, 7, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(placer))));
 	}
 
+	private static ConfiguredFeature<OreConfiguration, Feature<OreConfiguration>> ore(int size, BlockState stoneOre)
+	{
+		return new ConfiguredFeature<>(Feature.ORE,
+				new OreConfiguration(List.of(OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), stoneOre)), size));
+	}
+
 	private static PlacedFeature placedRock(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int count)
 	{
 		return new PlacedFeature(configured.getOrThrow(feature),
 				List.of(CountPlacement.of(count), InSquarePlacement.spread(), HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG), BiomeFilter.biome()));
+	}
+
+	private static PlacedFeature placedOre(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int count,
+										   HeightRangePlacement heightRange)
+	{
+		return new PlacedFeature(configured.getOrThrow(feature), List.of(CountPlacement.of(count), InSquarePlacement.spread(), heightRange, BiomeFilter.biome()));
 	}
 
 	@SafeVarargs
