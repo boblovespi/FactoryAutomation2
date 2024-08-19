@@ -15,8 +15,8 @@ public class StoneCastingVesselScreen extends AbstractContainerScreen<StoneCasti
 	private static final ResourceLocation BACKGROUND_TEXTURE = FactoryAutomation.name("textures/gui/container/stone_casting_vessel.png");
 	private Button ingot;
 	private Button nugget;
-	private Button rod;
 	private Button sheet;
+	private Button rod;
 	private Button coin;
 	private Button gear;
 	private GuiMultiImage image;
@@ -36,10 +36,10 @@ public class StoneCastingVesselScreen extends AbstractContainerScreen<StoneCasti
 		addRenderableWidget(ingot);
 		nugget = new ExtendedButton(leftPos + 33, topPos + 39, 18, 18, Component.literal("Nugget"), unused -> setForm(1));
 		addRenderableWidget(nugget);
-		rod = new ExtendedButton(leftPos + 33, topPos + 58, 18, 18, Component.literal("Rod"), unused -> setForm(2));
-		addRenderableWidget(rod);
-		sheet = new ExtendedButton(leftPos + 52, topPos + 20, 18, 18, Component.literal("Sheet"), unused -> setForm(3));
+		sheet = new ExtendedButton(leftPos + 33, topPos + 58, 18, 18, Component.literal("Sheet"), unused -> setForm(2));
 		addRenderableWidget(sheet);
+		rod = new ExtendedButton(leftPos + 52, topPos + 20, 18, 18, Component.literal("Rod"), unused -> setForm(3));
+		addRenderableWidget(rod);
 		coin = new ExtendedButton(leftPos + 52, topPos + 39, 18, 18, Component.literal("Coin"), unused -> setForm(0));
 		addRenderableWidget(coin);
 		gear = new ExtendedButton(leftPos + 52, topPos + 58, 18, 18, Component.literal("Gear"), unused -> setForm(4));
@@ -48,8 +48,8 @@ public class StoneCastingVesselScreen extends AbstractContainerScreen<StoneCasti
 				FactoryAutomation.name("textures/block/green_sand.png"),
 				FactoryAutomation.name("textures/block/casting_sand_ingot_pattern.png"),
 				FactoryAutomation.name("textures/block/casting_sand_nugget_pattern.png"),
-				FactoryAutomation.name("textures/block/casting_sand_rod_pattern.png"),
 				FactoryAutomation.name("textures/block/casting_sand_sheet_pattern.png"),
+				FactoryAutomation.name("textures/block/casting_sand_rod_pattern.png"),
 				FactoryAutomation.name("textures/block/casting_sand_gear_pattern.png"),
 				FactoryAutomation.name("textures/block/casting_sand_coin_pattern.png")));
 	}
