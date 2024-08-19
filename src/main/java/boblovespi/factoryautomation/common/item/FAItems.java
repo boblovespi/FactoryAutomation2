@@ -28,6 +28,9 @@ public class FAItems
 
 	public static final DeferredItem<Item> PLANT_FIBER = ITEMS.registerItem("plant_fiber", Item::new);
 	public static final DeferredItem<BlockItem> ROCK = ITEMS.registerItem("rock", p -> new Rock.Item(FABlocks.COBBLESTONE_ROCK.get(), p));
+	public static final DeferredItem<BlockItem> CASSITERITE_ORE = ITEMS.registerSimpleBlockItem(FABlocks.CASSITERITE_ORE);
+	public static final DeferredItem<Item> RAW_CASSITERITE = ITEMS.registerItem("raw_cassiterite", Item::new);
+	public static final DeferredItem<BlockItem> RAW_CASSITERITE_BLOCK = ITEMS.registerSimpleBlockItem(FABlocks.RAW_CASSITERITE_BLOCK);
 
 	// Refined materials
 

@@ -22,6 +22,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		withExistingParent(FAItems.ROCK.getRegisteredName(), modLoc("block/cobblestone_rock"));
 
 		basicItem(FAItems.PLANT_FIBER.get());
+		basicItem(FAItems.RAW_CASSITERITE.get());
 
 		FAItems.COPPER_THINGS.forEach(this::metal);
 		FAItems.TIN_THINGS.forEach(this::metal);

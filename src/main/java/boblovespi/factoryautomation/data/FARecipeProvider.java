@@ -53,6 +53,8 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_clay", has(Blocks.CLAY))
 						   .save(output);
 
+		rawOre(FAItems.RAW_CASSITERITE, FAItems.RAW_CASSITERITE_BLOCK, "raw_cassiterite", output);
+
 		ingot(Items.COPPER_INGOT, FAItems.COPPER_THINGS.get(Form.NUGGET), Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, "copper", output);
 		metal(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, "tin", output);
 
@@ -265,5 +267,20 @@ public class FARecipeProvider extends RecipeProvider
 						   .group(name + "_block")
 						   .unlockedBy("has_" + name + "_ingot", has(ingotI))
 						   .save(output, FactoryAutomation.name(name + "_block_from_ingots"));
+	}
+
+	private void rawOre(ItemLike ore, ItemLike oreBlock, String name, RecipeOutput output)
+	{
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ore, 9)
+							  .requires(oreBlock)
+							  .unlockedBy("has_" + name + "_block", has(oreBlock))
+							  .save(output);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, oreBlock)
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .define('n', ore)
+						   .unlockedBy("has_" + name, has(ore))
+						   .save(output);
 	}
 }

@@ -25,6 +25,9 @@ public class CreativeTabs
 					{
 						o.accept(FAItems.ROCK);
 						o.accept(FAItems.PLANT_FIBER);
+						o.accept(FAItems.CASSITERITE_ORE);
+						o.accept(FAItems.RAW_CASSITERITE);
+						o.accept(FAItems.RAW_CASSITERITE_BLOCK);
 						o.accept(FAItems.GREEN_SAND);
 						FAItems.COPPER_THINGS.values().forEach(o::accept);
 						FAItems.TIN_THINGS.values().forEach(o::accept);
