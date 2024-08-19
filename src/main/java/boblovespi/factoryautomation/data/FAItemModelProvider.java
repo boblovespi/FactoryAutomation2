@@ -23,6 +23,7 @@ public class FAItemModelProvider extends ItemModelProvider
 
 		basicItem(FAItems.PLANT_FIBER.get());
 		basicItem(FAItems.RAW_CASSITERITE.get());
+		basicItem(FAItems.RAW_LIMONITE.get());
 
 		FAItems.COPPER_THINGS.forEach(this::metal);
 		FAItems.TIN_THINGS.forEach(this::metal);

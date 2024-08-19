@@ -28,6 +28,9 @@ public class CreativeTabs
 						o.accept(FAItems.CASSITERITE_ORE);
 						o.accept(FAItems.RAW_CASSITERITE);
 						o.accept(FAItems.RAW_CASSITERITE_BLOCK);
+						FAItems.LIMONITE_ORES.values().forEach(o::accept);
+						o.accept(FAItems.RAW_LIMONITE);
+						o.accept(FAItems.RAW_LIMONITE_BLOCK);
 						o.accept(FAItems.GREEN_SAND);
 						FAItems.COPPER_THINGS.values().forEach(o::accept);
 						FAItems.TIN_THINGS.values().forEach(o::accept);

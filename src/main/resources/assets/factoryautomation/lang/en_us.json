@@ -17,6 +17,11 @@
 	"block.factoryautomation.cassiterite_ore": "Cassiterite Ore",
 	"block.factoryautomation.raw_cassiterite_block": "Block of Cassiterite",
 	
+	"block.factoryautomation.poor_limonite_ore": "Poor Limonite Ore",
+	"block.factoryautomation.normal_limonite_ore": "Limonite Ore",
+	"block.factoryautomation.rich_limonite_ore": "Rich Limonite Ore",
+	"block.factoryautomation.raw_limonite_block": "Block of Limonite",
+	
 	"block.factoryautomation.green_sand": "Green Sand",
 	"block.factoryautomation.charcoal_pile": "Charcoal Pile",
 	
@@ -44,6 +49,7 @@
 	"item.factoryautomation.rock": "Rock",
 	"item.factoryautomation.plant_fiber": "Plant Fiber",
 	"item.factoryautomation.raw_cassiterite": "Cassiterite",
+	"item.factoryautomation.raw_limonite": "Limonite",
 	
 	// Items - Refined
 	

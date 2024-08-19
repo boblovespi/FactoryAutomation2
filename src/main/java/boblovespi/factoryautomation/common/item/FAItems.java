@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.resource.Rock;
+import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import boblovespi.factoryautomation.common.util.Form;
@@ -31,6 +32,10 @@ public class FAItems
 	public static final DeferredItem<BlockItem> CASSITERITE_ORE = ITEMS.registerSimpleBlockItem(FABlocks.CASSITERITE_ORE);
 	public static final DeferredItem<Item> RAW_CASSITERITE = ITEMS.registerItem("raw_cassiterite", Item::new);
 	public static final DeferredItem<BlockItem> RAW_CASSITERITE_BLOCK = ITEMS.registerSimpleBlockItem(FABlocks.RAW_CASSITERITE_BLOCK);
+	public static final Map<OreQualities, DeferredItem<BlockItem>> LIMONITE_ORES = FABlocks.LIMONITE_ORES.entrySet().stream().collect(
+			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue())));
+	public static final DeferredItem<Item> RAW_LIMONITE = ITEMS.registerItem("raw_limonite", Item::new);
+	public static final DeferredItem<BlockItem> RAW_LIMONITE_BLOCK = ITEMS.registerSimpleBlockItem(FABlocks.RAW_LIMONITE_BLOCK);
 
 	// Refined materials
 

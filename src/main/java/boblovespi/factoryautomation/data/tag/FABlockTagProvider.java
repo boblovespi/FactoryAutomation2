@@ -47,7 +47,9 @@ public class FABlockTagProvider extends BlockTagsProvider
 									  .addTags(BlockTags.IRON_ORES, BlockTags.GOLD_ORES)
 									  .remove(FATags.Blocks.NEEDS_BRONZE_TOOL).remove(BlockTags.NEEDS_DIAMOND_TOOL);
 		tag(BlockTags.INCORRECT_FOR_IRON_TOOL).addTag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).remove(BlockTags.NEEDS_IRON_TOOL);
-		tag(FATags.Blocks.NEEDS_COPPER_TOOL).add(FABlocks.TIN_BLOCK.get(), FABlocks.COPPER_PLATE_BLOCK.get(), FABlocks.TIN_PLATE_BLOCK.get());
+		tag(FATags.Blocks.NEEDS_COPPER_TOOL).add(FABlocks.TIN_BLOCK.get(), FABlocks.COPPER_PLATE_BLOCK.get(), FABlocks.TIN_PLATE_BLOCK.get())
+											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
+											.add(FABlocks.RAW_LIMONITE_BLOCK.get());
 		tag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL).remove(FATags.Blocks.NEEDS_COPPER_TOOL);
 		tag(BlockTags.NEEDS_STONE_TOOL).add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get());
 		tag(BlockTags.INCORRECT_FOR_STONE_TOOL).addTag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).remove(BlockTags.NEEDS_STONE_TOOL);
@@ -58,7 +60,9 @@ public class FABlockTagProvider extends BlockTagsProvider
 
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(FABlocks.GREEN_SAND.get(), FABlocks.CHARCOAL_PILE.get());
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(FABlocks.STONE_CRUCIBLE.get(), FABlocks.STONE_CASTING_VESSEL.get(), FABlocks.TIN_BLOCK.get(), FABlocks.COPPER_PLATE_BLOCK.get())
-											.add(FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get());
+											.add(FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
+											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
+											.add(FABlocks.RAW_LIMONITE_BLOCK.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get());
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK);

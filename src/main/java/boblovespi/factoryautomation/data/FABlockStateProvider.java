@@ -9,6 +9,7 @@ import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -30,9 +31,11 @@ public class FABlockStateProvider extends BlockStateProvider
 	{
 		FABlocks.ROCKS.forEach(this::rock);
 		existingBlockModel(FABlocks.FLINT_ROCK);
-		simpleBlockWithItem(FABlocks.GREEN_SAND.get(), cubeAll(FABlocks.GREEN_SAND.get()));
-		simpleBlockWithItem(FABlocks.CASSITERITE_ORE.get(), cubeAll(FABlocks.CASSITERITE_ORE.get()));
-		simpleBlockWithItem(FABlocks.RAW_CASSITERITE_BLOCK.get(), cubeAll(FABlocks.RAW_CASSITERITE_BLOCK.get()));
+		blockWithItem(FABlocks.GREEN_SAND);
+		blockWithItem(FABlocks.CASSITERITE_ORE);
+		blockWithItem(FABlocks.RAW_CASSITERITE_BLOCK);
+		FABlocks.LIMONITE_ORES.values().forEach(this::blockWithItem);
+		blockWithItem(FABlocks.RAW_LIMONITE_BLOCK);
 		simpleBlock(FABlocks.CHARCOAL_PILE.get());
 		simpleBlock(FABlocks.TIN_BLOCK.get());
 		simpleBlock(FABlocks.COPPER_PLATE_BLOCK.get());
@@ -42,6 +45,11 @@ public class FABlockStateProvider extends BlockStateProvider
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());
 		horizontalBlock(FABlocks.STONE_CRUCIBLE.get(), multiblockComplete("stone_crucible", "stone_foundry_multiblock"));
 		castingVessel(FABlocks.STONE_CASTING_VESSEL);
+	}
+
+	private void blockWithItem(DeferredBlock<Block> block)
+	{
+		simpleBlockWithItem(block.get(), cubeAll(block.get()));
 	}
 
 	private void existingBlockModel(DeferredBlock<?> block)

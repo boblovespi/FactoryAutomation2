@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.resource.ResourceRock;
 import boblovespi.factoryautomation.common.block.resource.Rock;
+import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -33,6 +34,9 @@ public class FABlocks
 	public static final DeferredBlock<ResourceRock> FLINT_ROCK = register("flint_rock", p -> new ResourceRock(p, Items.FLINT), BlockProperties.ROCK);
 	public static final DeferredBlock<Block> CASSITERITE_ORE = register("cassiterite_ore", Block::new, BlockProperties.ORE);
 	public static final DeferredBlock<Block> RAW_CASSITERITE_BLOCK = register("raw_cassiterite_block", Block::new, BlockProperties.RAW_ORE(MapColor.COLOR_BLACK));
+	public static final Map<OreQualities, DeferredBlock<Block>> LIMONITE_ORES = OreQualities.ore().stream().collect(
+			Collectors.toMap(k -> k, k -> register(k.getName() + "_limonite_ore", Block::new, BlockProperties.ORE)));
+	public static final DeferredBlock<Block> RAW_LIMONITE_BLOCK = register("raw_limonite_block", Block::new, BlockProperties.RAW_ORE(MapColor.COLOR_ORANGE));
 
 	// Refined materials
 
