@@ -24,12 +24,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public class WorkbenchRecipe implements Recipe<WorkbenchRecipeInput>
+public class WorkbenchRecipe implements Recipe<WorkbenchRecipeInput>, IProgressRecipe
 {
 	public static final int MAX_SIZE = 5;
 	private final int width;
 	private final int height;
 	private final RecipePatternWrapper recipe;
+
 	private final Map<ResourceLocation, Usage> parts;
 	private final Map<ResourceLocation, Usage> tools;
 	private final ItemStack result;
@@ -130,20 +131,31 @@ public class WorkbenchRecipe implements Recipe<WorkbenchRecipeInput>
 		return RecipeThings.WORKBENCH_RECIPE_TYPE.get();
 	}
 
+	@Override
+	public int getProgress()
+	{
+		return 0;
+	}
+
+	public Map<ResourceLocation, Usage> getParts()
+	{
+		return parts;
+	}
+
+	public Map<ResourceLocation, Usage> getTools()
+	{
+		return tools;
+	}
+
 	public static class Serializer implements RecipeSerializer<WorkbenchRecipe>
 	{
-		public static final MapCodec<WorkbenchRecipe> CODEC = RecordCodecBuilder.mapCodec(
-				i -> i.group(
-						RecipePatternWrapper.CODEC.forGetter(r -> r.recipe),
-						Codec.unboundedMap(ResourceLocation.CODEC, Usage.CODEC).optionalFieldOf("parts", Map.of()).forGetter(r -> r.parts),
-						Codec.unboundedMap(ResourceLocation.CODEC, Usage.CODEC).optionalFieldOf("tools", Map.of()).forGetter(r -> r.tools),
-						ItemStack.CODEC.fieldOf("result").forGetter(r -> r.result)
-							).apply(i, WorkbenchRecipe::new));
-		public static final StreamCodec<RegistryFriendlyByteBuf, WorkbenchRecipe> STREAM_CODEC = StreamCodec.composite(
-				RecipePatternWrapper.STREAM_CODEC, r -> r.recipe,
+		public static final MapCodec<WorkbenchRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(RecipePatternWrapper.CODEC.forGetter(r -> r.recipe),
+				Codec.unboundedMap(ResourceLocation.CODEC, Usage.CODEC).optionalFieldOf("parts", Map.of()).forGetter(r -> r.parts),
+				Codec.unboundedMap(ResourceLocation.CODEC, Usage.CODEC).optionalFieldOf("tools", Map.of()).forGetter(r -> r.tools),
+				ItemStack.CODEC.fieldOf("result").forGetter(r -> r.result)).apply(i, WorkbenchRecipe::new));
+		public static final StreamCodec<RegistryFriendlyByteBuf, WorkbenchRecipe> STREAM_CODEC = StreamCodec.composite(RecipePatternWrapper.STREAM_CODEC, r -> r.recipe,
 				ByteBufCodecs.map(HashMap::new, ResourceLocation.STREAM_CODEC, Usage.STREAM_CODEC, MAX_SIZE), r -> r.parts,
-				ByteBufCodecs.map(HashMap::new, ResourceLocation.STREAM_CODEC, Usage.STREAM_CODEC, MAX_SIZE), r -> r.tools,
-				ItemStack.STREAM_CODEC, r -> r.result,
+				ByteBufCodecs.map(HashMap::new, ResourceLocation.STREAM_CODEC, Usage.STREAM_CODEC, MAX_SIZE), r -> r.tools, ItemStack.STREAM_CODEC, r -> r.result,
 				WorkbenchRecipe::new);
 
 		@Override

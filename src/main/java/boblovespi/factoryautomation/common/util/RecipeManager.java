@@ -31,6 +31,11 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 		currentRecipeName = NO_RECIPE;
 	}
 
+	public static <R extends Recipe<?> & IProgressRecipe> RecipeManager<R> dummy()
+	{
+		return new RecipeManager<>("dummy", r -> false, () -> null, r -> Optional.empty());
+	}
+
 	public void updateRecipe()
 	{
 		if (currentRecipe == null || !validifier.isValid(currentRecipe))

@@ -21,6 +21,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<MultiblockPartBE>> MULTIBLOCK_PART_TYPE = type("multiblock_part", MultiblockPartBE::new, FABlocks.MULTIBLOCK_PART);
 	public static final Supplier<BlockEntityType<StoneCrucibleBE>> STONE_CRUCIBLE_TYPE = type("stone_crucible", StoneCrucibleBE::new, FABlocks.STONE_CRUCIBLE);
 	public static final Supplier<BlockEntityType<StoneCastingVesselBE>> STONE_CASTING_VESSEL_TYPE = type("stone_casting_vessel", StoneCastingVesselBE::new, FABlocks.STONE_CASTING_VESSEL);
+	public static final Supplier<BlockEntityType<WorkbenchBE.Stone>> STONE_WORKBENCH_TYPE = type("stone_workbench", WorkbenchBE.Stone::new, FABlocks.STONE_WORKBENCH);
 
 	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,
