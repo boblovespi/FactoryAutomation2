@@ -41,6 +41,7 @@
 	"block.factoryautomation.log_pile": "Log Pile",
 	"block.factoryautomation.stone_crucible": "Stone Crucible",
 	"block.factoryautomation.stone_casting_vessel": "Stone Casting Vessel",
+	"block.factoryautomation.stone_workbench": "Stone Workbench",
 	
 	"block.factoryautomation.multiblock_part": "Multiblock Part",
 	
@@ -102,6 +103,7 @@
 	
 	"gui.stone_casting_vessel.name": "Stone Casting Vessel",
 	"gui.stone_crucible.name": "Stone Crucible",
+	"gui.stone_workbench.name": "Stone Workbench",
 	
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",

@@ -155,6 +155,15 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('s', Ingredient.of(Items.COBBLESTONE_SLAB, Items.BLACKSTONE_SLAB, Items.COBBLED_DEEPSLATE_SLAB))
 						   .unlockedBy("has_cobblestone", has(ItemTags.STONE_CRAFTING_MATERIALS)).save(output);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_WORKBENCH)
+						   .pattern("sss")
+						   .pattern("cwc")
+						   .pattern("c c")
+						   .define('c', Tags.Items.INGOTS_COPPER)
+						   .define('s', Items.SMOOTH_STONE_SLAB)
+						   .define('w', Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES)
+						   .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER)).save(output);
+
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
 								  .unlockedBy("has_bread", has(Items.BREAD))
 								  .save(output, FactoryAutomation.name("campfire/toasted_bread"));

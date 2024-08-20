@@ -94,7 +94,7 @@ public abstract class WorkbenchBE extends FABE implements IMenuProviderProvider
 						isUpdatingChanges = false;
 					}
 				}
-				setChangedAndUpdateClient();
+				setChanged();
 			}
 		};
 		toolIndex = 1;
@@ -155,7 +155,7 @@ public abstract class WorkbenchBE extends FABE implements IMenuProviderProvider
 	public MenuProvider getMenuProvider()
 	{
 		return new SimpleMenuProvider((i, v, p) -> new WorkbenchMenu(i, v, inv, null, ContainerLevelAccess.create(level, worldPosition)),
-				Component.translatable("gui.stone_crucible.name"));
+				Component.translatable("gui.stone_workbench.name"));
 	}
 
 	private boolean isValid(RecipeHolder<WorkbenchRecipe> r)

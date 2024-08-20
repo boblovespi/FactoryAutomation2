@@ -199,6 +199,12 @@ public class WorkbenchMenu extends AbstractContainerMenu
 		return AbstractContainerMenu.stillValid(access, player, FABlocks.STONE_WORKBENCH.get());
 	}
 
+	@Override
+	public boolean canTakeItemForPickAll(ItemStack pStack, Slot pSlot)
+	{
+		return pSlot.index != 0;
+	}
+
 	public boolean is3x3()
 	{
 		return is3x3;

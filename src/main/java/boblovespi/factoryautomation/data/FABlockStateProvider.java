@@ -45,6 +45,12 @@ public class FABlockStateProvider extends BlockStateProvider
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());
 		horizontalBlock(FABlocks.STONE_CRUCIBLE.get(), multiblockComplete("stone_crucible", "stone_foundry_multiblock"), 270);
 		castingVessel(FABlocks.STONE_CASTING_VESSEL);
+		existingBlockWithItem(FABlocks.STONE_WORKBENCH);
+	}
+
+	private void existingBlockWithItem(DeferredBlock<?> block)
+	{
+		simpleBlockWithItem(block.get(), models().getExistingFile(block.getId().withPrefix("block/")));
 	}
 
 	private void blockWithItem(DeferredBlock<Block> block)

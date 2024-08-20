@@ -44,6 +44,7 @@ public class CreativeTabs
 						o.accept(FAItems.LOG_PILE);
 						o.accept(FAItems.STONE_CRUCIBLE);
 						o.accept(FAItems.STONE_CASTING_VESSEL);
+						o.accept(FAItems.STONE_WORKBENCH);
 					}).build());
 
 

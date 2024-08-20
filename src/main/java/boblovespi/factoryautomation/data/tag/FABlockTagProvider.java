@@ -62,7 +62,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(FABlocks.STONE_CRUCIBLE.get(), FABlocks.STONE_CASTING_VESSEL.get(), FABlocks.TIN_BLOCK.get(), FABlocks.COPPER_PLATE_BLOCK.get())
 											.add(FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
-											.add(FABlocks.RAW_LIMONITE_BLOCK.get());
+											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.STONE_WORKBENCH.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get());
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK);
