@@ -36,6 +36,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(ItemTags.SWORDS).add(FAItems.FLINT_SWORD.get(), FAItems.COPPER_SWORD.get());
 
 		tag(Tags.Items.FOODS_BREAD).add(FAItems.TOASTED_BREAD.get());
+		tag(Tags.Items.TOOLS_IGNITER).add(FAItems.FIREBOW.get());
 
 		tag(Tags.Items.INGOTS).addTags(FATags.Items.TIN_INGOT);
 		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET);

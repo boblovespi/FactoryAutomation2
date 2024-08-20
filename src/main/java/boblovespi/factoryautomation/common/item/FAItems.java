@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.ChoppingBlade;
+import boblovespi.factoryautomation.common.item.tool.Firebow;
 import boblovespi.factoryautomation.common.item.tool.Hammer;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import boblovespi.factoryautomation.common.util.Form;
@@ -75,6 +76,8 @@ public class FAItems
 	public static final DeferredItem<AxeItem> FLINT_AXE = tieredTool("flint_axe", AxeItem::new, Tools.FLINT_TIER, new Item.Properties(), 6, -3.2f);
 	public static final DeferredItem<HoeItem> FLINT_HOE = tieredTool("flint_hoe", HoeItem::new, Tools.FLINT_TIER, new Item.Properties(), 1, -3f);
 	public static final DeferredItem<SwordItem> FLINT_SWORD = tieredTool("flint_sword", SwordItem::new, Tools.FLINT_TIER, new Item.Properties(), 3, -2.4f);
+
+	public static final DeferredItem<Firebow> FIREBOW = ITEMS.registerItem("firebow", Firebow::new);
 
 	public static final DeferredItem<ShovelItem> COPPER_SHOVEL = tieredTool("copper_shovel", ShovelItem::new, Tools.COPPER_TIER, new Item.Properties(), 1.5f, -3f);
 	public static final DeferredItem<PickaxeItem> COPPER_PICKAXE = tieredTool("copper_pickaxe", PickaxeItem::new, Tools.COPPER_TIER, new Item.Properties(), 1, -2.8f);

@@ -119,6 +119,12 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_flint", has(Items.FLINT))
 						   .save(output);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FAItems.FIREBOW)
+							  .requires(Items.BOW)
+							  .requires(Tags.Items.RODS_WOODEN)
+							  .unlockedBy("has_bow", has(Items.BOW))
+							  .save(output);
+
 		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, "copper", Tags.Items.INGOTS_COPPER,
 				output);
 
@@ -152,6 +158,15 @@ public class FARecipeProvider extends RecipeProvider
 							  .define('c', Items.CHARCOAL)
 							  .tool("hammer", 1, 10)
 							  .unlockedBy("has_limonite", has(FAItems.RAW_LIMONITE))
+							  .save(output);
+
+		WorkbenchRecipeBuilder.of(FAItems.FIREBOW)
+							  .pattern(" sr")
+							  .pattern("ssr")
+							  .pattern(" sr")
+							  .define('s', Tags.Items.RODS_WOODEN)
+							  .define('r', Tags.Items.STRINGS)
+							  .unlockedBy("has_string", has(Tags.Items.STRINGS))
 							  .save(output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CRUCIBLE)
