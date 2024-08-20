@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.ChoppingBlade;
+import boblovespi.factoryautomation.common.item.tool.Hammer;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.world.food.FoodProperties;
@@ -17,6 +18,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
@@ -42,6 +44,10 @@ public class FAItems
 	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
 	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null, FABlocks.COPPER_PLATE_BLOCK);
 	public static final Map<Form, DeferredItem<? extends Item>> TIN_THINGS = metal("tin", Form.most(), FABlocks.TIN_BLOCK, FABlocks.TIN_PLATE_BLOCK);
+
+	// Intermediate products
+
+	public static final DeferredItem<Item> SCREW = ITEMS.registerSimpleItem("screw");
 
 	// Food
 
@@ -72,6 +78,7 @@ public class FAItems
 	public static final DeferredItem<AxeItem> COPPER_AXE = tieredTool("copper_axe", AxeItem::new, Tools.COPPER_TIER, new Item.Properties(), 6.5f, -3.15f);
 	public static final DeferredItem<HoeItem> COPPER_HOE = tieredTool("copper_hoe", HoeItem::new, Tools.COPPER_TIER, new Item.Properties(), -1.5f, -1.5f);
 	public static final DeferredItem<SwordItem> COPPER_SWORD = tieredTool("copper_sword", SwordItem::new, Tools.COPPER_TIER, new Item.Properties(), 3, -2.4f);
+	public static final DeferredItem<Hammer> COPPER_HAMMER = tieredTool("copper_hammer", Hammer::new, Tools.COPPER_TIER, new Item.Properties(), 8, -3.5f);
 
 	private static <T extends TieredItem> DeferredItem<T> tieredTool(String name, BiFunction<Tier, Item.Properties, T> constructor, Tier tier, Item.Properties properties,
 																	 float damage, float as)
@@ -87,6 +94,6 @@ public class FAItems
 			else if (k == Form.PLATE_BLOCK)
 				return ITEMS.registerSimpleBlockItem(plateBlock);
 			return ITEMS.registerItem(name + "_" + k.getName(), Item::new);
-		}));
+		}, (a, b) -> a, LinkedHashMap::new));
 	}
 }

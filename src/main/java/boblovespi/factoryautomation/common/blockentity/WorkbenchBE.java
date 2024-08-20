@@ -93,6 +93,12 @@ public abstract class WorkbenchBE extends FABE implements IMenuProviderProvider
 						setStackInSlot(0, recipeManager.complete().value().assemble(getInput(), level.registryAccess()));
 						isUpdatingChanges = false;
 					}
+					else
+					{
+						isUpdatingChanges = true;
+						setStackInSlot(0, ItemStack.EMPTY);
+						isUpdatingChanges = false;
+					}
 				}
 				setChanged();
 			}
@@ -184,12 +190,15 @@ public abstract class WorkbenchBE extends FABE implements IMenuProviderProvider
 		{
 			if (!inv.getStackInSlot(craftIndex + i).isEmpty())
 			{
-				mWidth = Math.max(mWidth, i % size + 1);
-				mHeight = Math.max(mHeight, i / size + 1);
+				mWidth = Math.max(mWidth, i / size + 1);
+				mHeight = Math.max(mHeight, i % size + 1);
 			}
 		}
-		for (int i = 0; i < mWidth * mHeight; i++)
-			craft.add(inv.getStackInSlot(craftIndex + i));
+		for (int i = 0; i < size * size; i++)
+		{
+			if (i / size < mWidth && i % size < mHeight)
+				craft.add(inv.getStackInSlot(craftIndex + i));
+		}
 		return new WorkbenchRecipeInput(mWidth, mHeight, craft, parts, tools);
 	}
 

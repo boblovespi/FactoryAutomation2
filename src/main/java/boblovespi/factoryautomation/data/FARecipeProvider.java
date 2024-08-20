@@ -24,6 +24,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredItem;
 import vazkii.patchouli.api.PatchouliAPI;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -118,8 +119,8 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_flint", has(Items.FLINT))
 						   .save(output);
 
-		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, Ingredient.of(Tags.Items.INGOTS_COPPER), "copper",
-				Tags.Items.INGOTS_COPPER, output);
+		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, "copper", Tags.Items.INGOTS_COPPER,
+				output);
 
 		// Workbench
 		WorkbenchRecipeBuilder.of(FAItems.LOG_PILE)
@@ -140,6 +141,9 @@ public class FARecipeProvider extends RecipeProvider
 							  .part("screw", 1, 6)
 							  .unlockedBy("has_copper_sheet", has(FATags.Items.COPPER_SHEET))
 							  .save(output);
+
+		screw(output, 4, FATags.Items.COPPER_NUGGET, FATags.Items.COPPER_ROD, "copper");
+		screw(output, 6, Tags.Items.NUGGETS_IRON, FATags.Items.IRON_ROD, "iron");
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CRUCIBLE)
 						   .pattern("c c")
@@ -212,8 +216,10 @@ public class FARecipeProvider extends RecipeProvider
 		RemovalRecipe.unitFor(Items.BRICK).save(output);
 	}
 
-	private void tool(ItemLike shovel, ItemLike pickaxe, ItemLike axe, ItemLike hoe, ItemLike sword, Ingredient mat, String matName, TagKey<Item> canonicalMat, RecipeOutput output)
+	private void tool(ItemLike shovel, ItemLike pickaxe, ItemLike axe, ItemLike hoe, ItemLike sword, @Nullable ItemLike hammer, String matName, TagKey<Item> canonicalMat,
+					  RecipeOutput output)
 	{
+		var mat = Ingredient.of(canonicalMat);
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, shovel)
 						   .pattern("m")
 						   .pattern("s")
@@ -258,6 +264,16 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('s', Tags.Items.RODS_WOODEN)
 						   .unlockedBy("has_" + matName, has(canonicalMat))
 						   .save(output);
+
+		if (hammer != null)
+			WorkbenchRecipeBuilder.of(hammer)
+								  .pattern("mmm")
+								  .pattern("msm")
+								  .pattern(" s ")
+								  .define('m', mat)
+								  .define('s', Tags.Items.RODS_WOODEN)
+								  .unlockedBy("has_" + matName, has(canonicalMat))
+								  .save(output);
 	}
 
 	private void metal(Map<Form, DeferredItem<? extends Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, TagKey<Item> block, String name, RecipeOutput output)
@@ -313,5 +329,17 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('n', ore)
 						   .unlockedBy("has_" + name, has(ore))
 						   .save(output);
+	}
+
+	private static void screw(RecipeOutput output, int count, TagKey<Item> nugget, TagKey<Item> rod, String name)
+	{
+		WorkbenchRecipeBuilder.of(FAItems.SCREW, count)
+							  .pattern("nnn")
+							  .pattern(" s ")
+							  .define('n', nugget)
+							  .define('s', rod)
+							  .tool("hammer", 1, 1)
+							  .unlockedBy("has_" + name + "_rod", has(rod))
+							  .save(output, FactoryAutomation.name("screw_from_" + name));
 	}
 }

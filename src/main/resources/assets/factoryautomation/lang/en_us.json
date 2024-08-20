@@ -63,6 +63,10 @@
 	"item.factoryautomation.tin_sheet": "Tin Sheet",
 	"item.factoryautomation.tin_rod": "Tin Rod",
 	
+	// Items - Intermediate
+	
+	"item.factoryautomation.screw": "Screw",
+	
 	// Items - Food
 	
 	"item.factoryautomation.toasted_bread": "Toasted Bread",
@@ -82,10 +86,12 @@
 	"item.factoryautomation.copper_axe": "Copper Axe",
 	"item.factoryautomation.copper_hoe": "Copper Hoe",
 	"item.factoryautomation.copper_sword": "Copper Sword",
+	"item.factoryautomation.copper_hammer": "Copper Hammer",
 	
 	// Creative tabs
 	
 	"itemGroup.factoryautomation.resources": "F. A. Resources",
+	"itemGroup.factoryautomation.products": "F. A. Products",
 	"itemGroup.factoryautomation.processing": "F. A. Processing",
 	
 	"factoryautomation:guidebook": "F. A. Guidebook",

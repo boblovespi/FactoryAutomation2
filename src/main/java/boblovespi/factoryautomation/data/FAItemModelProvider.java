@@ -28,6 +28,8 @@ public class FAItemModelProvider extends ItemModelProvider
 		FAItems.COPPER_THINGS.forEach(this::metal);
 		FAItems.TIN_THINGS.forEach(this::metal);
 
+		basicItem(FAItems.SCREW.get());
+
 		basicItem(FAItems.TOASTED_BREAD.get());
 
 		withExistingParent(FAItems.LOG_PILE.getRegisteredName(), modLoc("block/log_pile"));
@@ -44,6 +46,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		handheld(FAItems.COPPER_AXE);
 		handheld(FAItems.COPPER_HOE);
 		handheld(FAItems.COPPER_SWORD);
+		handheld(FAItems.COPPER_HAMMER);
 	}
 
 	private void metal(Form form, DeferredItem<? extends Item> item)

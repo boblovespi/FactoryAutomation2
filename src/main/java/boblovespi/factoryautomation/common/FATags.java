@@ -27,11 +27,14 @@ public class FATags
 		public static final TagKey<Item> COPPER_NUGGET = cItem("nuggets/copper");
 		public static final TagKey<Item> COPPER_SHEET = cItem("plates/copper");
 		public static final TagKey<Item> COPPER_ROD = cItem("rods/copper");
+		public static final TagKey<Item> COPPER_GEAR = cItem("gears/copper");
 		public static final TagKey<Item> TIN_INGOT = cItem("ingots/tin");
 		public static final TagKey<Item> TIN_NUGGET = cItem("nuggets/tin");
 		public static final TagKey<Item> TIN_BLOCK = cItem("storage_blocks/tin");
 		public static final TagKey<Item> TIN_SHEET = cItem("plates/tin");
 		public static final TagKey<Item> TIN_ROD = cItem("rods/tin");
+		public static final TagKey<Item> TIN_GEAR = cItem("gears/tin");
+		public static final TagKey<Item> IRON_ROD = cItem("rods/iron");
 
 		public static final TagKey<Item> RAW_TIN = cItem("raw_materials/tin");
 	}
@@ -39,6 +42,7 @@ public class FATags
 	public static class Blocks
 	{
 		public static final TagKey<Block> MINEABLE_WITH_CHOPPING_BLADE = mcBlock("mineable/chopping_blade");
+		public static final TagKey<Block> MINEABLE_WITH_HAMMER = mcBlock("mineable/hammer");
 
 		public static final TagKey<Block> TIN_BLOCK = cBlock("storage_blocks/tin");
 

@@ -21,6 +21,6 @@ public record WorkbenchRecipeInput(int width, int height, List<ItemStack> items,
 
 	public ItemStack getItem(int x, int y)
 	{
-		return getItem(x + width * y);
+		return getItem(y + height * x);
 	}
 }

@@ -32,6 +32,7 @@ public class DataProvider
 		gen.addProvider(event.includeServer(), new FARecipeProvider(output, lookupProvider));
 		gen.addProvider(event.includeServer(), new FAAdvancementProvider(output, lookupProvider, efh));
 		gen.addProvider(event.includeServer(), new FAWorldgenProvider(output, lookupProvider));
+		gen.addProvider(event.includeServer(), new FADataMapProvider(output, lookupProvider));
 
 		var blockTags = new FABlockTagProvider(output, lookupProvider, efh);
 		gen.addProvider(event.includeServer(), blockTags);

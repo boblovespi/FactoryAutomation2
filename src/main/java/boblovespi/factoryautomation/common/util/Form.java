@@ -7,13 +7,13 @@ import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Form
 {
-	private static final Map<String, Form> LOOKUP_MAP = HashMap.newHashMap(12);
+	private static final Map<String, Form> LOOKUP_MAP = LinkedHashMap.newLinkedHashMap(12);
 
 	public static final Form INGOT = new Form("ingot", Metal.UNITS_IN_INGOT, Tags.Items.INGOTS, true);
 	public static final Form NUGGET = new Form("nugget", Metal.UNITS_IN_INGOT / 9, Tags.Items.NUGGETS, true);
