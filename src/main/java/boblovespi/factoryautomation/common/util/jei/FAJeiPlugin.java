@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.util.jei.category.ChoppingBlockJeiCategory;
+import boblovespi.factoryautomation.common.util.jei.category.WorkbenchJeiCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.crafting.RecipeManager;
 public class FAJeiPlugin implements IModPlugin
 {
 	private ChoppingBlockJeiCategory choppingBlockJeiCategory;
+	private WorkbenchJeiCategory workbenchJeiCategory;
 
 	@Override
 	public ResourceLocation getPluginUid()
@@ -31,6 +33,8 @@ public class FAJeiPlugin implements IModPlugin
 		var guiHelper = registration.getJeiHelpers().getGuiHelper();
 		choppingBlockJeiCategory = new ChoppingBlockJeiCategory(guiHelper);
 		registration.addRecipeCategories(choppingBlockJeiCategory);
+		workbenchJeiCategory = new WorkbenchJeiCategory(guiHelper);
+		registration.addRecipeCategories(workbenchJeiCategory);
 	}
 
 	@Override
@@ -49,11 +53,13 @@ public class FAJeiPlugin implements IModPlugin
 		}
 
 		registration.addRecipes(choppingBlockJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.CHOPPING_BLOCK_TYPE.get()));
+		registration.addRecipes(workbenchJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.WORKBENCH_RECIPE_TYPE.get()));
 	}
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
 	{
 		FAItems.CHOPPING_BLOCKS.values().forEach(b -> registration.addRecipeCatalyst(b.toStack(), choppingBlockJeiCategory.getRecipeType()));
+		registration.addRecipeCatalyst(FAItems.STONE_WORKBENCH.toStack(), workbenchJeiCategory.getRecipeType());
 	}
 }

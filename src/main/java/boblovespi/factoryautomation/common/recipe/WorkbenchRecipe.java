@@ -147,6 +147,11 @@ public class WorkbenchRecipe implements Recipe<WorkbenchRecipeInput>, IProgressR
 		return tools;
 	}
 
+	public Ingredient[][] getRecipe()
+	{
+		return recipe.real;
+	}
+
 	public static class Serializer implements RecipeSerializer<WorkbenchRecipe>
 	{
 		public static final MapCodec<WorkbenchRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(RecipePatternWrapper.CODEC.forGetter(r -> r.recipe),

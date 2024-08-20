@@ -103,7 +103,8 @@
 	
 	// Jei handlers
 	
-	"jei.factoryautomation.chopping_block.name": "Chopping Block",
+	"jei.factoryautomation.chopping_block.name": "Chopping",
+	"jei.factoryautomation.workbench.name": "Workbench Crafting",
 	
 	// Gui things
 	
