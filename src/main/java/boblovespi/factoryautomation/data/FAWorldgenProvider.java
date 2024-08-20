@@ -4,6 +4,9 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.resource.Rock;
+import boblovespi.factoryautomation.common.block.types.OreQualities;
+import boblovespi.factoryautomation.common.worldgen.FAWorldgen;
+import boblovespi.factoryautomation.common.worldgen.WaterOreFeature;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
@@ -16,6 +19,8 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.valueproviders.ConstantFloat;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,6 +36,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
@@ -49,6 +55,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_ROCK_PATCH_CF = configured("swamp_rock_patch");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> FLINT_PATCH_CF = configured("flint_patch");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_CASSITERITE_ORE_CF = configured("small_cassiterite_ore");
+	private static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LIMONITE_ORE_CF = configured("swamp_limonite_ore");
 
 	private static final ResourceKey<PlacedFeature> NORMAL_ROCK_PATCH_PF = placed("normal_rock_patch");
 	private static final ResourceKey<PlacedFeature> DESERT_ROCK_PATCH_PF = placed("desert_rock_patch");
@@ -56,6 +63,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<PlacedFeature> SWAMP_ROCK_PATCH_PF = placed("swamp_rock_patch");
 	private static final ResourceKey<PlacedFeature> NORMAL_FLINT_PATCH_PF = placed("normal_flint_patch");
 	private static final ResourceKey<PlacedFeature> SMALL_CASSITERITE_ORE_PF = placed("small_cassiterite_ore");
+	private static final ResourceKey<PlacedFeature> SWAMP_LIMONITE_ORE_PF = placed("swamp_limonite_ore");
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> configured(String name)
 	{
@@ -85,6 +93,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(SWAMP_ROCK_PATCH_CF, rockPatch(5, b(FABlocks.ROCKS.get(Rock.Variants.MOSSY_COBBLESTONE.ordinal()))));
 			b.register(FLINT_PATCH_CF, rockPatch(2, b(FABlocks.FLINT_ROCK)));
 			b.register(SMALL_CASSITERITE_ORE_CF, ore(4, d(FABlocks.CASSITERITE_ORE)));
+			b.register(SWAMP_LIMONITE_ORE_CF, swampOre());
 		});
 		rsb.add(Registries.PLACED_FEATURE, b -> {
 			var configured = b.lookup(Registries.CONFIGURED_FEATURE);
@@ -94,11 +103,13 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(SWAMP_ROCK_PATCH_PF, placedRock(configured, SWAMP_ROCK_PATCH_CF, 2));
 			b.register(NORMAL_FLINT_PATCH_PF, placedRock(configured, FLINT_PATCH_CF, 1));
 			b.register(SMALL_CASSITERITE_ORE_PF, placedOre(configured, SMALL_CASSITERITE_ORE_CF, 4, getHeightRange(32, 96)));
+			b.register(SWAMP_LIMONITE_ORE_PF, placedSeafloor(configured, SWAMP_LIMONITE_ORE_CF, 17));
 		});
 		rsb.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, b -> {
 			var biomes = b.lookup(Registries.BIOME);
 			var features = b.lookup(Registries.PLACED_FEATURE);
 			b.register(biome("is_overworld"), biomeModifier(biomes, features, BiomeTags.IS_OVERWORLD, GenerationStep.Decoration.UNDERGROUND_ORES, SMALL_CASSITERITE_ORE_PF));
+			b.register(biome("is_swamp"), biomeModifier(biomes, features, Tags.Biomes.IS_SWAMP, GenerationStep.Decoration.UNDERGROUND_ORES, SWAMP_LIMONITE_ORE_PF));
 
 			b.register(biome("is_typical_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_TYPICAL_OVERWORLD, NORMAL_ROCK_PATCH_PF));
 			b.register(biome("is_yellow_desert_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_YELLOW_DESERT_OVERWORLD, DESERT_ROCK_PATCH_PF));
@@ -150,10 +161,26 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 				new OreConfiguration(List.of(OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), stoneOre)), size));
 	}
 
+	private static ConfiguredFeature<WaterOreFeature.Config, Feature<WaterOreFeature.Config>> swampOre()
+	{
+		var builder = SimpleWeightedRandomList.<BlockState>builder();
+		builder.add(d(FABlocks.LIMONITE_ORES.get(OreQualities.POOR)), 6);
+		builder.add(d(FABlocks.LIMONITE_ORES.get(OreQualities.NORMAL)), 3);
+		builder.add(d(FABlocks.LIMONITE_ORES.get(OreQualities.RICH)), 1);
+		return new ConfiguredFeature<>(FAWorldgen.WATER_ORE_FEATURE.get(),
+				new WaterOreFeature.Config(new WeightedStateProvider(builder), ConstantInt.of(12), ConstantFloat.of(0.8f)));
+	}
+
 	private static PlacedFeature placedRock(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int count)
 	{
 		return new PlacedFeature(configured.getOrThrow(feature),
 				List.of(CountPlacement.of(count), InSquarePlacement.spread(), HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG), BiomeFilter.biome()));
+	}
+
+	private static PlacedFeature placedSeafloor(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int rarity)
+	{
+		return new PlacedFeature(configured.getOrThrow(feature),
+				List.of(RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), HeightmapPlacement.onHeightmap(Heightmap.Types.OCEAN_FLOOR_WG), BiomeFilter.biome()));
 	}
 
 	private static PlacedFeature placedOre(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int count,

@@ -11,6 +11,7 @@ import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.Workbench;
 import boblovespi.factoryautomation.common.sound.FASounds;
+import boblovespi.factoryautomation.common.worldgen.FAWorldgen;
 import boblovespi.factoryautomation.data.loot.AlternateDropsLootModifier;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
@@ -62,6 +63,7 @@ public class FactoryAutomation
 		FAItems.ITEMS.register(modEventBus);
 		CreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 		FASounds.SOUND_EVENTS.register(modEventBus);
+		FAWorldgen.FEATURES.register(modEventBus);
 		GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
 		FABETypes.BLOCK_ENTITY_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_TYPES.register(modEventBus);
