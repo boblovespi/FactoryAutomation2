@@ -120,7 +120,8 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 			if ((metal == crucible.getCurrentMetal() || crucible.getCurrentMetal() == Metal.UNKNOWN) && crucible.getSpace() >= form.amount())
 			{
 				var meltTemp = metal.meltTemp();
-				// TODO: iron shard logic goes here
+				if (form == Form.SHARD)
+					meltTemp = (int) (meltTemp * 0.75f);
 				var shc = metal.massHeatCapacity() * metal.density() * form.fractionOfBlock();
 				if (heat.getTemperature() > meltTemp)
 				{

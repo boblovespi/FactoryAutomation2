@@ -35,4 +35,6 @@ public class BlockProperties
 	{
 		return BlockBehaviour.Properties.of().mapColor(c).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
 	}
+
+	public static final BlockBehaviour.Properties IRON_BLOOM = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_ORANGE).strength(10, 6).requiresCorrectToolForDrops();
 }

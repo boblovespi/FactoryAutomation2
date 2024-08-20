@@ -24,6 +24,8 @@ public class FATags
 		public static final TagKey<Item> BRONZE_MELTABLE = item("meltables/bronze");
 		public static final TagKey<Item> STEEL_MELTABLE = item("meltables/steel");
 
+		public static final TagKey<Item> SHARDS = item("shards");
+
 		public static final TagKey<Item> COPPER_NUGGET = cItem("nuggets/copper");
 		public static final TagKey<Item> COPPER_SHEET = cItem("plates/copper");
 		public static final TagKey<Item> COPPER_ROD = cItem("rods/copper");

@@ -37,12 +37,14 @@ public class FABlockStateProvider extends BlockStateProvider
 		FABlocks.LIMONITE_ORES.values().forEach(this::blockWithItem);
 		blockWithItem(FABlocks.RAW_LIMONITE_BLOCK);
 		simpleBlock(FABlocks.CHARCOAL_PILE.get());
+		simpleBlock(FABlocks.IRON_BLOOM.get());
 		simpleBlock(FABlocks.TIN_BLOCK.get());
 		simpleBlock(FABlocks.COPPER_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.TIN_PLATE_BLOCK.get());
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
 		getVariantBuilder(FABlocks.LOG_PILE.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());
+		blockWithItem(FABlocks.LIMONITE_CHARCOAL_MIX);
 		horizontalBlock(FABlocks.STONE_CRUCIBLE.get(), multiblockComplete("stone_crucible", "stone_foundry_multiblock"), 270);
 		castingVessel(FABlocks.STONE_CASTING_VESSEL);
 		existingBlockWithItem(FABlocks.STONE_WORKBENCH);
@@ -53,7 +55,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlockWithItem(block.get(), models().getExistingFile(block.getId().withPrefix("block/")));
 	}
 
-	private void blockWithItem(DeferredBlock<Block> block)
+	private void blockWithItem(DeferredBlock<? extends Block> block)
 	{
 		simpleBlockWithItem(block.get(), cubeAll(block.get()));
 	}

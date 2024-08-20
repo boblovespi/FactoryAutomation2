@@ -33,6 +33,8 @@ public class CreativeTabs
 						o.accept(FAItems.RAW_LIMONITE);
 						o.accept(FAItems.RAW_LIMONITE_BLOCK);
 						o.accept(FAItems.GREEN_SAND);
+						o.accept(FAItems.IRON_SHARD);
+						o.accept(FAItems.SLAG);
 						o.accept(Items.COPPER_INGOT);
 						for (var deferredItem : FAItems.COPPER_THINGS.values())
 						{
@@ -56,6 +58,7 @@ public class CreativeTabs
 					{
 						FAItems.CHOPPING_BLOCKS.values().forEach(o::accept);
 						o.accept(FAItems.LOG_PILE);
+						o.accept(FAItems.LIMONITE_CHARCOAL_MIX);
 						o.accept(FAItems.STONE_CRUCIBLE);
 						o.accept(FAItems.STONE_CASTING_VESSEL);
 						o.accept(FAItems.STONE_WORKBENCH);

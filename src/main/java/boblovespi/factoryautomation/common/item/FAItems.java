@@ -42,6 +42,8 @@ public class FAItems
 	// Refined materials
 
 	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
+	public static final DeferredItem<Item> IRON_SHARD = ITEMS.registerSimpleItem("iron_shard");
+	public static final DeferredItem<Item> SLAG = ITEMS.registerSimpleItem("slag");
 	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null, FABlocks.COPPER_PLATE_BLOCK);
 	public static final Map<Form, DeferredItem<? extends Item>> TIN_THINGS = metal("tin", Form.most(), FABlocks.TIN_BLOCK, FABlocks.TIN_PLATE_BLOCK);
 
@@ -59,6 +61,7 @@ public class FAItems
 	public static final Map<WoodTypes, DeferredItem<BlockItem>> CHOPPING_BLOCKS = FABlocks.CHOPPING_BLOCKS.entrySet().stream().collect(
 			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue())));
 	public static final DeferredItem<BlockItem> LOG_PILE = ITEMS.registerSimpleBlockItem(FABlocks.LOG_PILE);
+	public static final DeferredItem<BlockItem> LIMONITE_CHARCOAL_MIX = ITEMS.registerSimpleBlockItem(FABlocks.LIMONITE_CHARCOAL_MIX);
 	public static final DeferredItem<BlockItem> STONE_CRUCIBLE = ITEMS.registerSimpleBlockItem(FABlocks.STONE_CRUCIBLE);
 	public static final DeferredItem<BlockItem> STONE_CASTING_VESSEL = ITEMS.registerSimpleBlockItem(FABlocks.STONE_CASTING_VESSEL);
 	public static final DeferredItem<BlockItem> STONE_WORKBENCH = ITEMS.registerSimpleBlockItem(FABlocks.STONE_WORKBENCH);

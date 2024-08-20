@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.util;
 
+import boblovespi.factoryautomation.common.FATags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,6 +24,7 @@ public class Form
 	public static final Form GEAR = new Form("gear", Metal.UNITS_IN_INGOT * 4, null, true);
 	public static final Form PLATE_BLOCK = new Form("gear", Metal.UNITS_IN_INGOT * 6, null, true);
 	public static final Form RAW_ORE = new Form("raw_ore", Metal.UNITS_IN_INGOT, Tags.Items.RAW_MATERIALS, false);
+	public static final Form SHARD = new Form("shard", Metal.UNITS_IN_INGOT / 3, FATags.Items.SHARDS, false);
 	public static final Form NONE = new Form("none", Integer.MAX_VALUE, null, false);
 
 	private final String name;

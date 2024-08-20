@@ -6,8 +6,10 @@ import boblovespi.factoryautomation.common.block.resource.ResourceRock;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -39,6 +41,7 @@ public class FABlocks
 
 	public static final DeferredBlock<Block> GREEN_SAND = register("green_sand", Block::new, BlockProperties.GREEN_SAND);
 	public static final DeferredBlock<Block> CHARCOAL_PILE = register("charcoal_pile", Block::new, BlockProperties.CHARCOAL_PILE);
+	public static final DeferredBlock<Block> IRON_BLOOM = register("iron_bloom", p -> new DropExperienceBlock(UniformInt.of(1, 4), p), BlockProperties.IRON_BLOOM);
 
 	public static final DeferredBlock<Block> TIN_BLOCK = register("tin_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
 	public static final DeferredBlock<Block> COPPER_PLATE_BLOCK = register("copper_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_ORANGE));
@@ -50,6 +53,7 @@ public class FABlocks
 			Collectors.toMap(v -> v, v -> register(v.getName() + "_chopping_block", ChoppingBlock::new, BlockProperties.LOG(v.getColor()))));
 	public static final DeferredBlock<ChoppingBlock> CHOPPING_BLOCK = CHOPPING_BLOCKS.get(WoodTypes.OAK);
 	public static final DeferredBlock<LogPile> LOG_PILE = register("log_pile", LogPile::new, BlockProperties.LOG(MapColor.WOOD).lightLevel(s -> s.getValue(LogPileLike.ACTIVATED) ? 3 : 0));
+	public static final DeferredBlock<OrePile> LIMONITE_CHARCOAL_MIX = register("limonite_charcoal_mix", p -> new OrePile(p, 20 * 60 * 5, IRON_BLOOM.get().defaultBlockState()), BlockProperties.RAW_ORE(MapColor.COLOR_ORANGE));
 	public static final DeferredBlock<StoneCrucible> STONE_CRUCIBLE = register("stone_crucible", StoneCrucible::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<StoneCastingVessel> STONE_CASTING_VESSEL = register("stone_casting_vessel", StoneCastingVessel::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<StoneWorkbench> STONE_WORKBENCH = register("stone_workbench", StoneWorkbench::new, BlockProperties.COBBLESTONE_MACHINE);

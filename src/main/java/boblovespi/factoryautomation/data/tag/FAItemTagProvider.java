@@ -58,12 +58,14 @@ public class FAItemTagProvider extends ItemTagsProvider
 
 		copy(FATags.Blocks.CHOPPING_BLOCKS, FATags.Items.CHOPPING_BLOCKS);
 
-		tag(FATags.Items.IRON_MELTABLE).addTags(Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON);
+		tag(FATags.Items.IRON_MELTABLE).addTags(Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON).add(FAItems.IRON_SHARD.get());
 		tag(FATags.Items.COPPER_MELTABLE).addTags(Tags.Items.INGOTS_COPPER, Tags.Items.RAW_MATERIALS_COPPER, FATags.Items.COPPER_NUGGET, FATags.Items.COPPER_SHEET)
 										 .addTags(FATags.Items.COPPER_ROD)
 										 .add(FAItems.COPPER_THINGS.get(Form.PLATE_BLOCK).get());
 		tag(FATags.Items.TIN_MELTABLE).addTags(FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, FATags.Items.TIN_SHEET, FATags.Items.TIN_ROD)
 									  .addTags(FATags.Items.RAW_TIN)
 									  .add(FAItems.TIN_THINGS.get(Form.PLATE_BLOCK).get());
+
+		tag(FATags.Items.SHARDS).add(FAItems.IRON_SHARD.get());
 	}
 }

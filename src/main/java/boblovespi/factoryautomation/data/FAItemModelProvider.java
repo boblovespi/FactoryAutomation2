@@ -25,6 +25,8 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.RAW_CASSITERITE.get());
 		basicItem(FAItems.RAW_LIMONITE.get());
 
+		basicItem(FAItems.IRON_SHARD.get());
+		basicItem(FAItems.SLAG.get());
 		FAItems.COPPER_THINGS.forEach(this::metal);
 		FAItems.TIN_THINGS.forEach(this::metal);
 

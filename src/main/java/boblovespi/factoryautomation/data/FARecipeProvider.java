@@ -145,6 +145,15 @@ public class FARecipeProvider extends RecipeProvider
 		screw(output, 4, FATags.Items.COPPER_NUGGET, FATags.Items.COPPER_ROD, "copper");
 		screw(output, 6, Tags.Items.NUGGETS_IRON, FATags.Items.IRON_ROD, "iron");
 
+		WorkbenchRecipeBuilder.of(FAItems.LIMONITE_CHARCOAL_MIX)
+							  .pattern("lc")
+							  .pattern("cc")
+							  .define('l', FAItems.RAW_LIMONITE)
+							  .define('c', Items.CHARCOAL)
+							  .tool("hammer", 1, 10)
+							  .unlockedBy("has_limonite", has(FAItems.RAW_LIMONITE))
+							  .save(output);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CRUCIBLE)
 						   .pattern("c c")
 						   .pattern("c c")

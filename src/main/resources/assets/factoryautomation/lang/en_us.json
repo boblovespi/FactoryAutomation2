@@ -24,6 +24,7 @@
 	
 	"block.factoryautomation.green_sand": "Green Sand",
 	"block.factoryautomation.charcoal_pile": "Charcoal Pile",
+	"block.factoryautomation.iron_bloom": "Iron Bloom",
 	
 	"block.factoryautomation.tin_block": "Block of Tin",
 	"block.factoryautomation.copper_plate_block": "Copper Plate Block",
@@ -39,6 +40,8 @@
 	"block.factoryautomation.cherry_chopping_block": "Cherry Chopping Block",
 	
 	"block.factoryautomation.log_pile": "Log Pile",
+	"block.factoryautomation.limonite_charcoal_mix": "Limonite-Charcoal Mix",
+	
 	"block.factoryautomation.stone_crucible": "Stone Crucible",
 	"block.factoryautomation.stone_casting_vessel": "Stone Casting Vessel",
 	"block.factoryautomation.stone_workbench": "Stone Workbench",
@@ -53,6 +56,9 @@
 	"item.factoryautomation.raw_limonite": "Limonite",
 	
 	// Items - Refined
+	
+	"item.factoryautomation.iron_shard": "Iron Shard",
+	"item.factoryautomation.slag": "Slag",
 	
 	"item.factoryautomation.copper_nugget": "Copper Nugget",
 	"item.factoryautomation.copper_sheet": "Copper Sheet",
