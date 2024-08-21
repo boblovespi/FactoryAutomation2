@@ -29,6 +29,7 @@
 	"block.factoryautomation.tin_block": "Block of Tin",
 	"block.factoryautomation.copper_plate_block": "Copper Plate Block",
 	"block.factoryautomation.tin_plate_block": "Tin Plate Block",
+	"block.factoryautomation.iron_plate_block": "Iron Plate Block",
 	
 	"block.factoryautomation.oak_chopping_block": "Oak Chopping Block",
 	"block.factoryautomation.spruce_chopping_block": "Spruce Chopping Block",
@@ -68,6 +69,9 @@
 	"item.factoryautomation.tin_nugget": "Tin Nugget",
 	"item.factoryautomation.tin_sheet": "Tin Sheet",
 	"item.factoryautomation.tin_rod": "Tin Rod",
+	
+	"item.factoryautomation.iron_sheet": "Iron Sheet",
+	"item.factoryautomation.iron_rod": "Iron Rod",
 	
 	// Items - Intermediate
 	

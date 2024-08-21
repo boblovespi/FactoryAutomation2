@@ -41,6 +41,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlock(FABlocks.TIN_BLOCK.get());
 		simpleBlock(FABlocks.COPPER_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.TIN_PLATE_BLOCK.get());
+		simpleBlock(FABlocks.IRON_PLATE_BLOCK.get());
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
 		getVariantBuilder(FABlocks.LOG_PILE.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());

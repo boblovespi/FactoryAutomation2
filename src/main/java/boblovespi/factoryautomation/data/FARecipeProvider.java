@@ -59,7 +59,9 @@ public class FARecipeProvider extends RecipeProvider
 		rawOre(FAItems.RAW_LIMONITE, FAItems.RAW_LIMONITE_BLOCK, "raw_limonite", output);
 
 		ingot(Items.COPPER_INGOT, FAItems.COPPER_THINGS.get(Form.NUGGET), Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, "copper", output);
-		metal(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, "tin", output);
+		plateBlock(FAItems.COPPER_THINGS.get(Form.PLATE_BLOCK), FATags.Items.COPPER_SHEET, "copper", output);
+		metal(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, FATags.Items.TIN_SHEET, "tin", output);
+		plateBlock(FAItems.IRON_THINGS.get(Form.PLATE_BLOCK), FATags.Items.IRON_SHEET, "iron", output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
 						   .pattern("rf")
@@ -135,17 +137,6 @@ public class FARecipeProvider extends RecipeProvider
 							  .pattern("lll")
 							  .define('l', ItemTags.LOGS_THAT_BURN)
 							  .unlockedBy("has_log", has(ItemTags.LOGS_THAT_BURN))
-							  .save(output);
-
-		// TODO: inline in helper method
-		WorkbenchRecipeBuilder.of(FAItems.COPPER_THINGS.get(Form.PLATE_BLOCK))
-							  .pattern("sss")
-							  .pattern("sss")
-							  .pattern("sss")
-							  .define('s', FATags.Items.COPPER_SHEET)
-							  .tool("hammer", 1, 1)
-							  .part("screw", 1, 6)
-							  .unlockedBy("has_copper_sheet", has(FATags.Items.COPPER_SHEET))
 							  .save(output);
 
 		screw(output, 4, FATags.Items.COPPER_NUGGET, FATags.Items.COPPER_ROD, "copper");
@@ -300,10 +291,12 @@ public class FARecipeProvider extends RecipeProvider
 								  .save(output);
 	}
 
-	private void metal(Map<Form, DeferredItem<? extends Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, TagKey<Item> block, String name, RecipeOutput output)
+	private void metal(Map<Form, DeferredItem<? extends Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, TagKey<Item> block, TagKey<Item> sheet, String name,
+					   RecipeOutput output)
 	{
 		ingot(things.get(Form.INGOT), things.get(Form.NUGGET), ingot, nugget, name, output);
 		block(things.get(Form.BLOCK), things.get(Form.INGOT), block, ingot, name, output);
+		plateBlock(things.get(Form.PLATE_BLOCK), sheet, name, output);
 	}
 
 	private void ingot(ItemLike ingot, ItemLike nugget, TagKey<Item> ingotI, TagKey<Item> nuggetI, String name, RecipeOutput output)
@@ -338,6 +331,19 @@ public class FARecipeProvider extends RecipeProvider
 						   .group(name + "_block")
 						   .unlockedBy("has_" + name + "_ingot", has(ingotI))
 						   .save(output, FactoryAutomation.name(name + "_block_from_ingots"));
+	}
+
+	private static void plateBlock(ItemLike plateBlock, TagKey<Item> sheetI, String name, RecipeOutput output)
+	{
+		WorkbenchRecipeBuilder.of(plateBlock)
+							  .pattern("sss")
+							  .pattern("sss")
+							  .pattern("sss")
+							  .define('s', sheetI)
+							  .tool("hammer", 1, 1)
+							  .part("screw", 1, 6)
+							  .unlockedBy("has_" + name + "_sheet", has(sheetI))
+							  .save(output);
 	}
 
 	private void rawOre(ItemLike ore, ItemLike oreBlock, String name, RecipeOutput output)

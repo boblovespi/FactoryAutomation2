@@ -70,6 +70,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.TIN_BLOCK.get());
 		dropSelf(FABlocks.COPPER_PLATE_BLOCK.get());
 		dropSelf(FABlocks.TIN_PLATE_BLOCK.get());
+		dropSelf(FABlocks.IRON_PLATE_BLOCK.get());
 		FABlocks.CHOPPING_BLOCKS.values().forEach(b -> dropSelf(b.get()));
 		dropSelf(FABlocks.LOG_PILE.get());
 		dropSelf(FABlocks.LIMONITE_CHARCOAL_MIX.get());

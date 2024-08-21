@@ -43,6 +43,14 @@ public class CreativeTabs
 							o.accept(deferredItem);
 						}
 						FAItems.TIN_THINGS.values().forEach(o::accept);
+						o.accept(Items.IRON_INGOT);
+						o.accept(Items.IRON_NUGGET);
+						for (var deferredItem : FAItems.IRON_THINGS.values())
+						{
+							if (deferredItem == FAItems.IRON_THINGS.get(Form.SHEET))
+								o.accept(Items.IRON_BLOCK);
+							o.accept(deferredItem);
+						}
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PRODUCTS = CREATIVE_MODE_TABS.register("products",

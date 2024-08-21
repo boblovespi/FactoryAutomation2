@@ -47,6 +47,7 @@ public class FAItems
 	public static final DeferredItem<Item> SLAG = ITEMS.registerSimpleItem("slag");
 	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null, FABlocks.COPPER_PLATE_BLOCK);
 	public static final Map<Form, DeferredItem<? extends Item>> TIN_THINGS = metal("tin", Form.most(), FABlocks.TIN_BLOCK, FABlocks.TIN_PLATE_BLOCK);
+	public static final Map<Form, DeferredItem<? extends Item>> IRON_THINGS = metal("iron", Form.iron(), null, FABlocks.IRON_PLATE_BLOCK);
 
 	// Intermediate products
 

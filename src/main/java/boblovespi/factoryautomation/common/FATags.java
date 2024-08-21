@@ -36,10 +36,13 @@ public class FATags
 		public static final TagKey<Item> TIN_SHEET = cItem("plates/tin");
 		public static final TagKey<Item> TIN_ROD = cItem("rods/tin");
 		public static final TagKey<Item> TIN_GEAR = cItem("gears/tin");
+		public static final TagKey<Item> IRON_SHEET = cItem("plates/iron");
 		public static final TagKey<Item> IRON_ROD = cItem("rods/iron");
+		public static final TagKey<Item> IRON_GEAR = cItem("gears/iron");
 
 		public static final TagKey<Item> RAW_TIN = cItem("raw_materials/tin");
 		public static final TagKey<Item> SHEETS = cItem("plates");
+		public static final TagKey<Item> GEARS = cItem("gears");
 	}
 
 	public static class Blocks

@@ -28,6 +28,11 @@ public class BlockProperties
 		return BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 6.0F).sound(SoundType.COPPER).mapColor(c);
 	}
 
+	public static BlockBehaviour.Properties METAL(MapColor c)
+	{
+		return BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(c);
+	}
+
 	public static final BlockBehaviour.Properties ORE = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM)
 																				 .requiresCorrectToolForDrops().strength(3.0F, 3.0F);
 
