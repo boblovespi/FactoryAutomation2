@@ -113,6 +113,7 @@
 	
 	"jei.factoryautomation.chopping_block.name": "Chopping",
 	"jei.factoryautomation.workbench.name": "Workbench Crafting",
+	"jei.factoryautomation.casting.name": "Casting",
 	
 	// Gui things
 	
@@ -122,6 +123,7 @@
 	
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",
+	"misc.metal_quantity_nameless": "%s units",
 	"info.too_hot": "Too hot: %s",
 	
 	// Metal names

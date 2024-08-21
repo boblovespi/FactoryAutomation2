@@ -9,10 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Metal
 {
@@ -83,6 +80,11 @@ public class Metal
 			return Items.AIR;
 		var first = BuiltInRegistries.ITEM.getOrCreateTag(form.getTag()).stream().filter(k -> k.is(metal.meltables)).findFirst();
 		return first.map(Holder::value).orElse(Items.AIR);
+	}
+
+	public static Collection<Metal> allMetals()
+	{
+		return Collections.unmodifiableCollection(ID_MAP);
 	}
 
 	public String getName()

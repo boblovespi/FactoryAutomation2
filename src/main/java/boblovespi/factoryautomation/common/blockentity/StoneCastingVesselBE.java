@@ -1,12 +1,12 @@
 package boblovespi.factoryautomation.common.blockentity;
 
-import boblovespi.factoryautomation.common.menu.StoneCastingVesselMenu;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
-import boblovespi.factoryautomation.common.util.Form;
+import boblovespi.factoryautomation.common.menu.StoneCastingVesselMenu;
 import boblovespi.factoryautomation.common.util.ICastingVessel;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.Metal;
+import boblovespi.factoryautomation.common.util.jei.CasterType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -77,7 +77,7 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 		var mold = getBlockState().getValue(StoneCastingVessel.MOLD);
 		if (mold == StoneCastingVessel.CastingVesselStates.EMPTY || mold == StoneCastingVessel.CastingVesselStates.SAND || !inv.getStackInSlot(0).isEmpty())
 			return;
-		var mult = mold.metalForm == Form.INGOT || mold.metalForm == Form.NUGGET ? 1 : 1.5f;
+		var mult = CasterType.STONE.efficiencies().get(mold.metalForm);
 		var result = metalSource.apply((int) (mold.metalForm.amount() * mult));
 		result.ifPresent(metal -> {
 			inv.setStackInSlot(0, Metal.itemForMetalAndForm(metal, mold.metalForm).getDefaultInstance());
