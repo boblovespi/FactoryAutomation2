@@ -19,7 +19,7 @@ public class Form
 	public static final Form INGOT = new Form("ingot", Metal.UNITS_IN_INGOT, Tags.Items.INGOTS, true);
 	public static final Form NUGGET = new Form("nugget", Metal.UNITS_IN_INGOT / 9, Tags.Items.NUGGETS, true);
 	public static final Form BLOCK = new Form("block", Metal.UNITS_IN_INGOT * 9, Tags.Items.STORAGE_BLOCKS, true);
-	public static final Form SHEET = new Form("sheet", Metal.UNITS_IN_INGOT, null, true);
+	public static final Form SHEET = new Form("sheet", Metal.UNITS_IN_INGOT, FATags.Items.SHEETS, true);
 	public static final Form ROD = new Form("rod", Metal.UNITS_IN_INGOT / 2, Tags.Items.RODS, true);
 	public static final Form GEAR = new Form("gear", Metal.UNITS_IN_INGOT * 4, null, true);
 	public static final Form PLATE_BLOCK = new Form("gear", Metal.UNITS_IN_INGOT * 6, null, true);

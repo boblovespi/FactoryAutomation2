@@ -39,6 +39,7 @@ public class FATags
 		public static final TagKey<Item> IRON_ROD = cItem("rods/iron");
 
 		public static final TagKey<Item> RAW_TIN = cItem("raw_materials/tin");
+		public static final TagKey<Item> SHEETS = cItem("plates");
 	}
 
 	public static class Blocks

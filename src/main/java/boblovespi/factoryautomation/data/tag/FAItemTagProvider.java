@@ -40,6 +40,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 
 		tag(Tags.Items.INGOTS).addTags(FATags.Items.TIN_INGOT);
 		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET);
+		tag(Tags.Items.RODS).addTags(FATags.Items.COPPER_ROD, FATags.Items.TIN_ROD);
 		tag(Tags.Items.RAW_MATERIALS).addTags(FATags.Items.RAW_TIN);
 
 		copy(FATags.Blocks.TIN_BLOCK, FATags.Items.TIN_BLOCK);
@@ -53,6 +54,8 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.TIN_ROD).add(FAItems.TIN_THINGS.get(Form.ROD).get());
 
 		tag(FATags.Items.RAW_TIN).add(FAItems.RAW_CASSITERITE.get());
+
+		tag(FATags.Items.SHEETS).addTags(FATags.Items.COPPER_SHEET, FATags.Items.TIN_SHEET);
 
 		tag(FATags.Items.SILKS_GRASS).add(Items.SHEARS, FAItems.CHOPPING_BLADE.get());
 		tag(FATags.Items.GOOD_AXES).add(Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
