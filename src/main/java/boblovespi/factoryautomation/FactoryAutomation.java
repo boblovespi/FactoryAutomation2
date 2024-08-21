@@ -1,7 +1,7 @@
 package boblovespi.factoryautomation;
 
 import boblovespi.factoryautomation.api.capability.CastingCapability;
-import boblovespi.factoryautomation.client.gui.MenuTypes;
+import boblovespi.factoryautomation.common.menu.MenuTypes;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;

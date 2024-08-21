@@ -1,4 +1,4 @@
-package boblovespi.factoryautomation.client.gui;
+package boblovespi.factoryautomation.common.menu;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import net.minecraft.core.registries.Registries;

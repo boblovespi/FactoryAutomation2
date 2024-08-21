@@ -1,4 +1,4 @@
-package boblovespi.factoryautomation.client.gui;
+package boblovespi.factoryautomation.common.menu;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
 import net.minecraft.world.entity.player.Inventory;

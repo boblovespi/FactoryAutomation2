@@ -5,7 +5,7 @@ import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
-import mezz.jei.api.gui.ITickTimer;
+import boblovespi.factoryautomation.client.PartialTickHelper;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
@@ -13,7 +13,6 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
@@ -25,12 +24,9 @@ import org.joml.Quaternionf;
 
 public class ChoppingBlockJeiCategory extends FAJeiCategory<ChoppingBlockRecipe>
 {
-	private final ITickTimer tickTimer;
-
 	public ChoppingBlockJeiCategory(IGuiHelper helper)
 	{
 		super(RecipeThings.CHOPPING_BLOCK_TYPE.get(), helper, FABlocks.CHOPPING_BLOCK, FactoryAutomation.locString("jei", "chopping_block.name"));
-		tickTimer = helper.createTickTimer(30, 30, false);
 	}
 
 	@Override
@@ -61,8 +57,8 @@ public class ChoppingBlockJeiCategory extends FAJeiCategory<ChoppingBlockRecipe>
 	@Override
 	public void draw(RecipeHolder<ChoppingBlockRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY)
 	{
-		float delta = (Minecraft.getInstance().getTimer().getRealtimeDeltaTicks() + tickTimer.getValue()) / 15;
-		//		guiGraphics.drawString(Minecraft.getInstance().font, String.valueOf(delta), 0, 16, 0xffff00ff);
+		float delta = PartialTickHelper.getPartialFor(30) / 15;
+				// guiGraphics.drawString(Minecraft.getInstance().font, String.valueOf(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true)), 0, 16, 0xffffffff);
 		var stack = recipeSlotsView.findSlotByName("axe").flatMap(IRecipeSlotView::getDisplayedItemStack).get();
 		guiGraphics.pose().pushPose();
 		{

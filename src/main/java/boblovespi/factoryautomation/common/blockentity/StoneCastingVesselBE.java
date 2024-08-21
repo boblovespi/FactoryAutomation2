@@ -1,6 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
-import boblovespi.factoryautomation.client.gui.StoneCastingVesselMenu;
+import boblovespi.factoryautomation.common.menu.StoneCastingVesselMenu;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.util.Form;

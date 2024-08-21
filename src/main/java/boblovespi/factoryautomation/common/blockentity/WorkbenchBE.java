@@ -1,6 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
-import boblovespi.factoryautomation.client.gui.WorkbenchMenu;
+import boblovespi.factoryautomation.common.menu.WorkbenchMenu;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.Workbench;
 import boblovespi.factoryautomation.common.recipe.WorkbenchRecipe;

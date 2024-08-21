@@ -1,7 +1,7 @@
 package boblovespi.factoryautomation.common.blockentity;
 
 import boblovespi.factoryautomation.FactoryAutomation;
-import boblovespi.factoryautomation.client.gui.StoneFoundryMenu;
+import boblovespi.factoryautomation.common.menu.StoneFoundryMenu;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;

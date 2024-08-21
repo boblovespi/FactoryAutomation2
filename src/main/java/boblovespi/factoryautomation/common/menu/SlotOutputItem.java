@@ -1,4 +1,4 @@
-package boblovespi.factoryautomation.client.gui;
+package boblovespi.factoryautomation.common.menu;
 
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.IItemHandler;
