@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
+import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.client.gui.StoneFoundryMenu;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
@@ -16,6 +17,8 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
+
+import java.util.Objects;
 
 public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, IMenuProviderProvider
 {
@@ -38,9 +41,17 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 			{
 				setChanged();
 			}
+
+			@Override
+			public boolean isItemValid(int slot, ItemStack stack)
+			{
+				if (slot == 0)
+					return stack.getItemHolder().getData(FuelInfo.FUEL_DATA) != null;
+				return super.isItemValid(slot, stack);
+			}
 		};
 		heat = new HeatManager("heat", 2300 * 1000, 300);
-		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), () -> inv.extractItem(0, 1, false), (t, e) -> {
+		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) -> {
 			if (t * efficiency + 273 * (1 - efficiency) >= heat.getTemperature())
 				heat.heat(e * efficiency);
 		});
@@ -163,6 +174,17 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	{
 		return new SimpleMenuProvider((i, v, p) -> new StoneFoundryMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)),
 				Component.translatable("gui.stone_crucible.name"));
+	}
+
+	private FuelInfo takeFuel()
+	{
+		var stack = inv.extractItem(0, 1, false);
+		if (stack.getItemHolder().getData(FuelInfo.FUEL_DATA) == null)
+		{
+			inv.setStackInSlot(0, ItemStack.EMPTY);
+			FactoryAutomation.LOGGER.error("Stack has no fuel data!");
+		}
+		return Objects.requireNonNullElse(stack.getItemHolder().getData(FuelInfo.FUEL_DATA), new FuelInfo(0, 0, 0));
 	}
 
 	private class Data implements ContainerData

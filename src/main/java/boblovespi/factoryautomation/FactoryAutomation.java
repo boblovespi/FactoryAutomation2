@@ -11,6 +11,7 @@ import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.Workbench;
 import boblovespi.factoryautomation.common.sound.FASounds;
+import boblovespi.factoryautomation.common.util.FuelInfo;
 import boblovespi.factoryautomation.common.worldgen.FAWorldgen;
 import boblovespi.factoryautomation.data.loot.AlternateDropsLootModifier;
 import com.mojang.logging.LogUtils;
@@ -127,5 +128,6 @@ public class FactoryAutomation
 	{
 		event.register(Workbench.PART_DATA);
 		event.register(Workbench.TOOL_DATA);
+		event.register(FuelInfo.FUEL_DATA);
 	}
 }

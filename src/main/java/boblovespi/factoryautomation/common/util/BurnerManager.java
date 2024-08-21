@@ -34,10 +34,10 @@ public class BurnerManager
 			var fuel = fuelFinder.nextFuel();
 			if (!fuel.isEmpty())
 			{
-				maxBurnTime = burnTime = 1600; // TODO: replace with registry lookup
-				burnEnergy = 4_300_000_000f;
-				burnTemp = 2445;
-				fuelExtractor.take();
+				var fuelInfo = fuelExtractor.take();
+				maxBurnTime = burnTime = fuelInfo.time();
+				burnEnergy = fuelInfo.energy();
+				burnTemp = fuelInfo.temp();
 			}
 			else
 			{
@@ -57,20 +57,20 @@ public class BurnerManager
 	public void save(CompoundTag tag)
 	{
 		var nbt = new CompoundTag();
-		nbt.putInt("burnTime", burnTime);
+		nbt.putInt("time", burnTime);
 		nbt.putInt("maxBurnTime", maxBurnTime);
 		nbt.putFloat("burnEnergy", burnEnergy);
-		nbt.putFloat("burnTemp", burnTemp);
+		nbt.putFloat("temp", burnTemp);
 		tag.put(nbtId, nbt);
 	}
 
 	public void load(CompoundTag tag)
 	{
 		var nbt = tag.getCompound(nbtId);
-		burnTime = nbt.getInt("burnTime");
+		burnTime = nbt.getInt("time");
 		maxBurnTime = nbt.getInt("maxBurnTime");
 		burnEnergy = nbt.getFloat("burnEnergy");
-		burnTemp = nbt.getFloat("burnTemp");
+		burnTemp = nbt.getFloat("temp");
 	}
 
 	public float getBurnTime()
@@ -87,7 +87,7 @@ public class BurnerManager
 	@FunctionalInterface
 	public interface FuelExtractor
 	{
-		void take();
+		FuelInfo take();
 	}
 
 	@FunctionalInterface
