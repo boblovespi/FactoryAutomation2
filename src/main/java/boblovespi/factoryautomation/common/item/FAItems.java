@@ -68,6 +68,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> STONE_CRUCIBLE = ITEMS.registerSimpleBlockItem(FABlocks.STONE_CRUCIBLE);
 	public static final DeferredItem<BlockItem> STONE_CASTING_VESSEL = ITEMS.registerSimpleBlockItem(FABlocks.STONE_CASTING_VESSEL);
 	public static final DeferredItem<BlockItem> STONE_WORKBENCH = ITEMS.registerSimpleBlockItem(FABlocks.STONE_WORKBENCH);
+	public static final DeferredItem<BlockItem> BRICK_MAKER_FRAME = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_MAKER_FRAME);
 
 	// Tools
 

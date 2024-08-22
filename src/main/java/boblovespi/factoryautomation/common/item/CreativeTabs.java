@@ -71,6 +71,7 @@ public class CreativeTabs
 						o.accept(FAItems.STONE_CRUCIBLE);
 						o.accept(FAItems.STONE_CASTING_VESSEL);
 						o.accept(FAItems.STONE_WORKBENCH);
+						o.accept(FAItems.BRICK_MAKER_FRAME);
 					}).build());
 
 

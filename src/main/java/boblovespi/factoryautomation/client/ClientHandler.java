@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.client;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.client.ber.BrickMakerFrameBER;
 import boblovespi.factoryautomation.client.ber.ChoppingBlockBER;
 import boblovespi.factoryautomation.client.ber.StoneCastingVesselBER;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
@@ -32,6 +33,7 @@ public class ClientHandler
 	{
 		event.registerBlockEntityRenderer(FABETypes.CHOPPING_BLOCK_TYPE.get(), ChoppingBlockBER::new);
 		event.registerBlockEntityRenderer(FABETypes.STONE_CASTING_VESSEL_TYPE.get(), StoneCastingVesselBER::new);
+		event.registerBlockEntityRenderer(FABETypes.BRICK_MAKER_FRAME_TYPE.get(), BrickMakerFrameBER::new);
 	}
 
 	@SubscribeEvent
