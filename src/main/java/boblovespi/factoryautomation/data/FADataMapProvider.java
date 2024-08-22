@@ -25,7 +25,8 @@ public class FADataMapProvider extends DataMapProvider
 	@Override
 	protected void gather()
 	{
-		builder(Workbench.PART_DATA).add(FAItems.SCREW, new Workbench.Part(FactoryAutomation.name("screw"), 1), false);
+		builder(Workbench.PART_DATA).add(FAItems.SCREW, new Workbench.Part(FactoryAutomation.name("screw"), 1), false)
+									.add(FAItems.BUSHING, new Workbench.Part(FactoryAutomation.name("bearing"), 1), false);
 		builder(Workbench.TOOL_DATA).add(FAItems.COPPER_HAMMER, new Workbench.Tool(FactoryAutomation.name("hammer"), 1), false);
 		builder(FuelInfo.FUEL_DATA).add(holder(Items.COAL), new FuelInfo(1600, 2172 + 273, 4_300_000_000f), false)
 								   .add(holder(Items.CHARCOAL), new FuelInfo(1600, 2012 + 273, 4_300_000_000f), false);

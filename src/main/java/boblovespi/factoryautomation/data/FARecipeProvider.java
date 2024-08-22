@@ -142,6 +142,8 @@ public class FARecipeProvider extends RecipeProvider
 		screw(output, 4, FATags.Items.COPPER_NUGGET, FATags.Items.COPPER_ROD, "copper");
 		screw(output, 6, Tags.Items.NUGGETS_IRON, FATags.Items.IRON_ROD, "iron");
 
+		bushing(output, 4, FATags.Items.TIN_SHEET, "tin");
+
 		WorkbenchRecipeBuilder.of(FAItems.LIMONITE_CHARCOAL_MIX)
 							  .pattern("lc")
 							  .pattern("cc")
@@ -396,5 +398,17 @@ public class FARecipeProvider extends RecipeProvider
 							  .tool("hammer", 1, 1)
 							  .unlockedBy("has_" + name + "_rod", has(rod))
 							  .save(output, FactoryAutomation.name("screw_from_" + name));
+	}
+
+	private static void bushing(RecipeOutput output, int count, TagKey<Item> sheet, String name)
+	{
+		WorkbenchRecipeBuilder.of(FAItems.BUSHING, count)
+							  .pattern(" s ")
+							  .pattern("s s")
+							  .pattern(" s ")
+							  .define('s', sheet)
+							  .tool("hammer", 1, 1)
+							  .unlockedBy("has_" + name + "_sheet", has(sheet))
+							  .save(output, FactoryAutomation.name("bushing_from_" + name));
 	}
 }

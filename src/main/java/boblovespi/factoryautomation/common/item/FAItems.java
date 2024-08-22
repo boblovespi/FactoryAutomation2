@@ -52,6 +52,7 @@ public class FAItems
 	// Intermediate products
 
 	public static final DeferredItem<Item> SCREW = ITEMS.registerSimpleItem("screw");
+	public static final DeferredItem<Item> BUSHING = ITEMS.registerSimpleItem("bushing");
 
 	// Food
 

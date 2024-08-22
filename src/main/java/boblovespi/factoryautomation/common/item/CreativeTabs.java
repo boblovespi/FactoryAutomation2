@@ -58,6 +58,7 @@ public class CreativeTabs
 								 .icon(() -> FAItems.SCREW.get().getDefaultInstance()).displayItems((p, o) ->
 					{
 						o.accept(FAItems.SCREW);
+						o.accept(FAItems.BUSHING);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PROCESSING = CREATIVE_MODE_TABS.register("processing",
