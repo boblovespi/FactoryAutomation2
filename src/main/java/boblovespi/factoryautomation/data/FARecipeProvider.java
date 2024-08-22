@@ -59,9 +59,9 @@ public class FARecipeProvider extends RecipeProvider
 		rawOre(FAItems.RAW_LIMONITE, FAItems.RAW_LIMONITE_BLOCK, "raw_limonite", output);
 
 		ingot(Items.COPPER_INGOT, FAItems.COPPER_THINGS.get(Form.NUGGET), Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, "copper", output);
-		plateBlock(FAItems.COPPER_THINGS.get(Form.PLATE_BLOCK), FATags.Items.COPPER_SHEET, "copper", output);
+		metal(FAItems.COPPER_THINGS, Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, Tags.Items.STORAGE_BLOCKS_COPPER, FATags.Items.COPPER_SHEET, "copper", output);
 		metal(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, FATags.Items.TIN_SHEET, "tin", output);
-		plateBlock(FAItems.IRON_THINGS.get(Form.PLATE_BLOCK), FATags.Items.IRON_SHEET, "iron", output);
+		metal(FAItems.IRON_THINGS, Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON, Tags.Items.STORAGE_BLOCKS_IRON, FATags.Items.IRON_SHEET, "iron", output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
 						   .pattern("rf")
@@ -294,9 +294,13 @@ public class FARecipeProvider extends RecipeProvider
 	private void metal(Map<Form, DeferredItem<? extends Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, TagKey<Item> block, TagKey<Item> sheet, String name,
 					   RecipeOutput output)
 	{
-		ingot(things.get(Form.INGOT), things.get(Form.NUGGET), ingot, nugget, name, output);
-		block(things.get(Form.BLOCK), things.get(Form.INGOT), block, ingot, name, output);
+		if (things.containsKey(Form.INGOT))
+			ingot(things.get(Form.INGOT), things.get(Form.NUGGET), ingot, nugget, name, output);
+		if (things.containsKey(Form.BLOCK))
+			block(things.get(Form.BLOCK), things.get(Form.INGOT), block, ingot, name, output);
 		plateBlock(things.get(Form.PLATE_BLOCK), sheet, name, output);
+		sheet(things.get(Form.SHEET), ingot, name, output);
+		rod(things.get(Form.ROD), ingot, name, output);
 	}
 
 	private void ingot(ItemLike ingot, ItemLike nugget, TagKey<Item> ingotI, TagKey<Item> nuggetI, String name, RecipeOutput output)
@@ -343,6 +347,27 @@ public class FARecipeProvider extends RecipeProvider
 							  .tool("hammer", 1, 1)
 							  .part("screw", 1, 6)
 							  .unlockedBy("has_" + name + "_sheet", has(sheetI))
+							  .save(output);
+	}
+
+	private static void sheet(ItemLike sheet, TagKey<Item> ingotI, String name, RecipeOutput output)
+	{
+		WorkbenchRecipeBuilder.of(sheet)
+							  .pattern("ss")
+							  .define('s', ingotI)
+							  .tool("hammer", 1, 1)
+							  .unlockedBy("has_" + name + "_ingot", has(ingotI))
+							  .save(output);
+	}
+
+	private static void rod(ItemLike rod, TagKey<Item> ingotI, String name, RecipeOutput output)
+	{
+		WorkbenchRecipeBuilder.of(rod, 2)
+							  .pattern("s")
+							  .pattern("s")
+							  .define('s', ingotI)
+							  .tool("hammer", 1, 1)
+							  .unlockedBy("has_" + name + "_ingot", has(ingotI))
 							  .save(output);
 	}
 
