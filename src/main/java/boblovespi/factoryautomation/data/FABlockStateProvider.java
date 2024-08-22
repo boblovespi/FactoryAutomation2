@@ -49,6 +49,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		horizontalBlock(FABlocks.STONE_CRUCIBLE.get(), multiblockComplete("stone_crucible", "stone_foundry_multiblock"), 270);
 		castingVessel(FABlocks.STONE_CASTING_VESSEL);
 		existingBlockWithItem(FABlocks.STONE_WORKBENCH);
+		existingBlockWithItem(FABlocks.BRICK_MAKER_FRAME);
 	}
 
 	private void existingBlockWithItem(DeferredBlock<?> block)

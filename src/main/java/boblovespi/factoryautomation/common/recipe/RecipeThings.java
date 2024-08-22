@@ -23,4 +23,7 @@ public class RecipeThings
 	public static final Supplier<RecipeType<WorkbenchRecipe>> WORKBENCH_RECIPE_TYPE = RECIPE_TYPES.register("workbench",
 			() -> RecipeType.simple(FactoryAutomation.name("workbench")));
 	public static final Supplier<RecipeSerializer<WorkbenchRecipe>> WORKBENCH_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("workbench", WorkbenchRecipe.Serializer::new);
+	public static final Supplier<RecipeType<BrickDryingRecipe>> BRICK_DRYING_TYPE = RECIPE_TYPES.register("brick_drying",
+			() -> RecipeType.simple(FactoryAutomation.name("brick_drying")));
+	public static final Supplier<RecipeSerializer<BrickDryingRecipe>> BRICK_DRYING_SERIALIZER = RECIPE_SERIALIZERS.register("brick_drying", BrickDryingRecipe.Serializer::new);
 }

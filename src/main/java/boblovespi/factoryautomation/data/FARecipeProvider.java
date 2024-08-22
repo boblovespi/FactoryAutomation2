@@ -5,6 +5,7 @@ import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.FAItems;
+import boblovespi.factoryautomation.common.recipe.BrickDryingRecipe;
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
 import boblovespi.factoryautomation.common.recipe.RemovalRecipe;
 import boblovespi.factoryautomation.common.recipe.WorkbenchRecipeBuilder;
@@ -206,6 +207,8 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output, FactoryAutomation.name("chopping_block/warped_planks"));
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS))
 						   .save(output, FactoryAutomation.name("chopping_block/sticks"));
+
+		BrickDryingRecipe.of(Blocks.DIRT).input(Blocks.MUD).time(20 * 5).blocks(Blocks.DIRT, Blocks.MUD).unlockedBy("has_dirt", has(Blocks.DIRT)).save(output);
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
