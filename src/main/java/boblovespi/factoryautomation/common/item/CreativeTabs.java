@@ -32,6 +32,7 @@ public class CreativeTabs
 						FAItems.LIMONITE_ORES.values().forEach(o::accept);
 						o.accept(FAItems.RAW_LIMONITE);
 						o.accept(FAItems.RAW_LIMONITE_BLOCK);
+						o.accept(FAItems.PIG_TALLOW);
 						o.accept(FAItems.GREEN_SAND);
 						o.accept(FAItems.IRON_SHARD);
 						o.accept(FAItems.SLAG);

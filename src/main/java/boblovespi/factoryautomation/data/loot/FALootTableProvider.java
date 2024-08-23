@@ -15,7 +15,7 @@ public class FALootTableProvider extends LootTableProvider
 	{
 		super(pOutput, Set.of(), List.of(
 				new LootTableProvider.SubProviderEntry(FABlockLootTableProvider::new, LootContextParamSets.BLOCK),
-				new LootTableProvider.SubProviderEntry(OverridesLootTableProvider::new, LootContextParamSets.BLOCK)
+				new LootTableProvider.SubProviderEntry(OverridesLootTableProvider::new, LootContextParamSets.ALL_PARAMS)
 										), pRegistries);
 	}
 }

@@ -24,6 +24,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.PLANT_FIBER.get());
 		basicItem(FAItems.RAW_CASSITERITE.get());
 		basicItem(FAItems.RAW_LIMONITE.get());
+		basicItem(FAItems.PIG_TALLOW.get());
 
 		basicItem(FAItems.IRON_SHARD.get());
 		basicItem(FAItems.SLAG.get());

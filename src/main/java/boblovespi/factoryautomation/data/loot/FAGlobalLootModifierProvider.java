@@ -14,6 +14,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.loot.AddTableLootModifier;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 import java.util.concurrent.CompletableFuture;
@@ -36,5 +37,8 @@ public class FAGlobalLootModifierProvider extends GlobalLootModifierProvider
 						HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.WHEAT_SEEDS))
 				)
 		   );
+		add("pigs_drop_tallow",
+				new AddTableLootModifier(new LootItemCondition[] {LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/pig")).build()},
+						ResourceKey.create(Registries.LOOT_TABLE, FactoryAutomation.name("overrides/pig"))));
 	}
 }

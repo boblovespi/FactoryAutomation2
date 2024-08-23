@@ -40,6 +40,7 @@ public class FAItems
 			Collectors.toMap(Map.Entry::getKey, e -> ITEMS.registerSimpleBlockItem(e.getValue())));
 	public static final DeferredItem<Item> RAW_LIMONITE = ITEMS.registerItem("raw_limonite", Item::new);
 	public static final DeferredItem<BlockItem> RAW_LIMONITE_BLOCK = ITEMS.registerSimpleBlockItem(FABlocks.RAW_LIMONITE_BLOCK);
+	public static final DeferredItem<Item> PIG_TALLOW = ITEMS.registerSimpleItem("pig_tallow");
 
 	// Refined materials
 

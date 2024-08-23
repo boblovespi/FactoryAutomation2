@@ -45,7 +45,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('r', FAItems.ROCK)
 						   .define('d', Blocks.DIRT)
 						   .unlockedBy("has_rock", has(FAItems.ROCK))
-						   .save(output);
+						   .save(output, FactoryAutomation.name("guidebook"));
 
 		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, Blocks.GRAVEL, FAItems.ROCK);
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, FABlocks.GREEN_SAND, 4)
