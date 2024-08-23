@@ -28,6 +28,7 @@ public class FAItemModelProvider extends ItemModelProvider
 
 		basicItem(FAItems.IRON_SHARD.get());
 		basicItem(FAItems.SLAG.get());
+		FAItems.PIG_TALLOW_FORMS.forEach((a, b) -> basicItem(b.get()));
 		FAItems.COPPER_THINGS.forEach(this::metal);
 		FAItems.TIN_THINGS.forEach(this::metal);
 		FAItems.IRON_THINGS.forEach(this::metal);

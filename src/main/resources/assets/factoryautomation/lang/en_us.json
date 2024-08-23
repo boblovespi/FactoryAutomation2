@@ -60,6 +60,13 @@
 	
 	// Items - Refined
 	
+	"item.factoryautomation.pig_tallow_ingot": "Pig Tallow Ingot",
+	"item.factoryautomation.pig_tallow_nugget": "Pig Tallow Nugget",
+	"item.factoryautomation.pig_tallow_block": "Pig Tallow Cube",
+	"item.factoryautomation.pig_tallow_sheet": "Pig Tallow Sheet",
+	"item.factoryautomation.pig_tallow_rod": "Pig Tallow Rod",
+	"item.factoryautomation.pig_tallow_gear": "Pig Tallow Gear",
+	
 	"item.factoryautomation.iron_shard": "Iron Shard",
 	"item.factoryautomation.slag": "Slag",
 	

@@ -34,6 +34,7 @@ public class CreativeTabs
 						o.accept(FAItems.RAW_LIMONITE_BLOCK);
 						o.accept(FAItems.PIG_TALLOW);
 						o.accept(FAItems.GREEN_SAND);
+						FAItems.PIG_TALLOW_FORMS.values().forEach(o::accept);
 						o.accept(FAItems.IRON_SHARD);
 						o.accept(FAItems.SLAG);
 						o.accept(Items.COPPER_INGOT);

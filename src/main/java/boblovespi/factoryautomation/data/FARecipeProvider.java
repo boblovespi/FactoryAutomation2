@@ -56,6 +56,55 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_clay", has(Blocks.CLAY))
 						   .save(output);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.INGOT))
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .define('n', FAItems.PIG_TALLOW)
+						   .group("pig_tallow_ingot")
+						   .unlockedBy("has_pig_tallow", has(FAItems.PIG_TALLOW))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.NUGGET))
+						   .pattern("n")
+						   .define('n', FAItems.PIG_TALLOW)
+						   .group("pig_tallow_nugget")
+						   .unlockedBy("has_pig_tallow", has(FAItems.PIG_TALLOW))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.BLOCK))
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .define('n', FAItems.PIG_TALLOW)
+						   .group("pig_tallow_block")
+						   .unlockedBy("has_pig_tallow", has(FAItems.PIG_TALLOW))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.SHEET))
+						   .pattern("nnn")
+						   .define('n', FAItems.PIG_TALLOW)
+						   .group("pig_tallow_sheet")
+						   .unlockedBy("has_pig_tallow", has(FAItems.PIG_TALLOW))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.ROD))
+						   .pattern("n")
+						   .pattern("n")
+						   .pattern("n")
+						   .define('n', FAItems.PIG_TALLOW)
+						   .group("pig_tallow_rod")
+						   .unlockedBy("has_pig_tallow", has(FAItems.PIG_TALLOW))
+						   .save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.GEAR))
+						   .pattern(" n ")
+						   .pattern("n n")
+						   .pattern(" n ")
+						   .define('n', FAItems.PIG_TALLOW)
+						   .group("pig_tallow_gear")
+						   .unlockedBy("has_pig_tallow", has(FAItems.PIG_TALLOW))
+						   .save(output);
+
 		rawOre(FAItems.RAW_CASSITERITE, FAItems.RAW_CASSITERITE_BLOCK, "raw_cassiterite", output);
 		rawOre(FAItems.RAW_LIMONITE, FAItems.RAW_LIMONITE_BLOCK, "raw_limonite", output);
 
