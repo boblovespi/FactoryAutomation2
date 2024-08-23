@@ -1,19 +1,25 @@
 package boblovespi.factoryautomation.common.blockentity;
 
+import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.recipe.BrickDryingRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
@@ -24,6 +30,8 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 	private final RecipeManager<BrickDryingRecipe> left;
 	private final RecipeManager<BrickDryingRecipe> right;
 	private final ItemStackHandler inv;
+	private Block leftRender;
+	private Block rightRender;
 
 	public BrickMakerFrameBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -31,6 +39,8 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 		inv = new ItemStackHandler(2);
 		left = new RecipeManager<>("left", r -> isValid(r, 0), () -> findMatchingRecipe(0), this::getRecipe);
 		right = new RecipeManager<>("right", r -> isValid(r, 1), () -> findMatchingRecipe(1), this::getRecipe);
+		leftRender = Blocks.AIR;
+		rightRender = Blocks.AIR;
 	}
 
 	@Override
@@ -52,13 +62,22 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		save(tag, registries);
+		var ops = registries.createSerializationContext(NbtOps.INSTANCE);
+		var leftBlock = left.getRecipe() == null ? Blocks.AIR : left.isComplete() ? left.getRecipe().getOutBlock() : left.getRecipe().getInBlock();
+		var rightBlock = right.getRecipe() == null ? Blocks.AIR : right.isComplete() ? right.getRecipe().getOutBlock() : right.getRecipe().getInBlock();
+		BuiltInRegistries.BLOCK.byNameCodec().encodeStart(ops, leftBlock).ifSuccess(tag1 -> tag.put("leftBlock", tag1));
+		BuiltInRegistries.BLOCK.byNameCodec().encodeStart(ops, rightBlock).ifSuccess(tag1 -> tag.put("rightBlock", tag1));
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		load(tag, registries);
+		var ops = registries.createSerializationContext(NbtOps.INSTANCE);
+		BuiltInRegistries.BLOCK.byNameCodec().decode(ops, tag.get("leftBlock")).ifSuccess(p -> leftRender = p.getFirst());
+		BuiltInRegistries.BLOCK.byNameCodec().decode(ops, tag.get("rightBlock")).ifSuccess(p -> rightRender = p.getFirst());
+		requestModelDataUpdate();
+		if (level != null && level.isClientSide)
+			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_IMMEDIATE);
 	}
 
 	@Override
@@ -85,7 +104,6 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 			if (left.isComplete())
 			{
 				var result = left.complete();
-				left.clearRecipe();
 				var assembled = result.value().assemble(new BrickDryingRecipe.Input(inv.extractItem(0, 1, false)), level.registryAccess());
 				inv.insertItem(0, assembled, false);
 				update = true;
@@ -97,7 +115,6 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 			if (right.isComplete())
 			{
 				var result = right.complete();
-				right.clearRecipe();
 				var assembled = result.value().assemble(new BrickDryingRecipe.Input(inv.extractItem(1, 1, false)), level.registryAccess());
 				inv.insertItem(1, assembled, false);
 				update = true;
@@ -107,6 +124,15 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 			setChangedAndUpdateClient();
 		else
 			setChanged();
+	}
+
+	@Override
+	public ModelData getModelData()
+	{
+		var b = ModelData.builder();
+		var props = new Block[] {leftRender, rightRender};
+		b.with(FactoryAutomation.PARTIAL_DYNAMIC_TEXTURE_PROPERTY, props);
+		return b.build();
 	}
 
 	public void placeItem(ItemStack stack, int slot)

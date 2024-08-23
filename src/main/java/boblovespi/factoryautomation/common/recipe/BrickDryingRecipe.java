@@ -91,6 +91,16 @@ public class BrickDryingRecipe implements Recipe<BrickDryingRecipe.Input>, IProg
 		return time;
 	}
 
+	public Block getInBlock()
+	{
+		return inBlock;
+	}
+
+	public Block getOutBlock()
+	{
+		return outBlock;
+	}
+
 	public record Input(ItemStack input) implements RecipeInput
 	{
 		@Override
@@ -121,7 +131,7 @@ public class BrickDryingRecipe implements Recipe<BrickDryingRecipe.Input>, IProg
 				ItemStack.STREAM_CODEC, r -> r.result,
 				ByteBufCodecs.VAR_INT, r -> r.time,
 				ByteBufCodecs.fromCodecWithRegistries(BuiltInRegistries.BLOCK.byNameCodec()), r -> r.inBlock,
-				ByteBufCodecs.fromCodecWithRegistries(BuiltInRegistries.BLOCK.byNameCodec()), r -> r.inBlock,
+				ByteBufCodecs.fromCodecWithRegistries(BuiltInRegistries.BLOCK.byNameCodec()), r -> r.outBlock,
 				BrickDryingRecipe::new);
 
 		@Override

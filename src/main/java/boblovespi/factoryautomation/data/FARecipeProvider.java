@@ -208,7 +208,7 @@ public class FARecipeProvider extends RecipeProvider
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS))
 						   .save(output, FactoryAutomation.name("chopping_block/sticks"));
 
-		BrickDryingRecipe.of(Blocks.DIRT).input(Blocks.MUD).time(20 * 5).blocks(Blocks.DIRT, Blocks.MUD).unlockedBy("has_dirt", has(Blocks.DIRT)).save(output);
+		BrickDryingRecipe.of(Blocks.DIRT).input(Blocks.MUD).time(20 * 5).blocks(Blocks.MUD, Blocks.DIRT).unlockedBy("has_mud", has(Blocks.MUD)).save(output);
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())

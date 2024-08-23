@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,6 +35,12 @@ public class BrickMakerFrame extends Block implements EntityBlock
 	protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
 	{
 		return BOUNDING_BOX;
+	}
+
+	@Override
+	public VoxelShape getOcclusionShape(BlockState state, BlockGetter levelIn, BlockPos pos)
+	{
+		return Shapes.empty();
 	}
 
 	@Nullable

@@ -69,6 +69,12 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 		return currentRecipe;
 	}
 
+	@Nullable
+	public R getRecipe()
+	{
+		return currentRecipe != null ? currentRecipe.value() : null;
+	}
+
 	public void clearRecipe()
 	{
 		currentRecipe = null;
