@@ -105,6 +105,9 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_pig_tallow", has(FAItems.PIG_TALLOW))
 						   .save(output);
 
+		Form.tallow().forEach(f -> tallowMold(output, f, FAItems.PIG_TALLOW_FORMS, FAItems.TALLOW_MOLDS));
+		Form.tallow().forEach(f -> firedTallowMold(output, f, FAItems.TALLOW_MOLDS, FAItems.FIRED_TALLOW_MOLDS));
+
 		rawOre(FAItems.RAW_CASSITERITE, FAItems.RAW_CASSITERITE_BLOCK, "raw_cassiterite", output);
 		rawOre(FAItems.RAW_LIMONITE, FAItems.RAW_LIMONITE_BLOCK, "raw_limonite", output);
 
@@ -398,7 +401,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output, FactoryAutomation.name(name + "_block_from_ingots"));
 	}
 
-	private static void plateBlock(ItemLike plateBlock, TagKey<Item> sheetI, String name, RecipeOutput output)
+	private void plateBlock(ItemLike plateBlock, TagKey<Item> sheetI, String name, RecipeOutput output)
 	{
 		WorkbenchRecipeBuilder.of(plateBlock)
 							  .pattern("sss")
@@ -411,7 +414,7 @@ public class FARecipeProvider extends RecipeProvider
 							  .save(output);
 	}
 
-	private static void sheet(ItemLike sheet, TagKey<Item> ingotI, String name, RecipeOutput output)
+	private void sheet(ItemLike sheet, TagKey<Item> ingotI, String name, RecipeOutput output)
 	{
 		WorkbenchRecipeBuilder.of(sheet)
 							  .pattern("ss")
@@ -421,7 +424,7 @@ public class FARecipeProvider extends RecipeProvider
 							  .save(output);
 	}
 
-	private static void rod(ItemLike rod, TagKey<Item> ingotI, String name, RecipeOutput output)
+	private void rod(ItemLike rod, TagKey<Item> ingotI, String name, RecipeOutput output)
 	{
 		WorkbenchRecipeBuilder.of(rod, 2)
 							  .pattern("s")
@@ -447,7 +450,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output);
 	}
 
-	private static void screw(RecipeOutput output, int count, TagKey<Item> nugget, TagKey<Item> rod, String name)
+	private void screw(RecipeOutput output, int count, TagKey<Item> nugget, TagKey<Item> rod, String name)
 	{
 		WorkbenchRecipeBuilder.of(FAItems.SCREW, count)
 							  .pattern("nnn")
@@ -459,7 +462,7 @@ public class FARecipeProvider extends RecipeProvider
 							  .save(output, FactoryAutomation.name("screw_from_" + name));
 	}
 
-	private static void bushing(RecipeOutput output, int count, TagKey<Item> sheet, String name)
+	private void bushing(RecipeOutput output, int count, TagKey<Item> sheet, String name)
 	{
 		WorkbenchRecipeBuilder.of(FAItems.BUSHING, count)
 							  .pattern(" s ")
@@ -469,5 +472,24 @@ public class FARecipeProvider extends RecipeProvider
 							  .tool("hammer", 1, 1)
 							  .unlockedBy("has_" + name + "_sheet", has(sheet))
 							  .save(output, FactoryAutomation.name("bushing_from_" + name));
+	}
+
+	private void tallowMold(RecipeOutput output, Form form, Map<Form, DeferredItem<? extends Item>> forms, Map<Form, DeferredItem<? extends Item>> unfiredMolds)
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, unfiredMolds.get(form))
+						   .pattern("s s")
+						   .pattern("sms")
+						   .pattern("sss")
+						   .define('s', FAItems.GREEN_SAND)
+						   .define('m', forms.get(form))
+						   .unlockedBy("has_tallow_" + form.getName(), has(forms.get(form)))
+						   .save(output);
+	}
+
+	private void firedTallowMold(RecipeOutput output, Form form, Map<Form, DeferredItem<? extends Item>> unfiredMolds, Map<Form, DeferredItem<? extends Item>> firedMolds)
+	{
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(unfiredMolds.get(form)), RecipeCategory.MISC, firedMolds.get(form), 0, 200)
+								  .unlockedBy("has_tallow_mold_" + form.getName(), has(unfiredMolds.get(form)))
+								  .save(output, firedMolds.get(form).getId().withPrefix("smelting/"));
 	}
 }

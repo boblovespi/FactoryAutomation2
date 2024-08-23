@@ -35,6 +35,8 @@ public class CreativeTabs
 						o.accept(FAItems.PIG_TALLOW);
 						o.accept(FAItems.GREEN_SAND);
 						FAItems.PIG_TALLOW_FORMS.values().forEach(o::accept);
+						FAItems.TALLOW_MOLDS.values().forEach(o::accept);
+						FAItems.FIRED_TALLOW_MOLDS.values().forEach(o::accept);
 						o.accept(FAItems.IRON_SHARD);
 						o.accept(FAItems.SLAG);
 						o.accept(Items.COPPER_INGOT);
