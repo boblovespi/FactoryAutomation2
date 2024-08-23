@@ -84,6 +84,7 @@ public class CreativeTabs
 			insertAfter(event, Items.WOODEN_HOE, FAItems.FLINT_SHOVEL, FAItems.FLINT_PICKAXE, FAItems.FLINT_AXE, FAItems.FLINT_HOE);
 			insertAfter(event, Items.STONE_HOE, FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_HAMMER);
 			event.insertBefore(Items.FLINT_AND_STEEL.getDefaultInstance(), FAItems.FIREBOW.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+			event.insertBefore(Items.SHEARS.getDefaultInstance(), FAItems.COPPER_SHEARS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 		}
 
 		if (event.getTabKey() == CreativeModeTabs.COMBAT)

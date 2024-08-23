@@ -10,6 +10,7 @@ import boblovespi.factoryautomation.common.item.tool.Firebow;
 import boblovespi.factoryautomation.common.item.tool.Hammer;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import boblovespi.factoryautomation.common.util.Form;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
@@ -88,6 +89,8 @@ public class FAItems
 	public static final DeferredItem<HoeItem> COPPER_HOE = tieredTool("copper_hoe", HoeItem::new, Tools.COPPER_TIER, new Item.Properties(), -1.5f, -1.5f);
 	public static final DeferredItem<SwordItem> COPPER_SWORD = tieredTool("copper_sword", SwordItem::new, Tools.COPPER_TIER, new Item.Properties(), 3, -2.4f);
 	public static final DeferredItem<Hammer> COPPER_HAMMER = tieredTool("copper_hammer", Hammer::new, Tools.COPPER_TIER, new Item.Properties(), 8, -3.5f);
+	public static final DeferredItem<ShearsItem> COPPER_SHEARS = ITEMS.registerItem("copper_shears", ShearsItem::new,
+			new Item.Properties().durability(176).component(DataComponents.TOOL, ShearsItem.createToolProperties()));
 
 	private static <T extends TieredItem> DeferredItem<T> tieredTool(String name, BiFunction<Tier, Item.Properties, T> constructor, Tier tier, Item.Properties properties,
 																	 float damage, float as)

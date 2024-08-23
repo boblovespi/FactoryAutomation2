@@ -131,6 +131,13 @@ public class FARecipeProvider extends RecipeProvider
 		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, "copper", Tags.Items.INGOTS_COPPER,
 				output);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.COPPER_SHEARS)
+						   .pattern(" i")
+						   .pattern("i ")
+						   .define('i', Tags.Items.INGOTS_COPPER)
+						   .unlockedBy("has_copper_ingot", has(Tags.Items.INGOTS_COPPER))
+						   .save(output);
+
 		// Workbench
 		WorkbenchRecipeBuilder.of(FAItems.LOG_PILE)
 							  .pattern("lll")
