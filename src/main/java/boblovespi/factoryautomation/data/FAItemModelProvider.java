@@ -69,9 +69,4 @@ public class FAItemModelProvider extends ItemModelProvider
 	{
 		withExistingParent(item.getRegisteredName(), mcLoc("item/handheld")).texture("layer0", item.getId().withPrefix("item/"));
 	}
-
-	private void existingItem(DeferredItem<? extends Item> item)
-	{
-		withExistingParent(item.getRegisteredName(), item.getId().withPrefix("item/"));
-	}
 }
