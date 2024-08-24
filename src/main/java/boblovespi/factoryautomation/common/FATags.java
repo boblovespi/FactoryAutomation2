@@ -39,6 +39,12 @@ public class FATags
 		public static final TagKey<Item> IRON_SHEET = cItem("plates/iron");
 		public static final TagKey<Item> IRON_ROD = cItem("rods/iron");
 		public static final TagKey<Item> IRON_GEAR = cItem("gears/iron");
+		public static final TagKey<Item> BRONZE_INGOT = cItem("ingots/bronze");
+		public static final TagKey<Item> BRONZE_NUGGET = cItem("nuggets/bronze");
+		public static final TagKey<Item> BRONZE_BLOCK = cItem("storage_blocks/bronze");
+		public static final TagKey<Item> BRONZE_SHEET = cItem("plates/bronze");
+		public static final TagKey<Item> BRONZE_ROD = cItem("rods/bronze");
+		public static final TagKey<Item> BRONZE_GEAR = cItem("gears/bronze");
 
 		public static final TagKey<Item> RAW_TIN = cItem("raw_materials/tin");
 		public static final TagKey<Item> SHEETS = cItem("plates");
@@ -51,6 +57,7 @@ public class FATags
 		public static final TagKey<Block> MINEABLE_WITH_HAMMER = mcBlock("mineable/hammer");
 
 		public static final TagKey<Block> TIN_BLOCK = cBlock("storage_blocks/tin");
+		public static final TagKey<Block> BRONZE_BLOCK = cBlock("storage_blocks/bronze");
 
 		public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = block("incorrect_for_copper_tool");
 		public static final TagKey<Block> NEEDS_COPPER_TOOL = block("needs_copper_tool");

@@ -55,6 +55,7 @@ public class CreativeTabs
 								o.accept(Items.IRON_BLOCK);
 							o.accept(deferredItem);
 						}
+						FAItems.BRONZE_THINGS.values().forEach(o::accept);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PRODUCTS = CREATIVE_MODE_TABS.register("products",
@@ -76,6 +77,7 @@ public class CreativeTabs
 						o.accept(FAItems.STONE_CASTING_VESSEL);
 						o.accept(FAItems.STONE_WORKBENCH);
 						o.accept(FAItems.BRICK_MAKER_FRAME);
+						o.accept(FAItems.BRICK_CRUCIBLE);
 					}).build());
 
 

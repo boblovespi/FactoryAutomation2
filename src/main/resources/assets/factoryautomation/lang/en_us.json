@@ -30,6 +30,8 @@
 	"block.factoryautomation.copper_plate_block": "Copper Plate Block",
 	"block.factoryautomation.tin_plate_block": "Tin Plate Block",
 	"block.factoryautomation.iron_plate_block": "Iron Plate Block",
+	"block.factoryautomation.bronze_block": "Block of Bronze",
+	"block.factoryautomation.bronze_plate_block": "Bronze Plate Block",
 	
 	"block.factoryautomation.oak_chopping_block": "Oak Chopping Block",
 	"block.factoryautomation.spruce_chopping_block": "Spruce Chopping Block",
@@ -91,6 +93,11 @@
 	"item.factoryautomation.tin_sheet": "Tin Sheet",
 	"item.factoryautomation.tin_rod": "Tin Rod",
 	
+	"item.factoryautomation.bronze_ingot": "Bronze Ingot",
+	"item.factoryautomation.bronze_nugget": "Bronze Nugget",
+	"item.factoryautomation.bronze_sheet": "Bronze Sheet",
+	"item.factoryautomation.bronze_rod": "Bronze Rod",
+	
 	"item.factoryautomation.iron_sheet": "Iron Sheet",
 	"item.factoryautomation.iron_rod": "Iron Rod",
 	
@@ -147,6 +154,7 @@
 	"gui.stone_casting_vessel.name": "Stone Casting Vessel",
 	"gui.stone_crucible.name": "Stone Crucible",
 	"gui.stone_workbench.name": "Stone Workbench",
+	"gui.brick_crucible.name": "Brick Crucible",
 	
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",

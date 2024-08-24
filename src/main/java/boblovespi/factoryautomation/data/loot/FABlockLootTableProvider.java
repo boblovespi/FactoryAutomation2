@@ -71,6 +71,8 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.COPPER_PLATE_BLOCK.get());
 		dropSelf(FABlocks.TIN_PLATE_BLOCK.get());
 		dropSelf(FABlocks.IRON_PLATE_BLOCK.get());
+		dropSelf(FABlocks.BRONZE_BLOCK.get());
+		dropSelf(FABlocks.BRONZE_PLATE_BLOCK.get());
 		FABlocks.CHOPPING_BLOCKS.values().forEach(b -> dropSelf(b.get()));
 		dropSelf(FABlocks.LOG_PILE.get());
 		dropSelf(FABlocks.LIMONITE_CHARCOAL_MIX.get());
@@ -78,6 +80,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.STONE_CASTING_VESSEL.get());
 		dropSelf(FABlocks.STONE_WORKBENCH.get());
 		dropSelf(FABlocks.BRICK_MAKER_FRAME.get());
+		dropSelf(FABlocks.BRICK_CRUCIBLE.get());
 	}
 
 	private void dropOre(DeferredBlock<Block> ore, DeferredItem<Item> rawOre, int count)

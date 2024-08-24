@@ -127,7 +127,8 @@ public class StoneFoundryMenu extends AbstractContainerMenu
 	@Override
 	public boolean stillValid(Player player)
 	{
-		return AbstractContainerMenu.stillValid(access, player, FABlocks.STONE_CRUCIBLE.get());
+		// TODO: change back
+		return /*AbstractContainerMenu.stillValid(access, player, FABlocks.STONE_CRUCIBLE.get())*/true;
 	}
 
 	public int getData(int index)

@@ -32,6 +32,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		FAItems.COPPER_THINGS.forEach(this::metal);
 		FAItems.TIN_THINGS.forEach(this::metal);
 		FAItems.IRON_THINGS.forEach(this::metal);
+		FAItems.BRONZE_THINGS.forEach(this::metal);
 
 		basicItem(FAItems.SCREW.get());
 		basicItem(FAItems.BUSHING.get());
