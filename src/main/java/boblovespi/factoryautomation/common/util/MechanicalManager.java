@@ -11,14 +11,16 @@ public class MechanicalManager implements IMechanicalOutput, IMechanicalInput
 	private final String nbtId;
 	private final Function<Float, Float> speedTransformer;
 	private final Function<Float, Float> torqueTransformer;
+	private final Updater onUpdate;
 	private float speed;
 	private float torque;
 
-	public MechanicalManager(String nbtId, Function<Float, Float> speedTransformer, Function<Float, Float> torqueTransformer)
+	public MechanicalManager(String nbtId, Function<Float, Float> speedTransformer, Function<Float, Float> torqueTransformer, Updater onUpdate)
 	{
 		this.nbtId = nbtId;
 		this.speedTransformer = speedTransformer;
 		this.torqueTransformer = torqueTransformer;
+		this.onUpdate = onUpdate;
 	}
 
 	public float getSpeed()
@@ -51,5 +53,12 @@ public class MechanicalManager implements IMechanicalOutput, IMechanicalInput
 	{
 		speed = speedTransformer.apply(output.getSpeed());
 		torque = torqueTransformer.apply(output.getTorque());
+		onUpdate.update();
+	}
+
+	@FunctionalInterface
+	public interface Updater
+	{
+		void update();
 	}
 }

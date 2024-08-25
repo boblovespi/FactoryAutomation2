@@ -85,6 +85,7 @@ public class CreativeTabs
 								 .icon(() -> FAItems.CREATIVE_MECHANICAL_SOURCE.get().getDefaultInstance()).displayItems((p, o) ->
 					{
 						o.accept(FAItems.CREATIVE_MECHANICAL_SOURCE);
+						o.accept(FAItems.WOOD_POWER_SHAFT);
 					}).build());
 
 

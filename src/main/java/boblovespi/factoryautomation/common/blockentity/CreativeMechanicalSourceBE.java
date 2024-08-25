@@ -1,19 +1,26 @@
 package boblovespi.factoryautomation.common.blockentity;
 
 import boblovespi.factoryautomation.api.IMechanicalOutput;
+import boblovespi.factoryautomation.common.util.MechanicalPowerPropagatorManager;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.List;
 
 public class CreativeMechanicalSourceBE extends FABE implements IMechanicalOutput
 {
 	private float torque;
 	private float speed;
+	private final MechanicalPowerPropagatorManager propManager;
 
 	public CreativeMechanicalSourceBE(BlockPos pPos, BlockState pBlockState)
 	{
 		super(FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get(), pPos, pBlockState);
+		propManager = new MechanicalPowerPropagatorManager(List.of(Direction.values()), () -> !isRemoved(), d -> {}, this::updateInputs);
 	}
 
 	@Override
@@ -60,13 +67,20 @@ public class CreativeMechanicalSourceBE extends FABE implements IMechanicalOutpu
 		return speed;
 	}
 
+	@Override
+	public void onLoad()
+	{
+		if (!level.isClientSide && level instanceof ServerLevel serverLevel)
+			propManager.load(serverLevel, worldPosition);
+	}
+
 	public void changeSpeed(float d)
 	{
 		speed += d;
 		if (speed < 0)
 			speed = 0;
 		setChanged();
-		updateInputs();
+		propManager.updateAll();
 	}
 
 	public void changeTorque(float d)
@@ -75,11 +89,13 @@ public class CreativeMechanicalSourceBE extends FABE implements IMechanicalOutpu
 		if (torque < 0)
 			torque = 0;
 		setChanged();
-		updateInputs();
+		propManager.updateAll();
 	}
 
-	private void updateInputs()
+	public void updateInputs(Direction dir)
 	{
-
+		var cap = propManager.get(dir);
+		if (cap != null)
+			cap.update(this);
 	}
 }

@@ -98,6 +98,10 @@ public class FAItems
 	public static final DeferredItem<Hammer> IRON_HAMMER = tieredTool("iron_hammer", Hammer::new, Tiers.IRON, new Item.Properties(), 8, -3.5f);
 	public static final DeferredItem<Wrench> IRON_WRENCH = tieredTool("iron_wrench", Wrench::new, Tiers.IRON, new Item.Properties(), 1.5f, -3f);
 
+	// Mechanical
+
+	public static final DeferredItem<BlockItem> WOOD_POWER_SHAFT = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_POWER_SHAFT);
+
 	// Misc
 
 	public static final DeferredItem<BlockItem> CREATIVE_MECHANICAL_SOURCE = ITEMS.registerSimpleBlockItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);

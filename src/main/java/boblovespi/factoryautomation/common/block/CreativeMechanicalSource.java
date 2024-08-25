@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.common.blockentity.CreativeMechanicalSourceB
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class CreativeMechanicalSource extends Block implements EntityBlock
@@ -46,5 +48,12 @@ public class CreativeMechanicalSource extends Block implements EntityBlock
 			return ItemInteractionResult.CONSUME;
 		}
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+	}
+
+	@Override
+	protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston)
+	{
+		var dir = Direction.getNearest(Vec3.atLowerCornerOf(neighborPos.subtract(pos)));
+		level.getBlockEntity(pos, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get()).ifPresent(b -> b.updateInputs(dir));
 	}
 }

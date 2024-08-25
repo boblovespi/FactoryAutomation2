@@ -9,7 +9,9 @@ import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -53,6 +55,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		existingBlockWithItem(FABlocks.STONE_WORKBENCH);
 		existingBlockModel(FABlocks.BRICK_MAKER_FRAME);
 		blockWithItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
+		axisOnlyBlock(FABlocks.WOOD_POWER_SHAFT, modLoc("block/power_shaft"), mcLoc("block/oak_planks"), mcLoc("block/oak_planks"));
 	}
 
 	private void existingBlockWithItem(DeferredBlock<?> block)
@@ -103,5 +106,12 @@ public class FABlockStateProvider extends BlockStateProvider
 			}
 		}
 		simpleBlockItem(cv.get(), models().getExistingFile(modLoc("block/stone_casting_vessel")));
+	}
+
+	private void axisOnlyBlock(DeferredBlock<? extends RotatedPillarBlock> block, ResourceLocation base, ResourceLocation side, ResourceLocation end)
+	{
+		var model = models().withExistingParent(block.getRegisteredName(), base).texture("side", side).texture("front", end);
+		axisBlock(block.get(), model, model);
+		simpleBlockItem(block.get(), model);
 	}
 }

@@ -63,6 +63,10 @@ public class FABlocks
 	public static final DeferredBlock<BrickMakerFrame> BRICK_MAKER_FRAME = register("brick_maker_frame", BrickMakerFrame::new, BlockProperties.LOG);
 	public static final DeferredBlock<BrickCrucible> BRICK_CRUCIBLE = register("brick_crucible", BrickCrucible::new, BlockProperties.COBBLESTONE_MACHINE);
 
+	// Mechanical
+
+	public static final DeferredBlock<PowerShaft> WOOD_POWER_SHAFT = register("wood_power_shaft", p -> new PowerShaft(p, 10, 10), BlockProperties.LOG);
+
 	// Misc
 
 	public static final DeferredBlock<MultiblockPart> MULTIBLOCK_PART = register("multiblock_part", MultiblockPart::new, BlockBehaviour.Properties.of().noLootTable().noOcclusion());

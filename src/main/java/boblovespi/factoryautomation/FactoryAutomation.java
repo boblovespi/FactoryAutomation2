@@ -1,9 +1,11 @@
 package boblovespi.factoryautomation;
 
 import boblovespi.factoryautomation.api.capability.CastingCapability;
+import boblovespi.factoryautomation.api.capability.MechanicalCapability;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.PowerShaftBE;
 import boblovespi.factoryautomation.common.item.CreativeTabs;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
@@ -126,6 +128,9 @@ public class FactoryAutomation
 	public void onRegisterCapabilities(RegisterCapabilitiesEvent event)
 	{
 		event.registerBlockEntity(CastingCapability.BLOCK, FABETypes.STONE_CASTING_VESSEL_TYPE.get(), (b, d) -> b);
+		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get(), (b, d) -> b);
+		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBE::output);
+		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBE::input);
 	}
 
 	public void onRegisterDataMapTypes(RegisterDataMapTypesEvent event)
