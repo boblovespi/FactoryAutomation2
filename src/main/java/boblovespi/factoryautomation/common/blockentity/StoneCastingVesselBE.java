@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
+import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.menu.StoneCastingVesselMenu;
@@ -11,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -82,6 +84,8 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 		result.ifPresent(metal -> {
 			inv.setStackInSlot(0, Metal.itemForMetalAndForm(metal, mold.metalForm).getDefaultInstance());
 			temp = metal.meltTemp() - 300;
+			if (temp > 0 && level instanceof ServerLevel sl)
+				sl.sendParticles(FAParticleTypes.METAL_SPARK.get(), worldPosition.getX() + 0.5, worldPosition.getY() + 0.4, worldPosition.getZ() + 0.5, 50, 0.3, 0, 0.3, 0);
 		});
 		setChangedAndUpdateClient();
 	}

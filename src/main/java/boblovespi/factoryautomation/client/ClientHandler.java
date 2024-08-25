@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.client.gui.StoneCastingVesselScreen;
 import boblovespi.factoryautomation.client.gui.StoneFoundryScreen;
 import boblovespi.factoryautomation.client.gui.WorkbenchScreen;
 import boblovespi.factoryautomation.client.model.PartialDynamicTextureGeometryLoader;
+import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
 import net.minecraft.client.Minecraft;
@@ -18,6 +19,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 
 @EventBusSubscriber(modid = FactoryAutomation.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientHandler
@@ -51,5 +53,11 @@ public class ClientHandler
 	public static void registerGeometryLoaders(ModelEvent.RegisterGeometryLoaders event)
 	{
 		event.register(PartialDynamicTextureGeometryLoader.ID, PartialDynamicTextureGeometryLoader.INSTANCE);
+	}
+
+	@SubscribeEvent
+	public static void registerParticleProviders(RegisterParticleProvidersEvent event)
+	{
+		event.registerSpriteSet(FAParticleTypes.METAL_SPARK.get(), MetalSparkParticle.Provider::new);
 	}
 }

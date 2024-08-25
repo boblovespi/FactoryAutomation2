@@ -2,6 +2,7 @@ package boblovespi.factoryautomation;
 
 import boblovespi.factoryautomation.api.capability.CastingCapability;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
+import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
@@ -76,6 +77,7 @@ public class FactoryAutomation
 		RecipeThings.RECIPE_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_SERIALIZERS.register(modEventBus);
 		MenuTypes.TYPES.register(modEventBus);
+		FAParticleTypes.TYPES.register(modEventBus);
 		Multiblocks.register();
 
 		// Register ourselves for server and other game events we are interested in.
