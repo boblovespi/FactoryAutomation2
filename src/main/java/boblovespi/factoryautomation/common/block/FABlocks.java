@@ -66,6 +66,7 @@ public class FABlocks
 	// Misc
 
 	public static final DeferredBlock<MultiblockPart> MULTIBLOCK_PART = register("multiblock_part", MultiblockPart::new, BlockBehaviour.Properties.of().noLootTable().noOcclusion());
+	public static final DeferredBlock<CreativeMechanicalSource> CREATIVE_MECHANICAL_SOURCE = register("creative_mechanical_source", CreativeMechanicalSource::new, BlockBehaviour.Properties.of().noLootTable().strength(-1));
 
 	private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> supplier)
 	{

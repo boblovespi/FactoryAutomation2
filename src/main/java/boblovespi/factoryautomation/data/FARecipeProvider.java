@@ -181,8 +181,9 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_bow", has(Items.BOW))
 							  .save(output);
 
-		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, "copper", Tags.Items.INGOTS_COPPER,
-				output);
+		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, null, "copper",
+				Tags.Items.INGOTS_COPPER, output);
+		tool(null, null, null, null, null, FAItems.IRON_HAMMER, FAItems.IRON_WRENCH, "iron", Tags.Items.INGOTS_IRON, output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.COPPER_SHEARS)
 						   .pattern(" i")
@@ -296,54 +297,59 @@ public class FARecipeProvider extends RecipeProvider
 		RemovalRecipe.unitFor(Items.BRICK).save(output);
 	}
 
-	private void tool(ItemLike shovel, ItemLike pickaxe, ItemLike axe, ItemLike hoe, ItemLike sword, @Nullable ItemLike hammer, String matName, TagKey<Item> canonicalMat,
-					  RecipeOutput output)
+	private void tool(@Nullable ItemLike shovel, @Nullable ItemLike pickaxe, @Nullable ItemLike axe, @Nullable ItemLike hoe, @Nullable ItemLike sword, @Nullable ItemLike hammer,
+					  @Nullable ItemLike wrench, String matName, TagKey<Item> canonicalMat, RecipeOutput output)
 	{
 		var mat = Ingredient.of(canonicalMat);
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, shovel)
-						   .pattern("m")
-						   .pattern("s")
-						   .pattern("s")
-						   .define('m', mat)
-						   .define('s', Tags.Items.RODS_WOODEN)
-						   .unlockedBy("has_" + matName, has(canonicalMat))
-						   .save(output);
+		if (shovel != null)
+			ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, shovel)
+							   .pattern("m")
+							   .pattern("s")
+							   .pattern("s")
+							   .define('m', mat)
+							   .define('s', Tags.Items.RODS_WOODEN)
+							   .unlockedBy("has_" + matName, has(canonicalMat))
+							   .save(output);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, pickaxe)
-						   .pattern("mmm")
-						   .pattern(" s ")
-						   .pattern(" s ")
-						   .define('m', mat)
-						   .define('s', Tags.Items.RODS_WOODEN)
-						   .unlockedBy("has_" + matName, has(canonicalMat))
-						   .save(output);
+		if (pickaxe != null)
+			ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, pickaxe)
+							   .pattern("mmm")
+							   .pattern(" s ")
+							   .pattern(" s ")
+							   .define('m', mat)
+							   .define('s', Tags.Items.RODS_WOODEN)
+							   .unlockedBy("has_" + matName, has(canonicalMat))
+							   .save(output);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, axe)
-						   .pattern("mm")
-						   .pattern("ms")
-						   .pattern(" s")
-						   .define('m', mat)
-						   .define('s', Tags.Items.RODS_WOODEN)
-						   .unlockedBy("has_" + matName, has(canonicalMat))
-						   .save(output);
+		if (axe != null)
+			ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, axe)
+							   .pattern("mm")
+							   .pattern("ms")
+							   .pattern(" s")
+							   .define('m', mat)
+							   .define('s', Tags.Items.RODS_WOODEN)
+							   .unlockedBy("has_" + matName, has(canonicalMat))
+							   .save(output);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, hoe)
-						   .pattern("mm")
-						   .pattern(" s")
-						   .pattern(" s")
-						   .define('m', mat)
-						   .define('s', Tags.Items.RODS_WOODEN)
-						   .unlockedBy("has_" + matName, has(canonicalMat))
-						   .save(output);
+		if (hoe != null)
+			ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, hoe)
+							   .pattern("mm")
+							   .pattern(" s")
+							   .pattern(" s")
+							   .define('m', mat)
+							   .define('s', Tags.Items.RODS_WOODEN)
+							   .unlockedBy("has_" + matName, has(canonicalMat))
+							   .save(output);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, sword)
-						   .pattern("m")
-						   .pattern("m")
-						   .pattern("s")
-						   .define('m', mat)
-						   .define('s', Tags.Items.RODS_WOODEN)
-						   .unlockedBy("has_" + matName, has(canonicalMat))
-						   .save(output);
+		if (sword != null)
+			ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, sword)
+							   .pattern("m")
+							   .pattern("m")
+							   .pattern("s")
+							   .define('m', mat)
+							   .define('s', Tags.Items.RODS_WOODEN)
+							   .unlockedBy("has_" + matName, has(canonicalMat))
+							   .save(output);
 
 		if (hammer != null)
 			WorkbenchRecipeBuilder.of(hammer)
@@ -352,6 +358,15 @@ public class FARecipeProvider extends RecipeProvider
 								  .pattern(" s ")
 								  .define('m', mat)
 								  .define('s', Tags.Items.RODS_WOODEN)
+								  .unlockedBy("has_" + matName, has(canonicalMat))
+								  .save(output);
+
+		if (wrench != null)
+			WorkbenchRecipeBuilder.of(wrench)
+								  .pattern("m m")
+								  .pattern(" m ")
+								  .pattern(" m ")
+								  .define('m', mat)
 								  .unlockedBy("has_" + matName, has(canonicalMat))
 								  .save(output);
 	}

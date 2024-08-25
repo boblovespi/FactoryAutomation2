@@ -19,4 +19,5 @@ public class Tools
 	public static final Tier COPPER_TIER = new SimpleTier(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL, 240, 3.5f, 1.5f, 5, () -> Ingredient.of(Tags.Items.INGOTS_COPPER));
 
 	public static final ItemAbility MAKE_CHOPPING_BLOCK = ItemAbility.get("make_chopping_block");
+	public static final ItemAbility WRENCH = ItemAbility.get("wrench");
 }

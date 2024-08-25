@@ -56,6 +56,8 @@ public class FAItemModelProvider extends ItemModelProvider
 		handheld(FAItems.COPPER_SWORD);
 		handheld(FAItems.COPPER_HAMMER);
 		handheld(FAItems.COPPER_SHEARS);
+		handheld(FAItems.IRON_HAMMER);
+		handheld(FAItems.IRON_WRENCH);
 	}
 
 	private void metal(Form form, DeferredItem<? extends Item> item)

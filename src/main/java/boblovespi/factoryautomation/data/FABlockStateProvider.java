@@ -52,6 +52,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		castingVessel(FABlocks.STONE_CASTING_VESSEL);
 		existingBlockWithItem(FABlocks.STONE_WORKBENCH);
 		existingBlockModel(FABlocks.BRICK_MAKER_FRAME);
+		blockWithItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
 	}
 
 	private void existingBlockWithItem(DeferredBlock<?> block)

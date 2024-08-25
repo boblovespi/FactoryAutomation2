@@ -5,10 +5,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
-import boblovespi.factoryautomation.common.item.tool.ChoppingBlade;
-import boblovespi.factoryautomation.common.item.tool.Firebow;
-import boblovespi.factoryautomation.common.item.tool.Hammer;
-import boblovespi.factoryautomation.common.item.tool.Tools;
+import boblovespi.factoryautomation.common.item.tool.*;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
@@ -97,6 +94,13 @@ public class FAItems
 	public static final DeferredItem<Hammer> COPPER_HAMMER = tieredTool("copper_hammer", Hammer::new, Tools.COPPER_TIER, new Item.Properties(), 8, -3.5f);
 	public static final DeferredItem<ShearsItem> COPPER_SHEARS = ITEMS.registerItem("copper_shears", ShearsItem::new,
 			new Item.Properties().durability(176).component(DataComponents.TOOL, ShearsItem.createToolProperties()));
+
+	public static final DeferredItem<Hammer> IRON_HAMMER = tieredTool("iron_hammer", Hammer::new, Tiers.IRON, new Item.Properties(), 8, -3.5f);
+	public static final DeferredItem<Wrench> IRON_WRENCH = tieredTool("iron_wrench", Wrench::new, Tiers.IRON, new Item.Properties(), 1.5f, -3f);
+
+	// Misc
+
+	public static final DeferredItem<BlockItem> CREATIVE_MECHANICAL_SOURCE = ITEMS.registerSimpleBlockItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
 
 	private static <T extends TieredItem> DeferredItem<T> tieredTool(String name, BiFunction<Tier, Item.Properties, T> constructor, Tier tier, Item.Properties properties,
 																	 float damage, float as)

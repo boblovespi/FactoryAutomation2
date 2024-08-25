@@ -55,6 +55,7 @@ public class FATags
 	{
 		public static final TagKey<Block> MINEABLE_WITH_CHOPPING_BLADE = mcBlock("mineable/chopping_blade");
 		public static final TagKey<Block> MINEABLE_WITH_HAMMER = mcBlock("mineable/hammer");
+		public static final TagKey<Block> MINEABLE_WITH_WRENCH = mcBlock("mineable/wrench");
 
 		public static final TagKey<Block> TIN_BLOCK = cBlock("storage_blocks/tin");
 		public static final TagKey<Block> BRONZE_BLOCK = cBlock("storage_blocks/bronze");

@@ -80,6 +80,13 @@ public class CreativeTabs
 						o.accept(FAItems.BRICK_CRUCIBLE);
 					}).build());
 
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE = CREATIVE_MODE_TABS.register("creative",
+			() -> CreativeModeTab.builder().title(Component.translatable(FactoryAutomation.locString("itemGroup", "creative"))).withTabsBefore(PRODUCTS.getId())
+								 .icon(() -> FAItems.CREATIVE_MECHANICAL_SOURCE.get().getDefaultInstance()).displayItems((p, o) ->
+					{
+						o.accept(FAItems.CREATIVE_MECHANICAL_SOURCE);
+					}).build());
+
 
 	@SubscribeEvent
 	public static void addCreative(BuildCreativeModeTabContentsEvent event)
@@ -89,6 +96,7 @@ public class CreativeTabs
 			event.insertFirst(FAItems.CHOPPING_BLADE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 			insertAfter(event, Items.WOODEN_HOE, FAItems.FLINT_SHOVEL, FAItems.FLINT_PICKAXE, FAItems.FLINT_AXE, FAItems.FLINT_HOE);
 			insertAfter(event, Items.STONE_HOE, FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_HAMMER);
+			insertAfter(event, Items.IRON_HOE, FAItems.IRON_HAMMER, FAItems.IRON_WRENCH);
 			event.insertBefore(Items.FLINT_AND_STEEL.getDefaultInstance(), FAItems.FIREBOW.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 			event.insertBefore(Items.SHEARS.getDefaultInstance(), FAItems.COPPER_SHEARS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 		}

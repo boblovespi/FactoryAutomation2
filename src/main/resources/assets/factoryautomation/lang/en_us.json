@@ -51,6 +51,7 @@
 	"block.factoryautomation.brick_maker_frame": "Brick Maker Frame",
 	
 	"block.factoryautomation.multiblock_part": "Multiblock Part",
+	"block.factoryautomation.creative_mechanical_source": "Creative Mechanical Source",
 	
 	// Items
 	
@@ -129,6 +130,9 @@
 	"item.factoryautomation.copper_sword": "Copper Sword",
 	"item.factoryautomation.copper_hammer": "Copper Hammer",
 	"item.factoryautomation.copper_shears": "Copper Shears",
+	
+	"item.factoryautomation.iron_hammer": "Iron Hammer",
+	"item.factoryautomation.iron_wrench": "Iron Wrench",
 	
 	// Creative tabs
 	
