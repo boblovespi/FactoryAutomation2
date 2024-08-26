@@ -192,6 +192,29 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_copper_ingot", has(Tags.Items.INGOTS_COPPER))
 						   .save(output);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CRUCIBLE)
+						   .pattern("c c")
+						   .pattern("c c")
+						   .pattern("ccc")
+						   .define('c', ItemTags.STONE_CRAFTING_MATERIALS)
+						   .unlockedBy("has_cobblestone", has(ItemTags.STONE_CRAFTING_MATERIALS)).save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CASTING_VESSEL)
+						   .pattern("c c")
+						   .pattern("sss")
+						   .define('c', ItemTags.STONE_CRAFTING_MATERIALS)
+						   .define('s', Ingredient.of(Items.COBBLESTONE_SLAB, Items.BLACKSTONE_SLAB, Items.COBBLED_DEEPSLATE_SLAB))
+						   .unlockedBy("has_cobblestone", has(ItemTags.STONE_CRAFTING_MATERIALS)).save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_WORKBENCH)
+						   .pattern("sss")
+						   .pattern("cwc")
+						   .pattern("c c")
+						   .define('c', Tags.Items.INGOTS_COPPER)
+						   .define('s', Items.SMOOTH_STONE_SLAB)
+						   .define('w', Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES)
+						   .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER)).save(output);
+
 		// Workbench
 		WorkbenchRecipeBuilder.of(FAItems.LOG_PILE)
 							  .pattern("lll")
@@ -224,28 +247,15 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_string", has(Tags.Items.STRINGS))
 							  .save(output);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CRUCIBLE)
-						   .pattern("c c")
-						   .pattern("c c")
-						   .pattern("ccc")
-						   .define('c', ItemTags.STONE_CRAFTING_MATERIALS)
-						   .unlockedBy("has_cobblestone", has(ItemTags.STONE_CRAFTING_MATERIALS)).save(output);
-
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_CASTING_VESSEL)
-						   .pattern("c c")
-						   .pattern("sss")
-						   .define('c', ItemTags.STONE_CRAFTING_MATERIALS)
-						   .define('s', Ingredient.of(Items.COBBLESTONE_SLAB, Items.BLACKSTONE_SLAB, Items.COBBLED_DEEPSLATE_SLAB))
-						   .unlockedBy("has_cobblestone", has(ItemTags.STONE_CRAFTING_MATERIALS)).save(output);
-
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_WORKBENCH)
-						   .pattern("sss")
-						   .pattern("cwc")
-						   .pattern("c c")
-						   .define('c', Tags.Items.INGOTS_COPPER)
-						   .define('s', Items.SMOOTH_STONE_SLAB)
-						   .define('w', Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES)
-						   .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER)).save(output);
+		WorkbenchRecipeBuilder.of(FAItems.WOOD_POWER_SHAFT)
+							  .pattern("srs")
+							  .define('s', ItemTags.PLANKS)
+							  .define('r', FATags.Items.COPPER_ROD)
+							  .tool("hammer", 2, 5)
+							  .part("screw", 1, 2)
+							  .part("bearing", 1, 2)
+							  .unlockedBy("has_copper_rod", has(FATags.Items.COPPER_ROD))
+							  .save(output);
 
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
 								  .unlockedBy("has_bread", has(Items.BREAD))

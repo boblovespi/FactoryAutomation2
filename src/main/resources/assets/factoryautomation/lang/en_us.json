@@ -50,6 +50,10 @@
 	"block.factoryautomation.stone_workbench": "Stone Workbench",
 	"block.factoryautomation.brick_maker_frame": "Brick Maker Frame",
 	
+	// Block - Mechanical
+	
+	"block.factoryautomation.wood_power_shaft": "Wood Power Shaft",
+	
 	"block.factoryautomation.multiblock_part": "Multiblock Part",
 	"block.factoryautomation.creative_mechanical_source": "Creative Mechanical Source",
 	
