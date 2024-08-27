@@ -215,6 +215,13 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('w', Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES)
 						   .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER)).save(output);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.BRICK_MAKER_FRAME)
+						   .pattern("s s")
+						   .pattern("ppp")
+						   .define('p', ItemTags.PLANKS)
+						   .define('s', Tags.Items.RODS_WOODEN)
+						   .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(output);
+
 		// Workbench
 		WorkbenchRecipeBuilder.of(FAItems.LOG_PILE)
 							  .pattern("lll")

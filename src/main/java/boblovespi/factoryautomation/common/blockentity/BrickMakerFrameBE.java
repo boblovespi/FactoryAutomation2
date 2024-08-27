@@ -91,7 +91,7 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 	@Override
 	public void onDestroy()
 	{
-
+		ItemHelper.dropAllItems(level, worldPosition.getCenter(), inv);
 	}
 
 	@Override
@@ -138,6 +138,8 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 	public void placeItem(ItemStack stack, int slot)
 	{
 		if (!inv.getStackInSlot(slot).isEmpty() || stack.isEmpty())
+			return;
+		if (level.getRecipeManager().getRecipeFor(RecipeThings.BRICK_DRYING_TYPE.get(), new BrickDryingRecipe.Input(stack), level).isEmpty())
 			return;
 		inv.insertItem(slot, stack.split(1), false);
 		(slot == 0 ? left : right).updateRecipe();

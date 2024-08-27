@@ -60,12 +60,12 @@ public class FABlocks
 	public static final DeferredBlock<StoneCrucible> STONE_CRUCIBLE = register("stone_crucible", StoneCrucible::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<StoneCastingVessel> STONE_CASTING_VESSEL = register("stone_casting_vessel", StoneCastingVessel::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<StoneWorkbench> STONE_WORKBENCH = register("stone_workbench", StoneWorkbench::new, BlockProperties.COBBLESTONE_MACHINE);
-	public static final DeferredBlock<BrickMakerFrame> BRICK_MAKER_FRAME = register("brick_maker_frame", BrickMakerFrame::new, BlockProperties.LOG);
+	public static final DeferredBlock<BrickMakerFrame> BRICK_MAKER_FRAME = register("brick_maker_frame", BrickMakerFrame::new, BlockProperties.WOOD_MACHINE);
 	public static final DeferredBlock<BrickCrucible> BRICK_CRUCIBLE = register("brick_crucible", BrickCrucible::new, BlockProperties.COBBLESTONE_MACHINE);
 
 	// Mechanical
 
-	public static final DeferredBlock<PowerShaft> WOOD_POWER_SHAFT = register("wood_power_shaft", p -> new PowerShaft(p, 10, 10), BlockProperties.LOG);
+	public static final DeferredBlock<PowerShaft> WOOD_POWER_SHAFT = register("wood_power_shaft", p -> new PowerShaft(p, 10, 10), BlockProperties.WOOD_MACHINE);
 
 	// Misc
 

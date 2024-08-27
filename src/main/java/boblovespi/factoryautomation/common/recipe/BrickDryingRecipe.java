@@ -101,6 +101,11 @@ public class BrickDryingRecipe implements Recipe<BrickDryingRecipe.Input>, IProg
 		return outBlock;
 	}
 
+	public Ingredient getInput()
+	{
+		return input;
+	}
+
 	public record Input(ItemStack input) implements RecipeInput
 	{
 		@Override

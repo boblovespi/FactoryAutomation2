@@ -1,8 +1,6 @@
 package boblovespi.factoryautomation.common.block.processing;
 
-import boblovespi.factoryautomation.common.blockentity.BrickMakerFrameBE;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -67,5 +65,12 @@ public class BrickMakerFrame extends Block implements EntityBlock
 		var hitPoint = pHitResult.getLocation().x - pHitResult.getBlockPos().getX();
 		level.getBlockEntity(pPos, FABETypes.BRICK_MAKER_FRAME_TYPE.get()).ifPresent(b -> b.takeOrPlace(pStack, pPlayer, hitPoint > 0.5 ? 1 : 0));
 		return ItemInteractionResult.CONSUME;
+	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		pLevel.getBlockEntity(pPos, FABETypes.BRICK_MAKER_FRAME_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
 	}
 }
