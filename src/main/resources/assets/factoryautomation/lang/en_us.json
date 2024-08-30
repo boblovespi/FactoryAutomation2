@@ -158,6 +158,10 @@
 	"jei.factoryautomation.casting.name": "Casting",
 	"jei.factoryautomation.brick_drying.name": "Brick Drying",
 	
+	// Jade handlers
+	
+	"config.jade.plugin_factoryautomation.stone_casting_vessel": "Stone Casting Vessel",
+	
 	// Gui things
 	
 	"gui.stone_casting_vessel.name": "Stone Casting Vessel",
@@ -179,6 +183,14 @@
 	"metal.bronze.name": "Bronze",
 	"metal.steel.name": "Steel",
 	"metal.unknown.name": "Unknown",
+	
+	// Form names
+	
+	"form.ingot.name": "Ingot",
+	"form.nugget.name": "Nugget",
+	"form.sheet.name": "Sheet",
+	"form.rod.name": "Rod",
+	"form.gear.name": "Gear",
 	
 	// Advancements
 	
