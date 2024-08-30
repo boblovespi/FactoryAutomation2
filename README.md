@@ -2,7 +2,7 @@
 
 # Factory Automation
 
-A project originally developed by boblovespi, merged with a MultiTeam project, and contiuned with King of Creepers, Blobbb and Gaborboy95.
+A project originally developed by boblovespi, merged with a MultiTeam project, and contiuned with LazTheArtist and Blobbb.
 
 ## Installation
 
@@ -28,8 +28,7 @@ FactoryAutomation is coded by 2 developers, and two designers.
 | Name         | Role                          |
 |--------------|-------------------------------|
 | Boblovespi   | Lead Developer                |
-| LazTheArtist | Modeler, Artist, and Designer |
-| Gaborboy95   | Developer and Modeler         |
+| LazTheArtist | Artist, and Designer          |
 | Blobbb       | Does stuff                    |
 | OroArmor     | Sound                         |
 
