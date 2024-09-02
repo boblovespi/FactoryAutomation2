@@ -27,11 +27,15 @@
 	"block.factoryautomation.iron_bloom": "Iron Bloom",
 	
 	"block.factoryautomation.tin_block": "Block of Tin",
+	"block.factoryautomation.bronze_block": "Block of Bronze",
 	"block.factoryautomation.copper_plate_block": "Copper Plate Block",
 	"block.factoryautomation.tin_plate_block": "Tin Plate Block",
 	"block.factoryautomation.iron_plate_block": "Iron Plate Block",
-	"block.factoryautomation.bronze_block": "Block of Bronze",
 	"block.factoryautomation.bronze_plate_block": "Bronze Plate Block",
+	"block.factoryautomation.copper_space_frame": "Copper Space Frame",
+	"block.factoryautomation.tin_space_frame": "Tin Space Frame",
+	"block.factoryautomation.iron_space_frame": "Iron Space Frame",
+	"block.factoryautomation.bronze_space_frame": "Bronze Space Frame",
 	
 	"block.factoryautomation.oak_chopping_block": "Oak Chopping Block",
 	"block.factoryautomation.spruce_chopping_block": "Spruce Chopping Block",

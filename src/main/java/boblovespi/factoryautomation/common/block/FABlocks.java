@@ -10,6 +10,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.WaterloggedTransparentBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -49,6 +50,10 @@ public class FABlocks
 	public static final DeferredBlock<Block> TIN_PLATE_BLOCK = register("tin_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
 	public static final DeferredBlock<Block> BRONZE_PLATE_BLOCK = register("bronze_plate_block", Block::new, BlockProperties.METAL(MapColor.TERRACOTTA_YELLOW));
 	public static final DeferredBlock<Block> IRON_PLATE_BLOCK = register("iron_plate_block", Block::new, BlockProperties.METAL(MapColor.METAL));
+	public static final DeferredBlock<WaterloggedTransparentBlock> COPPER_SPACE_FRAME = register("copper_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_ORANGE)));
+	public static final DeferredBlock<WaterloggedTransparentBlock> TIN_SPACE_FRAME = register("tin_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE)));
+	public static final DeferredBlock<WaterloggedTransparentBlock> BRONZE_SPACE_FRAME = register("bronze_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.TERRACOTTA_YELLOW)));
+	public static final DeferredBlock<WaterloggedTransparentBlock> IRON_SPACE_FRAME = register("iron_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.METAL)));
 
 	// Processing
 

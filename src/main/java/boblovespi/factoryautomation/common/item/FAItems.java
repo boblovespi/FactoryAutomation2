@@ -11,6 +11,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WaterloggedTransparentBlock;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -42,15 +43,15 @@ public class FAItems
 	// Refined materials
 
 	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
-	public static final Map<Form, DeferredItem<? extends Item>> PIG_TALLOW_FORMS = metal("pig_tallow", Form.tallow(), null, null);
-	public static final Map<Form, DeferredItem<? extends Item>> TALLOW_MOLDS = metal("tallow_mold", Form.tallow(), null, null);
-	public static final Map<Form, DeferredItem<? extends Item>> FIRED_TALLOW_MOLDS = metal("fired_mold", Form.tallow(), null, null);
+	public static final Map<Form, DeferredItem<? extends Item>> PIG_TALLOW_FORMS = metal("pig_tallow", Form.tallow(), null, null, null);
+	public static final Map<Form, DeferredItem<? extends Item>> TALLOW_MOLDS = metal("tallow_mold", Form.tallow(), null, null, null);
+	public static final Map<Form, DeferredItem<? extends Item>> FIRED_TALLOW_MOLDS = metal("fired_mold", Form.tallow(), null, null, null);
 	public static final DeferredItem<Item> IRON_SHARD = ITEMS.registerSimpleItem("iron_shard");
 	public static final DeferredItem<Item> SLAG = ITEMS.registerSimpleItem("slag");
-	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null, FABlocks.COPPER_PLATE_BLOCK);
-	public static final Map<Form, DeferredItem<? extends Item>> TIN_THINGS = metal("tin", Form.most(), FABlocks.TIN_BLOCK, FABlocks.TIN_PLATE_BLOCK);
-	public static final Map<Form, DeferredItem<? extends Item>> IRON_THINGS = metal("iron", Form.iron(), null, FABlocks.IRON_PLATE_BLOCK);
-	public static final Map<Form, DeferredItem<? extends Item>> BRONZE_THINGS = metal("bronze", Form.most(), FABlocks.BRONZE_BLOCK, FABlocks.BRONZE_PLATE_BLOCK);
+	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null, FABlocks.COPPER_PLATE_BLOCK, FABlocks.COPPER_SPACE_FRAME);
+	public static final Map<Form, DeferredItem<? extends Item>> TIN_THINGS = metal("tin", Form.most(), FABlocks.TIN_BLOCK, FABlocks.TIN_PLATE_BLOCK, FABlocks.TIN_SPACE_FRAME);
+	public static final Map<Form, DeferredItem<? extends Item>> IRON_THINGS = metal("iron", Form.iron(), null, FABlocks.IRON_PLATE_BLOCK, FABlocks.IRON_SPACE_FRAME);
+	public static final Map<Form, DeferredItem<? extends Item>> BRONZE_THINGS = metal("bronze", Form.most(), FABlocks.BRONZE_BLOCK, FABlocks.BRONZE_PLATE_BLOCK, FABlocks.BRONZE_SPACE_FRAME);
 
 	// Intermediate products
 
@@ -112,13 +113,16 @@ public class FAItems
 		return ITEMS.registerItem(name, p -> constructor.apply(tier, p), properties.attributes(SwordItem.createAttributes(tier, damage, as)));
 	}
 
-	private static Map<Form, DeferredItem<? extends Item>> metal(String name, Collection<Form> metals, @Nullable DeferredBlock<Block> block, @Nullable DeferredBlock<Block> plateBlock)
+	private static Map<Form, DeferredItem<? extends Item>> metal(String name, Collection<Form> metals, @Nullable DeferredBlock<Block> block,
+																 @Nullable DeferredBlock<Block> plateBlock, @Nullable DeferredBlock<WaterloggedTransparentBlock> spaceFrame)
 	{
 		return metals.stream().collect(Collectors.toMap(k -> k, k -> {
 			if (k == Form.BLOCK && block != null)
 				return ITEMS.registerSimpleBlockItem(block);
 			else if (k == Form.PLATE_BLOCK && plateBlock != null)
 				return ITEMS.registerSimpleBlockItem(plateBlock);
+			else if (k == Form.SPACE_FRAME && spaceFrame != null)
+				return ITEMS.registerSimpleBlockItem(spaceFrame);
 			return ITEMS.registerItem(name + "_" + k.getName(), Item::new);
 		}, (a, b) -> a, LinkedHashMap::new));
 	}

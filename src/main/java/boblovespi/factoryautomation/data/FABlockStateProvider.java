@@ -12,6 +12,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.WaterloggedTransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -41,11 +42,15 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlock(FABlocks.CHARCOAL_PILE.get());
 		simpleBlock(FABlocks.IRON_BLOOM.get());
 		simpleBlock(FABlocks.TIN_BLOCK.get());
+		simpleBlock(FABlocks.BRONZE_BLOCK.get());
 		simpleBlock(FABlocks.COPPER_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.TIN_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.IRON_PLATE_BLOCK.get());
-		simpleBlock(FABlocks.BRONZE_BLOCK.get());
 		simpleBlock(FABlocks.BRONZE_PLATE_BLOCK.get());
+		spaceFrame(FABlocks.COPPER_SPACE_FRAME);
+		spaceFrame(FABlocks.TIN_SPACE_FRAME);
+		spaceFrame(FABlocks.IRON_SPACE_FRAME);
+		spaceFrame(FABlocks.BRONZE_SPACE_FRAME);
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
 		getVariantBuilder(FABlocks.LOG_PILE.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());
@@ -113,5 +118,12 @@ public class FABlockStateProvider extends BlockStateProvider
 		var model = models().withExistingParent(block.getRegisteredName(), base).texture("side", side).texture("front", end);
 		axisBlock(block.get(), model, model);
 		simpleBlockItem(block.get(), model);
+	}
+
+	private void spaceFrame(DeferredBlock<WaterloggedTransparentBlock> spaceFrame)
+	{
+		var model = models().cubeColumn(spaceFrame.getRegisteredName(), spaceFrame.getId().withPrefix("block/"), spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+							.renderType("minecraft:cutout");
+		simpleBlock(spaceFrame.get(), model);
 	}
 }

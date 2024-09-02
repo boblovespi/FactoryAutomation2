@@ -23,6 +23,7 @@ public class Form
 	public static final Form ROD = new Form("rod", Metal.UNITS_IN_INGOT / 2, Tags.Items.RODS, true);
 	public static final Form GEAR = new Form("gear", Metal.UNITS_IN_INGOT * 4, FATags.Items.GEARS, true);
 	public static final Form PLATE_BLOCK = new Form("plate_block", Metal.UNITS_IN_INGOT * 6, null, true);
+	public static final Form SPACE_FRAME = new Form("space_frame", Metal.UNITS_IN_INGOT * 6, null, true);
 	public static final Form RAW_ORE = new Form("raw_ore", Metal.UNITS_IN_INGOT, Tags.Items.RAW_MATERIALS, false);
 	public static final Form SHARD = new Form("shard", Metal.UNITS_IN_INGOT / 3, FATags.Items.SHARDS, false);
 	public static final Form NONE = new Form("none", Integer.MAX_VALUE, null, false);
@@ -71,7 +72,7 @@ public class Form
 
 	public static Collection<Form> tallow()
 	{
-		return LOOKUP_MAP.values().stream().filter(f -> f != PLATE_BLOCK && f.castable).collect(Collectors.toList());
+		return LOOKUP_MAP.values().stream().filter(f -> f != PLATE_BLOCK && f != SPACE_FRAME && f.castable).collect(Collectors.toList());
 	}
 
 	public int amount()

@@ -1,8 +1,12 @@
 package boblovespi.factoryautomation.common.block;
 
 import boblovespi.factoryautomation.common.sound.FASoundTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 
@@ -34,6 +38,11 @@ public class BlockProperties
 		return BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(c);
 	}
 
+	public static BlockBehaviour.Properties SPACE_FRAME(BlockBehaviour.Properties p)
+	{
+		return p.isValidSpawn(Blocks::never).isRedstoneConductor(BlockProperties::never).isSuffocating(BlockProperties::never).isViewBlocking(BlockProperties::never).noOcclusion();
+	}
+
 	public static final BlockBehaviour.Properties ORE = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM)
 																				 .requiresCorrectToolForDrops().strength(3.0F, 3.0F);
 
@@ -43,4 +52,9 @@ public class BlockProperties
 	}
 
 	public static final BlockBehaviour.Properties IRON_BLOOM = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_ORANGE).strength(10, 6).requiresCorrectToolForDrops();
+
+	private static boolean never(BlockState a, BlockGetter b, BlockPos c)
+	{
+		return false;
+	}
 }

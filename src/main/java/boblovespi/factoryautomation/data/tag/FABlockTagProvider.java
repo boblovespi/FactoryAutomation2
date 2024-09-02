@@ -49,6 +49,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(BlockTags.INCORRECT_FOR_IRON_TOOL).addTag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).remove(BlockTags.NEEDS_IRON_TOOL);
 		tag(FATags.Blocks.NEEDS_COPPER_TOOL).add(FABlocks.TIN_BLOCK.get(), FABlocks.COPPER_PLATE_BLOCK.get(), FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.IRON_PLATE_BLOCK.get())
 											.add(FABlocks.BRONZE_BLOCK.get(), FABlocks.BRONZE_PLATE_BLOCK.get())
+											.add(FABlocks.COPPER_SPACE_FRAME.get(), FABlocks.TIN_SPACE_FRAME.get(), FABlocks.IRON_SPACE_FRAME.get(), FABlocks.BRONZE_SPACE_FRAME.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
 											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get(), FABlocks.IRON_BLOOM.get());
 		tag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL).remove(FATags.Blocks.NEEDS_COPPER_TOOL);
@@ -64,7 +65,8 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
 											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.STONE_WORKBENCH.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get())
-											.add(FABlocks.IRON_PLATE_BLOCK.get(), FABlocks.BRONZE_BLOCK.get(), FABlocks.BRONZE_PLATE_BLOCK.get());
+											.add(FABlocks.IRON_PLATE_BLOCK.get(), FABlocks.BRONZE_BLOCK.get(), FABlocks.BRONZE_PLATE_BLOCK.get())
+											.add(FABlocks.COPPER_SPACE_FRAME.get(), FABlocks.TIN_SPACE_FRAME.get(), FABlocks.IRON_SPACE_FRAME.get(), FABlocks.BRONZE_SPACE_FRAME.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get());
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK);

@@ -68,11 +68,15 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 				LootPool.lootPool().add(LootItem.lootTableItem(FAItems.SLAG))
 						.apply(ApplyBonusCount.addUniformBonusCount(fortune))));
 		dropSelf(FABlocks.TIN_BLOCK.get());
+		dropSelf(FABlocks.BRONZE_BLOCK.get());
 		dropSelf(FABlocks.COPPER_PLATE_BLOCK.get());
 		dropSelf(FABlocks.TIN_PLATE_BLOCK.get());
 		dropSelf(FABlocks.IRON_PLATE_BLOCK.get());
-		dropSelf(FABlocks.BRONZE_BLOCK.get());
 		dropSelf(FABlocks.BRONZE_PLATE_BLOCK.get());
+		dropSelf(FABlocks.COPPER_SPACE_FRAME.get());
+		dropSelf(FABlocks.TIN_SPACE_FRAME.get());
+		dropSelf(FABlocks.IRON_SPACE_FRAME.get());
+		dropSelf(FABlocks.BRONZE_SPACE_FRAME.get());
 		FABlocks.CHOPPING_BLOCKS.values().forEach(b -> dropSelf(b.get()));
 		dropSelf(FABlocks.LOG_PILE.get());
 		dropSelf(FABlocks.LIMONITE_CHARCOAL_MIX.get());
