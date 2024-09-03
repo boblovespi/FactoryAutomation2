@@ -122,7 +122,9 @@ public class FABlockStateProvider extends BlockStateProvider
 
 	private void spaceFrame(DeferredBlock<WaterloggedTransparentBlock> spaceFrame)
 	{
-		var model = models().cubeColumn(spaceFrame.getRegisteredName(), spaceFrame.getId().withPrefix("block/"), spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+		var model = models().withExistingParent(spaceFrame.getRegisteredName(), modLoc("block/space_frame"))
+							.texture("side", spaceFrame.getId().withPrefix("block/"))
+							.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
 							.renderType("minecraft:cutout");
 		simpleBlock(spaceFrame.get(), model);
 	}
