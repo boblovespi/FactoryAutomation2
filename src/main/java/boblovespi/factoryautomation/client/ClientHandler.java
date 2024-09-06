@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.client;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.client.ber.ChoppingBlockBER;
+import boblovespi.factoryautomation.client.ber.MillstoneBER;
 import boblovespi.factoryautomation.client.ber.PowerShaftBER;
 import boblovespi.factoryautomation.client.ber.StoneCastingVesselBER;
 import boblovespi.factoryautomation.client.gui.StoneCastingVesselScreen;
@@ -20,6 +21,8 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import software.bernie.geckolib.loading.math.MathParser;
+import software.bernie.geckolib.loading.math.value.Variable;
 
 @EventBusSubscriber(modid = FactoryAutomation.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientHandler
@@ -30,6 +33,7 @@ public class ClientHandler
 		// Some client setup code
 		FactoryAutomation.LOGGER.info("Setting up client...");
 		FactoryAutomation.LOGGER.info("Minecraft username is {}", Minecraft.getInstance().getUser().getName());
+		MathParser.registerVariable(new Variable("query.rot", 0));
 	}
 
 	@SubscribeEvent
@@ -39,6 +43,7 @@ public class ClientHandler
 		event.registerBlockEntityRenderer(FABETypes.STONE_CASTING_VESSEL_TYPE.get(), StoneCastingVesselBER::new);
 		// event.registerBlockEntityRenderer(FABETypes.BRICK_MAKER_FRAME_TYPE.get(), BrickMakerFrameBER::new);
 		event.registerBlockEntityRenderer(FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBER::new);
+		event.registerBlockEntityRenderer(FABETypes.MILLSTONE_TYPE.get(), MillstoneBER::new);
 	}
 
 	@SubscribeEvent

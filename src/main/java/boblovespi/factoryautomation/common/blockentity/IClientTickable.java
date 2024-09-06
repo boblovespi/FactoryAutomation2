@@ -11,19 +11,19 @@ import javax.annotation.Nullable;
 
 public interface IClientTickable
 {
-	void tick();
+	void clientTick();
 
 	@Nullable
 	static <T extends BlockEntity & IClientTickable, U extends BlockEntity> BlockEntityTicker<U> makeTicker(BlockEntityType<T> type, BlockEntityType<U> maybe)
 	{
 		if (maybe == type)
-			return IClientTickable::tick;
+			return IClientTickable::clientTick;
 		else
 			return null;
 	}
 
-	private static <T extends BlockEntity> void tick(Level l, BlockPos p, BlockState s, T t)
+	private static <T extends BlockEntity> void clientTick(Level l, BlockPos p, BlockState s, T t)
 	{
-		((IClientTickable) t).tick();
+		((IClientTickable) t).clientTick();
 	}
 }

@@ -78,6 +78,7 @@ public class CreativeTabs
 						o.accept(FAItems.STONE_WORKBENCH);
 						o.accept(FAItems.BRICK_MAKER_FRAME);
 						o.accept(FAItems.BRICK_CRUCIBLE);
+						o.accept(FAItems.MILLSTONE);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE = CREATIVE_MODE_TABS.register("creative",

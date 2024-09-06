@@ -26,4 +26,7 @@ public class RecipeThings
 	public static final Supplier<RecipeType<BrickDryingRecipe>> BRICK_DRYING_TYPE = RECIPE_TYPES.register("brick_drying",
 			() -> RecipeType.simple(FactoryAutomation.name("brick_drying")));
 	public static final Supplier<RecipeSerializer<BrickDryingRecipe>> BRICK_DRYING_SERIALIZER = RECIPE_SERIALIZERS.register("brick_drying", BrickDryingRecipe.Serializer::new);
+	public static final Supplier<RecipeType<MillstoneRecipe>> MILLSTONE_TYPE = RECIPE_TYPES.register("millstone", () -> RecipeType.simple(FactoryAutomation.name("millstone")));
+	public static final Supplier<RecipeSerializer<MillstoneRecipe>> MILLSTONE_SERIALIZER = RECIPE_SERIALIZERS.register("millstone",
+			() -> new SimpleRecipe.Serializer<>(MillstoneRecipe::new, TorqueSpeedData.CODEC, TorqueSpeedData.STREAM_CODEC));
 }

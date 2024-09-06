@@ -152,7 +152,7 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	}
 
 	@Override
-	public void tick()
+	public void clientTick()
 	{
 		rot += (float) (Math.toDegrees(manager.getSpeed()) / 20);
 		rot %= 360;

@@ -26,6 +26,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<BrickCrucibleBE>> BRICK_CRUCIBLE_TYPE = type("brick_crucible", BrickCrucibleBE::new, FABlocks.BRICK_CRUCIBLE);
 	public static final Supplier<BlockEntityType<CreativeMechanicalSourceBE>> CREATIVE_MECHANICAL_SOURCE_TYPE = type("creative_mechanical_source", CreativeMechanicalSourceBE::new, FABlocks.CREATIVE_MECHANICAL_SOURCE);
 	public static final Supplier<BlockEntityType<PowerShaftBE>> POWER_SHAFT_TYPE = type("power_shaft", PowerShaftBE::new, FABlocks.WOOD_POWER_SHAFT);
+	public static final Supplier<BlockEntityType<MillstoneBE>> MILLSTONE_TYPE = type("millstone", MillstoneBE::new, FABlocks.MILLSTONE);
 
 	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,

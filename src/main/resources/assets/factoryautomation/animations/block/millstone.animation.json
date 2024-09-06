@@ -1,0 +1,17 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"state.millstone.active": {
+			"loop": true,
+			"animation_length": 0.04,
+			"bones": {
+				"bone": {
+					"rotation": {
+						"vector": [0, "query.rot", 0]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}
