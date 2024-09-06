@@ -7,7 +7,7 @@
 			"bones": {
 				"bone": {
 					"rotation": {
-						"vector": [0, "query.rot", 0]
+						"vector": [0, "-query.rot", 0]
 					}
 				}
 			}

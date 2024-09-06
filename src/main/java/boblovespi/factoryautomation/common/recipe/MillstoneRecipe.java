@@ -6,7 +6,14 @@ import net.minecraft.world.level.Level;
 
 public class MillstoneRecipe extends SimpleRecipe<MillstoneRecipe.Input, TorqueSpeedData>
 {
+	private static final BuilderFactory<MillstoneRecipe, TorqueSpeedData, TorqueSpeedData.Builder<MillstoneRecipe>> BUILDER_FACTORY = new BuilderFactory<>("millstone",
+			MillstoneRecipe::new, TorqueSpeedData.Builder::new);
 	private final TorqueSpeedData data;
+
+	public static Builder<MillstoneRecipe, TorqueSpeedData, TorqueSpeedData.Builder<MillstoneRecipe>> of(ItemStack stack)
+	{
+		return BUILDER_FACTORY.of(stack);
+	}
 
 	protected MillstoneRecipe(Ingredient input, ItemStack result, int progress, TorqueSpeedData data)
 	{

@@ -86,6 +86,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.BRICK_MAKER_FRAME.get());
 		dropSelf(FABlocks.BRICK_CRUCIBLE.get());
 		dropSelf(FABlocks.WOOD_POWER_SHAFT.get());
+		dropSelf(FABlocks.MILLSTONE.get());
 	}
 
 	private void dropOre(DeferredBlock<Block> ore, DeferredItem<Item> rawOre, int count)

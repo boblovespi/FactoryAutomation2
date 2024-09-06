@@ -62,11 +62,25 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 		return currentRecipe != null && progress <= 0;
 	}
 
-	public RecipeHolder<R> complete()
+	public RecipeHolder<R> getCompleted()
 	{
 		if (currentRecipe == null)
 			throw new RuntimeException("Tried to complete a non-existent recipe!");
 		return currentRecipe;
+	}
+
+	public void complete()
+	{
+		if (currentRecipe == null)
+			clearRecipe();
+		else if (!validifier.isValid(currentRecipe))
+		{
+			currentRecipe = recipeMatcher.findMatchingRecipe();
+			currentRecipeName = currentRecipe == null ? NO_RECIPE : currentRecipe.id();
+			progress = currentRecipe == null ? 0 : currentRecipe.value().getProgress();
+		}
+		else
+			progress = currentRecipe.value().getProgress();
 	}
 
 	@Nullable

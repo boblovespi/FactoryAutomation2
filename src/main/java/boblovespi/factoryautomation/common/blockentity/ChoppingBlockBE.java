@@ -45,7 +45,7 @@ public class ChoppingBlockBE extends FABE
 			rm.progress();
 			if (rm.isComplete())
 			{
-				var result = rm.complete();
+				var result = rm.getCompleted();
 				rm.clearRecipe();
 
 				var input = new SingleRecipeInput(inv.getStackInSlot(0));

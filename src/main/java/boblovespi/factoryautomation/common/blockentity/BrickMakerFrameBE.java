@@ -103,7 +103,7 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 			left.progress();
 			if (left.isComplete())
 			{
-				var result = left.complete();
+				var result = left.getCompleted();
 				var assembled = result.value().assemble(new BrickDryingRecipe.Input(inv.extractItem(0, 1, false)), level.registryAccess());
 				inv.insertItem(0, assembled, false);
 				update = true;
@@ -114,7 +114,7 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 			right.progress();
 			if (right.isComplete())
 			{
-				var result = right.complete();
+				var result = right.getCompleted();
 				var assembled = result.value().assemble(new BrickDryingRecipe.Input(inv.extractItem(1, 1, false)), level.registryAccess());
 				inv.insertItem(1, assembled, false);
 				update = true;

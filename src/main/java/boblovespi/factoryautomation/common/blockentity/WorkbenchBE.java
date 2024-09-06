@@ -49,7 +49,7 @@ public abstract class WorkbenchBE extends FABE implements IMenuProviderProvider
 					return;
 				if (!isUpdatingChanges && slot == 0 && getStackInSlot(0).isEmpty() && recipeManager.hasRecipe())
 				{
-					var recipe = recipeManager.complete();
+					var recipe = recipeManager.getCompleted();
 					isUpdatingChanges = true;
 					for (int i = 0; i < size * size; i++)
 						extractItem(craftIndex + i, 1, false);
@@ -90,7 +90,7 @@ public abstract class WorkbenchBE extends FABE implements IMenuProviderProvider
 					if (recipeManager.hasRecipe())
 					{
 						isUpdatingChanges = true;
-						setStackInSlot(0, recipeManager.complete().value().assemble(getInput(), level.registryAccess()));
+						setStackInSlot(0, recipeManager.getCompleted().value().assemble(getInput(), level.registryAccess()));
 						isUpdatingChanges = false;
 					}
 					else

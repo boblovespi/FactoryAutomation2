@@ -5,10 +5,7 @@ import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.FAItems;
-import boblovespi.factoryautomation.common.recipe.BrickDryingRecipe;
-import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
-import boblovespi.factoryautomation.common.recipe.RemovalRecipe;
-import boblovespi.factoryautomation.common.recipe.WorkbenchRecipeBuilder;
+import boblovespi.factoryautomation.common.recipe.*;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -17,6 +14,7 @@ import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -287,6 +285,9 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output, FactoryAutomation.name("chopping_block/sticks"));
 
 		BrickDryingRecipe.of(Blocks.DIRT).input(Blocks.MUD).time(20 * 5).blocks(Blocks.MUD, Blocks.DIRT).unlockedBy("has_mud", has(Blocks.MUD)).save(output);
+
+		MillstoneRecipe.of(new ItemStack(Items.BONE_MEAL, 4)).input(Tags.Items.BONES).progress(30).beginData().speed(1).torque(5).endData()
+					   .unlockedBy("has_bones", has(Tags.Items.BONES)).save(output);
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
