@@ -259,6 +259,11 @@ public abstract class SimpleRecipe<T extends SimpleRecipe.Input, U> implements R
 		{
 			save(output, BuiltInRegistries.ITEM.getKey(result.getItem()).withPrefix(category + "/"));
 		}
+
+		public void saveNoteFrom(RecipeOutput output, String from)
+		{
+			save(output, BuiltInRegistries.ITEM.getKey(result.getItem()).withPrefix(category + "/").withSuffix("_from_" + from));
+		}
 	}
 
 	public static abstract class DataBuilder<T extends SimpleRecipe<?, U>, U, V extends DataBuilder<T, U, V>>

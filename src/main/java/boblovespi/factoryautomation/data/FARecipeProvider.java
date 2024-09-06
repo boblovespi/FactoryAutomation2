@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.*;
 import boblovespi.factoryautomation.common.util.Form;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -288,6 +289,49 @@ public class FARecipeProvider extends RecipeProvider
 
 		MillstoneRecipe.of(new ItemStack(Items.BONE_MEAL, 4)).input(Tags.Items.BONES).progress(30).beginData().speed(1).torque(5).endData()
 					   .unlockedBy("has_bones", has(Tags.Items.BONES)).save(output);
+		MillstoneRecipe.of(new ItemStack(Items.BLAZE_POWDER, 4)).input(Tags.Items.RODS_BLAZE).progress(50).beginData().speed(1).torque(4).endData()
+					   .unlockedBy("has_blaze_rods", has(Tags.Items.RODS_BLAZE)).save(output);
+		MillstoneRecipe.of(new ItemStack(Items.GLOWSTONE_DUST, 4)).input(Items.GLOWSTONE).progress(50).beginData().speed(1).torque(4).endData()
+					   .unlockedBy("has_glowstone", has(Items.GLOWSTONE)).save(output);
+
+		// dyes
+		MillstoneRecipe.of(new ItemStack(Items.MAGENTA_DYE, 2)).input(Items.ALLIUM).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_allium", has(Items.ALLIUM)).saveNoteFrom(output, "allium");
+		MillstoneRecipe.of(new ItemStack(Items.RED_DYE, 2)).input(Items.BEETROOT).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_beetroot", has(Items.BEETROOT)).saveNoteFrom(output, "beetroot");
+		MillstoneRecipe.of(new ItemStack(Items.LIGHT_BLUE_DYE, 2)).input(Items.BLUE_ORCHID).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_blue_orchid", has(Items.BLUE_ORCHID)).saveNoteFrom(output, "blue_orchid");
+		MillstoneRecipe.of(new ItemStack(Items.BROWN_DYE, 2)).input(Items.COCOA_BEANS).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_cocoa_beans", has(Items.COCOA_BEANS)).saveNoteFrom(output, "cocoa_beans");
+		MillstoneRecipe.of(new ItemStack(Items.BLUE_DYE, 2)).input(Items.CORNFLOWER).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_cornflower", has(Items.CORNFLOWER)).saveNoteFrom(output, "cornflower");
+		MillstoneRecipe.of(new ItemStack(Items.YELLOW_DYE, 2)).input(Items.DANDELION).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_dandelion", has(Items.DANDELION)).saveNoteFrom(output, "dandelion");
+		MillstoneRecipe.of(new ItemStack(Items.BLUE_DYE, 3)).input(Items.LAPIS_LAZULI).progress(20).beginData().speed(1).torque(2).endData()
+					   .unlockedBy("has_lapis_lazuli", has(Items.LAPIS_LAZULI)).saveNoteFrom(output, "lapis_lazuli");
+		var lightGrayFlower = Ingredient.of(Items.AZURE_BLUET, Items.OXEYE_DAISY, Items.WHITE_TULIP);
+		MillstoneRecipe.of(new ItemStack(Items.LIGHT_GRAY_DYE, 2)).input(lightGrayFlower).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_light_gray_flower", inventoryTrigger(ItemPredicate.Builder.item().of(Items.AZURE_BLUET, Items.OXEYE_DAISY, Items.WHITE_TULIP)))
+					   .saveNoteFrom(output, "light_gray_flower");
+		MillstoneRecipe.of(new ItemStack(Items.MAGENTA_DYE, 4)).input(Items.LILAC).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_lilac", has(Items.LILAC)).saveNoteFrom(output, "lilac");
+		MillstoneRecipe.of(new ItemStack(Items.WHITE_DYE, 2)).input(Items.LILY_OF_THE_VALLEY).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_lily_of_the_valley", has(Items.LILY_OF_THE_VALLEY)).saveNoteFrom(output, "lily_of_the_valley");
+		MillstoneRecipe.of(new ItemStack(Items.ORANGE_DYE, 2)).input(Items.ORANGE_TULIP).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_orange_tulip", has(Items.ORANGE_TULIP)).saveNoteFrom(output, "orange_tulip");
+		MillstoneRecipe.of(new ItemStack(Items.PINK_DYE, 2)).input(Items.PEONY).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_peony", has(Items.PEONY)).saveNoteFrom(output, "peony");
+		MillstoneRecipe.of(new ItemStack(Items.PINK_DYE, 2)).input(Items.PINK_TULIP).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_pink_tulip", has(Items.PINK_TULIP)).saveNoteFrom(output, "pink_tulip");
+		var redFlower = Ingredient.of(Items.POPPY, Items.RED_TULIP);
+		MillstoneRecipe.of(new ItemStack(Items.RED_DYE, 2)).input(redFlower).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_red_flower", inventoryTrigger(ItemPredicate.Builder.item().of(Items.POPPY, Items.RED_TULIP))).saveNoteFrom(output, "red_flower");
+		MillstoneRecipe.of(new ItemStack(Items.RED_DYE, 4)).input(Items.ROSE_BUSH).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_rose_bush", has(Items.ROSE_BUSH)).saveNoteFrom(output, "rose_bush");
+		MillstoneRecipe.of(new ItemStack(Items.YELLOW_DYE, 4)).input(Items.SUNFLOWER).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_sunflower", has(Items.SUNFLOWER)).saveNoteFrom(output, "sunflower");
+		MillstoneRecipe.of(new ItemStack(Items.BLACK_DYE, 2)).input(Items.WITHER_ROSE).progress(10).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_wither_rose", has(Items.WITHER_ROSE)).saveNoteFrom(output, "wither_rose");
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
