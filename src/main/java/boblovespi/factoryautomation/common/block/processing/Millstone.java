@@ -1,9 +1,6 @@
 package boblovespi.factoryautomation.common.block.processing;
 
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.IClientTickable;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
-import boblovespi.factoryautomation.common.blockentity.MillstoneBE;
+import boblovespi.factoryautomation.common.blockentity.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -45,6 +42,14 @@ public class Millstone extends Block implements EntityBlock
 	protected RenderShape getRenderShape(BlockState pState)
 	{
 		return RenderShape.ENTITYBLOCK_ANIMATED;
+	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		if (!pState.is(pNewState.getBlock()))
+			pLevel.getBlockEntity(pPos, FABETypes.MILLSTONE_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
 	}
 
 	@Nullable

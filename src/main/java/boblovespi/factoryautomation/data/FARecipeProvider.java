@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("SameParameterValue")
 public class FARecipeProvider extends RecipeProvider
 {
 	public FARecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries)
@@ -38,7 +39,9 @@ public class FARecipeProvider extends RecipeProvider
 	@Override
 	protected void buildRecipes(RecipeOutput output)
 	{
-		// TODO: make not break if patchouli is not loaded
+		// common ingredients
+		var cobbleSlabs = Ingredient.of(Items.COBBLESTONE_SLAB, Items.BLACKSTONE_SLAB, Items.COBBLED_DEEPSLATE_SLAB);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PatchouliAPI.get().getBookStack(FactoryAutomation.name("guidebook")))
 						   .pattern("rd")
 						   .define('r', FAItems.ROCK)
@@ -202,7 +205,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .pattern("c c")
 						   .pattern("sss")
 						   .define('c', ItemTags.STONE_CRAFTING_MATERIALS)
-						   .define('s', Ingredient.of(Items.COBBLESTONE_SLAB, Items.BLACKSTONE_SLAB, Items.COBBLED_DEEPSLATE_SLAB))
+						   .define('s', cobbleSlabs)
 						   .unlockedBy("has_cobblestone", has(ItemTags.STONE_CRAFTING_MATERIALS)).save(output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.STONE_WORKBENCH)
@@ -261,6 +264,18 @@ public class FARecipeProvider extends RecipeProvider
 							  .part("screw", 1, 2)
 							  .part("bearing", 1, 2)
 							  .unlockedBy("has_copper_rod", has(FATags.Items.COPPER_ROD))
+							  .save(output);
+
+		WorkbenchRecipeBuilder.of(FAItems.MILLSTONE)
+							  .pattern("ccc")
+							  .pattern("srs")
+							  .pattern("crc")
+							  .define('c', ItemTags.STONE_CRAFTING_MATERIALS)
+							  .define('s', cobbleSlabs)
+							  .define('r', FAItems.WOOD_POWER_SHAFT) // TODO: replace with iron power shaft
+							  .tool("hammer", 2, 25)
+							  .part("bearing", 1, 2)
+							  .unlockedBy("has_power_shaft", has(FAItems.WOOD_POWER_SHAFT))
 							  .save(output);
 
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
