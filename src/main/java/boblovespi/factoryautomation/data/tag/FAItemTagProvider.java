@@ -87,5 +87,8 @@ public class FAItemTagProvider extends ItemTagsProvider
 										 .add(FAItems.BRONZE_THINGS.get(Form.PLATE_BLOCK).get());
 
 		tag(FATags.Items.SHARDS).add(FAItems.IRON_SHARD.get());
+
+		tag(FATags.Items.WHEAT_DUST).add(FAItems.WHEAT_FLOUR.get());
+		tag(Tags.Items.DUSTS).addTags(FATags.Items.WHEAT_DUST);
 	}
 }

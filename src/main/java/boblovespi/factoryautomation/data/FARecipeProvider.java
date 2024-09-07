@@ -302,12 +302,16 @@ public class FARecipeProvider extends RecipeProvider
 
 		BrickDryingRecipe.of(Blocks.DIRT).input(Blocks.MUD).time(20 * 5).blocks(Blocks.MUD, Blocks.DIRT).unlockedBy("has_mud", has(Blocks.MUD)).save(output);
 
+		// Millstone
+
 		MillstoneRecipe.of(new ItemStack(Items.BONE_MEAL, 4)).input(Tags.Items.BONES).progress(30).beginData().speed(1).torque(5).endData()
 					   .unlockedBy("has_bones", has(Tags.Items.BONES)).save(output);
 		MillstoneRecipe.of(new ItemStack(Items.BLAZE_POWDER, 4)).input(Tags.Items.RODS_BLAZE).progress(50).beginData().speed(1).torque(4).endData()
 					   .unlockedBy("has_blaze_rods", has(Tags.Items.RODS_BLAZE)).save(output);
 		MillstoneRecipe.of(new ItemStack(Items.GLOWSTONE_DUST, 4)).input(Items.GLOWSTONE).progress(50).beginData().speed(1).torque(4).endData()
 					   .unlockedBy("has_glowstone", has(Items.GLOWSTONE)).save(output);
+		MillstoneRecipe.of(FAItems.WHEAT_FLOUR.toStack()).input(Tags.Items.CROPS_WHEAT).progress(50).beginData().speed(1).torque(1).endData()
+					   .unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT)).save(output);
 
 		// dyes
 		MillstoneRecipe.of(new ItemStack(Items.MAGENTA_DYE, 2)).input(Items.ALLIUM).progress(10).beginData().speed(1).torque(1).endData()
