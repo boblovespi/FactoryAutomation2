@@ -4,10 +4,7 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.util.Metal;
-import boblovespi.factoryautomation.common.util.jei.category.BrickDryingJeiCategory;
-import boblovespi.factoryautomation.common.util.jei.category.CastingJeiCategory;
-import boblovespi.factoryautomation.common.util.jei.category.ChoppingBlockJeiCategory;
-import boblovespi.factoryautomation.common.util.jei.category.WorkbenchJeiCategory;
+import boblovespi.factoryautomation.common.util.jei.category.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.ingredients.IIngredientType;
@@ -28,6 +25,7 @@ public class FAJeiPlugin implements IModPlugin
 	private WorkbenchJeiCategory workbenchJeiCategory;
 	private CastingJeiCategory castingJeiCategory;
 	private BrickDryingJeiCategory brickDryingJeiCategory;
+	private MillstoneJeiCategory millstoneJeiCategory;
 
 	@Override
 	public ResourceLocation getPluginUid()
@@ -47,6 +45,8 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCategories(castingJeiCategory);
 		brickDryingJeiCategory = new BrickDryingJeiCategory(guiHelper);
 		registration.addRecipeCategories(brickDryingJeiCategory);
+		millstoneJeiCategory = new MillstoneJeiCategory(guiHelper);
+		registration.addRecipeCategories(millstoneJeiCategory);
 	}
 
 	@Override
@@ -74,6 +74,7 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipes(choppingBlockJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.CHOPPING_BLOCK_TYPE.get()));
 		registration.addRecipes(workbenchJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.WORKBENCH_RECIPE_TYPE.get()));
 		registration.addRecipes(brickDryingJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.BRICK_DRYING_TYPE.get()));
+		registration.addRecipes(millstoneJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.MILLSTONE_TYPE.get()));
 
 		var castingRecipes = new ArrayList<CastingJeiRecipe>();
 		CasterType.STONE.efficiencies().forEach((f, e) -> castingRecipes.add(new CastingJeiRecipe(f, CasterType.STONE, e, FAItems.GREEN_SAND.toStack())));
@@ -87,6 +88,7 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCatalyst(FAItems.STONE_WORKBENCH.toStack(), workbenchJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.STONE_CASTING_VESSEL.toStack(), castingJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.BRICK_MAKER_FRAME.toStack(), brickDryingJeiCategory.getRecipeType());
+		registration.addRecipeCatalyst(FAItems.MILLSTONE.toStack(), millstoneJeiCategory.getRecipeType());
 	}
 
 }

@@ -91,6 +91,11 @@ public abstract class SimpleRecipe<T extends SimpleRecipe.Input, U> implements R
 		return progress;
 	}
 
+	public Ingredient getInput()
+	{
+		return input;
+	}
+
 	public static class Input implements RecipeInput
 	{
 		private final ItemStack stack;
