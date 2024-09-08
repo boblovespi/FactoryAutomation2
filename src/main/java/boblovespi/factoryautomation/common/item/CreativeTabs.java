@@ -57,6 +57,7 @@ public class CreativeTabs
 						}
 						FAItems.BRONZE_THINGS.values().forEach(o::accept);
 						o.accept(FAItems.WHEAT_FLOUR);
+						o.accept(FAItems.CALCITE_DUST);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PRODUCTS = CREATIVE_MODE_TABS.register("products",

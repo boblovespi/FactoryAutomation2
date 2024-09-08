@@ -312,6 +312,8 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_glowstone", has(Items.GLOWSTONE)).save(output);
 		MillstoneRecipe.of(FAItems.WHEAT_FLOUR.toStack()).input(Tags.Items.CROPS_WHEAT).progress(50).beginData().speed(1).torque(1).endData()
 					   .unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT)).save(output);
+		MillstoneRecipe.of(FAItems.CALCITE_DUST.toStack()).input(Items.CALCITE).progress(50).beginData().speed(1).torque(10).endData()
+					   .unlockedBy("has_calcite", has(Items.CALCITE)).save(output);
 
 		// dyes
 		MillstoneRecipe.of(new ItemStack(Items.MAGENTA_DYE, 2)).input(Items.ALLIUM).progress(10).beginData().speed(1).torque(1).endData()
