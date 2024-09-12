@@ -1,6 +1,6 @@
-package boblovespi.factoryautomation.common.block;
+package boblovespi.factoryautomation.common.block.mechanical;
 
-import boblovespi.factoryautomation.common.blockentity.CreativeMechanicalSourceBE;
+import boblovespi.factoryautomation.common.blockentity.mechanical.CreativeMechanicalSourceBE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import net.minecraft.core.BlockPos;

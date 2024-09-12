@@ -2,7 +2,7 @@ package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
-import boblovespi.factoryautomation.common.blockentity.WorkbenchBE;
+import boblovespi.factoryautomation.common.blockentity.processing.WorkbenchBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;

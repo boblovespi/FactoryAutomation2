@@ -1,6 +1,8 @@
-package boblovespi.factoryautomation.common.blockentity;
+package boblovespi.factoryautomation.common.blockentity.mechanical;
 
 import boblovespi.factoryautomation.api.IMechanicalOutput;
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.util.MechanicalPowerPropagatorManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

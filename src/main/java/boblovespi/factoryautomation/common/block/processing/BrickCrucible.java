@@ -1,7 +1,7 @@
 package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.api.capability.CastingCapability;
-import boblovespi.factoryautomation.common.blockentity.BrickCrucibleBE;
+import boblovespi.factoryautomation.common.blockentity.processing.BrickCrucibleBE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;

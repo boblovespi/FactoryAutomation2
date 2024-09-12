@@ -2,7 +2,7 @@ package boblovespi.factoryautomation.data.tag;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
-import boblovespi.factoryautomation.common.block.ChoppingBlock;
+import boblovespi.factoryautomation.common.block.processing.ChoppingBlock;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import net.minecraft.core.HolderLookup;

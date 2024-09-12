@@ -1,6 +1,8 @@
-package boblovespi.factoryautomation.common.blockentity;
+package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.common.FATags;
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.recipe.ChoppingBlockRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.sound.FASounds;

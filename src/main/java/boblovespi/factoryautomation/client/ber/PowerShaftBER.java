@@ -1,7 +1,7 @@
 package boblovespi.factoryautomation.client.ber;
 
-import boblovespi.factoryautomation.common.block.PowerShaft;
-import boblovespi.factoryautomation.common.blockentity.PowerShaftBE;
+import boblovespi.factoryautomation.common.block.mechanical.PowerShaft;
+import boblovespi.factoryautomation.common.blockentity.mechanical.PowerShaftBE;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

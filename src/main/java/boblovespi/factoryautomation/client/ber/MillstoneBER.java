@@ -1,7 +1,7 @@
 package boblovespi.factoryautomation.client.ber;
 
 import boblovespi.factoryautomation.FactoryAutomation;
-import boblovespi.factoryautomation.common.blockentity.MillstoneBE;
+import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.loading.math.MathParser;

@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.*;
+import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;

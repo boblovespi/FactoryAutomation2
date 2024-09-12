@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.common.blockentity.*;
+import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;

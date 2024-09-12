@@ -1,7 +1,14 @@
-package boblovespi.factoryautomation.common.blockentity;
+package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
+import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.menu.StoneFoundryMenu;
+import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
+import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
+import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -17,19 +24,20 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.Objects;
 
-public class BrickCrucibleBE extends FABE implements ITickable, IMenuProviderProvider
+public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, IMenuProviderProvider
 {
+	private boolean breaking;
 	private final CrucibleManager crucible;
 	private final BurnerManager burner;
 	private final HeatManager heat;
 	private final ItemStackHandler inv;
-	private final float efficiency = 0.75f;
+	private final float efficiency = 0.5f;
 	private float meltProgress;
 
-	public BrickCrucibleBE(BlockPos pPos, BlockState pBlockState)
+	public StoneCrucibleBE(BlockPos pos, BlockState state)
 	{
-		super(FABETypes.BRICK_CRUCIBLE_TYPE.get(), pPos, pBlockState);
-		crucible = new CrucibleManager.Multi("crucible", Form.INGOT.amount() * 9 * 3);
+		super(FABETypes.STONE_CRUCIBLE_TYPE.get(), pos, state);
+		crucible = new CrucibleManager.Single("crucible", Form.INGOT.amount() * 9 * 3);
 		inv = new ItemStackHandler(2)
 		{
 			@Override
@@ -88,7 +96,24 @@ public class BrickCrucibleBE extends FABE implements ITickable, IMenuProviderPro
 	@Override
 	public void onDestroy()
 	{
+		if (getBlockState().getValue(StoneCrucible.MULTIBLOCK_COMPLETE))
+		{
+			breaking = true;
+			Multiblocks.STONE_CRUCIBLE.destroy(level, worldPosition, getBlockState().getValue(StoneCrucible.FACING));
+		}
+	}
 
+	@Override
+	public void onMultiblockBuilt()
+	{
+
+	}
+
+	@Override
+	public void onMultiblockDestroyed()
+	{
+		if (!breaking)
+			level.setBlock(worldPosition, getBlockState().setValue(StoneCrucible.MULTIBLOCK_COMPLETE, false), 2);
 	}
 
 	public void pour(ICastingVessel castingVessel)
@@ -96,13 +121,6 @@ public class BrickCrucibleBE extends FABE implements ITickable, IMenuProviderPro
 		setChangedAndUpdateClient();
 		castingVessel.cast(crucible::pour);
 		heat.setHeatCapacity(crucible.getHeatCapacity() + 2300 * 1000);
-	}
-
-	@Override
-	public MenuProvider getMenuProvider()
-	{
-		return new SimpleMenuProvider((i, v, p) -> new StoneFoundryMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)),
-				Component.translatable("gui.brick_crucible.name"));
 	}
 
 	@Override
@@ -114,7 +132,7 @@ public class BrickCrucibleBE extends FABE implements ITickable, IMenuProviderPro
 		{
 			var metal = Metal.fromStack(meltStack);
 			var form = Form.fromStack(meltStack);
-			if (crucible.getSpace() >= form.amount())
+			if ((metal == crucible.getCurrentMetal() || crucible.getCurrentMetal() == Metal.UNKNOWN) && crucible.getSpace() >= form.amount())
 			{
 				var meltTemp = metal.meltTemp();
 				if (form == Form.SHARD)
@@ -148,6 +166,18 @@ public class BrickCrucibleBE extends FABE implements ITickable, IMenuProviderPro
 		if (meltProgress < 0)
 			meltProgress = 0;
 		setChanged();
+	}
+
+	public void addCoal(ItemStack coal)
+	{
+		inv.insertItem(0, coal, false);
+	}
+
+	@Override
+	public MenuProvider getMenuProvider()
+	{
+		return new SimpleMenuProvider((i, v, p) -> new StoneFoundryMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)),
+				Component.translatable("gui.stone_crucible.name"));
 	}
 
 	private FuelInfo takeFuel()

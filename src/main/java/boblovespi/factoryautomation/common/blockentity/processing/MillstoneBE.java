@@ -1,6 +1,10 @@
-package boblovespi.factoryautomation.common.blockentity;
+package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.api.IMechanicalInput;
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IClientTickable;
+import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.recipe.MillstoneRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.util.ItemHelper;

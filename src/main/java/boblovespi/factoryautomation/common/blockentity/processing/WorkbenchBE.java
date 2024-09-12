@@ -1,5 +1,8 @@
-package boblovespi.factoryautomation.common.blockentity;
+package boblovespi.factoryautomation.common.blockentity.processing;
 
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.menu.WorkbenchMenu;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.Workbench;

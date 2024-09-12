@@ -1,4 +1,4 @@
-package boblovespi.factoryautomation.common.blockentity;
+package boblovespi.factoryautomation.common.blockentity.mechanical;
 
 import boblovespi.factoryautomation.common.util.MechanicalManager;
 import net.minecraft.core.BlockPos;

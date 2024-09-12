@@ -1,8 +1,12 @@
-package boblovespi.factoryautomation.common.blockentity;
+package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
+import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.menu.StoneCastingVesselMenu;
 import boblovespi.factoryautomation.common.util.ICastingVessel;
 import boblovespi.factoryautomation.common.util.ItemHelper;

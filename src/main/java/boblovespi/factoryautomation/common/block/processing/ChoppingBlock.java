@@ -1,6 +1,6 @@
-package boblovespi.factoryautomation.common.block;
+package boblovespi.factoryautomation.common.block.processing;
 
-import boblovespi.factoryautomation.common.blockentity.ChoppingBlockBE;
+import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;

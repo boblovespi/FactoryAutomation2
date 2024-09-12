@@ -1,7 +1,7 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
-import boblovespi.factoryautomation.common.block.ChoppingBlock;
+import boblovespi.factoryautomation.common.block.processing.ChoppingBlock;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.LogPileLike;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;

@@ -1,6 +1,6 @@
 package boblovespi.factoryautomation.client.ber;
 
-import boblovespi.factoryautomation.common.blockentity.ChoppingBlockBE;
+import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;

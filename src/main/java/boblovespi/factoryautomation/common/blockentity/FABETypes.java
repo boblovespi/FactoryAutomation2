@@ -2,6 +2,9 @@ package boblovespi.factoryautomation.common.blockentity;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.blockentity.mechanical.CreativeMechanicalSourceBE;
+import boblovespi.factoryautomation.common.blockentity.mechanical.PowerShaftBE;
+import boblovespi.factoryautomation.common.blockentity.processing.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;

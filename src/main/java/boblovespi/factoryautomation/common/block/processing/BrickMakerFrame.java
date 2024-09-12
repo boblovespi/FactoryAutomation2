@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.common.blockentity.*;
+import boblovespi.factoryautomation.common.blockentity.processing.BrickMakerFrameBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;

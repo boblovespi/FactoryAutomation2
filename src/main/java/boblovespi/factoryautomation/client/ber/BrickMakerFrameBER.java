@@ -1,6 +1,6 @@
 package boblovespi.factoryautomation.client.ber;
 
-import boblovespi.factoryautomation.common.blockentity.BrickMakerFrameBE;
+import boblovespi.factoryautomation.common.blockentity.processing.BrickMakerFrameBE;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;

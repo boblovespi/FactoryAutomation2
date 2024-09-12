@@ -1,6 +1,7 @@
-package boblovespi.factoryautomation.common.block;
+package boblovespi.factoryautomation.common.block.mechanical;
 
 import boblovespi.factoryautomation.common.blockentity.*;
+import boblovespi.factoryautomation.common.blockentity.mechanical.PowerShaftBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;

@@ -4,7 +4,7 @@ import boblovespi.factoryautomation.api.capability.CastingCapability;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
-import boblovespi.factoryautomation.common.blockentity.StoneCrucibleBE;
+import boblovespi.factoryautomation.common.blockentity.processing.StoneCrucibleBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
