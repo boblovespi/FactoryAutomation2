@@ -124,8 +124,11 @@ dependencies {
     // at runtime, use the full JEI jar for NeoForge
     runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 
-    compileOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}-NEOFORGE-SNAPSHOT:api"
-    runtimeOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}-NEOFORGE-SNAPSHOT"
+    // TODO: replace when patchouli has 1.21.1 version
+    // compileOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}-NEOFORGE-SNAPSHOT:api"
+    // runtimeOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}-NEOFORGE-SNAPSHOT"
+     compileOnly "vazkii.patchouli:Patchouli:1.21-${patchouli_version}-NEOFORGE-SNAPSHOT:api"
+     runtimeOnly "vazkii.patchouli:Patchouli:1.21-${patchouli_version}-NEOFORGE-SNAPSHOT"
 
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 

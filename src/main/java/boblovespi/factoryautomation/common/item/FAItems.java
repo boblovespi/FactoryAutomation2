@@ -105,6 +105,7 @@ public class FAItems
 	// Mechanical
 
 	public static final DeferredItem<BlockItem> WOOD_POWER_SHAFT = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_POWER_SHAFT);
+	public static final DeferredItem<BlockItem> HAND_CRANK = ITEMS.registerSimpleBlockItem(FABlocks.HAND_CRANK);
 
 	// Misc
 

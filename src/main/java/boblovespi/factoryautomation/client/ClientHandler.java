@@ -11,6 +11,7 @@ import boblovespi.factoryautomation.client.gui.WorkbenchScreen;
 import boblovespi.factoryautomation.client.model.PartialDynamicTextureGeometryLoader;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -21,8 +22,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import software.bernie.geckolib.loading.math.MathParser;
-import software.bernie.geckolib.loading.math.value.Variable;
+import software.bernie.geckolib.loading.math.MolangQueries;
 
 @EventBusSubscriber(modid = FactoryAutomation.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientHandler
@@ -33,7 +33,8 @@ public class ClientHandler
 		// Some client setup code
 		FactoryAutomation.LOGGER.info("Setting up client...");
 		FactoryAutomation.LOGGER.info("Minecraft username is {}", Minecraft.getInstance().getUser().getName());
-		MathParser.registerVariable(new Variable("query.rot", 0));
+		// MathParser.registerVariable(new Variable("query.rot", 0));
+		MolangQueries.<MillstoneBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 	}
 
 	@SubscribeEvent
