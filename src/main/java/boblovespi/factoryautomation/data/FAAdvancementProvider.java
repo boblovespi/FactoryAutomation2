@@ -17,6 +17,7 @@ import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -39,34 +40,39 @@ public class FAAdvancementProvider extends AdvancementProvider
 		{
 			this.saver = saver;
 			this.efh = existingFileHelper;
-			var cbBuilder = Advancement.Builder.advancement();
-			cbBuilder.display(new ItemStack(FABlocks.CHOPPING_BLOCK),
-					Component.translatable(FactoryAutomation.locString("advancements", "stone_age.root.title")),
-					Component.translatable(FactoryAutomation.locString("advancements", "stone_age.root.description")),
-					ResourceLocation.withDefaultNamespace("textures/block/stone.png"),
-					AdvancementType.TASK, true, true, false);
-			cbBuilder.rewards(AdvancementRewards.Builder.experience(100));
+			var cbBuilder = getBuilder(new ItemStack(FABlocks.CHOPPING_BLOCK), "stone_age", "root", 100, AdvancementType.TASK,
+					ResourceLocation.withDefaultNamespace("textures/block/stone.png"));
 			cbBuilder.addCriterion("has_chopping_block", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(FATags.Items.CHOPPING_BLOCKS)));
 			var choppingBlock = cbBuilder.save(saver, FactoryAutomation.name("stone_age/root"), existingFileHelper);
 			var flintPickaxe = task("flint_pickaxe", "stone_age", FAItems.FLINT_PICKAXE, choppingBlock);
 			var stoneFoundry = task("stone_foundry", "stone_age", FAItems.STONE_CRUCIBLE, flintPickaxe);
 			var copperIngot = goal("copper_ingot", "stone_age", () -> Items.COPPER_INGOT, stoneFoundry);
+			var ciBuilder = getBuilder(new ItemStack(Items.COPPER_INGOT), "copper_age", "root", 0, AdvancementType.TASK,
+					ResourceLocation.withDefaultNamespace("textures/block/copper_block.png"));
+			ciBuilder.addCriterion("has_copper_ingot", has(() -> Items.COPPER_INGOT));
+			var copperIngot2 = ciBuilder.save(saver, FactoryAutomation.name("copper_age/root"), existingFileHelper);
+			var copperPickaxe = task("copper_pickaxe", "copper_age", FAItems.COPPER_PICKAXE, copperIngot2);
+			var firebow = task("firebow", "copper_age", FAItems.FIREBOW, copperIngot2);
+			var stoneWorkbench = task("stone_workbench", "copper_age", FAItems.STONE_WORKBENCH, copperPickaxe);
+			var charcoal = task("charcoal", "copper_age", () -> Items.CHARCOAL, firebow);
+			var copperHammer = task("copper_hammer", "copper_age", FAItems.COPPER_HAMMER, stoneWorkbench);
+			var ironShard = goal("iron_shard", "copper_age", FAItems.IRON_SHARD, copperHammer);
 		}
 
-		private static Advancement.Builder getBuilder(ItemStack item, String cat, String name, int xp, AdvancementType type)
+		private static Advancement.Builder getBuilder(ItemStack item, String cat, String name, int xp, AdvancementType type, @Nullable ResourceLocation background)
 		{
 			var builder = Advancement.Builder.advancement();
 			builder.display(item,
 					Component.translatable(FactoryAutomation.locString("advancements", cat + "." + name + ".title")),
 					Component.translatable(FactoryAutomation.locString("advancements", cat + "." + name + ".description")),
-					null, type, true, true, false);
+					background, type, true, true, false);
 			builder.rewards(AdvancementRewards.Builder.experience(xp));
 			return builder;
 		}
 
 		private AdvancementHolder of(String name, String cat, Supplier<? extends Item> item, int xp, AdvancementHolder parent, AdvancementType type)
 		{
-			var builder = getBuilder(new ItemStack(item.get()), cat, name, xp, type);
+			var builder = getBuilder(new ItemStack(item.get()), cat, name, xp, type, null);
 			builder.addCriterion("has_item", has(item));
 			builder.parent(parent);
 			return builder.save(saver, FactoryAutomation.name(cat + "/" + name), efh);

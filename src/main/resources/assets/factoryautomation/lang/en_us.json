@@ -204,11 +204,25 @@
 	// Advancements
 	
 	"advancements.factoryautomation.stone_age.root.title": "Stone Age",
-	"advancements.factoryautomation.stone_age.root.description": "Enter the stone age by obtaining a chopping block.",
+	"advancements.factoryautomation.stone_age.root.description": "Use a rock on a log while sneaking to get a Chopping Block.",
 	"advancements.factoryautomation.stone_age.flint_pickaxe.title": "Flint Pickaxe",
-	"advancements.factoryautomation.stone_age.flint_pickaxe.description": "Make a flint pickaxe and begin to mine.",
+	"advancements.factoryautomation.stone_age.flint_pickaxe.description": "Make a Flint Pickaxe and begin to mine.",
 	"advancements.factoryautomation.stone_age.stone_foundry.title": "A Simple Foundry",
-	"advancements.factoryautomation.stone_age.stone_foundry.description": "Build a stone foundry.",
+	"advancements.factoryautomation.stone_age.stone_foundry.description": "Form a Stone Foundry by placing a Stone Crucible on top of a Furnace.",
 	"advancements.factoryautomation.stone_age.copper_ingot.title": "Copper Age",
-	"advancements.factoryautomation.stone_age.copper_ingot.description": "Enter the copper age by obtaining a copper ingot."
+	"advancements.factoryautomation.stone_age.copper_ingot.description": "Enter the copper age by obtaining a Copper Ingot.",
+	"advancements.factoryautomation.copper_age.root.title": "Copper Age",
+	"advancements.factoryautomation.copper_age.root.description": "Enter the copper age by obtaining a Copper Ingot.",
+	"advancements.factoryautomation.copper_age.copper_pickaxe.title": "Copper Pickaxe",
+	"advancements.factoryautomation.copper_age.copper_pickaxe.description": "Make a Copper Pickaxe.",
+	"advancements.factoryautomation.copper_age.firebow.title": "Firebow",
+	"advancements.factoryautomation.copper_age.firebow.description": "Make a Firebow to start fires.",
+	"advancements.factoryautomation.copper_age.stone_workbench.title": "Improved Crafting",
+	"advancements.factoryautomation.copper_age.stone_workbench.description": "Make a Stone Workbench.",
+	"advancements.factoryautomation.copper_age.charcoal.title": "An Alternate Fuel",
+	"advancements.factoryautomation.copper_age.charcoal.description": "Burn some Log Piles to obtain some Charcoal.",
+	"advancements.factoryautomation.copper_age.copper_hammer.title": "Hammer Time",
+	"advancements.factoryautomation.copper_age.copper_hammer.description": "Make a Copper Hammer.",
+	"advancements.factoryautomation.copper_age.iron_shard.title": "Iron Shard",
+	"advancements.factoryautomation.copper_age.iron_shard.description": "Obtain Iron Shards from hammering an Iron Bloom."
 }
