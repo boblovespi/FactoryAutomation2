@@ -90,6 +90,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 
 		tag(FATags.Items.WHEAT_DUST).add(FAItems.WHEAT_FLOUR.get());
 		tag(FATags.Items.CALCIUM_CARBONATE_DUST).add(FAItems.CALCITE_DUST.get());
-		tag(Tags.Items.DUSTS).addTags(FATags.Items.WHEAT_DUST, FATags.Items.CALCIUM_CARBONATE_DUST);
+		tag(FATags.Items.QUICKLIME_DUST).add(FAItems.QUICKLIME.get());
+		tag(Tags.Items.DUSTS).addTags(FATags.Items.WHEAT_DUST, FATags.Items.CALCIUM_CARBONATE_DUST, FATags.Items.QUICKLIME_DUST);
 	}
 }

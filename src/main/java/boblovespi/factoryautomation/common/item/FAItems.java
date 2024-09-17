@@ -54,6 +54,7 @@ public class FAItems
 	public static final Map<Form, DeferredItem<? extends Item>> BRONZE_THINGS = metal("bronze", Form.most(), FABlocks.BRONZE_BLOCK, FABlocks.BRONZE_PLATE_BLOCK, FABlocks.BRONZE_SPACE_FRAME);
 	public static final DeferredItem<Item> WHEAT_FLOUR = ITEMS.registerSimpleItem("wheat_flour");
 	public static final DeferredItem<Item> CALCITE_DUST = ITEMS.registerSimpleItem("calcite_dust");
+	public static final DeferredItem<Item> QUICKLIME = ITEMS.registerSimpleItem("quicklime");
 
 	// Intermediate products
 

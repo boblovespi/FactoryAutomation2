@@ -281,6 +281,9 @@ public class FARecipeProvider extends RecipeProvider
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
 								  .unlockedBy("has_bread", has(Items.BREAD))
 								  .save(output, FactoryAutomation.name("campfire/toasted_bread"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(FATags.Items.CALCIUM_CARBONATE_DUST), RecipeCategory.MISC, FAItems.QUICKLIME, 1, 200)
+								  .unlockedBy("has_calcium_carbonate", has(FATags.Items.CALCIUM_CARBONATE_DUST))
+								  .save(output, FactoryAutomation.name("campfire/quicklime"));
 
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(Blocks.SHORT_GRASS), FAItems.PLANT_FIBER, 1).unlockedBy("has_short_grass", has(Blocks.SHORT_GRASS))
 						   .save(output, FactoryAutomation.name("chopping_block/plant_fiber"));
