@@ -6,10 +6,13 @@ import boblovespi.factoryautomation.common.recipe.BrickDryingRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
 public class BrickDryingJeiCategory extends FAJeiCategory<BrickDryingRecipe>
@@ -29,9 +32,15 @@ public class BrickDryingJeiCategory extends FAJeiCategory<BrickDryingRecipe>
 	}
 
 	@Override
+	public void draw(RecipeHolder<BrickDryingRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY)
+	{
+		graphics.drawString(Minecraft.getInstance().font, I18n.get("misc.time_seconds", recipe.value().getProgress() / 20), 60, 50, 0xff545454, false);
+	}
+
+	@Override
 	protected IDrawable createBackground()
 	{
-		return new Background(helper.createDrawable(FactoryAutomation.name("textures/gui/jei/chopping_block.png"), 0, 0, 123, 74));
+		return new Background(helper.createDrawable(FactoryAutomation.name("textures/gui/jei/drying.png"), 0, 0, 123, 74));
 	}
 
 	private record Background(IDrawable bg) implements IDrawable

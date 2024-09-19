@@ -182,6 +182,7 @@
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",
 	"misc.metal_quantity_nameless": "%s units",
+	"misc.time_seconds": "%s seconds",
 	"info.too_hot": "Too hot: %s",
 	
 	// Metal names
