@@ -26,5 +26,6 @@ public class FASoundDefinitionProvider extends SoundDefinitionsProvider
 		add(FASounds.USE_CHOPPING_BLOCK,
 				SoundDefinition.definition().with(sound(FactoryAutomation.name("use/chopping_block_1")), sound(FactoryAutomation.name("use/chopping_block_2")))
 							   .subtitle("subtitles.block.chopping_block.use").replace(true));
+		add(FASounds.USE_MILLSTONE, SoundDefinition.definition().with(sound(FactoryAutomation.name("use/millstone"))).subtitle("subtitles.block.millstone.use").replace(true));
 	}
 }

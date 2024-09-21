@@ -14,6 +14,7 @@ public class FASounds
 	public static final DeferredHolder<SoundEvent, SoundEvent> PLACE_ROCK = register("block.rock.place");
 	public static final DeferredHolder<SoundEvent, SoundEvent> MAKE_CHOPPING_BLOCK = register("block.chopping_block.make");
 	public static final DeferredHolder<SoundEvent, SoundEvent> USE_CHOPPING_BLOCK = register("block.chopping_block.use");
+	public static final DeferredHolder<SoundEvent, SoundEvent> USE_MILLSTONE = register("block.millstone.use");
 
 	private static DeferredHolder<SoundEvent, SoundEvent> register(String soundName)
 	{

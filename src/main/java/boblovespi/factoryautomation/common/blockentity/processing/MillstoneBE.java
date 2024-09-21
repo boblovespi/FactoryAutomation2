@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.recipe.MillstoneRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
 import boblovespi.factoryautomation.common.util.RecipeManager;
@@ -18,6 +19,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
@@ -43,6 +45,8 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 	private final MechanicalManager mechanicalManager;
 	private final ItemStackHandler inv;
 	private float rot;
+	private int audioLoop = 0;
+	private final int audioLength = 20 * 3 + 6;
 
 	public MillstoneBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -126,6 +130,7 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 				level.addFreshEntity(item);
 				recipeManager.complete();
 			}
+
 		}
 		setChanged();
 	}
@@ -135,6 +140,9 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 	{
 		rot += (float) (Math.toDegrees(mechanicalManager.getSpeed()) / 20);
 		rot %= 360;
+		if (audioLoop == 0)
+			level.playLocalSound(worldPosition, FASounds.USE_MILLSTONE.get(), SoundSource.BLOCKS, 0.3f, 1, false);
+		audioLoop = (audioLoop + 1) % audioLength;
 	}
 
 	public float getRenderRot(float delta)
