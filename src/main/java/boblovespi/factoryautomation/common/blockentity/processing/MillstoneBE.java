@@ -140,9 +140,12 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 	{
 		rot += (float) (Math.toDegrees(mechanicalManager.getSpeed()) / 20);
 		rot %= 360;
-		if (audioLoop == 0)
-			level.playLocalSound(worldPosition, FASounds.USE_MILLSTONE.get(), SoundSource.BLOCKS, 0.3f, 1, false);
-		audioLoop = (audioLoop + 1) % audioLength;
+		if (mechanicalManager.getSpeed() >= 1)
+		{
+			if (audioLoop == 0)
+				level.playLocalSound(worldPosition, FASounds.USE_MILLSTONE.get(), SoundSource.BLOCKS, 0.3f, 1, false);
+			audioLoop = (audioLoop + 1) % audioLength;
+		}
 	}
 
 	public float getRenderRot(float delta)
