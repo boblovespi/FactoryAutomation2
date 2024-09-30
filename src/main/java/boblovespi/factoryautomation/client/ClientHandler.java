@@ -1,10 +1,7 @@
 package boblovespi.factoryautomation.client;
 
 import boblovespi.factoryautomation.FactoryAutomation;
-import boblovespi.factoryautomation.client.ber.ChoppingBlockBER;
-import boblovespi.factoryautomation.client.ber.MillstoneBER;
-import boblovespi.factoryautomation.client.ber.PowerShaftBER;
-import boblovespi.factoryautomation.client.ber.StoneCastingVesselBER;
+import boblovespi.factoryautomation.client.ber.*;
 import boblovespi.factoryautomation.client.gui.StoneCastingVesselScreen;
 import boblovespi.factoryautomation.client.gui.StoneFoundryScreen;
 import boblovespi.factoryautomation.client.gui.WorkbenchScreen;
@@ -45,6 +42,7 @@ public class ClientHandler
 		// event.registerBlockEntityRenderer(FABETypes.BRICK_MAKER_FRAME_TYPE.get(), BrickMakerFrameBER::new);
 		event.registerBlockEntityRenderer(FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBER::new);
 		event.registerBlockEntityRenderer(FABETypes.MILLSTONE_TYPE.get(), MillstoneBER::new);
+		event.registerBlockEntityRenderer(FABETypes.HANDCRANK_TYPE.get(), HandCrankBER::new);
 	}
 
 	@SubscribeEvent

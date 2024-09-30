@@ -58,6 +58,7 @@
 	// Block - Mechanical
 	
 	"block.factoryautomation.wood_power_shaft": "Wood Power Shaft",
+	"block.factoryautomation.hand_crank": "Hand Crank",
 	
 	"block.factoryautomation.multiblock_part": "Multiblock Part",
 	"block.factoryautomation.creative_mechanical_source": "Creative Mechanical Source",

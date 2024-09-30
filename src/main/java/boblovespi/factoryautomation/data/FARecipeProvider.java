@@ -266,6 +266,18 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_copper_rod", has(FATags.Items.COPPER_ROD))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.HAND_CRANK)
+							  .pattern("ss")
+							  .pattern(" s")
+							  .pattern(" r")
+							  .define('s', Tags.Items.RODS_WOODEN)
+							  .define('r', FATags.Items.IRON_ROD)
+							  .tool("hammer", 2, 5)
+							  .part("screw", 1, 2)
+							  .part("bearing", 1, 1)
+							  .unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.MILLSTONE)
 							  .pattern("ccc")
 							  .pattern("srs")

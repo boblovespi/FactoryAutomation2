@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.mechanical.HandCrank;
 import boblovespi.factoryautomation.common.block.processing.ChoppingBlock;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.LogPileLike;
@@ -61,6 +62,8 @@ public class FABlockStateProvider extends BlockStateProvider
 		existingBlockModel(FABlocks.BRICK_MAKER_FRAME);
 		blockWithItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
 		axisOnlyBlock(FABlocks.WOOD_POWER_SHAFT, modLoc("block/power_shaft"), mcLoc("block/oak_planks"), mcLoc("block/oak_planks"));
+		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
+				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
 	}
 
 	private void existingBlockWithItem(DeferredBlock<?> block)

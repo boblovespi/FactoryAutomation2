@@ -44,6 +44,7 @@ public class FAItemModelProvider extends ItemModelProvider
 
 		withExistingParent(FAItems.LOG_PILE.getRegisteredName(), modLoc("block/log_pile"));
 		withExistingParent(FAItems.STONE_CRUCIBLE.getRegisteredName(), modLoc("block/stone_crucible"));
+		withExistingParent(FAItems.HAND_CRANK.getRegisteredName(), modLoc("block/hand_crank"));
 
 		handheld(FAItems.CHOPPING_BLADE);
 		handheld(FAItems.FLINT_SHOVEL);

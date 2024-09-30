@@ -13,6 +13,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -29,8 +30,9 @@ import org.jetbrains.annotations.Nullable;
 public class HandCrank extends Block implements EntityBlock
 {
 	public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
-	public static final VoxelShape SHAPE = Shapes.or(Block.box(7, 0, 7, 9, 12, 9), Block.box(0, 10, 0, 16, 12, 16));
-	public static final VoxelShape HANGING_SHAPE = Shapes.or(Block.box(7, 4, 7, 9, 16, 9), Block.box(0, 4, 0, 16, 6, 16));
+	public static final VoxelShape SHAPE = Shapes.or(Block.box(7, 0, 7, 9, 14, 9), Block.box(0, 14, 0, 16, 16, 16));
+	public static final VoxelShape HANGING_SHAPE = Shapes.or(Block.box(7, 2, 7, 9, 16, 9), Block.box(0, 0, 0, 16, 2, 16));
+	public static final VoxelShape COLLISON_SHAPE = Block.box(7, 0, 7, 9, 16,9);
 
 	public HandCrank(Properties p)
 	{
@@ -54,6 +56,24 @@ public class HandCrank extends Block implements EntityBlock
 	protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
 	{
 		return pState.getValue(HANGING) ? HANGING_SHAPE : SHAPE;
+	}
+
+	@Override
+	protected VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
+	{
+		return COLLISON_SHAPE;
+	}
+
+	@Override
+	protected VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos)
+	{
+		return COLLISON_SHAPE;
+	}
+
+	@Override
+	protected RenderShape getRenderShape(BlockState pState)
+	{
+		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 
 	@Nullable
