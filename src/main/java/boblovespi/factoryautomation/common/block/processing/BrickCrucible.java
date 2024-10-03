@@ -10,6 +10,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -17,14 +19,25 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BrickCrucible extends Block implements EntityBlock
 {
+	public static final BooleanProperty MULTIBLOCK_COMPLETE = StoneCrucible.MULTIBLOCK_COMPLETE;
+	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
+	private static final VoxelShape BOUNDING_BOX = Block.box(2, 0, 2, 14, 16, 14);
+
 	public BrickCrucible(Properties p)
 	{
 		super(p);
+		registerDefaultState(defaultBlockState().setValue(MULTIBLOCK_COMPLETE, false).setValue(FACING, Direction.NORTH));
 	}
 
 	@Nullable
@@ -64,5 +77,23 @@ public class BrickCrucible extends Block implements EntityBlock
 		if (level.isClientSide)
 			return null;
 		return ITickable.makeTicker(FABETypes.BRICK_CRUCIBLE_TYPE.get(), beType);
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter levelIn, BlockPos pos, CollisionContext context)
+	{
+		return BOUNDING_BOX;
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
+	{
+		builder.add(MULTIBLOCK_COMPLETE, FACING);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context)
+	{
+		return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getCounterClockWise());
 	}
 }

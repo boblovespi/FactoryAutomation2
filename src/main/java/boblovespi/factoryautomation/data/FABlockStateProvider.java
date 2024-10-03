@@ -60,6 +60,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		castingVessel(FABlocks.STONE_CASTING_VESSEL);
 		existingBlockWithItem(FABlocks.STONE_WORKBENCH);
 		existingBlockModel(FABlocks.BRICK_MAKER_FRAME);
+		horizontalBlock(FABlocks.BRICK_CRUCIBLE.get(), multiblockComplete("brick_crucible", "brick_foundry_multiblock"), 270);
 		blockWithItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
 		axisOnlyBlock(FABlocks.WOOD_POWER_SHAFT, modLoc("block/power_shaft"), mcLoc("block/oak_planks"), mcLoc("block/oak_planks"));
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
