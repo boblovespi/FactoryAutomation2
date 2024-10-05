@@ -39,6 +39,7 @@ public class ClientHandler
 	{
 		event.registerBlockEntityRenderer(FABETypes.CHOPPING_BLOCK_TYPE.get(), ChoppingBlockBER::new);
 		event.registerBlockEntityRenderer(FABETypes.STONE_CASTING_VESSEL_TYPE.get(), StoneCastingVesselBER::new);
+		event.registerBlockEntityRenderer(FABETypes.STONE_CRUCIBLE_TYPE.get(), StoneCrucibleBER::new);
 		// event.registerBlockEntityRenderer(FABETypes.BRICK_MAKER_FRAME_TYPE.get(), BrickMakerFrameBER::new);
 		event.registerBlockEntityRenderer(FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBER::new);
 		event.registerBlockEntityRenderer(FABETypes.MILLSTONE_TYPE.get(), MillstoneBER::new);

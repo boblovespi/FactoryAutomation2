@@ -33,6 +33,8 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	private final ItemStackHandler inv;
 	private final float efficiency = 0.5f;
 	private float meltProgress;
+	private float amount;
+	private int color;
 
 	public StoneCrucibleBE(BlockPos pos, BlockState state)
 	{
@@ -84,13 +86,15 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		tag.putFloat("amount", (float) crucible.getAmount() / (Form.INGOT.amount() * 9 * 3));
+		tag.putInt("color", crucible.getCurrentMetal().color());
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		amount = tag.getFloat("amount");
+		color = tag.getInt("color");
 	}
 
 	@Override
@@ -156,6 +160,7 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 					inv.extractItem(1, 1, false);
 					heat.increaseHeatCapacity(shc);
 					crucible.melt(metal, form.amount());
+					setChangedAndUpdateClient();
 				}
 			}
 			else
@@ -189,6 +194,16 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 			FactoryAutomation.LOGGER.error("Stack has no fuel data!");
 		}
 		return Objects.requireNonNullElse(stack.getItemHolder().getData(FuelInfo.FUEL_DATA), new FuelInfo(0, 0, 0));
+	}
+
+	public float getAmount()
+	{
+		return amount;
+	}
+
+	public int getColor()
+	{
+		return color;
 	}
 
 	private class Data implements ContainerData
