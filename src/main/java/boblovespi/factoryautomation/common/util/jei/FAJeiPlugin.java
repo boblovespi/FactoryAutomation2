@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.util.jei;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.util.Form;
@@ -91,6 +92,7 @@ public class FAJeiPlugin implements IModPlugin
 
 		var meltingRecipes = new ArrayList<MeltingJeiRecipe>();
 		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(Tags.Items.RAW_MATERIALS_COPPER), Metal.COPPER.meltTemp(), Metal.COPPER, Form.RAW_ORE));
+		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(FATags.Items.RAW_TIN), Metal.TIN.meltTemp(), Metal.TIN, Form.RAW_ORE));
 		registration.addRecipes(meltingJeiCategory.getRecipeType(), meltingRecipes);
 	}
 
