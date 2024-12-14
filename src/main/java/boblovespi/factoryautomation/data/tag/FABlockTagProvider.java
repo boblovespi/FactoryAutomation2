@@ -44,6 +44,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 									  .add(Blocks.POLISHED_DEEPSLATE_WALL, Blocks.CHISELED_DEEPSLATE, Blocks.COBBLED_DEEPSLATE, Blocks.COBBLED_DEEPSLATE_SLAB)
 									  .add(Blocks.COBBLED_DEEPSLATE_STAIRS, Blocks.COBBLED_DEEPSLATE_WALL, Blocks.INFESTED_DEEPSLATE, Blocks.CRACKED_DEEPSLATE_TILES)
 									  .add(Blocks.DEEPSLATE_COAL_ORE, Blocks.DEEPSLATE_COPPER_ORE)
+									  .add(FABlocks.STEEL_BLOCK.get(), FABlocks.STEEL_PLATE_BLOCK.get(), FABlocks.STEEL_SPACE_FRAME.get())
 									  .addTags(BlockTags.IRON_ORES, BlockTags.GOLD_ORES)
 									  .remove(FATags.Blocks.NEEDS_BRONZE_TOOL).remove(BlockTags.NEEDS_DIAMOND_TOOL);
 		tag(BlockTags.INCORRECT_FOR_IRON_TOOL).addTag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).remove(BlockTags.NEEDS_IRON_TOOL);
@@ -66,13 +67,16 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
 											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.STONE_WORKBENCH.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get())
 											.add(FABlocks.IRON_PLATE_BLOCK.get(), FABlocks.BRONZE_BLOCK.get(), FABlocks.BRONZE_PLATE_BLOCK.get())
+											.add(FABlocks.STEEL_BLOCK.get(), FABlocks.STEEL_PLATE_BLOCK.get())
 											.add(FABlocks.COPPER_SPACE_FRAME.get(), FABlocks.TIN_SPACE_FRAME.get(), FABlocks.IRON_SPACE_FRAME.get(), FABlocks.BRONZE_SPACE_FRAME.get())
+											.add(FABlocks.STEEL_SPACE_FRAME.get())
 											.add(FABlocks.MILLSTONE.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get());
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK);
 		tag(FATags.Blocks.TIN_BLOCK).add(FABlocks.TIN_BLOCK.get());
 		tag(FATags.Blocks.BRONZE_BLOCK).add(FABlocks.BRONZE_BLOCK.get());
+		tag(FATags.Blocks.STEEL_BLOCK).add(FABlocks.STEEL_BLOCK.get());
 
 		tag(FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);
 		tag(FATags.Blocks.MINEABLE_WITH_HAMMER).add(FABlocks.IRON_BLOOM.get());

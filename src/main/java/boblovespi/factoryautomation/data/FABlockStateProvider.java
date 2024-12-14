@@ -44,14 +44,17 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlock(FABlocks.IRON_BLOOM.get());
 		simpleBlock(FABlocks.TIN_BLOCK.get());
 		simpleBlock(FABlocks.BRONZE_BLOCK.get());
+		simpleBlock(FABlocks.STEEL_BLOCK.get());
 		simpleBlock(FABlocks.COPPER_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.TIN_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.IRON_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.BRONZE_PLATE_BLOCK.get());
+		simpleBlock(FABlocks.STEEL_PLATE_BLOCK.get());
 		spaceFrame(FABlocks.COPPER_SPACE_FRAME);
 		spaceFrame(FABlocks.TIN_SPACE_FRAME);
 		spaceFrame(FABlocks.IRON_SPACE_FRAME);
 		spaceFrame(FABlocks.BRONZE_SPACE_FRAME);
+		spaceFrame(FABlocks.STEEL_SPACE_FRAME);
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
 		getVariantBuilder(FABlocks.LOG_PILE.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());

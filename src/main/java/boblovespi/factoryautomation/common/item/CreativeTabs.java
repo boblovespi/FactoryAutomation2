@@ -56,6 +56,7 @@ public class CreativeTabs
 							o.accept(deferredItem);
 						}
 						FAItems.BRONZE_THINGS.values().forEach(o::accept);
+						FAItems.STEEL_THINGS.values().forEach(o::accept);
 						o.accept(FAItems.WHEAT_FLOUR);
 						o.accept(FAItems.CALCITE_DUST);
 						o.accept(FAItems.QUICKLIME);

@@ -28,14 +28,17 @@
 	
 	"block.factoryautomation.tin_block": "Block of Tin",
 	"block.factoryautomation.bronze_block": "Block of Bronze",
+	"block.factoryautomation.steel_block": "Block of Steel",
 	"block.factoryautomation.copper_plate_block": "Copper Plate Block",
 	"block.factoryautomation.tin_plate_block": "Tin Plate Block",
 	"block.factoryautomation.iron_plate_block": "Iron Plate Block",
 	"block.factoryautomation.bronze_plate_block": "Bronze Plate Block",
+	"block.factoryautomation.steel_plate_block": "Steel Plate Block",
 	"block.factoryautomation.copper_space_frame": "Copper Space Frame",
 	"block.factoryautomation.tin_space_frame": "Tin Space Frame",
 	"block.factoryautomation.iron_space_frame": "Iron Space Frame",
 	"block.factoryautomation.bronze_space_frame": "Bronze Space Frame",
+	"block.factoryautomation.steel_space_frame": "Steel Space Frame",
 	
 	"block.factoryautomation.oak_chopping_block": "Oak Chopping Block",
 	"block.factoryautomation.spruce_chopping_block": "Spruce Chopping Block",
@@ -109,6 +112,11 @@
 	"item.factoryautomation.bronze_nugget": "Bronze Nugget",
 	"item.factoryautomation.bronze_sheet": "Bronze Sheet",
 	"item.factoryautomation.bronze_rod": "Bronze Rod",
+	
+	"item.factoryautomation.steel_ingot": "Steel Ingot",
+	"item.factoryautomation.steel_nugget": "Steel Nugget",
+	"item.factoryautomation.steel_sheet": "Steel Sheet",
+	"item.factoryautomation.steel_rod": "Steel Rod",
 	
 	"item.factoryautomation.iron_sheet": "Iron Sheet",
 	"item.factoryautomation.iron_rod": "Iron Rod",
