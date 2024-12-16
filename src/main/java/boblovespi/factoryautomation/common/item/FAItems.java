@@ -45,7 +45,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> GREEN_SAND = ITEMS.registerSimpleBlockItem(FABlocks.GREEN_SAND);
 	public static final Map<Form, DeferredItem<? extends Item>> PIG_TALLOW_FORMS = metal("pig_tallow", Form.tallow(), null, null, null);
 	public static final Map<Form, DeferredItem<? extends Item>> TALLOW_MOLDS = metal("tallow_mold", Form.tallow(), null, null, null);
-	public static final Map<Form, DeferredItem<? extends Item>> FIRED_TALLOW_MOLDS = metal("fired_mold", Form.tallow(), null, null, null);
+	public static final Map<Form, DeferredItem<? extends Item>> FIRED_TALLOW_MOLDS = tallowMold("fired_mold", Form.tallow());
 	public static final DeferredItem<Item> IRON_SHARD = ITEMS.registerSimpleItem("iron_shard");
 	public static final DeferredItem<Item> SLAG = ITEMS.registerSimpleItem("slag");
 	public static final Map<Form, DeferredItem<? extends Item>> COPPER_THINGS = metal("copper", Form.copper(), null, FABlocks.COPPER_PLATE_BLOCK, FABlocks.COPPER_SPACE_FRAME);
@@ -131,5 +131,11 @@ public class FAItems
 				return ITEMS.registerSimpleBlockItem(spaceFrame);
 			return ITEMS.registerItem(name + "_" + k.getName(), Item::new);
 		}, (a, b) -> a, LinkedHashMap::new));
+	}
+
+	private static Map<Form, DeferredItem<? extends Item>> tallowMold(String name, Collection<Form> metals)
+	{
+		return metals.stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem(name + "_" + k.getName(),
+				Item::new, new Item.Properties().durability(20)), (a, b) -> a, LinkedHashMap::new));
 	}
 }
