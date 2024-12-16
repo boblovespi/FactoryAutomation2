@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.*;
 import boblovespi.factoryautomation.common.util.Form;
+import boblovespi.factoryautomation.common.util.GearMaterial;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
@@ -106,6 +107,8 @@ public class FAItems
 
 	// Mechanical
 
+	public static final Map<GearMaterial, DeferredItem<Item>> GEARS = gear();
+
 	public static final DeferredItem<BlockItem> WOOD_POWER_SHAFT = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_POWER_SHAFT);
 	public static final DeferredItem<BlockItem> HAND_CRANK = ITEMS.registerSimpleBlockItem(FABlocks.HAND_CRANK);
 
@@ -137,5 +140,11 @@ public class FAItems
 	{
 		return metals.stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem(name + "_" + k.getName(),
 				Item::new, new Item.Properties().durability(20)), (a, b) -> a, LinkedHashMap::new));
+	}
+
+	public static Map<GearMaterial, DeferredItem<Item>> gear()
+	{
+		return GearMaterial.all().stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem(k.getName() + "_gear",
+				Item::new, new Item.Properties().durability(k.getDurability())), (a, b) -> a, LinkedHashMap::new));
 	}
 }

@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.util.Form;
+import boblovespi.factoryautomation.common.util.GearMaterial;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -51,7 +52,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.COPPER_NUGGET).add(FAItems.COPPER_THINGS.get(Form.NUGGET).get());
 		tag(FATags.Items.COPPER_SHEET).add(FAItems.COPPER_THINGS.get(Form.SHEET).get());
 		tag(FATags.Items.COPPER_ROD).add(FAItems.COPPER_THINGS.get(Form.ROD).get());
-		tag(FATags.Items.COPPER_GEAR);
+		tag(FATags.Items.COPPER_GEAR).add(FAItems.GEARS.get(GearMaterial.COPPER).get());
 		tag(FATags.Items.TIN_INGOT).add(FAItems.TIN_THINGS.get(Form.INGOT).get());
 		tag(FATags.Items.TIN_NUGGET).add(FAItems.TIN_THINGS.get(Form.NUGGET).get());
 		tag(FATags.Items.TIN_SHEET).add(FAItems.TIN_THINGS.get(Form.SHEET).get());
@@ -59,17 +60,17 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.TIN_GEAR);
 		tag(FATags.Items.IRON_SHEET).add(FAItems.IRON_THINGS.get(Form.SHEET).get());
 		tag(FATags.Items.IRON_ROD).add(FAItems.IRON_THINGS.get(Form.ROD).get());
-		tag(FATags.Items.IRON_GEAR);
+		tag(FATags.Items.IRON_GEAR).add(FAItems.GEARS.get(GearMaterial.IRON).get());
 		tag(FATags.Items.BRONZE_INGOT).add(FAItems.BRONZE_THINGS.get(Form.INGOT).get());
 		tag(FATags.Items.BRONZE_NUGGET).add(FAItems.BRONZE_THINGS.get(Form.NUGGET).get());
 		tag(FATags.Items.BRONZE_SHEET).add(FAItems.BRONZE_THINGS.get(Form.SHEET).get());
 		tag(FATags.Items.BRONZE_ROD).add(FAItems.BRONZE_THINGS.get(Form.ROD).get());
-		tag(FATags.Items.BRONZE_GEAR);
+		tag(FATags.Items.BRONZE_GEAR).add(FAItems.GEARS.get(GearMaterial.BRONZE).get());
 		tag(FATags.Items.STEEL_INGOT).add(FAItems.STEEL_THINGS.get(Form.INGOT).get());
 		tag(FATags.Items.STEEL_NUGGET).add(FAItems.STEEL_THINGS.get(Form.NUGGET).get());
 		tag(FATags.Items.STEEL_SHEET).add(FAItems.STEEL_THINGS.get(Form.SHEET).get());
 		tag(FATags.Items.STEEL_ROD).add(FAItems.STEEL_THINGS.get(Form.ROD).get());
-		tag(FATags.Items.STEEL_GEAR);
+		tag(FATags.Items.STEEL_GEAR).add(FAItems.GEARS.get(GearMaterial.STEEL).get());
 
 		tag(FATags.Items.RAW_TIN).add(FAItems.RAW_CASSITERITE.get());
 

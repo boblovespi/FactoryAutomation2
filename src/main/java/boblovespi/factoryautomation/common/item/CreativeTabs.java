@@ -89,6 +89,7 @@ public class CreativeTabs
 			() -> CreativeModeTab.builder().title(Component.translatable(FactoryAutomation.locString("itemGroup", "creative"))).withTabsBefore(PRODUCTS.getId())
 								 .icon(() -> FAItems.CREATIVE_MECHANICAL_SOURCE.get().getDefaultInstance()).displayItems((p, o) ->
 					{
+						FAItems.GEARS.values().forEach(o::accept);
 						o.accept(FAItems.CREATIVE_MECHANICAL_SOURCE);
 						o.accept(FAItems.WOOD_POWER_SHAFT);
 					}).build());

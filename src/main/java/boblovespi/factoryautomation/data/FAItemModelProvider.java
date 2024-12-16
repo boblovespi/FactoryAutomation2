@@ -64,6 +64,8 @@ public class FAItemModelProvider extends ItemModelProvider
 		handheld(FAItems.COPPER_SHEARS);
 		handheld(FAItems.IRON_HAMMER);
 		handheld(FAItems.IRON_WRENCH);
+
+		FAItems.GEARS.values().forEach(t -> basicItem(t.get()));
 	}
 
 	private void metal(Form form, DeferredItem<? extends Item> item)

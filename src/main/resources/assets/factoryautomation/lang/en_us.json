@@ -157,6 +157,15 @@
 	"item.factoryautomation.iron_hammer": "Iron Hammer",
 	"item.factoryautomation.iron_wrench": "Iron Wrench",
 	
+	// Items - Gears
+	
+	"item.factoryautomation.wood_gear": "Wooden Gear",
+	"item.factoryautomation.stone_gear": "Stone Gear",
+	"item.factoryautomation.copper_gear": "Copper Gear",
+	"item.factoryautomation.iron_gear": "Iron Gear",
+	"item.factoryautomation.bronze_gear": "Bronze Gear",
+	"item.factoryautomation.steel_gear": "Steel Gear",
+	
 	// Creative tabs
 	
 	"itemGroup.factoryautomation.resources": "F. A. Resources",
