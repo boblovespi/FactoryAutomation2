@@ -1,6 +1,10 @@
 package boblovespi.factoryautomation.common.util;
 
+import boblovespi.factoryautomation.common.item.FAItems;
+import net.minecraft.world.item.ItemStack;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GearMaterial
 {
@@ -19,6 +23,7 @@ public class GearMaterial
 	public static final GearMaterial STEEL = new GearMaterial("steel", 16, 1200);
 	// public static final GearMaterial ALUMINUM = new GearMaterial("aluminum", 6, 900);
 	// public static final GearMaterial ALUMINUM_BRONZE = new GearMaterial("aluminum_bronze", 7, 900);
+	public static final GearMaterial NONE = new GearMaterial("none", 0, 0);
 
 	private final String name;
 	private final int scaleFactor;
@@ -38,7 +43,12 @@ public class GearMaterial
 
 	public static Collection<GearMaterial> all()
 	{
-		return Collections.unmodifiableCollection(ID_MAP);
+		return ID_MAP.stream().filter(g -> g != NONE).collect(Collectors.toList());
+	}
+
+	public static GearMaterial fromStack(ItemStack stack)
+	{
+		return ID_MAP.stream().filter(gear -> gear != NONE && stack.is(FAItems.GEARS.get(gear).get())).findFirst().orElse(NONE);
 	}
 
 	public String getName()
@@ -49,5 +59,10 @@ public class GearMaterial
 	public int getDurability()
 	{
 		return durability;
+	}
+
+	public float getScaleFactor()
+	{
+		return scaleFactor;
 	}
 }

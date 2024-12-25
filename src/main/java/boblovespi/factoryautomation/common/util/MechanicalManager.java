@@ -25,12 +25,12 @@ public class MechanicalManager implements IMechanicalOutput, IMechanicalInput
 
 	public float getSpeed()
 	{
-		return speed;
+		return speedTransformer.apply(speed);
 	}
 
 	public float getTorque()
 	{
-		return torque;
+		return torqueTransformer.apply(torque);
 	}
 
 	public void save(CompoundTag tag)
@@ -51,8 +51,8 @@ public class MechanicalManager implements IMechanicalOutput, IMechanicalInput
 	@Override
 	public void update(IMechanicalOutput output)
 	{
-		speed = speedTransformer.apply(output.getSpeed());
-		torque = torqueTransformer.apply(output.getTorque());
+		speed = output.getSpeed();
+		torque = output.getTorque();
 		onUpdate.update();
 	}
 

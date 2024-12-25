@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.mechanical.GearboxBE;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.PowerShaftBE;
 import boblovespi.factoryautomation.common.item.CreativeTabs;
@@ -135,6 +136,8 @@ public class FactoryAutomation
 		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get(), (b, d) -> b);
 		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBE::output);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBE::input);
+		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.GEARBOX_TYPE.get(), GearboxBE::output);
+		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.GEARBOX_TYPE.get(), GearboxBE::input);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MILLSTONE_TYPE.get(), MillstoneBE::input);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, FABETypes.MILLSTONE_TYPE.get(), MillstoneBE::itemHandler);
 	}

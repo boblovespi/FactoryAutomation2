@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.common.blockentity;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.mechanical.CreativeMechanicalSourceBE;
+import boblovespi.factoryautomation.common.blockentity.mechanical.GearboxBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.HandCrankBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.PowerShaftBE;
 import boblovespi.factoryautomation.common.blockentity.processing.*;
@@ -32,6 +33,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<PowerShaftBE>> POWER_SHAFT_TYPE = type("power_shaft", PowerShaftBE::new, FABlocks.WOOD_POWER_SHAFT);
 	public static final Supplier<BlockEntityType<MillstoneBE>> MILLSTONE_TYPE = type("millstone", MillstoneBE::new, FABlocks.MILLSTONE);
 	public static final Supplier<BlockEntityType<HandCrankBE>> HANDCRANK_TYPE = type("hand_crank", HandCrankBE::new, FABlocks.HAND_CRANK);
+	public static final Supplier<BlockEntityType<GearboxBE>> GEARBOX_TYPE = type("gearbox", GearboxBE::new, FABlocks.WOOD_GEARBOX);
 
 	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,
