@@ -85,13 +85,14 @@ public class CreativeTabs
 						o.accept(FAItems.MILLSTONE);
 					}).build());
 
-	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE = CREATIVE_MODE_TABS.register("creative",
-			() -> CreativeModeTab.builder().title(Component.translatable(FactoryAutomation.locString("itemGroup", "creative"))).withTabsBefore(PRODUCTS.getId())
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MECHANICAL = CREATIVE_MODE_TABS.register("mechanical",
+			() -> CreativeModeTab.builder().title(Component.translatable(FactoryAutomation.locString("itemGroup", "mechanical"))).withTabsBefore(PRODUCTS.getId())
 								 .icon(() -> FAItems.CREATIVE_MECHANICAL_SOURCE.get().getDefaultInstance()).displayItems((p, o) ->
 					{
 						FAItems.GEARS.values().forEach(o::accept);
 						o.accept(FAItems.CREATIVE_MECHANICAL_SOURCE);
 						o.accept(FAItems.WOOD_POWER_SHAFT);
+						o.accept(FAItems.WOOD_GEARBOX);
 					}).build());
 
 

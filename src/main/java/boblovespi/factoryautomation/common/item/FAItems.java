@@ -110,6 +110,7 @@ public class FAItems
 	public static final Map<GearMaterial, DeferredItem<Item>> GEARS = gear();
 
 	public static final DeferredItem<BlockItem> WOOD_POWER_SHAFT = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_POWER_SHAFT);
+	public static final DeferredItem<BlockItem> WOOD_GEARBOX = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_GEARBOX);
 	public static final DeferredItem<BlockItem> HAND_CRANK = ITEMS.registerSimpleBlockItem(FABlocks.HAND_CRANK);
 
 	// Misc
