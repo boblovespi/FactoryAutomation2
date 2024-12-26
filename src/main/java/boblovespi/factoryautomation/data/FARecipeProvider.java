@@ -14,6 +14,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -266,6 +267,8 @@ public class FARecipeProvider extends RecipeProvider
 							  .part("bearing", 1, 2)
 							  .unlockedBy("has_copper_rod", has(FATags.Items.COPPER_ROD))
 							  .save(output);
+
+		gearbox(output, FAItems.WOOD_GEARBOX, FATags.Items.IRON_ROD, FATags.Items.COPPER_SHEET, ItemTags.PLANKS);
 
 		WorkbenchRecipeBuilder.of(FAItems.HAND_CRANK)
 							  .pattern("ss")
@@ -606,5 +609,22 @@ public class FARecipeProvider extends RecipeProvider
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(unfiredMolds.get(form)), RecipeCategory.MISC, firedMolds.get(form), 0, 200)
 								  .unlockedBy("has_tallow_mold_" + form.getName(), has(unfiredMolds.get(form)))
 								  .save(output, firedMolds.get(form).getId().withPrefix("smelting/"));
+	}
+
+	// mechanical
+	private static void gearbox(RecipeOutput output, DeferredItem<BlockItem> gearbox, TagKey<Item> rod, TagKey<Item> sheet, TagKey<Item> baseMat)
+	{
+		WorkbenchRecipeBuilder.of(gearbox)
+							  .pattern("psp")
+							  .pattern("iii")
+							  .define('s', rod)
+							  .define('p', sheet)
+							  .define('i', baseMat)
+							  .tool("hammer", 2, 5)
+							  .tool("wrench", 1, 5)
+							  .part("screw", 1, 4)
+							  .part("bearing", 1, 4)
+							  .unlockedBy("has_rod", has(rod))
+							  .save(output);
 	}
 }

@@ -28,7 +28,9 @@ import java.util.stream.Collectors;
 
 public class FABlockLootTableProvider extends BlockLootSubProvider
 {
+	@SuppressWarnings({"NotNullFieldNotInitialized", "FieldCanBeLocal"})
 	private HolderLookup.RegistryLookup<Enchantment> enchants;
+	@SuppressWarnings("NotNullFieldNotInitialized")
 	private Holder.Reference<Enchantment> fortune;
 
 	protected FABlockLootTableProvider(HolderLookup.Provider pRegistries)
@@ -89,6 +91,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.BRICK_MAKER_FRAME.get());
 		dropSelf(FABlocks.BRICK_CRUCIBLE.get());
 		dropSelf(FABlocks.WOOD_POWER_SHAFT.get());
+		dropSelf(FABlocks.WOOD_GEARBOX.get());
 		dropSelf(FABlocks.MILLSTONE.get());
 		dropSelf(FABlocks.HAND_CRANK.get());
 	}

@@ -1,9 +1,9 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.mechanical.HandCrank;
 import boblovespi.factoryautomation.common.block.processing.ChoppingBlock;
-import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.LogPileLike;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
@@ -23,6 +23,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.function.Function;
 
+@SuppressWarnings("SameParameterValue")
 public class FABlockStateProvider extends BlockStateProvider
 {
 	public FABlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper)
@@ -66,6 +67,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		horizontalBlock(FABlocks.BRICK_CRUCIBLE.get(), multiblockComplete("brick_crucible", "brick_foundry_multiblock"), 270);
 		blockWithItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
 		axisOnlyBlock(FABlocks.WOOD_POWER_SHAFT, modLoc("block/power_shaft"), mcLoc("block/oak_planks"), mcLoc("block/oak_planks"));
+		directionalBlock(FABlocks.WOOD_GEARBOX, modLoc("block/gearbox"), mcLoc("block/iron_block"), mcLoc("block/iron_block"));
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
 	}
@@ -124,6 +126,18 @@ public class FABlockStateProvider extends BlockStateProvider
 	{
 		var model = models().withExistingParent(block.getRegisteredName(), base).texture("side", side).texture("front", end);
 		axisBlock(block.get(), model, model);
+		simpleBlockItem(block.get(), model);
+	}
+
+	private void directionalBlock(DeferredBlock<? extends Block> block, ResourceLocation base, ResourceLocation side, ResourceLocation end)
+	{
+		directionalBlock(block, base, side, end, end);
+	}
+
+	private void directionalBlock(DeferredBlock<? extends Block> block, ResourceLocation base, ResourceLocation side, ResourceLocation front, ResourceLocation back)
+	{
+		var model = models().withExistingParent(block.getRegisteredName(), base).texture("side", side).texture("front", front).texture("back", back);
+		directionalBlock(block.get(), model);
 		simpleBlockItem(block.get(), model);
 	}
 
