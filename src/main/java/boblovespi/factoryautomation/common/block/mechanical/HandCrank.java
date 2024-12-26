@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.block.mechanical;
 
+import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
@@ -100,5 +101,19 @@ public class HandCrank extends Block implements EntityBlock
 			return IClientTickable.makeTicker(FABETypes.HANDCRANK_TYPE.get(), beType);
 		else
 			return ITickable.makeTicker(FABETypes.HANDCRANK_TYPE.get(), beType);
+	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		if (!pState.is(pNewState.getBlock()))
+			pLevel.getBlockEntity(pPos, FABETypes.HANDCRANK_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+	}
+
+	@Override
+	protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston)
+	{
+		level.getBlockEntity(pos, FABETypes.HANDCRANK_TYPE.get()).ifPresent(HandCrankBE::updateInputs);
 	}
 }

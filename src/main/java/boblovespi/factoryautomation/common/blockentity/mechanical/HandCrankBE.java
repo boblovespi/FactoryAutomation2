@@ -59,7 +59,10 @@ public class HandCrankBE extends FABE implements ITickable, IClientTickable
 	@Override
 	public void onDestroy()
 	{
-
+		var dir = getBlockState().getValue(HandCrank.HANGING) ? Direction.UP : Direction.DOWN;
+		var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(dir), null, null, dir.getOpposite());
+		if (cap != null)
+			cap.update(MechanicalManager.ZERO);
 	}
 
 	@Override
