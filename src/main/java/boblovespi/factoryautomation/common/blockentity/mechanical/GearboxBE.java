@@ -15,6 +15,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,6 +30,7 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 	private ItemStack outputStack;
 	private GearMaterial inputGear;
 	private GearMaterial outputGear;
+	private int counter;
 
 	public GearboxBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -46,6 +48,7 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 		manager.save(tag);
 		tag.put("inputStack", inputStack.saveOptional(registries));
 		tag.put("outputStack", outputStack.saveOptional(registries));
+		tag.putInt("counter", counter);
 	}
 
 	@Override
@@ -56,6 +59,7 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 		inputGear = GearMaterial.fromStack(inputStack);
 		outputStack = ItemStack.parseOptional(registries, tag.getCompound("outputStack"));
 		outputGear = GearMaterial.fromStack(outputStack);
+		counter = tag.getInt("counter");
 	}
 
 	@Override
@@ -73,7 +77,12 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 	@Override
 	public void onDestroy()
 	{
-
+		ItemHelper.dropItem(level, worldPosition.getCenter(), inputStack);
+		ItemHelper.dropItem(level, worldPosition.getCenter(), outputStack);
+		var facing = getBlockState().getValue(Gearbox.FACING);
+		var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(facing), null, null, facing.getOpposite());
+		if (cap != null)
+			cap.update(MechanicalManager.ZERO);
 	}
 
 	@Override
@@ -85,7 +94,17 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 	@Override
 	public void tick()
 	{
-
+		if (inputGear != GearMaterial.NONE && outputGear != GearMaterial.NONE && manager.getSpeed() > 0)
+		{
+			counter++;
+			if (counter >= 100)
+			{
+				counter = 0;
+				inputStack.hurtAndBreak(1, (ServerLevel) level, null, u -> inputGear = GearMaterial.NONE);
+				outputStack.hurtAndBreak(1, (ServerLevel) level, null, u -> outputGear = GearMaterial.NONE);
+				updateInputs();
+			}
+		}
 	}
 
 	public void updateInputs()

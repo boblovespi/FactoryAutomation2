@@ -8,6 +8,7 @@ import java.util.function.Function;
 
 public class MechanicalManager implements IMechanicalOutput, IMechanicalInput
 {
+	public static final IMechanicalOutput ZERO = new BrokenMechanicalOutput();
 	private final String nbtId;
 	private final Function<Float, Float> speedTransformer;
 	private final Function<Float, Float> torqueTransformer;
@@ -60,5 +61,20 @@ public class MechanicalManager implements IMechanicalOutput, IMechanicalInput
 	public interface Updater
 	{
 		void update();
+	}
+
+	private static class BrokenMechanicalOutput implements IMechanicalOutput
+	{
+		@Override
+		public float getTorque()
+		{
+			return 0;
+		}
+
+		@Override
+		public float getSpeed()
+		{
+			return 0;
+		}
 	}
 }
