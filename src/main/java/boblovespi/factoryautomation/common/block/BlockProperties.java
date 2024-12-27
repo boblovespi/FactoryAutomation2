@@ -15,6 +15,7 @@ public class BlockProperties
 	public static final BlockBehaviour.Properties ROCK = BlockBehaviour.Properties.of().strength(0.1f).replaceable().sound(FASoundTypes.ROCK);
 	public static final BlockBehaviour.Properties LOG = LOG(MapColor.WOOD);
 	public static final BlockBehaviour.Properties WOOD_MACHINE = BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD).mapColor(MapColor.WOOD);
+	public static final BlockBehaviour.Properties WOOD_MACHINE_NO_OCCLUSION = BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD).mapColor(MapColor.WOOD).noOcclusion();
 
 	public static BlockBehaviour.Properties LOG(MapColor c)
 	{

@@ -108,7 +108,7 @@ public class GearboxBER implements BlockEntityRenderer<GearboxBE>
 				stack.translate(0, 0, 0.3);
 			else
 				stack.translate(0, 0, -0.3);
-			stack.mulPose(BERUtils.quatFromAngleAxis(dir * 22.5f - dir * be.getRenderOutRot(delta), axis.choose(1, 0, 0), axis.choose(0, 1, 0),
+			stack.mulPose(BERUtils.quatFromAngleAxis(dir * 22.5f - be.getRenderOutRot(delta), axis.choose(1, 0, 0), axis.choose(0, 1, 0),
 					axis.choose(0, 0, 1)));
 			stack.scale((float) axis.choose(0.9, 0.5, 0.5), (float) axis.choose(0.5, 0.9, 0.5), (float) axis.choose(0.5, 0.5, 0.9));
 			blockRenderer.renderBatched(shaft, be.getBlockPos(), be.getLevel(), stack, bufferSource.getBuffer(RenderType.SOLID), false, RandomSource.create(42));

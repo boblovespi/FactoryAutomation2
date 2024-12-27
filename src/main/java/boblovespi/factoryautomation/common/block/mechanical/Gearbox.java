@@ -12,6 +12,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -23,11 +24,26 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class Gearbox extends Block implements EntityBlock
 {
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
+	public static final VoxelShape BASE_BOX = Block.box(0, 0, 0, 16, 2, 16);
+	public static final VoxelShape Z_BOX = Block.box(4, 2, 0, 12, 14, 16);
+	public static final VoxelShape X_BOX = Block.box(0, 2, 4, 16, 14, 12);
+	public static final VoxelShape Y_BOX = Block.box(4, 0, 2, 12, 16, 14);
+	private static final VoxelShape[] COLLISON_BOXES = new VoxelShape[] {
+			Shapes.or(Block.box(0, 0, 14, 16, 16, 16), Y_BOX, Block.box(2, 14, 0, 14, 16, 16)),
+			Shapes.or(Block.box(0, 0, 0, 16, 16, 2), Y_BOX, Block.box(2, 0, 0, 14, 2, 16)),
+			Shapes.or(Gearbox.BASE_BOX, Z_BOX, Block.box(2, 0, 14, 14, 16, 16)),
+			Shapes.or(Gearbox.BASE_BOX, Z_BOX, Block.box(2, 0, 0, 14, 16, 2)),
+			Shapes.or(Gearbox.BASE_BOX, X_BOX, Block.box(14, 0, 2, 16, 16, 14)),
+			Shapes.or(Gearbox.BASE_BOX, X_BOX, Block.box(0, 0, 2, 2, 16, 14)),
+	};
 
 	public Gearbox(Properties p)
 	{
@@ -35,9 +51,21 @@ public class Gearbox extends Block implements EntityBlock
 	}
 
 	@Override
+	protected boolean useShapeForLightOcclusion(BlockState pState)
+	{
+		return true;
+	}
+
+	@Override
 	public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState)
 	{
 		return new GearboxBE(pPos, pState);
+	}
+
+	@Override
+	protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
+	{
+		return COLLISON_BOXES[pState.getValue(FACING).ordinal()];
 	}
 
 	@Override
