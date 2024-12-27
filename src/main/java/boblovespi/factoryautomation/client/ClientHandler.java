@@ -42,6 +42,7 @@ public class ClientHandler
 		event.registerBlockEntityRenderer(FABETypes.STONE_CRUCIBLE_TYPE.get(), StoneCrucibleBER::new);
 		// event.registerBlockEntityRenderer(FABETypes.BRICK_MAKER_FRAME_TYPE.get(), BrickMakerFrameBER::new);
 		event.registerBlockEntityRenderer(FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBER::new);
+		event.registerBlockEntityRenderer(FABETypes.GEARBOX_TYPE.get(), GearboxBER::new);
 		event.registerBlockEntityRenderer(FABETypes.MILLSTONE_TYPE.get(), MillstoneBER::new);
 		event.registerBlockEntityRenderer(FABETypes.HANDCRANK_TYPE.get(), HandCrankBER::new);
 	}

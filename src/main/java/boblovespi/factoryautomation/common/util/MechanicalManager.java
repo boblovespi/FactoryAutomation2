@@ -34,6 +34,11 @@ public class MechanicalManager implements IMechanicalOutput, IMechanicalInput
 		return torqueTransformer.apply(torque);
 	}
 
+	public float getInputSpeed()
+	{
+		return speed;
+	}
+
 	public void save(CompoundTag tag)
 	{
 		var nbt = new CompoundTag();

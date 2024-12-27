@@ -31,6 +31,8 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 	private GearMaterial inputGear;
 	private GearMaterial outputGear;
 	private int counter;
+	private float inRot;
+	private float outRot;
 
 	public GearboxBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -88,7 +90,10 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 	@Override
 	public void clientTick()
 	{
-
+		inRot += (float) (Math.toDegrees(manager.getInputSpeed()) / 20);
+		inRot %= 360;
+		outRot += (float) (Math.toDegrees(manager.getSpeed()) / 20);
+		outRot %= 360;
 	}
 
 	@Override
@@ -175,5 +180,47 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 	public IMechanicalInput input(Direction direction)
 	{
 		return direction.getOpposite() == getBlockState().getValue(Gearbox.FACING) ? manager : null;
+	}
+
+	public ItemStack getInputGear()
+	{
+		if (level.isClientSide)
+			return inputStack;
+		return ItemStack.EMPTY;
+	}
+
+	public ItemStack getOutputGear()
+	{
+		if (level.isClientSide)
+			return outputStack;
+		return ItemStack.EMPTY;
+	}
+
+	public float getInputScale()
+	{
+		if (level.isClientSide)
+			return inputGear == GearMaterial.NONE ? 1 : inputGear.getScaleFactor() / (inputGear.getScaleFactor() + outputGear.getScaleFactor());
+		return 1;
+	}
+
+	public float getOutputScale()
+	{
+		if (level.isClientSide)
+			return outputGear == GearMaterial.NONE ? 1 : outputGear.getScaleFactor() / (inputGear.getScaleFactor() + outputGear.getScaleFactor());
+		return 1;
+	}
+
+	public float getRenderInRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return (inRot + delta * (float) (Math.toDegrees(manager.getInputSpeed()) / 20)) % 360;
+	}
+
+	public float getRenderOutRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return (outRot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360;
 	}
 }
