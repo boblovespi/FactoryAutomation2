@@ -9,12 +9,14 @@ import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.WaterloggedTransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -137,7 +139,16 @@ public class FABlockStateProvider extends BlockStateProvider
 	private void directionalBlock(DeferredBlock<? extends Block> block, ResourceLocation base, ResourceLocation side, ResourceLocation front, ResourceLocation back)
 	{
 		var model = models().withExistingParent(block.getRegisteredName(), base).texture("side", side).texture("front", front).texture("back", back);
-		directionalBlock(block.get(), model);
+		// directionalBlock(block.get(), model);
+		getVariantBuilder(block.get())
+				.forAllStates(state -> {
+					var dir = state.getValue(BlockStateProperties.FACING);
+					return ConfiguredModel.builder()
+										  .modelFile(model)
+										  .rotationX(dir == Direction.DOWN ? 90 : dir.getAxis().isHorizontal() ? 0 : -90)
+										  .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + 180) % 360)
+										  .build();
+				});
 		simpleBlockItem(block.get(), model);
 	}
 
