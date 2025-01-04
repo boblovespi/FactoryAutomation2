@@ -1,6 +1,6 @@
 {
 	"name": "Limonite",
-	"icon": "factoryautomation:limonite_chunk",
+	"icon": "factoryautomation:raw_limonite",
 	"category": "factoryautomation:age1",
 	"sortnum": 5,
 	"pages": [
@@ -11,7 +11,7 @@
 		},
 		{
 			"type": "spotlight",
-			"item": "factoryautomation:limonite_ore_rich",
+			"item": "factoryautomation:rich_limonite_ore",
 			"text": "Limonite can only be found in one place: the swamp. If you haven't found a swamp, you might need to start looking. Though limonite is scarce, other sources of iron are even scarcer.",
 			"title": "The Hunt Begins!"
 		},

@@ -1,6 +1,6 @@
 {
 	"name": "Better Casting II",
-	"icon": "factoryautomation:brick_casting_vessel",
+	"icon": "factoryautomation:bushing",
 	"category": "factoryautomation:age2",
 	"sortnum": 1,
 	"pages": [
@@ -11,7 +11,7 @@
 		},
 		{
 			"type": "spotlight",
-			"item": "factoryautomation:brick_casting_vessel",
+			"item": "factoryautomation:bushing",
 			"link_recipe": "true",
 			"text": "The brick casting vessel is crafted in the workbench; use JEI to view the recipe. It takes 2 $(item)iron sheets$(), 2 $(item)bricks$(), and 3 $(item)brick slabs$(). It also requires a hammer of copper or better.",
 			"title": "Crafting the Vessel"

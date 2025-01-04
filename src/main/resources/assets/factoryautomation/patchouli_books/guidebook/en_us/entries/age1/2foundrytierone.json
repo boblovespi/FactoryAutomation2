@@ -28,7 +28,7 @@
 			"title": "The Good Ol'"
 		},
 		{
-			"type": "multiblock",
+			"type": "text",
 			"name": "Foundry Tier I",
 			"multiblock_id": "factoryautomation:stone_foundry",
 			"text": "Use the book to visualise how to build the foundry, and then you can go smelt your ores."

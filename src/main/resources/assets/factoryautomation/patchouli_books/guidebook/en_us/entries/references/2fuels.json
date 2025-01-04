@@ -27,7 +27,7 @@
 			"type": "spotlight",
 			"anchor": "coal_coke",
 			"title": "Coal Coke",
-			"item": "factoryautomation:coal_coke",
+			"item": "factoryautomation:bushing",
 			"text": "Properties of coal coke:$(br)$(li)Maximum temperature of 2400 \u00B0C$(li)Burns for 2000 ticks (100 seconds)$(li)Total energy of 7,300 MJ"
 		}
 	]
