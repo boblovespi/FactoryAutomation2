@@ -1,6 +1,6 @@
 {
 	"name": "Smelting Metals II",
-	"icon": "factoryautomation:ingot_tin",
+	"icon": "factoryautomation:tin_ingot",
 	"category": "factoryautomation:age1",
 	"sortnum": 3,
 	"pages": [
@@ -11,7 +11,7 @@
 		},
 		{
 			"type": "crafting",
-			"recipe": "factoryautomation:crafting_recipes/green_sand",
+			"recipe": "factoryautomation:green_sand",
 			"text": "To craft green sand, you will need some clay balls and sand. After you have the green sand, right click with it on the casting vessel. This should place the green sand in the casting vessel. After that's done, get yourself a regular stick, and right click with it on the vessel to open the menu where you can select what pattern should be casted.",
 			"title": "Stone Crucible"
 		},

@@ -11,7 +11,7 @@
 		},
 		{
 			"type": "crafting",
-			"recipe": "factoryautomation:crafting_recipes/chopping_blade",
+			"recipe": "factoryautomation:chopping_blade",
 			"text": "Next, organize them in the pattern above in your crafting inventory and you have your first tool! You can finally chop down some trees using this. $(br)$(o)You really tried it with your hands, huh?"
 		}
 	]

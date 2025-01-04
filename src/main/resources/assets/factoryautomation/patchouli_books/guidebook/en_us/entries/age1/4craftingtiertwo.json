@@ -11,7 +11,7 @@
 		},
 		{
 			"type": "crafting",
-			"recipe": "factoryautomation:crafting_recipes/stone_workbench",
+			"recipe": "factoryautomation:stone_workbench",
 			"text": "The recipe shows many possible ingots to use, but you will probably use either tin or copper. To look up recipes in this workbench, use JEI, because this book is incapable of displaying them properly.",
 			"title": "Stone Workbench"
 		},

@@ -6,7 +6,7 @@
 	"pages": [
 		{
 			"type": "spotlight",
-			"item": "factoryautomation:ore_metal_tin",
+			"item": "factoryautomation:cassiterite_ore",
 			"text": "Welcome to the Age of Metals! Well, don't expect anything too fancy yet, because you can only start with copper, and maybe some tin.",
 			"title": "Mining Ores"
 		},

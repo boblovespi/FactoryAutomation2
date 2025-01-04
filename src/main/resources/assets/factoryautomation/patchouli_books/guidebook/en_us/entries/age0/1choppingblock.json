@@ -11,7 +11,7 @@
 		},
 		{
 			"type": "spotlight",
-			"item": "factoryautomation:wood_chopping_block_oak",
+			"item": "factoryautomation:oak_chopping_block",
 			"text": "To get your wood planks, right click the chopping block with wood logs in your hand, and then grab your chopping blade and start chopping with left click until it turns into planks. There are other things you can make with this method: You can turn planks into sticks; grass into plant fiber.",
 			"title": "The Chopping Block"
 		},

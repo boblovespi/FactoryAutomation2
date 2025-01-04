@@ -11,7 +11,7 @@
 		},
 		{
 			"type": "crafting",
-			"recipe": "factoryautomation:crafting_recipes/flint_pickaxe",
+			"recipe": "factoryautomation:flint_pickaxe",
 			"text": "Get 3 pieces of flint, 2 sticks, and 2 plant fiber, put them into your crafting grid as shown above, and now you have a pickaxe strong enough to mine stone."
 		}
 	]

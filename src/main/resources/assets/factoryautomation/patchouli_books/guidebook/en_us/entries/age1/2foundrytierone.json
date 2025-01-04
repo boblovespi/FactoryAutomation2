@@ -11,13 +11,13 @@
 		},
 		{
 			"type": "crafting",
-			"recipe": "factoryautomation:crafting_recipes/stone_crucible",
+			"recipe": "factoryautomation:stone_crucible",
 			"text": "The first piece of the foundry is a stone crucible, which will hold all the molten metal in the structure.",
 			"title": "Stone Crucible"
 		},
 		{
 			"type": "crafting",
-			"recipe": "factoryautomation:crafting_recipes/stone_casting_vessel",
+			"recipe": "factoryautomation:stone_casting_vessel",
 			"text": "The second piece is the stone casting vessel, which will be used as a container to cast the metal into.",
 			"title": "Stone Casting Vessel"
 		},

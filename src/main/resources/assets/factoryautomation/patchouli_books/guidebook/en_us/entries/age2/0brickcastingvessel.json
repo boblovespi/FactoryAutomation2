@@ -18,13 +18,13 @@
 		},
 		{
 			"type": "crafting",
-			"recipe": "factoryautomation:crafting_recipes/pig_tallow/ingot",
+			"recipe": "factoryautomation:pig_tallow_ingot",
 			"text": "Pig tallow needs to be shaped into the forms you want, as the first step in lost wax casting. Unlike green sand molds, you can make molds for whole blocks of metals! Craft pig tallow cubes if you want block molds.",
 			"title": "Shaping Tallow"
 		},
 		{
 			"type": "crafting",
-			"recipe": "factoryautomation:crafting_recipes/tallow_to_mold/ingot",
+			"recipe": "factoryautomation:tallow_mold_ingot",
 			"text": "Next, surround your formed pig tallow with clay, in preparation to be fired.",
 			"title": "Forming Molds"
 		},
