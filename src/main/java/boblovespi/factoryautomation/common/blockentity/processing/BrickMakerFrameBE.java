@@ -6,17 +6,22 @@ import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.recipe.BrickDryingRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
+import boblovespi.factoryautomation.common.util.Codecs;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -26,6 +31,7 @@ import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Optional;
 
 public class BrickMakerFrameBE extends FABE implements ITickable
@@ -144,6 +150,9 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 			return;
 		if (level.getRecipeManager().getRecipeFor(RecipeThings.BRICK_DRYING_TYPE.get(), new BrickDryingRecipe.Input(stack), level).isEmpty())
 			return;
+		if (stack.getItem() instanceof BlockItem block)
+			level.playSound(null, worldPosition, block.getBlock().getSoundType(block.getBlock().defaultBlockState(), level, worldPosition, null).getPlaceSound(),
+					SoundSource.BLOCKS);
 		inv.insertItem(slot, stack.split(1), false);
 		(slot == 0 ? left : right).updateRecipe();
 		setChangedAndUpdateClient();
@@ -182,5 +191,18 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 	private Optional<RecipeHolder<?>> getRecipe(ResourceLocation k)
 	{
 		return level.getRecipeManager().byKey(k);
+	}
+
+	public List<ItemStack> makeViewStacks()
+	{
+		var lStack = inv.getStackInSlot(0).copy();
+		var rStack = inv.getStackInSlot(1).copy();
+		if (!left.isComplete())
+			lStack.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, t -> t.update(NbtOps.INSTANCE, Codecs.JADE_COOKING, left.getProgress()).getOrThrow());
+		if (!right.isComplete())
+			rStack.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, t -> t.update(NbtOps.INSTANCE, Codecs.JADE_COOKING, right.getProgress()).getOrThrow());
+		if (lStack.isEmpty())
+			return rStack.isEmpty() ? List.of() : List.of(rStack);
+		return rStack.isEmpty() ? List.of(lStack) : List.of(lStack, rStack);
 	}
 }

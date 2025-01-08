@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
+public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRecipeManagerView
 {
 	private static final ResourceLocation NO_RECIPE = ResourceLocation.fromNamespaceAndPath("not_valid", "none");
 	private final String nbtId;
@@ -20,6 +20,13 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 	@Nullable
 	private RecipeHolder<R> currentRecipe;
 	private ResourceLocation currentRecipeName;
+
+	@Override
+	public int getProgress()
+	{
+		return progress;
+	}
+
 	private int progress;
 
 	public RecipeManager(String nbtId, Validifier<RecipeHolder<R>> validifier, RecipeMatcher<RecipeHolder<R>> recipeMatcher, RecipeGrabber<Optional<RecipeHolder<?>>> recipeGrabber)
@@ -57,6 +64,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 			progress -= i;
 	}
 
+	@Override
 	public boolean isComplete()
 	{
 		return currentRecipe != null && progress <= 0;
@@ -96,6 +104,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe>
 		progress = 0;
 	}
 
+	@Override
 	public boolean hasRecipe()
 	{
 		return currentRecipe != null;
