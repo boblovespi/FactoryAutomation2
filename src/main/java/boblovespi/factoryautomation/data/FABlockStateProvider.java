@@ -45,6 +45,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		blockWithItem(FABlocks.RAW_LIMONITE_BLOCK);
 		simpleBlock(FABlocks.CHARCOAL_PILE.get());
 		simpleBlock(FABlocks.IRON_BLOOM.get());
+		blockWithItem(FABlocks.DRIED_BRICKS);
 		simpleBlock(FABlocks.TIN_BLOCK.get());
 		simpleBlock(FABlocks.BRONZE_BLOCK.get());
 		simpleBlock(FABlocks.STEEL_BLOCK.get());

@@ -25,6 +25,7 @@
 	"block.factoryautomation.green_sand": "Green Sand",
 	"block.factoryautomation.charcoal_pile": "Charcoal Pile",
 	"block.factoryautomation.iron_bloom": "Iron Bloom",
+	"block.factoryautomation.dried_bricks": "Dried Bricks",
 	
 	"block.factoryautomation.tin_block": "Block of Tin",
 	"block.factoryautomation.bronze_block": "Block of Bronze",
@@ -126,6 +127,7 @@
 	"item.factoryautomation.calcite_dust": "Calcite Dust",
 	"item.factoryautomation.quicklime": "Quicklime",
 	"item.factoryautomation.mud_brick": "Mud Brick",
+	"item.factoryautomation.dried_brick": "Dried Brick",
 	
 	// Items - Intermediate
 	

@@ -69,6 +69,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 						.apply(ApplyBonusCount.addUniformBonusCount(fortune))).withPool(
 				LootPool.lootPool().add(LootItem.lootTableItem(FAItems.SLAG))
 						.apply(ApplyBonusCount.addUniformBonusCount(fortune))));
+		dropSelf(FABlocks.DRIED_BRICKS.get());
 		dropSelf(FABlocks.TIN_BLOCK.get());
 		dropSelf(FABlocks.BRONZE_BLOCK.get());
 		dropSelf(FABlocks.STEEL_BLOCK.get());

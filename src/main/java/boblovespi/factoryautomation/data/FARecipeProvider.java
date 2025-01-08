@@ -59,6 +59,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_clay", has(Blocks.CLAY))
 						   .save(output);
 		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, Blocks.MUD_BRICKS, FAItems.MUD_BRICK);
+		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, FABlocks.DRIED_BRICKS, FAItems.DRIED_BRICK);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.INGOT))
 						   .pattern("nnn")
@@ -321,8 +322,10 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output, FactoryAutomation.name("chopping_block/sticks"));
 
 		BrickDryingRecipe.of(Blocks.DIRT).input(Blocks.MUD).time(20 * 5).blocks(Blocks.MUD, Blocks.DIRT).unlockedBy("has_mud", has(Blocks.MUD)).save(output);
-		BrickDryingRecipe.of(FAItems.MUD_BRICK).input(Blocks.PACKED_MUD).time(20 * 60 * 3).blocks(Blocks.PACKED_MUD, Blocks.MUD_BRICKS)
+		BrickDryingRecipe.of(FAItems.MUD_BRICK).input(Blocks.PACKED_MUD).time(20 * 60 * 8).blocks(Blocks.PACKED_MUD, Blocks.MUD_BRICKS)
 						 .unlockedBy("has_packed_mud", has(Blocks.PACKED_MUD)).save(output);
+		BrickDryingRecipe.of(FAItems.DRIED_BRICK).input(Items.CLAY_BALL).time(20 * 60 * 3).blocks(Blocks.CLAY, FABlocks.DRIED_BRICKS.get())
+						 .unlockedBy("has_clay_ball", has(Items.CLAY_BALL)).save(output);
 
 		// Millstone
 
