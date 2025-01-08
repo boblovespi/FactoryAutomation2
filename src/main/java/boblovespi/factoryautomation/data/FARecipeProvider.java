@@ -58,6 +58,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('s', Tags.Items.SANDS_COLORLESS)
 						   .unlockedBy("has_clay", has(Blocks.CLAY))
 						   .save(output);
+		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, Blocks.MUD_BRICKS, FAItems.MUD_BRICK);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.INGOT))
 						   .pattern("nnn")
@@ -320,6 +321,8 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output, FactoryAutomation.name("chopping_block/sticks"));
 
 		BrickDryingRecipe.of(Blocks.DIRT).input(Blocks.MUD).time(20 * 5).blocks(Blocks.MUD, Blocks.DIRT).unlockedBy("has_mud", has(Blocks.MUD)).save(output);
+		BrickDryingRecipe.of(FAItems.MUD_BRICK).input(Blocks.PACKED_MUD).time(20 * 60 * 3).blocks(Blocks.PACKED_MUD, Blocks.MUD_BRICKS)
+						 .unlockedBy("has_packed_mud", has(Blocks.PACKED_MUD)).save(output);
 
 		// Millstone
 
@@ -385,6 +388,7 @@ public class FARecipeProvider extends RecipeProvider
 		RemovalRecipe.unitFor(Items.WOODEN_AXE).save(output);
 		RemovalRecipe.unitFor(Items.WOODEN_HOE).save(output);
 		RemovalRecipe.unitFor(Items.WOODEN_SWORD).save(output);
+		// RemovalRecipe.unitFor(Blocks.MUD_BRICKS).save(output);
 
 		// Smelting
 		VanillaRecipeProvider.COAL_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.COAL).forSmelting(output, i));
