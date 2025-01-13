@@ -42,7 +42,7 @@ public class LogPileFiringRecipe extends SimpleRecipe<LogPileFiringRecipe.Input,
 	}
 
 	@Override
-	protected Data getData()
+	public Data getData()
 	{
 		return data;
 	}
