@@ -327,6 +327,11 @@ public class FARecipeProvider extends RecipeProvider
 		BrickDryingRecipe.of(FAItems.DRIED_BRICK).input(Items.CLAY_BALL).time(20 * 60 * 3).blocks(Blocks.CLAY, FABlocks.DRIED_BRICKS.get())
 						 .unlockedBy("has_clay_ball", has(Items.CLAY_BALL)).save(output);
 
+		// Log pile firing
+
+		LogPileFiringRecipe.of(Blocks.BRICKS).input(FABlocks.DRIED_BRICKS).beginData().logPileLike(FABlocks.LOG_PILE.get()).endData()
+						   .unlockedBy("has_dried_bricks", has(FAItems.DRIED_BRICKS)).save(output);
+
 		// Millstone
 
 		MillstoneRecipe.of(new ItemStack(Items.BONE_MEAL, 4)).input(Tags.Items.BONES).progress(30).beginData().speed(1).torque(5).endData()

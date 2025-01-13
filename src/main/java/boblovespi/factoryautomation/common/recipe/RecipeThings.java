@@ -29,4 +29,8 @@ public class RecipeThings
 	public static final Supplier<RecipeType<MillstoneRecipe>> MILLSTONE_TYPE = RECIPE_TYPES.register("millstone", () -> RecipeType.simple(FactoryAutomation.name("millstone")));
 	public static final Supplier<RecipeSerializer<MillstoneRecipe>> MILLSTONE_SERIALIZER = RECIPE_SERIALIZERS.register("millstone",
 			() -> new SimpleRecipe.Serializer<>(MillstoneRecipe::new, TorqueSpeedData.CODEC, TorqueSpeedData.STREAM_CODEC));
+	public static final Supplier<RecipeType<LogPileFiringRecipe>> LOG_PILE_FIRING_TYPE = RECIPE_TYPES.register("log_pile_firing",
+			() -> RecipeType.simple(FactoryAutomation.name("log_pile_firing")));
+	public static final Supplier<RecipeSerializer<LogPileFiringRecipe>> LOG_PILE_FIRING_SERIALIZER = RECIPE_SERIALIZERS.register("log_pile_firing",
+			() -> new SimpleRecipe.Serializer<>(LogPileFiringRecipe::new, LogPileFiringRecipe.DATA_CODEC, LogPileFiringRecipe.DATA_STREAM_CODEC));
 }

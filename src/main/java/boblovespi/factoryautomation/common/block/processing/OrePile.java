@@ -12,7 +12,7 @@ public class OrePile extends LogPileLike
 
 	public OrePile(Properties properties, int processTime, BlockState state)
 	{
-		super(properties, processTime);
+		super(properties, processTime, false);
 		this.state = state;
 	}
 
