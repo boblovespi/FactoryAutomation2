@@ -15,6 +15,7 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+@SuppressWarnings("unused")
 @EventBusSubscriber(modid = FactoryAutomation.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class CreativeTabs
 {
@@ -85,6 +86,7 @@ public class CreativeTabs
 						o.accept(FAItems.STONE_WORKBENCH);
 						o.accept(FAItems.BRICK_MAKER_FRAME);
 						o.accept(FAItems.BRICK_CRUCIBLE);
+						o.accept(FAItems.BRICK_FIREBOX);
 						o.accept(FAItems.MILLSTONE);
 					}).build());
 
