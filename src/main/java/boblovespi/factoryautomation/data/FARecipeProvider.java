@@ -60,6 +60,12 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output);
 		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, Blocks.MUD_BRICKS, FAItems.MUD_BRICK);
 		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, FABlocks.DRIED_BRICKS, FAItems.DRIED_BRICK);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.BRICK, 4)
+						   .pattern("b")
+						   .define('b', Items.BRICKS)
+						   .group("brick")
+						   .unlockedBy("has_bricks", has(Items.BRICKS))
+						   .save(output, FactoryAutomation.name("bricks_to_brick"));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.PIG_TALLOW_FORMS.get(Form.INGOT))
 						   .pattern("nnn")
