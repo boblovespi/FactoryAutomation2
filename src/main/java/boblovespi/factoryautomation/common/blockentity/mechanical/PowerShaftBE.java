@@ -28,6 +28,8 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	private IPowerChainElement source;
 	@Nullable
 	private BlockPos sourcePos;
+	private final float maxSpeed;
+	private final float maxTorque;
 
 	public PowerShaftBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -36,11 +38,20 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 		inputSide = null;
 		source = null;
 		sourcePos = null;
+		if (pBlockState.getBlock() instanceof PowerShaft ps)
+		{
+			maxSpeed = ps.maxSpeed;
+			maxTorque = ps.maxTorque;
+		}
+		else
+			throw new RuntimeException("Power shaft block entities must be for power shaft block?!?!?");
 	}
 
 	public void updateInputs()
 	{
 		setChangedAndUpdateClient();
+		if (manager.getSpeed() > maxSpeed || manager.getTorque() > maxTorque)
+			level.destroyBlock(worldPosition, true);
 		if (inputSide != null)
 		{
 			var be = level.getBlockEntity(worldPosition.relative(inputSide.getOpposite()));
