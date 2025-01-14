@@ -1,11 +1,14 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.processing.BrickCrucible;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.menu.StoneFoundryMenu;
+import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
+import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -21,8 +24,9 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.Objects;
 
-public class BrickCrucibleBE extends FABE implements ITickable, IMenuProviderProvider
+public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, IMenuProviderProvider
 {
+	private boolean breaking;
 	private final CrucibleManager crucible;
 	private final BurnerManager burner;
 	private final HeatManager heat;
@@ -92,7 +96,11 @@ public class BrickCrucibleBE extends FABE implements ITickable, IMenuProviderPro
 	@Override
 	public void onDestroy()
 	{
-
+		if (getBlockState().getValue(BrickCrucible.MULTIBLOCK_COMPLETE))
+		{
+			breaking = true;
+			Multiblocks.BRICK_CRUCIBLE.destroy(level, worldPosition, getBlockState().getValue(BrickCrucible.FACING));
+		}
 	}
 
 	public void pour(ICastingVessel castingVessel)
@@ -163,6 +171,19 @@ public class BrickCrucibleBE extends FABE implements ITickable, IMenuProviderPro
 			FactoryAutomation.LOGGER.error("Stack has no fuel data!");
 		}
 		return Objects.requireNonNullElse(stack.getItemHolder().getData(FuelInfo.FUEL_DATA), new FuelInfo(0, 0, 0));
+	}
+
+	@Override
+	public void onMultiblockBuilt()
+	{
+
+	}
+
+	@Override
+	public void onMultiblockDestroyed()
+	{
+		if (!breaking)
+			level.setBlock(worldPosition, getBlockState().setValue(BrickCrucible.MULTIBLOCK_COMPLETE, false), 2);
 	}
 
 	private class Data implements ContainerData
