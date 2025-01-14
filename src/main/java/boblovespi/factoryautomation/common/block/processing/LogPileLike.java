@@ -85,9 +85,9 @@ public abstract class LogPileLike extends Block
 					}
 				});
 			}
-			level.setBlockAndUpdate(pos, getResultState());
-			// TODO: add map for various firing conversions, add logic for various firing conversions
 		}
+		if (activated)
+			level.setBlockAndUpdate(pos, getResultState());
 	}
 
 	private boolean isSurrounded(ServerLevel level, BlockPos pos, Block target, Block output)
