@@ -52,9 +52,10 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.BRONZE_BLOCK.get(), FABlocks.BRONZE_PLATE_BLOCK.get())
 											.add(FABlocks.COPPER_SPACE_FRAME.get(), FABlocks.TIN_SPACE_FRAME.get(), FABlocks.IRON_SPACE_FRAME.get(), FABlocks.BRONZE_SPACE_FRAME.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
-											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get(), FABlocks.IRON_BLOOM.get());
+											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get(), FABlocks.IRON_BLOOM.get())
+											.remove(BlockTags.NEEDS_IRON_TOOL);
 		tag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL).remove(FATags.Blocks.NEEDS_COPPER_TOOL);
-		tag(BlockTags.NEEDS_STONE_TOOL).add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get());
+		tag(BlockTags.NEEDS_STONE_TOOL).add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get()).remove(FATags.Blocks.NEEDS_COPPER_TOOL).remove(BlockTags.NEEDS_IRON_TOOL);
 		tag(BlockTags.INCORRECT_FOR_STONE_TOOL).addTag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).remove(BlockTags.NEEDS_STONE_TOOL);
 		tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).addTags(FATags.Blocks.NEEDS_STEEL_TOOL, BlockTags.NEEDS_DIAMOND_TOOL, FATags.Blocks.NEEDS_BRONZE_TOOL, BlockTags.NEEDS_IRON_TOOL,
 				FATags.Blocks.NEEDS_COPPER_TOOL, BlockTags.NEEDS_STONE_TOOL);
