@@ -74,9 +74,9 @@ public class FABlocks
 	public static final DeferredBlock<StoneCastingVessel> STONE_CASTING_VESSEL = register("stone_casting_vessel", StoneCastingVessel::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<StoneWorkbench> STONE_WORKBENCH = register("stone_workbench", StoneWorkbench::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<BrickMakerFrame> BRICK_MAKER_FRAME = register("brick_maker_frame", BrickMakerFrame::new, BlockProperties.WOOD_MACHINE);
-	public static final DeferredBlock<BrickCrucible> BRICK_CRUCIBLE = register("brick_crucible", BrickCrucible::new, BlockProperties.COBBLESTONE_MACHINE);
-	public static final DeferredBlock<Millstone> MILLSTONE = register("millstone", Millstone::new, BlockProperties.COBBLESTONE_MACHINE);
+	public static final DeferredBlock<BrickCrucible> BRICK_CRUCIBLE = register("brick_crucible", BrickCrucible::new, BlockProperties.BRICK_MACHINE);
 	public static final DeferredBlock<BrickFirebox> BRICK_FIREBOX = register("brick_firebox", BrickFirebox::new, BlockProperties.BRICK_MACHINE);
+	public static final DeferredBlock<Millstone> MILLSTONE = register("millstone", Millstone::new, BlockProperties.COBBLESTONE_MACHINE);
 
 	// Mechanical
 

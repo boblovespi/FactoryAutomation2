@@ -266,6 +266,26 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_string", has(Tags.Items.STRINGS))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.BRICK_CRUCIBLE)
+							  .pattern("i i")
+							  .pattern("b b")
+							  .pattern("bbb")
+							  .define('b', Items.BRICKS)
+							  .define('i', FATags.Items.IRON_ROD)
+							  .tool("hammer", 1, 15)
+							  .unlockedBy("has_bricks", has(Items.BRICKS))
+							  .save(output);
+
+		WorkbenchRecipeBuilder.of(FAItems.BRICK_FIREBOX)
+							  .pattern("bbb")
+							  .pattern("i i")
+							  .pattern("bbb")
+							  .define('b', Items.BRICKS)
+							  .define('i', FATags.Items.IRON_SHEET)
+							  .tool("hammer", 1, 15)
+							  .unlockedBy("has_bricks", has(Items.BRICKS))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.WOOD_POWER_SHAFT)
 							  .pattern("srs")
 							  .define('s', ItemTags.PLANKS)
