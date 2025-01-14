@@ -195,6 +195,8 @@
 	"jei.factoryautomation.millstone.name": "Millstone Grinding",
 	"jei.factoryautomation.log_pile_firing.name": "In-World Firing",
 	
+	"jei.factoryautomation.misc.any_solid": "Any block with a solid face",
+	
 	// Jade handlers
 	
 	"config.jade.plugin_factoryautomation.stone_casting_vessel": "Stone Casting Vessel",
