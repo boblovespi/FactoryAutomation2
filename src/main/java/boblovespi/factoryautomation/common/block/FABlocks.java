@@ -63,6 +63,10 @@ public class FABlocks
 	public static final DeferredBlock<WaterloggedTransparentBlock> STEEL_SPACE_FRAME = register("steel_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.TERRACOTTA_CYAN)));
 	public static final DeferredBlock<WaterloggedTransparentBlock> IRON_SPACE_FRAME = register("iron_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.METAL)));
 
+	// Building blocks
+
+	public static final DeferredBlock<Block> BRICK_TILES = register("brick_tiles", Block::new, BlockProperties.BRICKS);
+
 	// Processing
 
 	public static final Map<WoodTypes, DeferredBlock<ChoppingBlock>> CHOPPING_BLOCKS = Arrays.stream(WoodTypes.values()).collect(

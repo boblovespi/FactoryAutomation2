@@ -61,6 +61,10 @@ public class FAItems
 	public static final DeferredItem<Item> DRIED_BRICK = ITEMS.registerSimpleItem("dried_brick");
 	public static final DeferredItem<BlockItem> DRIED_BRICKS = ITEMS.registerSimpleBlockItem(FABlocks.DRIED_BRICKS);
 
+	// Building blocks
+
+	public static final DeferredItem<BlockItem> BRICK_TILES = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_TILES);
+
 	// Intermediate products
 
 	public static final DeferredItem<Item> SCREW = ITEMS.registerSimpleItem("screw");

@@ -26,6 +26,8 @@ public class BlockProperties
 	public static final BlockBehaviour.Properties CHARCOAL_PILE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.GRAVEL).strength(0.5f)
 																						   .requiresCorrectToolForDrops();
 	public static final BlockBehaviour.Properties DRIED_BRICKS = BlockBehaviour.Properties.of().strength(1 ,3).sound(SoundType.PACKED_MUD).mapColor(MapColor.TERRACOTTA_ORANGE);
+	public static final BlockBehaviour.Properties BRICKS = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).instrument(NoteBlockInstrument.BASEDRUM)
+																					.requiresCorrectToolForDrops().strength(2, 6);
 
 	public static final BlockBehaviour.Properties COBBLESTONE_MACHINE = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM)
 																								 .requiresCorrectToolForDrops().strength(3.5F);
