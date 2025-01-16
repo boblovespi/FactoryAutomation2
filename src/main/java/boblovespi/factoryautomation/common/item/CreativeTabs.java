@@ -73,6 +73,8 @@ public class CreativeTabs
 					{
 						o.accept(FAItems.SCREW);
 						o.accept(FAItems.BUSHING);
+						o.accept(FAItems.IRON_RAIL);
+						o.accept(FAItems.GOLD_RAIL);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PROCESSING = CREATIVE_MODE_TABS.register("processing",
