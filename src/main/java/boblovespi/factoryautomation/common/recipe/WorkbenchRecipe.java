@@ -72,7 +72,7 @@ public class WorkbenchRecipe implements Recipe<WorkbenchRecipeInput>, IProgressR
 			for (ItemStack stack : input.parts())
 			{
 				var data = stack.getItemHolder().getData(Workbench.PART_DATA);
-				if (data != null && data.name().equals(part.getKey()) && data.tier() >= part.getValue().tier)
+				if (data != null && data.name().equals(part.getKey()) && data.tier() >= part.getValue().tier && stack.getCount() >= part.getValue().usage)
 				{
 					present = true;
 					break;
@@ -88,7 +88,8 @@ public class WorkbenchRecipe implements Recipe<WorkbenchRecipeInput>, IProgressR
 			for (ItemStack stack : input.tools())
 			{
 				var data = stack.getItemHolder().getData(Workbench.TOOL_DATA);
-				if (data != null && data.name().equals(tool.getKey()) && data.tier() >= tool.getValue().tier)
+				if (data != null && data.name().equals(tool.getKey()) && data.tier() >= tool.getValue().tier &&
+					stack.getMaxDamage() - stack.getDamageValue() >= tool.getValue().usage)
 				{
 					present = true;
 					break;
