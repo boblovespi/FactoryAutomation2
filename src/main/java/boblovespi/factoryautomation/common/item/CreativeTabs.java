@@ -101,6 +101,7 @@ public class CreativeTabs
 						o.accept(FAItems.CREATIVE_MECHANICAL_SOURCE);
 						o.accept(FAItems.WOOD_POWER_SHAFT);
 						o.accept(FAItems.WOOD_GEARBOX);
+						o.accept(FAItems.IRON_GEARBOX);
 					}).build());
 
 

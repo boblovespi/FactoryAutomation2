@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
 public class GearboxBE extends FABE implements ITickable, IClientTickable
 {
 	private final MechanicalManager manager;
+	private final float damageChance;
 	private ItemStack inputStack;
 	private ItemStack outputStack;
 	private GearMaterial inputGear;
@@ -42,6 +43,10 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 		outputStack = ItemStack.EMPTY;
 		inputGear = GearMaterial.NONE;
 		outputGear = GearMaterial.NONE;
+		if (pBlockState.getBlock() instanceof Gearbox gearbox)
+			damageChance = gearbox.damageChance;
+		else
+			throw new RuntimeException("Gearbox block entities must be for gearbox block?!?!?");
 	}
 
 	@Override
@@ -105,8 +110,11 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 			if (counter >= 100)
 			{
 				counter = 0;
-				inputStack.hurtAndBreak(1, (ServerLevel) level, null, u -> inputGear = GearMaterial.NONE);
-				outputStack.hurtAndBreak(1, (ServerLevel) level, null, u -> outputGear = GearMaterial.NONE);
+				if (damageChance >= 0.999 || level.random.nextFloat() <= damageChance)
+				{
+					inputStack.hurtAndBreak(1, (ServerLevel) level, null, u -> inputGear = GearMaterial.NONE);
+					outputStack.hurtAndBreak(1, (ServerLevel) level, null, u -> outputGear = GearMaterial.NONE);
+				}
 				updateInputs();
 			}
 		}

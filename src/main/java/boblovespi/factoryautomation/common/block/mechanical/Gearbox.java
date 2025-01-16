@@ -45,9 +45,12 @@ public class Gearbox extends Block implements EntityBlock
 			Shapes.or(Gearbox.BASE_BOX, X_BOX, Block.box(0, 0, 2, 2, 16, 14)),
 	};
 
-	public Gearbox(Properties p)
+	public final float damageChance;
+
+	public Gearbox(Properties p, float damageChance)
 	{
 		super(p);
+		this.damageChance = damageChance;
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<PowerShaftBE>> POWER_SHAFT_TYPE = type("power_shaft", PowerShaftBE::new, FABlocks.WOOD_POWER_SHAFT);
 	public static final Supplier<BlockEntityType<MillstoneBE>> MILLSTONE_TYPE = type("millstone", MillstoneBE::new, FABlocks.MILLSTONE);
 	public static final Supplier<BlockEntityType<HandCrankBE>> HANDCRANK_TYPE = type("hand_crank", HandCrankBE::new, FABlocks.HAND_CRANK);
-	public static final Supplier<BlockEntityType<GearboxBE>> GEARBOX_TYPE = type("gearbox", GearboxBE::new, FABlocks.WOOD_GEARBOX);
+	public static final Supplier<BlockEntityType<GearboxBE>> GEARBOX_TYPE = type("gearbox", GearboxBE::new, FABlocks.WOOD_GEARBOX, FABlocks.IRON_GEARBOX);
 	public static final Supplier<BlockEntityType<BrickFireboxBE>> BRICK_FIREBOX_TYPE = type("brick_firebox", BrickFireboxBE::new, FABlocks.BRICK_FIREBOX);
 
 	@SafeVarargs

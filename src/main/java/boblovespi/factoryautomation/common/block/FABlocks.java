@@ -85,7 +85,8 @@ public class FABlocks
 	// Mechanical
 
 	public static final DeferredBlock<PowerShaft> WOOD_POWER_SHAFT = register("wood_power_shaft", p -> new PowerShaft(p, 10, 10), BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
-	public static final DeferredBlock<Gearbox> WOOD_GEARBOX = register("wood_gearbox", p -> new Gearbox(p), BlockProperties.WOOD_MACHINE);
+	public static final DeferredBlock<Gearbox> WOOD_GEARBOX = register("wood_gearbox", p -> new Gearbox(p, 1), BlockProperties.WOOD_MACHINE);
+	public static final DeferredBlock<Gearbox> IRON_GEARBOX = register("iron_gearbox", p -> new Gearbox(p, 0.5f), BlockProperties.IRON_MACHINE);
 	public static final DeferredBlock<HandCrank> HAND_CRANK = register("hand_crank",HandCrank::new, BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
 
 	// Misc

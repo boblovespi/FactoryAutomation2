@@ -297,6 +297,7 @@ public class FARecipeProvider extends RecipeProvider
 							  .save(output);
 
 		gearbox(output, FAItems.WOOD_GEARBOX, FATags.Items.IRON_ROD, FATags.Items.COPPER_SHEET, ItemTags.PLANKS);
+		gearbox(output, FAItems.IRON_GEARBOX, FATags.Items.IRON_ROD, FATags.Items.IRON_SHEET, Tags.Items.INGOTS_IRON);
 
 		WorkbenchRecipeBuilder.of(FAItems.HAND_CRANK)
 							  .pattern("ss")
