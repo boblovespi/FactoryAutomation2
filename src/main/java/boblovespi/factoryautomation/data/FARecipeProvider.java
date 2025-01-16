@@ -296,6 +296,13 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_copper_rod", has(FATags.Items.COPPER_ROD))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.IRON_POWER_SHAFT, 3)
+							  .pattern("sss")
+							  .define('s', FATags.Items.IRON_ROD)
+							  .tool("hammer", 2, 5)
+							  .unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD))
+							  .save(output);
+
 		gearbox(output, FAItems.WOOD_GEARBOX, FATags.Items.IRON_ROD, FATags.Items.COPPER_SHEET, ItemTags.PLANKS);
 		gearbox(output, FAItems.IRON_GEARBOX, FATags.Items.IRON_ROD, FATags.Items.IRON_SHEET, Tags.Items.INGOTS_IRON);
 
@@ -317,10 +324,10 @@ public class FARecipeProvider extends RecipeProvider
 							  .pattern("crc")
 							  .define('c', ItemTags.STONE_CRAFTING_MATERIALS)
 							  .define('s', cobbleSlabs)
-							  .define('r', FAItems.WOOD_POWER_SHAFT) // TODO: replace with iron power shaft
+							  .define('r', FAItems.IRON_POWER_SHAFT)
 							  .tool("hammer", 2, 25)
 							  .part("bearing", 1, 2)
-							  .unlockedBy("has_power_shaft", has(FAItems.WOOD_POWER_SHAFT))
+							  .unlockedBy("has_power_shaft", has(FAItems.IRON_POWER_SHAFT))
 							  .save(output);
 
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)

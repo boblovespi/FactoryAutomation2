@@ -66,6 +66,7 @@
 	// Block - Mechanical
 	
 	"block.factoryautomation.wood_power_shaft": "Wood Power Shaft",
+	"block.factoryautomation.iron_power_shaft": "Iron Power Shaft",
 	"block.factoryautomation.wood_gearbox": "Wood Gearbox",
 	"block.factoryautomation.iron_gearbox": "Iron Gearbox",
 	"block.factoryautomation.hand_crank": "Hand Crank",
