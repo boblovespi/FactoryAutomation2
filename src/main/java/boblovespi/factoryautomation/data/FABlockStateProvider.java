@@ -72,7 +72,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		horizontalBlock(FABlocks.BRICK_FIREBOX.get(), modLoc("block/brick_firebox_side"), modLoc("block/brick_firebox_front"), modLoc("block/brick_firebox_top"));
 		blockWithItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
 		axisOnlyBlock(FABlocks.WOOD_POWER_SHAFT, modLoc("block/power_shaft"), mcLoc("block/oak_planks"), mcLoc("block/oak_planks"));
-		directionalBlock(FABlocks.WOOD_GEARBOX, modLoc("block/gearbox"), mcLoc("block/iron_block"), mcLoc("block/iron_block"));
+		directionalBlock(FABlocks.WOOD_GEARBOX, modLoc("block/gearbox"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_gearbox_front"), modLoc("block/wood_gearbox_back"));
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
 	}
