@@ -207,6 +207,8 @@
 	// Jade handlers
 	
 	"config.jade.plugin_factoryautomation.stone_casting_vessel": "Stone Casting Vessel",
+	"config.jade.plugin_factoryautomation.creative_mechanical_source": "Creative Mechanical Source",
+	"config.jade.plugin_factoryautomation.gearbox": "Gearbox",
 	
 	// Gui things
 	
@@ -219,6 +221,8 @@
 	"misc.metal_quantity": "%s: %s units",
 	"misc.metal_quantity_nameless": "%s units",
 	"misc.time_seconds": "%s seconds",
+	"misc.power_torque_speed": "%s W @ %s Nm, %s rad/s",
+	"misc.gear_ratio": "%s:%s ratio",
 	"info.too_hot": "Too hot: %s",
 	
 	// Metal names

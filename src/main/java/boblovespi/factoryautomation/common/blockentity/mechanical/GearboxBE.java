@@ -231,4 +231,18 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 			return 0;
 		return (outRot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360;
 	}
+
+	public float getInputRatio()
+	{
+		if (!level.isClientSide)
+			return 1;
+		return inputGear.getScaleFactor();
+	}
+
+	public float getOutputRatio()
+	{
+		if (!level.isClientSide)
+			return 1;
+		return outputGear.getScaleFactor();
+	}
 }

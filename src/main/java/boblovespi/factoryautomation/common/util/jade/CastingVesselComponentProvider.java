@@ -13,8 +13,10 @@ import snownee.jade.api.ui.IElementHelper;
 
 import java.util.List;
 
-public class CastingVesselComponentProvider implements IBlockComponentProvider
+public enum CastingVesselComponentProvider implements IBlockComponentProvider
 {
+	INSTANCE;
+
 	private final List<ResourceLocation> molds = List.of(
 			FactoryAutomation.name("textures/block/green_sand.png"),
 			FactoryAutomation.name("textures/block/casting_sand_ingot_pattern.png"),
