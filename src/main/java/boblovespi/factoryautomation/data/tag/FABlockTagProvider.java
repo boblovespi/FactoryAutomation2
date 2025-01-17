@@ -76,7 +76,8 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get())
 											.add(FABlocks.MILLSTONE.get(), FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get())
 											.add(FABlocks.DRIED_BRICKS.get(), FABlocks.BRICK_TILES.get());
-		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get());
+		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get())
+										.add(FABlocks.HAND_CRANK.get(), FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get());
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK);
 		tag(FATags.Blocks.TIN_BLOCK).add(FABlocks.TIN_BLOCK.get());
@@ -85,6 +86,9 @@ public class FABlockTagProvider extends BlockTagsProvider
 
 		tag(FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);
 		tag(FATags.Blocks.MINEABLE_WITH_HAMMER).add(FABlocks.IRON_BLOOM.get());
+		tag(FATags.Blocks.MINEABLE_WITH_WRENCH).add(FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get())
+											   .add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get())
+											   .add(FABlocks.HAND_CRANK.get());
 		tag(FATags.Blocks.CHOPPING_BLOCK_LOGS).add(Arrays.stream(WoodTypes.values()).map(WoodTypes::getLog).toArray(Block[]::new));
 		tag(FATags.Blocks.CHOPPING_BLOCKS).add(choppingBlocks);
 	}
