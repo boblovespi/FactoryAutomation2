@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.item.tool.Tools;
 import boblovespi.factoryautomation.common.util.GearMaterial;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
@@ -131,6 +132,17 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 
 	public void takeOrPlace(ItemStack stack, Player player)
 	{
+		if (stack.canPerformAction(Tools.WRENCH))
+		{
+			var tStack = inputStack;
+			var tGear = inputGear;
+			inputStack = outputStack;
+			inputGear = outputGear;
+			outputStack = tStack;
+			outputGear = tGear;
+			updateInputs();
+			return;
+		}
 		// put input, put output, take output, take input
 		var gear = GearMaterial.fromStack(stack);
 		var changed = false;
