@@ -45,6 +45,7 @@ public class ClientHandler
 		event.registerBlockEntityRenderer(FABETypes.GEARBOX_TYPE.get(), GearboxBER::new);
 		event.registerBlockEntityRenderer(FABETypes.MILLSTONE_TYPE.get(), MillstoneBER::new);
 		event.registerBlockEntityRenderer(FABETypes.HANDCRANK_TYPE.get(), HandCrankBER::new);
+		event.registerBlockEntityRenderer(FABETypes.PAPER_BELLOWS_TYPE.get(), PaperBellowsBER::new);
 	}
 
 	@SubscribeEvent

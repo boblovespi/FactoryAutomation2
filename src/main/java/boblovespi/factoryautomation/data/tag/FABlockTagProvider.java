@@ -76,7 +76,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get())
 											.add(FABlocks.MILLSTONE.get(), FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get())
 											.add(FABlocks.DRIED_BRICKS.get(), FABlocks.BRICK_TILES.get());
-		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get())
+		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get(), FABlocks.PAPER_BELLOWS.get())
 										.add(FABlocks.HAND_CRANK.get(), FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get());
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK);

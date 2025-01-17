@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
+import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.MultiblockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,6 +10,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.BlockCapability;
+
+import javax.annotation.Nullable;
 
 public class MultiblockPartBE extends FABE
 {
@@ -98,5 +102,14 @@ public class MultiblockPartBE extends FABE
 	public boolean isBreaking()
 	{
 		return isBreaking;
+	}
+
+	@Nullable
+	public <T> T getCapability(BlockCapability<T, Direction> capability, Direction dir)
+	{
+		var be = level.getBlockEntity(worldPosition.subtract(multiblockControllerOffset));
+		if (be instanceof IMultiblockBE mbe)
+			return mbe.getCapability(multiblockControllerOffset, capability, dir);
+		return null;
 	}
 }

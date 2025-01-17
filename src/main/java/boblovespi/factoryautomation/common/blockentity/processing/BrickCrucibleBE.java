@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.api.capability.BellowsCapability;
 import boblovespi.factoryautomation.common.block.processing.BrickCrucible;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
@@ -11,6 +12,7 @@ import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -20,7 +22,9 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -31,7 +35,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	private final BurnerManager burner;
 	private final HeatManager heat;
 	private final ItemStackHandler inv;
-	private final float efficiency = 0.75f;
+	private final BellowsConsumerManager bellows;
 	private float meltProgress;
 
 	public BrickCrucibleBE(BlockPos pPos, BlockState pBlockState)
@@ -55,9 +59,11 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 			}
 		};
 		heat = new HeatManager("heat", 2300 * 1000, 300);
-		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) -> {
-			if (t * efficiency + 273 * (1 - efficiency) >= heat.getTemperature())
-				heat.heat(e * efficiency);
+		bellows = new BellowsConsumerManager("bellowsUser", 0.5f);
+		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) ->
+		{
+			if (t * bellows.getTempEfficiency() + 273 * (1 - bellows.getTempEfficiency()) >= heat.getTemperature())
+				heat.heat(e * bellows.getEnergyEfficiency());
 		});
 	}
 
@@ -68,6 +74,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		burner.save(tag);
 		heat.save(tag);
 		tag.put("inv", inv.serializeNBT(registries));
+		bellows.save(tag);
 		tag.putFloat("meltProgress", meltProgress);
 	}
 
@@ -78,6 +85,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		burner.load(tag);
 		heat.load(tag);
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
+		bellows.load(tag);
 		meltProgress = tag.getFloat("meltProgress");
 	}
 
@@ -121,6 +129,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	public void tick()
 	{
 		burner.progress();
+		bellows.progress();
 		var meltStack = inv.getStackInSlot(1);
 		if (!meltStack.isEmpty())
 		{
@@ -184,6 +193,15 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	{
 		if (!breaking)
 			level.setBlock(worldPosition, getBlockState().setValue(BrickCrucible.MULTIBLOCK_COMPLETE, false), 2);
+	}
+
+	@Nullable
+	@Override
+	public <T> T getCapability(BlockPos offset, BlockCapability<T, Direction> capability, Direction dir)
+	{
+		if (offset.getX() == 0 && offset.getY() == -1 && offset.getZ() == 0 && capability == BellowsCapability.BLOCK)
+			return (T) bellows;
+		return null;
 	}
 
 	private class Data implements ContainerData

@@ -35,6 +35,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<HandCrankBE>> HANDCRANK_TYPE = type("hand_crank", HandCrankBE::new, FABlocks.HAND_CRANK);
 	public static final Supplier<BlockEntityType<GearboxBE>> GEARBOX_TYPE = type("gearbox", GearboxBE::new, FABlocks.WOOD_GEARBOX, FABlocks.IRON_GEARBOX);
 	public static final Supplier<BlockEntityType<BrickFireboxBE>> BRICK_FIREBOX_TYPE = type("brick_firebox", BrickFireboxBE::new, FABlocks.BRICK_FIREBOX);
+	public static final Supplier<BlockEntityType<PaperBellowsBE>> PAPER_BELLOWS_TYPE = type("paper_bellows", PaperBellowsBE::new, FABlocks.PAPER_BELLOWS);
 
 	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,
