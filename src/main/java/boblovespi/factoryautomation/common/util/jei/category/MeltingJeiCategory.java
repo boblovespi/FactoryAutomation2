@@ -3,9 +3,13 @@ package boblovespi.factoryautomation.common.util.jei.category;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.client.ber.BERUtils;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.processing.BrickCrucible;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.item.FAItems;
-import boblovespi.factoryautomation.common.util.jei.*;
+import boblovespi.factoryautomation.common.util.jei.FAJeiPlugin;
+import boblovespi.factoryautomation.common.util.jei.MeltingJeiRecipe;
+import boblovespi.factoryautomation.common.util.jei.MetalIngredientRenderer;
+import boblovespi.factoryautomation.common.util.jei.MetalStack;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -23,6 +27,7 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class MeltingJeiCategory implements IRecipeCategory<MeltingJeiRecipe>
 {
@@ -32,12 +37,20 @@ public class MeltingJeiCategory implements IRecipeCategory<MeltingJeiRecipe>
 	private final IDrawable background;
 	private final IDrawable icon;
 	private final MetalIngredientRenderer metalIngredientRenderer = MetalIngredientRenderer.create(false, true, 8, 32);
+	private final BlockState[] foundries;
 
 	public MeltingJeiCategory(IGuiHelper helper)
 	{
 		this.helper = helper;
 		background = helper.createDrawable(TEXTURE, 0, 0, 132, 98);
 		icon = helper.createDrawableItemStack(FAItems.STONE_CRUCIBLE.toStack());
+		foundries = new BlockState[]
+							{
+									FABlocks.STONE_CRUCIBLE.get().defaultBlockState().setValue(StoneCrucible.MULTIBLOCK_COMPLETE, true)
+											.setValue(StoneCrucible.FACING, Direction.SOUTH),
+									FABlocks.BRICK_CRUCIBLE.get().defaultBlockState().setValue(BrickCrucible.MULTIBLOCK_COMPLETE, true)
+											.setValue(BrickCrucible.FACING, Direction.SOUTH)
+							};
 	}
 
 	@Override
@@ -84,7 +97,7 @@ public class MeltingJeiCategory implements IRecipeCategory<MeltingJeiRecipe>
 	@Override
 	public void draw(MeltingJeiRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY)
 	{
-		var state = FABlocks.STONE_CRUCIBLE.get().defaultBlockState().setValue(StoneCrucible.MULTIBLOCK_COMPLETE, true).setValue(StoneCrucible.FACING, Direction.SOUTH);
+		var state = foundries[recipe.tier() - 1];
 		var pose = graphics.pose();
 		graphics.drawString(Minecraft.getInstance().font, I18n.get("misc.temperature", recipe.temp()), 11, 84, 0xff545454, false);
 		var percentage = recipe.temp() / 1800f;

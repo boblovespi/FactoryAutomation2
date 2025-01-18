@@ -114,8 +114,10 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipes(castingJeiCategory.getRecipeType(), castingRecipes);
 
 		var meltingRecipes = new ArrayList<MeltingJeiRecipe>();
-		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(Tags.Items.RAW_MATERIALS_COPPER), Metal.COPPER.meltTemp(), Metal.COPPER, Form.RAW_ORE));
-		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(FATags.Items.RAW_TIN), Metal.TIN.meltTemp(), Metal.TIN, Form.RAW_ORE));
+		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(Tags.Items.RAW_MATERIALS_COPPER), Metal.COPPER.meltTemp(), Metal.COPPER, Form.RAW_ORE, 1));
+		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(FATags.Items.RAW_TIN), Metal.TIN.meltTemp(), Metal.TIN, Form.RAW_ORE, 1));
+		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(FAItems.IRON_SHARD), 0.75f * Metal.IRON.meltTemp(), Metal.IRON, Form.SHARD, 1));
+		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(Tags.Items.RAW_MATERIALS_IRON), Metal.IRON.meltTemp(), Metal.IRON, Form.RAW_ORE, 2));
 		registration.addRecipes(meltingJeiCategory.getRecipeType(), meltingRecipes);
 	}
 
@@ -126,6 +128,7 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCatalyst(FAItems.STONE_WORKBENCH.toStack(), workbenchJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.STONE_CASTING_VESSEL.toStack(), castingJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.STONE_CRUCIBLE.toStack(), meltingJeiCategory.getRecipeType());
+		registration.addRecipeCatalyst(FAItems.BRICK_CRUCIBLE, meltingJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.BRICK_MAKER_FRAME.toStack(), brickDryingJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.MILLSTONE.toStack(), millstoneJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.LOG_PILE, logPileFiringCategory.getRecipeType());
