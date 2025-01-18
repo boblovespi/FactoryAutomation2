@@ -280,7 +280,7 @@ public abstract class CrucibleManager
 			amount = nbt.getInt("amount");
 			RATIO_CODEC.decode(NbtOps.INSTANCE, nbt.get("metalRatios"))
 					   .resultOrPartial(FactoryAutomation.LOGGER::warn)
-					   .ifPresent(p -> metalRatio = p.getFirst());
+					   .ifPresent(p -> metalRatio = new IdentityHashMap<>(p.getFirst()));
 			recomputeMetal();
 		}
 

@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.client;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.client.ber.*;
+import boblovespi.factoryautomation.client.gui.BrickFoundryScreen;
 import boblovespi.factoryautomation.client.gui.StoneCastingVesselScreen;
 import boblovespi.factoryautomation.client.gui.StoneFoundryScreen;
 import boblovespi.factoryautomation.client.gui.WorkbenchScreen;
@@ -54,6 +55,7 @@ public class ClientHandler
 		event.register(MenuTypes.STONE_FOUNDRY.get(), StoneFoundryScreen::new);
 		event.register(MenuTypes.STONE_CASTING_VESSEL.get(), StoneCastingVesselScreen::new);
 		event.register(MenuTypes.WORKBENCH_MENU.get(), WorkbenchScreen::new);
+		event.register(MenuTypes.BRICK_FOUNDRY.get(), BrickFoundryScreen::new);
 	}
 
 	@SubscribeEvent

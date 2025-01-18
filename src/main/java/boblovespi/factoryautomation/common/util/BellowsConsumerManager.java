@@ -69,4 +69,9 @@ public class BellowsConsumerManager implements IBellowsConsumer
 	{
 		return efficiency / 2;
 	}
+
+	public float getTime()
+	{
+		return (float) blowTime / maxBlowTime;
+	}
 }

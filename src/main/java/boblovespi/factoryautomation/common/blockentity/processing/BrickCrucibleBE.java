@@ -7,7 +7,7 @@ import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
-import boblovespi.factoryautomation.common.menu.StoneFoundryMenu;
+import boblovespi.factoryautomation.common.menu.BrickFoundryMenu;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.*;
@@ -121,7 +121,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	@Override
 	public MenuProvider getMenuProvider()
 	{
-		return new SimpleMenuProvider((i, v, p) -> new StoneFoundryMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)),
+		return new SimpleMenuProvider((i, v, p) -> new BrickFoundryMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)),
 				Component.translatable("gui.brick_crucible.name"));
 	}
 
@@ -216,6 +216,8 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 				case 2 -> Float.floatToIntBits(meltProgress);
 				case 3 -> crucible.getAmount();
 				case 4 -> crucible.getCurrentMetal().id();
+				case 5 -> Float.floatToIntBits(bellows.getTempEfficiency());
+				case 6 -> Float.floatToIntBits(bellows.getTime());
 				default -> 0;
 			};
 		}
@@ -229,7 +231,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		@Override
 		public int getCount()
 		{
-			return 5;
+			return 7;
 		}
 	}
 }

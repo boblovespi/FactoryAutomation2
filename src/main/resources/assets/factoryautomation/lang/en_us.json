@@ -224,6 +224,7 @@
 	"misc.time_seconds": "%s seconds",
 	"misc.power_torque_speed": "%s W @ %s Nm, %s rad/s",
 	"misc.gear_ratio": "%s:%s ratio",
+	"misc.efficiency": "Efficiency: %s%%",
 	"info.too_hot": "Too hot: %s",
 	
 	// Metal names

@@ -1,8 +1,10 @@
 package boblovespi.factoryautomation.common.util;
 
+import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -10,6 +12,7 @@ import net.minecraft.world.item.Items;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Metal
 {
@@ -78,7 +81,15 @@ public class Metal
 	{
 		if (metal.meltables == null || form.getTag() == null)
 			return Items.AIR;
-		var first = BuiltInRegistries.ITEM.getOrCreateTag(form.getTag()).stream().filter(k -> k.is(metal.meltables)).findFirst();
+		var first = BuiltInRegistries.ITEM.getOrCreateTag(form.getTag())
+										  .stream()
+										  .filter(k -> k.is(metal.meltables))
+										  .max((a, b) ->
+										  {
+											  Predicate<ResourceKey<Item>> p = r -> r.location().getNamespace().equals("minecraft") ||
+																					r.location().getNamespace().equals(FactoryAutomation.MODID);
+											  return (a.is(p) ? 1 : 0) - (b.is(p) ? 1 : 0);
+										  });
 		return first.map(Holder::value).orElse(Items.AIR);
 	}
 

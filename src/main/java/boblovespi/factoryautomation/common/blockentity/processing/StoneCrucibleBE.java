@@ -1,12 +1,12 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.menu.StoneFoundryMenu;
-import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.*;
@@ -59,7 +59,7 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		heat = new HeatManager("heat", 2300 * 1000, 300);
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) -> {
 			if (t * efficiency + 273 * (1 - efficiency) >= heat.getTemperature())
-				heat.heat(e * efficiency);
+				heat.heat(e * efficiency * 0.5f);
 		});
 	}
 
