@@ -56,7 +56,7 @@ public class BrickCrucible extends Block implements EntityBlock
 		{
 			var facing = state.getValue(FACING);
 			var be = level.getBlockEntity(pos, FABETypes.BRICK_CRUCIBLE_TYPE.get()).orElseThrow();
-			var castingVessel = level.getCapability(CastingCapability.BLOCK, pos.relative(facing).below(), Direction.UP);
+			var castingVessel = level.getCapability(CastingCapability.BLOCK, pos.relative(facing.getCounterClockWise()).below(), Direction.UP);
 			if (state.getValue(MULTIBLOCK_COMPLETE))
 			{
 				if (pHitResult.getDirection() == facing && castingVessel != null)
