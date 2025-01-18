@@ -42,7 +42,8 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(Tags.Items.INGOTS).addTags(FATags.Items.TIN_INGOT, FATags.Items.BRONZE_INGOT, FATags.Items.STEEL_INGOT);
 		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET, FATags.Items.BRONZE_NUGGET, FATags.Items.STEEL_NUGGET);
 		tag(Tags.Items.RODS).addTags(FATags.Items.COPPER_ROD, FATags.Items.TIN_ROD, FATags.Items.IRON_ROD, FATags.Items.BRONZE_ROD, FATags.Items.STEEL_ROD);
-		tag(FATags.Items.GEARS).addTags(FATags.Items.COPPER_GEAR, FATags.Items.TIN_GEAR, FATags.Items.IRON_GEAR, FATags.Items.BRONZE_GEAR, FATags.Items.STEEL_GEAR);
+		tag(FATags.Items.GEARS).addTags(FATags.Items.COPPER_GEAR, FATags.Items.TIN_GEAR, FATags.Items.IRON_GEAR, FATags.Items.BRONZE_GEAR, FATags.Items.STEEL_GEAR)
+							   .addTags(FATags.Items.WOOD_GEAR);
 		tag(Tags.Items.RAW_MATERIALS).addTags(FATags.Items.RAW_TIN);
 
 		copy(FATags.Blocks.TIN_BLOCK, FATags.Items.TIN_BLOCK);
@@ -71,6 +72,8 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.STEEL_SHEET).add(FAItems.STEEL_THINGS.get(Form.SHEET).get());
 		tag(FATags.Items.STEEL_ROD).add(FAItems.STEEL_THINGS.get(Form.ROD).get());
 		tag(FATags.Items.STEEL_GEAR).add(FAItems.GEARS.get(GearMaterial.STEEL).get());
+
+		tag(FATags.Items.WOOD_GEAR).add(FAItems.GEARS.get(GearMaterial.WOOD).get());
 
 		tag(FATags.Items.RAW_TIN).add(FAItems.RAW_CASSITERITE.get());
 

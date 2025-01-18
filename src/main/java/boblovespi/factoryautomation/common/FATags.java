@@ -52,6 +52,8 @@ public class FATags
 		public static final TagKey<Item> STEEL_ROD = cItem("rods/steel");
 		public static final TagKey<Item> STEEL_GEAR = cItem("gears/steel");
 
+		public static final TagKey<Item> WOOD_GEAR = cItem("gears/wooden");
+
 		public static final TagKey<Item> RAW_TIN = cItem("raw_materials/tin");
 		public static final TagKey<Item> SHEETS = cItem("plates");
 		public static final TagKey<Item> GEARS = cItem("gears");

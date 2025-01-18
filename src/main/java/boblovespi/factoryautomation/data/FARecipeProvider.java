@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.*;
 import boblovespi.factoryautomation.common.util.Form;
+import boblovespi.factoryautomation.common.util.GearMaterial;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -247,6 +248,25 @@ public class FARecipeProvider extends RecipeProvider
 		screw(output, 6, Tags.Items.NUGGETS_IRON, FATags.Items.IRON_ROD, "iron");
 
 		bushing(output, 4, FATags.Items.TIN_SHEET, "tin");
+
+		WorkbenchRecipeBuilder.of(FAItems.GEARS.get(GearMaterial.WOOD))
+							  .pattern(" s ")
+							  .pattern("s s")
+							  .pattern(" s ")
+							  .define('s', Tags.Items.RODS_WOODEN)
+							  .tool("hammer", 1, 1)
+							  .unlockedBy("has_stick", has(Tags.Items.RODS_WOODEN))
+							  .save(output);
+
+		WorkbenchRecipeBuilder.of(FAItems.GEARS.get(GearMaterial.STONE))
+							  .pattern(" s ")
+							  .pattern("sgs")
+							  .pattern(" s ")
+							  .define('g', FATags.Items.WOOD_GEAR)
+							  .define('s', ItemTags.STONE_CRAFTING_MATERIALS)
+							  .tool("hammer", 1, 1)
+							  .unlockedBy("has_wood_gear", has(FATags.Items.WOOD_GEAR))
+							  .save(output);
 
 		WorkbenchRecipeBuilder.of(FAItems.LIMONITE_CHARCOAL_MIX)
 							  .pattern("lc")
