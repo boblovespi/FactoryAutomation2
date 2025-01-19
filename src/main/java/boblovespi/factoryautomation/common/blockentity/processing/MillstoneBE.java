@@ -11,6 +11,7 @@ import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
 import boblovespi.factoryautomation.common.util.RecipeManager;
+import boblovespi.factoryautomation.common.util.jade.IJadeViewable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -21,6 +22,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -34,10 +36,11 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class MillstoneBE extends FABE implements ITickable, IClientTickable, GeoBlockEntity
+public class MillstoneBE extends FABE implements ITickable, IClientTickable, GeoBlockEntity, IJadeViewable
 {
 	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("state.millstone.active");
 	private final AnimatableInstanceCache cache;
@@ -199,5 +202,11 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 		if (dir == Direction.UP)
 			return inv;
 		return null;
+	}
+
+	@Override
+	public List<ItemStack> makeViewStacks()
+	{
+		return List.of(inv.getStackInSlot(0));
 	}
 }

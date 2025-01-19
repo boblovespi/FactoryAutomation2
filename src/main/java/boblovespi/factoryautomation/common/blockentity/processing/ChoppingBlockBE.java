@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.RecipeManager;
+import boblovespi.factoryautomation.common.util.jade.IJadeViewable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -23,7 +24,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public class ChoppingBlockBE extends FABE
+import java.util.List;
+
+public class ChoppingBlockBE extends FABE implements IJadeViewable
 {
 	private final ItemStackHandler inv;
 	private final RecipeManager<ChoppingBlockRecipe> rm;
@@ -136,5 +139,11 @@ public class ChoppingBlockBE extends FABE
 	public void onDestroy()
 	{
 		ItemHelper.dropAllItems(level, worldPosition.getCenter(), inv);
+	}
+
+	@Override
+	public List<ItemStack> makeViewStacks()
+	{
+		return List.of(inv.getStackInSlot(0));
 	}
 }
