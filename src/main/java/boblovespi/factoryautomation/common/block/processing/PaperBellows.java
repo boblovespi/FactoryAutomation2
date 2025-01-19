@@ -3,9 +3,9 @@ package boblovespi.factoryautomation.common.block.processing;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.processing.PaperBellowsBE;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -64,7 +64,7 @@ public class PaperBellows extends Block implements EntityBlock
 		level.getBlockEntity(pos, FABETypes.PAPER_BELLOWS_TYPE.get()).ifPresent(PaperBellowsBE::blow);
 		if (!level.isClientSide)
 			player.causeFoodExhaustion(0.8f);
-		level.playSound(player, pos, SoundEvents.ENDER_DRAGON_FLAP, SoundSource.BLOCKS, 0.8f, 1.5f);
+		level.playSound(player, pos, FASounds.BELLOWS_BLOWS.get(), SoundSource.BLOCKS, 0.8f, 1.5f);
 		return InteractionResult.SUCCESS;
 	}
 

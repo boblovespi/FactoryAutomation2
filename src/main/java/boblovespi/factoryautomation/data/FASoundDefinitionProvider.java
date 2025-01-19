@@ -27,5 +27,10 @@ public class FASoundDefinitionProvider extends SoundDefinitionsProvider
 				SoundDefinition.definition().with(sound(FactoryAutomation.name("use/chopping_block_1")), sound(FactoryAutomation.name("use/chopping_block_2")))
 							   .subtitle("subtitles.block.chopping_block.use").replace(true));
 		add(FASounds.USE_MILLSTONE, SoundDefinition.definition().with(sound(FactoryAutomation.name("use/millstone"))).subtitle("subtitles.block.millstone.use").replace(true));
+		add(FASounds.BELLOWS_BLOWS, SoundDefinition.definition()
+												   .with(sound("mob/enderdragon/wings1"), sound("mob/enderdragon/wings2"), sound("mob/enderdragon/wings3"),
+														   sound("mob/enderdragon/wings4"), sound("mob/enderdragon/wings5"), sound("mob/enderdragon/wings6"))
+												   .subtitle("subtitles.block.bellows.blow")
+												   .replace(true));
 	}
 }
