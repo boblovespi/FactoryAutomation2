@@ -14,6 +14,8 @@ public class FATags
 	{
 		public static final TagKey<Item> SILKS_GRASS = item("tools/silks_grass");
 		public static final TagKey<Item> GOOD_AXES = item("tools/good_axes");
+		public static final TagKey<Item> HAMMERS = item("hammers");
+		public static final TagKey<Item> WRENCHES = item("wrenches");
 
 		public static final TagKey<Item> CHOPPING_BLOCKS = item("chopping_blocks");
 
@@ -57,6 +59,7 @@ public class FATags
 		public static final TagKey<Item> RAW_TIN = cItem("raw_materials/tin");
 		public static final TagKey<Item> SHEETS = cItem("plates");
 		public static final TagKey<Item> GEARS = cItem("gears");
+		public static final TagKey<Item> FA_GEARS = item("gears");
 
 		public static final TagKey<Item> WHEAT_DUST = cItem("dusts/flour");
 		public static final TagKey<Item> CALCIUM_CARBONATE_DUST = cItem("dusts/calcium_carbonate");

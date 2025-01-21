@@ -35,6 +35,13 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(ItemTags.AXES).add(FAItems.CHOPPING_BLADE.get(), FAItems.FLINT_AXE.get(), FAItems.COPPER_AXE.get());
 		tag(ItemTags.HOES).add(FAItems.FLINT_HOE.get(), FAItems.COPPER_HOE.get());
 		tag(ItemTags.SWORDS).add(FAItems.FLINT_SWORD.get(), FAItems.COPPER_SWORD.get());
+		tag(FATags.Items.HAMMERS).add(FAItems.COPPER_HAMMER.get(), FAItems.IRON_HAMMER.get());
+		tag(FATags.Items.WRENCHES).add(FAItems.IRON_WRENCH.get());
+
+		tag(ItemTags.DURABILITY_ENCHANTABLE).addTags(FATags.Items.HAMMERS, FATags.Items.FA_GEARS, FATags.Items.WRENCHES).add(FAItems.FIREBOW.get());
+		tag(ItemTags.MINING_ENCHANTABLE).addTags(FATags.Items.HAMMERS);
+		tag(ItemTags.MINING_LOOT_ENCHANTABLE).addTags(FATags.Items.HAMMERS);
+		tag(ItemTags.WEAPON_ENCHANTABLE).addTags(FATags.Items.HAMMERS);
 
 		tag(Tags.Items.FOODS_BREAD).add(FAItems.TOASTED_BREAD.get());
 		tag(Tags.Items.TOOLS_IGNITER).add(FAItems.FIREBOW.get());
@@ -42,6 +49,9 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(Tags.Items.INGOTS).addTags(FATags.Items.TIN_INGOT, FATags.Items.BRONZE_INGOT, FATags.Items.STEEL_INGOT);
 		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET, FATags.Items.BRONZE_NUGGET, FATags.Items.STEEL_NUGGET);
 		tag(Tags.Items.RODS).addTags(FATags.Items.COPPER_ROD, FATags.Items.TIN_ROD, FATags.Items.IRON_ROD, FATags.Items.BRONZE_ROD, FATags.Items.STEEL_ROD);
+		tag(FATags.Items.FA_GEARS).add(FAItems.GEARS.get(GearMaterial.COPPER).get(), FAItems.GEARS.get(GearMaterial.IRON).get(), FAItems.GEARS.get(GearMaterial.BRONZE).get())
+								  .add(FAItems.GEARS.get(GearMaterial.STEEL).get())
+								  .add(FAItems.GEARS.get(GearMaterial.WOOD).get(), FAItems.GEARS.get(GearMaterial.STONE).get());
 		tag(FATags.Items.GEARS).addTags(FATags.Items.COPPER_GEAR, FATags.Items.TIN_GEAR, FATags.Items.IRON_GEAR, FATags.Items.BRONZE_GEAR, FATags.Items.STEEL_GEAR)
 							   .addTags(FATags.Items.WOOD_GEAR);
 		tag(Tags.Items.RAW_MATERIALS).addTags(FATags.Items.RAW_TIN);
