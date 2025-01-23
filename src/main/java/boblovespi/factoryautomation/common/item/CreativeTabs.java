@@ -1,7 +1,6 @@
 package boblovespi.factoryautomation.common.item;
 
 import boblovespi.factoryautomation.FactoryAutomation;
-import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.registries.Registries;
@@ -128,7 +127,12 @@ public class CreativeTabs
 
 		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
 		{
-			insertAfter(event, Items.BRICK_WALL, FABlocks.BRICK_TILES);
+			insertAfter(event, Items.BRICK_WALL, FAItems.BRICK_TILES);
+		}
+
+		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS)
+		{
+			insertAfter(event, Items.TUFF, FAItems.CHERT);
 		}
 	}
 

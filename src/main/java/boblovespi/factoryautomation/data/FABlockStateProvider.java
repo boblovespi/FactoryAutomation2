@@ -38,6 +38,7 @@ public class FABlockStateProvider extends BlockStateProvider
 	{
 		FABlocks.ROCKS.forEach(this::rock);
 		existingBlockModel(FABlocks.FLINT_ROCK);
+		blockWithItem(FABlocks.CHERT);
 		blockWithItem(FABlocks.GREEN_SAND);
 		blockWithItem(FABlocks.CASSITERITE_ORE);
 		blockWithItem(FABlocks.RAW_CASSITERITE_BLOCK);
