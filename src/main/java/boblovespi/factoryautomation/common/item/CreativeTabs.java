@@ -3,8 +3,10 @@ package boblovespi.factoryautomation.common.item;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.util.Form;
+import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
@@ -13,7 +15,10 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.Map;
 
 @SuppressWarnings("unused")
 @EventBusSubscriber(modid = FactoryAutomation.MODID, bus = EventBusSubscriber.Bus.MOD)
@@ -128,6 +133,7 @@ public class CreativeTabs
 		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
 		{
 			insertAfter(event, Items.BRICK_WALL, FAItems.BRICK_TILES);
+			insertForms(event, Items.POLISHED_ANDESITE_SLAB, FAItems.ANDESITE_BRICKS);
 		}
 
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS)
@@ -143,6 +149,16 @@ public class CreativeTabs
 		{
 			event.insertAfter(before.asItem().getDefaultInstance(), item.asItem().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 			before = item;
+		}
+	}
+
+	private static void insertForms(BuildCreativeModeTabContentsEvent event, ItemLike target, Map<StoneBlockForms, DeferredItem<BlockItem>> items)
+	{
+		var before = target;
+		for (var form : StoneBlockForms.values())
+		{
+			event.insertAfter(before.asItem().getDefaultInstance(), items.get(form).toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+			before = items.get(form);
 		}
 	}
 }

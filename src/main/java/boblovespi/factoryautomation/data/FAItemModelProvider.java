@@ -3,11 +3,15 @@ package boblovespi.factoryautomation.data;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.util.Form;
+import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
+
+import java.util.Map;
 
 public class FAItemModelProvider extends ItemModelProvider
 {
@@ -19,6 +23,8 @@ public class FAItemModelProvider extends ItemModelProvider
 	@Override
 	protected void registerModels()
 	{
+		stoneBlock(FAItems.ANDESITE_BRICKS);
+
 		withExistingParent(FAItems.ROCK.getRegisteredName(), modLoc("block/cobblestone_rock"));
 
 		basicItem(FAItems.PLANT_FIBER.get());
@@ -84,5 +90,19 @@ public class FAItemModelProvider extends ItemModelProvider
 	private void handheld(DeferredItem<? extends Item> item)
 	{
 		withExistingParent(item.getRegisteredName(), mcLoc("item/handheld")).texture("layer0", item.getId().withPrefix("item/"));
+	}
+
+	private void stoneBlock(Map<StoneBlockForms, DeferredItem<BlockItem>> blocks)
+	{
+		var base = blocks.get(StoneBlockForms.BLOCK).getId().withPrefix("block/");
+		blocks.forEach((form, item) ->
+		{
+			switch (form)
+			{
+				case BLOCK -> {}
+				case STAIRS, SLAB -> withExistingParent(item.getRegisteredName(), item.getId().withPrefix("block/"));
+				case WALL -> wallInventory(item.getRegisteredName(), base);
+			}
+		});
 	}
 }

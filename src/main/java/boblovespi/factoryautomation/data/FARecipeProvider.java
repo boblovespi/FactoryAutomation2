@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.*;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.GearMaterial;
+import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -43,6 +44,8 @@ public class FARecipeProvider extends RecipeProvider
 	{
 		// common ingredients
 		var cobbleSlabs = Ingredient.of(Items.COBBLESTONE_SLAB, Items.BLACKSTONE_SLAB, Items.COBBLED_DEEPSLATE_SLAB);
+
+		stoneBricks(output, Items.ANDESITE, Items.POLISHED_ANDESITE, FAItems.ANDESITE_BRICKS);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PatchouliAPI.get().getBookStack(FactoryAutomation.name("guidebook")))
 						   .pattern("rd")
@@ -475,6 +478,22 @@ public class FARecipeProvider extends RecipeProvider
 		VanillaRecipeProvider.EMERALD_SMELTABLES.forEach(i -> RemovalRecipe.unitFor(Items.EMERALD).forSmelting(output, i));
 		RemovalRecipe.unitFor(Items.CHARCOAL).save(output);
 		RemovalRecipe.unitFor(Items.BRICK).save(output);
+	}
+
+	private void stoneBricks(RecipeOutput output, Item stone, Item polishedStone, Map<StoneBlockForms, DeferredItem<BlockItem>> bricks)
+	{
+		var brick = bricks.get(StoneBlockForms.BLOCK);
+		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, brick, polishedStone);
+		slab(output, RecipeCategory.BUILDING_BLOCKS, bricks.get(StoneBlockForms.SLAB), brick);
+		stairBuilder(bricks.get(StoneBlockForms.STAIRS), Ingredient.of(brick)).unlockedBy(getHasName(brick), has(brick)).save(output);
+		wall(output, RecipeCategory.BUILDING_BLOCKS, bricks.get(StoneBlockForms.WALL), brick);
+		bricks.forEach((form, b) ->
+		{
+			stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, b, stone, form.getCountWhenCut());
+			stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, b, polishedStone, form.getCountWhenCut());
+			if (b != brick)
+				stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, b, brick, form.getCountWhenCut());
+		});
 	}
 
 	private void tool(@Nullable ItemLike shovel, @Nullable ItemLike pickaxe, @Nullable ItemLike axe, @Nullable ItemLike hoe, @Nullable ItemLike sword, @Nullable ItemLike hammer,

@@ -9,12 +9,11 @@ import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
+import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.WaterloggedTransparentBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -23,6 +22,7 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+import java.util.Map;
 import java.util.function.Function;
 
 @SuppressWarnings("SameParameterValue")
@@ -36,9 +36,10 @@ public class FABlockStateProvider extends BlockStateProvider
 	@Override
 	protected void registerStatesAndModels()
 	{
+		blockWithItem(FABlocks.CHERT);
+		stoneBlockForms(FABlocks.ANDESITE_BRICKS);
 		FABlocks.ROCKS.forEach(this::rock);
 		existingBlockModel(FABlocks.FLINT_ROCK);
-		blockWithItem(FABlocks.CHERT);
 		blockWithItem(FABlocks.GREEN_SAND);
 		blockWithItem(FABlocks.CASSITERITE_ORE);
 		blockWithItem(FABlocks.RAW_CASSITERITE_BLOCK);
@@ -78,6 +79,23 @@ public class FABlockStateProvider extends BlockStateProvider
 		directionalBlock(FABlocks.IRON_GEARBOX, modLoc("block/gearbox"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_gearbox_front"), modLoc("block/iron_gearbox_back"));
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
+	}
+
+	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
+	{
+		var texture = blockTexture(blocks.get(StoneBlockForms.BLOCK).get());
+		for (var entry : blocks.entrySet())
+		{
+			var f = entry.getKey();
+			var b = entry.getValue();
+			switch (f)
+			{
+				case BLOCK -> blockWithItem(b);
+				case STAIRS -> stairsBlock((StairBlock) b.get(), texture);
+				case SLAB -> slabBlock((SlabBlock) b.get(), texture, texture);
+				case WALL -> wallBlock((WallBlock) b.get(), texture);
+			}
+		}
 	}
 
 	private void existingBlockWithItem(DeferredBlock<?> block)

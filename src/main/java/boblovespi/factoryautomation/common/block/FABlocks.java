@@ -10,11 +10,10 @@ import boblovespi.factoryautomation.common.block.resource.ResourceRock;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
+import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.WaterloggedTransparentBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -31,12 +30,17 @@ public class FABlocks
 {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(FactoryAutomation.MODID);
 
+	// Building blocks
+
+	public static final DeferredBlock<Block> CHERT = register("chert", Block::new, BlockProperties.CHERT);
+	public static final Map<StoneBlockForms, DeferredBlock<? extends Block>> ANDESITE_BRICKS = StoneBlockForms.all().stream().collect(Collectors.toMap(k -> k,
+			form -> registerStoneBlockForms(form, "andesite_brick", BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_ANDESITE), FABlocks::andesiteBricks)));
+
 	// Resources
 
 	public static final List<DeferredBlock<Rock>> ROCKS = Arrays.stream(Rock.Variants.values()).map(v -> register(v.getRockName(), () -> new Rock(v))).toList();
 	public static final DeferredBlock<Rock> COBBLESTONE_ROCK = ROCKS.getFirst();
 	public static final DeferredBlock<ResourceRock> FLINT_ROCK = register("flint_rock", p -> new ResourceRock(p, Items.FLINT), BlockProperties.ROCK);
-	public static final DeferredBlock<Block> CHERT = register("chert", Block::new, BlockProperties.CHERT);
 	public static final DeferredBlock<Block> CASSITERITE_ORE = register("cassiterite_ore", Block::new, BlockProperties.ORE);
 	public static final DeferredBlock<Block> RAW_CASSITERITE_BLOCK = register("raw_cassiterite_block", Block::new, BlockProperties.RAW_ORE(MapColor.COLOR_BLACK));
 	public static final Map<OreQualities, DeferredBlock<Block>> LIMONITE_ORES = OreQualities.ore().stream().collect(
@@ -105,5 +109,21 @@ public class FABlocks
 	private static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> supplier, BlockBehaviour.Properties properties)
 	{
 		return BLOCKS.register(name, () -> supplier.apply(properties));
+	}
+
+	private static DeferredBlock<? extends Block> registerStoneBlockForms(StoneBlockForms form, String name, BlockBehaviour.Properties properties, Supplier<DeferredBlock<? extends Block>> base)
+	{
+		return switch (form)
+		{
+			case BLOCK -> register(name + form.getBrickName(), Block::new, properties);
+			case STAIRS -> register(name + form.getBrickName(), p -> new StairBlock(base.get().get().defaultBlockState(), p), properties);
+			case SLAB -> register(name + form.getBrickName(), SlabBlock::new, properties);
+			case WALL -> register(name + form.getBrickName(), WallBlock::new, properties);
+		};
+	}
+
+	private static DeferredBlock<? extends Block> andesiteBricks()
+	{
+		return ANDESITE_BRICKS.get(StoneBlockForms.BLOCK);
 	}
 }

@@ -1,6 +1,12 @@
 {
 	// Blocks
 	
+	"block.factoryautomation.andesite_bricks": "Andesite Bricks",
+	"block.factoryautomation.andesite_brick_slab": "Andesite Brick Slab",
+	"block.factoryautomation.andesite_brick_stairs": "Andesite Brick Stairs",
+	"block.factoryautomation.andesite_brick_wall": "Andesite Brick Wall",
+	"block.factoryautomation.chert": "Chert",
+	
 	"block.factoryautomation.cobblestone_rock": "Rock",
 	"block.factoryautomation.stone_rock": "Stone Rock",
 	"block.factoryautomation.andesite_rock": "Andesite Rock",
@@ -13,8 +19,6 @@
 	"block.factoryautomation.terracotta_rock": "Terracotta Rock",
 	
 	"block.factoryautomation.flint_rock": "Flint Rock",
-	
-	"block.factoryautomation.chert": "Chert",
 	
 	"block.factoryautomation.cassiterite_ore": "Cassiterite Ore",
 	"block.factoryautomation.raw_cassiterite_block": "Block of Cassiterite",

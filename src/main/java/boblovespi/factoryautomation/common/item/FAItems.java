@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.*;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.GearMaterial;
+import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
@@ -65,6 +66,15 @@ public class FAItems
 	// Building blocks
 
 	public static final DeferredItem<BlockItem> BRICK_TILES = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_TILES);
+	public static final Map<StoneBlockForms, DeferredItem<BlockItem>> ANDESITE_BRICKS = stoneBlockForms(FABlocks.ANDESITE_BRICKS);
+
+	private static Map<StoneBlockForms, DeferredItem<BlockItem>> stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
+	{
+		return blocks.entrySet()
+					 .stream()
+					 .map(e -> Map.entry(e.getKey(), ITEMS.registerSimpleBlockItem(e.getValue())))
+					 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+	}
 
 	// Intermediate products
 

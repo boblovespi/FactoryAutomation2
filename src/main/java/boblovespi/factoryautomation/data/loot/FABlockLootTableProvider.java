@@ -49,10 +49,13 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 	{
 		enchants = registries.lookupOrThrow(Registries.ENCHANTMENT);
 		fortune = enchants.getOrThrow(Enchantments.FORTUNE);
+
+		dropSelf(FABlocks.CHERT.get());
+		FABlocks.ANDESITE_BRICKS.values().forEach(b -> dropSelf(b.get()));
+
 		for (var rock : FABlocks.ROCKS)
 			dropOther(rock.get(), FAItems.ROCK);
 		dropOther(FABlocks.FLINT_ROCK.get(), Items.FLINT);
-		dropSelf(FABlocks.CHERT.get());
 
 		dropOre(FABlocks.CASSITERITE_ORE, FAItems.RAW_CASSITERITE, 1);
 		FABlocks.LIMONITE_ORES.forEach((k, v) -> dropOre(v, FAItems.RAW_LIMONITE, k.getCount()));

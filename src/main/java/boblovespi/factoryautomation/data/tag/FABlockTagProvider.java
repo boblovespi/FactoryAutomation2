@@ -5,6 +5,7 @@ import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.ChoppingBlock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
+import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -13,9 +14,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class FABlockTagProvider extends BlockTagsProvider
@@ -95,5 +98,15 @@ public class FABlockTagProvider extends BlockTagsProvider
 											   .add(FABlocks.HAND_CRANK.get());
 		tag(FATags.Blocks.CHOPPING_BLOCK_LOGS).add(Arrays.stream(WoodTypes.values()).map(WoodTypes::getLog).toArray(Block[]::new));
 		tag(FATags.Blocks.CHOPPING_BLOCKS).add(choppingBlocks);
+
+		addStoneBlockTags(FABlocks.ANDESITE_BRICKS);
+	}
+
+	private void addStoneBlockTags(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
+	{
+		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blocks.values().stream().map(DeferredHolder::get).toArray(Block[]::new));
+		tag(BlockTags.STAIRS).add(blocks.get(StoneBlockForms.STAIRS).get());
+		tag(BlockTags.SLABS).add(blocks.get(StoneBlockForms.SLAB).get());
+		tag(BlockTags.WALLS).add(blocks.get(StoneBlockForms.WALL).get());
 	}
 }
