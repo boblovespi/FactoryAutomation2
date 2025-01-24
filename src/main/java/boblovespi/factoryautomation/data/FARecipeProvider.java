@@ -46,6 +46,7 @@ public class FARecipeProvider extends RecipeProvider
 		var cobbleSlabs = Ingredient.of(Items.COBBLESTONE_SLAB, Items.BLACKSTONE_SLAB, Items.COBBLED_DEEPSLATE_SLAB);
 
 		stoneBricks(output, Items.ANDESITE, Items.POLISHED_ANDESITE, FAItems.ANDESITE_BRICKS);
+		stoneBricks(output, Items.GRANITE, Items.POLISHED_GRANITE, FAItems.GRANITE_BRICKS);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PatchouliAPI.get().getBookStack(FactoryAutomation.name("guidebook")))
 						   .pattern("rd")

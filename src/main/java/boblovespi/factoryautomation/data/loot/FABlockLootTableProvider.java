@@ -52,6 +52,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 
 		dropSelf(FABlocks.CHERT.get());
 		FABlocks.ANDESITE_BRICKS.values().forEach(b -> dropSelf(b.get()));
+		FABlocks.GRANITE_BRICKS.values().forEach(b -> dropSelf(b.get()));
 
 		for (var rock : FABlocks.ROCKS)
 			dropOther(rock.get(), FAItems.ROCK);

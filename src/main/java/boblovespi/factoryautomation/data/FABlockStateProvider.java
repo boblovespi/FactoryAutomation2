@@ -38,6 +38,7 @@ public class FABlockStateProvider extends BlockStateProvider
 	{
 		blockWithItem(FABlocks.CHERT);
 		stoneBlockForms(FABlocks.ANDESITE_BRICKS);
+		stoneBlockForms(FABlocks.GRANITE_BRICKS);
 		FABlocks.ROCKS.forEach(this::rock);
 		existingBlockModel(FABlocks.FLINT_ROCK);
 		blockWithItem(FABlocks.GREEN_SAND);

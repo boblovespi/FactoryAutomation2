@@ -100,6 +100,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(FATags.Blocks.CHOPPING_BLOCKS).add(choppingBlocks);
 
 		addStoneBlockTags(FABlocks.ANDESITE_BRICKS);
+		addStoneBlockTags(FABlocks.GRANITE_BRICKS);
 	}
 
 	private void addStoneBlockTags(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)

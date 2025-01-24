@@ -35,6 +35,8 @@ public class FABlocks
 	public static final DeferredBlock<Block> CHERT = register("chert", Block::new, BlockProperties.CHERT);
 	public static final Map<StoneBlockForms, DeferredBlock<? extends Block>> ANDESITE_BRICKS = StoneBlockForms.all().stream().collect(Collectors.toMap(k -> k,
 			form -> registerStoneBlockForms(form, "andesite_brick", BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_ANDESITE), FABlocks::andesiteBricks)));
+	public static final Map<StoneBlockForms, DeferredBlock<? extends Block>> GRANITE_BRICKS = StoneBlockForms.all().stream().collect(Collectors.toMap(k -> k,
+			form -> registerStoneBlockForms(form, "granite_brick", BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_GRANITE), FABlocks::graniteBricks)));
 
 	// Resources
 
@@ -125,5 +127,10 @@ public class FABlocks
 	private static DeferredBlock<? extends Block> andesiteBricks()
 	{
 		return ANDESITE_BRICKS.get(StoneBlockForms.BLOCK);
+	}
+
+	private static DeferredBlock<? extends Block> graniteBricks()
+	{
+		return GRANITE_BRICKS.get(StoneBlockForms.BLOCK);
 	}
 }
