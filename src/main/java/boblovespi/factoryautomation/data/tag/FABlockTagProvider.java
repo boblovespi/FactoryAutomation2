@@ -101,6 +101,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 
 		addStoneBlockTags(FABlocks.ANDESITE_BRICKS);
 		addStoneBlockTags(FABlocks.GRANITE_BRICKS);
+		addStoneBlockTags(FABlocks.DIORITE_BRICKS);
 	}
 
 	private void addStoneBlockTags(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)

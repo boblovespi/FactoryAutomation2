@@ -68,6 +68,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> BRICK_TILES = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_TILES);
 	public static final Map<StoneBlockForms, DeferredItem<BlockItem>> ANDESITE_BRICKS = stoneBlockForms(FABlocks.ANDESITE_BRICKS);
 	public static final Map<StoneBlockForms, DeferredItem<BlockItem>> GRANITE_BRICKS = stoneBlockForms(FABlocks.GRANITE_BRICKS);
+	public static final Map<StoneBlockForms, DeferredItem<BlockItem>> DIORITE_BRICKS = stoneBlockForms(FABlocks.DIORITE_BRICKS);
 
 	private static Map<StoneBlockForms, DeferredItem<BlockItem>> stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
 	{

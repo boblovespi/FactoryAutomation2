@@ -47,6 +47,7 @@ public class FARecipeProvider extends RecipeProvider
 
 		stoneBricks(output, Items.ANDESITE, Items.POLISHED_ANDESITE, FAItems.ANDESITE_BRICKS);
 		stoneBricks(output, Items.GRANITE, Items.POLISHED_GRANITE, FAItems.GRANITE_BRICKS);
+		stoneBricks(output, Items.DIORITE, Items.POLISHED_DIORITE, FAItems.DIORITE_BRICKS);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PatchouliAPI.get().getBookStack(FactoryAutomation.name("guidebook")))
 						   .pattern("rd")

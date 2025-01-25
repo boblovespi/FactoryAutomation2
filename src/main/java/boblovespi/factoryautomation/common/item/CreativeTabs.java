@@ -135,6 +135,7 @@ public class CreativeTabs
 			insertAfter(event, Items.BRICK_WALL, FAItems.BRICK_TILES);
 			insertForms(event, Items.POLISHED_ANDESITE_SLAB, FAItems.ANDESITE_BRICKS);
 			insertForms(event, Items.POLISHED_GRANITE_SLAB, FAItems.GRANITE_BRICKS);
+			insertForms(event, Items.POLISHED_GRANITE_SLAB, FAItems.DIORITE_BRICKS);
 		}
 
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS)

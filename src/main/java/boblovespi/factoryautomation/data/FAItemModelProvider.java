@@ -25,6 +25,7 @@ public class FAItemModelProvider extends ItemModelProvider
 	{
 		stoneBlock(FAItems.ANDESITE_BRICKS);
 		stoneBlock(FAItems.GRANITE_BRICKS);
+		stoneBlock(FAItems.DIORITE_BRICKS);
 
 		withExistingParent(FAItems.ROCK.getRegisteredName(), modLoc("block/cobblestone_rock"));
 
