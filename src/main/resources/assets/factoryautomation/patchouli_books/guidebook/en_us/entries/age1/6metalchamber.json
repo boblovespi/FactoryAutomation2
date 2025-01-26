@@ -24,6 +24,11 @@
 			"type": "image",
 			"images": ["factoryautomation:textures/patchouli/multiblock_metal_chamber.png"],
 			"text": "light it on fire using the $(l:age1/1charcoal)firebow$(), and cover it up."
+		},
+		{
+			"type":"spotlight",
+			"item": "factoryautomation:iron_shard",
+			"text": "After the structure stops smoking, you will be left with an iron bloom. Break it with a hammer to get yourself some iron shards."
 		}
 	]
 }

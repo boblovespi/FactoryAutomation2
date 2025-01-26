@@ -1,0 +1,22 @@
+{
+	"name": "Obtaining Bricks",
+	"icon": "minecraft:bricks",
+	"category": "factoryautomation:age2",
+	"sortnum": 0,
+	"pages": [
+		{
+			"type": "text",
+			"text": "Smelting iron with a metal chamber takes a long time, but the stone crucible doesn't get hot enough to melt regular iron ore. To make a crucible that can get hot enough, we need bricks."
+		},
+		{
+			"type": "crafting",
+			"text": "The brick maker frame dries clay out to make dried bricks. ",
+			"recipe": "factoryautomation:brick_maker_frame"
+		},
+		{
+			"type": "spotlight",
+			"text": "To fire dried bricks, surround it with log piles on opposite ends, and cover the rest of the faces. Fire the log piles, and the dried bricks will fire as well. You can also use JEI to see the recipe.",
+			"item": "factoryautomation:dried_bricks"
+		}
+	]
+}

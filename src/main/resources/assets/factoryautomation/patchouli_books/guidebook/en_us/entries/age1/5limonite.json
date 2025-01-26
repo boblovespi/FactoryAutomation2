@@ -12,7 +12,7 @@
 		{
 			"type": "spotlight",
 			"item": "factoryautomation:rich_limonite_ore",
-			"text": "Limonite can only be found in one place: the swamp. If you haven't found a swamp, you might need to start looking. Though limonite is scarce, other sources of iron are even scarcer.",
+			"text": "Limonite can only be found in swamp biomes. If you haven't found a swamp or a mangrove swamp, you might need to start looking. Though limonite is scarce, other sources of iron are even scarcer.",
 			"title": "The Hunt Begins!"
 		},
 		{

@@ -2,7 +2,7 @@
 	"name": "Better Casting II",
 	"icon": "factoryautomation:bushing",
 	"category": "factoryautomation:age2",
-	"sortnum": 1,
+	"sortnum": 3,
 	"pages": [
 		{
 			"type": "text",

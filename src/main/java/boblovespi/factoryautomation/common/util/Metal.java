@@ -28,7 +28,7 @@ public class Metal
 	public static final Metal TIN = new Metal("tin", 0xFFF7E8E8, 232, 227, 7310, FATags.Items.TIN_MELTABLE);
 	public static final Metal BRONZE = new Metal("bronze", 0xFFFFB201, 950, 0, 0, FATags.Items.BRONZE_MELTABLE);
 	public static final Metal STEEL = new Metal("steel", 0xFF000000, 10000, 0, 0, FATags.Items.STEEL_MELTABLE);
-	public static final Metal UNKNOWN = new Metal("unknown", 0x00000000, 10000, 0, 0, null);
+	public static final Metal UNKNOWN = new Metal("unknown", 0xFF68271A, 10000, 0, 0, null);
 
 	private final String name;
 	private final int color;

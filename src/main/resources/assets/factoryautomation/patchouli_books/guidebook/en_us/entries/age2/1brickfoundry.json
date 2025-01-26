@@ -1,0 +1,29 @@
+{
+	"name": "Better Casting I",
+	"icon": "factoryautomation:brick_crucible",
+	"category": "factoryautomation:age2",
+	"sortnum": 1,
+	"pages": [
+		{
+			"type": "spotlight",
+			"text": "The brick crucible is an improved version of the stone crucible. It is capable of reaching much higher temperatures, as well as alloying.",
+			"item": "factoryautomation:brick_crucible"
+		},
+		{
+			"type": "text",
+			"name": "Foundry Tier II",
+			"multiblock_id": "factoryautomation:brick_foundry",
+			"text": "Use the book to visualise how to build the brick foundry. You also need a brick firebox."
+		},
+		{
+			"type": "spotlight",
+			"text": "You may have noticed that your brick foundry is not reaching high enough temperatures to melt iron. To do so, you need a bellows, to increase the airflow the foundry receives and subsequently raise the temperature your fuel burns at.",
+			"item": "factoryautomation:paper_bellows"
+		},
+		{
+			"type": "image",
+			"images": ["factoryautomation:textures/patchouli/paper_bellows.png"],
+			"text": "Make sure to also use coal. Charcoal does not burn hot enough to melt raw iron ore."
+		}
+	]
+}
