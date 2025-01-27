@@ -356,9 +356,9 @@ public class FARecipeProvider extends RecipeProvider
 							  .save(output);
 
 		WorkbenchRecipeBuilder.of(FAItems.PAPER_BELLOWS)
-							  .pattern("ppp")
-							  .pattern("w c")
-							  .pattern("ppp")
+							  .pattern("pww")
+							  .pattern("p c")
+							  .pattern("pww")
 							  .define('p', Items.PAPER)
 							  .define('w', ItemTags.PLANKS)
 							  .define('c', FATags.Items.COPPER_SHEET)
