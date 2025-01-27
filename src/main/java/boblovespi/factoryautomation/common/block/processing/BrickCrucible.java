@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,7 +35,18 @@ public class BrickCrucible extends Block implements EntityBlock
 {
 	public static final BooleanProperty MULTIBLOCK_COMPLETE = StoneCrucible.MULTIBLOCK_COMPLETE;
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
-	private static final VoxelShape BOUNDING_BOX = Block.box(2, 0, 2, 14, 16, 14);
+	private static final VoxelShape BASE_SHAPE = Block.box(2, 2, 2, 14, 16, 14);
+	private static final VoxelShape BASE_COMPLETE_SHAPE = Block.box(2, 0, 2, 14, 15, 14);
+	private static final VoxelShape[] INCOMPLETE_SHAPE = new VoxelShape[] {
+			Shapes.or(BASE_SHAPE, Block.box(0, 0, 6, 2, 16, 10), Block.box(14, 0, 6, 16, 16, 10)),
+			Shapes.or(BASE_SHAPE, Block.box(6, 0, 0, 10, 16, 2), Block.box(6, 0, 14, 10, 16, 16))
+	};
+	private static final VoxelShape[] COMPLETE_SHAPE = new VoxelShape[] {
+			Shapes.or(BASE_COMPLETE_SHAPE, Block.box(0, 0, 6, 2, 16, 10), Block.box(12, 0, 5, 16, 16, 11)),
+			Shapes.or(BASE_COMPLETE_SHAPE, Block.box(6, 0, 0, 10, 16, 2), Block.box(5, 0, 12, 11, 16, 16)),
+			Shapes.or(BASE_COMPLETE_SHAPE, Block.box(0, 0, 5, 4, 16, 11), Block.box(14, 0, 6, 16, 16, 10)),
+			Shapes.or(BASE_COMPLETE_SHAPE, Block.box(5, 0, 0, 11, 16, 4), Block.box(6, 0, 14, 10, 16, 16))
+	};
 
 	public BrickCrucible(Properties p)
 	{
@@ -93,7 +105,7 @@ public class BrickCrucible extends Block implements EntityBlock
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter levelIn, BlockPos pos, CollisionContext context)
 	{
-		return BOUNDING_BOX;
+		return state.getValue(MULTIBLOCK_COMPLETE) ? COMPLETE_SHAPE[state.getValue(FACING).get2DDataValue()] : INCOMPLETE_SHAPE[state.getValue(FACING).get2DDataValue() % 2];
 	}
 
 	@Override
