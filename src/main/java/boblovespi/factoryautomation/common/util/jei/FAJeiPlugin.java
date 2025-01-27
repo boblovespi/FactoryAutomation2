@@ -73,7 +73,8 @@ public class FAJeiPlugin implements IModPlugin
 	@Override
 	public void registerIngredients(IModIngredientRegistration registration)
 	{
-		registration.register(METAL_INGREDIENT, Metal.allMetals().stream().map(k -> new MetalStack(k, 18)).collect(Collectors.toList()), new MetalIngredientHelper(),
+		registration.register(METAL_INGREDIENT, Metal.allMetals().stream().filter(k -> k != Metal.UNKNOWN).map(k -> new MetalStack(k, 18)).collect(Collectors.toList()),
+				new MetalIngredientHelper(),
 				MetalIngredientRenderer.create());
 	}
 
@@ -86,7 +87,8 @@ public class FAJeiPlugin implements IModPlugin
 			var minecraft = Minecraft.getInstance();
 			var level = minecraft.level;
 			recipeManager = level.getRecipeManager();
-		} catch (NullPointerException e)
+		}
+		catch (NullPointerException e)
 		{
 			FactoryAutomation.LOGGER.error("Somehow something is null, so we couldn't find the recipes :(", e);
 			return;
