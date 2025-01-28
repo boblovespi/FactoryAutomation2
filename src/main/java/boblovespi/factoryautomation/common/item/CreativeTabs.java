@@ -61,8 +61,10 @@ public class CreativeTabs
 								o.accept(Items.IRON_BLOCK);
 							o.accept(deferredItem);
 						}
+						FAItems.LEAD_THINGS.values().forEach(o::accept);
 						FAItems.BRONZE_THINGS.values().forEach(o::accept);
 						FAItems.STEEL_THINGS.values().forEach(o::accept);
+						FAItems.CHROMIUM_THINGS.values().forEach(o::accept);
 						o.accept(FAItems.WHEAT_FLOUR);
 						o.accept(FAItems.CALCITE_DUST);
 						o.accept(FAItems.QUICKLIME);

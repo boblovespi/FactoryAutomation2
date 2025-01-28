@@ -48,19 +48,24 @@ public class FABlockTagProvider extends BlockTagsProvider
 									  .add(Blocks.COBBLED_DEEPSLATE_STAIRS, Blocks.COBBLED_DEEPSLATE_WALL, Blocks.INFESTED_DEEPSLATE, Blocks.CRACKED_DEEPSLATE_TILES)
 									  .add(Blocks.DEEPSLATE_COAL_ORE, Blocks.DEEPSLATE_COPPER_ORE)
 									  .add(FABlocks.STEEL_BLOCK.get(), FABlocks.STEEL_PLATE_BLOCK.get(), FABlocks.STEEL_SPACE_FRAME.get())
+									  .add(FABlocks.CHROMIUM_BLOCK.get(), FABlocks.CHROMIUM_PLATE_BLOCK.get(), FABlocks.CHROMIUM_SPACE_FRAME.get())
 									  .addTags(BlockTags.IRON_ORES, BlockTags.GOLD_ORES)
 									  .remove(FATags.Blocks.NEEDS_BRONZE_TOOL).remove(BlockTags.NEEDS_DIAMOND_TOOL);
 		tag(BlockTags.INCORRECT_FOR_IRON_TOOL).addTag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).remove(BlockTags.NEEDS_IRON_TOOL);
 		tag(FATags.Blocks.NEEDS_COPPER_TOOL).add(FABlocks.TIN_BLOCK.get(), FABlocks.COPPER_PLATE_BLOCK.get(), FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.IRON_PLATE_BLOCK.get())
 											.add(FABlocks.BRONZE_BLOCK.get(), FABlocks.BRONZE_PLATE_BLOCK.get())
-											.add(FABlocks.COPPER_SPACE_FRAME.get(), FABlocks.TIN_SPACE_FRAME.get(), FABlocks.IRON_SPACE_FRAME.get(), FABlocks.BRONZE_SPACE_FRAME.get())
+											.add(FABlocks.COPPER_SPACE_FRAME.get(), FABlocks.TIN_SPACE_FRAME.get(), FABlocks.IRON_SPACE_FRAME.get(),
+													FABlocks.BRONZE_SPACE_FRAME.get())
+											.add(FABlocks.LEAD_BLOCK.get(), FABlocks.LEAD_PLATE_BLOCK.get(), FABlocks.LEAD_SPACE_FRAME.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
 											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get(), FABlocks.IRON_BLOOM.get())
 											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get())
 											.add(FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get())
 											.remove(BlockTags.NEEDS_IRON_TOOL);
 		tag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL).remove(FATags.Blocks.NEEDS_COPPER_TOOL);
-		tag(BlockTags.NEEDS_STONE_TOOL).add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get()).remove(FATags.Blocks.NEEDS_COPPER_TOOL).remove(BlockTags.NEEDS_IRON_TOOL);
+		tag(BlockTags.NEEDS_STONE_TOOL).add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
+									   .remove(FATags.Blocks.NEEDS_COPPER_TOOL)
+									   .remove(BlockTags.NEEDS_IRON_TOOL);
 		tag(BlockTags.INCORRECT_FOR_STONE_TOOL).addTag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).remove(BlockTags.NEEDS_STONE_TOOL);
 		tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).addTags(FATags.Blocks.NEEDS_STEEL_TOOL, BlockTags.NEEDS_DIAMOND_TOOL, FATags.Blocks.NEEDS_BRONZE_TOOL, BlockTags.NEEDS_IRON_TOOL,
 				FATags.Blocks.NEEDS_COPPER_TOOL, BlockTags.NEEDS_STONE_TOOL);
@@ -68,14 +73,17 @@ public class FABlockTagProvider extends BlockTagsProvider
 
 
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(FABlocks.GREEN_SAND.get(), FABlocks.CHARCOAL_PILE.get());
-		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(FABlocks.STONE_CRUCIBLE.get(), FABlocks.STONE_CASTING_VESSEL.get(), FABlocks.TIN_BLOCK.get(), FABlocks.COPPER_PLATE_BLOCK.get())
-											.add(FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
+		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(FABlocks.STONE_CRUCIBLE.get(), FABlocks.STONE_CASTING_VESSEL.get())
+											.add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
 											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.STONE_WORKBENCH.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get())
-											.add(FABlocks.IRON_PLATE_BLOCK.get(), FABlocks.BRONZE_BLOCK.get(), FABlocks.BRONZE_PLATE_BLOCK.get())
-											.add(FABlocks.STEEL_BLOCK.get(), FABlocks.STEEL_PLATE_BLOCK.get())
-											.add(FABlocks.COPPER_SPACE_FRAME.get(), FABlocks.TIN_SPACE_FRAME.get(), FABlocks.IRON_SPACE_FRAME.get(), FABlocks.BRONZE_SPACE_FRAME.get())
-											.add(FABlocks.STEEL_SPACE_FRAME.get())
+											.add(FABlocks.COPPER_PLATE_BLOCK.get(), FABlocks.COPPER_SPACE_FRAME.get())
+											.add(FABlocks.TIN_BLOCK.get(), FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.TIN_SPACE_FRAME.get())
+											.add(FABlocks.IRON_PLATE_BLOCK.get(), FABlocks.IRON_SPACE_FRAME.get())
+											.add(FABlocks.LEAD_BLOCK.get(), FABlocks.LEAD_PLATE_BLOCK.get(), FABlocks.LEAD_SPACE_FRAME.get())
+											.add(FABlocks.BRONZE_BLOCK.get(), FABlocks.BRONZE_PLATE_BLOCK.get(), FABlocks.BRONZE_SPACE_FRAME.get())
+											.add(FABlocks.STEEL_BLOCK.get(), FABlocks.STEEL_PLATE_BLOCK.get(), FABlocks.STEEL_SPACE_FRAME.get())
+											.add(FABlocks.CHROMIUM_BLOCK.get(), FABlocks.CHROMIUM_PLATE_BLOCK.get(), FABlocks.CHROMIUM_SPACE_FRAME.get())
 											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get())
 											.add(FABlocks.MILLSTONE.get(), FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get())
 											.add(FABlocks.DRIED_BRICKS.get(), FABlocks.BRICK_TILES.get())
@@ -86,10 +94,13 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(BlockTags.BASE_STONE_OVERWORLD).add(FABlocks.CHERT.get());
 		tag(Tags.Blocks.STONES).add(FABlocks.CHERT.get());
 
-		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK);
+		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK, FATags.Blocks.LEAD_BLOCK, FATags.Blocks.BRONZE_BLOCK, FATags.Blocks.STEEL_BLOCK,
+				FATags.Blocks.CHROMIUM_BLOCK);
 		tag(FATags.Blocks.TIN_BLOCK).add(FABlocks.TIN_BLOCK.get());
+		tag(FATags.Blocks.LEAD_BLOCK).add(FABlocks.LEAD_BLOCK.get());
 		tag(FATags.Blocks.BRONZE_BLOCK).add(FABlocks.BRONZE_BLOCK.get());
 		tag(FATags.Blocks.STEEL_BLOCK).add(FABlocks.STEEL_BLOCK.get());
+		tag(FATags.Blocks.CHROMIUM_BLOCK).add(FABlocks.CHROMIUM_BLOCK.get());
 
 		tag(FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);
 		tag(FATags.Blocks.MINEABLE_WITH_HAMMER).add(FABlocks.IRON_BLOOM.get());

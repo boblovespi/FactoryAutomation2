@@ -46,19 +46,27 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(Tags.Items.FOODS_BREAD).add(FAItems.TOASTED_BREAD.get());
 		tag(Tags.Items.TOOLS_IGNITER).add(FAItems.FIREBOW.get());
 
-		tag(Tags.Items.INGOTS).addTags(FATags.Items.TIN_INGOT, FATags.Items.BRONZE_INGOT, FATags.Items.STEEL_INGOT);
-		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET, FATags.Items.BRONZE_NUGGET, FATags.Items.STEEL_NUGGET);
-		tag(Tags.Items.RODS).addTags(FATags.Items.COPPER_ROD, FATags.Items.TIN_ROD, FATags.Items.IRON_ROD, FATags.Items.BRONZE_ROD, FATags.Items.STEEL_ROD);
+		tag(Tags.Items.INGOTS).addTags(FATags.Items.TIN_INGOT, FATags.Items.LEAD_INGOT, FATags.Items.BRONZE_INGOT, FATags.Items.STEEL_INGOT, FATags.Items.CHROMIUM_INGOT);
+		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET, FATags.Items.LEAD_NUGGET, FATags.Items.BRONZE_NUGGET, FATags.Items.STEEL_NUGGET,
+				FATags.Items.CHROMIUM_NUGGET);
+		tag(Tags.Items.RODS).addTags(FATags.Items.COPPER_ROD, FATags.Items.TIN_ROD, FATags.Items.IRON_ROD, FATags.Items.LEAD_ROD, FATags.Items.BRONZE_ROD, FATags.Items.STEEL_ROD,
+				FATags.Items.CHROMIUM_ROD);
+		tag(FATags.Items.SHEETS).addTags(FATags.Items.COPPER_SHEET, FATags.Items.TIN_SHEET, FATags.Items.LEAD_SHEET, FATags.Items.IRON_SHEET, FATags.Items.BRONZE_SHEET,
+				FATags.Items.STEEL_SHEET, FATags.Items.CHROMIUM_SHEET);
 		tag(FATags.Items.FA_GEARS).add(FAItems.GEARS.get(GearMaterial.COPPER).get(), FAItems.GEARS.get(GearMaterial.IRON).get(), FAItems.GEARS.get(GearMaterial.BRONZE).get())
 								  .add(FAItems.GEARS.get(GearMaterial.STEEL).get())
 								  .add(FAItems.GEARS.get(GearMaterial.WOOD).get(), FAItems.GEARS.get(GearMaterial.STONE).get());
-		tag(FATags.Items.GEARS).addTags(FATags.Items.COPPER_GEAR, FATags.Items.TIN_GEAR, FATags.Items.IRON_GEAR, FATags.Items.BRONZE_GEAR, FATags.Items.STEEL_GEAR)
-							   .addTags(FATags.Items.WOOD_GEAR);
+		tag(FATags.Items.GEARS).addTags(FATags.Items.COPPER_GEAR, FATags.Items.TIN_GEAR, FATags.Items.IRON_GEAR, FATags.Items.LEAD_GEAR, FATags.Items.BRONZE_GEAR,
+									   FATags.Items.STEEL_GEAR, FATags.Items.CHROMIUM_GEAR)
+							   .addTags(FATags.Items.WOOD_GEAR)
+							   .add(FAItems.GEARS.get(GearMaterial.STONE).get());
 		tag(Tags.Items.RAW_MATERIALS).addTags(FATags.Items.RAW_TIN);
 
 		copy(FATags.Blocks.TIN_BLOCK, FATags.Items.TIN_BLOCK);
+		copy(FATags.Blocks.LEAD_BLOCK, FATags.Items.LEAD_BLOCK);
 		copy(FATags.Blocks.BRONZE_BLOCK, FATags.Items.BRONZE_BLOCK);
 		copy(FATags.Blocks.STEEL_BLOCK, FATags.Items.STEEL_BLOCK);
+		copy(FATags.Blocks.CHROMIUM_BLOCK, FATags.Items.CHROMIUM_BLOCK);
 
 		tag(FATags.Items.COPPER_NUGGET).add(FAItems.COPPER_THINGS.get(Form.NUGGET).get());
 		tag(FATags.Items.COPPER_SHEET).add(FAItems.COPPER_THINGS.get(Form.SHEET).get());
@@ -72,6 +80,11 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.IRON_SHEET).add(FAItems.IRON_THINGS.get(Form.SHEET).get());
 		tag(FATags.Items.IRON_ROD).add(FAItems.IRON_THINGS.get(Form.ROD).get());
 		tag(FATags.Items.IRON_GEAR).add(FAItems.GEARS.get(GearMaterial.IRON).get());
+		tag(FATags.Items.LEAD_INGOT).add(FAItems.LEAD_THINGS.get(Form.INGOT).get());
+		tag(FATags.Items.LEAD_NUGGET).add(FAItems.LEAD_THINGS.get(Form.NUGGET).get());
+		tag(FATags.Items.LEAD_SHEET).add(FAItems.LEAD_THINGS.get(Form.SHEET).get());
+		tag(FATags.Items.LEAD_ROD).add(FAItems.LEAD_THINGS.get(Form.ROD).get());
+		tag(FATags.Items.LEAD_GEAR);
 		tag(FATags.Items.BRONZE_INGOT).add(FAItems.BRONZE_THINGS.get(Form.INGOT).get());
 		tag(FATags.Items.BRONZE_NUGGET).add(FAItems.BRONZE_THINGS.get(Form.NUGGET).get());
 		tag(FATags.Items.BRONZE_SHEET).add(FAItems.BRONZE_THINGS.get(Form.SHEET).get());
@@ -82,33 +95,43 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.STEEL_SHEET).add(FAItems.STEEL_THINGS.get(Form.SHEET).get());
 		tag(FATags.Items.STEEL_ROD).add(FAItems.STEEL_THINGS.get(Form.ROD).get());
 		tag(FATags.Items.STEEL_GEAR).add(FAItems.GEARS.get(GearMaterial.STEEL).get());
+		tag(FATags.Items.CHROMIUM_INGOT).add(FAItems.CHROMIUM_THINGS.get(Form.INGOT).get());
+		tag(FATags.Items.CHROMIUM_NUGGET).add(FAItems.CHROMIUM_THINGS.get(Form.NUGGET).get());
+		tag(FATags.Items.CHROMIUM_SHEET).add(FAItems.CHROMIUM_THINGS.get(Form.SHEET).get());
+		tag(FATags.Items.CHROMIUM_ROD).add(FAItems.CHROMIUM_THINGS.get(Form.ROD).get());
+		tag(FATags.Items.CHROMIUM_GEAR);
 
 		tag(FATags.Items.WOOD_GEAR).add(FAItems.GEARS.get(GearMaterial.WOOD).get());
 
 		tag(FATags.Items.RAW_TIN).add(FAItems.RAW_CASSITERITE.get());
-
-		tag(FATags.Items.SHEETS).addTags(FATags.Items.COPPER_SHEET, FATags.Items.TIN_SHEET, FATags.Items.IRON_SHEET, FATags.Items.BRONZE_SHEET, FATags.Items.STEEL_SHEET);
 
 		tag(FATags.Items.SILKS_GRASS).add(Items.SHEARS, FAItems.CHOPPING_BLADE.get());
 		tag(FATags.Items.GOOD_AXES).add(Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
 
 		copy(FATags.Blocks.CHOPPING_BLOCKS, FATags.Items.CHOPPING_BLOCKS);
 
-		tag(FATags.Items.IRON_MELTABLE).addTags(Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON, FATags.Items.IRON_SHEET, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR)
-									   .addTags(Tags.Items.RAW_MATERIALS_IRON)
-									   .add(FAItems.IRON_SHARD.get(), FAItems.IRON_THINGS.get(Form.PLATE_BLOCK).get());
 		tag(FATags.Items.COPPER_MELTABLE).addTags(Tags.Items.INGOTS_COPPER, Tags.Items.RAW_MATERIALS_COPPER, FATags.Items.COPPER_NUGGET, FATags.Items.COPPER_SHEET)
 										 .addTags(FATags.Items.COPPER_ROD, FATags.Items.COPPER_GEAR)
 										 .add(FAItems.COPPER_THINGS.get(Form.PLATE_BLOCK).get());
 		tag(FATags.Items.TIN_MELTABLE).addTags(FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, FATags.Items.TIN_SHEET, FATags.Items.TIN_ROD)
 									  .addTags(FATags.Items.TIN_GEAR, FATags.Items.RAW_TIN)
 									  .add(FAItems.TIN_THINGS.get(Form.PLATE_BLOCK).get());
+		tag(FATags.Items.IRON_MELTABLE).addTags(Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON, FATags.Items.IRON_SHEET, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR)
+									   .addTags(Tags.Items.RAW_MATERIALS_IRON)
+									   .add(FAItems.IRON_SHARD.get(), FAItems.IRON_THINGS.get(Form.PLATE_BLOCK).get());
+		tag(FATags.Items.LEAD_MELTABLE).addTags(FATags.Items.LEAD_INGOT, FATags.Items.LEAD_NUGGET, FATags.Items.LEAD_BLOCK, FATags.Items.LEAD_SHEET, FATags.Items.LEAD_ROD)
+									   .addTags(FATags.Items.LEAD_GEAR)
+									   .add(FAItems.LEAD_THINGS.get(Form.PLATE_BLOCK).get());
 		tag(FATags.Items.BRONZE_MELTABLE).addTags(FATags.Items.BRONZE_INGOT, FATags.Items.BRONZE_NUGGET, FATags.Items.BRONZE_BLOCK, FATags.Items.BRONZE_SHEET)
 										 .addTags(FATags.Items.BRONZE_ROD, FATags.Items.BRONZE_GEAR)
 										 .add(FAItems.BRONZE_THINGS.get(Form.PLATE_BLOCK).get());
 		tag(FATags.Items.STEEL_MELTABLE).addTags(FATags.Items.STEEL_INGOT, FATags.Items.STEEL_NUGGET, FATags.Items.STEEL_BLOCK, FATags.Items.STEEL_SHEET)
 										.addTags(FATags.Items.STEEL_ROD, FATags.Items.STEEL_GEAR)
 										.add(FAItems.STEEL_THINGS.get(Form.PLATE_BLOCK).get());
+		tag(FATags.Items.CHROMIUM_MELTABLE).addTags(FATags.Items.CHROMIUM_INGOT, FATags.Items.CHROMIUM_NUGGET, FATags.Items.CHROMIUM_BLOCK, FATags.Items.CHROMIUM_SHEET,
+												   FATags.Items.CHROMIUM_ROD)
+										   .addTags(FATags.Items.CHROMIUM_GEAR)
+										   .add(FAItems.CHROMIUM_THINGS.get(Form.PLATE_BLOCK).get());
 
 		tag(FATags.Items.SHARDS).add(FAItems.IRON_SHARD.get());
 

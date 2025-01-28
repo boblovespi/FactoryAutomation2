@@ -42,18 +42,24 @@
 	"block.factoryautomation.dried_bricks": "Dried Bricks",
 	
 	"block.factoryautomation.tin_block": "Block of Tin",
+	"block.factoryautomation.lead_block": "Block of Lead",
 	"block.factoryautomation.bronze_block": "Block of Bronze",
 	"block.factoryautomation.steel_block": "Block of Steel",
+	"block.factoryautomation.chromium_block": "Block of Chromium",
 	"block.factoryautomation.copper_plate_block": "Copper Plate Block",
 	"block.factoryautomation.tin_plate_block": "Tin Plate Block",
 	"block.factoryautomation.iron_plate_block": "Iron Plate Block",
+	"block.factoryautomation.lead_plate_block": "Lead Plate Block",
 	"block.factoryautomation.bronze_plate_block": "Bronze Plate Block",
 	"block.factoryautomation.steel_plate_block": "Steel Plate Block",
+	"block.factoryautomation.chromium_plate_block": "Chromium Plate Block",
 	"block.factoryautomation.copper_space_frame": "Copper Space Frame",
 	"block.factoryautomation.tin_space_frame": "Tin Space Frame",
 	"block.factoryautomation.iron_space_frame": "Iron Space Frame",
+	"block.factoryautomation.lead_space_frame": "Lead Space Frame",
 	"block.factoryautomation.bronze_space_frame": "Bronze Space Frame",
 	"block.factoryautomation.steel_space_frame": "Steel Space Frame",
+	"block.factoryautomation.chromium_space_frame": "Chromium Space Frame",
 	
 	"block.factoryautomation.brick_tiles": "Brick Tiles",
 	
@@ -130,6 +136,14 @@
 	"item.factoryautomation.tin_sheet": "Tin Sheet",
 	"item.factoryautomation.tin_rod": "Tin Rod",
 	
+	"item.factoryautomation.iron_sheet": "Iron Sheet",
+	"item.factoryautomation.iron_rod": "Iron Rod",
+	
+	"item.factoryautomation.lead_ingot": "Lead Ingot",
+	"item.factoryautomation.lead_nugget": "Lead Nugget",
+	"item.factoryautomation.lead_sheet": "Lead Sheet",
+	"item.factoryautomation.lead_rod": "Lead Rod",
+	
 	"item.factoryautomation.bronze_ingot": "Bronze Ingot",
 	"item.factoryautomation.bronze_nugget": "Bronze Nugget",
 	"item.factoryautomation.bronze_sheet": "Bronze Sheet",
@@ -140,8 +154,10 @@
 	"item.factoryautomation.steel_sheet": "Steel Sheet",
 	"item.factoryautomation.steel_rod": "Steel Rod",
 	
-	"item.factoryautomation.iron_sheet": "Iron Sheet",
-	"item.factoryautomation.iron_rod": "Iron Rod",
+	"item.factoryautomation.chromium_ingot": "Chromium Ingot",
+	"item.factoryautomation.chromium_nugget": "Chromium Nugget",
+	"item.factoryautomation.chromium_sheet": "Chromium Sheet",
+	"item.factoryautomation.chromium_rod": "Chromium Rod",
 	
 	"item.factoryautomation.wheat_flour": "Wheat Flour",
 	"item.factoryautomation.calcite_dust": "Calcite Dust",
