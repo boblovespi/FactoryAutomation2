@@ -57,6 +57,7 @@ public class FAItems
 	public static final Map<Form, DeferredItem<? extends Item>> IRON_THINGS = metal("iron", Form.iron(), null, FABlocks.IRON_PLATE_BLOCK, FABlocks.IRON_SPACE_FRAME);
 	public static final Map<Form, DeferredItem<? extends Item>> BRONZE_THINGS = metal("bronze", Form.most(), FABlocks.BRONZE_BLOCK, FABlocks.BRONZE_PLATE_BLOCK, FABlocks.BRONZE_SPACE_FRAME);
 	public static final Map<Form, DeferredItem<? extends Item>> STEEL_THINGS = metal("steel", Form.most(), FABlocks.STEEL_BLOCK, FABlocks.STEEL_PLATE_BLOCK, FABlocks.STEEL_SPACE_FRAME);
+	public static final Map<Form, DeferredItem<? extends Item>> ALUMINUM_THINGS = metal("aluminum", Form.most(), FABlocks.ALUMINUM_BLOCK, FABlocks.ALUMINUM_PLATE_BLOCK, FABlocks.ALUMINUM_SPACE_FRAME);
 	public static final Map<Form, DeferredItem<? extends Item>> CHROMIUM_THINGS = metal("chromium", Form.most(), FABlocks.CHROMIUM_BLOCK, FABlocks.CHROMIUM_PLATE_BLOCK, FABlocks.CHROMIUM_SPACE_FRAME);
 	public static final DeferredItem<Item> WHEAT_FLOUR = ITEMS.registerSimpleItem("wheat_flour");
 	public static final DeferredItem<Item> CALCITE_DUST = ITEMS.registerSimpleItem("calcite_dust");

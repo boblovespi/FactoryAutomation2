@@ -95,11 +95,12 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(Tags.Blocks.STONES).add(FABlocks.CHERT.get());
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK, FATags.Blocks.LEAD_BLOCK, FATags.Blocks.BRONZE_BLOCK, FATags.Blocks.STEEL_BLOCK,
-				FATags.Blocks.CHROMIUM_BLOCK);
+				FATags.Blocks.ALUMINUM_BLOCK, FATags.Blocks.CHROMIUM_BLOCK);
 		tag(FATags.Blocks.TIN_BLOCK).add(FABlocks.TIN_BLOCK.get());
 		tag(FATags.Blocks.LEAD_BLOCK).add(FABlocks.LEAD_BLOCK.get());
 		tag(FATags.Blocks.BRONZE_BLOCK).add(FABlocks.BRONZE_BLOCK.get());
 		tag(FATags.Blocks.STEEL_BLOCK).add(FABlocks.STEEL_BLOCK.get());
+		tag(FATags.Blocks.ALUMINUM_BLOCK).add(FABlocks.ALUMINUM_BLOCK.get());
 		tag(FATags.Blocks.CHROMIUM_BLOCK).add(FABlocks.CHROMIUM_BLOCK.get());
 
 		tag(FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);

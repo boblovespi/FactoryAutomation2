@@ -26,6 +26,7 @@ public class FATags
 		public static final TagKey<Item> LEAD_MELTABLE = item("meltables/lead");
 		public static final TagKey<Item> BRONZE_MELTABLE = item("meltables/bronze");
 		public static final TagKey<Item> STEEL_MELTABLE = item("meltables/steel");
+		public static final TagKey<Item> ALUMINUM_MELTABLE = item("meltables/aluminum");
 		public static final TagKey<Item> CHROMIUM_MELTABLE = item("meltables/chromium");
 
 		public static final TagKey<Item> SHARDS = item("shards");
@@ -61,6 +62,12 @@ public class FATags
 		public static final TagKey<Item> STEEL_SHEET = cItem("plates/steel");
 		public static final TagKey<Item> STEEL_ROD = cItem("rods/steel");
 		public static final TagKey<Item> STEEL_GEAR = cItem("gears/steel");
+		public static final TagKey<Item> ALUMINUM_INGOT = cItem("ingots/aluminum");
+		public static final TagKey<Item> ALUMINUM_NUGGET = cItem("nuggets/aluminum");
+		public static final TagKey<Item> ALUMINUM_BLOCK = cItem("storage_blocks/aluminum");
+		public static final TagKey<Item> ALUMINUM_SHEET = cItem("plates/aluminum");
+		public static final TagKey<Item> ALUMINUM_ROD = cItem("rods/aluminum");
+		public static final TagKey<Item> ALUMINUM_GEAR = cItem("gears/aluminum");
 		public static final TagKey<Item> CHROMIUM_INGOT = cItem("ingots/chromium");
 		public static final TagKey<Item> CHROMIUM_NUGGET = cItem("nuggets/chromium");
 		public static final TagKey<Item> CHROMIUM_BLOCK = cItem("storage_blocks/chromium");
@@ -90,6 +97,7 @@ public class FATags
 		public static final TagKey<Block> LEAD_BLOCK = cBlock("storage_blocks/lead");
 		public static final TagKey<Block> BRONZE_BLOCK = cBlock("storage_blocks/bronze");
 		public static final TagKey<Block> STEEL_BLOCK = cBlock("storage_blocks/steel");
+		public static final TagKey<Block> ALUMINUM_BLOCK = cBlock("storage_blocks/aluminum");
 		public static final TagKey<Block> CHROMIUM_BLOCK = cBlock("storage_blocks/chromium");
 
 		public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = block("incorrect_for_copper_tool");

@@ -29,6 +29,7 @@ public class Metal
 	public static final Metal LEAD = new Metal("lead", 0xFFE0A0E0, 10000, 0, 0, FATags.Items.LEAD_MELTABLE);
 	public static final Metal BRONZE = new Metal("bronze", 0xFFFFB201, 950, 0, 0, FATags.Items.BRONZE_MELTABLE);
 	public static final Metal STEEL = new Metal("steel", 0xFF000000, 10000, 0, 0, FATags.Items.STEEL_MELTABLE);
+	public static final Metal ALUMINUM = new Metal("aluminum", 0xFFC2E8DC, 10000, 0, 0, FATags.Items.ALUMINUM_MELTABLE);
 	public static final Metal CHROMIUM = new Metal("chromium", 0xFFEEF0FF, 10000, 0, 0, FATags.Items.CHROMIUM_MELTABLE);
 	public static final Metal UNKNOWN = new Metal("unknown", 0xFF68271A, 10000, 0, 0, null);
 

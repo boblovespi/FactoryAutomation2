@@ -45,6 +45,7 @@
 	"block.factoryautomation.lead_block": "Block of Lead",
 	"block.factoryautomation.bronze_block": "Block of Bronze",
 	"block.factoryautomation.steel_block": "Block of Steel",
+	"block.factoryautomation.aluminum_block": "Block of Aluminum",
 	"block.factoryautomation.chromium_block": "Block of Chromium",
 	"block.factoryautomation.copper_plate_block": "Copper Plate Block",
 	"block.factoryautomation.tin_plate_block": "Tin Plate Block",
@@ -52,6 +53,7 @@
 	"block.factoryautomation.lead_plate_block": "Lead Plate Block",
 	"block.factoryautomation.bronze_plate_block": "Bronze Plate Block",
 	"block.factoryautomation.steel_plate_block": "Steel Plate Block",
+	"block.factoryautomation.aluminum_plate_block": "Aluminum Plate Block",
 	"block.factoryautomation.chromium_plate_block": "Chromium Plate Block",
 	"block.factoryautomation.copper_space_frame": "Copper Space Frame",
 	"block.factoryautomation.tin_space_frame": "Tin Space Frame",
@@ -59,6 +61,7 @@
 	"block.factoryautomation.lead_space_frame": "Lead Space Frame",
 	"block.factoryautomation.bronze_space_frame": "Bronze Space Frame",
 	"block.factoryautomation.steel_space_frame": "Steel Space Frame",
+	"block.factoryautomation.aluminum_space_frame": "Aluminum Space Frame",
 	"block.factoryautomation.chromium_space_frame": "Chromium Space Frame",
 	
 	"block.factoryautomation.brick_tiles": "Brick Tiles",
@@ -153,6 +156,11 @@
 	"item.factoryautomation.steel_nugget": "Steel Nugget",
 	"item.factoryautomation.steel_sheet": "Steel Sheet",
 	"item.factoryautomation.steel_rod": "Steel Rod",
+	
+	"item.factoryautomation.aluminum_ingot": "Aluminum Ingot",
+	"item.factoryautomation.aluminum_nugget": "Aluminum Nugget",
+	"item.factoryautomation.aluminum_sheet": "Aluminum Sheet",
+	"item.factoryautomation.aluminum_rod": "Aluminum Rod",
 	
 	"item.factoryautomation.chromium_ingot": "Chromium Ingot",
 	"item.factoryautomation.chromium_nugget": "Chromium Nugget",
@@ -264,8 +272,11 @@
 	"metal.gold.name": "Gold",
 	"metal.copper.name": "Copper",
 	"metal.tin.name": "Tin",
+	"metal.lead.name": "Lead",
 	"metal.bronze.name": "Bronze",
 	"metal.steel.name": "Steel",
+	"metal.aluminum.name": "Aluminum",
+	"metal.chromium.name": "Chromium",
 	"metal.unknown.name": "Unknown",
 	
 	// Form names
