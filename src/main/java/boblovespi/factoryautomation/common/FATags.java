@@ -25,6 +25,7 @@ public class FATags
 		public static final TagKey<Item> TIN_MELTABLE = item("meltables/tin");
 		public static final TagKey<Item> LEAD_MELTABLE = item("meltables/lead");
 		public static final TagKey<Item> BRONZE_MELTABLE = item("meltables/bronze");
+		public static final TagKey<Item> NICKEL_MELTABLE = item("meltables/nickel");
 		public static final TagKey<Item> STEEL_MELTABLE = item("meltables/steel");
 		public static final TagKey<Item> ALUMINUM_MELTABLE = item("meltables/aluminum");
 		public static final TagKey<Item> CHROMIUM_MELTABLE = item("meltables/chromium");
@@ -56,6 +57,12 @@ public class FATags
 		public static final TagKey<Item> BRONZE_SHEET = cItem("plates/bronze");
 		public static final TagKey<Item> BRONZE_ROD = cItem("rods/bronze");
 		public static final TagKey<Item> BRONZE_GEAR = cItem("gears/bronze");
+		public static final TagKey<Item> NICKEL_INGOT = cItem("ingots/nickel");
+		public static final TagKey<Item> NICKEL_NUGGET = cItem("nuggets/nickel");
+		public static final TagKey<Item> NICKEL_BLOCK = cItem("storage_blocks/nickel");
+		public static final TagKey<Item> NICKEL_SHEET = cItem("plates/nickel");
+		public static final TagKey<Item> NICKEL_ROD = cItem("rods/nickel");
+		public static final TagKey<Item> NICKEL_GEAR = cItem("gears/nickel");
 		public static final TagKey<Item> STEEL_INGOT = cItem("ingots/steel");
 		public static final TagKey<Item> STEEL_NUGGET = cItem("nuggets/steel");
 		public static final TagKey<Item> STEEL_BLOCK = cItem("storage_blocks/steel");
@@ -96,6 +103,7 @@ public class FATags
 		public static final TagKey<Block> TIN_BLOCK = cBlock("storage_blocks/tin");
 		public static final TagKey<Block> LEAD_BLOCK = cBlock("storage_blocks/lead");
 		public static final TagKey<Block> BRONZE_BLOCK = cBlock("storage_blocks/bronze");
+		public static final TagKey<Block> NICKEL_BLOCK = cBlock("storage_blocks/nickel");
 		public static final TagKey<Block> STEEL_BLOCK = cBlock("storage_blocks/steel");
 		public static final TagKey<Block> ALUMINUM_BLOCK = cBlock("storage_blocks/aluminum");
 		public static final TagKey<Block> CHROMIUM_BLOCK = cBlock("storage_blocks/chromium");

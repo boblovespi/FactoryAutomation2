@@ -152,6 +152,11 @@
 	"item.factoryautomation.bronze_sheet": "Bronze Sheet",
 	"item.factoryautomation.bronze_rod": "Bronze Rod",
 	
+	"item.factoryautomation.nickel_ingot": "Nickel Ingot",
+	"item.factoryautomation.nickel_nugget": "Nickel Nugget",
+	"item.factoryautomation.nickel_sheet": "Nickel Sheet",
+	"item.factoryautomation.nickel_rod": "Nickel Rod",
+	
 	"item.factoryautomation.steel_ingot": "Steel Ingot",
 	"item.factoryautomation.steel_nugget": "Steel Nugget",
 	"item.factoryautomation.steel_sheet": "Steel Sheet",
@@ -274,6 +279,7 @@
 	"metal.tin.name": "Tin",
 	"metal.lead.name": "Lead",
 	"metal.bronze.name": "Bronze",
+	"metal.nickel.name": "Nickel",
 	"metal.steel.name": "Steel",
 	"metal.aluminum.name": "Aluminum",
 	"metal.chromium.name": "Chromium",
