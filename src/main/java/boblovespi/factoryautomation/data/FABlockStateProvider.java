@@ -56,6 +56,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlock(FABlocks.NICKEL_BLOCK.get());
 		simpleBlock(FABlocks.STEEL_BLOCK.get());
 		simpleBlock(FABlocks.ALUMINUM_BLOCK.get());
+		simpleBlock(FABlocks.ALUMINUM_BRONZE_BLOCK.get());
 		simpleBlock(FABlocks.CHROMIUM_BLOCK.get());
 		simpleBlock(FABlocks.COPPER_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.TIN_PLATE_BLOCK.get());
@@ -65,6 +66,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlock(FABlocks.NICKEL_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.STEEL_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.ALUMINUM_PLATE_BLOCK.get());
+		simpleBlock(FABlocks.ALUMINUM_BRONZE_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.CHROMIUM_PLATE_BLOCK.get());
 		spaceFrame(FABlocks.COPPER_SPACE_FRAME);
 		spaceFrame(FABlocks.TIN_SPACE_FRAME);
@@ -74,6 +76,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		spaceFrame(FABlocks.NICKEL_SPACE_FRAME);
 		spaceFrame(FABlocks.STEEL_SPACE_FRAME);
 		spaceFrame(FABlocks.ALUMINUM_SPACE_FRAME);
+		spaceFrame(FABlocks.ALUMINUM_BRONZE_SPACE_FRAME);
 		spaceFrame(FABlocks.CHROMIUM_SPACE_FRAME);
 		blockWithItem(FABlocks.BRICK_TILES);
 		FABlocks.CHOPPING_BLOCKS.forEach(this::choppingBlock);
@@ -98,15 +101,17 @@ public class FABlockStateProvider extends BlockStateProvider
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
 	{
 		var texture = blockTexture(blocks.get(StoneBlockForms.BLOCK).get());
+		var cube = cubeAll(blocks.get(StoneBlockForms.BLOCK).get());
 		for (var entry : blocks.entrySet())
 		{
 			var f = entry.getKey();
 			var b = entry.getValue();
 			switch (f)
 			{
-				case BLOCK -> blockWithItem(b);
+				case BLOCK -> simpleBlockWithItem(b.get(), cube);
 				case STAIRS -> stairsBlock((StairBlock) b.get(), texture);
-				case SLAB -> slabBlock((SlabBlock) b.get(), texture, texture);
+				case SLAB -> slabBlock((SlabBlock) b.get(), models().slab(b.getRegisteredName(), texture, texture, texture),
+						models().slabTop(b.getRegisteredName() + "_top", texture, texture, texture), cube);
 				case WALL -> wallBlock((WallBlock) b.get(), texture);
 			}
 		}

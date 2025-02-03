@@ -137,6 +137,7 @@ public class FARecipeProvider extends RecipeProvider
 		metal(FAItems.NICKEL_THINGS, FATags.Items.NICKEL_INGOT, FATags.Items.NICKEL_NUGGET, FATags.Items.NICKEL_BLOCK, FATags.Items.NICKEL_SHEET, "nickel", output);
 		metal(FAItems.STEEL_THINGS, FATags.Items.STEEL_INGOT, FATags.Items.STEEL_NUGGET, FATags.Items.STEEL_BLOCK, FATags.Items.STEEL_SHEET, "steel", output);
 		metal(FAItems.ALUMINUM_THINGS, FATags.Items.ALUMINUM_INGOT, FATags.Items.ALUMINUM_NUGGET, FATags.Items.ALUMINUM_BLOCK, FATags.Items.ALUMINUM_SHEET, "aluminum", output);
+		metal(FAItems.ALUMINUM_BRONZE_THINGS, FATags.Items.ALUMINUM_BRONZE_INGOT, FATags.Items.ALUMINUM_BRONZE_NUGGET, FATags.Items.ALUMINUM_BRONZE_BLOCK, FATags.Items.ALUMINUM_BRONZE_SHEET, "aluminum_bronze", output);
 		metal(FAItems.CHROMIUM_THINGS, FATags.Items.CHROMIUM_INGOT, FATags.Items.CHROMIUM_NUGGET, FATags.Items.CHROMIUM_BLOCK, FATags.Items.CHROMIUM_SHEET, "chromium", output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)

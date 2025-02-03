@@ -64,6 +64,7 @@ public class FABlocks
 	public static final DeferredBlock<Block> NICKEL_BLOCK = register("nickel_block", Block::new, BlockProperties.METAL(MapColor.GOLD));
 	public static final DeferredBlock<Block> STEEL_BLOCK = register("steel_block", Block::new, BlockProperties.METAL(MapColor.TERRACOTTA_CYAN));
 	public static final DeferredBlock<Block> ALUMINUM_BLOCK = register("aluminum_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.GLOW_LICHEN));
+	public static final DeferredBlock<Block> ALUMINUM_BRONZE_BLOCK = register("aluminum_bronze_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
 	public static final DeferredBlock<Block> CHROMIUM_BLOCK = register("chromium_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
 	public static final DeferredBlock<Block> COPPER_PLATE_BLOCK = register("copper_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_ORANGE));
 	public static final DeferredBlock<Block> TIN_PLATE_BLOCK = register("tin_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
@@ -73,6 +74,7 @@ public class FABlocks
 	public static final DeferredBlock<Block> NICKEL_PLATE_BLOCK = register("nickel_plate_block", Block::new, BlockProperties.METAL(MapColor.GOLD));
 	public static final DeferredBlock<Block> STEEL_PLATE_BLOCK = register("steel_plate_block", Block::new, BlockProperties.METAL(MapColor.TERRACOTTA_CYAN));
 	public static final DeferredBlock<Block> ALUMINUM_PLATE_BLOCK = register("aluminum_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.GLOW_LICHEN));
+	public static final DeferredBlock<Block> ALUMINUM_BRONZE_PLATE_BLOCK = register("aluminum_bronze_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
 	public static final DeferredBlock<Block> CHROMIUM_PLATE_BLOCK = register("chromium_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
 	public static final DeferredBlock<WaterloggedTransparentBlock> COPPER_SPACE_FRAME = register("copper_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_ORANGE)));
 	public static final DeferredBlock<WaterloggedTransparentBlock> TIN_SPACE_FRAME = register("tin_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE)));
@@ -82,6 +84,7 @@ public class FABlocks
 	public static final DeferredBlock<WaterloggedTransparentBlock> NICKEL_SPACE_FRAME = register("nickel_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.GOLD)));
 	public static final DeferredBlock<WaterloggedTransparentBlock> STEEL_SPACE_FRAME = register("steel_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.TERRACOTTA_CYAN)));
 	public static final DeferredBlock<WaterloggedTransparentBlock> ALUMINUM_SPACE_FRAME = register("aluminum_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE)));
+	public static final DeferredBlock<WaterloggedTransparentBlock> ALUMINUM_BRONZE_SPACE_FRAME = register("aluminum_bronze_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE)));
 	public static final DeferredBlock<WaterloggedTransparentBlock> CHROMIUM_SPACE_FRAME = register("chromium_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE)));
 
 	// Building blocks

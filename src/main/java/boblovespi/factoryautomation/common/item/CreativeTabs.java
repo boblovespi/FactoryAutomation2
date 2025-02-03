@@ -66,6 +66,7 @@ public class CreativeTabs
 						FAItems.NICKEL_THINGS.values().forEach(o::accept);
 						FAItems.STEEL_THINGS.values().forEach(o::accept);
 						FAItems.ALUMINUM_THINGS.values().forEach(o::accept);
+						FAItems.ALUMINUM_BRONZE_THINGS.values().forEach(o::accept);
 						FAItems.CHROMIUM_THINGS.values().forEach(o::accept);
 						o.accept(FAItems.WHEAT_FLOUR);
 						o.accept(FAItems.CALCITE_DUST);

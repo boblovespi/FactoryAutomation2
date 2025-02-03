@@ -28,6 +28,7 @@ public class FATags
 		public static final TagKey<Item> NICKEL_MELTABLE = item("meltables/nickel");
 		public static final TagKey<Item> STEEL_MELTABLE = item("meltables/steel");
 		public static final TagKey<Item> ALUMINUM_MELTABLE = item("meltables/aluminum");
+		public static final TagKey<Item> ALUMINUM_BRONZE_MELTABLE = item("meltables/aluminum_bronze");
 		public static final TagKey<Item> CHROMIUM_MELTABLE = item("meltables/chromium");
 
 		public static final TagKey<Item> SHARDS = item("shards");
@@ -75,6 +76,12 @@ public class FATags
 		public static final TagKey<Item> ALUMINUM_SHEET = cItem("plates/aluminum");
 		public static final TagKey<Item> ALUMINUM_ROD = cItem("rods/aluminum");
 		public static final TagKey<Item> ALUMINUM_GEAR = cItem("gears/aluminum");
+		public static final TagKey<Item> ALUMINUM_BRONZE_INGOT = cItem("ingots/aluminum_bronze");
+		public static final TagKey<Item> ALUMINUM_BRONZE_NUGGET = cItem("nuggets/aluminum_bronze");
+		public static final TagKey<Item> ALUMINUM_BRONZE_BLOCK = cItem("storage_blocks/aluminum_bronze");
+		public static final TagKey<Item> ALUMINUM_BRONZE_SHEET = cItem("plates/aluminum_bronze");
+		public static final TagKey<Item> ALUMINUM_BRONZE_ROD = cItem("rods/aluminum_bronze");
+		public static final TagKey<Item> ALUMINUM_BRONZE_GEAR = cItem("gears/aluminum_bronze");
 		public static final TagKey<Item> CHROMIUM_INGOT = cItem("ingots/chromium");
 		public static final TagKey<Item> CHROMIUM_NUGGET = cItem("nuggets/chromium");
 		public static final TagKey<Item> CHROMIUM_BLOCK = cItem("storage_blocks/chromium");
@@ -106,6 +113,7 @@ public class FATags
 		public static final TagKey<Block> NICKEL_BLOCK = cBlock("storage_blocks/nickel");
 		public static final TagKey<Block> STEEL_BLOCK = cBlock("storage_blocks/steel");
 		public static final TagKey<Block> ALUMINUM_BLOCK = cBlock("storage_blocks/aluminum");
+		public static final TagKey<Block> ALUMINUM_BRONZE_BLOCK = cBlock("storage_blocks/aluminum_bronze");
 		public static final TagKey<Block> CHROMIUM_BLOCK = cBlock("storage_blocks/chromium");
 
 		public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = block("incorrect_for_copper_tool");
