@@ -82,6 +82,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.NICKEL_BLOCK.get());
 		dropSelf(FABlocks.SILVER_BLOCK.get());
 		dropSelf(FABlocks.MAGMATIC_BRASS_BLOCK.get());
+		dropSelf(FABlocks.PIG_IRON_BLOCK.get());
 		dropSelf(FABlocks.STEEL_BLOCK.get());
 		dropSelf(FABlocks.ALUMINUM_BLOCK.get());
 		dropSelf(FABlocks.ALUMINUM_BRONZE_BLOCK.get());
@@ -94,6 +95,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.NICKEL_PLATE_BLOCK.get());
 		dropSelf(FABlocks.SILVER_PLATE_BLOCK.get());
 		dropSelf(FABlocks.MAGMATIC_BRASS_PLATE_BLOCK.get());
+		dropSelf(FABlocks.PIG_IRON_PLATE_BLOCK.get());
 		dropSelf(FABlocks.STEEL_PLATE_BLOCK.get());
 		dropSelf(FABlocks.ALUMINUM_PLATE_BLOCK.get());
 		dropSelf(FABlocks.ALUMINUM_BRONZE_PLATE_BLOCK.get());
@@ -106,6 +108,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.NICKEL_SPACE_FRAME.get());
 		dropSelf(FABlocks.SILVER_SPACE_FRAME.get());
 		dropSelf(FABlocks.MAGMATIC_BRASS_SPACE_FRAME.get());
+		dropSelf(FABlocks.PIG_IRON_SPACE_FRAME.get());
 		dropSelf(FABlocks.STEEL_SPACE_FRAME.get());
 		dropSelf(FABlocks.ALUMINUM_SPACE_FRAME.get());
 		dropSelf(FABlocks.ALUMINUM_BRONZE_SPACE_FRAME.get());

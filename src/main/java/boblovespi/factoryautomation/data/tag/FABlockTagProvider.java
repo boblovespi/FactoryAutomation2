@@ -48,6 +48,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 									  .add(Blocks.COBBLED_DEEPSLATE_STAIRS, Blocks.COBBLED_DEEPSLATE_WALL, Blocks.INFESTED_DEEPSLATE, Blocks.CRACKED_DEEPSLATE_TILES)
 									  .add(Blocks.DEEPSLATE_COAL_ORE, Blocks.DEEPSLATE_COPPER_ORE)
 									  .add(FABlocks.MAGMATIC_BRASS_BLOCK.get(), FABlocks.MAGMATIC_BRASS_PLATE_BLOCK.get(), FABlocks.MAGMATIC_BRASS_SPACE_FRAME.get())
+									  .add(FABlocks.PIG_IRON_BLOCK.get(), FABlocks.PIG_IRON_PLATE_BLOCK.get(), FABlocks.PIG_IRON_SPACE_FRAME.get())
 									  .add(FABlocks.STEEL_BLOCK.get(), FABlocks.STEEL_PLATE_BLOCK.get(), FABlocks.STEEL_SPACE_FRAME.get())
 									  .add(FABlocks.CHROMIUM_BLOCK.get(), FABlocks.CHROMIUM_PLATE_BLOCK.get(), FABlocks.CHROMIUM_SPACE_FRAME.get())
 									  .addTags(BlockTags.IRON_ORES, BlockTags.GOLD_ORES)
@@ -90,6 +91,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.NICKEL_BLOCK.get(), FABlocks.NICKEL_PLATE_BLOCK.get(), FABlocks.NICKEL_SPACE_FRAME.get())
 											.add(FABlocks.SILVER_BLOCK.get(), FABlocks.SILVER_PLATE_BLOCK.get(), FABlocks.SILVER_SPACE_FRAME.get())
 											.add(FABlocks.MAGMATIC_BRASS_BLOCK.get(), FABlocks.MAGMATIC_BRASS_PLATE_BLOCK.get(), FABlocks.MAGMATIC_BRASS_SPACE_FRAME.get())
+											.add(FABlocks.PIG_IRON_BLOCK.get(), FABlocks.PIG_IRON_PLATE_BLOCK.get(), FABlocks.PIG_IRON_SPACE_FRAME.get())
 											.add(FABlocks.STEEL_BLOCK.get(), FABlocks.STEEL_PLATE_BLOCK.get(), FABlocks.STEEL_SPACE_FRAME.get())
 											.add(FABlocks.ALUMINUM_BLOCK.get(), FABlocks.ALUMINUM_PLATE_BLOCK.get(), FABlocks.ALUMINUM_SPACE_FRAME.get())
 											.add(FABlocks.ALUMINUM_BRONZE_BLOCK.get(), FABlocks.ALUMINUM_BRONZE_PLATE_BLOCK.get(), FABlocks.ALUMINUM_BRONZE_SPACE_FRAME.get())
@@ -105,14 +107,15 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(Tags.Blocks.STONES).add(FABlocks.CHERT.get());
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK, FATags.Blocks.LEAD_BLOCK, FATags.Blocks.BRONZE_BLOCK, FATags.Blocks.NICKEL_BLOCK,
-				FATags.Blocks.SILVER_BLOCK, FATags.Blocks.MAGMATIC_BRASS_BLOCK, FATags.Blocks.STEEL_BLOCK, FATags.Blocks.ALUMINUM_BLOCK, FATags.Blocks.ALUMINUM_BRONZE_BLOCK,
-				FATags.Blocks.CHROMIUM_BLOCK);
+				FATags.Blocks.SILVER_BLOCK, FATags.Blocks.MAGMATIC_BRASS_BLOCK, FATags.Blocks.PIG_IRON_BLOCK, FATags.Blocks.STEEL_BLOCK, FATags.Blocks.ALUMINUM_BLOCK,
+				FATags.Blocks.ALUMINUM_BRONZE_BLOCK, FATags.Blocks.CHROMIUM_BLOCK);
 		tag(FATags.Blocks.TIN_BLOCK).add(FABlocks.TIN_BLOCK.get());
 		tag(FATags.Blocks.LEAD_BLOCK).add(FABlocks.LEAD_BLOCK.get());
 		tag(FATags.Blocks.BRONZE_BLOCK).add(FABlocks.BRONZE_BLOCK.get());
 		tag(FATags.Blocks.NICKEL_BLOCK).add(FABlocks.NICKEL_BLOCK.get());
 		tag(FATags.Blocks.SILVER_BLOCK).add(FABlocks.SILVER_BLOCK.get());
 		tag(FATags.Blocks.MAGMATIC_BRASS_BLOCK).add(FABlocks.MAGMATIC_BRASS_BLOCK.get());
+		tag(FATags.Blocks.PIG_IRON_BLOCK).add(FABlocks.PIG_IRON_BLOCK.get());
 		tag(FATags.Blocks.STEEL_BLOCK).add(FABlocks.STEEL_BLOCK.get());
 		tag(FATags.Blocks.ALUMINUM_BLOCK).add(FABlocks.ALUMINUM_BLOCK.get());
 		tag(FATags.Blocks.ALUMINUM_BRONZE_BLOCK).add(FABlocks.ALUMINUM_BRONZE_BLOCK.get());

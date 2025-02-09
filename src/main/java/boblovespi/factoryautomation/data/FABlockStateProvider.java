@@ -56,6 +56,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlock(FABlocks.NICKEL_BLOCK.get());
 		simpleBlock(FABlocks.SILVER_BLOCK.get());
 		simpleBlock(FABlocks.MAGMATIC_BRASS_BLOCK.get());
+		simpleBlock(FABlocks.PIG_IRON_BLOCK.get());
 		simpleBlock(FABlocks.STEEL_BLOCK.get());
 		simpleBlock(FABlocks.ALUMINUM_BLOCK.get());
 		simpleBlock(FABlocks.ALUMINUM_BRONZE_BLOCK.get());
@@ -68,6 +69,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlock(FABlocks.NICKEL_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.SILVER_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.MAGMATIC_BRASS_PLATE_BLOCK.get());
+		simpleBlock(FABlocks.PIG_IRON_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.STEEL_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.ALUMINUM_PLATE_BLOCK.get());
 		simpleBlock(FABlocks.ALUMINUM_BRONZE_PLATE_BLOCK.get());
@@ -80,6 +82,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		spaceFrame(FABlocks.NICKEL_SPACE_FRAME);
 		spaceFrame(FABlocks.SILVER_SPACE_FRAME);
 		spaceFrame(FABlocks.MAGMATIC_BRASS_SPACE_FRAME);
+		spaceFrame(FABlocks.PIG_IRON_SPACE_FRAME);
 		spaceFrame(FABlocks.STEEL_SPACE_FRAME);
 		spaceFrame(FABlocks.ALUMINUM_SPACE_FRAME);
 		spaceFrame(FABlocks.ALUMINUM_BRONZE_SPACE_FRAME);
