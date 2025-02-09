@@ -64,6 +64,7 @@ public class CreativeTabs
 						FAItems.LEAD_THINGS.values().forEach(o::accept);
 						FAItems.BRONZE_THINGS.values().forEach(o::accept);
 						FAItems.NICKEL_THINGS.values().forEach(o::accept);
+						FAItems.SILVER_THINGS.values().forEach(o::accept);
 						FAItems.MAGMATIC_BRASS_THINGS.values().forEach(o::accept);
 						FAItems.STEEL_THINGS.values().forEach(o::accept);
 						FAItems.ALUMINUM_THINGS.values().forEach(o::accept);

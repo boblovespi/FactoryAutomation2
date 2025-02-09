@@ -43,6 +43,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		FAItems.LEAD_THINGS.forEach(this::metal);
 		FAItems.BRONZE_THINGS.forEach(this::metal);
 		FAItems.NICKEL_THINGS.forEach(this::metal);
+		FAItems.SILVER_THINGS.forEach(this::metal);
 		FAItems.MAGMATIC_BRASS_THINGS.forEach(this::metal);
 		FAItems.STEEL_THINGS.forEach(this::metal);
 		FAItems.ALUMINUM_THINGS.forEach(this::metal);
