@@ -11,6 +11,8 @@ import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
+import boblovespi.factoryautomation.common.util.ponder.FAPonderPlugin;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -33,6 +35,8 @@ public class ClientHandler
 		FactoryAutomation.LOGGER.info("Minecraft username is {}", Minecraft.getInstance().getUser().getName());
 		// MathParser.registerVariable(new Variable("query.rot", 0));
 		MolangQueries.<MillstoneBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
+
+		PonderIndex.addPlugin(new FAPonderPlugin());
 	}
 
 	@SubscribeEvent
