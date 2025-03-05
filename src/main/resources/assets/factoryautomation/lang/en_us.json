@@ -355,5 +355,12 @@
 	"advancements.factoryautomation.copper_age.copper_hammer.title": "Hammer Time",
 	"advancements.factoryautomation.copper_age.copper_hammer.description": "Make a Copper Hammer.",
 	"advancements.factoryautomation.copper_age.iron_shard.title": "Iron Shard",
-	"advancements.factoryautomation.copper_age.iron_shard.description": "Obtain Iron Shards from hammering an Iron Bloom."
+	"advancements.factoryautomation.copper_age.iron_shard.description": "Obtain Iron Shards from hammering an Iron Bloom.",
+	
+	// Ponder
+	
+	"factoryautomation.ponder.log_pile.header": "Firing Log Piles",
+	"factoryautomation.ponder.log_pile.text_1": "Surround the log piles with any solid block",
+	
+	"factoryautomation.ponder.stone_foundry.header": "Assembling the Stone Foundry"
 }

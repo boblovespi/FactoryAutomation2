@@ -1,16 +1,32 @@
 package boblovespi.factoryautomation.common.util.ponder;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.LogPile;
+import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
+import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
+import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
 import boblovespi.factoryautomation.common.item.FAItems;
+import boblovespi.factoryautomation.common.util.Metal;
+import net.createmod.catnip.math.Pointing;
+import net.createmod.ponder.Ponder;
+import net.createmod.ponder.api.ParticleEmitter;
 import net.createmod.ponder.api.PonderPalette;
 import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
+import java.util.Optional;
 
 public class FAPonderPlugin implements PonderPlugin
 {
@@ -23,7 +39,10 @@ public class FAPonderPlugin implements PonderPlugin
 	@Override
 	public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper)
 	{
-		helper.addStoryBoard(FAItems.LOG_PILE.getId(), "test", this::testScene).highlightAllTags();
+		// helper.addStoryBoard(FAItems.LOG_PILE.getId(), "test", this::testScene).highlightAllTags();
+		helper.addStoryBoard(FAItems.LOG_PILE.getId(), "log_pile", this::logPileScene).highlightAllTags();
+
+		helper.addStoryBoard(FAItems.STONE_CRUCIBLE.getId(), "stone_foundry", this::stoneFoundry).highlightAllTags();
 	}
 
 	private void testScene(SceneBuilder scene, SceneBuildingUtil util)
@@ -48,5 +67,156 @@ public class FAPonderPlugin implements PonderPlugin
 
 		scene.addKeyframe();
 		scene.world().replaceBlocks(zero, FABlocks.CHARCOAL_PILE.get().defaultBlockState(), false);
+	}
+
+	private void logPileScene(SceneBuilder scene, SceneBuildingUtil util)
+	{
+		var dirtSide = util.select().fromTo(1, 1, 0, 2, 1, 0)
+						   .add(util.select().fromTo(0, 1, 1, 0, 1, 2))
+						   .add(util.select().fromTo(1, 1, 3, 2, 1, 3))
+						   .add(util.select().fromTo(3, 1, 1, 3, 1, 2));
+		var logPiles = util.select().fromTo(1, 1, 1, 2, 1, 2);
+		var aboveLogPiles = util.select().fromTo(1, 2, 1, 2, 2, 2);
+		var logPileLoc = util.grid().at(1, 1, 1);
+		var logPileLocs = List.of(logPileLoc, util.grid().at(2, 1, 1), util.grid().at(2, 1, 2), util.grid().at(1, 1, 2));
+		var dirt = Blocks.DIRT.defaultBlockState();
+		var litLogPile = FABlocks.LOG_PILE.get().defaultBlockState().setValue(LogPile.ACTIVATED, true);
+		var fire = Blocks.FIRE.defaultBlockState();
+		var charcoalPile = FABlocks.CHARCOAL_PILE.get().defaultBlockState();
+
+		scene.title("log_pile", "Firing Log Piles");
+		scene.showBasePlate();
+		scene.idle(10);
+		scene.world().showSection(logPiles, Direction.DOWN);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.world().showSection(dirtSide, Direction.DOWN);
+		scene.world().showSection(util.select().layersFrom(2), Direction.DOWN);
+		scene.idle(10);
+		scene.overlay().showOutlineWithText(dirtSide, 40)
+			 .text("Surround the log piles with any solid block");
+		scene.idle(60);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(logPileLoc.above().getBottomCenter(), Pointing.DOWN, 20)
+			 .rightClick()
+			 .withItem(FAItems.FIREBOW.toStack());
+		scene.idle(30);
+		scene.world().replaceBlocks(logPiles, litLogPile, false);
+		scene.idle(2);
+		var r = Ponder.RANDOM;
+		var lavaEmitter = inWholeBlock((w, x, y, z) -> w.addParticle(ParticleTypes.LAVA, x, y, z, r.nextDouble() / 20, r.nextDouble() / 20, r.nextDouble() / 20));
+		var smokeEmitter = inWholeBlock((w, x, y, z) -> w.addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, r.nextDouble() / 20, 0.05, r.nextDouble() / 20));
+		logPileLocs.forEach(p -> {
+			scene.effects().emitParticles(Vec3.atLowerCornerOf(p), lavaEmitter, 1, 100);
+			scene.effects().emitParticles(Vec3.atLowerCornerOf(p), smokeEmitter, 2, 100);
+		});
+		scene.world().setBlocks(aboveLogPiles, fire, false);
+		scene.idle(18);
+
+		scene.addKeyframe();
+		scene.world().replaceBlocks(aboveLogPiles, dirt, false);
+		scene.idle(120);
+
+		scene.addKeyframe();
+		scene.world().replaceBlocks(logPiles, charcoalPile, false);
+		for (var i = 0; i < 10; i++)
+		{
+			scene.idle(2);
+			scene.world().incrementBlockBreakingProgress(util.grid().at(1, 2, 1));
+		}
+		scene.world().setBlocks(aboveLogPiles, Blocks.AIR.defaultBlockState(), true);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.world().hideSection(dirtSide, Direction.UP);
+		scene.idle(20);
+		scene.overlay().showControls(logPileLoc.above().getBottomCenter(), Pointing.DOWN, 20)
+			 .leftClick()
+			 .withItem(Items.DIAMOND_SHOVEL.getDefaultInstance());
+		scene.idle(20);
+		for (var i = 0; i < 10; i++)
+		{
+			scene.idle(2);
+			scene.world().incrementBlockBreakingProgress(logPileLoc);
+		}
+		scene.world().createItemEntity(logPileLoc.getCenter(), Vec3.ZERO, Items.CHARCOAL.getDefaultInstance().copyWithCount(5));
+		scene.idle(20);
+	}
+
+	private void stoneFoundry(SceneBuilder scene, SceneBuildingUtil util)
+	{
+		var center = util.select().fromTo(1, 1, 1, 1, 2, 1);
+		var crucibleLoc = util.grid().at(1, 2, 1);
+		var furnaceLoc = util.grid().at(1, 1, 1);
+		var castLoc = util.grid().at(0, 1, 1);
+		var cast = util.select().position(castLoc);
+		var slot = new Object();
+
+		scene.title("stone_foundry", "Assembling the Stone Foundry");
+		scene.showBasePlate();
+		scene.idle(10);
+		scene.world().showSection(center, Direction.DOWN);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(crucibleLoc.getCenter(), Pointing.RIGHT, 20)
+			 .rightClick();
+		scene.idle(30);
+		scene.world().cycleBlockProperty(crucibleLoc, StoneCrucible.MULTIBLOCK_COMPLETE);
+		scene.world().setBlock(furnaceLoc, FABlocks.MULTIBLOCK_PART.get().defaultBlockState(), false);
+		scene.overlay().showOutline(PonderPalette.INPUT, slot, center, 20);
+		scene.effects().indicateSuccess(crucibleLoc);
+		scene.effects().indicateSuccess(furnaceLoc);
+		scene.idle(40);
+
+		scene.addKeyframe();
+		scene.world().showSection(cast, Direction.DOWN);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(cast.getCenter(), Pointing.RIGHT, 20)
+			 .rightClick()
+			 .withItem(FAItems.GREEN_SAND.toStack());
+		scene.idle(30);
+		scene.world().cycleBlockProperty(castLoc, StoneCastingVessel.MOLD);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(cast.getCenter(), Pointing.RIGHT, 20)
+			 .rightClick()
+			 .withItem(Items.STICK.getDefaultInstance());
+		scene.idle(30);
+		scene.world().cycleBlockProperty(castLoc, StoneCastingVessel.MOLD);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(crucibleLoc.getCenter(), Pointing.LEFT, 20)
+			 .rightClick();
+		scene.idle(30);
+		scene.world().modifyBlockEntity(castLoc, StoneCastingVesselBE.class, b -> b.cast(n -> Optional.of(Metal.COPPER)));
+		var r = Ponder.RANDOM;
+		var sparks = serverSent(FAParticleTypes.METAL_SPARK.get(), 0.3, 0, 0.3, 0);
+		scene.effects().emitParticles(castLoc.getBottomCenter().add(0, 0.4, 0), sparks, 50, 1);
+		scene.idle(20);
+	}
+
+	private ParticleEmitter inWholeBlock(ParticleEmitter emitter)
+	{
+		var r = Ponder.RANDOM;
+		return (w, x, y, z) -> emitter.create(w, x + r.nextDouble(), y + r.nextDouble(), z + r.nextDouble());
+	}
+
+	private <T extends ParticleOptions> ParticleEmitter serverSent(T type, double xOff, double yOff, double zOff, double spd)
+	{
+		var r = Ponder.RANDOM;
+		return (w, x, y, z) -> w.addParticle(type,
+				x + r.nextGaussian() * xOff,
+				y + r.nextGaussian() * yOff,
+				z + r.nextGaussian() * zOff,
+				spd * r.nextGaussian(),
+				spd * r.nextGaussian(),
+				spd * r.nextGaussian());
 	}
 }
