@@ -9,6 +9,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.mechanical.GearboxBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.PowerShaftBE;
+import boblovespi.factoryautomation.common.blockentity.mechanical.SplitterBE;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.item.CreativeTabs;
 import boblovespi.factoryautomation.common.item.FAItems;
@@ -139,6 +140,8 @@ public class FactoryAutomation
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBE::input);
 		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.GEARBOX_TYPE.get(), GearboxBE::output);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.GEARBOX_TYPE.get(), GearboxBE::input);
+		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.SPLITTER_TYPE.get(), SplitterBE::output);
+		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.SPLITTER_TYPE.get(), SplitterBE::input);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MILLSTONE_TYPE.get(), MillstoneBE::input);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, FABETypes.MILLSTONE_TYPE.get(), MillstoneBE::itemHandler);
 		event.registerBlockEntity(BellowsCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(BellowsCapability.BLOCK, d));

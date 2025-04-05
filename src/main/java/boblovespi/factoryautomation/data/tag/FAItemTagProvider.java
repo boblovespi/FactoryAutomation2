@@ -151,6 +151,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.GOOD_AXES).add(Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
 
 		copy(FATags.Blocks.CHOPPING_BLOCKS, FATags.Items.CHOPPING_BLOCKS);
+		tag(FATags.Items.STONE_FOUNDRY_PONDER).add(FAItems.STONE_CRUCIBLE.get(), FAItems.STONE_CASTING_VESSEL.get(), Items.FURNACE);
 
 		tag(FATags.Items.COPPER_MELTABLE).addTags(Tags.Items.INGOTS_COPPER, Tags.Items.RAW_MATERIALS_COPPER, FATags.Items.COPPER_NUGGET, FATags.Items.COPPER_SHEET)
 										 .addTags(FATags.Items.COPPER_ROD, FATags.Items.COPPER_GEAR)

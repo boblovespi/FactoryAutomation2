@@ -115,8 +115,10 @@ public class CreativeTabs
 						o.accept(FAItems.HAND_CRANK);
 						o.accept(FAItems.WOOD_POWER_SHAFT);
 						o.accept(FAItems.WOOD_GEARBOX);
+						o.accept(FAItems.WOOD_SPLITTER);
 						o.accept(FAItems.IRON_POWER_SHAFT);
 						o.accept(FAItems.IRON_GEARBOX);
+						o.accept(FAItems.IRON_SPLITTER);
 					}).build());
 
 

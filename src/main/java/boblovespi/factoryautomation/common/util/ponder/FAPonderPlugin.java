@@ -20,10 +20,13 @@ import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,12 +40,17 @@ public class FAPonderPlugin implements PonderPlugin
 	}
 
 	@Override
-	public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper)
+	public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> h)
 	{
+		var helper = h.withKeyFunction(t -> switch (t)
+		{
+			case DeferredHolder<?, ?> holder -> holder.getId();
+			case Item i -> BuiltInRegistries.ITEM.getKey(i);
+			default -> throw new RuntimeException("Could not register ponder: %s is not an item or deferred holder???".formatted(t));
+		});
 		// helper.addStoryBoard(FAItems.LOG_PILE.getId(), "test", this::testScene).highlightAllTags();
-		helper.addStoryBoard(FAItems.LOG_PILE.getId(), "log_pile", this::logPileScene).highlightAllTags();
-
-		helper.addStoryBoard(FAItems.STONE_CRUCIBLE.getId(), "stone_foundry", this::stoneFoundry).highlightAllTags();
+		helper.addStoryBoard(FAItems.LOG_PILE, "log_pile", this::logPileScene).highlightAllTags();
+		helper.forComponents(FAItems.STONE_CRUCIBLE, FAItems.STONE_CASTING_VESSEL, Items.FURNACE).addStoryBoard("stone_foundry", this::stoneFoundry);
 	}
 
 	private void testScene(SceneBuilder scene, SceneBuildingUtil util)

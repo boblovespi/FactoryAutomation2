@@ -18,6 +18,7 @@ public class FATags
 		public static final TagKey<Item> WRENCHES = item("wrenches");
 
 		public static final TagKey<Item> CHOPPING_BLOCKS = item("chopping_blocks");
+		public static final TagKey<Item> STONE_FOUNDRY_PONDER = item("stone_foundry_ponder");
 
 		public static final TagKey<Item> IRON_MELTABLE = item("meltables/iron");
 		public static final TagKey<Item> GOLD_MELTABLE = item("meltables/gold");
