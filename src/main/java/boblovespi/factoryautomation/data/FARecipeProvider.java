@@ -339,6 +339,9 @@ public class FARecipeProvider extends RecipeProvider
 		gearbox(output, FAItems.WOOD_GEARBOX, FATags.Items.IRON_ROD, FATags.Items.COPPER_SHEET, ItemTags.PLANKS);
 		gearbox(output, FAItems.IRON_GEARBOX, FATags.Items.IRON_ROD, FATags.Items.IRON_SHEET, Tags.Items.INGOTS_IRON);
 
+		splitter(output, FAItems.WOOD_SPLITTER, FATags.Items.IRON_ROD, FATags.Items.COPPER_GEAR, ItemTags.PLANKS);
+		splitter(output, FAItems.IRON_SPLITTER, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR, Tags.Items.INGOTS_IRON);
+
 		WorkbenchRecipeBuilder.of(FAItems.HAND_CRANK)
 							  .pattern("ss")
 							  .pattern(" s")
@@ -732,6 +735,23 @@ public class FARecipeProvider extends RecipeProvider
 							  .part("screw", 1, 4)
 							  .part("bearing", 1, 4)
 							  .unlockedBy("has_rod", has(rod))
+							  .save(output);
+	}
+
+	private static void splitter(RecipeOutput output, DeferredItem<BlockItem> splitter, TagKey<Item> rod, TagKey<Item> gear, TagKey<Item> baseMat)
+	{
+		WorkbenchRecipeBuilder.of(splitter)
+							  .pattern("iii")
+							  .pattern("sgs")
+							  .pattern("isi")
+							  .define('s', rod)
+							  .define('g', gear)
+							  .define('i', baseMat)
+							  .tool("hammer", 2, 5)
+							  .tool("wrench", 1, 5)
+							  .part("screw", 1, 4)
+							  .part("bearing", 1, 3)
+							  .unlockedBy("has_gear", has(gear))
 							  .save(output);
 	}
 }
