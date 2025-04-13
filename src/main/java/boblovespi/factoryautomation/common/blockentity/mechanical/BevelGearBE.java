@@ -3,7 +3,7 @@ package boblovespi.factoryautomation.common.blockentity.mechanical;
 import boblovespi.factoryautomation.api.IMechanicalInput;
 import boblovespi.factoryautomation.api.IMechanicalOutput;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
-import boblovespi.factoryautomation.common.block.mechanical.PowerShaft;
+import boblovespi.factoryautomation.common.block.mechanical.BevelGear;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IClientTickable;
@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nullable;
 import java.util.function.Function;
 
-public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainElement
+public class BevelGearBE extends FABE implements IClientTickable, IPowerChainElement
 {
 	private final MechanicalManager manager;
 	private float rot;
@@ -31,20 +31,20 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	private final float maxSpeed;
 	private final float maxTorque;
 
-	public PowerShaftBE(BlockPos pPos, BlockState pBlockState)
+	public BevelGearBE(BlockPos pPos, BlockState pBlockState)
 	{
-		super(FABETypes.POWER_SHAFT_TYPE.get(), pPos, pBlockState);
+		super(FABETypes.BEVEL_GEAR_TYPE.get(), pPos, pBlockState);
 		manager = new MechanicalManager("mech", Function.identity(), Function.identity(), this::updateInputs);
 		inputSide = null;
 		source = null;
 		sourcePos = null;
-		if (pBlockState.getBlock() instanceof PowerShaft ps)
+		if (pBlockState.getBlock() instanceof BevelGear ps)
 		{
 			maxSpeed = ps.maxSpeed;
 			maxTorque = ps.maxTorque;
 		}
 		else
-			throw new RuntimeException("Power shaft block entities must be for power shaft block?!?!?");
+			throw new RuntimeException("Bevel gear block entities must be for bevel gear block?!?!?");
 	}
 
 	public void updateInputs()
@@ -54,12 +54,13 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 			level.destroyBlock(worldPosition, true);
 		if (inputSide != null)
 		{
-			var be = level.getBlockEntity(worldPosition.relative(inputSide.getOpposite()));
+			var outputSide = getOutputSide();
+			var be = level.getBlockEntity(worldPosition.relative(outputSide));
 			if (be instanceof IPowerChainElement pce)
-				pce.setSource(source == null ? this : source, inputSide);
+				pce.setSource(source == null ? this : source, outputSide.getOpposite());
 			else
 			{
-				var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(inputSide.getOpposite()), null, be, inputSide);
+				var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(outputSide), null, be, outputSide.getOpposite());
 				if (cap != null)
 					cap.update(source == null ? manager : source.getManager());
 			}
@@ -116,12 +117,13 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	{
 		if (inputSide == null)
 			return;
-		var be = level.getBlockEntity(worldPosition.relative(inputSide.getOpposite()));
+		var outputSide = getOutputSide();
+		var be = level.getBlockEntity(worldPosition.relative(outputSide));
 		if (be instanceof IPowerChainElement pce)
-			pce.notifyBroken(inputSide);
+			pce.notifyBroken(outputSide.getOpposite());
 		else
 		{
-			var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(inputSide.getOpposite()), null, be, inputSide);
+			var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(outputSide), null, be, outputSide.getOpposite());
 			if (cap != null)
 				cap.update(MechanicalManager.ZERO);
 		}
@@ -142,7 +144,9 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	@Nullable
 	public IMechanicalInput input(Direction dir)
 	{
-		if (dir == inputSide || (dir.getAxis() == getBlockState().getValue(PowerShaft.AXIS) && inputSide == null))
+		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
+		if (dir == inputSide ||
+			((orientation.top() == dir || orientation.front() == dir) && inputSide == null))
 		{
 			if (inputSide == null)
 			{
@@ -157,7 +161,7 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	@Nullable
 	public IMechanicalOutput output(Direction dir)
 	{
-		if (dir.getOpposite() == inputSide)
+		if (dir == getOutputSide())
 			return source == null ? manager : source.getManager();
 		return null;
 	}
@@ -181,11 +185,13 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	@Override
 	public IPowerChainElement setSource(IPowerChainElement source, Direction dir)
 	{
-		if (dir.getAxis() != getBlockState().getValue(PowerShaft.AXIS))
+		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
+		if (orientation.top() != dir && orientation.front() != dir)
 			return null;
 		this.source = source;
 		inputSide = dir;
-		var cap = level.getCapability(MechanicalCapability.OUTPUT, worldPosition.relative(inputSide.getOpposite()), inputSide);
+		var outputSide = getOutputSide();
+		var cap = level.getCapability(MechanicalCapability.OUTPUT, worldPosition.relative(outputSide), outputSide.getOpposite());
 		if (cap != null)
 			level.destroyBlock(worldPosition, true);
 		else
@@ -202,10 +208,10 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 		if (brokenSide != inputSide)
 			return;
 		source = null;
-		var be = level.getBlockEntity(worldPosition.relative(this.inputSide.getOpposite()));
+		var be = level.getBlockEntity(worldPosition.relative(getOutputSide()));
 		if (be instanceof IPowerChainElement pce)
 			pce.notifyBroken(brokenSide);
-		this.inputSide = null;
+		inputSide = null;
 		invalidateCapabilities();
 		setChangedAndUpdateClient();
 	}
@@ -229,4 +235,22 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	{
 		return worldPosition;
 	}
+
+	private Direction getOutputSide()
+	{
+		assert inputSide != null : "Called getOutputSide without checking if inputSide is null";
+		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
+		if (inputSide.getAxis() == Direction.Axis.Y)
+		{
+			return orientation.top();
+		}
+		else
+		{
+			if (inputSide == orientation.front())
+				return inputSide.getCounterClockWise();
+			else
+				return orientation.front();
+		}
+	}
 }
+

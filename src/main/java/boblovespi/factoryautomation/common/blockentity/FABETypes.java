@@ -32,6 +32,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<HandCrankBE>> HANDCRANK_TYPE = type("hand_crank", HandCrankBE::new, FABlocks.HAND_CRANK);
 	public static final Supplier<BlockEntityType<GearboxBE>> GEARBOX_TYPE = type("gearbox", GearboxBE::new, FABlocks.WOOD_GEARBOX, FABlocks.IRON_GEARBOX);
 	public static final Supplier<BlockEntityType<SplitterBE>> SPLITTER_TYPE = type("splitter", SplitterBE::new, FABlocks.WOOD_SPLITTER, FABlocks.IRON_SPLITTER);
+	public static final Supplier<BlockEntityType<BevelGearBE>> BEVEL_GEAR_TYPE = type("bevel_gear", BevelGearBE::new, FABlocks.WOOD_BEVEL_GEAR, FABlocks.IRON_BEVEL_GEAR);
 	public static final Supplier<BlockEntityType<BrickFireboxBE>> BRICK_FIREBOX_TYPE = type("brick_firebox", BrickFireboxBE::new, FABlocks.BRICK_FIREBOX);
 	public static final Supplier<BlockEntityType<PaperBellowsBE>> PAPER_BELLOWS_TYPE = type("paper_bellows", PaperBellowsBE::new, FABlocks.PAPER_BELLOWS);
 

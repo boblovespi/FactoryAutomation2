@@ -116,9 +116,11 @@ public class CreativeTabs
 						o.accept(FAItems.WOOD_POWER_SHAFT);
 						o.accept(FAItems.WOOD_GEARBOX);
 						o.accept(FAItems.WOOD_SPLITTER);
+						o.accept(FAItems.WOOD_BEVEL_GEAR);
 						o.accept(FAItems.IRON_POWER_SHAFT);
 						o.accept(FAItems.IRON_GEARBOX);
 						o.accept(FAItems.IRON_SPLITTER);
+						o.accept(FAItems.IRON_BEVEL_GEAR);
 					}).build());
 
 
@@ -152,6 +154,11 @@ public class CreativeTabs
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS)
 		{
 			insertAfter(event, Items.TUFF, FAItems.CHERT);
+		}
+
+		if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS)
+		{
+			insertAfter(event, Items.BREAD, FAItems.TOASTED_BREAD);
 		}
 	}
 
