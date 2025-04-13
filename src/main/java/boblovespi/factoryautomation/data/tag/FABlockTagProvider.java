@@ -96,12 +96,13 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.ALUMINUM_BLOCK.get(), FABlocks.ALUMINUM_PLATE_BLOCK.get(), FABlocks.ALUMINUM_SPACE_FRAME.get())
 											.add(FABlocks.ALUMINUM_BRONZE_BLOCK.get(), FABlocks.ALUMINUM_BRONZE_PLATE_BLOCK.get(), FABlocks.ALUMINUM_BRONZE_SPACE_FRAME.get())
 											.add(FABlocks.CHROMIUM_BLOCK.get(), FABlocks.CHROMIUM_PLATE_BLOCK.get(), FABlocks.CHROMIUM_SPACE_FRAME.get())
-											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get(), FABlocks.IRON_SPLITTER.get())
+											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get(), FABlocks.IRON_SPLITTER.get(), FABlocks.IRON_BEVEL_GEAR.get())
 											.add(FABlocks.MILLSTONE.get(), FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get())
 											.add(FABlocks.DRIED_BRICKS.get(), FABlocks.BRICK_TILES.get())
 											.add(FABlocks.CHERT.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get(), FABlocks.PAPER_BELLOWS.get())
-										.add(FABlocks.HAND_CRANK.get(), FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get(), FABlocks.WOOD_SPLITTER.get());
+										.add(FABlocks.HAND_CRANK.get())
+										.add(FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get(), FABlocks.WOOD_SPLITTER.get(), FABlocks.WOOD_BEVEL_GEAR.get());
 
 		tag(BlockTags.BASE_STONE_OVERWORLD).add(FABlocks.CHERT.get());
 		tag(Tags.Blocks.STONES).add(FABlocks.CHERT.get());
@@ -123,8 +124,8 @@ public class FABlockTagProvider extends BlockTagsProvider
 
 		tag(FATags.Blocks.MINEABLE_WITH_CHOPPING_BLADE).addTag(BlockTags.MINEABLE_WITH_AXE).add(Blocks.SHORT_GRASS);
 		tag(FATags.Blocks.MINEABLE_WITH_HAMMER).add(FABlocks.IRON_BLOOM.get());
-		tag(FATags.Blocks.MINEABLE_WITH_WRENCH).add(FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get(), FABlocks.WOOD_SPLITTER.get())
-											   .add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get(), FABlocks.IRON_SPLITTER.get())
+		tag(FATags.Blocks.MINEABLE_WITH_WRENCH).add(FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get(), FABlocks.WOOD_SPLITTER.get(), FABlocks.WOOD_BEVEL_GEAR.get())
+											   .add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get(), FABlocks.IRON_SPLITTER.get(), FABlocks.IRON_BEVEL_GEAR.get())
 											   .add(FABlocks.HAND_CRANK.get());
 		tag(FATags.Blocks.CHOPPING_BLOCK_LOGS).add(Arrays.stream(WoodTypes.values()).map(WoodTypes::getLog).toArray(Block[]::new));
 		tag(FATags.Blocks.CHOPPING_BLOCKS).add(choppingBlocks);

@@ -342,6 +342,9 @@ public class FARecipeProvider extends RecipeProvider
 		splitter(output, FAItems.WOOD_SPLITTER, FATags.Items.IRON_ROD, FATags.Items.COPPER_GEAR, ItemTags.PLANKS);
 		splitter(output, FAItems.IRON_SPLITTER, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR, Tags.Items.INGOTS_IRON);
 
+		bevelGear(output, FAItems.WOOD_BEVEL_GEAR, FATags.Items.IRON_ROD, FATags.Items.COPPER_GEAR, ItemTags.PLANKS);
+		bevelGear(output, FAItems.IRON_BEVEL_GEAR, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR, Tags.Items.INGOTS_IRON);
+
 		WorkbenchRecipeBuilder.of(FAItems.HAND_CRANK)
 							  .pattern("ss")
 							  .pattern(" s")
@@ -751,6 +754,23 @@ public class FARecipeProvider extends RecipeProvider
 							  .tool("wrench", 1, 5)
 							  .part("screw", 1, 4)
 							  .part("bearing", 1, 3)
+							  .unlockedBy("has_gear", has(gear))
+							  .save(output);
+	}
+
+	private static void bevelGear(RecipeOutput output, DeferredItem<BlockItem> bevelGear, TagKey<Item> rod, TagKey<Item> gear, TagKey<Item> baseMat)
+	{
+		WorkbenchRecipeBuilder.of(bevelGear, 2)
+							  .pattern("igi")
+							  .pattern("gsi")
+							  .pattern("iii")
+							  .define('s', rod)
+							  .define('g', gear)
+							  .define('i', baseMat)
+							  .tool("hammer", 2, 5)
+							  .tool("wrench", 1, 5)
+							  .part("screw", 1, 4)
+							  .part("bearing", 1, 2)
 							  .unlockedBy("has_gear", has(gear))
 							  .save(output);
 	}
