@@ -145,8 +145,10 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 	public IMechanicalInput input(Direction dir)
 	{
 		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
+		var front = orientation.front();
+		var top = front.getAxis() == Direction.Axis.Y ? orientation.top() : front.getCounterClockWise();
 		if (dir == inputSide ||
-			((orientation.top() == dir || orientation.front() == dir) && inputSide == null))
+			((top == dir || front == dir) && inputSide == null))
 		{
 			if (inputSide == null)
 			{
