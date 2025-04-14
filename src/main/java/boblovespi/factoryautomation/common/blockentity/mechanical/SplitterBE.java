@@ -20,17 +20,29 @@ import java.util.function.Function;
 public class SplitterBE extends FABE implements IClientTickable
 {
 	private final MechanicalManager manager;
+	private final float maxSpeed;
+	private final float maxTorque;
 
 	public SplitterBE(BlockPos pPos, BlockState pBlockState)
 	{
 		super(FABETypes.SPLITTER_TYPE.get(), pPos, pBlockState);
 		manager = new MechanicalManager("mech", Function.identity(), t -> 0.5f * t, this::updateInputs);
+		if (pBlockState.getBlock() instanceof Splitter splitter)
+		{
+			maxSpeed = splitter.maxSpeed;
+			maxTorque = splitter.maxTorque;
+		}
+		else
+			throw new RuntimeException("Splitter block entities must be for splitter block?!?!?");
 	}
 
 	public void updateInputs()
 	{
 		setChangedAndUpdateClient();
-		updateWith(manager);
+		if (manager.getSpeed() > maxSpeed || manager.getTorque() > maxTorque)
+			level.destroyBlock(worldPosition, true);
+		else
+			updateWith(manager);
 	}
 
 	private void updateWith(IMechanicalOutput output)
