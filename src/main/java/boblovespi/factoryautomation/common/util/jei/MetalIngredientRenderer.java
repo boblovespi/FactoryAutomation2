@@ -36,7 +36,12 @@ public class MetalIngredientRenderer implements IIngredientRenderer<MetalStack>
 	@Override
 	public void render(GuiGraphics graphics, MetalStack ingredient)
 	{
-		graphics.fill(0, fillBar || !vertical ? 0 : height - ingredient.quantity(), fillBar || vertical ? width : ingredient.quantity(), height, ingredient.metal().color());
+		if (fillBar)
+			graphics.fill(0, 0, width, height, ingredient.metal().color());
+		else if (vertical)
+			graphics.fill(0, Math.clamp(height - ingredient.quantity(), 0, height), width, height, ingredient.metal().color());
+		else
+			graphics.fill(0, 0, Math.clamp(ingredient.quantity(), 0, width), height, ingredient.metal().color());
 	}
 
 	@SuppressWarnings("removal")
