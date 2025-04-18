@@ -306,6 +306,7 @@
 	"misc.metal_quantity_nameless": "%s units",
 	"misc.time_seconds": "%s seconds",
 	"misc.power_torque_speed": "%s W @ %s Nm, %s rad/s",
+	"misc.torque_time": "%2$s s @ %1$s Nm",
 	"misc.gear_ratio": "%s:%s ratio",
 	"misc.efficiency": "Efficiency: %s%%",
 	"info.too_hot": "Too hot: %s",

@@ -83,7 +83,7 @@ public abstract class SimpleRecipe<T extends SimpleRecipe.Input, U> implements R
 
 	protected abstract boolean matchExtra(T input, Level level);
 
-	protected abstract U getData();
+	public abstract U getData();
 
 	@Override
 	public int getProgress()

@@ -28,7 +28,7 @@ public class MillstoneRecipe extends SimpleRecipe<MillstoneRecipe.Input, TorqueS
 	}
 
 	@Override
-	protected TorqueSpeedData getData()
+	public TorqueSpeedData getData()
 	{
 		return data;
 	}
