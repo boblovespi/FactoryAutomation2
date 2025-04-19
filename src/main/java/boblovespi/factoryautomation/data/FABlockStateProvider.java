@@ -102,10 +102,10 @@ public class FABlockStateProvider extends BlockStateProvider
 		blockWithItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
 		axisOnlyBlock(FABlocks.WOOD_POWER_SHAFT, modLoc("block/power_shaft"), modLoc("block/wood_power_shaft"), mcLoc("block/oak_planks"));
 		directionalBlock(FABlocks.WOOD_GEARBOX, modLoc("block/gearbox"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_gearbox_front"), modLoc("block/wood_gearbox_back"));
-		splitter(FABlocks.WOOD_SPLITTER, modLoc("block/splitter"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_gearbox_front"), modLoc("block/wood_gearbox_back"));
+		splitter(FABlocks.WOOD_SPLITTER, modLoc("block/splitter"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_splitter_front"), modLoc("block/wood_splitter_back"));
 		axisOnlyBlock(FABlocks.IRON_POWER_SHAFT, modLoc("block/power_shaft"), mcLoc("block/iron_block"), mcLoc("block/iron_block"));
 		directionalBlock(FABlocks.IRON_GEARBOX, modLoc("block/gearbox"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_gearbox_front"), modLoc("block/iron_gearbox_back"));
-		splitter(FABlocks.IRON_SPLITTER, modLoc("block/splitter"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_gearbox_front"), modLoc("block/iron_gearbox_back"));
+		splitter(FABlocks.IRON_SPLITTER, modLoc("block/splitter"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_splitter_front"), modLoc("block/iron_splitter_back"));
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
 	}
