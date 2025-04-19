@@ -100,7 +100,7 @@ public class MeltingJeiCategory implements IRecipeCategory<MeltingJeiRecipe>
 		var state = foundries[recipe.tier() - 1];
 		var pose = graphics.pose();
 		graphics.drawString(Minecraft.getInstance().font, I18n.get("misc.temperature", recipe.temp()), 11, 84, 0xff545454, false);
-		var percentage = recipe.temp() / 1800f;
+		var percentage = recipe.temp() / 2400f;
 		var negPercentage = 1 - percentage;
 		graphics.blit(TEXTURE, 13, 30 + (int) (49 * negPercentage), 132, (int) (49 * negPercentage), 4, (int) (49 * percentage));
 		pose.pushPose();
