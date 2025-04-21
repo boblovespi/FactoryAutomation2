@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.mechanical.BevelGear;
 import boblovespi.factoryautomation.common.block.mechanical.HandCrank;
 import boblovespi.factoryautomation.common.block.mechanical.Splitter;
 import boblovespi.factoryautomation.common.block.processing.ChoppingBlock;
@@ -103,9 +104,11 @@ public class FABlockStateProvider extends BlockStateProvider
 		axisOnlyBlock(FABlocks.WOOD_POWER_SHAFT, modLoc("block/power_shaft"), modLoc("block/wood_power_shaft"), mcLoc("block/oak_planks"));
 		directionalBlock(FABlocks.WOOD_GEARBOX, modLoc("block/gearbox"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_gearbox_front"), modLoc("block/wood_gearbox_back"));
 		splitter(FABlocks.WOOD_SPLITTER, modLoc("block/splitter"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_splitter_front"), modLoc("block/wood_splitter_back"));
+		bevelGear(FABlocks.WOOD_BEVEL_GEAR, modLoc("block/bevel_gear"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_bevel_gear_front"), modLoc("block/wood_splitter_back"));
 		axisOnlyBlock(FABlocks.IRON_POWER_SHAFT, modLoc("block/power_shaft"), mcLoc("block/iron_block"), mcLoc("block/iron_block"));
 		directionalBlock(FABlocks.IRON_GEARBOX, modLoc("block/gearbox"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_gearbox_front"), modLoc("block/iron_gearbox_back"));
 		splitter(FABlocks.IRON_SPLITTER, modLoc("block/splitter"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_splitter_front"), modLoc("block/iron_splitter_back"));
+		bevelGear(FABlocks.IRON_BEVEL_GEAR, modLoc("block/bevel_gear"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_bevel_gear_front"), modLoc("block/iron_splitter_back"));
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
 	}
@@ -219,6 +222,25 @@ public class FABlockStateProvider extends BlockStateProvider
 										  .modelFile(model)
 										  .rotationX(vertical ? (dir.getAxisDirection() == Direction.AxisDirection.POSITIVE ? 90 : -90) : 0)
 										  .rotationY(/*vertical ? 0 :*/ (((int) dir.toYRot()) + 180) % 360)
+										  .build();
+				});
+		simpleBlockItem(block.get(), model);
+	}
+
+	private void bevelGear(DeferredBlock<? extends Block> block, ResourceLocation base, ResourceLocation side, ResourceLocation front, ResourceLocation back)
+	{
+		var model = models().withExistingParent(block.getRegisteredName(), base).texture("side", side).texture("front", front).texture("back", back);
+		// directionalBlock(block.get(), model);
+		getVariantBuilder(block.get())
+				.forAllStates(state -> {
+					var orientation = state.getValue(BevelGear.ORIENTATION);
+					var vertical = orientation.front().getAxis() == Direction.Axis.Y;
+					var dir = vertical ? orientation.top() : orientation.front();
+					var up = orientation.front() == Direction.UP;
+					return ConfiguredModel.builder()
+										  .modelFile(model)
+										  .rotationX(vertical ? (up ? -90 : 90) : 0)
+										  .rotationY((((int) dir.toYRot()) + (vertical ? 270 : 180)) % 360)
 										  .build();
 				});
 		simpleBlockItem(block.get(), model);
