@@ -77,7 +77,7 @@ public class BevelGear extends Block implements EntityBlock
 		if (dir.getAxis() == Direction.Axis.Y)
 		{
 			var horizontalDir = pContext.getHorizontalDirection();
-			return defaultBlockState().setValue(ORIENTATION, FrontAndTop.fromFrontAndTop(dir.getOpposite(), horizontalDir));
+			return defaultBlockState().setValue(ORIENTATION, FrontAndTop.fromFrontAndTop(pContext.isSecondaryUseActive() ? dir : dir.getOpposite(), horizontalDir));
 		}
 		else
 			return defaultBlockState().setValue(ORIENTATION, FrontAndTop.fromFrontAndTop(dir, Direction.UP));
