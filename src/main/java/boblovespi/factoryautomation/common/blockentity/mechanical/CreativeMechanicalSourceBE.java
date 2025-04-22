@@ -1,8 +1,10 @@
 package boblovespi.factoryautomation.common.blockentity.mechanical;
 
 import boblovespi.factoryautomation.api.IMechanicalOutput;
+import boblovespi.factoryautomation.api.capability.MechanicalCapability;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.util.MechanicalManager;
 import boblovespi.factoryautomation.common.util.MechanicalPowerPropagatorManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -54,7 +56,12 @@ public class CreativeMechanicalSourceBE extends FABE implements IMechanicalOutpu
 	@Override
 	public void onDestroy()
 	{
-
+		for (var dir : Direction.values())
+		{
+			var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(dir), null, null, dir.getOpposite());
+			if (cap != null)
+				cap.update(MechanicalManager.ZERO);
+		}
 	}
 
 	@Override

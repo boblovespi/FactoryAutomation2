@@ -1,7 +1,8 @@
 package boblovespi.factoryautomation.common.block.mechanical;
 
-import boblovespi.factoryautomation.common.blockentity.mechanical.CreativeMechanicalSourceBE;
+import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.mechanical.CreativeMechanicalSourceBE;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -55,5 +56,13 @@ public class CreativeMechanicalSource extends Block implements EntityBlock
 	{
 		var dir = Direction.getNearest(Vec3.atLowerCornerOf(neighborPos.subtract(pos)));
 		level.getBlockEntity(pos, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get()).ifPresent(b -> b.updateInputs(dir));
+	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		if (!pState.is(pNewState.getBlock()))
+			pLevel.getBlockEntity(pPos, FABETypes.HANDCRANK_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
 	}
 }
