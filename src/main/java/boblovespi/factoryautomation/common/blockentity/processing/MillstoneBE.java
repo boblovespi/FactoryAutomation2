@@ -129,7 +129,7 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 						level.registryAccess());
 				var item = new ItemEntity(level, worldPosition.getX() - 0.5 + level.random.nextInt(3), worldPosition.getY() - 0.1,
 						worldPosition.getZ() - 0.5 + level.random.nextInt(3), assembled);
-				item.push(level.random.nextDouble() - 0.5, 0, level.random.nextDouble() - 0.5);
+				item.push((level.random.nextDouble() - 0.5) * 0.2, 0, (level.random.nextDouble() - 0.5) * 0.2);
 				level.addFreshEntity(item);
 				recipeManager.complete();
 			}
