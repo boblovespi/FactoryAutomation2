@@ -205,6 +205,8 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 		var be = level.getBlockEntity(worldPosition.relative(this.inputSide.getOpposite()));
 		if (be instanceof IPowerChainElement pce)
 			pce.notifyBroken(brokenSide);
+		else
+			updateInputs();
 		this.inputSide = null;
 		invalidateCapabilities();
 		setChangedAndUpdateClient();

@@ -163,7 +163,7 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 	@Nullable
 	public IMechanicalOutput output(Direction dir)
 	{
-		if (dir == getOutputSide())
+		if (inputSide != null && dir == getOutputSide())
 			return source == null ? manager : source.getManager();
 		return null;
 	}
@@ -210,9 +210,12 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 		if (brokenSide != inputSide)
 			return;
 		source = null;
-		var be = level.getBlockEntity(worldPosition.relative(getOutputSide()));
+		var outputSide = getOutputSide();
+		var be = level.getBlockEntity(worldPosition.relative(outputSide));
 		if (be instanceof IPowerChainElement pce)
-			pce.notifyBroken(brokenSide);
+			pce.notifyBroken(outputSide.getOpposite());
+		else
+			updateInputs();
 		inputSide = null;
 		invalidateCapabilities();
 		setChangedAndUpdateClient();
