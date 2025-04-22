@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.blockentity.processing.PaperBellowsBE
 import boblovespi.factoryautomation.common.sound.FASounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -65,6 +67,14 @@ public class PaperBellows extends Block implements EntityBlock
 		if (!level.isClientSide)
 			player.causeFoodExhaustion(0.8f);
 		level.playSound(player, pos, FASounds.BELLOWS_BLOWS.get(), SoundSource.BLOCKS, 0.8f, 1.5f);
+		var facing = state.getValue(FACING);
+		var offset = Vec3.atLowerCornerOf(facing.getNormal()).multiply(0.5, 0.5, 0.5);
+		var pos2 = pos.getBottomCenter().add(offset);
+		for (int i = 0; i < 3; i++)
+			level.addParticle(ParticleTypes.CLOUD, pos2.x, pos2.y, pos2.z,
+					offset.x * 0.3 + level.random.triangle(0, 0.1),
+					offset.y + level.random.triangle(0.05, 0.1),
+					offset.z * 0.3 + level.random.triangle(0, 0.1));
 		return InteractionResult.SUCCESS;
 	}
 
