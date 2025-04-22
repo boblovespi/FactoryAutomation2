@@ -62,7 +62,7 @@ public class CreativeMechanicalSource extends Block implements EntityBlock
 	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
 	{
 		if (!pState.is(pNewState.getBlock()))
-			pLevel.getBlockEntity(pPos, FABETypes.HANDCRANK_TYPE.get()).ifPresent(FABE::onDestroy);
+			pLevel.getBlockEntity(pPos, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get()).ifPresent(FABE::onDestroy);
 		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
 	}
 }
