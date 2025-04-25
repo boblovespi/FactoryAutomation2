@@ -124,6 +124,7 @@ public class FABlocks
 	public static final DeferredBlock<Splitter> IRON_SPLITTER = register("iron_splitter", p -> new Splitter(p, 5, 1000), BlockProperties.IRON_MACHINE);
 	public static final DeferredBlock<BevelGear> IRON_BEVEL_GEAR = register("iron_bevel_gear", p -> new BevelGear(p, 5, 1000), BlockProperties.IRON_MACHINE);
 	public static final DeferredBlock<HandCrank> HAND_CRANK = register("hand_crank",HandCrank::new, BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
+	public static final DeferredBlock<SmallWaterwheel> SMALL_WATERWHEEL = register("small_waterwheel", SmallWaterwheel::new, BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
 
 	// Misc
 

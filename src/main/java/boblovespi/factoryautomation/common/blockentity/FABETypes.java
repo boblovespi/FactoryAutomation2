@@ -29,10 +29,11 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<CreativeMechanicalSourceBE>> CREATIVE_MECHANICAL_SOURCE_TYPE = type("creative_mechanical_source", CreativeMechanicalSourceBE::new, FABlocks.CREATIVE_MECHANICAL_SOURCE);
 	public static final Supplier<BlockEntityType<PowerShaftBE>> POWER_SHAFT_TYPE = type("power_shaft", PowerShaftBE::new, FABlocks.WOOD_POWER_SHAFT, FABlocks.IRON_POWER_SHAFT);
 	public static final Supplier<BlockEntityType<MillstoneBE>> MILLSTONE_TYPE = type("millstone", MillstoneBE::new, FABlocks.MILLSTONE);
-	public static final Supplier<BlockEntityType<HandCrankBE>> HANDCRANK_TYPE = type("hand_crank", HandCrankBE::new, FABlocks.HAND_CRANK);
 	public static final Supplier<BlockEntityType<GearboxBE>> GEARBOX_TYPE = type("gearbox", GearboxBE::new, FABlocks.WOOD_GEARBOX, FABlocks.IRON_GEARBOX);
 	public static final Supplier<BlockEntityType<SplitterBE>> SPLITTER_TYPE = type("splitter", SplitterBE::new, FABlocks.WOOD_SPLITTER, FABlocks.IRON_SPLITTER);
 	public static final Supplier<BlockEntityType<BevelGearBE>> BEVEL_GEAR_TYPE = type("bevel_gear", BevelGearBE::new, FABlocks.WOOD_BEVEL_GEAR, FABlocks.IRON_BEVEL_GEAR);
+	public static final Supplier<BlockEntityType<HandCrankBE>> HANDCRANK_TYPE = type("hand_crank", HandCrankBE::new, FABlocks.HAND_CRANK);
+	public static final Supplier<BlockEntityType<SmallWaterwheelBE>> SMALL_WATERWHEEL_TYPE = type("small_waterwheel", SmallWaterwheelBE::new, FABlocks.SMALL_WATERWHEEL);
 	public static final Supplier<BlockEntityType<BrickFireboxBE>> BRICK_FIREBOX_TYPE = type("brick_firebox", BrickFireboxBE::new, FABlocks.BRICK_FIREBOX);
 	public static final Supplier<BlockEntityType<PaperBellowsBE>> PAPER_BELLOWS_TYPE = type("paper_bellows", PaperBellowsBE::new, FABlocks.PAPER_BELLOWS);
 

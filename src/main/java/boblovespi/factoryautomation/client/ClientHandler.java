@@ -51,6 +51,7 @@ public class ClientHandler
 		event.registerBlockEntityRenderer(FABETypes.MILLSTONE_TYPE.get(), MillstoneBER::new);
 		event.registerBlockEntityRenderer(FABETypes.HANDCRANK_TYPE.get(), HandCrankBER::new);
 		event.registerBlockEntityRenderer(FABETypes.PAPER_BELLOWS_TYPE.get(), PaperBellowsBER::new);
+		event.registerBlockEntityRenderer(FABETypes.SMALL_WATERWHEEL_TYPE.get(), SmallWaterwheelBER::new);
 	}
 
 	@SubscribeEvent

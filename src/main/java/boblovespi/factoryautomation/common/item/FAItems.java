@@ -150,6 +150,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> IRON_SPLITTER = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SPLITTER);
 	public static final DeferredItem<BlockItem> IRON_BEVEL_GEAR = ITEMS.registerSimpleBlockItem(FABlocks.IRON_BEVEL_GEAR);
 	public static final DeferredItem<BlockItem> HAND_CRANK = ITEMS.registerSimpleBlockItem(FABlocks.HAND_CRANK);
+	public static final DeferredItem<BlockItem> SMALL_WATERHWHEEL = ITEMS.registerSimpleBlockItem(FABlocks.SMALL_WATERWHEEL);
 
 	// Misc
 

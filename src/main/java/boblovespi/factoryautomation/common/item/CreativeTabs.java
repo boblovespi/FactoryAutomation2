@@ -112,7 +112,6 @@ public class CreativeTabs
 					{
 						FAItems.GEARS.values().forEach(o::accept);
 						o.accept(FAItems.CREATIVE_MECHANICAL_SOURCE);
-						o.accept(FAItems.HAND_CRANK);
 						o.accept(FAItems.WOOD_POWER_SHAFT);
 						o.accept(FAItems.WOOD_GEARBOX);
 						o.accept(FAItems.WOOD_SPLITTER);
@@ -121,6 +120,8 @@ public class CreativeTabs
 						o.accept(FAItems.IRON_GEARBOX);
 						o.accept(FAItems.IRON_SPLITTER);
 						o.accept(FAItems.IRON_BEVEL_GEAR);
+						o.accept(FAItems.HAND_CRANK);
+						o.accept(FAItems.SMALL_WATERHWHEEL);
 					}).build());
 
 
