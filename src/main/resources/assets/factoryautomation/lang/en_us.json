@@ -110,6 +110,8 @@
 	"block.factoryautomation.iron_gearbox": "Iron Gearbox",
 	"block.factoryautomation.wood_splitter": "Wood Splitter",
 	"block.factoryautomation.iron_splitter": "Iron Splitter",
+	"block.factoryautomation.wood_joiner": "Wood Joiner",
+	"block.factoryautomation.iron_joiner": "Iron Joiner",
 	"block.factoryautomation.wood_bevel_gear": "Wood Bevel Gear",
 	"block.factoryautomation.iron_bevel_gear": "Iron Bevel Gear",
 	"block.factoryautomation.hand_crank": "Hand Crank",

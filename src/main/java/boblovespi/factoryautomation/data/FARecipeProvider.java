@@ -136,11 +136,13 @@ public class FARecipeProvider extends RecipeProvider
 		metal(FAItems.BRONZE_THINGS, FATags.Items.BRONZE_INGOT, FATags.Items.BRONZE_NUGGET, FATags.Items.BRONZE_BLOCK, FATags.Items.BRONZE_SHEET, "bronze", output);
 		metal(FAItems.NICKEL_THINGS, FATags.Items.NICKEL_INGOT, FATags.Items.NICKEL_NUGGET, FATags.Items.NICKEL_BLOCK, FATags.Items.NICKEL_SHEET, "nickel", output);
 		metal(FAItems.SILVER_THINGS, FATags.Items.SILVER_INGOT, FATags.Items.SILVER_NUGGET, FATags.Items.SILVER_BLOCK, FATags.Items.SILVER_SHEET, "silver", output);
-		metal(FAItems.MAGMATIC_BRASS_THINGS, FATags.Items.MAGMATIC_BRASS_INGOT, FATags.Items.MAGMATIC_BRASS_NUGGET, FATags.Items.MAGMATIC_BRASS_BLOCK, FATags.Items.MAGMATIC_BRASS_SHEET, "magmatic_brass", output);
+		metal(FAItems.MAGMATIC_BRASS_THINGS, FATags.Items.MAGMATIC_BRASS_INGOT, FATags.Items.MAGMATIC_BRASS_NUGGET, FATags.Items.MAGMATIC_BRASS_BLOCK,
+				FATags.Items.MAGMATIC_BRASS_SHEET, "magmatic_brass", output);
 		metal(FAItems.PIG_IRON_THINGS, FATags.Items.PIG_IRON_INGOT, FATags.Items.PIG_IRON_NUGGET, FATags.Items.PIG_IRON_BLOCK, FATags.Items.PIG_IRON_SHEET, "pig_iron", output);
 		metal(FAItems.STEEL_THINGS, FATags.Items.STEEL_INGOT, FATags.Items.STEEL_NUGGET, FATags.Items.STEEL_BLOCK, FATags.Items.STEEL_SHEET, "steel", output);
 		metal(FAItems.ALUMINUM_THINGS, FATags.Items.ALUMINUM_INGOT, FATags.Items.ALUMINUM_NUGGET, FATags.Items.ALUMINUM_BLOCK, FATags.Items.ALUMINUM_SHEET, "aluminum", output);
-		metal(FAItems.ALUMINUM_BRONZE_THINGS, FATags.Items.ALUMINUM_BRONZE_INGOT, FATags.Items.ALUMINUM_BRONZE_NUGGET, FATags.Items.ALUMINUM_BRONZE_BLOCK, FATags.Items.ALUMINUM_BRONZE_SHEET, "aluminum_bronze", output);
+		metal(FAItems.ALUMINUM_BRONZE_THINGS, FATags.Items.ALUMINUM_BRONZE_INGOT, FATags.Items.ALUMINUM_BRONZE_NUGGET, FATags.Items.ALUMINUM_BRONZE_BLOCK,
+				FATags.Items.ALUMINUM_BRONZE_SHEET, "aluminum_bronze", output);
 		metal(FAItems.CHROMIUM_THINGS, FATags.Items.CHROMIUM_INGOT, FATags.Items.CHROMIUM_NUGGET, FATags.Items.CHROMIUM_BLOCK, FATags.Items.CHROMIUM_SHEET, "chromium", output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
@@ -341,6 +343,9 @@ public class FARecipeProvider extends RecipeProvider
 
 		splitter(output, FAItems.WOOD_SPLITTER, FATags.Items.IRON_ROD, FATags.Items.COPPER_GEAR, ItemTags.PLANKS);
 		splitter(output, FAItems.IRON_SPLITTER, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR, Tags.Items.INGOTS_IRON);
+
+		joiner(output, FAItems.WOOD_JOINER, FATags.Items.IRON_ROD, FATags.Items.COPPER_GEAR, ItemTags.PLANKS);
+		joiner(output, FAItems.IRON_JOINER, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR, Tags.Items.INGOTS_IRON);
 
 		bevelGear(output, FAItems.WOOD_BEVEL_GEAR, FATags.Items.IRON_ROD, FATags.Items.COPPER_GEAR, ItemTags.PLANKS);
 		bevelGear(output, FAItems.IRON_BEVEL_GEAR, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR, Tags.Items.INGOTS_IRON);
@@ -760,6 +765,23 @@ public class FARecipeProvider extends RecipeProvider
 							  .pattern("iii")
 							  .pattern("sgs")
 							  .pattern("isi")
+							  .define('s', rod)
+							  .define('g', gear)
+							  .define('i', baseMat)
+							  .tool("hammer", 2, 5)
+							  .tool("wrench", 1, 5)
+							  .part("screw", 1, 4)
+							  .part("bearing", 1, 3)
+							  .unlockedBy("has_gear", has(gear))
+							  .save(output);
+	}
+
+	private static void joiner(RecipeOutput output, DeferredItem<BlockItem> joiner, TagKey<Item> rod, TagKey<Item> gear, TagKey<Item> baseMat)
+	{
+		WorkbenchRecipeBuilder.of(joiner)
+							  .pattern("isi")
+							  .pattern("gsg")
+							  .pattern("iii")
 							  .define('s', rod)
 							  .define('g', gear)
 							  .define('i', baseMat)

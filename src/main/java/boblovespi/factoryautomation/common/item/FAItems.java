@@ -144,10 +144,12 @@ public class FAItems
 	public static final DeferredItem<BlockItem> WOOD_POWER_SHAFT = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_POWER_SHAFT);
 	public static final DeferredItem<BlockItem> WOOD_GEARBOX = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_GEARBOX);
 	public static final DeferredItem<BlockItem> WOOD_SPLITTER = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_SPLITTER);
+	public static final DeferredItem<BlockItem> WOOD_JOINER = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_JOINER);
 	public static final DeferredItem<BlockItem> WOOD_BEVEL_GEAR = ITEMS.registerSimpleBlockItem(FABlocks.WOOD_BEVEL_GEAR);
 	public static final DeferredItem<BlockItem> IRON_POWER_SHAFT = ITEMS.registerSimpleBlockItem(FABlocks.IRON_POWER_SHAFT);
 	public static final DeferredItem<BlockItem> IRON_GEARBOX = ITEMS.registerSimpleBlockItem(FABlocks.IRON_GEARBOX);
 	public static final DeferredItem<BlockItem> IRON_SPLITTER = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SPLITTER);
+	public static final DeferredItem<BlockItem> IRON_JOINER = ITEMS.registerSimpleBlockItem(FABlocks.IRON_JOINER);
 	public static final DeferredItem<BlockItem> IRON_BEVEL_GEAR = ITEMS.registerSimpleBlockItem(FABlocks.IRON_BEVEL_GEAR);
 	public static final DeferredItem<BlockItem> HAND_CRANK = ITEMS.registerSimpleBlockItem(FABlocks.HAND_CRANK);
 	public static final DeferredItem<BlockItem> SMALL_WATERHWHEEL = ITEMS.registerSimpleBlockItem(FABlocks.SMALL_WATERWHEEL);

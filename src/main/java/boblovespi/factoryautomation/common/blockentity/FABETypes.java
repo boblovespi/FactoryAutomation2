@@ -31,6 +31,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<MillstoneBE>> MILLSTONE_TYPE = type("millstone", MillstoneBE::new, FABlocks.MILLSTONE);
 	public static final Supplier<BlockEntityType<GearboxBE>> GEARBOX_TYPE = type("gearbox", GearboxBE::new, FABlocks.WOOD_GEARBOX, FABlocks.IRON_GEARBOX);
 	public static final Supplier<BlockEntityType<SplitterBE>> SPLITTER_TYPE = type("splitter", SplitterBE::new, FABlocks.WOOD_SPLITTER, FABlocks.IRON_SPLITTER);
+	public static final Supplier<BlockEntityType<JoinerBE>> JOINER_TYPE = type("joiner", JoinerBE::new, FABlocks.WOOD_JOINER, FABlocks.IRON_JOINER);
 	public static final Supplier<BlockEntityType<BevelGearBE>> BEVEL_GEAR_TYPE = type("bevel_gear", BevelGearBE::new, FABlocks.WOOD_BEVEL_GEAR, FABlocks.IRON_BEVEL_GEAR);
 	public static final Supplier<BlockEntityType<HandCrankBE>> HANDCRANK_TYPE = type("hand_crank", HandCrankBE::new, FABlocks.HAND_CRANK);
 	public static final Supplier<BlockEntityType<SmallWaterwheelBE>> SMALL_WATERWHEEL_TYPE = type("small_waterwheel", SmallWaterwheelBE::new, FABlocks.SMALL_WATERWHEEL);
