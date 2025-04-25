@@ -9,21 +9,29 @@ public class BurnerManager
 	private final FuelFinder fuelFinder;
 	private final FuelExtractor fuelExtractor;
 	private final HeatAcceptor heatAcceptor;
+	private final BurnCallback burnCallback;
 	private int burnTime;
 	private int maxBurnTime;
 	private float burnEnergy;
 	private float burnTemp;
 
-	public BurnerManager(String nbtId, FuelFinder fuelFinder, FuelExtractor fuelExtractor, HeatAcceptor heatAcceptor)
+	public BurnerManager(String nbtId, FuelFinder fuelFinder, FuelExtractor fuelExtractor, HeatAcceptor heatAcceptor, BurnCallback burnCallback)
 	{
 		this.nbtId = nbtId;
 		this.fuelFinder = fuelFinder;
 		this.fuelExtractor = fuelExtractor;
 		this.heatAcceptor = heatAcceptor;
+		this.burnCallback = burnCallback;
+	}
+
+	public BurnerManager(String nbtId, FuelFinder fuelFinder, FuelExtractor fuelExtractor, HeatAcceptor heatAcceptor)
+	{
+		this(nbtId, fuelFinder, fuelExtractor, heatAcceptor, b -> {});
 	}
 
 	public void progress()
 	{
+		boolean wasBurning = burnTime > 0;
 		if (burnTime > 0)
 		{
 			burnTime--;
@@ -38,6 +46,7 @@ public class BurnerManager
 				maxBurnTime = burnTime = fuelInfo.time();
 				burnEnergy = fuelInfo.energy();
 				burnTemp = fuelInfo.temp();
+				burnCallback.notifyBurning(true);
 			}
 			else
 			{
@@ -45,6 +54,8 @@ public class BurnerManager
 				burnTime = 0;
 				burnTemp = 0;
 				burnEnergy = 0;
+				if (wasBurning)
+					burnCallback.notifyBurning(false);
 			}
 		}
 	}
@@ -94,5 +105,11 @@ public class BurnerManager
 	public interface HeatAcceptor
 	{
 		void heat(float temp, float joules);
+	}
+
+	@FunctionalInterface
+	public interface BurnCallback
+	{
+		void notifyBurning(boolean lit);
 	}
 }

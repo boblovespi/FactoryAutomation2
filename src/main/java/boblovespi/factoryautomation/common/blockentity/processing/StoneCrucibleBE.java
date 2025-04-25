@@ -13,12 +13,15 @@ import boblovespi.factoryautomation.common.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
@@ -60,6 +63,22 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) -> {
 			if (t * efficiency + 273 * (1 - efficiency) >= heat.getTemperature())
 				heat.heat(e * efficiency * 0.5f);
+		}, b -> {
+			var below = worldPosition.below();
+			var belowState = level.getBlockState(below);
+			if (b)
+			{
+				level.getAuxLightManager(below).setLightAt(below, 13);
+				level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCrucible.LIT, true));
+				level.sendBlockUpdated(below, belowState, belowState, Block.UPDATE_CLIENTS);
+			}
+			else
+			{
+				level.getAuxLightManager(below).removeLightAt(below);
+				level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCrucible.LIT, false));
+				level.sendBlockUpdated(below, belowState, belowState, Block.UPDATE_CLIENTS);
+			}
+			setChangedAndUpdateClient();
 		});
 	}
 
@@ -95,6 +114,18 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	{
 		amount = tag.getFloat("amount");
 		color = tag.getInt("color");
+	}
+
+	@Override
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider)
+	{
+		super.onDataPacket(net, pkt, lookupProvider);
+		var b = getBlockState().getValue(StoneCrucible.LIT);
+		var below = worldPosition.below();
+		if (b)
+			level.getAuxLightManager(below).setLightAt(below, 13);
+		else
+			level.getAuxLightManager(below).removeLightAt(below);
 	}
 
 	@Override

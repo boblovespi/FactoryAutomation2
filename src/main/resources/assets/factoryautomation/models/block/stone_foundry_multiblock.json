@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "block/furnace_top",
-		"3": "block/furnace_front",
+		"3": "#front",
 		"4": "block/furnace_side",
 		"particle": "block/furnace_top"
 	},

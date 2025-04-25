@@ -94,7 +94,8 @@ public class FABlockStateProvider extends BlockStateProvider
 		getVariantBuilder(FABlocks.LOG_PILE.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("log_pile" + (s.getValue(LogPileLike.ACTIVATED) ? "_activated" : "")))).build());
 		blockWithItem(FABlocks.LIMONITE_CHARCOAL_MIX);
-		horizontalBlock(FABlocks.STONE_CRUCIBLE.get(), multiblockComplete("stone_crucible", "stone_foundry_multiblock"), 270);
+		horizontalBlock(FABlocks.STONE_CRUCIBLE.get(),
+				litMultiblockComplete("stone_crucible", "stone_foundry_multiblock", "front", mcLoc("block/furnace_front"), mcLoc("block/furnace_front_on")), 270);
 		castingVessel(FABlocks.STONE_CASTING_VESSEL);
 		existingBlockWithItem(FABlocks.STONE_WORKBENCH);
 		existingBlockModel(FABlocks.BRICK_MAKER_FRAME);
@@ -105,12 +106,14 @@ public class FABlockStateProvider extends BlockStateProvider
 		directionalBlock(FABlocks.WOOD_GEARBOX, modLoc("block/gearbox"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_gearbox_front"), modLoc("block/wood_gearbox_back"));
 		splitter(FABlocks.WOOD_SPLITTER, modLoc("block/splitter"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_splitter_front"), modLoc("block/wood_splitter_back"));
 		splitter(FABlocks.WOOD_JOINER, modLoc("block/joiner"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_splitter_front"), modLoc("block/wood_splitter_back"));
-		bevelGear(FABlocks.WOOD_BEVEL_GEAR, modLoc("block/bevel_gear"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_bevel_gear_front"), modLoc("block/wood_splitter_back"));
+		bevelGear(FABlocks.WOOD_BEVEL_GEAR, modLoc("block/bevel_gear"), modLoc("block/wood_gearbox_side"), modLoc("block/wood_bevel_gear_front"),
+				modLoc("block/wood_splitter_back"));
 		axisOnlyBlock(FABlocks.IRON_POWER_SHAFT, modLoc("block/power_shaft"), mcLoc("block/iron_block"), mcLoc("block/iron_block"));
 		directionalBlock(FABlocks.IRON_GEARBOX, modLoc("block/gearbox"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_gearbox_front"), modLoc("block/iron_gearbox_back"));
 		splitter(FABlocks.IRON_SPLITTER, modLoc("block/splitter"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_splitter_front"), modLoc("block/iron_splitter_back"));
 		splitter(FABlocks.IRON_JOINER, modLoc("block/joiner"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_splitter_front"), modLoc("block/iron_splitter_back"));
-		bevelGear(FABlocks.IRON_BEVEL_GEAR, modLoc("block/bevel_gear"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_bevel_gear_front"), modLoc("block/iron_splitter_back"));
+		bevelGear(FABlocks.IRON_BEVEL_GEAR, modLoc("block/bevel_gear"), modLoc("block/iron_gearbox_side"), modLoc("block/iron_bevel_gear_front"),
+				modLoc("block/iron_splitter_back"));
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
 	}
@@ -166,6 +169,20 @@ public class FABlockStateProvider extends BlockStateProvider
 	private Function<BlockState, ModelFile> multiblockComplete(String base, String multiblock)
 	{
 		return state -> models().getExistingFile(modLoc("block/" + (state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE) ? multiblock : base)));
+	}
+
+	private Function<BlockState, ModelFile> litMultiblockComplete(String base, String multiblock, String key, ResourceLocation unlitTexture, ResourceLocation litTexture)
+	{
+		return state -> {
+			var complete = state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE);
+			var lit = state.getValue(BlockStateProperties.LIT);
+			if (complete)
+				return models().getBuilder(multiblock + (lit ? "_lit" : "_unlit"))
+							   .parent(models().getExistingFile(modLoc("block/" + multiblock)))
+							   .texture(key, lit ? litTexture : unlitTexture);
+			else
+				return models().getExistingFile(modLoc("block/" + base));
+		};
 	}
 
 	private void castingVessel(DeferredBlock<StoneCastingVessel> cv)
