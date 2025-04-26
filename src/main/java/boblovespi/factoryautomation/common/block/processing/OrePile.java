@@ -25,6 +25,6 @@ public class OrePile extends LogPileLike
 	@Override
 	public boolean isValidSurroundingBlock(Level level, BlockState state, BlockPos pos, Direction face)
 	{
-		return state.is(FABlocks.COPPER_PLATE_BLOCK);
+		return state.is(FABlocks.COPPER_PLATE_BLOCK) || state.is(this.state.getBlock());
 	}
 }

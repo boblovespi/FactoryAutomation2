@@ -122,6 +122,8 @@ public abstract class LogPileLike extends Block
 		}
 		else
 		{
+			if (neighborState.is(this) && !neighborState.getValue(ACTIVATED))
+				level.setBlockAndUpdate(neighborPos, neighborState.setValue(ACTIVATED, true));
 			var sidesOnFire = false;
 			var isSurrounded = true;
 			for (Direction face : Direction.values())
