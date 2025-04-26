@@ -41,11 +41,11 @@ public class CreativeMechanicalSource extends Block implements EntityBlock
 			if (level.isClientSide)
 				return ItemInteractionResult.SUCCESS;
 			var mainHand = pHand == InteractionHand.MAIN_HAND;
-			var val = 10 * ((float) pHitResult.getLocation().y - pos.getY() - 0.5f);
+			var val = (float) pHitResult.getLocation().y - pos.getY() - 0.5f;
 			if (mainHand)
-				level.getBlockEntity(pos, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get()).ifPresent(s -> s.changeSpeed(val));
+				level.getBlockEntity(pos, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get()).ifPresent(s -> s.changeSpeed(val * 2));
 			else
-				level.getBlockEntity(pos, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get()).ifPresent(s -> s.changeTorque(val));
+				level.getBlockEntity(pos, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get()).ifPresent(s -> s.changeTorque(val * 200));
 			return ItemInteractionResult.CONSUME;
 		}
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

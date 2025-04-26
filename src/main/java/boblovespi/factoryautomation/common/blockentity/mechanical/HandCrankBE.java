@@ -94,7 +94,7 @@ public class HandCrankBE extends FABE implements ITickable, IClientTickable
 	public void setRunning()
 	{
 		manager.update(RUNNING);
-		timer = 360;
+		timer = 80;
 	}
 
 	public void updateInputs()
@@ -127,13 +127,13 @@ public class HandCrankBE extends FABE implements ITickable, IClientTickable
 		@Override
 		public float getTorque()
 		{
-			return 1;
+			return 40;
 		}
 
 		@Override
 		public float getSpeed()
 		{
-			return 1;
+			return 1.5708f;
 		}
 	}
 }
