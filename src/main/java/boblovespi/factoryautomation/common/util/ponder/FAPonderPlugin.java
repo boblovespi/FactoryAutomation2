@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.LogPile;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
+import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
 import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.util.Metal;
@@ -51,10 +52,12 @@ public class FAPonderPlugin implements PonderPlugin
 		// helper.addStoryBoard(FAItems.LOG_PILE.getId(), "test", this::testScene).highlightAllTags();
 		helper.addStoryBoard(FAItems.LOG_PILE, "log_pile", this::logPileScene).highlightAllTags();
 		helper.forComponents(FAItems.STONE_CRUCIBLE, FAItems.STONE_CASTING_VESSEL, Items.FURNACE).addStoryBoard("stone_foundry", this::stoneFoundry);
+		helper.forComponents(FAItems.ROCK).addStoryBoard("chopping_block_creation", this::choppingBlockCreationScene);
+		helper.forComponents(FABlocks.CHOPPING_BLOCK, FAItems.CHOPPING_BLADE).addStoryBoard("chopping_block_usage", this::choppingBlockUsageScene);
 	}
 
-	private void testScene(SceneBuilder scene, SceneBuildingUtil util)
-	{
+
+	private void testScene(SceneBuilder scene, SceneBuildingUtil util) {
 		scene.title("test_1", "Hello, world!");
 		scene.showBasePlate();
 		scene.idle(10);
@@ -77,8 +80,65 @@ public class FAPonderPlugin implements PonderPlugin
 		scene.world().replaceBlocks(zero, FABlocks.CHARCOAL_PILE.get().defaultBlockState(), false);
 	}
 
-	private void logPileScene(SceneBuilder scene, SceneBuildingUtil util)
-	{
+	private void choppingBlockCreationScene(SceneBuilder scene, SceneBuildingUtil util){
+		scene.title("chopping_block_creation", "Making and Usage of the Chopping Block I");
+		scene.showBasePlate();
+		scene.idle(10);
+		scene.world().showSection(util.select().layersFrom(1), Direction.DOWN);
+		scene.idle(30);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(util.select().position(1, 1, 1).getCenter(), Pointing.RIGHT, 40)
+				.rightClick()
+				.whileSneaking()
+				.withItem(FAItems.ROCK.toStack());
+		scene.idle(30);
+
+		scene.addKeyframe();
+		scene.world().replaceBlocks(util.select().position(1, 1, 1), FABlocks.CHOPPING_BLOCK.get().defaultBlockState(), true);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.overlay().showText(60)
+				.text("Put Things on it")
+				.colored(PonderPalette.WHITE)
+				.pointAt(util.select().position(1, 1, 1).getCenter());
+		scene.idle(60);
+	}
+
+	private void choppingBlockUsageScene(SceneBuilder scene, SceneBuildingUtil util){
+		scene.title("chopping_block_usage", "Making and Usage of the Chopping Block II");
+		scene.showBasePlate();
+		scene.idle(10);
+		scene.world().showSection(util.select().layersFrom(1), Direction.DOWN);
+		scene.idle(30);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(util.select().position(1, 1, 1).getCenter(), Pointing.RIGHT, 40)
+				.rightClick()
+				.withItem(Items.OAK_LOG.getDefaultInstance());
+		scene.idle(30);
+		scene.world().modifyBlockEntity(util.grid().at(1, 1, 1), ChoppingBlockBE.class, be -> ((ChoppingBlockBE)be).placeItem(Items.OAK_LOG.getDefaultInstance()));
+		scene.idle(30);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(new Vec3(1, 3, 1), Pointing.DOWN, 60)
+				.leftClick()
+				.withItem(FAItems.CHOPPING_BLADE.get().getDefaultInstance());
+		scene.overlay().showText(60)
+				.text("Hit it many times")
+				.colored(PonderPalette.WHITE)
+				.pointAt(util.select().position(1, 1, 1).getCenter());
+		scene.idle(50);
+
+		scene.addKeyframe();
+		scene.world().setBlocks(util.select().position(1, 1, 1), Blocks.AIR.defaultBlockState(), false);
+		scene.world().setBlocks(util.select().position(1, 1, 1), FABlocks.CHOPPING_BLOCK.get().defaultBlockState(), true);
+		scene.world().modifyBlockEntity(util.grid().at(1, 1, 1), ChoppingBlockBE.class, be -> ((ChoppingBlockBE)be).placeItem(Items.OAK_PLANKS.getDefaultInstance()));
+		scene.idle(20);
+	}
+
+	private void logPileScene(SceneBuilder scene, SceneBuildingUtil util) {
 		var dirtSide = util.select().fromTo(1, 1, 0, 2, 1, 0)
 						   .add(util.select().fromTo(0, 1, 1, 0, 1, 2))
 						   .add(util.select().fromTo(1, 1, 3, 2, 1, 3))
@@ -153,8 +213,7 @@ public class FAPonderPlugin implements PonderPlugin
 		scene.idle(20);
 	}
 
-	private void stoneFoundry(SceneBuilder scene, SceneBuildingUtil util)
-	{
+	private void stoneFoundry(SceneBuilder scene, SceneBuildingUtil util) {
 		var center = util.select().fromTo(1, 1, 1, 1, 2, 1);
 		var crucibleLoc = util.grid().at(1, 2, 1);
 		var furnaceLoc = util.grid().at(1, 1, 1);
@@ -210,14 +269,12 @@ public class FAPonderPlugin implements PonderPlugin
 		scene.idle(20);
 	}
 
-	private ParticleEmitter inWholeBlock(ParticleEmitter emitter)
-	{
+	private ParticleEmitter inWholeBlock(ParticleEmitter emitter) {
 		var r = Ponder.RANDOM;
 		return (w, x, y, z) -> emitter.create(w, x + r.nextDouble(), y + r.nextDouble(), z + r.nextDouble());
 	}
 
-	private <T extends ParticleOptions> ParticleEmitter serverSent(T type, double xOff, double yOff, double zOff, double spd)
-	{
+	private <T extends ParticleOptions> ParticleEmitter serverSent(T type, double xOff, double yOff, double zOff, double spd) {
 		var r = Ponder.RANDOM;
 		return (w, x, y, z) -> w.addParticle(type,
 				x + r.nextGaussian() * xOff,

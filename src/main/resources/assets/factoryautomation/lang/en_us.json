@@ -366,7 +366,11 @@
 	"advancements.factoryautomation.copper_age.iron_shard.description": "Obtain Iron Shards from hammering an Iron Bloom.",
 	
 	// Ponder
-	
+
+	"factoryautomation.ponder.chopping_block_creation.header": "Creation of Chopping blocks",
+	"factoryautomation.ponder.chopping_block_creation.text_1": "Use this Chopping block to chop up wood into planks, those to sticks, and many more things.",
+	"factoryautomation.ponder.chopping_block_usage.header": "Usage of Chopping blocks",
+	"factoryautomation.ponder.chopping_block_usage.text_1": "Hit it many times to chop up your item!",
 	"factoryautomation.ponder.log_pile.header": "Firing Log Piles",
 	"factoryautomation.ponder.log_pile.text_1": "Surround the log piles with any solid block",
 	
