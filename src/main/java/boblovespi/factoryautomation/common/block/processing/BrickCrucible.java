@@ -9,6 +9,10 @@ import boblovespi.factoryautomation.common.blockentity.processing.BrickCrucibleB
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -35,6 +39,7 @@ public class BrickCrucible extends Block implements EntityBlock
 {
 	public static final BooleanProperty MULTIBLOCK_COMPLETE = StoneCrucible.MULTIBLOCK_COMPLETE;
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	private static final VoxelShape BASE_SHAPE = Block.box(2, 2, 2, 14, 16, 14);
 	private static final VoxelShape BASE_COMPLETE_SHAPE = Block.box(2, 0, 2, 14, 15, 14);
 	private static final VoxelShape[] INCOMPLETE_SHAPE = new VoxelShape[] {
@@ -51,7 +56,7 @@ public class BrickCrucible extends Block implements EntityBlock
 	public BrickCrucible(Properties p)
 	{
 		super(p);
-		registerDefaultState(defaultBlockState().setValue(MULTIBLOCK_COMPLETE, false).setValue(FACING, Direction.NORTH));
+		registerDefaultState(defaultBlockState().setValue(MULTIBLOCK_COMPLETE, false).setValue(FACING, Direction.NORTH).setValue(LIT, false));
 	}
 
 	@Nullable
@@ -111,7 +116,7 @@ public class BrickCrucible extends Block implements EntityBlock
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
 	{
-		builder.add(MULTIBLOCK_COMPLETE, FACING);
+		builder.add(MULTIBLOCK_COMPLETE, FACING, LIT);
 	}
 
 	@Override
@@ -126,5 +131,27 @@ public class BrickCrucible extends Block implements EntityBlock
 		if (!pState.is(pNewState.getBlock()))
 			pLevel.getBlockEntity(pPos, FABETypes.BRICK_CRUCIBLE_TYPE.get()).ifPresent(FABE::onDestroy);
 		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+	}
+
+	@Override
+	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
+	{
+		if (state.getValue(LIT))
+		{
+			var d0 = pos.getX() + 0.5;
+			var d1 = pos.getY() - 1;
+			var d2 = pos.getZ() + 0.5;
+			if (random.nextDouble() < 0.1)
+				level.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 0.8F, false);
+
+			var direction = state.getValue(FACING).getClockWise();
+			var direction$axis = direction.getAxis();
+			var d4 = random.nextDouble() * 0.6 - 0.3;
+			var d5 = direction$axis == Direction.Axis.X ? direction.getStepX() * 0.52 : d4;
+			var d6 = random.nextDouble() * 6.0 / 16.0;
+			var d7 = direction$axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : d4;
+			level.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0, 0.0, 0.0);
+			// level.addParticle(ParticleTypes.FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0, 0.0, 0.0);
+		}
 	}
 }

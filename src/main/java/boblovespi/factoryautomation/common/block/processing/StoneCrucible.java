@@ -67,7 +67,7 @@ public class StoneCrucible extends Block implements EntityBlock
 			var d1 = pos.getY() - 1;
 			var d2 = pos.getZ() + 0.5;
 			if (random.nextDouble() < 0.1)
-				level.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+				level.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 0.8F, false);
 
 			var direction = state.getValue(FACING).getClockWise();
 			var direction$axis = direction.getAxis();

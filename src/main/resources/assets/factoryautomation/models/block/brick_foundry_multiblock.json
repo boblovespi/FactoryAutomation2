@@ -3,7 +3,7 @@
 	"textures": {
 		"2": "factoryautomation:block/brick_crucible",
 		"3": "block/iron_block",
-		"4": "factoryautomation:block/brick_foundry_front",
+		"4": "#front",
 		"5": "factoryautomation:block/brick_firebox_top",
 		"6": "factoryautomation:block/brick_firebox_side",
 		"7": "factoryautomation:block/brick_foundry_back",

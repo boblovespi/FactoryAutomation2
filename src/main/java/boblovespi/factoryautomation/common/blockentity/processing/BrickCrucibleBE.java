@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.common.blockentity.processing;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.api.capability.BellowsCapability;
 import boblovespi.factoryautomation.common.block.processing.BrickCrucible;
+import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
@@ -15,12 +16,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -64,7 +68,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		{
 			if (t * bellows.getTempEfficiency() + 273 * (1 - bellows.getTempEfficiency()) >= heat.getTemperature())
 				heat.heat(e * bellows.getEnergyEfficiency());
-		});
+		}, this::notifyBurning);
 	}
 
 	@Override
@@ -99,6 +103,13 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
 
+	}
+
+	@Override
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider)
+	{
+		super.onDataPacket(net, pkt, lookupProvider);
+		notifyBurning(getBlockState().getValue(BrickCrucible.LIT));
 	}
 
 	@Override
@@ -202,6 +213,32 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		if (offset.getX() == 0 && offset.getY() == -1 && offset.getZ() == 0 && capability == BellowsCapability.BLOCK)
 			return (T) bellows;
 		return null;
+	}
+
+	private void notifyBurning(boolean b)
+	{
+		var below = worldPosition.below();
+		var belowState = level.getBlockState(below);
+		var aux = level.getAuxLightManager(below);
+		if (b)
+		{
+			if (aux != null)
+				aux.setLightAt(below, 13);
+			if (!level.isClientSide)
+				level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCrucible.LIT, true));
+		}
+		else
+		{
+			if (aux != null)
+				aux.removeLightAt(below);
+			if (!level.isClientSide)
+				level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCrucible.LIT, false));
+		}
+		if (!level.isClientSide)
+		{
+			level.sendBlockUpdated(below, belowState, belowState, Block.UPDATE_CLIENTS);
+			setChangedAndUpdateClient();
+		}
 	}
 
 	private class Data implements ContainerData
