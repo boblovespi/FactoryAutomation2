@@ -168,4 +168,11 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 			return 1;
 		}
 	}
+
+	public float getTemp(){
+		return this.temp;
+	}
+	public boolean isEmpty(){
+		return inv.getStackInSlot(0).isEmpty();
+	}
 }
