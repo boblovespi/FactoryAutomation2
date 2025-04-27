@@ -4,12 +4,14 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.menu.StoneFoundryMenu;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.Metal;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.InventoryMenu;
 
 public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu>
 {
@@ -17,6 +19,7 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 	private final GuiBar flameBar;
 	private final GuiBar temperatureBar;
 	private final GuiBar progressBar;
+	private final GuiTexturedBar metalBar;
 
 	public StoneFoundryScreen(StoneFoundryMenu pMenu, Inventory pPlayerInventory, Component pTitle)
 	{
@@ -26,6 +29,8 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 		flameBar = new GuiBar(BACKGROUND_TEXTURE, 67, 40, 176, 0, 14, 14, GuiBar.ProgressDirection.UP);
 		temperatureBar = new GuiBar(BACKGROUND_TEXTURE, 53, 16, 176, 17, 6, 61, GuiBar.ProgressDirection.UP);
 		progressBar = new GuiBar(BACKGROUND_TEXTURE, 84, 21, 194, 2, 22, 10, GuiBar.ProgressDirection.RIGHT);
+		var sprite = Minecraft.getInstance().getModelManager().getAtlas(InventoryMenu.BLOCK_ATLAS).getSprite(FactoryAutomation.name("block/molten_metal"));
+		metalBar = new GuiTexturedBar(107, 17, 16, 59, sprite, 16, 16);
 	}
 
 	@Override
@@ -44,7 +49,7 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 		temperatureBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(1)) / 1800f);
 		progressBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(2)));
 		var metal = Metal.fromId(menu.getData(4));
-		graphics.fill(leftPos + 107, topPos + (int) (76 - 59 * menu.getData(3) / (Form.INGOT.amount() * 9 * 3f)), leftPos + 123, topPos + 76, metal.color());
+		metalBar.draw(this, graphics, menu.getData(3) / (Form.INGOT.amount() * 9 * 3f), metal.color());
 	}
 
 	@Override
