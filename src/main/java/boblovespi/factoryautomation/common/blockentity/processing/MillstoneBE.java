@@ -9,6 +9,7 @@ import boblovespi.factoryautomation.common.recipe.MillstoneRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.ItemHelper;
+import boblovespi.factoryautomation.common.util.MathHelper;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import boblovespi.factoryautomation.common.util.jade.IJadeViewable;
@@ -129,7 +130,7 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 						level.registryAccess());
 				var item = new ItemEntity(level, worldPosition.getX() - 0.5 + level.random.nextInt(3), worldPosition.getY() - 0.1,
 						worldPosition.getZ() - 0.5 + level.random.nextInt(3), assembled);
-				item.push((level.random.nextDouble() - 0.5) * 0.2, 0, (level.random.nextDouble() - 0.5) * 0.2);
+				item.push(MathHelper.uniformZeroD(level.random, 0.1), 0, MathHelper.uniformZeroD(level.random, 0.1));
 				level.addFreshEntity(item);
 				recipeManager.complete();
 			}

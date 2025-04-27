@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.BrickCrucibleBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
+import boblovespi.factoryautomation.common.util.MathHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -138,20 +139,29 @@ public class BrickCrucible extends Block implements EntityBlock
 	{
 		if (state.getValue(LIT))
 		{
-			var d0 = pos.getX() + 0.5;
-			var d1 = pos.getY() - 1;
-			var d2 = pos.getZ() + 0.5;
+			var lowerX = pos.getX() + 0.5;
+			var lowerY = pos.getY() - 1;
+			var lowerZ = pos.getZ() + 0.5;
 			if (random.nextDouble() < 0.1)
-				level.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 0.8F, false);
+				level.playLocalSound(lowerX, lowerY, lowerZ, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 0.8F, false);
 
 			var direction = state.getValue(FACING).getClockWise();
-			var direction$axis = direction.getAxis();
+			var chimneyDirection = direction.getOpposite();
+			var axis = direction.getAxis();
 			var d4 = random.nextDouble() * 0.6 - 0.3;
-			var d5 = direction$axis == Direction.Axis.X ? direction.getStepX() * 0.52 : d4;
+			var d5 = axis == Direction.Axis.X ? direction.getStepX() * 0.52 : d4;
 			var d6 = random.nextDouble() * 6.0 / 16.0;
-			var d7 = direction$axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : d4;
-			level.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0, 0.0, 0.0);
-			// level.addParticle(ParticleTypes.FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0, 0.0, 0.0);
+			var d7 = axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : d4;
+			if (random.nextFloat() < 0.6f)
+				level.addParticle(ParticleTypes.SMOKE, lowerX + d5, lowerY + d6, lowerZ + d7, 0.0, 0.0, 0.0);
+			// level.addParticle(ParticleTypes.FLAME, lowerX + d5, lowerY + d6, lowerZ + d7, 0.0, 0.0, 0.0);
+			var upperY = pos.getY() + 1;
+			for (int i = 0; i < 3; i++)
+			{
+				var upperXOffset = axis == Direction.Axis.X ? chimneyDirection.getStepX() * (14 / 32d) : MathHelper.uniformZeroD(random, 2 / 16d);
+				var upperZOffset = axis == Direction.Axis.Z ? chimneyDirection.getStepZ() * (14 / 32d) : MathHelper.uniformZeroD(random, 2 / 16d);
+				level.addParticle(ParticleTypes.SMOKE, lowerX + upperXOffset, upperY, lowerZ + upperZOffset, 0, 0, 0);
+			}
 		}
 	}
 }
