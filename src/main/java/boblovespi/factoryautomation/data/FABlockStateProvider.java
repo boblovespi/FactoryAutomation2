@@ -162,7 +162,7 @@ public class FABlockStateProvider extends BlockStateProvider
 	private void choppingBlock(WoodTypes type, DeferredBlock<ChoppingBlock> choppingBlock)
 	{
 		var realCb = choppingBlock.get();
-		var logLoc = mcLoc("block/" + type.getName() + "_log");
+		var logLoc = modLoc("block/" + type.getName() + "_chopping_block");
 		var topLoc = logLoc.withSuffix("_top");
 		simpleBlockWithItem(realCb, models().slab(choppingBlock.getRegisteredName(), logLoc, topLoc, topLoc));
 	}

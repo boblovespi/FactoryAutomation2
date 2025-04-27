@@ -7,6 +7,9 @@ import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import boblovespi.factoryautomation.common.sound.FASounds;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -28,9 +31,13 @@ public class BlockEventHandler
 		{
 			if (state.is(FATags.Blocks.CHOPPING_BLOCK_LOGS))
 			{
-				var newState = FABlocks.CHOPPING_BLOCKS.get(WoodTypes.fromLog(state.getBlock())).get().defaultBlockState();
-				level.setBlockAndUpdate(pos, newState);
-				level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(event.getEntity(), newState));
+				//TODO Experiment, subject to change
+				//var newState = FABlocks.CHOPPING_BLOCKS.get(WoodTypes.fromLog(state.getBlock())).get().defaultBlockState();
+				//level.setBlockAndUpdate(pos, newState);
+				//level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(event.getEntity(), newState));
+				level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+				level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(event.getEntity(), Blocks.AIR.defaultBlockState()));
+				Block.popResource(level, pos, new ItemStack(FABlocks.CHOPPING_BLOCKS.get(WoodTypes.fromLog(state.getBlock())), 2));
 				level.playSound(event.getEntity(), pos, FASounds.MAKE_CHOPPING_BLOCK.get(), SoundSource.BLOCKS);
 				event.setCanceled(true);
 			}
