@@ -373,6 +373,8 @@
 	"factoryautomation.ponder.chopping_block_usage.text_1": "Hit it many times to chop up your item!",
 	"factoryautomation.ponder.log_pile.header": "Firing Log Piles",
 	"factoryautomation.ponder.log_pile.text_1": "Surround the log piles with any solid block",
+	"factoryautomation.ponder.iron_bloom_creation.header": "Getting Iron Shards",
+	"factoryautomation.ponder.iron_bloom_creation.text_1": "Make sure every side is covered with copper plate blocks, even the bottom!",
 	
 	"factoryautomation.ponder.stone_foundry.header": "Assembling the Stone Foundry"
 }
