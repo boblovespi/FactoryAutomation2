@@ -437,7 +437,7 @@ public class FARecipeProvider extends RecipeProvider
 
 		// Millstone
 
-		MillstoneRecipe.of(new ItemStack(Items.BONE_MEAL, 4)).input(Tags.Items.BONES).progress(80).beginData().speed(2).torque(100).endData()
+		MillstoneRecipe.of(new ItemStack(Items.BONE_MEAL, 4)).input(Tags.Items.BONES).progress(50).beginData().speed(1).torque(40).endData()
 					   .unlockedBy("has_bones", has(Tags.Items.BONES)).save(output);
 		MillstoneRecipe.of(new ItemStack(Items.BLAZE_POWDER, 4)).input(Tags.Items.RODS_BLAZE).progress(80).beginData().speed(2).torque(100).endData()
 					   .unlockedBy("has_blaze_rods", has(Tags.Items.RODS_BLAZE)).save(output);
