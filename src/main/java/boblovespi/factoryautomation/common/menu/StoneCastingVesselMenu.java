@@ -26,7 +26,9 @@ public class StoneCastingVesselMenu extends AbstractContainerMenu
 		int x = 8;
 		int y = 98;
 
-		for (int j = 0; j < 3; ++j)
+		/*
+		* uncomment this whenever you decide to have slots in the gui again
+		* for (int j = 0; j < 3; ++j)
 		{
 			for (int i = 0; i < 9; ++i)
 				addSlot(new Slot(playerInv, i + j * 9 + 9, x + i * 18, y + j * 18));
@@ -35,6 +37,9 @@ public class StoneCastingVesselMenu extends AbstractContainerMenu
 		{
 			addSlot(new Slot(playerInv, i, x + i * 18, y + 58));
 		}
+		*
+		* */
+
 	}
 
 	@Override

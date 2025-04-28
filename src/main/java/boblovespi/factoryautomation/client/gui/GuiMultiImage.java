@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.client.gui;
 
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
 
@@ -48,6 +49,17 @@ public class GuiMultiImage
 		graphics.pose().pushPose();
 		{
 			graphics.pose().translate(guiLeft + x, guiTop + y, 0);
+			graphics.pose().scale(w, h, 1);
+			graphics.blit(texLocs.get(texture), 0, 0, texX, texY, texW, texH, texW, texH);
+		}
+		graphics.pose().popPose();
+	}
+
+	public void draw(GuiGraphics graphics, int top, int left)	{
+
+		graphics.pose().pushPose();
+		{
+			graphics.pose().translate(left + x, top + y, 0);
 			graphics.pose().scale(w, h, 1);
 			graphics.blit(texLocs.get(texture), 0, 0, texX, texY, texW, texH, texW, texH);
 		}
