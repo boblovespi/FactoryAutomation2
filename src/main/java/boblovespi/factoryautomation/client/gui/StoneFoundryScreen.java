@@ -48,8 +48,13 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 		flameBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(0)));
 		temperatureBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(1)) / 1800f);
 		progressBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(2)));
-		var metal = Metal.fromId(menu.getData(4));
+		var metal = getMetal();
 		metalBar.draw(this, graphics, menu.getData(3) / (Form.INGOT.amount() * 9 * 3f), metal.color());
+	}
+
+	public Metal getMetal()
+	{
+		return Metal.fromId(menu.getData(4));
 	}
 
 	@Override
@@ -63,7 +68,7 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 		}
 		if (isHovering(107, 17, 16, 59, mouseX, mouseY))
 		{
-			var metal = Metal.fromId(menu.getData(4));
+			var metal = getMetal();
 			var text = Component.translatable("misc.metal_quantity", I18n.get("metal." + metal.getName() + ".name"), menu.getData(3));
 			pGuiGraphics.renderTooltip(font, text, mouseX, mouseY);
 		}

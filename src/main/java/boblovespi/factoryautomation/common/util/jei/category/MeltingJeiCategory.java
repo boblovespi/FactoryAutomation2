@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class MeltingJeiCategory implements IRecipeCategory<MeltingJeiRecipe>
 {
-	private static final RecipeType<MeltingJeiRecipe> TYPE = RecipeType.create(FactoryAutomation.MODID, "melting", MeltingJeiRecipe.class);
+	public static final RecipeType<MeltingJeiRecipe> TYPE = RecipeType.create(FactoryAutomation.MODID, "melting", MeltingJeiRecipe.class);
 	public static final ResourceLocation TEXTURE = FactoryAutomation.name("textures/gui/jei/melting.png");
 	private final IGuiHelper helper;
 	private final IDrawable background;

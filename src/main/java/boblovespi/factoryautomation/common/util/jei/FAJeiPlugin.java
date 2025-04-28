@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.util.jei;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.client.gui.StoneFoundryScreen;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;
@@ -11,10 +12,7 @@ import boblovespi.factoryautomation.common.util.jei.category.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.ingredients.IIngredientType;
-import mezz.jei.api.registration.IModIngredientRegistration;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -137,4 +135,10 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCatalyst(FAItems.LIMONITE_CHARCOAL_MIX, logPileFiringCategory.getRecipeType());
 	}
 
+	@Override
+	public void registerGuiHandlers(IGuiHandlerRegistration registration)
+	{
+		var helpers = registration.getJeiHelpers();
+		registration.addGuiContainerHandler(StoneFoundryScreen.class, new StoneFoundryContainerHandler(helpers));
+	}
 }
