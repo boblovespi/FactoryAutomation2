@@ -92,7 +92,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(MESA_ROCK_PATCH_CF, rockPatch(4, b(FABlocks.ROCKS.get(Rock.Variants.TERRACOTTA.ordinal()))));
 			b.register(SWAMP_ROCK_PATCH_CF, rockPatch(5, b(FABlocks.ROCKS.get(Rock.Variants.MOSSY_COBBLESTONE.ordinal()))));
 			b.register(FLINT_PATCH_CF, rockPatch(2, b(FABlocks.FLINT_ROCK)));
-			b.register(SMALL_CASSITERITE_ORE_CF, ore(4, d(FABlocks.CASSITERITE_ORE)));
+			b.register(SMALL_CASSITERITE_ORE_CF, ore(5, d(FABlocks.CASSITERITE_ORE)));
 			b.register(SWAMP_LIMONITE_ORE_CF, swampOre());
 		});
 		rsb.add(Registries.PLACED_FEATURE, b -> {
@@ -102,7 +102,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(MESA_ROCK_PATCH_PF, placedRock(configured, MESA_ROCK_PATCH_CF, 2));
 			b.register(SWAMP_ROCK_PATCH_PF, placedRock(configured, SWAMP_ROCK_PATCH_CF, 2));
 			b.register(NORMAL_FLINT_PATCH_PF, placedRock(configured, FLINT_PATCH_CF, 1));
-			b.register(SMALL_CASSITERITE_ORE_PF, placedOre(configured, SMALL_CASSITERITE_ORE_CF, 4, getHeightRange(32, 96)));
+			b.register(SMALL_CASSITERITE_ORE_PF, placedOre(configured, SMALL_CASSITERITE_ORE_CF, 8, getHeightRange(32, 96)));
 			b.register(SWAMP_LIMONITE_ORE_PF, placedSeafloor(configured, SWAMP_LIMONITE_ORE_CF, 17));
 		});
 		rsb.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, b -> {
