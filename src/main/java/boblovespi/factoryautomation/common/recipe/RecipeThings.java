@@ -33,4 +33,8 @@ public class RecipeThings
 			() -> RecipeType.simple(FactoryAutomation.name("log_pile_firing")));
 	public static final Supplier<RecipeSerializer<LogPileFiringRecipe>> LOG_PILE_FIRING_SERIALIZER = RECIPE_SERIALIZERS.register("log_pile_firing",
 			() -> new SimpleRecipe.Serializer<>(LogPileFiringRecipe::new, LogPileFiringRecipe.DATA_CODEC, LogPileFiringRecipe.DATA_STREAM_CODEC));
+	public static final Supplier<RecipeType<TripHammerRecipe>> TRIP_HAMMER_TYPE = RECIPE_TYPES.register("trip_hammer",
+			() -> RecipeType.simple(FactoryAutomation.name("trip_hammer")));
+	public static final Supplier<RecipeSerializer<TripHammerRecipe>> TRIP_HAMMER_SERIALIZER = RECIPE_SERIALIZERS.register("trip_hammer",
+			() -> new SimpleRecipe.Serializer<>(TripHammerRecipe::new, TripHammerRecipe.DATA_CODEC, TripHammerRecipe.DATA_STREAM_CODEC));
 }

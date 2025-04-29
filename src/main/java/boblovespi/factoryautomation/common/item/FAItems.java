@@ -112,6 +112,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> MILLSTONE = ITEMS.registerSimpleBlockItem(FABlocks.MILLSTONE);
 	public static final DeferredItem<BlockItem> BRICK_FIREBOX = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_FIREBOX);
 	public static final DeferredItem<BlockItem> PAPER_BELLOWS = ITEMS.registerSimpleBlockItem(FABlocks.PAPER_BELLOWS);
+	public static final DeferredItem<BlockItem> TRIP_HAMMER = ITEMS.registerSimpleBlockItem(FABlocks.TRIP_HAMMER);
 
 	// Tools
 

@@ -112,6 +112,7 @@ public class FABlocks
 	public static final DeferredBlock<BrickFirebox> BRICK_FIREBOX = register("brick_firebox", BrickFirebox::new, BlockProperties.BRICK_MACHINE);
 	public static final DeferredBlock<Millstone> MILLSTONE = register("millstone", Millstone::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<PaperBellows> PAPER_BELLOWS = register("paper_bellows", PaperBellows::new, BlockProperties.WOOD_MACHINE);
+	public static final DeferredBlock<TripHammer> TRIP_HAMMER = register("trip_hammer", TripHammer::new, BlockProperties.IRON_MACHINE);
 
 	// Mechanical
 

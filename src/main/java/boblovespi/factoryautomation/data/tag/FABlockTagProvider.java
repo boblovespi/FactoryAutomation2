@@ -51,6 +51,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 									  .add(FABlocks.PIG_IRON_BLOCK.get(), FABlocks.PIG_IRON_PLATE_BLOCK.get(), FABlocks.PIG_IRON_SPACE_FRAME.get())
 									  .add(FABlocks.STEEL_BLOCK.get(), FABlocks.STEEL_PLATE_BLOCK.get(), FABlocks.STEEL_SPACE_FRAME.get())
 									  .add(FABlocks.CHROMIUM_BLOCK.get(), FABlocks.CHROMIUM_PLATE_BLOCK.get(), FABlocks.CHROMIUM_SPACE_FRAME.get())
+									  .add(FABlocks.TRIP_HAMMER.get())
 									  .addTags(BlockTags.IRON_ORES, BlockTags.GOLD_ORES)
 									  .remove(FATags.Blocks.NEEDS_BRONZE_TOOL).remove(BlockTags.NEEDS_DIAMOND_TOOL);
 		tag(BlockTags.INCORRECT_FOR_IRON_TOOL).addTag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).remove(BlockTags.NEEDS_IRON_TOOL);
@@ -99,7 +100,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.CHROMIUM_BLOCK.get(), FABlocks.CHROMIUM_PLATE_BLOCK.get(), FABlocks.CHROMIUM_SPACE_FRAME.get())
 											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get(), FABlocks.IRON_SPLITTER.get(), FABlocks.IRON_JOINER.get())
 											.add(FABlocks.IRON_BEVEL_GEAR.get())
-											.add(FABlocks.MILLSTONE.get(), FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get())
+											.add(FABlocks.MILLSTONE.get(), FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get(), FABlocks.TRIP_HAMMER.get())
 											.add(FABlocks.DRIED_BRICKS.get(), FABlocks.BRICK_TILES.get())
 											.add(FABlocks.CHERT.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get(), FABlocks.PAPER_BELLOWS.get())

@@ -487,6 +487,10 @@ public class FARecipeProvider extends RecipeProvider
 		MillstoneRecipe.of(new ItemStack(Items.BLACK_DYE, 2)).input(Items.WITHER_ROSE).progress(50).beginData().speed(1).torque(40).endData()
 					   .unlockedBy("has_wither_rose", has(Items.WITHER_ROSE)).saveNoteFrom(output, "wither_rose");
 
+		// Trip hammer
+		TripHammerRecipe.of(new ItemStack(FAItems.IRON_THINGS.get(Form.SHEET).get(), 6)).input(Tags.Items.STORAGE_BLOCKS_IRON).progress(100).beginData().endData()
+						.unlockedBy("has_iron_block", has(Tags.Items.STORAGE_BLOCKS_IRON)).save(output);
+
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
 			RemovalRecipe.unitFor(wood.getPlanks()).save(output);

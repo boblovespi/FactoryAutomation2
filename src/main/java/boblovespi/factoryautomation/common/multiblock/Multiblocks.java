@@ -9,6 +9,7 @@ public class Multiblocks
 {
 	public static Multiblock STONE_CRUCIBLE;
 	public static Multiblock BRICK_CRUCIBLE;
+	public static Multiblock TRIP_HAMMER;
 
 	public static void register()
 	{
@@ -29,5 +30,16 @@ public class Multiblocks
 													.setOffset(new Vec3i(0, 1, 0)).build();
 		MultiblockRegistry.register(brickCrucible);
 		BRICK_CRUCIBLE = brickCrucible;
+		var tripHammer = SimpleMultiblock.Builder.make("trip_hammer", 6, 2, 1)
+												 .layer("ifflfi")
+												 .layer("caalaa")
+												 .define('c', FABlocks.TRIP_HAMMER)
+												 .define('l', Blocks.OAK_LOG.defaultBlockState())
+												 .define('f', Blocks.OAK_FENCE)
+												 .define('i', Blocks.IRON_BLOCK)
+												 .define('a', Blocks.AIR)
+												 .setOffset(new Vec3i(0, 0, 0)).build();
+		MultiblockRegistry.register(tripHammer);
+		TRIP_HAMMER = tripHammer;
 	}
 }
