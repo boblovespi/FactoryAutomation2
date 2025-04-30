@@ -123,6 +123,7 @@ public class FAJeiPlugin implements IModPlugin
 		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(FATags.Items.RAW_TIN), Metal.TIN.meltTemp(), Metal.TIN, Form.RAW_ORE, 1));
 		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(FAItems.IRON_SHARD), 0.75f * Metal.IRON.meltTemp(), Metal.IRON, Form.SHARD, 1));
 		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(Tags.Items.RAW_MATERIALS_IRON), Metal.IRON.meltTemp(), Metal.IRON, Form.RAW_ORE, 2));
+		meltingRecipes.add(new MeltingJeiRecipe(Ingredient.of(FAItems.ANCIENT_IRON_INGOT, FAItems.WEAK_IRON_INGOT), Metal.IRON.meltTemp(), Metal.IRON, Form.INGOT, 2));
 		registration.addRecipes(meltingJeiCategory.getRecipeType(), meltingRecipes);
 	}
 

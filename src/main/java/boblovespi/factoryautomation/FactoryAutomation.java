@@ -19,24 +19,17 @@ import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.FuelInfo;
 import boblovespi.factoryautomation.common.worldgen.FAWorldgen;
 import boblovespi.factoryautomation.data.loot.AlternateDropsLootModifier;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.platform.Window;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import boblovespi.factoryautomation.data.loot.LootTablePrefixCondition;
+import boblovespi.factoryautomation.data.loot.ReplaceDropsLootModifier;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -45,7 +38,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.client.event.RenderGuiEvent;
 import net.neoforged.neoforge.client.model.data.ModelProperty;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
@@ -57,6 +49,7 @@ import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import org.slf4j.Logger;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 @Mod(FactoryAutomation.MODID)
 public class FactoryAutomation
@@ -67,8 +60,15 @@ public class FactoryAutomation
 	private static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIER_SERIALIZERS = DeferredRegister.create(
 			NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
 
+	private static final DeferredRegister<LootItemConditionType> LOOT_ITEM_CONDITION_TYPES = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, MODID);
+
 	public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<AlternateDropsLootModifier>> ADD_TABLE_LOOT_MODIFIER_TYPE = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(
 			"alternate_drops", () -> AlternateDropsLootModifier.CODEC);
+	public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<ReplaceDropsLootModifier>> REPLACE_LOOT_MODIFIER_TYPE = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(
+			"replace_drops", () -> ReplaceDropsLootModifier.CODEC);
+
+	public static final Supplier<LootItemConditionType> LOOT_TABLE_PREFIX_CONDITION = LOOT_ITEM_CONDITION_TYPES.register("loot_table_prefix", () -> new LootItemConditionType(
+			LootTablePrefixCondition.CODEC));
 
 	public static final ModelProperty<Block[]> PARTIAL_DYNAMIC_TEXTURE_PROPERTY = new ModelProperty<>();
 
@@ -88,6 +88,7 @@ public class FactoryAutomation
 		FASounds.SOUND_EVENTS.register(modEventBus);
 		FAWorldgen.FEATURES.register(modEventBus);
 		GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
+		LOOT_ITEM_CONDITION_TYPES.register(modEventBus);
 		FABETypes.BLOCK_ENTITY_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_SERIALIZERS.register(modEventBus);
