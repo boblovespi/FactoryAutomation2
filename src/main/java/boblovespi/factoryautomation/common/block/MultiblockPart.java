@@ -91,7 +91,7 @@ public class MultiblockPart extends Block implements EntityBlock
 		if (optional.isEmpty())
 			return super.getDestroyProgress(state, player, level, pos);
 		var be = optional.get();
-		float f = be.getMultiblockState().getDestroySpeed(level, pos);
+		float f = be.getMultiblockState().isAir() ? 0.4f : be.getMultiblockState().getDestroySpeed(level, pos);
 		if (f == -1.0F)
 			return 0.0F;
 		else
