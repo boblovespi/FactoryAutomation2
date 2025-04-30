@@ -74,6 +74,9 @@ public class FATags
 		public static final TagKey<Item> SILVER_SHEET = cItem("plates/silver");
 		public static final TagKey<Item> SILVER_ROD = cItem("rods/silver");
 		public static final TagKey<Item> SILVER_GEAR = cItem("gears/silver");
+		public static final TagKey<Item> GOLD_SHEET = cItem("plates/gold");
+		public static final TagKey<Item> GOLD_ROD = cItem("rods/gold");
+		public static final TagKey<Item> GOLD_GEAR = cItem("gears/gold");
 		public static final TagKey<Item> MAGMATIC_BRASS_INGOT = cItem("ingots/magmatic_brass");
 		public static final TagKey<Item> MAGMATIC_BRASS_NUGGET = cItem("nuggets/magmatic_brass");
 		public static final TagKey<Item> MAGMATIC_BRASS_BLOCK = cItem("storage_blocks/magmatic_brass");

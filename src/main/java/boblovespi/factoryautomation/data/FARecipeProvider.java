@@ -488,8 +488,10 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_wither_rose", has(Items.WITHER_ROSE)).saveNoteFrom(output, "wither_rose");
 
 		// Trip hammer
-		TripHammerRecipe.of(new ItemStack(FAItems.IRON_THINGS.get(Form.SHEET).get(), 6)).input(Tags.Items.STORAGE_BLOCKS_IRON).progress(100).beginData().endData()
-						.unlockedBy("has_iron_block", has(Tags.Items.STORAGE_BLOCKS_IRON)).save(output);
+		TripHammerRecipe.of(new ItemStack(FAItems.IRON_RAIL.get())).input(FATags.Items.IRON_ROD).progress(100).beginData().endData()
+						.unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD)).save(output);
+		TripHammerRecipe.of(new ItemStack(FAItems.GOLD_RAIL.get())).input(FATags.Items.GOLD_ROD).progress(100).beginData().endData()
+						.unlockedBy("has_gold_rod", has(FATags.Items.GOLD_ROD)).save(output);
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
@@ -618,6 +620,7 @@ public class FARecipeProvider extends RecipeProvider
 		plateBlock(things.get(Form.PLATE_BLOCK), sheet, name, output);
 		sheet(things.get(Form.SHEET), ingot, name, output);
 		rod(things.get(Form.ROD), ingot, name, output);
+		tripHammerMetals(things.get(Form.SHEET), things.get(Form.ROD), block, ingot, name, output);
 	}
 
 	private void ingot(ItemLike ingot, ItemLike nugget, TagKey<Item> ingotI, TagKey<Item> nuggetI, String name, RecipeOutput output)
@@ -686,6 +689,14 @@ public class FARecipeProvider extends RecipeProvider
 							  .tool("hammer", 1, 1)
 							  .unlockedBy("has_" + name + "_ingot", has(ingotI))
 							  .save(output);
+	}
+
+	private void tripHammerMetals(ItemLike sheet, ItemLike rod, TagKey<Item> blockI, TagKey<Item> ingotI, String name, RecipeOutput output)
+	{
+		TripHammerRecipe.of(new ItemStack(sheet, 6)).input(blockI).progress(100).beginData().endData()
+						.unlockedBy("has_" + name + "_block", has(blockI)).save(output);
+		TripHammerRecipe.of(new ItemStack(rod)).input(ingotI).progress(100).beginData().endData()
+						.unlockedBy("has_" + name + "_ingot", has(ingotI)).save(output);
 	}
 
 	private void rawOre(ItemLike ore, ItemLike oreBlock, String name, RecipeOutput output)
