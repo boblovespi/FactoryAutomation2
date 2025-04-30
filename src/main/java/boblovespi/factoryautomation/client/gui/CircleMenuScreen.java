@@ -6,24 +6,17 @@ import boblovespi.factoryautomation.common.menu.StoneCastingVesselMenu;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.GearMaterial;
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.Util;
-import net.minecraft.client.Minecraft;
+import com.mojang.math.Axis;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.client.gui.widget.ExtendedButton;
 
 public class CircleMenuScreen extends AbstractContainerScreen<StoneCastingVesselMenu> {
 
@@ -41,10 +34,6 @@ public class CircleMenuScreen extends AbstractContainerScreen<StoneCastingVessel
     protected int centeredY;
     protected final StoneCastingVesselMenu menu;
     protected final Component playerInventoryTitle;
-    protected int titleLabelX;
-    protected int titleLabelY;
-    protected int inventoryLabelX;
-    protected int inventoryLabelY;
 
     public int sliceNum = 6;
     //TODO rn im lazy, since idk if this will be re-used elsewhere, but, if we want to, the first step towards this being modular is to turn this integer into like a list that holds custom class of "RadialPage" that would store the data on each page instead of the hardcoded "pages" in init(); and the lenght of this list could be used in the calculations instead of this hardcoded int;
@@ -55,7 +44,6 @@ public class CircleMenuScreen extends AbstractContainerScreen<StoneCastingVessel
         this.menu = pMenu;
         this.playerInventoryTitle = pPlayerInventory.getDisplayName();
         imageHeight = 180;
-        inventoryLabelY += 14;
     }
 
     @Override
@@ -89,6 +77,13 @@ public class CircleMenuScreen extends AbstractContainerScreen<StoneCastingVessel
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
 
+        drawRadialSeparator(graphics, 0);
+        drawRadialSeparator(graphics, 1);
+        drawRadialSeparator(graphics, 2);
+        drawRadialSeparator(graphics, 3);
+        drawRadialSeparator(graphics, 4);
+        drawRadialSeparator(graphics, 5);
+
         graphics.pose().pushPose();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -103,10 +98,8 @@ public class CircleMenuScreen extends AbstractContainerScreen<StoneCastingVessel
     }
 
     protected void renderBg(GuiGraphics graphics, float pPartialTick, int pMouseX, int pMouseY) {
-        if(this.image != null){
-            image.setTexture(menu.getForm());
-            image.draw(graphics, centeredY -32, centeredX -32);
-        }
+        image.setTexture(menu.getForm());
+        image.draw(graphics, centeredY -32, centeredX -32);
     }
 
     private void setForm(int form) {
@@ -116,24 +109,31 @@ public class CircleMenuScreen extends AbstractContainerScreen<StoneCastingVessel
 
     @Override
     public void renderTransparentBackground(GuiGraphics guiGraphics) {
-        //guiGraphics.fillGradient(0, 0, this.width, this.height, -1072689136, -804253680);
-        //Skip.
+
     }
 
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        //guiGraphics.drawCenteredString(this.font, this.title, centeredX, centeredY-100, 16777215, true);
         guiGraphics.drawCenteredString(this.font, this.title, centeredX, centeredY-100, 16777215);
-        //guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
     }
 
     public Button placeItemLookingButtonRadially(ItemLike itemLike, String literal, int formIndex, int sliceSelect){
         int sliceSizeInDeg = 360/this.sliceNum;
         double x = radius * Math.cos(Math.PI * 2 * ((double) (sliceSizeInDeg * sliceSelect) /360));
         double y = radius * Math.sin(Math.PI * 2 * ((double) (sliceSizeInDeg * sliceSelect) /360));
-        return new ItemLookingButton(itemLike, (int)Math.round(centeredX + x)-8, (int)Math.round(centeredY + y)-8, 0, 16, Component.literal(literal), (unused) -> {
+        return new ItemLookingButton(itemLike, (int)Math.round(centeredX + x)-8, (int)Math.round(centeredY + y)-8, (int)Math.round((-x)), (int)Math.round((-y)+40), Component.literal(literal), (unused) -> {
             setForm(formIndex);
             this.onClose();
         });
+    }
+
+    public void drawRadialSeparator(GuiGraphics graphics, int sliceSelect) {
+        int sliceSizeInDeg = 360/this.sliceNum;
+        double angle = (sliceSizeInDeg*sliceSelect)+((double) sliceSizeInDeg /2);
+
+        graphics.pose().pushPose();
+        graphics.pose().rotateAround(Axis.ZN.rotation((float) Math.toRadians(angle)) , centeredX, centeredY, 0);
+        graphics.hLine(centeredX, centeredX+79, centeredY, FastColor.ARGB32.color(0,0,0));
+        graphics.pose().popPose();
     }
 
 }
