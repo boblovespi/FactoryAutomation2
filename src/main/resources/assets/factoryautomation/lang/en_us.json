@@ -101,6 +101,7 @@
 	"block.factoryautomation.brick_firebox": "Brick Firebox",
 	"block.factoryautomation.millstone": "Millstone",
 	"block.factoryautomation.paper_bellows": "Paper Bellows",
+	"block.factoryautomation.trip_hammer": "Trip Hammer",
 	
 	// Block - Mechanical
 	
@@ -288,6 +289,7 @@
 	"jei.factoryautomation.brick_drying.name": "Brick Drying",
 	"jei.factoryautomation.millstone.name": "Millstone Grinding",
 	"jei.factoryautomation.log_pile_firing.name": "In-World Firing",
+	"jei.factoryautomation.trip_hammer.name": "Mechanical Hammering",
 	
 	"jei.factoryautomation.misc.any_solid": "Any block with a solid face",
 	
