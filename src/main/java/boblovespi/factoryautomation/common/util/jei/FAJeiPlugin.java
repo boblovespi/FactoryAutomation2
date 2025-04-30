@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.util.jei;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.client.gui.CircleMenuScreen;
 import boblovespi.factoryautomation.client.gui.StoneFoundryScreen;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
@@ -145,5 +146,6 @@ public class FAJeiPlugin implements IModPlugin
 	{
 		var helpers = registration.getJeiHelpers();
 		registration.addGuiContainerHandler(StoneFoundryScreen.class, new StoneFoundryContainerHandler(helpers));
+		registration.addGuiContainerHandler(CircleMenuScreen.class, new CircleMenuContainerHandler(helpers));
 	}
 }
