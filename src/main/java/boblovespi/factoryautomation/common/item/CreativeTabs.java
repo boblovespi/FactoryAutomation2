@@ -108,6 +108,7 @@ public class CreativeTabs
 						o.accept(FAItems.BRICK_MAKER_FRAME);
 						o.accept(FAItems.BRICK_CRUCIBLE);
 						o.accept(FAItems.BRICK_FIREBOX);
+						o.accept(FAItems.BRICK_CASTING_VESSEL);
 						o.accept(FAItems.MILLSTONE);
 						o.accept(FAItems.PAPER_BELLOWS);
 						o.accept(FAItems.TRIP_HAMMER);

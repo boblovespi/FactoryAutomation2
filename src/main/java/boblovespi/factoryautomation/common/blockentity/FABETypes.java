@@ -26,6 +26,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<WorkbenchBE.Stone>> STONE_WORKBENCH_TYPE = type("stone_workbench", WorkbenchBE.Stone::new, FABlocks.STONE_WORKBENCH);
 	public static final Supplier<BlockEntityType<BrickMakerFrameBE>> BRICK_MAKER_FRAME_TYPE = type("brick_maker_frame", BrickMakerFrameBE::new, FABlocks.BRICK_MAKER_FRAME);
 	public static final Supplier<BlockEntityType<BrickCrucibleBE>> BRICK_CRUCIBLE_TYPE = type("brick_crucible", BrickCrucibleBE::new, FABlocks.BRICK_CRUCIBLE);
+	public static final Supplier<BlockEntityType<BrickCastingVesselBE>> BRICK_CASTING_VESSEL_TYPE = type("brick_casting_vessel", BrickCastingVesselBE::new, FABlocks.BRICK_CASTING_VESSEL);
 	public static final Supplier<BlockEntityType<CreativeMechanicalSourceBE>> CREATIVE_MECHANICAL_SOURCE_TYPE = type("creative_mechanical_source", CreativeMechanicalSourceBE::new, FABlocks.CREATIVE_MECHANICAL_SOURCE);
 	public static final Supplier<BlockEntityType<PowerShaftBE>> POWER_SHAFT_TYPE = type("power_shaft", PowerShaftBE::new, FABlocks.WOOD_POWER_SHAFT, FABlocks.IRON_POWER_SHAFT);
 	public static final Supplier<BlockEntityType<MillstoneBE>> MILLSTONE_TYPE = type("millstone", MillstoneBE::new, FABlocks.MILLSTONE);

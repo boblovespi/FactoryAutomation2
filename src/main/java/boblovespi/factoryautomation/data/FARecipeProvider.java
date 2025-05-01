@@ -326,6 +326,17 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_bricks", has(Items.BRICKS))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.BRICK_CASTING_VESSEL)
+							  .pattern("i i")
+							  .pattern("b b")
+							  .pattern("sss")
+							  .define('b', Items.BRICKS)
+							  .define('s', Items.BRICK_SLAB)
+							  .define('i', FATags.Items.IRON_SHEET)
+							  .tool("hammer", 1, 15)
+							  .unlockedBy("has_bricks", has(Items.BRICKS))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.WOOD_POWER_SHAFT)
 							  .pattern("srs")
 							  .define('s', ItemTags.PLANKS)

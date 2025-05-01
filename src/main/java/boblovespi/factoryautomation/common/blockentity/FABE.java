@@ -15,9 +15,9 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class FABE extends BlockEntity
 {
-	public FABE(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState)
+	public FABE(BlockEntityType<?> type, BlockPos pos, BlockState state)
 	{
-		super(pType, pPos, pBlockState);
+		super(type, pos, state);
 	}
 
 	protected abstract void save(CompoundTag tag, HolderLookup.Provider registries);

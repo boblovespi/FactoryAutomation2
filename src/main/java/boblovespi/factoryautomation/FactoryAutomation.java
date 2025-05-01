@@ -146,6 +146,7 @@ public class FactoryAutomation
 	public void onRegisterCapabilities(RegisterCapabilitiesEvent event)
 	{
 		event.registerBlockEntity(CastingCapability.BLOCK, FABETypes.STONE_CASTING_VESSEL_TYPE.get(), (b, d) -> b);
+		event.registerBlockEntity(CastingCapability.BLOCK, FABETypes.BRICK_CASTING_VESSEL_TYPE.get(), (b, d) -> b);
 		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.CREATIVE_MECHANICAL_SOURCE_TYPE.get(), (b, d) -> b);
 		event.registerBlockEntity(MechanicalCapability.OUTPUT, FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBE::output);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBE::input);

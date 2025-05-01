@@ -115,6 +115,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> STONE_WORKBENCH = ITEMS.registerSimpleBlockItem(FABlocks.STONE_WORKBENCH);
 	public static final DeferredItem<BlockItem> BRICK_MAKER_FRAME = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_MAKER_FRAME);
 	public static final DeferredItem<BlockItem> BRICK_CRUCIBLE = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_CRUCIBLE);
+	public static final DeferredItem<BlockItem> BRICK_CASTING_VESSEL = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_CASTING_VESSEL);
 	public static final DeferredItem<BlockItem> MILLSTONE = ITEMS.registerSimpleBlockItem(FABlocks.MILLSTONE);
 	public static final DeferredItem<BlockItem> BRICK_FIREBOX = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_FIREBOX);
 	public static final DeferredItem<BlockItem> PAPER_BELLOWS = ITEMS.registerSimpleBlockItem(FABlocks.PAPER_BELLOWS);
