@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
+import boblovespi.factoryautomation.common.FADamageTypes;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
@@ -108,7 +109,7 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 			}
 			else
 			{
-				player.hurt(level.damageSources().generic(), (temp - 40f) / (temp + 100f) * 20f);
+				player.hurt(FADamageTypes.metalTooHot(level.registryAccess()), (temp - 40f) / (temp + 100f) * 20f);
 				player.displayClientMessage(Component.translatable("info.too_hot", String.format("%1$.1f K", temp + 300)), true);
 			}
 		}

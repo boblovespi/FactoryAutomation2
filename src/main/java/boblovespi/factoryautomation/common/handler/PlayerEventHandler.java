@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.handler;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.FADamageTypes;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -25,7 +26,7 @@ public class PlayerEventHandler
 			if (!tool.canPerformAction(ItemAbilities.AXE_DIG))
 			{
 				if (!level.isClientSide)
-					player.hurt(level.damageSources().generic(), 1);
+					player.hurt(FADamageTypes.punchingWood(level.registryAccess()), 1);
 			}
 		}
 	}

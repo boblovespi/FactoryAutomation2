@@ -369,6 +369,11 @@
 	"advancements.factoryautomation.copper_age.iron_shard.title": "Iron Shard",
 	"advancements.factoryautomation.copper_age.iron_shard.description": "Obtain Iron Shards from hammering an Iron Bloom.",
 	
+	// Death Messages
+	
+	"death.attack.metal_too_hot": "%s touched scorching hot metal",
+	"death.attack.punching_wood": "%s discovered punching logs hurts",
+	
 	// Ponder
 
 	"factoryautomation.ponder.chopping_block_creation.header": "Creation of Chopping blocks",

@@ -80,9 +80,9 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 		return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FactoryAutomation.name(name));
 	}
 
-	private static RegistrySetBuilder registrySet()
+	public static RegistrySetBuilder registrySet(RegistrySetBuilder rsb)
 	{
-		var rsb = new RegistrySetBuilder();
+		// var rsb = new RegistrySetBuilder();
 		rsb.add(Registries.CONFIGURED_FEATURE, b -> {
 			var rockWL = SimpleWeightedRandomList.<BlockState>builder();
 			for (int i = 0; i < 7; i++)
@@ -197,6 +197,6 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 
 	public FAWorldgenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries)
 	{
-		super(output, registries, registrySet(), Set.of(FactoryAutomation.MODID));
+		super(output, registries, null/*registrySet()*/, Set.of(FactoryAutomation.MODID));
 	}
 }
