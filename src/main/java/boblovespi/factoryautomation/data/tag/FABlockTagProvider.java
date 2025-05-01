@@ -66,6 +66,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.ALUMINUM_BRONZE_BLOCK.get(), FABlocks.ALUMINUM_BRONZE_PLATE_BLOCK.get(), FABlocks.ALUMINUM_BRONZE_SPACE_FRAME.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
 											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get(), FABlocks.IRON_BLOOM.get())
+											.add(FABlocks.ANCIENT_IRON_BLOCK.get(), FABlocks.WEAK_IRON_BLOCK.get())
 											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get(), FABlocks.IRON_SPLITTER.get(), FABlocks.IRON_JOINER.get())
 											.add(FABlocks.IRON_BEVEL_GEAR.get())
 											.add(FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get())
@@ -85,6 +86,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))
 											.add(FABlocks.RAW_LIMONITE_BLOCK.get(), FABlocks.STONE_WORKBENCH.get(), FABlocks.LIMONITE_CHARCOAL_MIX.get())
+											.add(FABlocks.ANCIENT_IRON_BLOCK.get(), FABlocks.WEAK_IRON_BLOCK.get())
 											.add(FABlocks.COPPER_PLATE_BLOCK.get(), FABlocks.COPPER_SPACE_FRAME.get())
 											.add(FABlocks.TIN_BLOCK.get(), FABlocks.TIN_PLATE_BLOCK.get(), FABlocks.TIN_SPACE_FRAME.get())
 											.add(FABlocks.IRON_PLATE_BLOCK.get(), FABlocks.IRON_SPACE_FRAME.get())
@@ -113,7 +115,8 @@ public class FABlockTagProvider extends BlockTagsProvider
 
 		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(FATags.Blocks.TIN_BLOCK, FATags.Blocks.LEAD_BLOCK, FATags.Blocks.BRONZE_BLOCK, FATags.Blocks.NICKEL_BLOCK,
 				FATags.Blocks.SILVER_BLOCK, FATags.Blocks.MAGMATIC_BRASS_BLOCK, FATags.Blocks.PIG_IRON_BLOCK, FATags.Blocks.STEEL_BLOCK, FATags.Blocks.ALUMINUM_BLOCK,
-				FATags.Blocks.ALUMINUM_BRONZE_BLOCK, FATags.Blocks.CHROMIUM_BLOCK);
+				FATags.Blocks.ALUMINUM_BRONZE_BLOCK, FATags.Blocks.CHROMIUM_BLOCK)
+									   .add(FABlocks.ANCIENT_IRON_BLOCK.get(), FABlocks.WEAK_IRON_BLOCK.get());
 		tag(FATags.Blocks.TIN_BLOCK).add(FABlocks.TIN_BLOCK.get());
 		tag(FATags.Blocks.LEAD_BLOCK).add(FABlocks.LEAD_BLOCK.get());
 		tag(FATags.Blocks.BRONZE_BLOCK).add(FABlocks.BRONZE_BLOCK.get());

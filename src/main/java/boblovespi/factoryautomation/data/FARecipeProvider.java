@@ -128,6 +128,11 @@ public class FARecipeProvider extends RecipeProvider
 		rawOre(FAItems.RAW_CASSITERITE, FAItems.RAW_CASSITERITE_BLOCK, "raw_cassiterite", output);
 		rawOre(FAItems.RAW_LIMONITE, FAItems.RAW_LIMONITE_BLOCK, "raw_limonite", output);
 
+		ingot(FAItems.ANCIENT_IRON_INGOT, FAItems.ANCIENT_IRON_NUGGET, "ancient_iron", output);
+		block(FAItems.ANCIENT_IRON_BLOCK, FAItems.ANCIENT_IRON_INGOT, "ancient_iron", output);
+		ingot(FAItems.WEAK_IRON_INGOT, FAItems.WEAK_IRON_NUGGET, "weak_iron", output);
+		block(FAItems.WEAK_IRON_BLOCK, FAItems.WEAK_IRON_INGOT, "weak_iron", output);
+
 		ingot(Items.COPPER_INGOT, FAItems.COPPER_THINGS.get(Form.NUGGET), Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, "copper", output);
 		metal(FAItems.COPPER_THINGS, Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, Tags.Items.STORAGE_BLOCKS_COPPER, FATags.Items.COPPER_SHEET, "copper", output);
 		metal(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, FATags.Items.TIN_SHEET, "tin", output);
@@ -640,6 +645,23 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output, FactoryAutomation.name(name + "_ingot_from_nuggets"));
 	}
 
+	private void ingot(ItemLike ingot,ItemLike nugget, String name, RecipeOutput output)
+	{
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, nugget, 9)
+							  .requires(ingot)
+							  .group(name + "_nugget")
+							  .unlockedBy("has_" + name + "_ingot", has(ingot))
+							  .save(output, FactoryAutomation.name(name + "_nugget_from_ingot"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ingot)
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .define('n', nugget)
+						   .group(name + "_ingot")
+						   .unlockedBy("has_" + name + "_nugget", has(nugget))
+						   .save(output, FactoryAutomation.name(name + "_ingot_from_nuggets"));
+	}
+
 	private void block(ItemLike block, ItemLike ingot, TagKey<Item> blockI, TagKey<Item> ingotI, String name, RecipeOutput output)
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot, 9)
@@ -654,6 +676,23 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('n', ingotI)
 						   .group(name + "_block")
 						   .unlockedBy("has_" + name + "_ingot", has(ingotI))
+						   .save(output, FactoryAutomation.name(name + "_block_from_ingots"));
+	}
+
+	private void block(ItemLike block, ItemLike ingot, String name, RecipeOutput output)
+	{
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot, 9)
+							  .requires(block)
+							  .group(name + "_ingot")
+							  .unlockedBy("has_" + name + "_block", has(block))
+							  .save(output, FactoryAutomation.name(name + "_ingot_from_block"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, block)
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .pattern("nnn")
+						   .define('n', ingot)
+						   .group(name + "_block")
+						   .unlockedBy("has_" + name + "_ingot", has(ingot))
 						   .save(output, FactoryAutomation.name(name + "_block_from_ingots"));
 	}
 

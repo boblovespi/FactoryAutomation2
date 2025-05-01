@@ -163,7 +163,8 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.IRON_MELTABLE).addTags(Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON, FATags.Items.IRON_SHEET, FATags.Items.IRON_ROD, FATags.Items.IRON_GEAR)
 									   .addTags(Tags.Items.RAW_MATERIALS_IRON)
 									   .add(FAItems.IRON_SHARD.get(), FAItems.IRON_THINGS.get(Form.PLATE_BLOCK).get())
-									   .add(FAItems.ANCIENT_IRON_INGOT.get(), FAItems.WEAK_IRON_INGOT.get());
+									   .add(FAItems.ANCIENT_IRON_INGOT.get(), FAItems.WEAK_IRON_INGOT.get(), FAItems.ANCIENT_IRON_NUGGET.get(), FAItems.WEAK_IRON_NUGGET.get())
+									   .add(FAItems.ANCIENT_IRON_BLOCK.get(), FAItems.WEAK_IRON_BLOCK.get());
 		tag(FATags.Items.LEAD_MELTABLE).addTags(FATags.Items.LEAD_INGOT, FATags.Items.LEAD_NUGGET, FATags.Items.LEAD_BLOCK, FATags.Items.LEAD_SHEET, FATags.Items.LEAD_ROD)
 									   .addTags(FATags.Items.LEAD_GEAR)
 									   .add(FAItems.LEAD_THINGS.get(Form.PLATE_BLOCK).get());

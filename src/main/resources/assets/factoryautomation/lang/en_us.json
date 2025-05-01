@@ -36,6 +36,9 @@
 	"block.factoryautomation.rich_limonite_ore": "Rich Limonite Ore",
 	"block.factoryautomation.raw_limonite_block": "Block of Limonite",
 	
+	"block.factoryautomation.ancient_iron_block": "Ancient Iron BLock",
+	"block.factoryautomation.weak_iron_block": "Weak Iron Block",
+	
 	"block.factoryautomation.green_sand": "Green Sand",
 	"block.factoryautomation.charcoal_pile": "Charcoal Pile",
 	"block.factoryautomation.iron_bloom": "Iron Bloom",
@@ -379,7 +382,7 @@
 	"death.attack.punching_wood": "%s discovered punching logs hurts",
 	
 	// Ponder
-
+	
 	"factoryautomation.ponder.chopping_block_creation.header": "Creation of Chopping blocks",
 	"factoryautomation.ponder.chopping_block_creation.text_1": "Use this Chopping block to chop up wood into planks, those to sticks, and many more things.",
 	"factoryautomation.ponder.chopping_block_usage.header": "Usage of Chopping blocks",

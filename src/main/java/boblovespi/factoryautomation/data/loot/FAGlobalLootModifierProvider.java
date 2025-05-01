@@ -66,7 +66,7 @@ public class FAGlobalLootModifierProvider extends GlobalLootModifierProvider
 								AnyOfCondition.anyOf(
 										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("chests/")),
 										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("pots/"))
-										).build(),
+													).build(),
 								LocationCheck.checkLocation(LocationPredicate.Builder.inDimension(Level.OVERWORLD)).build()
 						},
 						FAItems.WEAK_IRON_INGOT.get(),
@@ -78,11 +78,23 @@ public class FAGlobalLootModifierProvider extends GlobalLootModifierProvider
 								AnyOfCondition.anyOf(
 										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("chests/")),
 										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("pots/"))
-								).build(),
+													).build(),
 								LocationCheck.checkLocation(LocationPredicate.Builder.inDimension(Level.OVERWORLD)).build()
 						},
 						FAItems.WEAK_IRON_NUGGET.get(),
 						HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.IRON_NUGGET))
+				));
+		add("chests_drop_weak_iron_block",
+				new ReplaceDropsLootModifier(
+						new LootItemCondition[] {
+								AnyOfCondition.anyOf(
+										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("chests/")),
+										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("pots/"))
+													).build(),
+								LocationCheck.checkLocation(LocationPredicate.Builder.inDimension(Level.OVERWORLD)).build()
+						},
+						FAItems.WEAK_IRON_BLOCK.get(),
+						HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.IRON_BLOCK))
 				));
 	}
 }
