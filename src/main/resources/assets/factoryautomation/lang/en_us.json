@@ -372,6 +372,7 @@
 	// Death Messages
 	
 	"death.attack.metal_too_hot": "%s touched scorching hot metal",
+	"death.attack.metal_step_too_hot": "%s discovered the floor was scorching hot metal",
 	"death.attack.punching_wood": "%s discovered punching logs hurts",
 	
 	// Ponder

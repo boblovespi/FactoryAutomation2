@@ -21,8 +21,9 @@ public class FADamageTypeTagProvider extends DamageTypeTagsProvider
 	@Override
 	protected void addTags(HolderLookup.Provider provider)
 	{
-		tag(DamageTypeTags.BYPASSES_ARMOR).add(FADamageTypes.PUNCHING_WOOD, FADamageTypes.METAL_TOO_HOT);
-		tag(DamageTypeTags.NO_KNOCKBACK).add(FADamageTypes.PUNCHING_WOOD, FADamageTypes.METAL_TOO_HOT);
-		tag(DamageTypeTags.IS_FIRE).add(FADamageTypes.METAL_TOO_HOT);
+		tag(DamageTypeTags.BYPASSES_ARMOR).add(FADamageTypes.PUNCHING_WOOD, FADamageTypes.METAL_TOO_HOT, FADamageTypes.METAL_STEP_TOO_HOT);
+		tag(DamageTypeTags.NO_KNOCKBACK).add(FADamageTypes.PUNCHING_WOOD, FADamageTypes.METAL_TOO_HOT, FADamageTypes.METAL_STEP_TOO_HOT);
+		tag(DamageTypeTags.IS_FIRE).add(FADamageTypes.METAL_TOO_HOT, FADamageTypes.METAL_STEP_TOO_HOT);
+		tag(DamageTypeTags.BURN_FROM_STEPPING).add(FADamageTypes.METAL_STEP_TOO_HOT);
 	}
 }

@@ -10,12 +10,19 @@ import net.minecraft.world.damagesource.DamageType;
 public class FADamageTypes
 {
 	public static final ResourceKey<DamageType> METAL_TOO_HOT = ResourceKey.create(Registries.DAMAGE_TYPE, FactoryAutomation.name("metal_too_hot"));
+	public static final ResourceKey<DamageType> METAL_STEP_TOO_HOT = ResourceKey.create(Registries.DAMAGE_TYPE, FactoryAutomation.name("metal_step_too_hot"));
 	public static final ResourceKey<DamageType> PUNCHING_WOOD = ResourceKey.create(Registries.DAMAGE_TYPE, FactoryAutomation.name("punching_wood"));
 
 	public static DamageSource metalTooHot(RegistryAccess registryAccess)
 	{
 		return new DamageSource(registryAccess.registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(METAL_TOO_HOT));
 	}
+
+	public static DamageSource metalStepTooHot(RegistryAccess registryAccess)
+	{
+		return new DamageSource(registryAccess.registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(METAL_STEP_TOO_HOT));
+	}
+
 	public static DamageSource punchingWood(RegistryAccess registryAccess)
 	{
 		return new DamageSource(registryAccess.registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(PUNCHING_WOOD));

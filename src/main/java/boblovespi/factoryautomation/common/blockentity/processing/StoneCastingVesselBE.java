@@ -20,6 +20,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -147,6 +149,12 @@ public class StoneCastingVesselBE extends FABE implements ICastingVessel, ITicka
 	{
 		return new SimpleMenuProvider((i, v, p) -> new StoneCastingVesselMenu(i, v, new StoneCastingVesselBE.Data(), ContainerLevelAccess.create(level, worldPosition)),
 				Component.translatable("gui.stone_casting_vessel.name"));
+	}
+
+	public void stepOn(Entity entity)
+	{
+		if (temp >= 40 + 273 - 300 && entity instanceof LivingEntity le)
+			le.hurt(FADamageTypes.metalStepTooHot(level.registryAccess()), (temp - 40f) / (temp + 200f) * 20f / 3f);
 	}
 
 	private class Data implements ContainerData

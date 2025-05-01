@@ -65,6 +65,9 @@ public class DataProvider
 		bootstrap.register(FADamageTypes.METAL_TOO_HOT,
 				new DamageType(FADamageTypes.METAL_TOO_HOT.location().getPath(), DamageScaling.NEVER, 0.1f, DamageEffects.BURNING, DeathMessageType.DEFAULT)
 						  );
+		bootstrap.register(FADamageTypes.METAL_STEP_TOO_HOT,
+				new DamageType(FADamageTypes.METAL_STEP_TOO_HOT.location().getPath(), DamageScaling.NEVER, 0.1f, DamageEffects.BURNING, DeathMessageType.DEFAULT)
+						  );
 		bootstrap.register(FADamageTypes.PUNCHING_WOOD,
 				new DamageType(FADamageTypes.PUNCHING_WOOD.location().getPath(), DamageScaling.NEVER, 0.1f, DamageEffects.HURT, DeathMessageType.DEFAULT)
 						  );

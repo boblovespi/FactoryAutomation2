@@ -1,7 +1,10 @@
 package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
-import boblovespi.factoryautomation.common.blockentity.*;
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
+import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
 import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.core.BlockPos;
@@ -11,6 +14,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -61,6 +65,12 @@ public class StoneCastingVessel extends Block implements EntityBlock
 	public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState)
 	{
 		return new StoneCastingVesselBE(pPos, pState);
+	}
+
+	@Override
+	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity)
+	{
+		level.getBlockEntity(pos, FABETypes.STONE_CASTING_VESSEL_TYPE.get()).ifPresent(b -> b.stepOn(entity));
 	}
 
 	@Nullable
