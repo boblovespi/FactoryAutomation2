@@ -41,6 +41,8 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	private final ItemStackHandler inv;
 	private final BellowsConsumerManager bellows;
 	private float meltProgress;
+	private float amount;
+	private int color;
 
 	public BrickCrucibleBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -96,13 +98,15 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		tag.putFloat("amount", (float) crucible.getAmount() / (Form.INGOT.amount() * 9 * 3));
+		tag.putInt("color", crucible.getCurrentMetal().color());
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		amount = tag.getFloat("amount");
+		color = tag.getInt("color");
 	}
 
 	@Override
@@ -127,6 +131,16 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 		setChangedAndUpdateClient();
 		castingVessel.cast(crucible::pour);
 		heat.setHeatCapacity(crucible.getHeatCapacity() + 2300 * 1000);
+	}
+
+	public float getAmount()
+	{
+		return amount;
+	}
+
+	public int getColor()
+	{
+		return color;
 	}
 
 	@Override
