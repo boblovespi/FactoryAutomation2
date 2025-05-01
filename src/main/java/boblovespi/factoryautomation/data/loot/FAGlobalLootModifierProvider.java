@@ -63,7 +63,10 @@ public class FAGlobalLootModifierProvider extends GlobalLootModifierProvider
 		add("chests_drop_weak_iron",
 				new ReplaceDropsLootModifier(
 						new LootItemCondition[] {
-								LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("chests/")).build(),
+								AnyOfCondition.anyOf(
+										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("chests/")),
+										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("pots/"))
+										).build(),
 								LocationCheck.checkLocation(LocationPredicate.Builder.inDimension(Level.OVERWORLD)).build()
 						},
 						FAItems.WEAK_IRON_INGOT.get(),
