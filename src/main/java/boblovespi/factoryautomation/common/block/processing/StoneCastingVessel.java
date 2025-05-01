@@ -6,10 +6,14 @@ import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.Form;
+import boblovespi.factoryautomation.common.util.MathHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -71,6 +75,28 @@ public class StoneCastingVessel extends Block implements EntityBlock
 	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity)
 	{
 		level.getBlockEntity(pos, FABETypes.STONE_CASTING_VESSEL_TYPE.get()).ifPresent(b -> b.stepOn(entity));
+	}
+
+	@Override
+	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
+	{
+		if (level.isRainingAt(pos.above()))
+			level.getBlockEntity(pos, FABETypes.STONE_CASTING_VESSEL_TYPE.get()).ifPresent(be ->
+			{
+				var temp = be.getRenderTemp();
+				if (temp >= 150)
+				{
+					var scale = Math.min(1, (temp - 150) / (temp + 400) * 1.5f);
+					if (random.nextFloat() <= scale + 0.2)
+					{
+						level.playLocalSound(pos, FASounds.METAL_SIZZLES.get(), SoundSource.BLOCKS, scale, (float) (MathHelper.uniformZeroD(random, 0.1) + 1), false);
+						double x = pos.getX() + random.nextDouble();
+						double y = pos.getY() + 0.6;
+						double z = pos.getZ() + random.nextDouble();
+						level.addParticle(ParticleTypes.CLOUD, x, y, z, 0, 0.2, 0);
+					}
+				}
+			});
 	}
 
 	@Nullable

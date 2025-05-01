@@ -32,5 +32,6 @@ public class FASoundDefinitionProvider extends SoundDefinitionsProvider
 														   sound("mob/enderdragon/wings4"), sound("mob/enderdragon/wings5"), sound("mob/enderdragon/wings6"))
 												   .subtitle("subtitles.block.bellows.blow")
 												   .replace(true));
+		add(FASounds.METAL_SIZZLES, SoundDefinition.definition().with(sound("random/fizz")).subtitle("subtitles.block.hot_metal.sizzle").replace(true));
 	}
 }
