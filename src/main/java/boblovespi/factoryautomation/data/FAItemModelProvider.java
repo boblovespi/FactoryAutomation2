@@ -34,7 +34,9 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.RAW_LIMONITE.get());
 		basicItem(FAItems.PIG_TALLOW.get());
 		basicItem(FAItems.ANCIENT_IRON_INGOT.get());
+		basicItem(FAItems.ANCIENT_IRON_NUGGET.get());
 		basicItem(FAItems.WEAK_IRON_INGOT.get());
+		basicItem(FAItems.WEAK_IRON_NUGGET.get());
 
 		basicItem(FAItems.IRON_SHARD.get());
 		basicItem(FAItems.SLAG.get());

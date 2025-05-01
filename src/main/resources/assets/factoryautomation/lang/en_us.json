@@ -129,7 +129,9 @@
 	"item.factoryautomation.raw_limonite": "Limonite",
 	"item.factoryautomation.pig_tallow": "Pig Tallow",
 	"item.factoryautomation.ancient_iron_ingot": "Ancient Iron Ingot",
+	"item.factoryautomation.ancient_iron_nugget": "Ancient Iron Nugget",
 	"item.factoryautomation.weak_iron_ingot": "Weak Iron Ingot",
+	"item.factoryautomation.weak_iron_nugget": "Weak Iron Nugget",
 	
 	// Items - Refined
 	

@@ -52,7 +52,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 				.add(FAItems.ANCIENT_IRON_INGOT.get(), FAItems.WEAK_IRON_INGOT.get());
 		tag(Tags.Items.NUGGETS).addTags(FATags.Items.COPPER_NUGGET, FATags.Items.TIN_NUGGET, FATags.Items.LEAD_NUGGET, FATags.Items.BRONZE_NUGGET, FATags.Items.NICKEL_NUGGET,
 				FATags.Items.SILVER_NUGGET, FATags.Items.MAGMATIC_BRASS_NUGGET, FATags.Items.PIG_IRON_NUGGET, FATags.Items.STEEL_NUGGET, FATags.Items.ALUMINUM_NUGGET,
-				FATags.Items.ALUMINUM_BRONZE_NUGGET, FATags.Items.CHROMIUM_NUGGET);
+				FATags.Items.ALUMINUM_BRONZE_NUGGET, FATags.Items.CHROMIUM_NUGGET).add(FAItems.ANCIENT_IRON_NUGGET.get(), FAItems.WEAK_IRON_NUGGET.get());
 		tag(Tags.Items.RODS).addTags(FATags.Items.COPPER_ROD, FATags.Items.TIN_ROD, FATags.Items.IRON_ROD, FATags.Items.LEAD_ROD, FATags.Items.BRONZE_ROD, FATags.Items.NICKEL_ROD,
 				FATags.Items.SILVER_ROD, FATags.Items.MAGMATIC_BRASS_ROD, FATags.Items.PIG_IRON_ROD, FATags.Items.STEEL_ROD, FATags.Items.ALUMINUM_ROD,
 				FATags.Items.ALUMINUM_BRONZE_ROD, FATags.Items.CHROMIUM_ROD);

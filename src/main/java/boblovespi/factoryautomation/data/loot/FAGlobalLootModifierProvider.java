@@ -60,7 +60,7 @@ public class FAGlobalLootModifierProvider extends GlobalLootModifierProvider
 						FAItems.ANCIENT_IRON_INGOT.get(),
 						HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.IRON_INGOT))
 				));
-		add("chests_drop_weak_iron",
+		add("chests_drop_weak_iron_ingot",
 				new ReplaceDropsLootModifier(
 						new LootItemCondition[] {
 								AnyOfCondition.anyOf(
@@ -71,6 +71,18 @@ public class FAGlobalLootModifierProvider extends GlobalLootModifierProvider
 						},
 						FAItems.WEAK_IRON_INGOT.get(),
 						HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.IRON_INGOT))
+				));
+		add("chests_drop_weak_iron_nugget",
+				new ReplaceDropsLootModifier(
+						new LootItemCondition[] {
+								AnyOfCondition.anyOf(
+										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("chests/")),
+										LootTablePrefixCondition.builder(ResourceLocation.withDefaultNamespace("pots/"))
+								).build(),
+								LocationCheck.checkLocation(LocationPredicate.Builder.inDimension(Level.OVERWORLD)).build()
+						},
+						FAItems.WEAK_IRON_NUGGET.get(),
+						HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.IRON_NUGGET))
 				));
 	}
 }

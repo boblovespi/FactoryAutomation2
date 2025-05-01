@@ -45,7 +45,9 @@ public class CreativeTabs
 						FAItems.FIRED_TALLOW_MOLDS.values().forEach(o::accept);
 						o.accept(FAItems.IRON_SHARD);
 						o.accept(FAItems.ANCIENT_IRON_INGOT);
+						o.accept(FAItems.ANCIENT_IRON_NUGGET);
 						o.accept(FAItems.WEAK_IRON_INGOT);
+						o.accept(FAItems.WEAK_IRON_NUGGET);
 						o.accept(FAItems.SLAG);
 						o.accept(Items.COPPER_INGOT);
 						for (var deferredItem : FAItems.COPPER_THINGS.values())
