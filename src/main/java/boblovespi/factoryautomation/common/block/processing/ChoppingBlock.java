@@ -1,8 +1,9 @@
 package boblovespi.factoryautomation.common.block.processing;
 
-import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -43,6 +44,8 @@ public class ChoppingBlock extends Block implements EntityBlock
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level level, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult)
 	{
+		if (pHand == InteractionHand.MAIN_HAND && pStack.is(ItemTags.AXES))
+			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 		if (level.isClientSide)
 			return ItemInteractionResult.SUCCESS;
 		level.getBlockEntity(pPos, FABETypes.CHOPPING_BLOCK_TYPE.get()).ifPresent(b -> b.takeOrPlace(pStack, pPlayer));
