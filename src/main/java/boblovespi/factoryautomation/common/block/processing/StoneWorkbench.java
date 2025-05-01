@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.block.processing;
 
+import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.processing.WorkbenchBE;
@@ -43,6 +44,14 @@ public class StoneWorkbench extends Block implements EntityBlock
 			player.openMenu(state.getMenuProvider(level, pos), b -> b.writeVarInt(3 * 3 + 3 * 2 + 1));
 		}
 		return InteractionResult.SUCCESS;
+	}
+
+	@Override
+	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston)
+	{
+		if (!state.is(newState.getBlock()))
+			level.getBlockEntity(pos, FABETypes.STONE_WORKBENCH_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(state, level, pos, newState, movedByPiston);
 	}
 
 	@Nullable

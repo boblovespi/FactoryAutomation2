@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.Workbench;
 import boblovespi.factoryautomation.common.recipe.WorkbenchRecipe;
 import boblovespi.factoryautomation.common.recipe.WorkbenchRecipeInput;
+import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -157,7 +158,7 @@ public abstract class WorkbenchBE extends FABE implements IMenuProviderProvider
 	@Override
 	public void onDestroy()
 	{
-
+		ItemHelper.dropAllItemsExcept(level, worldPosition.getCenter(), inv, 0);
 	}
 
 	@Override

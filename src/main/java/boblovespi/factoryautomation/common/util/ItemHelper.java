@@ -10,6 +10,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
+import java.util.Set;
+
 public class ItemHelper
 {
 	public static void putItemsInInventoryOrDrop(Player player, ItemStack stack, Level level)
@@ -44,5 +46,14 @@ public class ItemHelper
 		var count = items.getSlots();
 		for (int i = 0; i < count; i++)
 			Containers.dropItemStack(level, pos.x(), pos.y(), pos.z(), items.getStackInSlot(i));
+	}
+
+	public static void dropAllItemsExcept(Level level, Vec3 pos, ItemStackHandler items, Integer... except)
+	{
+		var exceptSet = Set.of(except);
+		var count = items.getSlots();
+		for (int i = 0; i < count; i++)
+			if (!exceptSet.contains(i))
+				Containers.dropItemStack(level, pos.x(), pos.y(), pos.z(), items.getStackInSlot(i));
 	}
 }
