@@ -6,10 +6,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.util.Metal;
-import boblovespi.factoryautomation.common.util.jei.CastingJeiRecipe;
-import boblovespi.factoryautomation.common.util.jei.FAJeiPlugin;
-import boblovespi.factoryautomation.common.util.jei.MetalIngredientRenderer;
-import boblovespi.factoryautomation.common.util.jei.MetalStack;
+import boblovespi.factoryautomation.common.util.jei.*;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -92,8 +89,12 @@ public class CastingJeiCategory implements IRecipeCategory<CastingJeiRecipe>
 	@Override
 	public void draw(CastingJeiRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY)
 	{
-		var state = FABlocks.STONE_CASTING_VESSEL.get().defaultBlockState().setValue(StoneCastingVessel.MOLD,
-				StoneCastingVessel.CastingVesselStates.valueOf(recipe.form().getName().toUpperCase(Locale.ROOT)));
+		var state = FABlocks.STONE_CASTING_VESSEL.get().defaultBlockState();
+		if (recipe.type() == CasterType.STONE)
+			state = FABlocks.STONE_CASTING_VESSEL.get().defaultBlockState().setValue(StoneCastingVessel.MOLD,
+					StoneCastingVessel.CastingVesselStates.valueOf(recipe.form().getName().toUpperCase(Locale.ROOT)));
+		if (recipe.type() == CasterType.BRICK)
+			state = FABlocks.BRICK_CASTING_VESSEL.get().defaultBlockState();
 		var pose = graphics.pose();
 		var input = recipeSlotsView.findSlotByName("input").orElseThrow().getDisplayedIngredient(FAJeiPlugin.METAL_INGREDIENT).map(MetalStack::quantity).orElse(0);
 		graphics.drawString(Minecraft.getInstance().font, I18n.get("misc.metal_quantity_nameless", input), 10, 23, 0xff545454, false);
