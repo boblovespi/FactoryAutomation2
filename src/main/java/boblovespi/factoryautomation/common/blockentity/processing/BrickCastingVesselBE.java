@@ -100,7 +100,7 @@ public class BrickCastingVesselBE extends FABE implements ICastingVessel, ITicka
 				inv.getStackInSlot(0).hurtAndBreak(1, sl, null, p -> {});
 			temp = metal.meltTemp() - 300;
 			if (temp > 0 && level instanceof ServerLevel sl)
-				sl.sendParticles(FAParticleTypes.METAL_SPARK.get(), worldPosition.getX() + 0.5, worldPosition.getY() + 0.4, worldPosition.getZ() + 0.5, 50, 0.3, 0, 0.3, 0);
+				sl.sendParticles(FAParticleTypes.METAL_SPARK.get(), worldPosition.getX() + 0.5, worldPosition.getY() + 0.9, worldPosition.getZ() + 0.5, 50, 0.2, 0, 0.2, 0);
 		});
 		setChangedAndUpdateClient();
 	}
@@ -135,5 +135,12 @@ public class BrickCastingVesselBE extends FABE implements ICastingVessel, ITicka
 		var remainder = inv.insertItem(0, stack.split(1), false);
 		stack.setCount(remainder.getCount());
 		setChangedAndUpdateClient();
+	}
+
+	public ItemStack getRenderStack()
+	{
+		if (level.isClientSide)
+			return inv.getStackInSlot(0);
+		return ItemStack.EMPTY;
 	}
 }
