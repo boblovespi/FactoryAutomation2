@@ -343,7 +343,7 @@ public class FARecipeProvider extends RecipeProvider
 							  .define('r', FATags.Items.COPPER_ROD)
 							  .tool("hammer", 2, 5)
 							  .part("screw", 1, 2)
-							  .part("bearing", 1, 2)
+							  .part("bearing", 1, 1)
 							  .unlockedBy("has_copper_rod", has(FATags.Items.COPPER_ROD))
 							  .save(output);
 
@@ -461,7 +461,7 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_glowstone", has(Items.GLOWSTONE)).save(output);
 		MillstoneRecipe.of(FAItems.WHEAT_FLOUR.toStack()).input(Tags.Items.CROPS_WHEAT).progress(50).beginData().speed(1).torque(40).endData()
 					   .unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT)).save(output);
-		MillstoneRecipe.of(FAItems.CALCITE_DUST.toStack()).input(Items.CALCITE).progress(100).beginData().speed(1).torque(10).endData()
+		MillstoneRecipe.of(FAItems.CALCITE_DUST.toStack()).input(Items.CALCITE).progress(100).beginData().speed(1).torque(800).endData()
 					   .unlockedBy("has_calcite", has(Items.CALCITE)).save(output);
 
 		// dyes
