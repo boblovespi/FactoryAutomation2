@@ -53,8 +53,7 @@ public class FABlocks
 	public static final DeferredBlock<Block> ANCIENT_IRON_BLOCK = register("ancient_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
 	public static final DeferredBlock<Block> WEAK_IRON_BLOCK = register("weak_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
 	public static final DeferredBlock<Block> IRON_SAND = register("iron_sand", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
-	public static final DeferredBlock<Block> IRON_SAND_CHARCOAL_MIX = register("iron_sand_charcoal_mix", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
-	//public static final Block SAND = register("sand", new ColoredFallingBlock(new ColorRGBA(14406560), BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));
+	//public static final DeferredBlock<Block> IRON_SAND_CHARCOAL_MIX = register("iron_sand_charcoal_mix", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
 
 	// Refined materials
 
@@ -62,6 +61,8 @@ public class FABlocks
 	public static final DeferredBlock<Block> CHARCOAL_PILE = register("charcoal_pile", Block::new, BlockProperties.CHARCOAL_PILE);
 	public static final DeferredBlock<Block> IRON_BLOOM = register("iron_bloom", p -> new DropExperienceBlock(UniformInt.of(1, 4), p), BlockProperties.IRON_BLOOM);
 	public static final DeferredBlock<Block> DRIED_BRICKS = register("dried_bricks", Block::new, BlockProperties.DRIED_BRICKS);
+
+	public static final DeferredBlock<FallingOrePile> IRON_SAND_CHARCOAL_MIX = register("iron_sand_charcoal_mix", p -> new FallingOrePile(p, 20 * 60 * 5, IRON_BLOOM.get().defaultBlockState(), 14934489), BlockProperties.RAW_ORE(MapColor.COLOR_BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
 
 	public static final DeferredBlock<Block> TIN_BLOCK = register("tin_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
 	public static final DeferredBlock<Block> LEAD_BLOCK = register("lead_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_PURPLE));
