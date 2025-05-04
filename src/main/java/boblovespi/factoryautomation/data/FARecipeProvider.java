@@ -297,6 +297,16 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_limonite", has(FAItems.RAW_LIMONITE))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.IRON_SAND_CHARCOAL_MIX)
+							.pattern("xox")
+							.pattern("oxo")
+							.pattern("xox")
+							.define('x', FAItems.IRON_SAND)
+							.define('o', Items.CHARCOAL)
+							.tool("hammer", 1, 10)
+							.unlockedBy("has_iron_sand", has(FAItems.IRON_SAND))
+							.save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.FIREBOW)
 							  .pattern(" sr")
 							  .pattern("ssr")
