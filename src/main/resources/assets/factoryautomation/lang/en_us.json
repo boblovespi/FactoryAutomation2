@@ -364,6 +364,7 @@
 	"advancements.factoryautomation.stone_age.stone_foundry.description": "Form a Stone Foundry by placing a Stone Crucible on top of a Furnace.",
 	"advancements.factoryautomation.stone_age.copper_ingot.title": "Copper Age",
 	"advancements.factoryautomation.stone_age.copper_ingot.description": "Enter the copper age by obtaining a Copper Ingot.",
+
 	"advancements.factoryautomation.copper_age.root.title": "Copper Age",
 	"advancements.factoryautomation.copper_age.root.description": "Enter the copper age by obtaining a Copper Ingot.",
 	"advancements.factoryautomation.copper_age.copper_pickaxe.title": "Copper Pickaxe",
@@ -378,6 +379,21 @@
 	"advancements.factoryautomation.copper_age.copper_hammer.description": "Make a Copper Hammer.",
 	"advancements.factoryautomation.copper_age.iron_shard.title": "Iron Shard",
 	"advancements.factoryautomation.copper_age.iron_shard.description": "Obtain Iron Shards from hammering an Iron Bloom.",
+
+	"advancements.factoryautomation.iron_age.root.title": "Iron Age",
+	"advancements.factoryautomation.iron_age.root.description": "Enter the iron age by obtaining an Iron Shard.",
+	"advancements.factoryautomation.iron_age.iron_ingot.title": "Tougher Material",
+	"advancements.factoryautomation.iron_age.iron_ingot.description": "Cast your first iron ingot with the Stone Foundry from your shards.",
+	"advancements.factoryautomation.iron_age.raw_bricks.title": "Get Framed",
+	"advancements.factoryautomation.iron_age.raw_bricks.description": "Create a Brick Maker Frame to start making bricks.",
+	"advancements.factoryautomation.iron_age.bricks.title": "Brick By Brick",
+	"advancements.factoryautomation.iron_age.bricks.description": "Obtain bricks by firing Dried Bricks.",
+	"advancements.factoryautomation.iron_age.brick_foundry.title": "Upgraded Foundry",
+	"advancements.factoryautomation.iron_age.brick_foundry.description": "Form a Brick Foundry by placing a Brick Crucible on a Brick Firebox",
+	"advancements.factoryautomation.iron_age.brick_casting.title": "Pottery",
+	"advancements.factoryautomation.iron_age.brick_casting.description": "Make a Fired Ingot Mold to get started on advanced material casting.",
+	"advancements.factoryautomation.iron_age.bellows.title": "Efficient Smelting",
+	"advancements.factoryautomation.iron_age.bellows.description": "Add Paper Bellows to your Brick Foundry to enhance its performance thus reaching higher temperatures.",
 	
 	// Death Messages
 	

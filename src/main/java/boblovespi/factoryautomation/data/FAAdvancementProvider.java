@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;
+import boblovespi.factoryautomation.common.util.Form;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -40,23 +41,37 @@ public class FAAdvancementProvider extends AdvancementProvider
 		{
 			this.saver = saver;
 			this.efh = existingFileHelper;
-			var cbBuilder = getBuilder(new ItemStack(FABlocks.CHOPPING_BLOCK), "stone_age", "root", 100, AdvancementType.TASK,
+
+			var stoneAgeBuilder = getBuilder(new ItemStack(FABlocks.CHOPPING_BLOCK), "stone_age", "root", 100, AdvancementType.TASK,
 					ResourceLocation.withDefaultNamespace("textures/block/stone.png"));
-			cbBuilder.addCriterion("has_chopping_block", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(FATags.Items.CHOPPING_BLOCKS)));
-			var choppingBlock = cbBuilder.save(saver, FactoryAutomation.name("stone_age/root"), existingFileHelper);
+			stoneAgeBuilder.addCriterion("has_chopping_block", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(FATags.Items.CHOPPING_BLOCKS)));
+			var choppingBlock = stoneAgeBuilder.save(saver, FactoryAutomation.name("stone_age/root"), existingFileHelper);
 			var flintPickaxe = task("flint_pickaxe", "stone_age", FAItems.FLINT_PICKAXE, choppingBlock);
 			var stoneFoundry = task("stone_foundry", "stone_age", FAItems.STONE_CRUCIBLE, flintPickaxe);
 			var copperIngot = goal("copper_ingot", "stone_age", () -> Items.COPPER_INGOT, stoneFoundry);
-			var ciBuilder = getBuilder(new ItemStack(Items.COPPER_INGOT), "copper_age", "root", 0, AdvancementType.TASK,
+
+			var copperAgeBuilder = getBuilder(new ItemStack(Items.COPPER_INGOT), "copper_age", "root", 0, AdvancementType.TASK,
 					ResourceLocation.withDefaultNamespace("textures/block/copper_block.png"));
-			ciBuilder.addCriterion("has_copper_ingot", has(() -> Items.COPPER_INGOT));
-			var copperIngot2 = ciBuilder.save(saver, FactoryAutomation.name("copper_age/root"), existingFileHelper);
+			copperAgeBuilder.addCriterion("has_copper_ingot", has(() -> Items.COPPER_INGOT));
+			var copperIngot2 = copperAgeBuilder.save(saver, FactoryAutomation.name("copper_age/root"), existingFileHelper);
 			var copperPickaxe = task("copper_pickaxe", "copper_age", FAItems.COPPER_PICKAXE, copperIngot2);
 			var firebow = task("firebow", "copper_age", FAItems.FIREBOW, copperIngot2);
 			var stoneWorkbench = task("stone_workbench", "copper_age", FAItems.STONE_WORKBENCH, copperPickaxe);
 			var charcoal = task("charcoal", "copper_age", () -> Items.CHARCOAL, firebow);
 			var copperHammer = task("copper_hammer", "copper_age", FAItems.COPPER_HAMMER, stoneWorkbench);
 			var ironShard = goal("iron_shard", "copper_age", FAItems.IRON_SHARD, copperHammer);
+
+			var ironAgeBuilder = getBuilder(new ItemStack(FAItems.IRON_SHARD.get()), "iron_age", "root", 0, AdvancementType.TASK,
+					FactoryAutomation.name("textures/block/iron_plate_block.png"));
+			ironAgeBuilder.addCriterion("has_iron_shard", has(() -> FAItems.IRON_SHARD.get()));
+			var ironShard2 = ironAgeBuilder.save(saver, FactoryAutomation.name("iron_age/root"), existingFileHelper);
+			var ironIngot = task("iron_ingot", "iron_age", () -> Items.IRON_INGOT, ironShard2);
+			var rawBricks = task("raw_bricks", "iron_age", FAItems.DRIED_BRICK, ironIngot);
+			var bricks = task("bricks", "iron_age", () -> Items.BRICK, rawBricks);
+			var brickFoundry = task("brick_foundry", "iron_age", FAItems.BRICK_FIREBOX, bricks);
+			var brickCasting = task("brick_casting", "iron_age", FAItems.FIRED_TALLOW_MOLDS.get(Form.INGOT), brickFoundry);
+			var bellows = task("bellows", "iron_age", FAItems.PAPER_BELLOWS, brickFoundry);
+
 		}
 
 		private static Advancement.Builder getBuilder(ItemStack item, String cat, String name, int xp, AdvancementType type, @Nullable ResourceLocation background)
