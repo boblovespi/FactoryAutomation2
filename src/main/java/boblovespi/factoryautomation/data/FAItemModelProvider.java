@@ -66,6 +66,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.GOLD_RAIL.get());
 
 		basicItem(FAItems.TOASTED_BREAD.get());
+		basicItem(FAItems.SLICED_BREAD.get());
 
 		withExistingParent(FAItems.LOG_PILE.getRegisteredName(), modLoc("block/log_pile"));
 		withExistingParent(FAItems.STONE_CRUCIBLE.getRegisteredName(), modLoc("block/stone_crucible"));

@@ -103,6 +103,8 @@ public class FAItems
 
 	public static final DeferredItem<Item> TOASTED_BREAD = ITEMS.registerSimpleItem("toasted_bread",
 			new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(4 / 5f).build()));
+	public static final DeferredItem<Item> SLICED_BREAD = ITEMS.registerSimpleItem("sliced_bread",
+			new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(3 / 5f).fast().build()));
 
 	// Processing
 

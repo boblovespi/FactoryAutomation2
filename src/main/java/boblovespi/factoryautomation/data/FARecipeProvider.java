@@ -255,6 +255,12 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('s', Tags.Items.RODS_WOODEN)
 						   .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(output);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, new ItemStack(FAItems.SLICED_BREAD.get(), 5))
+							  .requires(Items.BREAD)
+							  .requires(ItemTags.SWORDS)
+							  .unlockedBy("has_bread", has(Items.BREAD))
+							  .save(output);
+
 		// Workbench
 		WorkbenchRecipeBuilder.of(FAItems.LOG_PILE)
 							  .pattern("lll")
@@ -656,7 +662,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .save(output, FactoryAutomation.name(name + "_ingot_from_nuggets"));
 	}
 
-	private void ingot(ItemLike ingot,ItemLike nugget, String name, RecipeOutput output)
+	private void ingot(ItemLike ingot, ItemLike nugget, String name, RecipeOutput output)
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, nugget, 9)
 							  .requires(ingot)
