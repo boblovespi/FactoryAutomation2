@@ -255,12 +255,6 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('s', Tags.Items.RODS_WOODEN)
 						   .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(output);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, new ItemStack(FAItems.SLICED_BREAD.get(), 5))
-							  .requires(Items.BREAD)
-							  .requires(ItemTags.SWORDS)
-							  .unlockedBy("has_bread", has(Items.BREAD))
-							  .save(output);
-
 		// Workbench
 		WorkbenchRecipeBuilder.of(FAItems.LOG_PILE)
 							  .pattern("lll")
@@ -430,6 +424,9 @@ public class FARecipeProvider extends RecipeProvider
 
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(Blocks.SHORT_GRASS), FAItems.PLANT_FIBER, 1).unlockedBy("has_short_grass", has(Blocks.SHORT_GRASS))
 						   .save(output, FactoryAutomation.name("chopping_block/plant_fiber"));
+
+		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(Items.BREAD), FAItems.SLICED_BREAD, 3).unlockedBy("has_bread", has(Items.BREAD))
+				.save(output, FactoryAutomation.name("chopping_block/sliced_bread"));
 
 		for (var wood : WoodTypes.values())
 			ChoppingBlockRecipe.builder(RecipeCategory.BUILDING_BLOCKS, Ingredient.of(wood.getLogsTag()), wood.getPlanks(), 2).unlockedBy("has_log", has(wood.getLogsTag()))
