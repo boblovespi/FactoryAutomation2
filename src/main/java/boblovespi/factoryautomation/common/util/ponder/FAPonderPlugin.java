@@ -2,12 +2,11 @@ package boblovespi.factoryautomation.common.util.ponder;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FAParticleTypes;
-import boblovespi.factoryautomation.common.block.BlockProperties;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.processing.LogPile;
-import boblovespi.factoryautomation.common.block.processing.OrePile;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
+import boblovespi.factoryautomation.common.blockentity.processing.BrickMakerFrameBE;
 import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
 import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
 import boblovespi.factoryautomation.common.item.FAItems;
@@ -20,7 +19,6 @@ import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -29,8 +27,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -60,6 +56,7 @@ public class FAPonderPlugin implements PonderPlugin
 		helper.forComponents(FAItems.ROCK).addStoryBoard("chopping_block_creation", this::choppingBlockCreationScene);
 		helper.forComponents(FABlocks.CHOPPING_BLOCK, FAItems.CHOPPING_BLADE).addStoryBoard("chopping_block_usage", this::choppingBlockUsageScene);
 		helper.forComponents(FAItems.IRON_SHARD, FABlocks.LIMONITE_CHARCOAL_MIX).addStoryBoard("iron_bloom_creation", this::ironBloomCreationScene);
+		helper.forComponents(Items.BRICK, Items.BRICKS, FABlocks.BRICK_MAKER_FRAME, FAItems.DRIED_BRICK, FABlocks.DRIED_BRICKS).addStoryBoard("brick_making", this::brickMakingScene);
 	}
 
 
@@ -352,6 +349,85 @@ public class FAPonderPlugin implements PonderPlugin
 		}
 		scene.world().createItemEntity(util.grid().at(1, 1, 1).getCenter(), Vec3.ZERO, FAItems.IRON_SHARD.get().getDefaultInstance().copyWithCount(1));
 		scene.idle(20);
+	}
+
+	private void brickMakingScene(SceneBuilder scene, SceneBuildingUtil util){
+		scene.title("brick_making", "Creating Bricks");
+		scene.showBasePlate();
+		scene.idle(10);
+		scene.world().setBlock(util.grid().at(1, 2, 1), Blocks.AIR.defaultBlockState(),false);
+
+		scene.addKeyframe();
+		scene.world().showSection(util.select().fromTo(2, 1, 2, 2, 1, 1), Direction.DOWN);
+		scene.idle(20);
+		scene.world().showSection(util.select().position(3,1,1), Direction.DOWN);
+		scene.idle(2);
+		scene.world().showSection(util.select().position(3,1,2), Direction.DOWN);
+		scene.idle(2);
+		scene.world().showSection(util.select().position(3,1,3), Direction.DOWN);
+		scene.idle(2);
+		scene.world().showSection(util.select().position(2,1,3), Direction.DOWN);
+		scene.idle(2);
+		scene.world().showSection(util.select().position(1,1,3), Direction.DOWN);
+		scene.idle(2);
+		scene.world().showSection(util.select().position(1,1,2), Direction.DOWN);
+		scene.idle(2);
+		scene.world().showSection(util.select().position(1,1,1), Direction.DOWN);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.overlay().showText(40)
+				.text("Cover on at least two sides")
+				.colored(PonderPalette.WHITE)
+				.pointAt(util.select().position(2, 1, 1).getCenter());
+		scene.idle(40);
+
+		scene.addKeyframe();
+		scene.world().showSection(util.select().fromTo(4, 1, 1, 4, 1, 3), Direction.DOWN);
+		scene.idle(5);
+		scene.world().showSection(util.select().fromTo(3, 1, 4, 1, 1, 4), Direction.DOWN);
+		scene.idle(5);
+		scene.world().showSection(util.select().fromTo(0, 1, 3, 0, 1, 1), Direction.DOWN);
+		scene.idle(5);
+		scene.world().showSection(util.select().fromTo(3, 1, 0, 1, 1, 0), Direction.DOWN);
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.world().showSection(util.select().fromTo(1, 2, 1, 3, 2, 3), Direction.DOWN);
+		scene.idle(10);
+		scene.overlay().showControls(util.grid().at(1, 2, 1).above().getBottomCenter(), Pointing.DOWN, 35)
+				.rightClick()
+				.withItem(FAItems.FIREBOW.toStack());
+		scene.idle(10);
+		scene.world().setBlock(util.grid().at(1, 2, 1), Blocks.FIRE.defaultBlockState(),false);
+		scene.idle(10);
+		scene.world().setBlock(util.grid().at(1, 2, 1), Blocks.COBBLESTONE.defaultBlockState(),false);
+		scene.idle(5);
+		var lavaEmitter = inWholeBlock((w, x, y, z) -> w.addParticle(ParticleTypes.LAVA, x, y, z, Ponder.RANDOM.nextDouble() / 20, Ponder.RANDOM.nextDouble() / 20, Ponder.RANDOM.nextDouble() / 20));
+		var smokeEmitter = inWholeBlock((w, x, y, z) -> w.addParticle(ParticleTypes.SMOKE, x, y + 1.5, z, Ponder.RANDOM.nextDouble() / 20, 0.05, Ponder.RANDOM.nextDouble() / 20));
+		util.select().fromTo(1, 1, 1, 3, 1, 3).forEach(p -> {
+			scene.effects().emitParticles(Vec3.atLowerCornerOf(p), lavaEmitter, 1, 100);
+			scene.effects().emitParticles(Vec3.atLowerCornerOf(p), smokeEmitter, 2, 100);
+		});
+		scene.idle(10);
+		scene.world().replaceBlocks(util.select().fromTo(1, 1, 1, 3, 1, 3), FABlocks.CHARCOAL_PILE.get().defaultBlockState(),false);
+		scene.idle(10);
+		scene.world().replaceBlocks(util.select().fromTo(2, 1, 1, 2, 1, 2), Blocks.BRICKS.defaultBlockState(),false);
+		scene.idle(100);
+
+		scene.addKeyframe();
+		scene.world().hideSection(util.select().fromTo(1,2,1, 3,2,3), Direction.UP);
+		scene.idle(20);
+		scene.world().hideSection(util.select().fromTo(1,1,0, 3,1,0), Direction.UP);
+		scene.idle(2);
+		scene.world().hideSection(util.select().fromTo(4,1,1, 4,1,3), Direction.UP);
+		scene.idle(2);
+		scene.world().hideSection(util.select().fromTo(3,1,4, 1,1,4), Direction.UP);
+		scene.idle(2);
+		scene.world().hideSection(util.select().fromTo(0,1,3, 0,1,1), Direction.UP);
+		scene.idle(20);
+
+
 	}
 
 	private ParticleEmitter inWholeBlock(ParticleEmitter emitter) {
