@@ -22,24 +22,25 @@ public class FallingOrePile extends OrePile implements Fallable {
         super(properties, processTime, state);
         this.DUST_COLOR = dustColor;
     }
+
     @Override
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
-        //level.scheduleTick(pos, this, this.getDelayAfterPlace());
+        level.scheduleTick(pos, this, this.getDelayAfterPlace());
     }
 
     @Override
     protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-        //level.scheduleTick(currentPos, this, this.getDelayAfterPlace());
+        level.scheduleTick(currentPos, this, this.getDelayAfterPlace());
         return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
     }
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.tick(state, level, pos, random);
         if (isFree(level.getBlockState(pos.below())) && pos.getY() >= level.getMinBuildHeight()) {
             FallingBlockEntity fallingblockentity = FallingBlockEntity.fall(level, pos, state);
             this.falling(fallingblockentity);
         }
+        super.tick(state, level, pos, random);
     }
 
     protected void falling(FallingBlockEntity entity) {

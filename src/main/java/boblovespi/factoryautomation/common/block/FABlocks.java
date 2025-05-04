@@ -61,9 +61,6 @@ public class FABlocks
 	public static final DeferredBlock<Block> CHARCOAL_PILE = register("charcoal_pile", Block::new, BlockProperties.CHARCOAL_PILE);
 	public static final DeferredBlock<Block> IRON_BLOOM = register("iron_bloom", p -> new DropExperienceBlock(UniformInt.of(1, 4), p), BlockProperties.IRON_BLOOM);
 	public static final DeferredBlock<Block> DRIED_BRICKS = register("dried_bricks", Block::new, BlockProperties.DRIED_BRICKS);
-
-	public static final DeferredBlock<FallingOrePile> IRON_SAND_CHARCOAL_MIX = register("iron_sand_charcoal_mix", p -> new FallingOrePile(p, 20 * 60 * 5, IRON_BLOOM.get().defaultBlockState(), 14934489), BlockProperties.RAW_ORE(MapColor.COLOR_BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
-
 	public static final DeferredBlock<Block> TIN_BLOCK = register("tin_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE));
 	public static final DeferredBlock<Block> LEAD_BLOCK = register("lead_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.COLOR_PURPLE));
 	public static final DeferredBlock<Block> BRONZE_BLOCK = register("bronze_block", Block::new, BlockProperties.METAL(MapColor.GOLD));
@@ -113,6 +110,7 @@ public class FABlocks
 	public static final DeferredBlock<ChoppingBlock> CHOPPING_BLOCK = CHOPPING_BLOCKS.get(WoodTypes.OAK);
 	public static final DeferredBlock<LogPile> LOG_PILE = register("log_pile", LogPile::new, BlockProperties.LOG(MapColor.WOOD).lightLevel(s -> s.getValue(LogPileLike.ACTIVATED) ? 3 : 0));
 	public static final DeferredBlock<OrePile> LIMONITE_CHARCOAL_MIX = register("limonite_charcoal_mix", p -> new OrePile(p, 20 * 60 * 5, IRON_BLOOM.get().defaultBlockState()), BlockProperties.RAW_ORE(MapColor.COLOR_ORANGE));
+	public static final DeferredBlock<FallingOrePile> IRON_SAND_CHARCOAL_MIX = register("iron_sand_charcoal_mix", p -> new FallingOrePile(p, 20 * 60 * 5, IRON_BLOOM.get().defaultBlockState(), 14934489), BlockProperties.RAW_ORE(MapColor.COLOR_BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
 	public static final DeferredBlock<StoneCrucible> STONE_CRUCIBLE = register("stone_crucible", StoneCrucible::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<StoneCastingVessel> STONE_CASTING_VESSEL = register("stone_casting_vessel", StoneCastingVessel::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<StoneWorkbench> STONE_WORKBENCH = register("stone_workbench", StoneWorkbench::new, BlockProperties.COBBLESTONE_MACHINE);
