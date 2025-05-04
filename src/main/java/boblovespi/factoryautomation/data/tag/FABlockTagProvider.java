@@ -81,7 +81,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(BlockTags.INCORRECT_FOR_GOLD_TOOL).addTags(BlockTags.INCORRECT_FOR_WOODEN_TOOL);
 
 
-		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(FABlocks.GREEN_SAND.get(), FABlocks.CHARCOAL_PILE.get());
+		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(FABlocks.GREEN_SAND.get(), FABlocks.CHARCOAL_PILE.get(), FABlocks.IRON_SAND.get(), FABlocks.IRON_SAND_CHARCOAL_MIX.get());
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(FABlocks.STONE_CRUCIBLE.get(), FABlocks.STONE_CASTING_VESSEL.get())
 											.add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
 											.add(FABlocks.LIMONITE_ORES.values().stream().map(DeferredHolder::get).toArray(Block[]::new))

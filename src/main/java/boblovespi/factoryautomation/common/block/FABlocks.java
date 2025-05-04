@@ -8,10 +8,13 @@ import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -49,6 +52,9 @@ public class FABlocks
 	public static final DeferredBlock<Block> RAW_LIMONITE_BLOCK = register("raw_limonite_block", Block::new, BlockProperties.RAW_ORE(MapColor.COLOR_ORANGE));
 	public static final DeferredBlock<Block> ANCIENT_IRON_BLOCK = register("ancient_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
 	public static final DeferredBlock<Block> WEAK_IRON_BLOCK = register("weak_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
+	public static final DeferredBlock<Block> IRON_SAND = register("iron_sand", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
+	public static final DeferredBlock<Block> IRON_SAND_CHARCOAL_MIX = register("iron_sand_charcoal_mix", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
+	//public static final Block SAND = register("sand", new ColoredFallingBlock(new ColorRGBA(14406560), BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));
 
 	// Refined materials
 

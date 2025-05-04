@@ -50,6 +50,8 @@ public class FABlockStateProvider extends BlockStateProvider
 		FABlocks.LIMONITE_ORES.values().forEach(this::blockWithItem);
 		blockWithItem(FABlocks.RAW_LIMONITE_BLOCK);
 		blockWithItem(FABlocks.ANCIENT_IRON_BLOCK);
+		blockWithItem(FABlocks.IRON_SAND);
+		blockWithItem(FABlocks.IRON_SAND_CHARCOAL_MIX);
 		blockWithItem(FABlocks.WEAK_IRON_BLOCK);
 		simpleBlock(FABlocks.CHARCOAL_PILE.get());
 		simpleBlock(FABlocks.IRON_BLOOM.get());

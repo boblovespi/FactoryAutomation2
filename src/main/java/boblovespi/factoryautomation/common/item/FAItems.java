@@ -48,6 +48,8 @@ public class FAItems
 	public static final DeferredItem<Item> ANCIENT_IRON_NUGGET = ITEMS.registerSimpleItem("ancient_iron_nugget");
 	public static final DeferredItem<Item> WEAK_IRON_INGOT = ITEMS.registerSimpleItem("weak_iron_ingot");
 	public static final DeferredItem<Item> WEAK_IRON_NUGGET = ITEMS.registerSimpleItem("weak_iron_nugget");
+	public static final DeferredItem<BlockItem> IRON_SAND = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SAND);
+	public static final DeferredItem<BlockItem> IRON_SAND_CHARCOAL_MIX = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SAND_CHARCOAL_MIX);
 
 	// Refined materials
 
