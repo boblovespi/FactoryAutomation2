@@ -37,4 +37,8 @@ public class RecipeThings
 			() -> RecipeType.simple(FactoryAutomation.name("trip_hammer")));
 	public static final Supplier<RecipeSerializer<TripHammerRecipe>> TRIP_HAMMER_SERIALIZER = RECIPE_SERIALIZERS.register("trip_hammer",
 			() -> new SimpleRecipe.Serializer<>(TripHammerRecipe::new, TripHammerRecipe.DATA_CODEC, TripHammerRecipe.DATA_STREAM_CODEC));
+	public static final Supplier<RecipeType<TumblingBarrelRecipe>> TUMBLING_BARREL_TYPE = RECIPE_TYPES.register("tumbling_barrel",
+			() -> RecipeType.simple(FactoryAutomation.name("tumbling_barrel")));
+	public static final Supplier<RecipeSerializer<TumblingBarrelRecipe>> TUMBLING_BARREL_SERIALIZER = RECIPE_SERIALIZERS.register("tumbling_barrel",
+			TumblingBarrelRecipe.Serializer::new);
 }

@@ -1,0 +1,75 @@
+package boblovespi.factoryautomation.common.block.processing;
+
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
+
+public class TumblingBarrel extends Block implements EntityBlock
+{
+	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
+	private static final VoxelShape BOUNDING_BOX = Shapes.or(
+			Block.box(2, 4, 2, 14, 16, 14),
+			Block.box(14, 7, 5, 16, 13, 11),
+			Block.box(14, 0, 6, 16, 7, 10),
+			Block.box(0, 7, 5, 2, 13, 11),
+			Block.box(0, 0, 6, 2, 7, 10)
+															);
+
+	public TumblingBarrel(Properties properties)
+	{
+		super(properties);
+	}
+
+	@Nullable
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
+	{
+		return new TumblingBarrelBE(pos, state);
+	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		if (!pState.is(pNewState.getBlock()))
+			pLevel.getBlockEntity(pPos, FABETypes.TUMBLING_BARREL_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> beType)
+	{
+		if (level.isClientSide)
+			return null;
+		return ITickable.makeTicker(FABETypes.TUMBLING_BARREL_TYPE.get(), beType);
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
+	{
+		builder.add(AXIS);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context)
+	{
+		return defaultBlockState().setValue(AXIS, context.getHorizontalDirection().getAxis());
+	}
+}

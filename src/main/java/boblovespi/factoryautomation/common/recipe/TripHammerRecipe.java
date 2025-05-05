@@ -9,7 +9,7 @@ import net.minecraft.world.level.Level;
 
 public class TripHammerRecipe extends SimpleRecipe<TripHammerRecipe.Input, TripHammerRecipe.Data>
 {
-	private static final BuilderFactory<TripHammerRecipe, Data, Data.Builder> BUILDER_FACTORY = new BuilderFactory<>("log_pile_firing", TripHammerRecipe::new,
+	private static final BuilderFactory<TripHammerRecipe, Data, Data.Builder> BUILDER_FACTORY = new BuilderFactory<>("trip_hammer", TripHammerRecipe::new,
 			TripHammerRecipe.Data.Builder::new);
 
 	public static final MapCodec<TripHammerRecipe.Data> DATA_CODEC = MapCodec.unit(Data.INSTANCE);

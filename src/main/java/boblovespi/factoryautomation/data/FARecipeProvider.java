@@ -23,6 +23,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredItem;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -521,6 +522,17 @@ public class FARecipeProvider extends RecipeProvider
 						.unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD)).save(output);
 		TripHammerRecipe.of(new ItemStack(FAItems.GOLD_RAIL.get())).input(FATags.Items.GOLD_ROD).progress(100).beginData().endData()
 						.unlockedBy("has_gold_rod", has(FATags.Items.GOLD_ROD)).save(output);
+
+		// Tumbling barrel
+		// Test, TODO: remove
+		TumblingBarrelRecipe.of(Items.SLIME_BLOCK, Fluids.LAVA, 250)
+				.fluidInput(Fluids.WATER, 250)
+				.input(Items.MAGMA_BLOCK)
+				.time(40)
+				.minSpeed(1)
+				.maxSpeed(10)
+				.unlockedBy("has_magma_block", has(Items.MAGMA_BLOCK))
+				.save(output);
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
