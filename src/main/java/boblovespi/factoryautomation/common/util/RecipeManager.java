@@ -27,7 +27,13 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 		return progress;
 	}
 
+	public float getProgressRatio()
+	{
+		return 1 - progress / (float) maxProgress;
+	}
+
 	private int progress;
+	private int maxProgress = 1;
 
 	public RecipeManager(String nbtId, Validifier<RecipeHolder<R>> validifier, RecipeMatcher<RecipeHolder<R>> recipeMatcher, RecipeGrabber<Optional<RecipeHolder<?>>> recipeGrabber)
 	{
@@ -49,7 +55,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 		{
 			currentRecipe = recipeMatcher.findMatchingRecipe();
 			currentRecipeName = currentRecipe == null ? NO_RECIPE : currentRecipe.id();
-			progress = currentRecipe == null ? 0 : currentRecipe.value().getProgress();
+			maxProgress = progress = currentRecipe == null ? 0 : currentRecipe.value().getProgress();
 		}
 	}
 
@@ -85,7 +91,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 		{
 			currentRecipe = recipeMatcher.findMatchingRecipe();
 			currentRecipeName = currentRecipe == null ? NO_RECIPE : currentRecipe.id();
-			progress = currentRecipe == null ? 0 : currentRecipe.value().getProgress();
+			maxProgress = progress = currentRecipe == null ? 0 : currentRecipe.value().getProgress();
 		}
 		else
 			progress = currentRecipe.value().getProgress();
@@ -122,6 +128,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 				{
 					//noinspection unchecked
 					currentRecipe = (RecipeHolder<R>) recipeHolder;
+					maxProgress = currentRecipe.value().getProgress();
 				} catch (ClassCastException e)
 				{
 					FactoryAutomation.LOGGER.warn("The recipe {} has somehow changed types! It is now a {}", currentRecipeName, recipeHolder.getClass().getName());

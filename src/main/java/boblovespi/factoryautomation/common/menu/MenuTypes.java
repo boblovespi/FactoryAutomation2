@@ -18,6 +18,7 @@ public class MenuTypes
 	public static final DeferredHolder<MenuType<?>, MenuType<StoneCastingVesselMenu>> STONE_CASTING_VESSEL = register("stone_casting_vessel", StoneCastingVesselMenu::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<WorkbenchMenu>> WORKBENCH_MENU = register("workbench", WorkbenchMenu::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<BrickFoundryMenu>> BRICK_FOUNDRY = register("brick_foundry", BrickFoundryMenu::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<TumblingBarrelMenu>> TUMBLING_BARREL = register("tumbling_barrel", TumblingBarrelMenu::new);
 
 	private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> register(String name, MenuType.MenuSupplier<T> supplier)
 	{

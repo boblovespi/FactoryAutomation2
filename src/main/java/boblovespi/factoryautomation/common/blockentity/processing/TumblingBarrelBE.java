@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.menu.TumblingBarrelMenu;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.TumblingBarrelRecipe;
 import boblovespi.factoryautomation.common.util.ItemHelper;
@@ -14,9 +15,14 @@ import boblovespi.factoryautomation.common.util.RecipeManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -161,7 +167,8 @@ public class TumblingBarrelBE extends FABE implements ITickable, GeoBlockEntity,
 	@Override
 	public MenuProvider getMenuProvider()
 	{
-		return null;
+		return new SimpleMenuProvider((i, v, p) -> new TumblingBarrelMenu(i, v, inv, new Data(), ContainerLevelAccess.create(level, worldPosition)),
+				Component.translatable("gui.tumbling_barrel.name"));
 	}
 
 	@Override
@@ -222,5 +229,34 @@ public class TumblingBarrelBE extends FABE implements ITickable, GeoBlockEntity,
 		if (direction != null && direction.getAxis() == getBlockState().getValue(TumblingBarrel.AXIS))
 			return inTank;
 		return outTank;
+	}
+
+	private class Data implements ContainerData
+	{
+		@Override
+		public int get(int index)
+		{
+			return switch (index)
+			{
+				case 0 -> Float.floatToIntBits(recipeManager.getProgressRatio());
+				case 1 -> inTank.getFluidAmount();
+				case 2 -> outTank.getFluidAmount();
+				case 3 -> BuiltInRegistries.FLUID.getId(inTank.getFluid().getFluid());
+				case 4 -> BuiltInRegistries.FLUID.getId(outTank.getFluid().getFluid());
+				default -> 0;
+			};
+		}
+
+		@Override
+		public void set(int index, int value)
+		{
+
+		}
+
+		@Override
+		public int getCount()
+		{
+			return 5;
+		}
 	}
 }

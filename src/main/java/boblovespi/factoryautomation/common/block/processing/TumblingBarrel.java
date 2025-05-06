@@ -2,10 +2,14 @@ package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -17,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -59,6 +64,20 @@ public class TumblingBarrel extends Block implements EntityBlock
 		if (level.isClientSide)
 			return null;
 		return ITickable.makeTicker(FABETypes.TUMBLING_BARREL_TYPE.get(), beType);
+	}
+
+	@Nullable
+	@Override
+	protected MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos)
+	{
+		return level.getBlockEntity(pos, FABETypes.TUMBLING_BARREL_TYPE.get()).map(IMenuProviderProvider::getMenuProvider).orElse(null);
+	}
+
+	@Override
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult)
+	{
+		player.openMenu(state.getMenuProvider(level, pos));
+		return InteractionResult.sidedSuccess(level.isClientSide);
 	}
 
 	@Override
