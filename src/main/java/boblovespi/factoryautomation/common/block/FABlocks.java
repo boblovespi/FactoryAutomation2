@@ -53,7 +53,6 @@ public class FABlocks
 	public static final DeferredBlock<Block> ANCIENT_IRON_BLOCK = register("ancient_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
 	public static final DeferredBlock<Block> WEAK_IRON_BLOCK = register("weak_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
 	public static final DeferredBlock<Block> IRON_SAND = register("iron_sand", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
-	//public static final DeferredBlock<Block> IRON_SAND_CHARCOAL_MIX = register("iron_sand_charcoal_mix", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
 
 	// Refined materials
 

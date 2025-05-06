@@ -112,7 +112,10 @@ public class FAJeiPlugin implements IModPlugin
 		var dummyLogPileFiringRecipes = List.<LogPileFiringCategory.Holder>of(
 				new LogPileFiringCategory.Holder.Dummy(anySolid, FABlocks.LOG_PILE, List.of(new ItemStack(Items.CHARCOAL, 8)), FABlocks.CHARCOAL_PILE.get().defaultBlockState()),
 				new LogPileFiringCategory.Holder.Dummy(new ItemStack(FABlocks.COPPER_PLATE_BLOCK), FABlocks.LIMONITE_CHARCOAL_MIX,
-						List.of(new ItemStack((ItemLike) FAItems.IRON_SHARD, 3), new ItemStack((ItemLike) FAItems.SLAG)), FABlocks.IRON_BLOOM.get().defaultBlockState()));
+						List.of(new ItemStack((ItemLike) FAItems.IRON_SHARD, 3), new ItemStack((ItemLike) FAItems.SLAG)), FABlocks.IRON_BLOOM.get().defaultBlockState()),
+				new LogPileFiringCategory.Holder.Dummy(new ItemStack(FABlocks.COPPER_PLATE_BLOCK), FABlocks.IRON_SAND_CHARCOAL_MIX,
+						List.of(new ItemStack((ItemLike) FAItems.IRON_SHARD, 3), new ItemStack((ItemLike) FAItems.SLAG)), FABlocks.IRON_BLOOM.get().defaultBlockState())
+		);
 		registration.addRecipes(logPileFiringCategory.getRecipeType(), dummyLogPileFiringRecipes);
 
 		var castingRecipes = new ArrayList<CastingJeiRecipe>();
