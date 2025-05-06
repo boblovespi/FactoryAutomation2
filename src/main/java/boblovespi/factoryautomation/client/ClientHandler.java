@@ -10,10 +10,12 @@ import boblovespi.factoryautomation.client.model.PartialDynamicTextureGeometryLo
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
+import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
 import boblovespi.factoryautomation.common.util.ponder.FAPonderPlugin;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -22,6 +24,8 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import software.bernie.geckolib.loading.math.MolangQueries;
 
 @EventBusSubscriber(modid = FactoryAutomation.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -75,5 +79,24 @@ public class ClientHandler
 	public static void registerParticleProviders(RegisterParticleProvidersEvent event)
 	{
 		event.registerSpriteSet(FAParticleTypes.METAL_SPARK.get(), MetalSparkParticle.Provider::new);
+	}
+
+	@SubscribeEvent
+	public static void registerClientExtensions(RegisterClientExtensionsEvent event)
+	{
+		event.registerFluidType(new IClientFluidTypeExtensions()
+		{
+			@Override
+			public ResourceLocation getStillTexture()
+			{
+				return FactoryAutomation.name("block/pancake_batter");
+			}
+
+			@Override
+			public ResourceLocation getFlowingTexture()
+			{
+				return FactoryAutomation.name("block/pancake_batter");
+			}
+		}, FAFluids.PANCAKE_BATTER_TYPE);
 	}
 }

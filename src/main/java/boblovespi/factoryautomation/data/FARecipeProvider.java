@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
+import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.recipe.*;
 import boblovespi.factoryautomation.common.util.Form;
@@ -24,6 +25,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredItem;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -526,13 +528,22 @@ public class FARecipeProvider extends RecipeProvider
 		// Tumbling barrel
 		// Test, TODO: remove
 		TumblingBarrelRecipe.of(Items.SLIME_BLOCK, Fluids.LAVA, 250)
-				.fluidInput(Fluids.WATER, 250)
-				.input(Items.MAGMA_BLOCK)
-				.time(40)
-				.minSpeed(1)
-				.maxSpeed(10)
-				.unlockedBy("has_magma_block", has(Items.MAGMA_BLOCK))
-				.save(output);
+							.fluidInput(Fluids.WATER, 250)
+							.input(Items.MAGMA_BLOCK)
+							.time(40)
+							.minSpeed(1)
+							.maxSpeed(10)
+							.unlockedBy("has_magma_block", has(Items.MAGMA_BLOCK))
+							.save(output);
+
+		TumblingBarrelRecipe.of(FAFluids.PANCAKE_BATTER_SOURCE.get(), 500)
+							.fluidInput(NeoForgeMod.MILK.get(), 500)
+							.input(FATags.Items.WHEAT_DUST)
+							.time(40)
+							.minSpeed(1)
+							.maxSpeed(10)
+							.unlockedBy("has_wheat_flour", has(FATags.Items.WHEAT_DUST))
+							.save(output);
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())

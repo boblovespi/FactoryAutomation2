@@ -45,7 +45,7 @@ public record TumblingBarrelRecipe(Ingredient input,
 			Ingredient.CODEC.fieldOf("input").forGetter(TumblingBarrelRecipe::input),
 			OptionalSizedFluidIngredient.CODEC.fieldOf("fluid_input").forGetter(TumblingBarrelRecipe::fluidInput),
 			Codec.INT.fieldOf("time").forGetter(TumblingBarrelRecipe::time),
-			ItemStack.CODEC.fieldOf("result").forGetter(TumblingBarrelRecipe::result),
+			ItemStack.OPTIONAL_CODEC.fieldOf("result").forGetter(TumblingBarrelRecipe::result),
 			FluidStack.OPTIONAL_CODEC.fieldOf("fluid_result").forGetter(TumblingBarrelRecipe::fluidResult),
 			Codec.FLOAT.fieldOf("min_speed").forGetter(TumblingBarrelRecipe::minSpeed),
 			Codec.FLOAT.fieldOf("max_speed").forGetter(TumblingBarrelRecipe::maxSpeed)).apply(i, TumblingBarrelRecipe::new));

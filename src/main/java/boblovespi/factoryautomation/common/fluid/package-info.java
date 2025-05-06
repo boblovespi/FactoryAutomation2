@@ -1,0 +1,9 @@
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+@FieldsAreNonnullByDefault
+package boblovespi.factoryautomation.common.fluid;
+
+import net.minecraft.FieldsAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+
+import javax.annotation.ParametersAreNonnullByDefault;

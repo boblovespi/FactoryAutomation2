@@ -10,6 +10,7 @@ import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.mechanical.*;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
+import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.item.CreativeTabs;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
@@ -41,6 +42,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.model.data.ModelProperty;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -77,6 +79,8 @@ public class FactoryAutomation
 	// FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
 	public FactoryAutomation(IEventBus modEventBus, ModContainer modContainer)
 	{
+		NeoForgeMod.enableMilkFluid();
+
 		// Register the commonSetup method for mod loading
 		modEventBus.addListener(this::commonSetup);
 		modEventBus.addListener(this::onRegisterCapabilities);
@@ -85,6 +89,8 @@ public class FactoryAutomation
 		// Add all registrars to the event bus
 		FABlocks.BLOCKS.register(modEventBus);
 		FAItems.ITEMS.register(modEventBus);
+		FAFluids.FLUID_TYPES.register(modEventBus);
+		FAFluids.FLUIDS.register(modEventBus);
 		CreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 		FASounds.SOUND_EVENTS.register(modEventBus);
 		FAWorldgen.FEATURES.register(modEventBus);
