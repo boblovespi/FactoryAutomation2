@@ -317,6 +317,7 @@
 	"gui.stone_crucible.name": "Stone Crucible",
 	"gui.stone_workbench.name": "Stone Workbench",
 	"gui.brick_crucible.name": "Brick Crucible",
+	"gui.tumbling_barrel.name": "Tumbling Barrel",
 	
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",
@@ -326,6 +327,7 @@
 	"misc.torque_time": "%2$s s @ %1$s Nm",
 	"misc.gear_ratio": "%s:%s ratio",
 	"misc.efficiency": "Efficiency: %s%%",
+	"misc.millibucket": "%s mB",
 	"info.too_hot": "Too hot: %s",
 	
 	// Metal names
