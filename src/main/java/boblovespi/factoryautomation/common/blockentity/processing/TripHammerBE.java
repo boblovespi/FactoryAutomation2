@@ -28,8 +28,7 @@ import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
@@ -38,7 +37,8 @@ import java.util.function.Function;
 
 public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoBlockEntity
 {
-	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("state.trip_hammer.active");
+	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("animation.hammer.active");
+	private static final RawAnimation STANDBY_STATE = RawAnimation.begin().thenLoop("animation.hammer.standby");
 	private final AnimatableInstanceCache cache;
 	private final RecipeManager<TripHammerRecipe> recipeManager;
 	private final MechanicalManager mechanicalManager;
@@ -204,7 +204,11 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoB
 	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar controllers)
 	{
+		controllers.add(new AnimationController<>(this, this::handleAnim));
+	}
 
+	private PlayState handleAnim(AnimationState<TripHammerBE> s) {
+		return s.setAndContinue(STANDBY_STATE);
 	}
 
 	@Override
