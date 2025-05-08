@@ -230,6 +230,8 @@
 	"item.factoryautomation.quicklime": "Quicklime",
 	"item.factoryautomation.mud_brick": "Mud Brick",
 	"item.factoryautomation.dried_brick": "Dried Brick",
+	"item.factoryautomation.tanbark_dust": "Tanbark Dust",
+	"item.factoryautomation.cleaned_leather": "Cleaned Leather",
 	
 	// Items - Intermediate
 	
@@ -237,6 +239,7 @@
 	"item.factoryautomation.bushing": "Bushing",
 	"item.factoryautomation.iron_rail": "Iron Rail",
 	"item.factoryautomation.gold_rail": "Gold Rail",
+	"item.factoryautomation.processed_leather": "Processed Leather",
 	
 	// Items - Food
 	
@@ -274,6 +277,12 @@
 	"item.factoryautomation.iron_gear": "Iron Gear",
 	"item.factoryautomation.bronze_gear": "Bronze Gear",
 	"item.factoryautomation.steel_gear": "Steel Gear",
+	
+	// Fluids
+	
+	"fluid.factoryautomation.pancake_batter": "Pancake Batter",
+	"fluid.factoryautomation.limewater": "Limewater",
+	"fluid.factoryautomation.tannin": "Tannin",
 	
 	// Creative tabs
 	

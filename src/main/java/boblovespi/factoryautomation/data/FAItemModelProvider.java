@@ -59,11 +59,14 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.QUICKLIME.get());
 		basicItem(FAItems.MUD_BRICK.get());
 		basicItem(FAItems.DRIED_BRICK.get());
+		basicItem(FAItems.TANBARK_DUST.get());
+		basicItem(FAItems.CLEANED_LEATHER.get());
 
 		basicItem(FAItems.SCREW.get());
 		basicItem(FAItems.BUSHING.get());
 		basicItem(FAItems.IRON_RAIL.get());
 		basicItem(FAItems.GOLD_RAIL.get());
+		basicItem(FAItems.PROCESSED_LEATHER.get());
 
 		basicItem(FAItems.TOASTED_BREAD.get());
 		basicItem(FAItems.SLICED_BREAD.get());

@@ -23,6 +23,8 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import software.bernie.geckolib.loading.math.MolangQueries;
 
 @EventBusSubscriber(modid = FactoryAutomation.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -83,19 +85,33 @@ public class ClientHandler
 	@SubscribeEvent
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event)
 	{
+		registerFluidTextures(event);
+	}
+
+	private static void registerFluidTextures(RegisterClientExtensionsEvent event)
+	{
+		registerFluidTexture(event, "pancake_batter", FAFluids.PANCAKE_BATTER_TYPE);
+		registerFluidTexture(event, "tannin", FAFluids.TANNIN_TYPE);
+		registerFluidTexture(event, "limewater", FAFluids.LIMEWATER_TYPE);
+	}
+
+	private static void registerFluidTexture(RegisterClientExtensionsEvent event, String name, DeferredHolder<FluidType, FluidType> type)
+	{
 		event.registerFluidType(new IClientFluidTypeExtensions()
 		{
+			private final ResourceLocation location = FactoryAutomation.name("block/" + name);
+
 			@Override
 			public ResourceLocation getStillTexture()
 			{
-				return FactoryAutomation.name("block/pancake_batter");
+				return location;
 			}
 
 			@Override
 			public ResourceLocation getFlowingTexture()
 			{
-				return FactoryAutomation.name("block/pancake_batter");
+				return location;
 			}
-		}, FAFluids.PANCAKE_BATTER_TYPE);
+		}, type);
 	}
 }

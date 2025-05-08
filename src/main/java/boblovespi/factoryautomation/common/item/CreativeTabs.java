@@ -85,6 +85,8 @@ public class CreativeTabs
 						o.accept(FAItems.MUD_BRICK);
 						o.accept(FAItems.DRIED_BRICK);
 						o.accept(FAItems.DRIED_BRICKS);
+						o.accept(FAItems.TANBARK_DUST);
+						o.accept(FAItems.CLEANED_LEATHER);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PRODUCTS = CREATIVE_MODE_TABS.register("products",
@@ -95,6 +97,7 @@ public class CreativeTabs
 						o.accept(FAItems.BUSHING);
 						o.accept(FAItems.IRON_RAIL);
 						o.accept(FAItems.GOLD_RAIL);
+						o.accept(FAItems.PROCESSED_LEATHER);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PROCESSING = CREATIVE_MODE_TABS.register("processing",

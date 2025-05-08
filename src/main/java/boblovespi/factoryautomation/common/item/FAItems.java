@@ -78,6 +78,8 @@ public class FAItems
 	public static final DeferredItem<Item> MUD_BRICK = ITEMS.registerSimpleItem("mud_brick");
 	public static final DeferredItem<Item> DRIED_BRICK = ITEMS.registerSimpleItem("dried_brick");
 	public static final DeferredItem<BlockItem> DRIED_BRICKS = ITEMS.registerSimpleBlockItem(FABlocks.DRIED_BRICKS);
+	public static final DeferredItem<Item> TANBARK_DUST = ITEMS.registerSimpleItem("tanbark_dust");
+	public static final DeferredItem<Item> CLEANED_LEATHER = ITEMS.registerSimpleItem("cleaned_leather");
 
 	// Building blocks
 
@@ -100,6 +102,7 @@ public class FAItems
 	public static final DeferredItem<Item> BUSHING = ITEMS.registerSimpleItem("bushing");
 	public static final DeferredItem<Item> IRON_RAIL = ITEMS.registerSimpleItem("iron_rail");
 	public static final DeferredItem<Item> GOLD_RAIL = ITEMS.registerSimpleItem("gold_rail");
+	public static final DeferredItem<Item> PROCESSED_LEATHER = ITEMS.registerSimpleItem("processed_leather");
 
 	// Food
 

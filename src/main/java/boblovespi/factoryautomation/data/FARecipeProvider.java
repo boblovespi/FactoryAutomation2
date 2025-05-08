@@ -479,6 +479,8 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT)).save(output);
 		MillstoneRecipe.of(FAItems.CALCITE_DUST.toStack()).input(Items.CALCITE).progress(100).beginData().speed(1).torque(800).endData()
 					   .unlockedBy("has_calcite", has(Items.CALCITE)).save(output);
+		MillstoneRecipe.of(FAItems.TANBARK_DUST.toStack()).input(ItemTags.OAK_LOGS).progress(100).beginData().speed(1).torque(800).endData()
+					   .unlockedBy("has_oak_logs", has(ItemTags.OAK_LOGS)).save(output);
 
 		// dyes
 		MillstoneRecipe.of(new ItemStack(Items.MAGENTA_DYE, 2)).input(Items.ALLIUM).progress(50).beginData().speed(1).torque(40).endData()
@@ -543,6 +545,42 @@ public class FARecipeProvider extends RecipeProvider
 							.minSpeed(1)
 							.maxSpeed(10)
 							.unlockedBy("has_wheat_flour", has(FATags.Items.WHEAT_DUST))
+							.save(output);
+
+		TumblingBarrelRecipe.of(FAFluids.LIMEWATER_SOURCE.get(), 250)
+							.fluidInput(Fluids.WATER, 250)
+							.input(FATags.Items.QUICKLIME_DUST)
+							.time(250)
+							.minSpeed(1)
+							.maxSpeed(10)
+							.unlockedBy("has_quicklime", has(FATags.Items.QUICKLIME_DUST))
+							.save(output);
+
+		TumblingBarrelRecipe.of(FAFluids.TANNIN_SOURCE.get(), 100)
+							.fluidInput(Fluids.WATER, 100)
+							.input(FAItems.TANBARK_DUST)
+							.time(200)
+							.minSpeed(1)
+							.maxSpeed(10)
+							.unlockedBy("has_tanbark_dust", has(FAItems.TANBARK_DUST))
+							.save(output);
+
+		TumblingBarrelRecipe.of(FAItems.CLEANED_LEATHER)
+							.fluidInput(FAFluids.LIMEWATER_SOURCE.get(), 500)
+							.input(Items.LEATHER)
+							.time(1000)
+							.minSpeed(0.2f)
+							.maxSpeed(0.5f)
+							.unlockedBy("has_leather", has(Items.LEATHER))
+							.save(output);
+
+		TumblingBarrelRecipe.of(FAItems.PROCESSED_LEATHER)
+							.fluidInput(FAFluids.TANNIN_SOURCE.get(), 500)
+							.input(FAItems.CLEANED_LEATHER)
+							.time(1000)
+							.minSpeed(0.5f)
+							.maxSpeed(1.5f)
+							.unlockedBy("has_cleaned_leather", has(FAItems.CLEANED_LEATHER))
 							.save(output);
 
 		// Vanilla overrides
