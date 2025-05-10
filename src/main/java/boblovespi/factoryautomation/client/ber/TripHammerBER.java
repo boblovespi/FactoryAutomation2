@@ -34,7 +34,7 @@ public class TripHammerBER extends GeoBlockRenderer<TripHammerBE> {
     public void render(TripHammerBE be, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 
         poseStack.pushPose();
-        poseStack.translate(0.5f, 1f, 0.5f);
+        poseStack.translate(0.5f, 16.5f/16.0f, 0.5f);
         poseStack.mulPose(BERUtils.quatFromAngleAxis(90, 1, 0, 0));
         itemRenderer.renderStatic(be.getRenderStack(), ItemDisplayContext.FIXED, packedLight, packedOverlay, poseStack, bufferSource, be.getLevel(), 42);
 
