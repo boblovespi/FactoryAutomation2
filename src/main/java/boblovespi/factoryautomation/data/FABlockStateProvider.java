@@ -123,6 +123,7 @@ public class FABlockStateProvider extends BlockStateProvider
 				modLoc("block/iron_splitter_back"));
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
+		existingHorizontalBlockWithItem(FABlocks.TRIP_HAMMER);
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)

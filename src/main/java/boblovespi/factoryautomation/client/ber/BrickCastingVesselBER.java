@@ -29,7 +29,7 @@ public class BrickCastingVesselBER implements BlockEntityRenderer<BrickCastingVe
 		{
 			stack.translate(0.5f, 0.5f, 0.5f);
 			// stack.scale(12/16f, 12/16f, 12/16f);
-			var state = be.getLevel().getBlockState(be.getBlockPos());
+			var state = be.getBlockState();
 			if(state.is(FABlocks.BRICK_CASTING_VESSEL.get())){
 				stack.mulPose(BERUtils.quatFromAngleAxis(state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot(), 0, 1, 0));
 			}

@@ -31,13 +31,14 @@ public class Multiblocks
 		MultiblockRegistry.register(brickCrucible);
 		BRICK_CRUCIBLE = brickCrucible;
 		var tripHammer = SimpleMultiblock.Builder.make("trip_hammer", 6, 2, 1)
-												 .layer("ifflfi")
+												 .layer("ifflfs")
 												 .layer("caalaa")
 												 .define('c', FABlocks.TRIP_HAMMER)
 												 .define('l', Blocks.OAK_LOG.defaultBlockState())
-												 .define('f', Blocks.OAK_FENCE)
+												 .define('f', Blocks.STRIPPED_SPRUCE_LOG)
 												 .define('i', Blocks.IRON_BLOCK)
-												 .define('a', Blocks.AIR)
+				.define('a', Blocks.AIR)
+				.define('s', Blocks.CHISELED_STONE_BRICKS)
 												 .setOffset(new Vec3i(0, 0, 0)).build();
 		MultiblockRegistry.register(tripHammer);
 		TRIP_HAMMER = tripHammer;

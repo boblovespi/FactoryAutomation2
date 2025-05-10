@@ -208,7 +208,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoB
 	}
 
 	private PlayState handleAnim(AnimationState<TripHammerBE> s) {
-		return s.setAndContinue(STANDBY_STATE);
+		return recipeManager.hasRecipe() ? s.setAndContinue(ACTIVE_STATE) : s.setAndContinue(STANDBY_STATE);
 	}
 
 	@Override

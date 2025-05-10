@@ -113,10 +113,4 @@ public class TripHammer extends Block implements EntityBlock
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
-
-	@Override
-	protected RenderShape getRenderShape(BlockState state)
-	{
-		return RenderShape.INVISIBLE;
-	}
 }
