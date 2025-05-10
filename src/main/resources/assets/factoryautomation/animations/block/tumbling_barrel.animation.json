@@ -1,0 +1,13 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.tumbling_barrel.active": {
+			"loop": true,
+			"bones": {
+				"barrel": {
+					"rotation": [0, "-query.rot", 0]
+				}
+			}
+		}
+	}
+}

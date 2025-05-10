@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.client.model.PartialDynamicTextureGeometryLo
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
+import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
 import boblovespi.factoryautomation.common.util.ponder.FAPonderPlugin;
@@ -38,6 +39,7 @@ public class ClientHandler
 		FactoryAutomation.LOGGER.info("Minecraft username is {}", Minecraft.getInstance().getUser().getName());
 		// MathParser.registerVariable(new Variable("query.rot", 0));
 		MolangQueries.<MillstoneBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
+		MolangQueries.<TumblingBarrelBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 
 		PonderIndex.addPlugin(new FAPonderPlugin());
 	}
@@ -58,6 +60,7 @@ public class ClientHandler
 		event.registerBlockEntityRenderer(FABETypes.PAPER_BELLOWS_TYPE.get(), PaperBellowsBER::new);
 		event.registerBlockEntityRenderer(FABETypes.SMALL_WATERWHEEL_TYPE.get(), SmallWaterwheelBER::new);
 		event.registerBlockEntityRenderer(FABETypes.TRIP_HAMMER_TYPE.get(), TripHammerBER::new);
+		event.registerBlockEntityRenderer(FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBER::new);
 	}
 
 	@SubscribeEvent

@@ -42,7 +42,7 @@ import java.util.function.Function;
 
 public class TumblingBarrelBE extends FABE implements ITickable, GeoBlockEntity, IMenuProviderProvider
 {
-	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("state.tumbling_barrel.active");
+	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("animation.tumbling_barrel.active");
 	private static final float TORQUE_REQ = 100;
 	private final AnimatableInstanceCache cache;
 	private final RecipeManager<TumblingBarrelRecipe> recipeManager;
@@ -106,6 +106,13 @@ public class TumblingBarrelBE extends FABE implements ITickable, GeoBlockEntity,
 	private TumblingBarrelRecipe.Input getInput()
 	{
 		return new TumblingBarrelRecipe.Input(inv.getStackInSlot(0), inTank.getFluid(), mechanicalManager.getSpeed());
+	}
+
+	public float getRenderRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return (rot + delta * (float) (Math.toDegrees(mechanicalManager.getSpeed()) / 20)) % 360;
 	}
 
 	private boolean fits(TumblingBarrelRecipe recipe)

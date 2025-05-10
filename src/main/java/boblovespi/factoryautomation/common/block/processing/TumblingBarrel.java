@@ -11,9 +11,11 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -29,13 +32,7 @@ import org.jetbrains.annotations.Nullable;
 public class TumblingBarrel extends Block implements EntityBlock
 {
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
-	private static final VoxelShape BOUNDING_BOX = Shapes.or(
-			Block.box(2, 4, 2, 14, 16, 14),
-			Block.box(14, 7, 5, 16, 13, 11),
-			Block.box(14, 0, 6, 16, 7, 10),
-			Block.box(0, 7, 5, 2, 13, 11),
-			Block.box(0, 0, 6, 2, 7, 10)
-															);
+	private static final VoxelShape BOUNDING_BOX = Shapes.or(Block.box(0, 0, 6, 2, 7, 10), Block.box(0, 7, 5, 2, 13, 11), Block.box(2, 4, 2, 14, 16, 14), Block.box(14, 0, 6, 16, 7, 10), Block.box(14, 7, 5, 16, 13, 11));
 
 	public TumblingBarrel(Properties properties)
 	{
@@ -90,5 +87,16 @@ public class TumblingBarrel extends Block implements EntityBlock
 	public BlockState getStateForPlacement(BlockPlaceContext context)
 	{
 		return defaultBlockState().setValue(AXIS, context.getHorizontalDirection().getAxis());
+	}
+
+	@Override
+	protected RenderShape getRenderShape(BlockState state) {
+		return RenderShape.ENTITYBLOCK_ANIMATED;
+	}
+
+	@Override
+	protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
+	{
+		return BOUNDING_BOX;
 	}
 }
