@@ -6,12 +6,14 @@ import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.BrickCastingVesselBE;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +23,9 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -32,13 +36,14 @@ import org.jetbrains.annotations.Nullable;
 public class BrickCastingVessel extends Block implements EntityBlock
 {
 	public static final BooleanProperty MOLD = BooleanProperty.create("mold");
+	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 	private static final VoxelShape BOUNDING_BOX = Shapes.join(Shapes.block(), Block.box(2, 2, 2, 14, 16, 14), BooleanOp.ONLY_FIRST);
 	private static final VoxelShape FILLED_BOUNDING_BOX = Shapes.join(Shapes.block(), Block.box(2, 15, 2, 14, 16, 14), BooleanOp.ONLY_FIRST);
 
 	public BrickCastingVessel(Properties properties)
 	{
 		super(properties);
-		registerDefaultState(defaultBlockState().setValue(MOLD, false));
+		registerDefaultState(defaultBlockState().setValue(MOLD, false).setValue(FACING, Direction.NORTH));
 	}
 
 	@Nullable
@@ -50,7 +55,7 @@ public class BrickCastingVessel extends Block implements EntityBlock
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
 	{
-		builder.add(MOLD);
+		builder.add(MOLD, FACING);
 	}
 
 	@Override
@@ -90,5 +95,11 @@ public class BrickCastingVessel extends Block implements EntityBlock
 		if (!pState.is(pNewState.getBlock()))
 			pLevel.getBlockEntity(pPos, FABETypes.BRICK_CASTING_VESSEL_TYPE.get()).ifPresent(FABE::onDestroy);
 		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context)
+	{
+		return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 }
