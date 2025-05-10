@@ -37,7 +37,7 @@ public class BrickCastingVessel extends Block implements EntityBlock
 {
 	public static final BooleanProperty MOLD = BooleanProperty.create("mold");
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
-	private static final VoxelShape BOUNDING_BOX = Shapes.join(Shapes.block(), Block.box(2, 2, 2, 14, 16, 14), BooleanOp.ONLY_FIRST);
+	private static final VoxelShape BOUNDING_BOX = Shapes.or(Block.box(0, 0, 0, 16, 2, 16), Block.box(1, 2, 1, 15, 16, 15));
 	private static final VoxelShape FILLED_BOUNDING_BOX = Shapes.join(Shapes.block(), Block.box(2, 15, 2, 14, 16, 14), BooleanOp.ONLY_FIRST);
 
 	public BrickCastingVessel(Properties properties)
