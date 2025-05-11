@@ -39,7 +39,7 @@ public class ClientHandler
 		FactoryAutomation.LOGGER.info("Minecraft username is {}", Minecraft.getInstance().getUser().getName());
 		// MathParser.registerVariable(new Variable("query.rot", 0));
 		MolangQueries.<MillstoneBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
-		MolangQueries.<TumblingBarrelBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
+		MolangQueries.<TumblingBarrelBE>setActorVariable("query.barrel_rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 
 		PonderIndex.addPlugin(new FAPonderPlugin());
 	}

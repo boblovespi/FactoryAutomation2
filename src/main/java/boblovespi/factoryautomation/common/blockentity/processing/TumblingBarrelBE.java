@@ -30,9 +30,11 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.RangedWrapper;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
 import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -207,9 +209,8 @@ public class TumblingBarrelBE extends FABE implements ITickable, GeoBlockEntity,
 	}
 
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers)
-	{
-
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+		controllers.add(new AnimationController<GeoAnimatable>(this, s -> s.setAndContinue(ACTIVE_STATE)));
 	}
 
 	@Override

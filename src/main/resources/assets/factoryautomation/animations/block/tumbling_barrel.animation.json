@@ -5,7 +5,7 @@
 			"loop": true,
 			"bones": {
 				"barrel": {
-					"rotation": [0, "-query.rot", 0]
+					"rotation": ["-query.barrel_rot", 0, 0]
 				}
 			}
 		}
