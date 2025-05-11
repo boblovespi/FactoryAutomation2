@@ -864,14 +864,7 @@ public class FARecipeProvider extends RecipeProvider
 
 	private void tallowMold(RecipeOutput output, Form form, Map<Form, DeferredItem<? extends Item>> forms, Map<Form, DeferredItem<? extends Item>> unfiredMolds)
 	{
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, unfiredMolds.get(form))
-						   .pattern("s s")
-						   .pattern("sms")
-						   .pattern("sss")
-						   .define('s', FAItems.GREEN_SAND)
-						   .define('m', forms.get(form))
-						   .unlockedBy("has_tallow_" + form.getName(), has(forms.get(form)))
-						   .save(output);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, unfiredMolds.get(form)).requires(FAItems.GREEN_SAND).requires(forms.get(form)).unlockedBy("has_tallow_" + form.getName(), has(forms.get(form))).save(output);
 	}
 
 	private void firedTallowMold(RecipeOutput output, Form form, Map<Form, DeferredItem<? extends Item>> unfiredMolds, Map<Form, DeferredItem<? extends Item>> firedMolds)
