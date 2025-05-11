@@ -4,7 +4,7 @@
 		"0": "#side",
 		"1": "#end",
 		"2": "#roof",
-		"particle": "#side"
+		"particle": "#roof"
 	},
 	"elements": [
 		{

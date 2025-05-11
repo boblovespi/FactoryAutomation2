@@ -84,19 +84,19 @@ public class FABlocks
 	public static final DeferredBlock<Block> ALUMINUM_PLATE_BLOCK = register("aluminum_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.GLOW_LICHEN));
 	public static final DeferredBlock<Block> ALUMINUM_BRONZE_PLATE_BLOCK = register("aluminum_bronze_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.RAW_IRON));
 	public static final DeferredBlock<Block> CHROMIUM_PLATE_BLOCK = register("chromium_plate_block", Block::new, BlockProperties.LIGHT_METAL(MapColor.SNOW));
-	public static final DeferredBlock<WaterloggedTransparentBlock> COPPER_SPACE_FRAME = register("copper_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_ORANGE)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> TIN_SPACE_FRAME = register("tin_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> IRON_SPACE_FRAME = register("iron_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.METAL)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> LEAD_SPACE_FRAME = register("lead_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_PURPLE)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> BRONZE_SPACE_FRAME = register("bronze_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.GOLD)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> NICKEL_SPACE_FRAME = register("nickel_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.SAND)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> SILVER_SPACE_FRAME = register("silver_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.WOOL)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> MAGMATIC_BRASS_SPACE_FRAME = register("magmatic_brass_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.FIRE)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> PIG_IRON_SPACE_FRAME = register("pig_iron_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.TERRACOTTA_LIGHT_GRAY)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> STEEL_SPACE_FRAME = register("steel_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.TERRACOTTA_CYAN)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> ALUMINUM_SPACE_FRAME = register("aluminum_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.GLOW_LICHEN)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> ALUMINUM_BRONZE_SPACE_FRAME = register("aluminum_bronze_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.RAW_IRON)));
-	public static final DeferredBlock<WaterloggedTransparentBlock> CHROMIUM_SPACE_FRAME = register("chromium_space_frame", WaterloggedTransparentBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.SNOW)));
+	public static final DeferredBlock<SpaceFrameBlock> COPPER_SPACE_FRAME = register("copper_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_ORANGE)));
+	public static final DeferredBlock<SpaceFrameBlock> TIN_SPACE_FRAME = register("tin_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_LIGHT_BLUE)));
+	public static final DeferredBlock<SpaceFrameBlock> IRON_SPACE_FRAME = register("iron_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.METAL)));
+	public static final DeferredBlock<SpaceFrameBlock> LEAD_SPACE_FRAME = register("lead_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.COLOR_PURPLE)));
+	public static final DeferredBlock<SpaceFrameBlock> BRONZE_SPACE_FRAME = register("bronze_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.GOLD)));
+	public static final DeferredBlock<SpaceFrameBlock> NICKEL_SPACE_FRAME = register("nickel_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.SAND)));
+	public static final DeferredBlock<SpaceFrameBlock> SILVER_SPACE_FRAME = register("silver_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.WOOL)));
+	public static final DeferredBlock<SpaceFrameBlock> MAGMATIC_BRASS_SPACE_FRAME = register("magmatic_brass_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.FIRE)));
+	public static final DeferredBlock<SpaceFrameBlock> PIG_IRON_SPACE_FRAME = register("pig_iron_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.TERRACOTTA_LIGHT_GRAY)));
+	public static final DeferredBlock<SpaceFrameBlock> STEEL_SPACE_FRAME = register("steel_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.METAL(MapColor.TERRACOTTA_CYAN)));
+	public static final DeferredBlock<SpaceFrameBlock> ALUMINUM_SPACE_FRAME = register("aluminum_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.GLOW_LICHEN)));
+	public static final DeferredBlock<SpaceFrameBlock> ALUMINUM_BRONZE_SPACE_FRAME = register("aluminum_bronze_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.RAW_IRON)));
+	public static final DeferredBlock<SpaceFrameBlock> CHROMIUM_SPACE_FRAME = register("chromium_space_frame", SpaceFrameBlock::new, BlockProperties.SPACE_FRAME(BlockProperties.LIGHT_METAL(MapColor.SNOW)));
 
 	// Building blocks
 

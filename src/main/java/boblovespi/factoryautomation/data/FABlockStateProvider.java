@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.SpaceFrameBlock;
 import boblovespi.factoryautomation.common.block.mechanical.BevelGear;
 import boblovespi.factoryautomation.common.block.mechanical.HandCrank;
 import boblovespi.factoryautomation.common.block.mechanical.Splitter;
@@ -18,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -281,12 +283,28 @@ public class FABlockStateProvider extends BlockStateProvider
 		simpleBlockItem(block.get(), model);
 	}
 
-	private void spaceFrame(DeferredBlock<WaterloggedTransparentBlock> spaceFrame)
+	private void spaceFrame(DeferredBlock<SpaceFrameBlock> spaceFrame)
 	{
-		var model = models().withExistingParent(spaceFrame.getRegisteredName(), modLoc("block/space_frame"))
-							.texture("side", spaceFrame.getId().withPrefix("block/"))
-							.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
-							.renderType("minecraft:cutout");
-		simpleBlock(spaceFrame.get(), model);
+		getVariantBuilder(spaceFrame.get()).forAllStates( blockState -> {
+			if(blockState.getValue(SpaceFrameBlock.IS_TOP)){
+				return new ConfiguredModel[]{new ConfiguredModel(models().withExistingParent(spaceFrame.getRegisteredName()+"_roofed", modLoc("block/space_frame_roofed"))
+						.texture("side", spaceFrame.getId().withPrefix("block/"))
+						.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+						.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top_roofed"))
+						.renderType("minecraft:cutout"))};
+			} else {
+				return new ConfiguredModel[]{new ConfiguredModel(models().withExistingParent(spaceFrame.getRegisteredName(), modLoc("block/space_frame"))
+						.texture("side", spaceFrame.getId().withPrefix("block/"))
+						.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+						.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+						.renderType("minecraft:cutout"))};
+			}
+		});
+		simpleBlockItem(spaceFrame.get(), models().withExistingParent(spaceFrame.getRegisteredName()+"_roofed", modLoc("block/space_frame_roofed"))
+				.texture("side", spaceFrame.getId().withPrefix("block/"))
+				.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+				.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top_roofed"))
+				.renderType("minecraft:cutout"));
+
 	}
 }

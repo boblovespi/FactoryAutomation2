@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.common.item;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.SpaceFrameBlock;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
@@ -181,7 +182,7 @@ public class FAItems
 	}
 
 	private static Map<Form, DeferredItem<? extends Item>> metal(String name, Collection<Form> metals, @Nullable DeferredBlock<Block> block,
-																 @Nullable DeferredBlock<Block> plateBlock, @Nullable DeferredBlock<WaterloggedTransparentBlock> spaceFrame)
+																 @Nullable DeferredBlock<Block> plateBlock, @Nullable DeferredBlock<SpaceFrameBlock> spaceFrame)
 	{
 		return metals.stream().collect(Collectors.toMap(k -> k, k -> {
 			if (k == Form.BLOCK && block != null)
