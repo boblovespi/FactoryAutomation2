@@ -381,6 +381,8 @@
 	"advancements.factoryautomation.copper_age.root.description": "Enter the copper age by obtaining a Copper Ingot.",
 	"advancements.factoryautomation.copper_age.copper_pickaxe.title": "Copper Pickaxe",
 	"advancements.factoryautomation.copper_age.copper_pickaxe.description": "Make a Copper Pickaxe.",
+	"advancements.factoryautomation.copper_age.limonite_ore.title": "Crude Iron",
+	"advancements.factoryautomation.copper_age.limonite_ore.description": "Make a Copper Pickaxe.",
 	"advancements.factoryautomation.copper_age.firebow.title": "Firebow",
 	"advancements.factoryautomation.copper_age.firebow.description": "Make a Firebow to start fires.",
 	"advancements.factoryautomation.copper_age.stone_workbench.title": "Improved Crafting",
@@ -425,5 +427,8 @@
 	"factoryautomation.ponder.iron_bloom_creation.header": "Getting Iron Shards",
 	"factoryautomation.ponder.iron_bloom_creation.text_1": "Make sure every side is covered with copper plate blocks, even the bottom!",
 	"factoryautomation.ponder.brick_making.header": "Firing Bricks",
-	"factoryautomation.ponder.brick_making.text_1": "Make sure the Dried Bricks are covered on at least 2 sides with log piles"
+	"factoryautomation.ponder.brick_making.text_1": "Make sure the Dried Bricks are covered on at least 2 sides with log piles",
+	"factoryautomation.ponder.brick_foundry.header": "Creation and Usage of Brick Foundry",
+	"factoryautomation.ponder.brick_foundry.text_1": "A better version of the foundry, capable of melting iron.",
+	"factoryautomation.ponder.brick_foundry.text_2": "The foundry's efficiency can be enhanced with bellows"
 }

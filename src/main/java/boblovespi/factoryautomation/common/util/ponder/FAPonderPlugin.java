@@ -3,13 +3,13 @@ package boblovespi.factoryautomation.common.util.ponder;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.block.FABlocks;
-import boblovespi.factoryautomation.common.block.processing.LogPile;
-import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
-import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
+import boblovespi.factoryautomation.common.block.processing.*;
+import boblovespi.factoryautomation.common.blockentity.processing.BrickCastingVesselBE;
 import boblovespi.factoryautomation.common.blockentity.processing.BrickMakerFrameBE;
 import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
 import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
 import boblovespi.factoryautomation.common.item.FAItems;
+import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.Metal;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.Ponder;
@@ -27,6 +27,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -57,6 +59,7 @@ public class FAPonderPlugin implements PonderPlugin
 		helper.forComponents(FABlocks.CHOPPING_BLOCK, FAItems.CHOPPING_BLADE).addStoryBoard("chopping_block_usage", this::choppingBlockUsageScene);
 		helper.forComponents(FAItems.IRON_SHARD, FABlocks.LIMONITE_CHARCOAL_MIX).addStoryBoard("iron_bloom_creation", this::ironBloomCreationScene);
 		helper.forComponents(Items.BRICK, Items.BRICKS, FABlocks.BRICK_MAKER_FRAME, FAItems.DRIED_BRICK, FABlocks.DRIED_BRICKS).addStoryBoard("brick_making", this::brickMakingScene);
+		helper.forComponents(FAItems.BRICK_CRUCIBLE, FAItems.BRICK_FIREBOX, FAItems.BRICK_CASTING_VESSEL).addStoryBoard("brick_foundry", this::brickFoundry);
 	}
 
 
@@ -428,6 +431,72 @@ public class FAPonderPlugin implements PonderPlugin
 		scene.idle(20);
 
 
+	}
+
+	private void brickFoundry(SceneBuilder scene, SceneBuildingUtil util) {
+		scene.title("brick_foundry", "The Brick Foundry");
+		var cruciblePos = util.grid().at(2,2,2);
+		var vesselPos = util.grid().at(1,1,2);
+		var fireboxPos = util.grid().at(2,1,2);
+		var bellowPos = util.grid().at(3,1,2);
+
+		scene.showBasePlate();
+		scene.idle(20);
+		scene.world().showSection(util.select().fromTo(1, 1, 1, 4, 2, 4), Direction.DOWN);
+		scene.idle(20);
+		scene.world().hideSection(util.select().position(bellowPos), Direction.UP);
+
+		scene.addKeyframe();
+		scene.world().setBlock(fireboxPos, FABlocks.BRICK_FIREBOX.get().defaultBlockState(),true);
+		scene.overlay().showText(60)
+				.text("Getting an Upgrade")
+				.colored(PonderPalette.WHITE)
+				.pointAt(fireboxPos.getCenter())
+				.independent();
+		scene.idle(10);
+		scene.world().setBlock(vesselPos, FABlocks.BRICK_CASTING_VESSEL.get().defaultBlockState(),true);
+		scene.idle(10);
+		scene.world().setBlock(cruciblePos, FABlocks.BRICK_CRUCIBLE.get().defaultBlockState().setValue(BrickCrucible.FACING, Direction.WEST),true);
+		scene.idle(40);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(cruciblePos.above().getBottomCenter(), Pointing.RIGHT, 20)
+				.rightClick();
+		scene.idle(30);
+		scene.world().setBlock(bellowPos, FABlocks.PAPER_BELLOWS.get().defaultBlockState().setValue(PaperBellows.FACING, Direction.WEST),false);
+		scene.world().cycleBlockProperty(cruciblePos, BrickCrucible.MULTIBLOCK_COMPLETE);
+		scene.world().setBlock(fireboxPos, FABlocks.MULTIBLOCK_PART.get().defaultBlockState(), false);
+		scene.effects().indicateSuccess(fireboxPos);
+		scene.effects().indicateSuccess(cruciblePos);
+		scene.idle(10);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(vesselPos.getCenter(), Pointing.RIGHT, 20)
+				.rightClick()
+				.withItem(FAItems.FIRED_TALLOW_MOLDS.get(Form.INGOT).get().getDefaultInstance());
+		scene.idle(20);
+		scene.world().cycleBlockProperty(vesselPos, BrickCastingVessel.MOLD);
+		scene.world().modifyBlockEntity(vesselPos, BrickCastingVesselBE.class, be -> be.placeItem(FAItems.FIRED_TALLOW_MOLDS.get(Form.INGOT).get().getDefaultInstance()));
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.overlay().showControls(cruciblePos.getCenter(), Pointing.LEFT, 20)
+				.rightClick();
+		scene.idle(30);
+		scene.world().modifyBlockEntity(vesselPos, BrickCastingVesselBE.class, b -> b.cast(n -> Optional.of(Metal.COPPER)));
+		var sparks = serverSent(FAParticleTypes.METAL_SPARK.get(), 0.3, 0, 0.3, 0);
+		scene.effects().emitParticles(vesselPos.above().getBottomCenter(), sparks, 50, 1);
+		scene.idle(30);
+
+		scene.addKeyframe();
+		scene.world().showSection(util.select().position(bellowPos), Direction.DOWN);
+		scene.idle(20);
+		scene.overlay().showText(40)
+				.text("Efficiency!")
+				.colored(PonderPalette.WHITE)
+				.pointAt(bellowPos.getCenter())
+				.independent();
+		scene.idle(40);
 	}
 
 	private ParticleEmitter inWholeBlock(ParticleEmitter emitter) {

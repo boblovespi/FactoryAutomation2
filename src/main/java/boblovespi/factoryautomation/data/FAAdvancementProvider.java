@@ -55,6 +55,7 @@ public class FAAdvancementProvider extends AdvancementProvider
 			copperAgeBuilder.addCriterion("has_copper_ingot", has(() -> Items.COPPER_INGOT));
 			var copperIngot2 = copperAgeBuilder.save(saver, FactoryAutomation.name("copper_age/root"), existingFileHelper);
 			var copperPickaxe = task("copper_pickaxe", "copper_age", FAItems.COPPER_PICKAXE, copperIngot2);
+			var limoniteOre = task("limonite_ore", "copper_age", FAItems.RAW_LIMONITE, copperPickaxe);
 			var firebow = task("firebow", "copper_age", FAItems.FIREBOW, copperIngot2);
 			var stoneWorkbench = task("stone_workbench", "copper_age", FAItems.STONE_WORKBENCH, copperPickaxe);
 			var charcoal = task("charcoal", "copper_age", () -> Items.CHARCOAL, firebow);
