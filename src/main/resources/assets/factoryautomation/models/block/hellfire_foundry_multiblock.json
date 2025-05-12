@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "factoryautomation:block/brick_foundry_multiblock",
-		"particle": "block/bricks"
+		"0": "factoryautomation:block/hellfire_foundry_multiblock",
+		"particle": "factoryautomation:block/hellfire_foundry_multiblock"
 	},
 	"elements": [
 		{
