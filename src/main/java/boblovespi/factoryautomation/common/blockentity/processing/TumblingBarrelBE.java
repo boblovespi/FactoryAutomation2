@@ -2,10 +2,7 @@ package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.api.IMechanicalInput;
 import boblovespi.factoryautomation.common.block.processing.TumblingBarrel;
-import boblovespi.factoryautomation.common.blockentity.FABE;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.menu.TumblingBarrelMenu;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.TumblingBarrelRecipe;
@@ -42,7 +39,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class TumblingBarrelBE extends FABE implements ITickable, GeoBlockEntity, IMenuProviderProvider
+public class TumblingBarrelBE extends FABE implements ITickable, IClientTickable, GeoBlockEntity, IMenuProviderProvider
 {
 	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("animation.tumbling_barrel.active");
 	private static final float TORQUE_REQ = 100;
@@ -237,6 +234,13 @@ public class TumblingBarrelBE extends FABE implements ITickable, GeoBlockEntity,
 		if (direction != null && direction.getAxis() == getBlockState().getValue(TumblingBarrel.AXIS))
 			return inTank;
 		return outTank;
+	}
+
+	@Override
+	public void clientTick()
+	{
+		rot += (float) (Math.toDegrees(mechanicalManager.getSpeed()) / 20);
+		rot %= 360;
 	}
 
 	private class Data implements ContainerData

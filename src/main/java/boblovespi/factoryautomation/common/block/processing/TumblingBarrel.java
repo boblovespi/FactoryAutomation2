@@ -1,9 +1,6 @@
 package boblovespi.factoryautomation.common.block.processing;
 
-import boblovespi.factoryautomation.common.blockentity.FABE;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -59,7 +56,7 @@ public class TumblingBarrel extends Block implements EntityBlock
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> beType)
 	{
 		if (level.isClientSide)
-			return null;
+			return IClientTickable.makeTicker(FABETypes.TUMBLING_BARREL_TYPE.get(), beType);
 		return ITickable.makeTicker(FABETypes.TUMBLING_BARREL_TYPE.get(), beType);
 	}
 
