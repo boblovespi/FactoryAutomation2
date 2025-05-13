@@ -75,7 +75,9 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoB
 	@Nullable
 	private RecipeHolder<TripHammerRecipe> findMatchingRecipe()
 	{
-		return level.getRecipeManager().getRecipeFor(RecipeThings.TRIP_HAMMER_TYPE.get(), new TripHammerRecipe.Input(inv.getStackInSlot(0)), level).orElse(null);
+		if (mechanicalManager.getTorque() >= 200)
+			return level.getRecipeManager().getRecipeFor(RecipeThings.TRIP_HAMMER_TYPE.get(), new TripHammerRecipe.Input(inv.getStackInSlot(0)), level).orElse(null);
+		return null;
 	}
 
 	private boolean isValid(RecipeHolder<TripHammerRecipe> recipe)
@@ -207,7 +209,8 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoB
 		controllers.add(new AnimationController<>(this, this::handleAnim));
 	}
 
-	private PlayState handleAnim(AnimationState<TripHammerBE> s) {
+	private PlayState handleAnim(AnimationState<TripHammerBE> s)
+	{
 		return recipeManager.hasRecipe() ? s.setAndContinue(ACTIVE_STATE) : s.setAndContinue(STANDBY_STATE);
 	}
 
@@ -224,7 +227,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoB
 		if (capability == MechanicalCapability.INPUT)
 		{
 			var facing = getBlockState().getValue(TripHammer.FACING);
-			if (offset.equals(worldPosition.relative(facing, 5).above()) && dir == facing.getClockWise())
+			if (offset.equals(BlockPos.ZERO.relative(facing, 5).above()) && dir.getAxis() == facing.getClockWise().getAxis())
 				return (T) mechanicalManager;
 		}
 		return null;

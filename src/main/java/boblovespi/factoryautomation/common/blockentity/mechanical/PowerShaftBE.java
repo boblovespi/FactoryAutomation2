@@ -140,7 +140,7 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	}
 
 	@Nullable
-	public IMechanicalInput input(Direction dir)
+	public IMechanicalInput input(@Nullable Direction dir)
 	{
 		if (dir == inputSide || (dir.getAxis() == getBlockState().getValue(PowerShaft.AXIS) && inputSide == null))
 		{
@@ -155,7 +155,7 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	}
 
 	@Nullable
-	public IMechanicalOutput output(Direction dir)
+	public IMechanicalOutput output(@Nullable Direction dir)
 	{
 		if (dir.getOpposite() == inputSide)
 			return source == null ? manager : source.getManager();

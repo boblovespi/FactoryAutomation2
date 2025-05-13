@@ -105,7 +105,7 @@ public class MultiblockPartBE extends FABE
 	}
 
 	@Nullable
-	public <T> T getCapability(BlockCapability<T, Direction> capability, Direction dir)
+	public <T> T getCapability(BlockCapability<T, Direction> capability, @Nullable Direction dir)
 	{
 		var be = level.getBlockEntity(worldPosition.subtract(multiblockControllerOffset));
 		if (be instanceof IMultiblockBE mbe)

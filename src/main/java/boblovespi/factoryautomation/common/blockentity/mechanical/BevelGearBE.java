@@ -142,7 +142,7 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 	}
 
 	@Nullable
-	public IMechanicalInput input(Direction dir)
+	public IMechanicalInput input(@Nullable Direction dir)
 	{
 		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
 		var front = orientation.front();
@@ -161,7 +161,7 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 	}
 
 	@Nullable
-	public IMechanicalOutput output(Direction dir)
+	public IMechanicalOutput output(@Nullable Direction dir)
 	{
 		if (inputSide != null && dir == getOutputSide())
 			return source == null ? manager : source.getManager();

@@ -74,13 +74,13 @@ public class SplitterBE extends FABE implements IClientTickable
 	}
 
 	@Nullable
-	public IMechanicalOutput output(Direction direction)
+	public IMechanicalOutput output(@Nullable Direction direction)
 	{
 		return direction.getAxis() == getBlockState().getValue(Splitter.FACING).getClockWise().getAxis() ? manager : null;
 	}
 
 	@Nullable
-	public IMechanicalInput input(Direction direction)
+	public IMechanicalInput input(@Nullable Direction direction)
 	{
 		if (getBlockState().getValue(Splitter.VERTICAL))
 		{

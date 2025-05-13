@@ -190,7 +190,7 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 	}
 
 	@Nullable
-	public IMechanicalInput input(Direction dir)
+	public IMechanicalInput input(@Nullable Direction dir)
 	{
 		if (dir == Direction.DOWN)
 			return mechanicalManager;
@@ -198,7 +198,7 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 	}
 
 	@Nullable
-	public IItemHandler itemHandler(Direction dir)
+	public IItemHandler itemHandler(@Nullable Direction dir)
 	{
 		if (dir == Direction.UP)
 			return inv;

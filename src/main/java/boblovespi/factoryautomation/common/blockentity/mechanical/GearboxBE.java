@@ -191,13 +191,13 @@ public class GearboxBE extends FABE implements ITickable, IClientTickable
 	}
 
 	@Nullable
-	public IMechanicalOutput output(Direction direction)
+	public IMechanicalOutput output(@Nullable Direction direction)
 	{
 		return direction == getBlockState().getValue(Gearbox.FACING) ? manager : null;
 	}
 
 	@Nullable
-	public IMechanicalInput input(Direction direction)
+	public IMechanicalInput input(@Nullable Direction direction)
 	{
 		return direction.getOpposite() == getBlockState().getValue(Gearbox.FACING) ? manager : null;
 	}
