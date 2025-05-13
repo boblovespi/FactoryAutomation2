@@ -428,6 +428,19 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_copper_sheet", has(FATags.Items.COPPER_SHEET))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.TRIP_HAMMER)
+							  .pattern("sas")
+							  .pattern("sps")
+							  .pattern("lll")
+							  .define('s', FATags.Items.IRON_SHEET)
+							  .define('a', Items.ANVIL)
+							  .define('p', FAItems.IRON_THINGS.get(Form.PLATE_BLOCK))
+							  .define('l', Items.SMOOTH_STONE_SLAB)
+							  .tool("hammer", 2, 10)
+							  .part("screw", 1, 4)
+							  .unlockedBy("has_anvil", has(Items.ANVIL))
+							  .save(output);
+
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
 								  .unlockedBy("has_bread", has(Items.BREAD))
 								  .save(output, FactoryAutomation.name("campfire/toasted_bread"));
