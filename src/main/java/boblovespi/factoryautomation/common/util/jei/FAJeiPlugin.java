@@ -43,6 +43,7 @@ public class FAJeiPlugin implements IModPlugin
 	private MillstoneJeiCategory millstoneJeiCategory;
 	private LogPileFiringCategory logPileFiringCategory;
 	private TripHammerJeiCategory tripHammerJeiCategory;
+	private TumblingBarrelJeiCategory tumblingBarrelJeiCategory;
 
 	@Override
 	public ResourceLocation getPluginUid()
@@ -70,6 +71,8 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCategories(logPileFiringCategory);
 		tripHammerJeiCategory = new TripHammerJeiCategory(guiHelper);
 		registration.addRecipeCategories(tripHammerJeiCategory);
+		tumblingBarrelJeiCategory = new TumblingBarrelJeiCategory(guiHelper);
+		registration.addRecipeCategories(tumblingBarrelJeiCategory);
 	}
 
 	@Override
@@ -106,6 +109,7 @@ public class FAJeiPlugin implements IModPlugin
 																					.map(LogPileFiringCategory.Holder.Real::new)
 																					.collect(Collectors.toUnmodifiableList()));
 		registration.addRecipes(tripHammerJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.TRIP_HAMMER_TYPE.get()));
+		registration.addRecipes(tumblingBarrelJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.TUMBLING_BARREL_TYPE.get()));
 
 		var anySolid = new ItemStack(Blocks.STONE);
 		anySolid.set(DataComponents.ITEM_NAME, Component.translatable(FactoryAutomation.locString("jei", "misc.any_solid")));
@@ -147,6 +151,7 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCatalyst(FAItems.LOG_PILE, logPileFiringCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.LIMONITE_CHARCOAL_MIX, logPileFiringCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.TRIP_HAMMER, tripHammerJeiCategory.getRecipeType());
+		registration.addRecipeCatalyst(FAItems.TUMBLING_BARREL, tumblingBarrelJeiCategory.getRecipeType());
 	}
 
 	@Override
