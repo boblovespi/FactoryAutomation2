@@ -15,35 +15,15 @@
 		},
 		"animation.hammer.active": {
 			"loop": true,
-			"animation_length": 1.25,
 			"bones": {
 				"hammer": {
-					"rotation": {
-						"0.0": [0, 0, 0],
-						"0.25": [0, 0, 0],
-						"0.8333": {
-							"pre": [18.5, 0, 0],
-							"post": [18.5, 0, 0],
-							"lerp_mode": "catmullrom"
-						},
-						"0.9583": {
-							"post": [0, 0, 0],
-							"lerp_mode": "catmullrom"
-						}
-					}
+					"rotation": ["query.hammer_tool", 0, 0]
 				},
 				"hammer_head": {
-					"rotation": {
-						"0.0": [-3.5, 0, 0],
-						"0.25": [-3.5, 0, 0],
-						"0.8333": [-3.5, 0, 0]
-					}
+					"rotation": [-3.5, 0, 0]
 				},
 				"front_axel": {
-					"rotation": {
-						"0.0": [0, 0, 0],
-						"1.25": [-90, 0, 0]
-					}
+					"rotation": ["query.hammer_input", 0, 0]
 				}
 			}
 		}

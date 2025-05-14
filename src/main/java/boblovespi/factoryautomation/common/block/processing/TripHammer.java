@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.common.block.processing;
 
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.TripHammerBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
@@ -64,8 +65,8 @@ public class TripHammer extends Block implements EntityBlock
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState pState, BlockEntityType<T> beType)
 	{
-		if (level.isClientSide || !pState.getValue(MULTIBLOCK_COMPLETE))
-			return null;
+		if (level.isClientSide && pState.getValue(MULTIBLOCK_COMPLETE))
+			return IClientTickable.makeTicker(FABETypes.TRIP_HAMMER_TYPE.get(), beType);
 		return ITickable.makeTicker(FABETypes.TRIP_HAMMER_TYPE.get(), beType);
 	}
 

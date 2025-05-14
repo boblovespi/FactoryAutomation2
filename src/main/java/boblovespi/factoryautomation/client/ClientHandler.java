@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.client.model.PartialDynamicTextureGeometryLo
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
+import boblovespi.factoryautomation.common.blockentity.processing.TripHammerBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
@@ -40,6 +41,8 @@ public class ClientHandler
 		// MathParser.registerVariable(new Variable("query.rot", 0));
 		MolangQueries.<MillstoneBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 		MolangQueries.<TumblingBarrelBE>setActorVariable("query.barrel_rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
+		MolangQueries.<TripHammerBE>setActorVariable("query.hammer_input", b -> b.animatable().getRenderInputRot(b.animationState().getPartialTick()));
+		MolangQueries.<TripHammerBE>setActorVariable("query.hammer_tool", b -> b.animatable().getRenderToolRot(b.animationState().getPartialTick()));
 
 		PonderIndex.addPlugin(new FAPonderPlugin());
 	}

@@ -5,12 +5,14 @@ import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.processing.TripHammer;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.TripHammerRecipe;
 import boblovespi.factoryautomation.common.util.ItemHelper;
+import boblovespi.factoryautomation.common.util.MathHelper;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import net.minecraft.core.BlockPos;
@@ -35,7 +37,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoBlockEntity
+public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, IClientTickable, GeoBlockEntity
 {
 	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("animation.hammer.active");
 	private static final RawAnimation STANDBY_STATE = RawAnimation.begin().thenLoop("animation.hammer.standby");
@@ -156,7 +158,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoB
 	@Override
 	public void onMultiblockBuilt()
 	{
-
+		//server side only
 	}
 
 	@Override
@@ -209,9 +211,8 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoB
 		controllers.add(new AnimationController<>(this, this::handleAnim));
 	}
 
-	private PlayState handleAnim(AnimationState<TripHammerBE> s)
-	{
-		return recipeManager.hasRecipe() ? s.setAndContinue(ACTIVE_STATE) : s.setAndContinue(STANDBY_STATE);
+	private PlayState handleAnim(AnimationState<TripHammerBE> s) {
+		return s.setAndContinue(ACTIVE_STATE);
 	}
 
 	@Override
@@ -232,4 +233,49 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, GeoB
 		}
 		return null;
 	}
+
+	public float getRenderInputRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return -(rot + delta * (float) (Math.toDegrees(mechanicalManager.getSpeed()) / 20)) % 360;
+	}
+
+	public float getRenderToolRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return ((float) calcPhasedRotation(-getRenderInputRot(delta))*17.5f);
+	}
+
+	public double calcPhasedRotation(double input) {
+		var inputRad = Math.toRadians(input);
+		var linPhaseH = Math.asin(Math.abs(Math.sin(inputRad*2)));
+		var powPhaseH = Math.asin(Math.abs(Math.pow(Math.sin(inputRad*2),100)));
+
+		var lPhase = MathHelper.map(linPhaseH, 0.0d, 1.6d, 0, 1.00d);
+		var pPhase = MathHelper.map(powPhaseH, 0.0d, 1.6d, 0, 1.00d);
+
+		var ret = lPhase;
+
+		if (input > 45 && input < 90) {
+			ret = pPhase;
+		} else if (input > 135 && input < 180) {
+			ret = pPhase;
+		} else if (input > 225 && input < 270) {
+			ret = pPhase;
+		} else if (input > 315) {
+			ret = pPhase;
+		}
+
+		return ret;
+	}
+
+	@Override
+	public void clientTick() {
+		rot += (float) (Math.toDegrees(mechanicalManager.getSpeed()) / 20);
+		rot %= 360;
+	}
+
+
 }
