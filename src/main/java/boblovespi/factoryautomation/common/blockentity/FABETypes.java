@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.common.blockentity;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.blockentity.logistics.SmallTankBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.*;
 import boblovespi.factoryautomation.common.blockentity.processing.*;
 import net.minecraft.core.registries.Registries;
@@ -40,6 +41,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<PaperBellowsBE>> PAPER_BELLOWS_TYPE = type("paper_bellows", PaperBellowsBE::new, FABlocks.PAPER_BELLOWS);
 	public static final Supplier<BlockEntityType<TripHammerBE>> TRIP_HAMMER_TYPE = type("trip_hammer", TripHammerBE::new, FABlocks.TRIP_HAMMER);
 	public static final Supplier<BlockEntityType<TumblingBarrelBE>> TUMBLING_BARREL_TYPE = type("tumbling_barrel", TumblingBarrelBE::new, FABlocks.TUMBLING_BARREL);
+	public static final Supplier<BlockEntityType<SmallTankBE>> SMALL_TANK_TYPE = type("small_tank", SmallTankBE::new, FABlocks.WOODEN_TANK);
 
 	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,

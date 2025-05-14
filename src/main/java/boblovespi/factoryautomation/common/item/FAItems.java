@@ -14,7 +14,6 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.WaterloggedTransparentBlock;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -170,6 +169,10 @@ public class FAItems
 	public static final DeferredItem<BlockItem> IRON_BEVEL_GEAR = ITEMS.registerSimpleBlockItem(FABlocks.IRON_BEVEL_GEAR);
 	public static final DeferredItem<BlockItem> HAND_CRANK = ITEMS.registerSimpleBlockItem(FABlocks.HAND_CRANK);
 	public static final DeferredItem<BlockItem> SMALL_WATERHWHEEL = ITEMS.registerSimpleBlockItem(FABlocks.SMALL_WATERWHEEL);
+
+	// Logistics
+
+	public static final DeferredItem<BlockItem> WOODEN_TANK = ITEMS.registerSimpleBlockItem(FABlocks.WOODEN_TANK);
 
 	// Misc
 

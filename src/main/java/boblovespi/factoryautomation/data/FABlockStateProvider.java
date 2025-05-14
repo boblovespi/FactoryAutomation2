@@ -19,7 +19,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -126,6 +125,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		getVariantBuilder(FABlocks.HAND_CRANK.get()).forAllStates(
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
 		existingHorizontalBlockWithItem(FABlocks.TRIP_HAMMER);
+		simplePillarBlock(FABlocks.WOODEN_TANK);
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
@@ -306,5 +306,12 @@ public class FABlockStateProvider extends BlockStateProvider
 				.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top_roofed"))
 				.renderType("minecraft:cutout"));
 
+	}
+
+	private void simplePillarBlock(DeferredBlock<?> block)
+	{
+		var model = models().cubeColumn(block.getRegisteredName(), block.getId().withPrefix("block/").withSuffix("_side"),
+				block.getId().withPrefix("block/").withSuffix("_top"));
+		simpleBlockWithItem(block.get(), model);
 	}
 }

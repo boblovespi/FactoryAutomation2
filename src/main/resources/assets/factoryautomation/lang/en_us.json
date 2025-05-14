@@ -128,6 +128,10 @@
 	"block.factoryautomation.multiblock_part": "Multiblock Part",
 	"block.factoryautomation.creative_mechanical_source": "Creative Mechanical Source",
 	
+	// Block - Logistics
+	
+	"block.factoryautomation.wooden_tank": "Wooden Tank",
+	
 	// Items
 	
 	"item.factoryautomation.rock": "Rock",
@@ -291,6 +295,7 @@
 	"itemGroup.factoryautomation.products": "F. A. Products",
 	"itemGroup.factoryautomation.processing": "F. A. Processing",
 	"itemGroup.factoryautomation.mechanical": "F. A. Mechanical",
+	"itemGroup.factoryautomation.logistics": "F. A. Logistics",
 	
 	"factoryautomation:guidebook": "F. A. Guidebook",
 	

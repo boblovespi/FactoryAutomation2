@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.logistics.SmallTankBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.*;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
@@ -172,6 +173,7 @@ public class FactoryAutomation
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBE::fluidHandler);
 		event.registerBlockEntity(BellowsCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(BellowsCapability.BLOCK, d));
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(MechanicalCapability.INPUT, d));
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.SMALL_TANK_TYPE.get(), SmallTankBE::fluidHandler);
 	}
 
 	public void onRegisterDataMapTypes(RegisterDataMapTypesEvent event)

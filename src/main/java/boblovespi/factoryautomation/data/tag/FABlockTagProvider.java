@@ -109,7 +109,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get(), FABlocks.PAPER_BELLOWS.get())
 										.add(FABlocks.HAND_CRANK.get(), FABlocks.SMALL_WATERWHEEL.get())
 										.add(FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get(), FABlocks.WOOD_SPLITTER.get(), FABlocks.WOOD_JOINER.get())
-										.add(FABlocks.WOOD_BEVEL_GEAR.get());
+										.add(FABlocks.WOOD_BEVEL_GEAR.get(), FABlocks.WOODEN_TANK.get());
 
 		tag(BlockTags.BASE_STONE_OVERWORLD).add(FABlocks.CHERT.get());
 		tag(Tags.Blocks.STONES).add(FABlocks.CHERT.get());

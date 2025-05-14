@@ -140,6 +140,13 @@ public class CreativeTabs
 						o.accept(FAItems.SMALL_WATERHWHEEL);
 					}).build());
 
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> LOGISTICS = CREATIVE_MODE_TABS.register("logistics",
+			() -> CreativeModeTab.builder().title(Component.translatable(FactoryAutomation.locString("itemGroup", "logistics"))).withTabsBefore(MECHANICAL.getId())
+								 .icon(() -> FAItems.WOODEN_TANK.get().getDefaultInstance()).displayItems((p, o) ->
+					{
+						o.accept(FAItems.WOODEN_TANK);
+					}).build());
+
 
 	@SubscribeEvent
 	public static void addCreative(BuildCreativeModeTabContentsEvent event)

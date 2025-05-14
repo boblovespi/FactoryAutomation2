@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.block;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.logistics.SmallTank;
 import boblovespi.factoryautomation.common.block.mechanical.*;
 import boblovespi.factoryautomation.common.block.processing.*;
 import boblovespi.factoryautomation.common.block.resource.ResourceRock;
@@ -136,6 +137,10 @@ public class FABlocks
 	public static final DeferredBlock<BevelGear> IRON_BEVEL_GEAR = register("iron_bevel_gear", p -> new BevelGear(p, 5, 1000), BlockProperties.IRON_MACHINE);
 	public static final DeferredBlock<HandCrank> HAND_CRANK = register("hand_crank",HandCrank::new, BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
 	public static final DeferredBlock<SmallWaterwheel> SMALL_WATERWHEEL = register("small_waterwheel", SmallWaterwheel::new, BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
+
+	// Logistics
+
+	public static final DeferredBlock<SmallTank> WOODEN_TANK = register("wooden_tank", p -> new SmallTank(p, 4 * 1000), BlockProperties.WOOD_MACHINE);
 
 	// Misc
 
