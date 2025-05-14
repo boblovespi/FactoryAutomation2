@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity;
 
+import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.MultiblockRegistry;
 import net.minecraft.core.BlockPos;
@@ -9,6 +10,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 
@@ -26,6 +28,11 @@ public class MultiblockPartBE extends FABE
 	public MultiblockPartBE(BlockPos pPos, BlockState pBlockState)
 	{
 		super(FABETypes.MULTIBLOCK_PART_TYPE.get(), pPos, pBlockState);
+		multiblockName = FactoryAutomation.name("none");
+		multiblockPos = BlockPos.ZERO;
+		multiblockControllerOffset = BlockPos.ZERO;
+		multiblockState = Blocks.AIR.defaultBlockState();
+		facing = Direction.NORTH;
 	}
 
 	@Override
@@ -91,7 +98,8 @@ public class MultiblockPartBE extends FABE
 		multiblockControllerOffset = controllerOffset;
 		multiblockState = state;
 		this.facing = facing;
-		setChanged();
+		setChangedAndUpdateClient(true);
+		level.updateNeighborsAt(worldPosition, getBlockState().getBlock());
 	}
 
 	public BlockState getMultiblockState()
@@ -107,6 +115,8 @@ public class MultiblockPartBE extends FABE
 	@Nullable
 	public <T> T getCapability(BlockCapability<T, Direction> capability, @Nullable Direction dir)
 	{
+		if (multiblockName.getPath().equals("none"))
+			return null;
 		var be = level.getBlockEntity(worldPosition.subtract(multiblockControllerOffset));
 		if (be instanceof IMultiblockBE mbe)
 			return mbe.getCapability(multiblockControllerOffset, capability, dir);
