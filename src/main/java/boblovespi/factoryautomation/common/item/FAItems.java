@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.block.SpaceFrameBlock;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
+import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.item.tool.*;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.GearMaterial;
@@ -80,6 +81,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> DRIED_BRICKS = ITEMS.registerSimpleBlockItem(FABlocks.DRIED_BRICKS);
 	public static final DeferredItem<Item> TANBARK_DUST = ITEMS.registerSimpleItem("tanbark_dust");
 	public static final DeferredItem<Item> CLEANED_LEATHER = ITEMS.registerSimpleItem("cleaned_leather");
+	public static final DeferredItem<FluidBottle> PANCAKE_BATTER_BOTTLE = ITEMS.registerItem("pancake_batter_bottle", p -> new FluidBottle(p, FAFluids.PANCAKE_BATTER_SOURCE.get()));
 
 	// Building blocks
 

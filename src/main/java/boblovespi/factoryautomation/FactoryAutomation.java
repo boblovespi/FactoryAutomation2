@@ -14,6 +14,7 @@ import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrel
 import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.item.CreativeTabs;
 import boblovespi.factoryautomation.common.item.FAItems;
+import boblovespi.factoryautomation.common.item.FluidBottle;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
@@ -26,6 +27,7 @@ import boblovespi.factoryautomation.data.loot.LootTablePrefixCondition;
 import boblovespi.factoryautomation.data.loot.ReplaceDropsLootModifier;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -46,6 +48,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -66,6 +69,8 @@ public class FactoryAutomation
 
 	private static final DeferredRegister<LootItemConditionType> LOOT_ITEM_CONDITION_TYPES = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, MODID);
 
+	public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, MODID);
+
 	public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<AlternateDropsLootModifier>> ADD_TABLE_LOOT_MODIFIER_TYPE = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(
 			"alternate_drops", () -> AlternateDropsLootModifier.CODEC);
 	public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<ReplaceDropsLootModifier>> REPLACE_LOOT_MODIFIER_TYPE = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(
@@ -73,6 +78,9 @@ public class FactoryAutomation
 
 	public static final Supplier<LootItemConditionType> LOOT_TABLE_PREFIX_CONDITION = LOOT_ITEM_CONDITION_TYPES.register("loot_table_prefix", () -> new LootItemConditionType(
 			LootTablePrefixCondition.CODEC));
+
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<SimpleFluidContent>> FLUID_CONTENT_DC = DATA_COMPONENTS.registerComponentType("fluid_contents",
+			i -> i.networkSynchronized(SimpleFluidContent.STREAM_CODEC));
 
 	public static final ModelProperty<Block[]> PARTIAL_DYNAMIC_TEXTURE_PROPERTY = new ModelProperty<>();
 
@@ -97,6 +105,7 @@ public class FactoryAutomation
 		FAWorldgen.FEATURES.register(modEventBus);
 		GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
 		LOOT_ITEM_CONDITION_TYPES.register(modEventBus);
+		DATA_COMPONENTS.register(modEventBus);
 		FABETypes.BLOCK_ENTITY_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_TYPES.register(modEventBus);
 		RecipeThings.RECIPE_SERIALIZERS.register(modEventBus);
@@ -174,6 +183,10 @@ public class FactoryAutomation
 		event.registerBlockEntity(BellowsCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(BellowsCapability.BLOCK, d));
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(MechanicalCapability.INPUT, d));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.SMALL_TANK_TYPE.get(), SmallTankBE::fluidHandler);
+
+		for (var item : BuiltInRegistries.ITEM)
+			if (item instanceof FluidBottle fb)
+				event.registerItem(Capabilities.FluidHandler.ITEM, (s, c) -> fb.makeHandler(s), fb);
 	}
 
 	public void onRegisterDataMapTypes(RegisterDataMapTypesEvent event)
