@@ -1,0 +1,9 @@
+{
+	"parent": "neoforge:item/default",
+	"textures": {
+		"base": "minecraft:item/potion",
+		"fluid": "minecraft:item/potion_overlay"
+	},
+	"cover_is_mask": true,
+	"apply_fluid_luminosity": false
+}

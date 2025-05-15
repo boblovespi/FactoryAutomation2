@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.data;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
@@ -8,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.loaders.DynamicFluidContainerModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -61,6 +63,11 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.DRIED_BRICK.get());
 		basicItem(FAItems.TANBARK_DUST.get());
 		basicItem(FAItems.CLEANED_LEATHER.get());
+
+		getBuilder(FAItems.PANCAKE_BATTER_BOTTLE.getRegisteredName())
+				.parent(getExistingFile(modLoc("item/bottle")))
+				.customLoader(DynamicFluidContainerModelBuilder::begin)
+				.fluid(FAFluids.PANCAKE_BATTER_SOURCE.get()).end();
 
 		basicItem(FAItems.SCREW.get());
 		basicItem(FAItems.BUSHING.get());
@@ -117,7 +124,9 @@ public class FAItemModelProvider extends ItemModelProvider
 		{
 			switch (form)
 			{
-				case BLOCK -> {}
+				case BLOCK ->
+				{
+				}
 				case STAIRS, SLAB -> withExistingParent(item.getRegisteredName(), item.getId().withPrefix("block/"));
 				case WALL -> wallInventory(item.getRegisteredName(), base);
 			}
