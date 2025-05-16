@@ -452,6 +452,20 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.TUMBLING_BARREL)
+							  .pattern("i i")
+							  .pattern("rbr")
+							  .pattern("i i")
+							  .define('r', FATags.Items.IRON_ROD)
+							  .define('i', Tags.Items.INGOTS_IRON)
+							  .define('b', FAItems.WOODEN_TANK)
+							  .tool("hammer", 1, 5)
+							  .tool("wrench", 1, 5)
+							  .part("bushing", 1, 2)
+							  .part("screw", 1, 4)
+							  .unlockedBy("has_wooden_tank", has(FAItems.WOODEN_TANK))
+							  .save(output);
+
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
 								  .unlockedBy("has_bread", has(Items.BREAD))
 								  .save(output, FactoryAutomation.name("campfire/toasted_bread"));
