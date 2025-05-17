@@ -56,6 +56,7 @@ public class FAAdvancementProvider extends AdvancementProvider
 			var copperIngot2 = copperAgeBuilder.save(saver, FactoryAutomation.name("copper_age/root"), existingFileHelper);
 			var copperPickaxe = task("copper_pickaxe", "copper_age", FAItems.COPPER_PICKAXE, copperIngot2);
 			var limoniteOre = task("limonite_ore", "copper_age", FAItems.RAW_LIMONITE, copperPickaxe);
+			var woodShaft = task("wood_power_shaft", "copper_age", FAItems.WOOD_POWER_SHAFT, copperIngot2);
 			var firebow = task("firebow", "copper_age", FAItems.FIREBOW, copperIngot2);
 			var stoneWorkbench = task("stone_workbench", "copper_age", FAItems.STONE_WORKBENCH, copperPickaxe);
 			var charcoal = task("charcoal", "copper_age", () -> Items.CHARCOAL, firebow);
@@ -67,6 +68,12 @@ public class FAAdvancementProvider extends AdvancementProvider
 			ironAgeBuilder.addCriterion("has_iron_shard", has(() -> FAItems.IRON_SHARD.get()));
 			var ironShard2 = ironAgeBuilder.save(saver, FactoryAutomation.name("iron_age/root"), existingFileHelper);
 			var ironIngot = task("iron_ingot", "iron_age", () -> Items.IRON_INGOT, ironShard2);
+			var handCrank = task("hand_crank", "iron_age", FAItems.HAND_CRANK, ironIngot);
+			var ironShaft = task("iron_power_shaft", "iron_age", FAItems.IRON_POWER_SHAFT, handCrank);
+			var waterWheel = task("water_wheel", "iron_age", FAItems.SMALL_WATERHWHEEL, handCrank);
+			var millstone = task("millstone", "iron_age", FAItems.MILLSTONE, ironShaft);
+			var tumblingBarrel = task("tumbling_barrel", "iron_age", FAItems.TUMBLING_BARREL, millstone);
+			var tripHammer = task("trip_hammer", "iron_age", FAItems.TRIP_HAMMER, tumblingBarrel);
 			var rawBricks = task("raw_bricks", "iron_age", FAItems.DRIED_BRICK, ironIngot);
 			var bricks = task("bricks", "iron_age", () -> Items.BRICK, rawBricks);
 			var brickFoundry = task("brick_foundry", "iron_age", FAItems.BRICK_FIREBOX, bricks);
