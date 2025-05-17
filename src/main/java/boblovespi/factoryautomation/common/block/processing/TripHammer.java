@@ -18,7 +18,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -95,7 +94,7 @@ public class TripHammer extends Block implements EntityBlock
 		if (!state.getValue(MULTIBLOCK_COMPLETE))
 			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 		level.getBlockEntity(pos, FABETypes.TRIP_HAMMER_TYPE.get()).ifPresent(b -> b.takeOrPlace(stack, player));
-		return ItemInteractionResult.CONSUME;
+		return ItemInteractionResult.sidedSuccess(level.isClientSide);
 	}
 
 	@Override
