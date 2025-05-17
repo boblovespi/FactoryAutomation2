@@ -247,8 +247,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 			return 0;
 		
 		var inputDeg = (-getRenderInputRot(delta) + 350) % 360;
-		// if (inputDeg < 0)
-			// System.out.println(inputDeg);
+
 		var pastRot = calcPhasedRotation(inputDeg-1);
 		var futureRot = calcPhasedRotation(inputDeg+1);
 		var presentRot = MathHelper.smoothInterpolate(pastRot, futureRot, 0.5);
@@ -266,13 +265,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 
 		var ret = lPhase;
 
-		if (input > 45 && input < 90) {
-			ret = MathHelper.easeInOutBack(pPhase);
-		} else if (input > 135 && input < 180) {
-			ret = MathHelper.easeInOutBack(pPhase);
-		} else if (input > 225 && input < 270) {
-			ret = MathHelper.easeInOutBack(pPhase);
-		} else if (input > 315) {
+		if (input > 45 && input < 90 || input > 135 && input < 180 || input > 225 && input < 270 || input > 315) {
 			ret = MathHelper.easeInOutBack(pPhase);
 		}
 

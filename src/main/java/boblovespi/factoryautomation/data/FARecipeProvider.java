@@ -217,6 +217,34 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_bow", has(Items.BOW))
 							  .save(output);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.CHOCOLATE_ICE_CREAM)
+				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(Items.COCOA_BEANS)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.save(output);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.COFFEE_ICE_CREAM)
+				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(Items.COCOA_BEANS)
+				.requires(Items.HONEY_BOTTLE)
+				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.save(output);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.COOKIES_N_CREAM_ICE_CREAM)
+				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(Items.COOKIE)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.save(output);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SWEETBERRY_ICE_CREAM)
+				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(Items.SWEET_BERRIES)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.save(output);
+
 		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, null, "copper",
 				Tags.Items.INGOTS_COPPER, output);
 		tool(null, null, null, null, null, FAItems.IRON_HAMMER, FAItems.IRON_WRENCH, "iron", Tags.Items.INGOTS_IRON, output);
@@ -566,14 +594,14 @@ public class FARecipeProvider extends RecipeProvider
 						.unlockedBy("has_gold_rod", has(FATags.Items.GOLD_ROD)).save(output);
 
 		// Tumbling barrel
-		// Test, TODO: remove
-		TumblingBarrelRecipe.of(Items.SLIME_BLOCK, Fluids.LAVA, 250)
-							.fluidInput(Fluids.WATER, 250)
-							.input(Items.MAGMA_BLOCK)
-							.time(40)
+		TumblingBarrelRecipe.of(FAItems.VANILLA_ICE_CREAM.get())
+							.fluidInput(NeoForgeMod.MILK.get(), 250)
+							.input(Items.ICE)
+							.time(50)
 							.minSpeed(1)
-							.maxSpeed(10)
-							.unlockedBy("has_magma_block", has(Items.MAGMA_BLOCK))
+							.maxSpeed(8)
+							.unlockedBy("has_ice", has(Items.ICE))
+							.unlockedBy("has_milk", has(Items.MILK_BUCKET))
 							.save(output);
 
 		TumblingBarrelRecipe.of(FAFluids.PANCAKE_BATTER_SOURCE.get(), 500)

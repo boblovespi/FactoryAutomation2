@@ -112,6 +112,18 @@ public class FAItems
 			new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(4 / 5f).build()));
 	public static final DeferredItem<Item> SLICED_BREAD = ITEMS.registerSimpleItem("sliced_bread",
 			new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(3 / 5f).fast().build()));
+	public static final DeferredItem<Item> CHOCOLATE_ICE_CREAM = ITEMS.registerSimpleItem("chocolate_ice_cream",
+			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
+	public static final DeferredItem<Item> COFFEE_ICE_CREAM = ITEMS.registerSimpleItem("coffee_ice_cream",
+			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
+	public static final DeferredItem<Item> COOKIES_N_CREAM_ICE_CREAM = ITEMS.registerSimpleItem("cookies_n_cream_ice_cream",
+			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
+	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream",
+			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
+	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream",
+			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
+	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream",
+			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
 
 	// Processing
 

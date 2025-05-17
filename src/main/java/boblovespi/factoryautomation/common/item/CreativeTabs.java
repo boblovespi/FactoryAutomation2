@@ -183,6 +183,7 @@ public class CreativeTabs
 		if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS)
 		{
 			insertAfter(event, Items.BREAD, FAItems.TOASTED_BREAD, FAItems.SLICED_BREAD);
+			insertAfter(event, Items.MILK_BUCKET, FAItems.CHOCOLATE_ICE_CREAM, FAItems.COFFEE_ICE_CREAM, FAItems.COOKIES_N_CREAM_ICE_CREAM, FAItems.MINT_ICE_CREAM, FAItems.SWEETBERRY_ICE_CREAM, FAItems.VANILLA_ICE_CREAM);
 		}
 	}
 
