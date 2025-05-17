@@ -245,13 +245,19 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	{
 		if (!level.isClientSide)
 			return 0;
-		return ((float) calcPhasedRotation(-getRenderInputRot(delta))*17.5f);
+		
+		var inputDeg = -getRenderInputRot(delta);
+		var pastRot = calcPhasedRotation(inputDeg-1);
+		var futureRot = calcPhasedRotation(inputDeg+1);
+		var presentRot = MathHelper.smoothInterpolate(pastRot, futureRot, 0.5);
+
+		return ((float) presentRot*17.5f);
 	}
 
 	public double calcPhasedRotation(double input) {
 		var inputRad = Math.toRadians(input);
 		var linPhaseH = Math.asin(Math.abs(Math.sin(inputRad*2)));
-		var powPhaseH = Math.asin(Math.abs(Math.pow(Math.sin(inputRad*2),100)));
+		var powPhaseH = Math.asin(Math.abs(Math.pow(Math.sin(inputRad*2),30)));
 
 		var lPhase = MathHelper.map(linPhaseH, 0.0d, 1.6d, 0, 1.00d);
 		var pPhase = MathHelper.map(powPhaseH, 0.0d, 1.6d, 0, 1.00d);
@@ -259,13 +265,13 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 		var ret = lPhase;
 
 		if (input > 45 && input < 90) {
-			ret = pPhase;
+			ret = MathHelper.easeInOutBack(pPhase);
 		} else if (input > 135 && input < 180) {
-			ret = pPhase;
+			ret = MathHelper.easeInOutBack(pPhase);
 		} else if (input > 225 && input < 270) {
-			ret = pPhase;
+			ret = MathHelper.easeInOutBack(pPhase);
 		} else if (input > 315) {
-			ret = pPhase;
+			ret = MathHelper.easeInOutBack(pPhase);
 		}
 
 		return ret;
