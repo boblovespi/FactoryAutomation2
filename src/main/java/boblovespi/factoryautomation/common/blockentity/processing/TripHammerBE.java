@@ -246,7 +246,9 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 		if (!level.isClientSide)
 			return 0;
 		
-		var inputDeg = -getRenderInputRot(delta);
+		var inputDeg = (-getRenderInputRot(delta) + 350) % 360;
+		// if (inputDeg < 0)
+			// System.out.println(inputDeg);
 		var pastRot = calcPhasedRotation(inputDeg-1);
 		var futureRot = calcPhasedRotation(inputDeg+1);
 		var presentRot = MathHelper.smoothInterpolate(pastRot, futureRot, 0.5);
