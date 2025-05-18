@@ -460,5 +460,8 @@
 	"factoryautomation.ponder.brick_making.text_1": "Make sure the Dried Bricks are covered on at least 2 sides with log piles",
 	"factoryautomation.ponder.brick_foundry.header": "Creation and Usage of Brick Foundry",
 	"factoryautomation.ponder.brick_foundry.text_1": "A better version of the foundry, capable of melting iron.",
-	"factoryautomation.ponder.brick_foundry.text_2": "The foundry's efficiency can be enhanced with bellows"
+	"factoryautomation.ponder.brick_foundry.text_2": "The foundry's efficiency can be enhanced with bellows",
+	"factoryautomation.ponder.trip_hammer.header": "Construction of The Trip Hammer",
+	"factoryautomation.ponder.trip_hammer.text_1": "Place the Trip Hammer Block here, below the iron block.",
+	"factoryautomation.ponder.trip_hammer.text_1": "Mechanical input is here at the back, place a power shaft next to it to start hammering."
 }
