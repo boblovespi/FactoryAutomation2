@@ -3,11 +3,10 @@ package boblovespi.factoryautomation.common.util.ponder;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.mechanical.PowerShaft;
 import boblovespi.factoryautomation.common.block.processing.*;
-import boblovespi.factoryautomation.common.blockentity.processing.BrickCastingVesselBE;
-import boblovespi.factoryautomation.common.blockentity.processing.BrickMakerFrameBE;
-import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
-import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
+import boblovespi.factoryautomation.common.blockentity.mechanical.PowerShaftBE;
+import boblovespi.factoryautomation.common.blockentity.processing.*;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.Metal;
@@ -19,6 +18,7 @@ import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,6 +27,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.Vec3;
@@ -60,6 +61,7 @@ public class FAPonderPlugin implements PonderPlugin
 		helper.forComponents(FAItems.IRON_SHARD, FABlocks.LIMONITE_CHARCOAL_MIX).addStoryBoard("iron_bloom_creation", this::ironBloomCreationScene);
 		helper.forComponents(Items.BRICK, Items.BRICKS, FABlocks.BRICK_MAKER_FRAME, FAItems.DRIED_BRICK, FABlocks.DRIED_BRICKS).addStoryBoard("brick_making", this::brickMakingScene);
 		helper.forComponents(FAItems.BRICK_CRUCIBLE, FAItems.BRICK_FIREBOX, FAItems.BRICK_CASTING_VESSEL).addStoryBoard("brick_foundry", this::brickFoundry);
+		helper.forComponents(FAItems.TRIP_HAMMER).addStoryBoard("trip_hammer", this::tripHammer);
 	}
 
 
@@ -497,6 +499,44 @@ public class FAPonderPlugin implements PonderPlugin
 				.pointAt(bellowPos.getCenter())
 				.independent();
 		scene.idle(40);
+	}
+
+	private void tripHammer(SceneBuilder scene, SceneBuildingUtil util) {
+		scene.title("trip_hammer", "The Trip Hammer");
+		var hammerTablePos = util.grid().at(4,1,1);
+		var buildingBlocksOfHammer = util.select().fromTo(4,2,1, 4, 2, 6).add(util.select().position(4,1,4));
+
+		scene.showBasePlate();
+		scene.idle(20);
+		buildingBlocksOfHammer.forEach(p -> {
+            scene.world().showSection(util.select().position(p), Direction.DOWN);
+			scene.idle(7);
+        });
+		scene.idle(20);
+
+		scene.addKeyframe();
+		scene.overlay().showOutline(PonderPalette.GREEN, new Object(), util.select().position(hammerTablePos), 60);
+		scene.overlay().showText(50)
+				.text("Place hammer here")
+				.colored(PonderPalette.WHITE)
+				.pointAt(hammerTablePos.getCenter());
+		scene.idle(60);
+		scene.world().showSection(util.select().position(hammerTablePos), Direction.WEST);
+		scene.idle(5);
+		scene.world().replaceBlocks(buildingBlocksOfHammer, FABlocks.MULTIBLOCK_PART.get().defaultBlockState(), false);
+		scene.idle(10);
+
+		scene.addKeyframe();
+		scene.overlay().showOutline(PonderPalette.GREEN, new Object(), util.select().position(4,2,6), 60);
+		scene.overlay().showText(50)
+				.text("Input here")
+				.colored(PonderPalette.WHITE)
+				.pointAt(util.select().position(4,2,6).getCenter());
+		scene.idle(50);
+		scene.world().setBlock(util.grid().at(3,2,6), FABlocks.WOOD_POWER_SHAFT.get().defaultBlockState().setValue(PowerShaft.AXIS, Direction.Axis.X),true);
+		scene.world().showSection(util.select().position(3,2,6), Direction.EAST);
+		scene.idle(10);
+
 	}
 
 	private ParticleEmitter inWholeBlock(ParticleEmitter emitter) {

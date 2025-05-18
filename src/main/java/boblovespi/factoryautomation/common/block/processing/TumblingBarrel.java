@@ -29,7 +29,8 @@ import org.jetbrains.annotations.Nullable;
 public class TumblingBarrel extends Block implements EntityBlock
 {
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
-	private static final VoxelShape BOUNDING_BOX = Shapes.or(Block.box(0, 0, 6, 2, 7, 10), Block.box(0, 7, 5, 2, 13, 11), Block.box(2, 4, 2, 14, 16, 14), Block.box(14, 0, 6, 16, 7, 10), Block.box(14, 7, 5, 16, 13, 11));
+	private static final VoxelShape BOUNDING_BOX_x = Shapes.or(Block.box(0, 0, 6, 2, 7, 10), Block.box(0, 7, 5, 2, 13, 11), Block.box(2, 4, 2, 14, 16, 14), Block.box(14, 0, 6, 16, 7, 10), Block.box(14, 7, 5, 16, 13, 11));
+	private static final VoxelShape BOUNDING_BOX_z = Shapes.or(Block.box(6, 0, 0, 10, 7, 2), Block.box(5, 7, 0, 11, 13, 2), Block.box(2, 4, 2, 14, 16, 14), Block.box(6, 0, 14, 10, 7, 16), Block.box(5, 7, 14, 11, 13, 16));
 
 	public TumblingBarrel(Properties properties)
 	{
@@ -92,8 +93,9 @@ public class TumblingBarrel extends Block implements EntityBlock
 	}
 
 	@Override
-	protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
-	{
-		return BOUNDING_BOX;
+	protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+		if(pState.getValue(AXIS) == Direction.Axis.X) return BOUNDING_BOX_x;
+		if(pState.getValue(AXIS) == Direction.Axis.Z) return BOUNDING_BOX_z;
+		return BOUNDING_BOX_x;
 	}
 }
