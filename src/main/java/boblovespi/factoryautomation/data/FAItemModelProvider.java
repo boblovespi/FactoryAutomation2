@@ -30,6 +30,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		stoneBlock(FAItems.DIORITE_BRICKS);
 
 		withExistingParent(FAItems.ROCK.getRegisteredName(), modLoc("block/cobblestone_rock"));
+		basicItem(FAItems.MINT_LEAVES.get());
 
 		basicItem(FAItems.PLANT_FIBER.get());
 		basicItem(FAItems.RAW_CASSITERITE.get());

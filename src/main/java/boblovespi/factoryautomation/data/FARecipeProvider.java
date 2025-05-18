@@ -224,6 +224,13 @@ public class FARecipeProvider extends RecipeProvider
 				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
 				.save(output);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.MINT_ICE_CREAM)
+				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(FAItems.MINT_LEAVES)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.save(output);
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.COFFEE_ICE_CREAM)
 				.requires(FAItems.VANILLA_ICE_CREAM)
 				.requires(Items.COCOA_BEANS)

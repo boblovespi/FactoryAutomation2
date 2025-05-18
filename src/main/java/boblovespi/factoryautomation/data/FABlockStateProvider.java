@@ -126,6 +126,7 @@ public class FABlockStateProvider extends BlockStateProvider
 				s -> ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("hand_crank" + (s.getValue(HandCrank.HANGING) ? "_hanging" : "")))).build());
 		existingHorizontalBlockWithItem(FABlocks.TRIP_HAMMER);
 		simplePillarBlock(FABlocks.WOODEN_TANK);
+		existingHorizontalBlock(FABlocks.MINT_BUSH);
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
@@ -157,6 +158,12 @@ public class FABlockStateProvider extends BlockStateProvider
 		var model = models().getExistingFile(block.getId().withPrefix("block/"));
 		horizontalBlock(block.get(), model);
 		simpleBlockItem(block.get(), model);
+	}
+
+	private void existingHorizontalBlock(DeferredBlock<?> block)
+	{
+		var model = models().getExistingFile(block.getId().withPrefix("block/"));
+		horizontalBlock(block.get(), model);
 	}
 
 

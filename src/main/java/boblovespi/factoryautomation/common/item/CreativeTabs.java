@@ -32,6 +32,7 @@ public class CreativeTabs
 					{
 						o.accept(FAItems.ROCK);
 						o.accept(FAItems.PLANT_FIBER);
+						o.accept(FAItems.MINT_LEAVES);
 						o.accept(FAItems.CASSITERITE_ORE);
 						o.accept(FAItems.RAW_CASSITERITE);
 						o.accept(FAItems.RAW_CASSITERITE_BLOCK);

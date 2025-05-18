@@ -68,6 +68,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.WEAK_IRON_BLOCK.get());
 		dropSelf(FABlocks.IRON_SAND.get());
 		dropSelf(FABlocks.IRON_SAND_CHARCOAL_MIX.get());
+		dropSelf(FABlocks.MINT_BUSH.get());
 
 		dropSelf(FABlocks.GREEN_SAND.get());
 		add(FABlocks.CHARCOAL_PILE.get(), LootTable.lootTable().withPool(

@@ -54,6 +54,7 @@ public class FAItems
 	public static final DeferredItem<Item> WEAK_IRON_NUGGET = ITEMS.registerSimpleItem("weak_iron_nugget");
 	public static final DeferredItem<BlockItem> IRON_SAND = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SAND);
 	public static final DeferredItem<BlockItem> IRON_SAND_CHARCOAL_MIX = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SAND_CHARCOAL_MIX);
+	public static final DeferredItem<BlockItem> MINT_LEAVES = ITEMS.registerSimpleBlockItem(FABlocks.MINT_BUSH);
 
 	// Refined materials
 
