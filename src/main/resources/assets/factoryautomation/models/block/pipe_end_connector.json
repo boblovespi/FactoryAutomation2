@@ -1,0 +1,42 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "factoryautomation:block/copper_pipe",
+		"particle": "factoryautomation:block/copper_pipe"
+	},
+	"elements": [
+		{
+			"from": [4, 4, 1],
+			"to": [12, 12, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 2]},
+			"faces": {
+				"east": {"uv": [8.5, 12, 10, 16], "rotation": 180, "texture": "#0"},
+				"west": {"uv": [8.5, 12, 10, 16], "texture": "#0"},
+				"up": {"uv": [8.5, 12, 10, 16], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [14, 12, 15.5, 16], "rotation": 270, "texture": "#0"}
+			}
+		},
+		{
+			"from": [3, 3, 0],
+			"to": [13, 13, 1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 2]},
+			"faces": {
+				"north": {"uv": [3, 8, 8, 13], "texture": "#0"},
+				"east": {"uv": [3, 8, 3.5, 13], "texture": "#0"},
+				"south": {"uv": [3, 8, 8, 13], "rotation": 90, "texture": "#0"},
+				"west": {"uv": [7.5, 8, 8, 13], "texture": "#0"},
+				"up": {"uv": [8, 8, 3, 8.5], "texture": "#0"},
+				"down": {"uv": [8, 12.5, 3, 13], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "pipe_end_connector",
+			"origin": [8, 8, 2],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}
