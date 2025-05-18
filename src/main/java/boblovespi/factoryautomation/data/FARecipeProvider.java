@@ -595,7 +595,7 @@ public class FARecipeProvider extends RecipeProvider
 
 		// Tumbling barrel
 		TumblingBarrelRecipe.of(FAItems.VANILLA_ICE_CREAM.get())
-							.fluidInput(NeoForgeMod.MILK.get(), 250)
+							.fluidInput(NeoForgeMod.MILK.get(), 500)
 							.input(Items.ICE)
 							.time(50)
 							.minSpeed(1)

@@ -12,8 +12,11 @@ import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.GearMaterial;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -108,22 +111,14 @@ public class FAItems
 
 	// Food
 
-	public static final DeferredItem<Item> TOASTED_BREAD = ITEMS.registerSimpleItem("toasted_bread",
-			new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(4 / 5f).build()));
-	public static final DeferredItem<Item> SLICED_BREAD = ITEMS.registerSimpleItem("sliced_bread",
-			new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(3 / 5f).fast().build()));
-	public static final DeferredItem<Item> CHOCOLATE_ICE_CREAM = ITEMS.registerSimpleItem("chocolate_ice_cream",
-			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
-	public static final DeferredItem<Item> COFFEE_ICE_CREAM = ITEMS.registerSimpleItem("coffee_ice_cream",
-			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
-	public static final DeferredItem<Item> COOKIES_N_CREAM_ICE_CREAM = ITEMS.registerSimpleItem("cookies_n_cream_ice_cream",
-			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
-	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream",
-			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
-	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream",
-			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
-	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream",
-			new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).fast().build()));
+	public static final DeferredItem<Item> TOASTED_BREAD = ITEMS.registerSimpleItem("toasted_bread", new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(4 / 5f).build()));
+	public static final DeferredItem<Item> SLICED_BREAD = ITEMS.registerSimpleItem("sliced_bread", new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(3 / 5f).fast().build()));
+	public static final DeferredItem<Item> CHOCOLATE_ICE_CREAM = ITEMS.registerSimpleItem("chocolate_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).effect(new MobEffectInstance(MobEffects.SATURATION, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> COFFEE_ICE_CREAM = ITEMS.registerSimpleItem("coffee_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).effect(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> COOKIES_N_CREAM_ICE_CREAM = ITEMS.registerSimpleItem("cookies_n_cream_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2), 1.0F).build()));
+	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0F).build()));
+	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).build()));
 
 	// Processing
 
