@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.block;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.block.logistics.Pipe;
 import boblovespi.factoryautomation.common.block.logistics.SmallTank;
 import boblovespi.factoryautomation.common.block.mechanical.*;
 import boblovespi.factoryautomation.common.block.processing.*;
@@ -145,6 +146,7 @@ public class FABlocks
 	// Logistics
 
 	public static final DeferredBlock<SmallTank> WOODEN_TANK = register("wooden_tank", p -> new SmallTank(p, 4 * 1000), BlockProperties.WOOD_MACHINE);
+	public static final DeferredBlock<Pipe> COPPER_PIPE = register("copper_pipe", Pipe::new, BlockProperties.COPPER_MACHINE);
 
 	// Misc
 

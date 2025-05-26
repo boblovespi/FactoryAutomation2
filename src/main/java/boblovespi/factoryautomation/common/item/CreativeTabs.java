@@ -146,6 +146,7 @@ public class CreativeTabs
 								 .icon(() -> FAItems.WOODEN_TANK.get().getDefaultInstance()).displayItems((p, o) ->
 					{
 						o.accept(FAItems.WOODEN_TANK);
+						o.accept(FAItems.COPPER_PIPE);
 					}).build());
 
 

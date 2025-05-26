@@ -36,6 +36,8 @@ public class BlockProperties
 	public static final BlockBehaviour.Properties BRICK_MACHINE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).instrument(NoteBlockInstrument.BASEDRUM)
 																						   .requiresCorrectToolForDrops().strength(3.5F);
 
+	public static final BlockBehaviour.Properties COPPER_MACHINE = BlockBehaviour.Properties.of().strength(3, 6).sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE);
+
 	public static final BlockBehaviour.Properties IRON_MACHINE = BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5, 6).sound(SoundType.METAL)
 																						  .mapColor(MapColor.METAL);
 	public static final BlockBehaviour.Properties IRON_MACHINE_NO_OCCLUSION = BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5, 6).sound(SoundType.METAL)

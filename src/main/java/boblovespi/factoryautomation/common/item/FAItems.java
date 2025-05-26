@@ -16,7 +16,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -183,6 +182,7 @@ public class FAItems
 	// Logistics
 
 	public static final DeferredItem<BlockItem> WOODEN_TANK = ITEMS.registerSimpleBlockItem(FABlocks.WOODEN_TANK);
+	public static final DeferredItem<BlockItem> COPPER_PIPE = ITEMS.registerSimpleBlockItem(FABlocks.COPPER_PIPE);
 
 	// Misc
 
