@@ -32,8 +32,14 @@ public class PipeDebugBER implements BlockEntityRenderer<PipeBE>
 		var size = 0.7f;
 		for (var pos : pipe.graph.getVertices())
 		{
-			var aabb2 = AABB.ofSize(pos.subtract(pipe.getBlockPos()).getCenter(), size, size, size);
+			var center = pos.subtract(pipe.getBlockPos());
+			var aabb2 = AABB.ofSize(center.getCenter(), size, size, size);
 			LevelRenderer.renderLineBox(poseStack, bufferSource.getBuffer(RenderType.lines()), aabb2, r, g, b, a);
+			for (var dir : pipe.graph.getEdgesForVertex(pos))
+			{
+				var aabb3 = AABB.ofSize(center.getCenter().relative(dir, 0.375f), size / 3, size / 3, size / 3);
+				LevelRenderer.renderLineBox(poseStack, bufferSource.getBuffer(RenderType.lines()), aabb3, r, g, b, a);
+			}
 		}
 	}
 }

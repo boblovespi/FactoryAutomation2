@@ -1,9 +1,15 @@
 package boblovespi.factoryautomation.common.util;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 
 public class MathHelper
 {
+	// primes from wolfram alpha
+	private static final int PRIME1 = 201620423;
+	private static final int PRIME2 = 503376191;
+	private static final int PRIME3 = 448223089;
+
 	public static double uniformZeroD(RandomSource random, double radius)
 	{
 		return (random.nextDouble() - 0.5) * 2 * radius;
@@ -34,5 +40,18 @@ public class MathHelper
 
 		var smoothT = step * step * (3 - 2 * step);
 		return prevStep + (nextStep - prevStep) * smoothT;
+	}
+
+	public static int colorFromBlockPos(BlockPos pos)
+	{
+		// mix bits a little bit
+		var x = pos.getX();
+		x ^= x >>> 16;
+		var y = pos.getY();
+		y ^= y >>> 16;
+		var z = pos.getZ();
+		z ^= z >>> 16;
+		var color = x * PRIME1 + y * PRIME2 + z * PRIME3;
+		return color | 0xFF000000;
 	}
 }

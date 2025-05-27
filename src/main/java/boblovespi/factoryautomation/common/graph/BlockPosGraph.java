@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.graph;
 
+import boblovespi.factoryautomation.common.util.MathHelper;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -92,11 +93,11 @@ public class BlockPosGraph<T>
 			removeEdgeUnsafe(pos, dir);
 			removeEdgeUnsafe(pos.relative(dir), dir.getOpposite());
 			var newSet = new HashMap<BlockPos, EnumSet<Direction>>();
-			if (aStarGraphSearch(pos, pos.relative(dir), newSet))
+			if (aStarGraphSearch(pos.relative(dir), pos, newSet))
 				return Optional.empty();
 			else
 			{
-				var newGraph = new BlockPosGraph<T>(pos.relative(dir).hashCode() | 0xFF000000, newSet);
+				var newGraph = new BlockPosGraph<T>(MathHelper.colorFromBlockPos(pos.relative(dir)), newSet);
 				for (var newPos : newSet.keySet())
 					vertexSet.remove(newPos);
 				return Optional.of(newGraph);
@@ -105,16 +106,16 @@ public class BlockPosGraph<T>
 		return Optional.empty();
 	}
 
-	public List<BlockPosGraph<T>> removeVertex(BlockPos pos)
+	public Map<Direction, BlockPosGraph<T>> removeVertex(BlockPos pos)
 	{
 		if (!vertexSet.containsKey(pos))
-			return List.of();
-		var list = new ArrayList<BlockPosGraph<T>>(6);
+			return Map.of();
+		var map = new EnumMap<Direction, BlockPosGraph<T>>(Direction.class);
 		var dirs = vertexSet.get(pos);
 		for (var dir : dirs)
-			removeBiEdge(pos, dir).ifPresent(list::add);
+			removeBiEdge(pos, dir).ifPresent(p -> map.put(dir, p));
 		vertexSet.remove(pos);
-		return list;
+		return map;
 	}
 
 	public void joinGraph(BlockPosGraph<T> that)
@@ -136,6 +137,7 @@ public class BlockPosGraph<T>
 			{
 				var potentialScore = helper.scores.getInt(current) + 1;
 				var neighbor = current.relative(dir);
+				// should never reach more than once, since our heuristic is monotone -- thus lack of queue recalculation is ok
 				if (helper.isBetterScore(neighbor, potentialScore))
 					helper.add(neighbor, potentialScore);
 			}
@@ -146,6 +148,11 @@ public class BlockPosGraph<T>
 	public Collection<BlockPos> getVertices()
 	{
 		return vertexSet.keySet();
+	}
+
+	public Collection<Direction> getEdgesForVertex(BlockPos pos)
+	{
+		return vertexSet.getOrDefault(pos, EnumSet.noneOf(Direction.class));
 	}
 
 	public void save(CompoundTag tag)
@@ -219,7 +226,7 @@ public class BlockPosGraph<T>
 			if (shouldAddToQueue)
 			{
 				queue.add(pos);
-				outVertexSet.put(pos, vertexSet.get(targetPos));
+				outVertexSet.put(pos, vertexSet.get(pos));
 			}
 		}
 
