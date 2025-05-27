@@ -67,17 +67,7 @@ public class PipeBE extends FABE
 			return;
 		var removed = graph.removeVertex(worldPosition);
 		for (var entry : removed.entrySet())
-			level.getBlockEntity(worldPosition.relative(entry.getKey()), FABETypes.PIPE_TYPE.get()).ifPresent(t -> t.setGraphAsOwner(entry.getValue()));
-		if (!isGraphOwner)
-			return;
-		for (var dir : Direction.values())
-		{
-			if (!removed.containsKey(dir))
-			{
-				level.getBlockEntity(worldPosition.relative(dir), FABETypes.PIPE_TYPE.get()).ifPresent(t -> t.setGraphAsOwner(graph));
-				return;
-			}
-		}
+			level.getBlockEntity(entry.getValue().getOwner(), FABETypes.PIPE_TYPE.get()).ifPresent(t -> t.setGraphAsOwner(entry.getValue()));
 	}
 
 	private void setGraphAsOwner(BlockPosGraph<Void> graph)
@@ -126,7 +116,7 @@ public class PipeBE extends FABE
 		}
 		if (graph == null)
 		{
-			graph = new BlockPosGraph<>(MathHelper.colorFromBlockPos(worldPosition));
+			graph = new BlockPosGraph<>(MathHelper.colorFromBlockPos(worldPosition), worldPosition);
 			isGraphOwner = true;
 		}
 		graph.addVertexAndJoin(worldPosition, null, set);
@@ -145,7 +135,7 @@ public class PipeBE extends FABE
 		{
 			if (level.getBlockEntity(pos) instanceof PipeBE pipe)
 			{
-				// pipe.isGraphOwner = false;
+				pipe.isGraphOwner = false;
 				pipe.graph = graph;
 				pipe.setChangedAndUpdateClient();
 			}

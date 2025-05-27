@@ -17,22 +17,27 @@ import java.util.*;
  */
 public class BlockPosGraph<T>
 {
-	private int color;
+	private final int color;
 	private final HashMap<BlockPos, EnumSet<Direction>> vertexSet;
+	private final BlockPos owner;
 
-	public BlockPosGraph(int color)
+	public BlockPosGraph(int color, BlockPos owner)
 	{
 		this.color = color;
+		this.owner = owner;
 		vertexSet = new HashMap<>();
 	}
 
-	private BlockPosGraph(int color, HashMap<BlockPos, EnumSet<Direction>> vertexSet)
+	private BlockPosGraph(int color, HashMap<BlockPos, EnumSet<Direction>> vertexSet, BlockPos owner)
 	{
 		this.color = color;
 		this.vertexSet = vertexSet;
+		this.owner = owner;
 	}
 
 	/**
+	 * Adds a vertex to the graph with the specified connections.
+	 *
 	 * @param pos
 	 * @param t
 	 * @param connections
@@ -42,6 +47,12 @@ public class BlockPosGraph<T>
 		vertexSet.put(pos, connections);
 	}
 
+	/**
+	 * Adds a unidirectional edge for the given vertex.
+	 *
+	 * @param pos
+	 * @param dir
+	 */
 	private void addEdge(BlockPos pos, Direction dir)
 	{
 		if (vertexSet.containsKey(pos))
@@ -70,6 +81,13 @@ public class BlockPosGraph<T>
 		}
 	}
 
+	/**
+	 * Adds a vertex and ensures bidirectional connections with adjacent vertices.
+	 *
+	 * @param pos
+	 * @param t
+	 * @param connections
+	 */
 	public void addVertexAndJoin(BlockPos pos, T t, EnumSet<Direction> connections)
 	{
 		addVertex(pos, t, connections);
@@ -77,6 +95,12 @@ public class BlockPosGraph<T>
 			addEdge(pos.relative(direction), direction.getOpposite());
 	}
 
+	/**
+	 * Adds a bidirectional edge for a vertex in the given direction.
+	 *
+	 * @param pos
+	 * @param dir
+	 */
 	public void addBiEdge(BlockPos pos, Direction dir)
 	{
 		if (vertexSet.containsKey(pos) && vertexSet.containsKey(pos.relative(dir)))
@@ -86,6 +110,14 @@ public class BlockPosGraph<T>
 		}
 	}
 
+	/**
+	 * Removes a bidirectional edge for a vertex in the given direction.
+	 *
+	 * @param pos
+	 * @param dir
+	 *
+	 * @return An {@link Optional} containing the new graph, if the edge removal results in a disconnected graph.
+	 */
 	public Optional<BlockPosGraph<T>> removeBiEdge(BlockPos pos, Direction dir)
 	{
 		if (vertexSet.containsKey(pos) && vertexSet.containsKey(pos.relative(dir)))
@@ -93,11 +125,22 @@ public class BlockPosGraph<T>
 			removeEdgeUnsafe(pos, dir);
 			removeEdgeUnsafe(pos.relative(dir), dir.getOpposite());
 			var newSet = new HashMap<BlockPos, EnumSet<Direction>>();
-			if (aStarGraphSearch(pos.relative(dir), pos, newSet))
-				return Optional.empty();
+			if (aStarGraphSearch(pos, owner, newSet))
+			{
+				newSet = new HashMap<>();
+				if (aStarGraphSearch(pos.relative(dir), owner, newSet))
+					return Optional.empty();
+				else
+				{
+					var newGraph = new BlockPosGraph<T>(MathHelper.colorFromBlockPos(pos.relative(dir)), newSet, pos.relative(dir));
+					for (var newPos : newSet.keySet())
+						vertexSet.remove(newPos);
+					return Optional.of(newGraph);
+				}
+			}
 			else
 			{
-				var newGraph = new BlockPosGraph<T>(MathHelper.colorFromBlockPos(pos.relative(dir)), newSet);
+				var newGraph = new BlockPosGraph<T>(MathHelper.colorFromBlockPos(pos), newSet, pos);
 				for (var newPos : newSet.keySet())
 					vertexSet.remove(newPos);
 				return Optional.of(newGraph);
@@ -106,15 +149,35 @@ public class BlockPosGraph<T>
 		return Optional.empty();
 	}
 
+	/**
+	 * Removes a vertex from the graph.
+	 *
+	 * @param pos
+	 *
+	 * @return A map of any new disconnected graphs produced by the removal.
+	 */
 	public Map<Direction, BlockPosGraph<T>> removeVertex(BlockPos pos)
 	{
 		if (!vertexSet.containsKey(pos))
 			return Map.of();
 		var map = new EnumMap<Direction, BlockPosGraph<T>>(Direction.class);
 		var dirs = vertexSet.get(pos);
+		var graphToUse = this;
+
+		// essentially unrolled recursion. when splitting an edge, we 'recurse' on the newly formed subgraph which contains us.
+		// this way, we never change the owner pos
+		// also, if our new subgraph does not contain a neighbor, don't look at it (it belongs to some other subgraph)
 		for (var dir : dirs)
-			removeBiEdge(pos, dir).ifPresent(p -> map.put(dir, p));
-		vertexSet.remove(pos);
+		{
+			if (!graphToUse.vertexSet.containsKey(pos.relative(dir)))
+				continue;
+			var maybe = graphToUse.removeBiEdge(pos, dir);
+			if (maybe.isPresent() && maybe.get().vertexSet.containsKey(pos))
+				graphToUse = maybe.get();
+			else
+				maybe.ifPresent(tBlockPosGraph -> map.put(dir, tBlockPosGraph));
+		}
+		graphToUse.vertexSet.remove(pos);
 		return map;
 	}
 
@@ -171,6 +234,7 @@ public class BlockPosGraph<T>
 			list.add(mini);
 		}
 		nbt.put("vertices", list);
+		nbt.put("owner", NbtUtils.writeBlockPos(owner));
 		tag.put("posGraph", nbt);
 	}
 
@@ -193,12 +257,18 @@ public class BlockPosGraph<T>
 			}
 			vertices.put(pos, conSet);
 		}
-		return new BlockPosGraph<>(color, vertices);
+		var owner = NbtUtils.readBlockPos(nbt, "owner").orElseThrow();
+		return new BlockPosGraph<>(color, vertices, owner);
 	}
 
 	public int getColor()
 	{
 		return color;
+	}
+
+	public BlockPos getOwner()
+	{
+		return owner;
 	}
 
 	private class AStarHelper

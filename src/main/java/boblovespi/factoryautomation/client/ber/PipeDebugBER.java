@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.phys.AABB;
 
@@ -23,13 +24,25 @@ public class PipeDebugBER implements BlockEntityRenderer<PipeBE>
 	@Override
 	public void render(PipeBE pipe, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay)
 	{
-		if (pipe.graph == null || !pipe.isGraphOwner)
+		if (pipe.graph == null)
+		{
+			var aabb3 = AABB.ofSize(BlockPos.ZERO.getCenter(), 0.1, 0.1, 0.1);
+			LevelRenderer.renderLineBox(poseStack, bufferSource.getBuffer(RenderType.lines()), aabb3, 1, 0, 0, 1);
 			return;
+		}
+		else if (!pipe.isGraphOwner)
+		{
+			var aabb3 = AABB.ofSize(BlockPos.ZERO.getCenter(), 0.1, 0.1, 0.1);
+			LevelRenderer.renderLineBox(poseStack, bufferSource.getBuffer(RenderType.lines()), aabb3, 1, 1, 0, 1);
+			return;
+		}
 		var a = (float) FastColor.ARGB32.alpha(pipe.graph.getColor()) / 255.0F;
 		var r = (float) FastColor.ARGB32.red(pipe.graph.getColor()) / 255.0F;
 		var g = (float) FastColor.ARGB32.green(pipe.graph.getColor()) / 255.0F;
 		var b = (float) FastColor.ARGB32.blue(pipe.graph.getColor()) / 255.0F;
 		var size = 0.7f;
+		var aabb1 = AABB.ofSize(BlockPos.ZERO.getCenter(), 0.1, 0.1, 0.1);
+		LevelRenderer.renderLineBox(poseStack, bufferSource.getBuffer(RenderType.lines()), aabb1, 0, 1, 1, 1);
 		for (var pos : pipe.graph.getVertices())
 		{
 			var center = pos.subtract(pipe.getBlockPos());
