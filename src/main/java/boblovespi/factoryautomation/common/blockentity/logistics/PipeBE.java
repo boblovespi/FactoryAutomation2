@@ -24,6 +24,7 @@ public class PipeBE extends FABE implements ITickable
 	// TODO: properly encapsulate
 	@Nullable
 	public BlockPosGraph<DirectionMap<PipeNet.Node>> graph;
+	@Nullable
 	private PipeNet net;
 	public boolean isGraphOwner;
 	private final DirectionMap<PipeNet.Node> nodes;
@@ -40,7 +41,10 @@ public class PipeBE extends FABE implements ITickable
 	{
 		tag.putBoolean("isOwner", isGraphOwner);
 		if (isGraphOwner && graph != null)
+		{
 			graph.save(tag, registries);
+			net.save(tag, registries);
+		}
 	}
 
 	@Override
@@ -50,8 +54,12 @@ public class PipeBE extends FABE implements ITickable
 		{
 			isGraphOwner = true;
 			graph = BlockPosGraph.load(tag, registries, DirectionMap.loader(PipeNet.Node::load));
-			net = new PipeNet(25, 20, worldPosition.getY() - 1, worldPosition.getY() + 1);
-			graph.setListener(net);
+			if (net == null)
+			{
+				net = new PipeNet(25, 20, worldPosition.getY() - 1, worldPosition.getY() + 1);
+				graph.setListener(net);
+			}
+			net.load(tag, registries);
 		}
 		else
 			isGraphOwner = false;
@@ -76,7 +84,7 @@ public class PipeBE extends FABE implements ITickable
 			return;
 		var removed = graph.removeVertex(worldPosition);
 		for (var entry : removed.entrySet())
-			level.getBlockEntity(entry.getValue().getOwner(), FABETypes.PIPE_TYPE.get()).ifPresent(t -> t.setGraphAsOwner(entry.getValue()));
+			level.getBlockEntity(entry.getValue().getOwner(), FABETypes.PIPE_TYPE.get()).ifPresent(t -> t.setGraphAsOwner(entry.getValue(), net));
 	}
 
 	@Override
@@ -95,11 +103,12 @@ public class PipeBE extends FABE implements ITickable
 		setChangedAndUpdateClient();
 	}
 
-	private void setGraphAsOwner(BlockPosGraph<DirectionMap<PipeNet.Node>> graph)
+	private void setGraphAsOwner(BlockPosGraph<DirectionMap<PipeNet.Node>> graph, PipeNet oldNet)
 	{
 		this.graph = graph;
 		this.net = new PipeNet(25, 20, worldPosition.getY() - 1, worldPosition.getY() + 1);
 		graph.setListener(net);
+		net.setFluid(oldNet);
 		net.onNewSubgraph(graph);
 		for (var pos : graph.getVertices())
 			level.getBlockEntity(pos, FABETypes.PIPE_TYPE.get()).ifPresent(g -> g.setGraph(graph, net));
@@ -130,9 +139,12 @@ public class PipeBE extends FABE implements ITickable
 	{
 		if (nodes.containsKey(dir))
 		{
-			nodes.remove(dir);
+			var node = nodes.remove(dir);
 			if (graph != null)
+			{
+				net.removeNode(worldPosition.relative(dir).getY(), node);
 				graph.setData(worldPosition, nodes);
+			}
 		}
 	}
 
@@ -148,14 +160,26 @@ public class PipeBE extends FABE implements ITickable
 			{
 				if (level.getBlockEntity(worldPosition.relative(dir)) instanceof PipeBE that)
 				{
-					set.add(dir);
 					if (graph == null)
 					{
+						set.add(dir);
 						graph = that.graph;
 						net = that.net;
 					}
 					else if (that.graph != null)
-						that.joinTo(graph, net);
+					{
+						if (that.net.canMerge(net))
+						{
+							set.add(dir);
+							that.joinTo(graph, net);
+						}
+						else
+						{
+							level.setBlock(worldPosition, getBlockState().setValue(Pipe.CONNECTIONS[dir.ordinal()], Pipe.Connection.NONE), 2);
+							level.setBlock(worldPosition.relative(dir),
+									level.getBlockState(worldPosition.relative(dir)).setValue(Pipe.CONNECTIONS[dir.getOpposite().ordinal()], Pipe.Connection.NONE), 2);
+						}
+					}
 				}
 			}
 		}
@@ -185,6 +209,8 @@ public class PipeBE extends FABE implements ITickable
 		var oldGraph = this.graph;
 		Objects.requireNonNull(oldGraph);
 		Objects.requireNonNull(graph);
+		// we know nets are compatible. let us set the fluid correctly.
+		net.setFluid(this.net);
 		for (var pos : oldGraph.getVertices())
 		{
 			if (level.getBlockEntity(pos) instanceof PipeBE pipe)

@@ -98,7 +98,7 @@ public class Pipe extends Block implements EntityBlock
 		var world = context.getLevel();
 		var pos = context.getClickedPos();
 		for (int i = 0; i < CONNECTIONS.length; i++)
-			state = state.setValue(CONNECTIONS[i], getConnectionFor(world, pos, Direction.values()[i]));
+			state = state.setValue(CONNECTIONS[i], getConnectionFor(world, pos, Direction.values()[i], false));
 		return state;
 	}
 
@@ -112,10 +112,11 @@ public class Pipe extends Block implements EntityBlock
 			return ITickable.makeTicker(FABETypes.PIPE_TYPE.get(), blockEntityType);
 	}
 
-	private Connection getConnectionFor(LevelAccessor level, BlockPos pos, Direction direction)
+	private Connection getConnectionFor(LevelAccessor level, BlockPos pos, Direction direction, boolean updateShape)
 	{
 		pos = pos.relative(direction);
-		if (level.getBlockState(pos).getBlock() == this)
+		var otherState = level.getBlockState(pos);
+		if (otherState.getBlock() == this && (!updateShape || otherState.getValue(CONNECTIONS[direction.getOpposite().ordinal()]) == Connection.JOIN))
 			return Connection.JOIN;
 		if (level instanceof Level l && l.getCapability(Capabilities.FluidHandler.BLOCK, pos, direction.getOpposite()) != null)
 			return Connection.CONNECTOR;
@@ -125,7 +126,7 @@ public class Pipe extends Block implements EntityBlock
 	@Override
 	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
 	{
-		return state.setValue(CONNECTIONS[facing.ordinal()], getConnectionFor(level, currentPos, facing));
+		return state.setValue(CONNECTIONS[facing.ordinal()], getConnectionFor(level, currentPos, facing, true));
 	}
 
 	@Override

@@ -8,8 +8,6 @@ import io.netty.util.collection.IntObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -24,7 +22,8 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 	public final int ticksPerCycle;
 	private int startY;
 	private int endY;
-	private Fluid fluid;
+	private FluidStack fluid;
+	private int fluidAmount;
 	private final IntObjectMap<Set<Node>> iNodes;
 	private final IntObjectMap<Set<Node>> oNodes;
 	private final int ioNodeCapacity;
@@ -36,7 +35,7 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 		this.ticksPerCycle = ticksPerCycle;
 		this.startY = startY;
 		this.endY = endY;
-		fluid = Fluids.EMPTY;
+		fluid = FluidStack.EMPTY;
 		ioNodeCapacity = ioRate * ticksPerCycle * 2;
 		iNodes = new IntObjectHashMap<>();
 		oNodes = new IntObjectHashMap<>();
@@ -80,6 +79,7 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 	{
 		iNodes.clear();
 		oNodes.clear();
+		fluidAmount = 0;
 		for (var pos : graph.getVertices())
 		{
 			if (graph.hasData(pos))
@@ -91,11 +91,14 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 						iNodes.computeIfAbsent(pos.relative(entries.getKey()).getY(), i -> new HashSet<>()).add(entries.getValue());
 					else
 						oNodes.computeIfAbsent(pos.relative(entries.getKey()).getY(), i -> new HashSet<>()).add(entries.getValue());
+					fluidAmount += entries.getValue().amount;
 				}
 				startY = Math.min(startY, pos.getY() - 1);
 				endY = Math.max(endY, pos.getY() + 1);
 			}
 		}
+		if (fluidAmount <= 0)
+			fluid = FluidStack.EMPTY;
 	}
 
 	private void drawFromInputs(int y, int amount, int totalBuffer)
@@ -181,6 +184,7 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 			else
 				oNodes.computeIfAbsent(vertex.relative(entries.getKey()).getY(), i -> new HashSet<>()).add(entries.getValue());
 			entries.getValue().net = this;
+			fluidAmount += entries.getValue().amount;
 		}
 		startY = Math.min(startY, vertex.getY() - 1);
 		endY = Math.max(endY, vertex.getY() + 1);
@@ -195,6 +199,9 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 				iNodes.computeIfAbsent(vertex.relative(entries.getKey()).getY(), i -> new HashSet<>()).remove(entries.getValue());
 			else
 				oNodes.computeIfAbsent(vertex.relative(entries.getKey()).getY(), i -> new HashSet<>()).remove(entries.getValue());
+			fluidAmount -= entries.getValue().amount;
+			if (fluidAmount <= 0)
+				fluid = FluidStack.EMPTY;
 		}
 	}
 
@@ -203,11 +210,14 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 	{
 		for (var entries : newData.entrySet())
 		{
+			var added = false;
 			if (entries.getValue().type == NodeType.INPUT)
-				iNodes.computeIfAbsent(vertex.relative(entries.getKey()).getY(), i -> new HashSet<>()).add(entries.getValue());
+				added = iNodes.computeIfAbsent(vertex.relative(entries.getKey()).getY(), i -> new HashSet<>()).add(entries.getValue());
 			else
-				oNodes.computeIfAbsent(vertex.relative(entries.getKey()).getY(), i -> new HashSet<>()).add(entries.getValue());
+				added = oNodes.computeIfAbsent(vertex.relative(entries.getKey()).getY(), i -> new HashSet<>()).add(entries.getValue());
 			entries.getValue().net = this;
+			if (added)
+				fluidAmount += entries.getValue().amount;
 		}
 		startY = Math.min(startY, vertex.getY() - 1);
 		endY = Math.max(endY, vertex.getY() + 1);
@@ -228,6 +238,21 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 		recalculateCache(graph);
 	}
 
+	public void removeNode(int y, Node node)
+	{
+		var removed = false;
+		if (node.type == NodeType.INPUT)
+			removed = iNodes.computeIfAbsent(y, i -> new HashSet<>()).remove(node);
+		else
+			removed = oNodes.computeIfAbsent(y, i -> new HashSet<>()).remove(node);
+		if (removed)
+		{
+			fluidAmount -= node.amount;
+			if (fluidAmount <= 0)
+				fluid = FluidStack.EMPTY;
+		}
+	}
+
 	public void tick()
 	{
 		counter--;
@@ -236,6 +261,32 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 			counter = ticksPerCycle;
 			cycle();
 		}
+	}
+
+	public void save(CompoundTag tag, HolderLookup.Provider registries)
+	{
+		var tag1 = new CompoundTag();
+		tag1.put("fluid", fluid.saveOptional(registries));
+		tag1.putInt("amount", fluidAmount);
+		tag.put("fluidNet", tag1);
+	}
+
+	public void load(CompoundTag tag, HolderLookup.Provider registries)
+	{
+		var tag1 = tag.getCompound("fluidNet");
+		fluid = FluidStack.parseOptional(registries, tag1.getCompound("fluid"));
+		fluidAmount = tag1.getInt("amount");
+	}
+
+	public void setFluid(PipeNet oldNet)
+	{
+		if (fluid.isEmpty())
+			fluid = oldNet.fluid;
+	}
+
+	public boolean canMerge(PipeNet otherNet)
+	{
+		return fluid.isEmpty() || otherNet.fluid.isEmpty() || FluidStack.isSameFluidSameComponents(fluid, otherNet.fluid);
 	}
 
 	public static class Node implements IFluidHandler, INBTSerializable<CompoundTag>
@@ -258,7 +309,7 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 		@Override
 		public FluidStack getFluidInTank(int tank)
 		{
-			return new FluidStack(net.fluid, amount);
+			return net.fluid.copyWithAmount(amount);
 		}
 
 		@Override
@@ -278,12 +329,15 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 		{
 			if (type == NodeType.OUTPUT || resource.isEmpty())
 				return 0;
-			if (resource.is(net.fluid) || net.fluid == Fluids.EMPTY)
+			if (FluidStack.isSameFluidSameComponents(net.fluid, resource) || net.fluid.isEmpty())
 			{
-				net.fluid = resource.getFluid();
+				net.fluid = resource.copyWithAmount(1);
 				var taken = Math.min(resource.getAmount(), net.ioNodeCapacity - amount);
 				if (action.execute())
+				{
 					amount += taken;
+					net.fluidAmount += taken;
+				}
 				return taken;
 			}
 			return 0;
@@ -292,7 +346,7 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 		@Override
 		public FluidStack drain(FluidStack resource, FluidAction action)
 		{
-			if (resource.is(net.fluid) || net.fluid == Fluids.EMPTY)
+			if (FluidStack.isSameFluidSameComponents(net.fluid, resource) || net.fluid.isEmpty())
 				return drain(resource.getAmount(), action);
 			return FluidStack.EMPTY;
 		}
@@ -303,9 +357,15 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 			if (type == NodeType.INPUT)
 				return FluidStack.EMPTY;
 			var drained = Math.min(maxDrain, amount);
+			var fluid = net.fluid;
 			if (action.execute())
+			{
 				amount -= drained;
-			return new FluidStack(net.fluid, drained);
+				net.fluidAmount -= drained;
+				if (net.fluidAmount <= 0)
+					net.fluid = FluidStack.EMPTY;
+			}
+			return fluid.copyWithAmount(drained);
 		}
 
 		private void drain(int amount)
