@@ -339,6 +339,12 @@ public class BlockPosGraph<T extends IMaybeSerializable<?>>
 		return vertexData.get(pos);
 	}
 
+	public void setData(BlockPos vertex, T data)
+	{
+		vertexData.put(vertex, data);
+		listener.onDataChanged(this, vertex, data);
+	}
+
 	private static class EmptyListener<T extends IMaybeSerializable<?>> implements IGraphListener<T>
 	{
 	}

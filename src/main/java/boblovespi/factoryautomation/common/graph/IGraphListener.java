@@ -31,4 +31,9 @@ public interface IGraphListener<T extends IMaybeSerializable<?>>
 	{
 
 	}
+
+	default void onDataChanged(BlockPosGraph<T> graph, BlockPos vertex, T newData)
+	{
+
+	}
 }

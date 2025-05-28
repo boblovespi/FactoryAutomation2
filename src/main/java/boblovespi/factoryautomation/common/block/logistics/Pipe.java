@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.common.block.logistics;
 
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.logistics.PipeBE;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -97,6 +100,16 @@ public class Pipe extends Block implements EntityBlock
 		for (int i = 0; i < CONNECTIONS.length; i++)
 			state = state.setValue(CONNECTIONS[i], getConnectionFor(world, pos, Direction.values()[i]));
 		return state;
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType)
+	{
+		if (level.isClientSide)
+			return null;
+		else
+			return ITickable.makeTicker(FABETypes.PIPE_TYPE.get(), blockEntityType);
 	}
 
 	private Connection getConnectionFor(LevelAccessor level, BlockPos pos, Direction direction)
