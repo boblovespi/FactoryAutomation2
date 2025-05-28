@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.common.block.logistics.Pipe;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.graph.BlockPosGraph;
+import boblovespi.factoryautomation.common.graph.DirectionMap;
 import boblovespi.factoryautomation.common.util.MathHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,7 +20,8 @@ public class PipeBE extends FABE
 {
 	// TODO: properly encapsulate
 	@Nullable
-	public BlockPosGraph<Void> graph;
+	public BlockPosGraph<DirectionMap<PipeNet.Node>> graph;
+	private PipeNet net;
 	public boolean isGraphOwner;
 
 
@@ -33,7 +35,7 @@ public class PipeBE extends FABE
 	{
 		tag.putBoolean("isOwner", isGraphOwner);
 		if (isGraphOwner && graph != null)
-			graph.save(tag);
+			graph.save(tag, registries);
 	}
 
 	@Override
@@ -42,7 +44,9 @@ public class PipeBE extends FABE
 		if (tag.getBoolean("isOwner"))
 		{
 			isGraphOwner = true;
-			graph = BlockPosGraph.load(tag);
+			graph = BlockPosGraph.load(tag, registries, DirectionMap.loader(PipeNet.Node::load));
+			net = new PipeNet(100, 20, -64, 256 + 64);
+			graph.setListener(net);
 		}
 		else
 			isGraphOwner = false;
@@ -70,18 +74,30 @@ public class PipeBE extends FABE
 			level.getBlockEntity(entry.getValue().getOwner(), FABETypes.PIPE_TYPE.get()).ifPresent(t -> t.setGraphAsOwner(entry.getValue()));
 	}
 
-	private void setGraphAsOwner(BlockPosGraph<Void> graph)
+	@Override
+	public void onLoad()
+	{
+		super.onLoad();
+		if (isGraphOwner && graph != null)
+			net.onNewSubgraph(graph);
+	}
+
+	private void setGraphAsOwner(BlockPosGraph<DirectionMap<PipeNet.Node>> graph)
 	{
 		this.graph = graph;
+		this.net = new PipeNet(100, 20, -64, 256 + 64);
+		graph.setListener(net);
+		net.onNewSubgraph(graph);
 		for (var pos : graph.getVertices())
-			level.getBlockEntity(pos, FABETypes.PIPE_TYPE.get()).ifPresent(g -> g.setGraph(graph));
+			level.getBlockEntity(pos, FABETypes.PIPE_TYPE.get()).ifPresent(g -> g.setGraph(graph, net));
 		this.isGraphOwner = true;
 		setChangedAndUpdateClient();
 	}
 
-	private void setGraph(BlockPosGraph<Void> graph)
+	private void setGraph(BlockPosGraph<DirectionMap<PipeNet.Node>> graph, PipeNet net)
 	{
 		this.graph = graph;
+		this.net = net;
 		isGraphOwner = false;
 		setChangedAndUpdateClient();
 	}
@@ -98,7 +114,8 @@ public class PipeBE extends FABE
 
 	public void onPlace()
 	{
-		BlockPosGraph<Void> graph = null;
+		BlockPosGraph<DirectionMap<PipeNet.Node>> graph = null;
+		PipeNet net = null;
 		var set = EnumSet.noneOf(Direction.class);
 		for (var dir : Direction.values())
 		{
@@ -108,23 +125,29 @@ public class PipeBE extends FABE
 				{
 					set.add(dir);
 					if (graph == null)
+					{
 						graph = that.graph;
+						net = that.net;
+					}
 					else if (that.graph != null)
-						that.joinTo(graph);
+						that.joinTo(graph, net);
 				}
 			}
 		}
 		if (graph == null)
 		{
 			graph = new BlockPosGraph<>(MathHelper.colorFromBlockPos(worldPosition), worldPosition);
+			net = new PipeNet(100, 20, -64, 256 + 64);
+			graph.setListener(net);
 			isGraphOwner = true;
 		}
 		graph.addVertexAndJoin(worldPosition, null, set);
 		this.graph = graph;
+		this.net = net;
 		setChangedAndUpdateClient();
 	}
 
-	private void joinTo(BlockPosGraph<Void> graph)
+	private void joinTo(BlockPosGraph<DirectionMap<PipeNet.Node>> graph, PipeNet net)
 	{
 		if (graph == this.graph)
 			return;
@@ -137,11 +160,13 @@ public class PipeBE extends FABE
 			{
 				pipe.isGraphOwner = false;
 				pipe.graph = graph;
+				pipe.net = net;
 				pipe.setChangedAndUpdateClient();
 			}
 		}
 		graph.joinGraph(oldGraph);
 		this.graph = graph;
+		this.net = net;
 		this.isGraphOwner = false;
 		setChangedAndUpdateClient();
 	}
