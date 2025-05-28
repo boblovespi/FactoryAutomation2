@@ -50,7 +50,7 @@ public class PipeBE extends FABE implements ITickable
 		{
 			isGraphOwner = true;
 			graph = BlockPosGraph.load(tag, registries, DirectionMap.loader(PipeNet.Node::load));
-			net = new PipeNet(25, 20, -64, 256 + 64);
+			net = new PipeNet(25, 20, worldPosition.getY() - 1, worldPosition.getY() + 1);
 			graph.setListener(net);
 		}
 		else
@@ -98,7 +98,7 @@ public class PipeBE extends FABE implements ITickable
 	private void setGraphAsOwner(BlockPosGraph<DirectionMap<PipeNet.Node>> graph)
 	{
 		this.graph = graph;
-		this.net = new PipeNet(25, 20, -64, 256 + 64);
+		this.net = new PipeNet(25, 20, worldPosition.getY() - 1, worldPosition.getY() + 1);
 		graph.setListener(net);
 		net.onNewSubgraph(graph);
 		for (var pos : graph.getVertices())
@@ -162,7 +162,7 @@ public class PipeBE extends FABE implements ITickable
 		if (graph == null)
 		{
 			graph = new BlockPosGraph<>(MathHelper.colorFromBlockPos(worldPosition), worldPosition);
-			net = new PipeNet(25, 20, -64, 256 + 64);
+			net = new PipeNet(25, 20, worldPosition.getY() - 1, worldPosition.getY() + 1);
 			graph.setListener(net);
 			isGraphOwner = true;
 		}
