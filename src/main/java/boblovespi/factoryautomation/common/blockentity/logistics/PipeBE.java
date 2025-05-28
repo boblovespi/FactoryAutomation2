@@ -97,10 +97,17 @@ public class PipeBE extends FABE implements ITickable
 		{
 			net.onNewSubgraph(graph);
 			for (var pos : graph.getVertices())
-				level.getBlockEntity(pos, FABETypes.PIPE_TYPE.get()).ifPresent(g -> g.setGraph(graph, net));
+				level.getBlockEntity(pos, FABETypes.PIPE_TYPE.get()).ifPresent(g -> g.setGraphAndNodes(graph, net));
 			isGraphOwner = true;
 		}
 		setChangedAndUpdateClient();
+	}
+
+	private void setGraphAndNodes(BlockPosGraph<DirectionMap<PipeNet.Node>> graph, PipeNet net)
+	{
+		setGraph(graph, net);
+		if (graph.hasData(worldPosition))
+			nodes.putAll(graph.getData(worldPosition));
 	}
 
 	private void setGraphAsOwner(BlockPosGraph<DirectionMap<PipeNet.Node>> graph, PipeNet oldNet)
