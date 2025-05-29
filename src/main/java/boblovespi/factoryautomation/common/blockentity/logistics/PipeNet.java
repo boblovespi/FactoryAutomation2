@@ -41,6 +41,12 @@ public class PipeNet implements IGraphListener<DirectionMap<PipeNet.Node>>
 		oNodes = new IntObjectHashMap<>();
 	}
 
+	/**
+	 * A simple y-based fluid distribution algorithm. Working bottom-up, transfers fluids from input pipes
+	 * to output pipes, such that fluids can only flow downward. Distributes fluids evenly for outputs on
+	 * the same y-level, and draws from inputs evenly likewise. Fluids can only transfer downward, and also
+	 * fluids prioritize going to lower output pipes.
+	 */
 	public void cycle()
 	{
 		var yIn = startY;
