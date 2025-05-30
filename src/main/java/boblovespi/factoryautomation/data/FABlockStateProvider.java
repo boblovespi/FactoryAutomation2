@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.data;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.SpaceFrameBlock;
+import boblovespi.factoryautomation.common.block.logistics.Pipe;
 import boblovespi.factoryautomation.common.block.mechanical.BevelGear;
 import boblovespi.factoryautomation.common.block.mechanical.HandCrank;
 import boblovespi.factoryautomation.common.block.mechanical.Splitter;
@@ -127,6 +128,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		existingHorizontalBlockWithItem(FABlocks.TRIP_HAMMER);
 		simplePillarBlock(FABlocks.WOODEN_TANK);
 		existingHorizontalBlock(FABlocks.MINT_BUSH);
+		pipe(FABlocks.COPPER_PIPE);
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
@@ -292,26 +294,33 @@ public class FABlockStateProvider extends BlockStateProvider
 
 	private void spaceFrame(DeferredBlock<SpaceFrameBlock> spaceFrame)
 	{
-		getVariantBuilder(spaceFrame.get()).forAllStates( blockState -> {
-			if(blockState.getValue(SpaceFrameBlock.IS_TOP)){
-				return new ConfiguredModel[]{new ConfiguredModel(models().withExistingParent(spaceFrame.getRegisteredName()+"_roofed", modLoc("block/space_frame_roofed"))
-						.texture("side", spaceFrame.getId().withPrefix("block/"))
-						.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
-						.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top_roofed"))
-						.renderType("minecraft:cutout"))};
-			} else {
-				return new ConfiguredModel[]{new ConfiguredModel(models().withExistingParent(spaceFrame.getRegisteredName(), modLoc("block/space_frame"))
-						.texture("side", spaceFrame.getId().withPrefix("block/"))
-						.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
-						.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
-						.renderType("minecraft:cutout"))};
+		getVariantBuilder(spaceFrame.get()).forAllStates(blockState -> {
+			if (blockState.getValue(SpaceFrameBlock.IS_TOP))
+			{
+				return new ConfiguredModel[] {
+						new ConfiguredModel(models().withExistingParent(spaceFrame.getRegisteredName() + "_roofed", modLoc("block/space_frame_roofed"))
+													.texture("side", spaceFrame.getId().withPrefix("block/"))
+													.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+													.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top_roofed"))
+													.renderType("minecraft:cutout"))
+				};
+			}
+			else
+			{
+				return new ConfiguredModel[] {
+						new ConfiguredModel(models().withExistingParent(spaceFrame.getRegisteredName(), modLoc("block/space_frame"))
+													.texture("side", spaceFrame.getId().withPrefix("block/"))
+													.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+													.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+													.renderType("minecraft:cutout"))
+				};
 			}
 		});
-		simpleBlockItem(spaceFrame.get(), models().withExistingParent(spaceFrame.getRegisteredName()+"_roofed", modLoc("block/space_frame_roofed"))
-				.texture("side", spaceFrame.getId().withPrefix("block/"))
-				.texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
-				.texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top_roofed"))
-				.renderType("minecraft:cutout"));
+		simpleBlockItem(spaceFrame.get(), models().withExistingParent(spaceFrame.getRegisteredName() + "_roofed", modLoc("block/space_frame_roofed"))
+												  .texture("side", spaceFrame.getId().withPrefix("block/"))
+												  .texture("end", spaceFrame.getId().withPrefix("block/").withSuffix("_top"))
+												  .texture("roof", spaceFrame.getId().withPrefix("block/").withSuffix("_top_roofed"))
+												  .renderType("minecraft:cutout"));
 
 	}
 
@@ -320,5 +329,28 @@ public class FABlockStateProvider extends BlockStateProvider
 		var model = models().cubeColumn(block.getRegisteredName(), block.getId().withPrefix("block/").withSuffix("_side"),
 				block.getId().withPrefix("block/").withSuffix("_top"));
 		simpleBlockWithItem(block.get(), model);
+	}
+
+	private void pipe(DeferredBlock<Pipe> pipe)
+	{
+		var mpb = getMultipartBuilder(pipe.get()).part().modelFile(models().getExistingFile(modLoc("block/pipe_base"))).addModel().end();
+		for (var dir : Direction.values())
+		{
+			mpb.part()
+			   .modelFile(models().getExistingFile(modLoc("block/pipe_connector")))
+			   .rotationX(dir == Direction.DOWN ? 90 : dir.getAxis().isHorizontal() ? 0 : -90)
+			   .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + 180) % 360)
+			   .addModel()
+			   .condition(Pipe.CONNECTIONS[dir.ordinal()], Pipe.Connection.JOIN)
+			   .end();
+			mpb.part()
+			   .modelFile(models().getExistingFile(modLoc("block/pipe_end_connector")))
+			   .rotationX(dir == Direction.DOWN ? 90 : dir.getAxis().isHorizontal() ? 0 : -90)
+			   .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + 180) % 360)
+			   .addModel()
+			   .condition(Pipe.CONNECTIONS[dir.ordinal()], Pipe.Connection.CONNECTOR)
+			   .end();
+		}
+		simpleBlockItem(pipe.get(), models().getExistingFile(modLoc("item/pipe")));
 	}
 }

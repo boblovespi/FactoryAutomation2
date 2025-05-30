@@ -14,7 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -48,11 +47,11 @@ public class Pipe extends Block implements EntityBlock
 
 	public static final MapCodec<Pipe> CODEC = simpleCodec(Pipe::new);
 
-	@Override
-	protected RenderShape getRenderShape(BlockState state)
-	{
-		return RenderShape.INVISIBLE;
-	}
+	//	@Override
+	//	protected RenderShape getRenderShape(BlockState state)
+	//	{
+	//		return RenderShape.INVISIBLE;
+	//	}
 
 	public Pipe(Properties properties)
 	{
