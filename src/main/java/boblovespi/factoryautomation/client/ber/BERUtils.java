@@ -1,8 +1,12 @@
 package boblovespi.factoryautomation.client.ber;
 
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderStateShard;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
@@ -23,9 +27,24 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.joml.Quaternionf;
 
 import java.util.List;
+import java.util.OptionalDouble;
 
 public class BERUtils
 {
+	public static final RenderType LINES_OVERLAY = RenderType.create(
+			"lines_overlay",
+			DefaultVertexFormat.POSITION_COLOR_NORMAL,
+			VertexFormat.Mode.LINES,
+			1536,
+			RenderType.CompositeState.builder()
+									 .setShaderState(RenderStateShard.RENDERTYPE_LINES_SHADER)
+									 .setLineState(new RenderStateShard.LineStateShard(OptionalDouble.empty()))
+									 .setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
+									 .setDepthTestState(RenderStateShard.NO_DEPTH_TEST)
+									 .setWriteMaskState(RenderStateShard.COLOR_WRITE)
+									 .setCullState(RenderStateShard.NO_CULL)
+									 .createCompositeState(false));
+
 	public static Quaternionf quatFromAngleAxis(float deg, float x, float y, float z)
 	{
 		float sin = Mth.sin((float) (deg * Math.PI / 360f));

@@ -501,6 +501,8 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_wooden_tank", has(FAItems.WOODEN_TANK))
 							  .save(output);
 
+		pipeRecipe(output, FAItems.COPPER_PIPE, FATags.Items.COPPER_SHEET);
+
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
 								  .unlockedBy("has_bread", has(Items.BREAD))
 								  .save(output, FactoryAutomation.name("campfire/toasted_bread"));
@@ -1012,6 +1014,20 @@ public class FARecipeProvider extends RecipeProvider
 							  .part("screw", 1, 4)
 							  .part("bearing", 1, 2)
 							  .unlockedBy("has_gear", has(gear))
+							  .save(output);
+	}
+
+	// pipe
+	private void pipeRecipe(RecipeOutput output, DeferredItem<BlockItem> pipe, TagKey<Item> sheet)
+	{
+		WorkbenchRecipeBuilder.of(pipe, 6)
+							  .pattern("sss")
+							  .pattern("   ")
+							  .pattern("sss")
+							  .define('s', sheet)
+							  .tool("wrench", 1, 5)
+							  .part("screw", 1, 4)
+							  .unlockedBy("has_sheet", has(sheet))
 							  .save(output);
 	}
 }

@@ -338,6 +338,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		{
 			mpb.part()
 			   .modelFile(models().getExistingFile(modLoc("block/pipe_connector")))
+			   .uvLock(false)
 			   .rotationX(dir == Direction.DOWN ? 90 : dir.getAxis().isHorizontal() ? 0 : -90)
 			   .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + 180) % 360)
 			   .addModel()
@@ -345,6 +346,7 @@ public class FABlockStateProvider extends BlockStateProvider
 			   .end();
 			mpb.part()
 			   .modelFile(models().getExistingFile(modLoc("block/pipe_end_connector")))
+			   .uvLock(false)
 			   .rotationX(dir == Direction.DOWN ? 90 : dir.getAxis().isHorizontal() ? 0 : -90)
 			   .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + 180) % 360)
 			   .addModel()
