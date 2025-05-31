@@ -91,7 +91,8 @@ public class FryingPan extends Block implements EntityBlock
 	@Override
 	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
 	{
-		pLevel.getBlockEntity(pPos, FABETypes.FRYING_PAN_TYPE.get()).ifPresent(FryingPanBE::onDestroy);
+		if (!pState.is(pNewState.getBlock()))
+			pLevel.getBlockEntity(pPos, FABETypes.FRYING_PAN_TYPE.get()).ifPresent(FryingPanBE::onDestroy);
 		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
 	}
 
@@ -105,7 +106,8 @@ public class FryingPan extends Block implements EntityBlock
 	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
 	{
 		level.scheduleTick(pos, this, 20 * 30);
-		return direction != Direction.DOWN || canSurvive(state, level, pos) ? state.setValue(SUPPORT, level.getBlockState(pos.below()).is(BlockTags.CAMPFIRES)) : Blocks.AIR.defaultBlockState();
+		return direction != Direction.DOWN || canSurvive(state, level, pos) ? state.setValue(SUPPORT,
+				level.getBlockState(pos.below()).is(BlockTags.CAMPFIRES)) : Blocks.AIR.defaultBlockState();
 	}
 
 	@Nullable
@@ -149,7 +151,7 @@ public class FryingPan extends Block implements EntityBlock
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context)
 	{
-		return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+		return defaultBlockState().setValue(FACING, context.getHorizontalDirection());
 	}
 
 	public enum Temperature implements StringRepresentable

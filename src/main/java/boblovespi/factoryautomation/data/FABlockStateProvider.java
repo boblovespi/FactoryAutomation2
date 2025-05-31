@@ -361,7 +361,7 @@ public class FABlockStateProvider extends BlockStateProvider
 			return models().getBuilder(pan.getRegisteredName() + (hot ? "_hot" : ""))
 						   .parent(models().getExistingFile(modLoc("block/frying_pan")))
 						   .texture("pan", pan.getId().withPrefix("block/") + (hot ? "_heated" : ""));
-		}, 180);
+		}, 0);
 		simpleBlockItem(pan.get(), models().getBuilder(pan.getRegisteredName())
 										   .parent(models().getExistingFile(modLoc("block/frying_pan")))
 										   .texture("pan", pan.getId().withPrefix("block/")));
