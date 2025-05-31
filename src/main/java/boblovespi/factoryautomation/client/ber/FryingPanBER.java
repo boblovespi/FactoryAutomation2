@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.common.block.processing.FryingPan;
 import boblovespi.factoryautomation.common.blockentity.processing.FryingPanBE;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -34,8 +35,22 @@ public class FryingPanBER implements BlockEntityRenderer<FryingPanBE>
 						(int) be.getBlockPos().asLong());
 			}
 			else
-			{			stack.scale(0.3f, 0.3f, 0.3f);
-				stack.translate(0.5, 0, 0.5);
+			{
+				var yOff = 0f;
+				var fluid = be.getRenderFluid();
+				if (!fluid.isEmpty())
+				{
+					stack.pushPose();
+					{
+						BERUtils.renderFluidQuad(stack, buffer.getBuffer(RenderType.translucent()), fluid.getFluidType(), pPackedLight, pPackedOverlay,
+								6/16f, 0.04f, 6/16f, 6/16f, 0.04f, -6/16f, -6/16f, 0.04f, -6/16f, 2/16f, 2/16f, 14/16f, 14/16f);
+					}
+					stack.popPose();
+					yOff = 0.15f;
+				}
+
+				stack.scale(0.3f, 0.3f, 0.3f);
+				stack.translate(0.5, yOff, 0.5);
 				// stack.mulPose(BERUtils.quatFromAngleAxis(90, 1, 0, 0));
 				var renderStacks = be.getRenderStacks();
 				for (int i = 0; i < renderStacks.size(); i++)

@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.registries.DeferredItem;
 import vazkii.patchouli.api.PatchouliAPI;
 
@@ -251,6 +252,12 @@ public class FARecipeProvider extends RecipeProvider
 				.requires(Items.SUGAR)
 				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
 				.save(output);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.HONEY_PANCAKE)
+							  .requires(FAItems.PANCAKE)
+							  .requires(Items.HONEY_BOTTLE)
+							  .unlockedBy("has_pancake", has(FAItems.HONEY_PANCAKE))
+							  .save(output);
 
 		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, null, "copper",
 				Tags.Items.INGOTS_COPPER, output);
@@ -675,6 +682,12 @@ public class FARecipeProvider extends RecipeProvider
 					   .progress(20 * 10)
 					   .beginData().plate(Ingredient.of(Items.BOWL)).endData()
 					   .unlockedBy("has_pork", has(Items.PORKCHOP))
+					   .save(output);
+
+		FryingPanRecipe.of(new ItemStack(FAItems.PANCAKE.get()))
+					   .progress(20 * 10)
+					   .beginData().liquid(FluidIngredient.single(FAFluids.PANCAKE_BATTER_SOURCE.get())).endData()
+					   .unlockedBy("has_pancake_batter", has(FAItems.PANCAKE_BATTER_BOTTLE))
 					   .save(output);
 
 		// Vanilla overrides

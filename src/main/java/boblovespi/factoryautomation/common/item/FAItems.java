@@ -120,6 +120,8 @@ public class FAItems
 	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0F).build()));
 	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(4 / 5f).build()));
 	public static final DeferredItem<Item> HAM_AND_EGGS = ITEMS.registerSimpleItem("ham_n_eggs", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(8).saturationModifier(7 / 5f).usingConvertsTo(Items.BOWL).build()));
+	public static final DeferredItem<Item> PANCAKE = ITEMS.registerSimpleItem("pancake", new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(4 / 5f).build()));
+	public static final DeferredItem<Item> HONEY_PANCAKE = ITEMS.registerSimpleItem("honey_pancake", new Item.Properties().food(new FoodProperties.Builder().nutrition(11).saturationModifier(5 / 5f).build()));
 
 	// Processing
 

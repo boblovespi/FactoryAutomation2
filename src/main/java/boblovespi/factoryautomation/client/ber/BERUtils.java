@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
@@ -14,6 +15,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -23,8 +25,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.StainedGlassPaneBlock;
 import net.neoforged.neoforge.client.ClientHooks;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.fluids.FluidType;
 import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.OptionalDouble;
@@ -118,5 +123,53 @@ public class BERUtils
 			var f3 = (float) FastColor.ARGB32.blue(color) / 255.0F;
 			pBuffer.putBulkData(posestack$pose, bakedquad, f1, f2, f3, f, pCombinedLight, pCombinedOverlay, true); // Neo: pass readExistingColor=true
 		}
+	}
+
+	/**
+	 * Renders a single quad of the specified fluid.
+	 *
+	 * @param u0 Starting U texture coordinate (0.0-1.0, left edge of texture subsection)
+	 * @param v0 Starting V texture coordinate (0.0-1.0, bottom edge of texture subsection)
+	 * @param u1 Ending U texture coordinate (0.0-1.0, right edge of texture subsection)
+	 * @param v1 Ending V texture coordinate (0.0-1.0, top edge of texture subsection)
+	 */
+	public static void renderFluidQuad(PoseStack stack, VertexConsumer buffer, FluidType fluid, int light, int overlay, float x0, float y0, float z0, float x1, float y1, float z1,
+									   float x2, float y2, float z2, float u0, float v0, float u1, float v1)
+	{
+		var sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(IClientFluidTypeExtensions.of(fluid).getStillTexture());
+		var color = IClientFluidTypeExtensions.of(fluid).getTintColor();
+		u0 = sprite.getU(u0);
+		v0 = sprite.getV(v0);
+		u1 = sprite.getU(u1);
+		v1 = sprite.getV(v1);
+		var normal = new Vector3f(x1 - x2, y1 - y2, z1 - z2);
+		normal.cross(x1 - x0, y1 - y0, z1 - z0);
+		if (normal.lengthSquared() > 1.01f || normal.lengthSquared() < 0.99f)
+			normal.normalize();
+		stack.last().transformNormal(normal, normal);
+		buffer.addVertex(stack.last(), x0, y0, z0)
+			  .setUv(u0, v0)
+			  .setColor(color)
+			  .setLight(light)
+			  .setOverlay(overlay)
+			  .setNormal(normal.x, normal.y, normal.z);
+		buffer.addVertex(stack.last(), x1, y1, z1)
+			  .setUv(u1, v0)
+			  .setColor(color)
+			  .setLight(light)
+			  .setOverlay(overlay)
+			  .setNormal(normal.x, normal.y, normal.z);
+		buffer.addVertex(stack.last(), x2, y2, z2)
+			  .setUv(u1, v1)
+			  .setColor(color)
+			  .setLight(light)
+			  .setOverlay(overlay)
+			  .setNormal(normal.x, normal.y, normal.z);
+		buffer.addVertex(stack.last(), x0 - x1 + x2, y0 - y1 + y2, z0 - z1 + z2)
+			  .setUv(u0, v1)
+			  .setColor(color)
+			  .setLight(light)
+			  .setOverlay(overlay)
+			  .setNormal(normal.x, normal.y, normal.z);
 	}
 }

@@ -18,6 +18,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
@@ -28,6 +32,7 @@ import java.util.Optional;
 public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 {
 	private final ItemStackHandler inv;
+	private final FluidTank tank;
 	private final RecipeManager<FryingPanRecipe> rm;
 	private boolean isCooking;
 
@@ -35,6 +40,7 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 	{
 		super(FABETypes.FRYING_PAN_TYPE.get(), pos, blockState);
 		inv = new ItemStackHandler(5);
+		tank = new FluidTank(250);
 		rm = new RecipeManager<>("recipe", this::isValid, this::findMatchingRecipe, this::getRecipe);
 	}
 
@@ -45,10 +51,21 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 		rm.onLoad();
 	}
 
-	public void placeItem(ItemStack stack)
+	public void placeItem(ItemStack stack, Player player)
 	{
 		if (!inv.getStackInSlot(4).isEmpty())
 			return;
+		else
+		{
+			var result = FluidUtil.tryEmptyContainerAndStow(stack, tank, null, 250, player, true);
+			if (result.isSuccess())
+			{
+				player.setItemInHand(player.swingingArm, result.getResult());
+				rm.updateRecipe();
+				setChangedAndUpdateClient();
+				return;
+			}
+		}
 		for (int i = 0; i < 4; i++)
 		{
 			if (!inv.getStackInSlot(i).isEmpty())
@@ -81,6 +98,11 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 				return newStack;
 			}
 		}
+		if (stack.isEmpty() && player.isSecondaryUseActive() && !rm.hasRecipe())
+		{
+			tank.drain(250, IFluidHandler.FluidAction.EXECUTE);
+			setChangedAndUpdateClient();
+		}
 		return ItemStack.EMPTY;
 	}
 
@@ -92,7 +114,7 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 			ItemHelper.putItemsInInventoryOrDropAt(player, taken, level, Vec3.atLowerCornerWithOffset(worldPosition, 0.5f, 7 / 16f, 0.5f));
 		}
 		else
-			placeItem(stack);
+			placeItem(stack, player);
 	}
 
 	public ItemStack getRenderResult()
@@ -109,10 +131,16 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 		return Collections.singletonList(ItemStack.EMPTY);
 	}
 
+	public FluidStack getRenderFluid()
+	{
+		return level.isClientSide ? tank.getFluid() : FluidStack.EMPTY;
+	}
+
 	@Override
 	protected void save(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		tag.put("inv", inv.serializeNBT(registries));
+		tank.writeToNBT(registries, tag);
 		rm.save(tag);
 	}
 
@@ -120,6 +148,7 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
+		tank.readFromNBT(registries, tag);
 		rm.load(tag);
 	}
 
@@ -162,6 +191,7 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 				for (int i = 0; i < 4; i++)
 					inv.extractItem(i, 1, false);
 				inv.setStackInSlot(4, assembled.copy());
+				tank.drain(250, IFluidHandler.FluidAction.EXECUTE);
 				setChangedAndUpdateClient();
 			}
 		}
@@ -181,7 +211,7 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 
 	private FryingPanRecipe.Input getInput()
 	{
-		return new FryingPanRecipe.Input(getInputStacks());
+		return new FryingPanRecipe.Input(getInputStacks(), tank.getFluid());
 	}
 
 	private boolean isValid(RecipeHolder<FryingPanRecipe> recipe)
