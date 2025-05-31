@@ -32,11 +32,14 @@ public class TumblingBarrelJeiCategory extends FAJeiCategory<TumblingBarrelRecip
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<TumblingBarrelRecipe> recipe, IFocusGroup iFocusGroup)
 	{
-		builder.addSlot(RecipeIngredientRole.INPUT, 19, 12).addIngredients(recipe.value().input());
+		if (!recipe.value().input().isEmpty())
+			builder.addSlot(RecipeIngredientRole.INPUT, 19, 12).addIngredients(recipe.value().input());
 		if (recipe.value().fluidInput() instanceof OptionalSizedFluidIngredient.Present p)
 			builder.addSlot(RecipeIngredientRole.INPUT, 11, 34).addIngredients(NeoForgeTypes.FLUID_STACK, List.of(p.value().getFluids())).setFluidRenderer(500, true, 16, 16);
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 48).addItemStack(recipe.value().result());
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 122, 70).addIngredient(NeoForgeTypes.FLUID_STACK, recipe.value().fluidResult()).setFluidRenderer(500, true, 16, 16);
+		if (!recipe.value().result().isEmpty())
+			builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 48).addItemStack(recipe.value().result());
+		if (!recipe.value().fluidResult().isEmpty())
+			builder.addSlot(RecipeIngredientRole.OUTPUT, 122, 70).addIngredient(NeoForgeTypes.FLUID_STACK, recipe.value().fluidResult()).setFluidRenderer(500, true, 16, 16);
 	}
 
 	private record Background(IDrawable bg) implements IDrawable
