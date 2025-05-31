@@ -7,6 +7,8 @@ import boblovespi.factoryautomation.common.blockentity.processing.FryingPanBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
@@ -121,11 +123,33 @@ public class FryingPan extends Block implements EntityBlock
 		builder.add(FACING, TEMPERATURE, SUPPORT);
 	}
 
+	@Override
+	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
+	{
+		if (state.getValue(TEMPERATURE) == Temperature.HOT && level.getBlockEntity(pos, FABETypes.FRYING_PAN_TYPE.get()).map(FryingPanBE::isCooking).orElse(false))
+		{
+			var d0 = pos.getX() + 0.5;
+			var d1 = pos.getY() - 1;
+			var d2 = pos.getZ() + 0.5;
+			if (random.nextDouble() < 0.4)
+				level.playLocalSound(d0, d1, d2, SoundEvents.WET_SPONGE_DRIES, SoundSource.BLOCKS, 0.3F, 1.5F, false);
+
+			// var direction = state.getValue(FACING).getClockWise();
+			// var direction$axis = direction.getAxis();
+			// var d4 = random.nextDouble() * 0.6 - 0.3;
+			// var d5 = direction$axis == Direction.Axis.X ? direction.getStepX() * 0.52 : d4;
+			// var d6 = random.nextDouble() * 6.0 / 16.0;
+			// var d7 = direction$axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : d4;
+			// level.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0, 0.0, 0.0);
+			// level.addParticle(ParticleTypes.FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0, 0.0, 0.0);
+		}
+	}
+
 	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context)
 	{
-		return defaultBlockState().setValue(FACING, context.getHorizontalDirection());
+		return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 
 	public enum Temperature implements StringRepresentable

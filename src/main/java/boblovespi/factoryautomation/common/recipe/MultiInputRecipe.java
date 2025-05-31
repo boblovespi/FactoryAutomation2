@@ -80,7 +80,8 @@ public abstract class MultiInputRecipe<T extends MultiInputRecipe.Input, U> impl
 	@Override
 	public boolean matches(T input, Level level)
 	{
-		return inputs.stream().allMatch(ing -> input.stack().stream().anyMatch(ing)) && matchExtra(input, level);
+		return inputs.stream().allMatch(ing -> input.stack().stream().anyMatch(ing)) && inputs.size() == input.stack().stream().filter(i -> !i.isEmpty()).count() &&
+			   matchExtra(input, level);
 	}
 
 	protected abstract boolean matchExtra(T input, Level level);

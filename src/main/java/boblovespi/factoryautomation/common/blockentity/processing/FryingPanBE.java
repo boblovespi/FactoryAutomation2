@@ -29,6 +29,7 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 {
 	private final ItemStackHandler inv;
 	private final RecipeManager<FryingPanRecipe> rm;
+	private boolean isCooking;
 
 	public FryingPanBE(BlockPos pos, BlockState blockState)
 	{
@@ -94,6 +95,13 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 			placeItem(stack);
 	}
 
+	public ItemStack getRenderResult()
+	{
+		if (level.isClientSide)
+			return inv.getStackInSlot(4);
+		return ItemStack.EMPTY;
+	}
+
 	public List<ItemStack> getRenderStacks()
 	{
 		if (level.isClientSide)
@@ -119,12 +127,14 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		save(tag, registries);
+		tag.putBoolean("isCooking", rm.hasRecipe() && inv.getStackInSlot(4).isEmpty());
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		load(tag, registries);
+		isCooking = tag.getBoolean("isCooking");
 	}
 
 	@Override
@@ -182,5 +192,10 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 	private List<ItemStack> getInputStacks()
 	{
 		return List.of(inv.getStackInSlot(0), inv.getStackInSlot(1), inv.getStackInSlot(2), inv.getStackInSlot(3));
+	}
+
+	public boolean isCooking()
+	{
+		return level.isClientSide && isCooking;
 	}
 }

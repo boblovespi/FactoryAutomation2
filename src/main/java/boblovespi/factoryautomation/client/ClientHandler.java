@@ -65,6 +65,7 @@ public class ClientHandler
 		event.registerBlockEntityRenderer(FABETypes.TRIP_HAMMER_TYPE.get(), TripHammerBER::new);
 		event.registerBlockEntityRenderer(FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBER::new);
 		event.registerBlockEntityRenderer(FABETypes.PIPE_TYPE.get(), PipeDebugBER::new);
+		event.registerBlockEntityRenderer(FABETypes.FRYING_PAN_TYPE.get(), FryingPanBER::new);
 	}
 
 	@SubscribeEvent
