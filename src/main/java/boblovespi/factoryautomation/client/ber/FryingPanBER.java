@@ -25,10 +25,11 @@ public class FryingPanBER implements BlockEntityRenderer<FryingPanBE>
 		{
 			stack.translate(0.5f, 1.3 / 16f, 0.5f);
 			var result = be.getRenderResult();
+			var rot = be.getBlockState().getValue(FryingPan.FACING).getRotation();
 			if (!result.isEmpty())
 			{
 				stack.scale(0.7f, 0.7f, 0.7f);
-				stack.mulPose(be.getBlockState().getValue(FryingPan.FACING).getOpposite().getRotation());
+				stack.mulPose(rot);
 				itemRenderer.renderStatic(result, ItemDisplayContext.NONE, pPackedLight, pPackedOverlay, stack, buffer, be.getLevel(),
 						(int) be.getBlockPos().asLong());
 			}
@@ -42,7 +43,7 @@ public class FryingPanBER implements BlockEntityRenderer<FryingPanBE>
 					var renderStack = renderStacks.get(i);
 					stack.pushPose();
 					{
-						stack.mulPose(be.getBlockState().getValue(FryingPan.FACING).getOpposite().getRotation());
+						stack.mulPose(rot);
 						itemRenderer.renderStatic(renderStack, ItemDisplayContext.NONE, pPackedLight, pPackedOverlay, stack, buffer, be.getLevel(),
 								(int) be.getBlockPos().asLong());
 					}
