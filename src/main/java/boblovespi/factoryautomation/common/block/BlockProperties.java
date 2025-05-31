@@ -42,6 +42,7 @@ public class BlockProperties
 																						  .mapColor(MapColor.METAL);
 	public static final BlockBehaviour.Properties IRON_MACHINE_NO_OCCLUSION = BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5, 6).sound(SoundType.METAL)
 																									   .mapColor(MapColor.METAL).noOcclusion();
+	public static final BlockBehaviour.Properties FRYING_PAN = BlockBehaviour.Properties.of().strength(2, 3).sound(SoundType.METAL).mapColor(MapColor.METAL);
 
 	public static BlockBehaviour.Properties LIGHT_METAL(MapColor c)
 	{

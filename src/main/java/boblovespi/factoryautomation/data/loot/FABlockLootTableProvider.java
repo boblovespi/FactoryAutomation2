@@ -146,6 +146,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.SMALL_WATERWHEEL.get());
 		dropSelf(FABlocks.TRIP_HAMMER.get());
 		dropSelf(FABlocks.TUMBLING_BARREL.get());
+		dropSelf(FABlocks.FRYING_PAN.get());
 		dropSelf(FABlocks.WOODEN_TANK.get());
 		dropSelf(FABlocks.COPPER_PIPE.get());
 	}

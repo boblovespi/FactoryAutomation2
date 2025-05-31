@@ -44,6 +44,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<TumblingBarrelBE>> TUMBLING_BARREL_TYPE = type("tumbling_barrel", TumblingBarrelBE::new, FABlocks.TUMBLING_BARREL);
 	public static final Supplier<BlockEntityType<SmallTankBE>> SMALL_TANK_TYPE = type("small_tank", SmallTankBE::new, FABlocks.WOODEN_TANK);
 	public static final Supplier<BlockEntityType<PipeBE>> PIPE_TYPE = type("pipe", PipeBE::new, FABlocks.COPPER_PIPE);
+	public static final Supplier<BlockEntityType<FryingPanBE>> FRYING_PAN_TYPE = type("frying_pan", FryingPanBE::new, FABlocks.FRYING_PAN);
 
 	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,

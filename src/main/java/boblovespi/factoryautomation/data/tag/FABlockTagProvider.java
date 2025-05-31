@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -141,6 +142,9 @@ public class FABlockTagProvider extends BlockTagsProvider
 											   .add(FABlocks.HAND_CRANK.get());
 		tag(FATags.Blocks.CHOPPING_BLOCK_LOGS).add(Arrays.stream(WoodTypes.values()).map(WoodTypes::getLog).toArray(Block[]::new));
 		tag(FATags.Blocks.CHOPPING_BLOCKS).add(choppingBlocks);
+
+		tag(FATags.Blocks.PAN_HEAT_SOURCE).addTag(BlockTags.CAMPFIRES).add(Blocks.FURNACE, Blocks.SMOKER, Blocks.SMOKER, Blocks.MAGMA_BLOCK)
+										  .addOptionalTag(ResourceLocation.fromNamespaceAndPath("farmersdelight", "heat_sources"));
 
 		addStoneBlockTags(FABlocks.ANDESITE_BRICKS);
 		addStoneBlockTags(FABlocks.GRANITE_BRICKS);

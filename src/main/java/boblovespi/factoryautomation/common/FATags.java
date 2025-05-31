@@ -155,6 +155,8 @@ public class FATags
 
 		public static final TagKey<Block> CHOPPING_BLOCK_LOGS = block("chopping_block_logs");
 		public static final TagKey<Block> CHOPPING_BLOCKS = block("chopping_blocks");
+
+		public static final TagKey<Block> PAN_HEAT_SOURCE = block("pan_heat_source");
 	}
 
 	public static class Biomes

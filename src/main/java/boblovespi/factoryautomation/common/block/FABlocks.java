@@ -127,6 +127,7 @@ public class FABlocks
 	public static final DeferredBlock<PaperBellows> PAPER_BELLOWS = register("paper_bellows", PaperBellows::new, BlockProperties.WOOD_MACHINE);
 	public static final DeferredBlock<TripHammer> TRIP_HAMMER = register("trip_hammer", TripHammer::new, BlockProperties.IRON_MACHINE);
 	public static final DeferredBlock<TumblingBarrel> TUMBLING_BARREL = register("tumbling_barrel", TumblingBarrel::new, BlockProperties.WOOD_MACHINE);
+	public static final DeferredBlock<FryingPan> FRYING_PAN = register("iron_frying_pan", FryingPan::new, BlockProperties.FRYING_PAN);
 
 	// Mechanical
 

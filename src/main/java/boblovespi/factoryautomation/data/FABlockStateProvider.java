@@ -7,10 +7,7 @@ import boblovespi.factoryautomation.common.block.logistics.Pipe;
 import boblovespi.factoryautomation.common.block.mechanical.BevelGear;
 import boblovespi.factoryautomation.common.block.mechanical.HandCrank;
 import boblovespi.factoryautomation.common.block.mechanical.Splitter;
-import boblovespi.factoryautomation.common.block.processing.ChoppingBlock;
-import boblovespi.factoryautomation.common.block.processing.LogPileLike;
-import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
-import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
+import boblovespi.factoryautomation.common.block.processing.*;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
@@ -129,6 +126,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		simplePillarBlock(FABlocks.WOODEN_TANK);
 		existingHorizontalBlock(FABlocks.MINT_BUSH);
 		pipe(FABlocks.COPPER_PIPE);
+		fryingPan(FABlocks.FRYING_PAN);
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
@@ -355,4 +353,18 @@ public class FABlockStateProvider extends BlockStateProvider
 		}
 		simpleBlockItem(pipe.get(), models().getExistingFile(modLoc("item/pipe")));
 	}
+
+	private void fryingPan(DeferredBlock<FryingPan> pan)
+	{
+		horizontalBlock(pan.get(), s -> {
+			var hot = s.getValue(FryingPan.TEMPERATURE) == FryingPan.Temperature.HOT;
+			return models().getBuilder(pan.getRegisteredName() + (hot ? "_hot" : ""))
+						   .parent(models().getExistingFile(modLoc("block/frying_pan")))
+						   .texture("pan", pan.getId().withPrefix("block/") + (hot ? "_heated" : ""));
+		}, 180);
+		simpleBlockItem(pan.get(), models().getBuilder(pan.getRegisteredName())
+										   .parent(models().getExistingFile(modLoc("block/frying_pan")))
+										   .texture("pan", pan.getId().withPrefix("block/")));
+	}
+
 }

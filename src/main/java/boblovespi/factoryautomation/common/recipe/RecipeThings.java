@@ -41,4 +41,7 @@ public class RecipeThings
 			() -> RecipeType.simple(FactoryAutomation.name("tumbling_barrel")));
 	public static final Supplier<RecipeSerializer<TumblingBarrelRecipe>> TUMBLING_BARREL_SERIALIZER = RECIPE_SERIALIZERS.register("tumbling_barrel",
 			TumblingBarrelRecipe.Serializer::new);
+	public static final Supplier<RecipeType<FryingPanRecipe>> FRYING_PAN_TYPE = RECIPE_TYPES.register("frying", () -> RecipeType.simple(FactoryAutomation.name("frying")));
+	public static final Supplier<RecipeSerializer<FryingPanRecipe>> FRYING_PAN_SERIALIZER = RECIPE_SERIALIZERS.register("frying",
+			() -> new MultiInputRecipe.Serializer<>(FryingPanRecipe::new, FryingPanRecipe.DATA_CODEC, FryingPanRecipe.DATA_STREAM_CODEC));
 }
