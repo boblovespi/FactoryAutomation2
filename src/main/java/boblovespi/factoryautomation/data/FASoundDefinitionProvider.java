@@ -33,5 +33,6 @@ public class FASoundDefinitionProvider extends SoundDefinitionsProvider
 												   .subtitle("subtitles.block.bellows.blow")
 												   .replace(true));
 		add(FASounds.METAL_SIZZLES, SoundDefinition.definition().with(sound("random/fizz")).subtitle("subtitles.block.hot_metal.sizzle").replace(true));
+		add(FASounds.PAN_SIZZLES, SoundDefinition.definition().with(sound("random/fizz")).subtitle("subtitles.block.frying_pan.sizzle").replace(true));
 	}
 }

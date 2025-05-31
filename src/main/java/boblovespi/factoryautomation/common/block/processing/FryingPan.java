@@ -4,10 +4,10 @@ import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.FryingPanBE;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -132,7 +132,7 @@ public class FryingPan extends Block implements EntityBlock
 			var d1 = pos.getY() - 1;
 			var d2 = pos.getZ() + 0.5;
 			if (random.nextDouble() < 0.4)
-				level.playLocalSound(d0, d1, d2, SoundEvents.WET_SPONGE_DRIES, SoundSource.BLOCKS, 0.3F, 1.5F, false);
+				level.playLocalSound(d0, d1, d2, FASounds.PAN_SIZZLES.get(), SoundSource.BLOCKS, 0.3F, 1.5F, false);
 
 			// var direction = state.getValue(FACING).getClockWise();
 			// var direction$axis = direction.getAxis();
