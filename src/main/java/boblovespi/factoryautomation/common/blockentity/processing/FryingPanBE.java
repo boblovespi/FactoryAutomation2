@@ -55,6 +55,7 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 			inv.insertItem(i, stack.split(1), false);
 			rm.updateRecipe();
 			setChangedAndUpdateClient();
+			return;
 		}
 	}
 

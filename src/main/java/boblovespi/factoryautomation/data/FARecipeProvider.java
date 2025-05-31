@@ -658,6 +658,16 @@ public class FARecipeProvider extends RecipeProvider
 							.unlockedBy("has_cleaned_leather", has(FAItems.CLEANED_LEATHER))
 							.save(output);
 
+		FryingPanRecipe.of(new ItemStack(Items.RABBIT_STEW))
+					   .input(Items.RABBIT)
+					   .input(Items.CARROT)
+					   .input(Items.POTATO)
+					   .input(Tags.Items.MUSHROOMS)
+					   .progress(20 * 20)
+					   .beginData().plate(Ingredient.of(Items.BOWL)).endData()
+					   .unlockedBy("has_rabbit", has(Items.RABBIT))
+					   .save(output);
+
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
 			RemovalRecipe.unitFor(wood.getPlanks()).save(output);
