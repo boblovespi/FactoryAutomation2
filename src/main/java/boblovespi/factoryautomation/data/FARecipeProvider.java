@@ -338,7 +338,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .define('s', Tags.Items.RODS_WOODEN)
 						   .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(output);
 
-		// Workbench
+		// Workbench recipes
 		WorkbenchRecipeBuilder.of(FAItems.LOG_PILE)
 							  .pattern("lll")
 							  .pattern("lll")
@@ -544,6 +544,18 @@ public class FARecipeProvider extends RecipeProvider
 							  .part("bushing", 1, 2)
 							  .part("screw", 1, 4)
 							  .unlockedBy("has_wooden_tank", has(FAItems.WOODEN_TANK))
+							  .save(output);
+
+		WorkbenchRecipeBuilder.of(FAItems.FRYING_PAN)
+							  .pattern(" i ")
+							  .pattern("isi")
+							  .pattern("wi ")
+							  .define('s', FATags.Items.IRON_SHEET)
+							  .define('i', Tags.Items.INGOTS_IRON)
+							  .define('w', Tags.Items.RODS_WOODEN)
+							  .tool("hammer", 1, 5)
+							  .part("screw", 1, 2)
+							  .unlockedBy("has_iron_sheet", has(FATags.Items.IRON_SHEET))
 							  .save(output);
 
 		pipeRecipe(output, FAItems.COPPER_PIPE, FATags.Items.COPPER_SHEET);
