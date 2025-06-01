@@ -7,10 +7,13 @@ import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.crafting.RecipeHolder;
+
+import java.util.stream.Stream;
 
 public class FryingJeiCategory extends FAJeiCategory<FryingPanRecipe>
 {
@@ -28,15 +31,21 @@ public class FryingJeiCategory extends FAJeiCategory<FryingPanRecipe>
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<FryingPanRecipe> recipe, IFocusGroup focuses)
 	{
-		var ingredients = recipe.value().getInputs();
+		var recipeV = recipe.value();
+		var ingredients = recipeV.getInputs();
 		for (int i = 0; i < ingredients.size(); i++)
 		{
 			var ingredient = ingredients.get(i);
 			builder.addSlot(RecipeIngredientRole.INPUT, 8 + 15 - 9 + (i % 2) * 18, 19 + 6 - (i / 2) * 18).addIngredients(ingredient);
 		}
-		var resultItem = getResultItem(recipe.value());
-		if (!recipe.value().getData().plate().isEmpty())
-			builder.addSlot(RecipeIngredientRole.INPUT, 79, 51 - 4).addIngredients(recipe.value().getData().plate());
+		var resultItem = getResultItem(recipeV);
+		var data = recipeV.getData();
+		if (!data.plate().isEmpty())
+			builder.addSlot(RecipeIngredientRole.INPUT, 79, 51 - 4).addIngredients(data.plate());
+		if (!data.liquid().isEmpty())
+			builder.addSlot(RecipeIngredientRole.INPUT, 14, 7)
+				   .setFluidRenderer(250, false, 34, 34)
+				   .addIngredients(NeoForgeTypes.FLUID_STACK, Stream.of(data.liquid().getStacks()).map(s -> s.copyWithAmount(250)).toList());
 		var out = builder.addSlot(RecipeIngredientRole.OUTPUT, 62 + 25, 19 + 10 - 4);
 		out.addItemStack(resultItem);
 	}
