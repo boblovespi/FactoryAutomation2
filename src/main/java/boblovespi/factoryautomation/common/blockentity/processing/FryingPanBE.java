@@ -10,13 +10,18 @@ import boblovespi.factoryautomation.common.util.RecipeManager;
 import boblovespi.factoryautomation.common.util.jade.IJadeViewable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
@@ -61,6 +66,23 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 			if (result.isSuccess())
 			{
 				player.setItemInHand(player.swingingArm, result.getResult());
+				rm.updateRecipe();
+				setChangedAndUpdateClient();
+				return;
+			}
+			else if (stack.is(Items.POTION) && stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).is(Potions.WATER) && tank.isEmpty())
+			{
+				tank.fill(new FluidStack(Fluids.WATER, 250), IFluidHandler.FluidAction.EXECUTE);
+				if (!player.getAbilities().instabuild)
+				{
+					if (stack.getCount() == 1)
+						player.setItemInHand(player.swingingArm, Items.GLASS_BOTTLE.getDefaultInstance());
+					else
+					{
+						stack.shrink(1);
+						ItemHelper.putItemsInInventoryOrDrop(player, Items.GLASS_BOTTLE.getDefaultInstance(), level);
+					}
+				}
 				rm.updateRecipe();
 				setChangedAndUpdateClient();
 				return;
