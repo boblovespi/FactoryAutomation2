@@ -16,6 +16,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -116,21 +117,22 @@ public class FAItems
 
 	// Food
 
-	public static final DeferredItem<Item> TOASTED_BREAD = ITEMS.registerSimpleItem("toasted_bread", new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(4 / 5f).build()));
-	public static final DeferredItem<Item> SLICED_BREAD = ITEMS.registerSimpleItem("sliced_bread", new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(3 / 5f).fast().build()));
-	public static final DeferredItem<Item> CHOCOLATE_ICE_CREAM = ITEMS.registerSimpleItem("chocolate_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.SATURATION, 300, 0), 1.0F).build()));
-	public static final DeferredItem<Item> COFFEE_ICE_CREAM = ITEMS.registerSimpleItem("coffee_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0), 1.0F).build()));
-	public static final DeferredItem<Item> COOKIES_N_CREAM_ICE_CREAM = ITEMS.registerSimpleItem("cookies_n_cream_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2), 1.0F).build()));
-	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0), 1.0F).build()));
-	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0F).build()));
-	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(1 / 2f).build()));
-	public static final DeferredItem<Item> HAM_AND_EGGS = ITEMS.registerSimpleItem("ham_n_eggs", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(8).saturationModifier(5 / 5f).usingConvertsTo(Items.BOWL).build()));
-	public static final DeferredItem<Item> PANCAKE = ITEMS.registerSimpleItem("pancake", new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(3 / 5f).build()));
-	public static final DeferredItem<Item> HONEY_PANCAKE = ITEMS.registerSimpleItem("honey_pancake", new Item.Properties().food(new FoodProperties.Builder().nutrition(10).saturationModifier(3 / 5f).build()));
-	public static final DeferredItem<Item> TOFU = ITEMS.registerSimpleItem("tofu", new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(1 / 2f).build()));
-	public static final DeferredItem<Item> DOUFUNAO = ITEMS.registerSimpleItem("doufunao", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(6).saturationModifier(3 / 5f).usingConvertsTo(Items.BOWL).build()));
-	public static final DeferredItem<Item> SWEET_DOUFUNAO = ITEMS.registerSimpleItem("sweet_doufunao", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(7).saturationModifier(4 / 5f).usingConvertsTo(Items.BOWL).build()));
-	public static final DeferredItem<Item> SALTY_DOUFUNAO = ITEMS.registerSimpleItem("salty_doufunao", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(7).saturationModifier(4 / 5f).usingConvertsTo(Items.BOWL).build()));
+	public static final DeferredItem<Item> TOASTED_BREAD = ITEMS.registerSimpleItem("toasted_bread", p().food(makeFood(5, 4 / 5f)));
+	public static final DeferredItem<Item> SLICED_BREAD = ITEMS.registerSimpleItem("sliced_bread", p().food(new FoodProperties.Builder().nutrition(1).saturationModifier(3 / 5f).fast().build()));
+	public static final DeferredItem<Item> CHOCOLATE_ICE_CREAM = ITEMS.registerSimpleItem("chocolate_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.SATURATION, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> COFFEE_ICE_CREAM = ITEMS.registerSimpleItem("coffee_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> COOKIES_N_CREAM_ICE_CREAM = ITEMS.registerSimpleItem("cookies_n_cream_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2), 1.0F).build()));
+	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0F).build()));
+	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", p().food(makeFood(3, 1 / 2f)));
+	public static final DeferredItem<Item> HAM_AND_EGGS = ITEMS.registerSimpleItem("ham_n_eggs", p().stacksTo(4).food(makeFood(8, 5 / 5f, Items.BOWL)));
+	public static final DeferredItem<Item> PANCAKE = ITEMS.registerSimpleItem("pancake", p().food(makeFood(5, 3 / 5f)));
+	public static final DeferredItem<Item> HONEY_PANCAKE = ITEMS.registerSimpleItem("honey_pancake", p().food(makeFood(10, 3 / 5f)));
+	public static final DeferredItem<Item> TOFU = ITEMS.registerSimpleItem("tofu", p().food(makeFood(2, 1 / 2f)));
+	public static final DeferredItem<Item> DOUFUNAO = ITEMS.registerSimpleItem("doufunao", p().stacksTo(4).food(makeFood(6, 3 / 5f, Items.BOWL)));
+	public static final DeferredItem<Item> SWEET_DOUFUNAO = ITEMS.registerSimpleItem("sweet_doufunao", p().stacksTo(4).food(makeFood(7, 4 / 5f, Items.BOWL)));
+	public static final DeferredItem<Item> SALTY_DOUFUNAO = ITEMS.registerSimpleItem("salty_doufunao", p().stacksTo(4).food(makeFood(7, 4 / 5f, Items.BOWL)));
+	public static final DeferredItem<FluidBottle> SOY_MILK_BOTTLE = ITEMS.registerItem("soy_milk_bottle", p -> new FluidBottle(p, FAFluids.SOY_MILK_SOURCE.get()), p().stacksTo(16).food(makeFood(3, 3 / 5f, Items.GLASS_BOTTLE)));
 
 	// Processing
 
@@ -153,27 +155,27 @@ public class FAItems
 
 	// Tools
 
-	public static final DeferredItem<DiggerItem> CHOPPING_BLADE = tieredTool("chopping_blade", ChoppingBlade::new, Tools.BAD_FLINT_TIER, new Item.Properties(), 2, -3.2f);
+	public static final DeferredItem<DiggerItem> CHOPPING_BLADE = tieredTool("chopping_blade", ChoppingBlade::new, Tools.BAD_FLINT_TIER, p(), 2, -3.2f);
 
-	public static final DeferredItem<ShovelItem> FLINT_SHOVEL = tieredTool("flint_shovel", ShovelItem::new, Tools.FLINT_TIER, new Item.Properties(), 1.5f, -3f);
-	public static final DeferredItem<PickaxeItem> FLINT_PICKAXE = tieredTool("flint_pickaxe", PickaxeItem::new, Tools.FLINT_TIER, new Item.Properties(), 1, -2.8f);
-	public static final DeferredItem<AxeItem> FLINT_AXE = tieredTool("flint_axe", AxeItem::new, Tools.FLINT_TIER, new Item.Properties(), 6, -3.2f);
-	public static final DeferredItem<HoeItem> FLINT_HOE = tieredTool("flint_hoe", HoeItem::new, Tools.FLINT_TIER, new Item.Properties(), 1, -3f);
-	public static final DeferredItem<SwordItem> FLINT_SWORD = tieredTool("flint_sword", SwordItem::new, Tools.FLINT_TIER, new Item.Properties(), 3, -2.4f);
+	public static final DeferredItem<ShovelItem> FLINT_SHOVEL = tieredTool("flint_shovel", ShovelItem::new, Tools.FLINT_TIER, p(), 1.5f, -3f);
+	public static final DeferredItem<PickaxeItem> FLINT_PICKAXE = tieredTool("flint_pickaxe", PickaxeItem::new, Tools.FLINT_TIER, p(), 1, -2.8f);
+	public static final DeferredItem<AxeItem> FLINT_AXE = tieredTool("flint_axe", AxeItem::new, Tools.FLINT_TIER, p(), 6, -3.2f);
+	public static final DeferredItem<HoeItem> FLINT_HOE = tieredTool("flint_hoe", HoeItem::new, Tools.FLINT_TIER, p(), 1, -3f);
+	public static final DeferredItem<SwordItem> FLINT_SWORD = tieredTool("flint_sword", SwordItem::new, Tools.FLINT_TIER, p(), 3, -2.4f);
 
 	public static final DeferredItem<Firebow> FIREBOW = ITEMS.registerItem("firebow", Firebow::new);
 
-	public static final DeferredItem<ShovelItem> COPPER_SHOVEL = tieredTool("copper_shovel", ShovelItem::new, Tools.COPPER_TIER, new Item.Properties(), 1.5f, -3f);
-	public static final DeferredItem<PickaxeItem> COPPER_PICKAXE = tieredTool("copper_pickaxe", PickaxeItem::new, Tools.COPPER_TIER, new Item.Properties(), 1, -2.8f);
-	public static final DeferredItem<AxeItem> COPPER_AXE = tieredTool("copper_axe", AxeItem::new, Tools.COPPER_TIER, new Item.Properties(), 6.5f, -3.15f);
-	public static final DeferredItem<HoeItem> COPPER_HOE = tieredTool("copper_hoe", HoeItem::new, Tools.COPPER_TIER, new Item.Properties(), -1.5f, -1.5f);
-	public static final DeferredItem<SwordItem> COPPER_SWORD = tieredTool("copper_sword", SwordItem::new, Tools.COPPER_TIER, new Item.Properties(), 3, -2.4f);
-	public static final DeferredItem<Hammer> COPPER_HAMMER = tieredTool("copper_hammer", Hammer::new, Tools.COPPER_TIER, new Item.Properties(), 8, -3.5f);
+	public static final DeferredItem<ShovelItem> COPPER_SHOVEL = tieredTool("copper_shovel", ShovelItem::new, Tools.COPPER_TIER, p(), 1.5f, -3f);
+	public static final DeferredItem<PickaxeItem> COPPER_PICKAXE = tieredTool("copper_pickaxe", PickaxeItem::new, Tools.COPPER_TIER, p(), 1, -2.8f);
+	public static final DeferredItem<AxeItem> COPPER_AXE = tieredTool("copper_axe", AxeItem::new, Tools.COPPER_TIER, p(), 6.5f, -3.15f);
+	public static final DeferredItem<HoeItem> COPPER_HOE = tieredTool("copper_hoe", HoeItem::new, Tools.COPPER_TIER, p(), -1.5f, -1.5f);
+	public static final DeferredItem<SwordItem> COPPER_SWORD = tieredTool("copper_sword", SwordItem::new, Tools.COPPER_TIER, p(), 3, -2.4f);
+	public static final DeferredItem<Hammer> COPPER_HAMMER = tieredTool("copper_hammer", Hammer::new, Tools.COPPER_TIER, p(), 8, -3.5f);
 	public static final DeferredItem<ShearsItem> COPPER_SHEARS = ITEMS.registerItem("copper_shears", ShearsItem::new,
-			new Item.Properties().durability(176).component(DataComponents.TOOL, ShearsItem.createToolProperties()));
+			p().durability(176).component(DataComponents.TOOL, ShearsItem.createToolProperties()));
 
-	public static final DeferredItem<Hammer> IRON_HAMMER = tieredTool("iron_hammer", Hammer::new, Tiers.IRON, new Item.Properties(), 8, -3.5f);
-	public static final DeferredItem<Wrench> IRON_WRENCH = tieredTool("iron_wrench", Wrench::new, Tiers.IRON, new Item.Properties(), 1.5f, -3f);
+	public static final DeferredItem<Hammer> IRON_HAMMER = tieredTool("iron_hammer", Hammer::new, Tiers.IRON, p(), 8, -3.5f);
+	public static final DeferredItem<Wrench> IRON_WRENCH = tieredTool("iron_wrench", Wrench::new, Tiers.IRON, p(), 1.5f, -3f);
 
 	// Mechanical
 
@@ -201,6 +203,11 @@ public class FAItems
 
 	public static final DeferredItem<BlockItem> CREATIVE_MECHANICAL_SOURCE = ITEMS.registerSimpleBlockItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
 
+	private static Item.Properties p()
+	{
+		return new Item.Properties();
+	}
+
 	private static <T extends TieredItem> DeferredItem<T> tieredTool(String name, BiFunction<Tier, Item.Properties, T> constructor, Tier tier, Item.Properties properties,
 																	 float damage, float as)
 	{
@@ -224,12 +231,22 @@ public class FAItems
 	private static Map<Form, DeferredItem<? extends Item>> tallowMold(String name, Collection<Form> metals)
 	{
 		return metals.stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem(name + "_" + k.getName(),
-				Item::new, new Item.Properties().durability(20)), (a, b) -> a, LinkedHashMap::new));
+				Item::new, p().durability(20)), (a, b) -> a, LinkedHashMap::new));
 	}
 
 	public static Map<GearMaterial, DeferredItem<Item>> gear()
 	{
 		return GearMaterial.all().stream().collect(Collectors.toMap(k -> k, k -> ITEMS.registerItem(k.getName() + "_gear",
-				Item::new, new Item.Properties().durability(k.getDurability())), (a, b) -> a, LinkedHashMap::new));
+				Item::new, p().durability(k.getDurability())), (a, b) -> a, LinkedHashMap::new));
+	}
+
+	private static FoodProperties makeFood(int nutrition, float saturation)
+	{
+		return new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturation).build();
+	}
+
+	private static FoodProperties makeFood(int nutrition, float saturation, ItemLike remainder)
+	{
+		return new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturation).usingConvertsTo(remainder).build();
 	}
 }

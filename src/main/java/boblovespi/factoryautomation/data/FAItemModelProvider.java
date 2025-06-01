@@ -102,6 +102,11 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.SWEET_DOUFUNAO.get());
 		basicItem(FAItems.SALTY_DOUFUNAO.get());
 
+		getBuilder(FAItems.SOY_MILK_BOTTLE.getRegisteredName())
+				.parent(getExistingFile(modLoc("item/bottle")))
+				.customLoader(DynamicFluidContainerModelBuilder::begin)
+				.fluid(FAFluids.SOY_MILK_SOURCE.get()).end();
+
 		withExistingParent(FAItems.LOG_PILE.getRegisteredName(), modLoc("block/log_pile"));
 		withExistingParent(FAItems.STONE_CRUCIBLE.getRegisteredName(), modLoc("block/stone_crucible"));
 		withExistingParent(FAItems.BRICK_CRUCIBLE.getRegisteredName(), modLoc("block/brick_crucible"));
