@@ -779,6 +779,15 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_soybeans", has(FAItems.SOYBEANS))
 					   .save(output);
 
+		FryingPanRecipe.of(new ItemStack(FAItems.YAKITORI.get()))
+					   .progress(20 * 10)
+					   .input(Items.CHICKEN)
+					   .input(Items.SUGAR)
+					   .input(FAItems.GREEN_ONION)
+					   .beginData().liquid(FluidIngredient.single(FAFluids.SOY_SAUCE_SOURCE)).plate(Ingredient.of(Items.STICK)).endData()
+					   .unlockedBy("has_chicken", has(Items.CHICKEN))
+					   .save(output);
+
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
 			RemovalRecipe.unitFor(wood.getPlanks()).save(output);

@@ -101,6 +101,8 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.DOUFUNAO.get());
 		basicItem(FAItems.SWEET_DOUFUNAO.get());
 		basicItem(FAItems.SALTY_DOUFUNAO.get());
+		basicItem(FAItems.GREEN_ONION.get());
+		basicItem(FAItems.YAKITORI.get());
 
 		getBuilder(FAItems.SOY_MILK_BOTTLE.getRegisteredName())
 				.parent(getExistingFile(modLoc("item/bottle")))
