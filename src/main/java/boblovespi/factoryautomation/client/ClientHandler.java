@@ -101,6 +101,9 @@ public class ClientHandler
 		registerFluidTexture(event, "pancake_batter", FAFluids.PANCAKE_BATTER_TYPE);
 		registerFluidTexture(event, "tannin", FAFluids.TANNIN_TYPE);
 		registerFluidTexture(event, "limewater", FAFluids.LIMEWATER_TYPE);
+		registerFluidTexture(event, "brine", FAFluids.BRINE_TYPE);
+		registerFluidTexture(event, "soy_milk", FAFluids.SOY_MILK_TYPE);
+		registerFluidTexture(event, "soy_sauce", FAFluids.SOY_SAUCE_TYPE);
 	}
 
 	private static void registerFluidTexture(RegisterClientExtensionsEvent event, String name, DeferredHolder<FluidType, FluidType> type)

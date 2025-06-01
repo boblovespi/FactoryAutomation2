@@ -49,6 +49,8 @@ public class FARecipeProvider extends RecipeProvider
 		// common ingredients
 		var cobbleSlabs = Ingredient.of(Items.COBBLESTONE_SLAB, Items.BLACKSTONE_SLAB, Items.COBBLED_DEEPSLATE_SLAB);
 
+		// shaped
+
 		stoneBricks(output, Items.ANDESITE, Items.POLISHED_ANDESITE, FAItems.ANDESITE_BRICKS);
 		stoneBricks(output, Items.GRANITE, Items.POLISHED_GRANITE, FAItems.GRANITE_BRICKS);
 		stoneBricks(output, Items.DIORITE, Items.POLISHED_DIORITE, FAItems.DIORITE_BRICKS);
@@ -212,6 +214,8 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_flint", has(Items.FLINT))
 						   .save(output);
 
+		// shapeless
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FAItems.FIREBOW)
 							  .requires(Items.BOW)
 							  .requires(Tags.Items.RODS_WOODEN)
@@ -256,7 +260,41 @@ public class FARecipeProvider extends RecipeProvider
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.HONEY_PANCAKE)
 							  .requires(FAItems.PANCAKE)
 							  .requires(Items.HONEY_BOTTLE)
-							  .unlockedBy("has_pancake", has(FAItems.HONEY_PANCAKE))
+							  .unlockedBy("has_pancake", has(FAItems.PANCAKE))
+							  .save(output);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.DOUFUNAO)
+							  .requires(FAItems.TOFU)
+							  .requires(Items.BOWL)
+							  .unlockedBy("has_tofu", has(FAItems.TOFU))
+							  .save(output);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SWEET_DOUFUNAO)
+							  .requires(FAItems.DOUFUNAO)
+							  .requires(FAItems.GINGER)
+							  .requires(Ingredient.of(Items.SUGAR, Items.HONEY_BOTTLE))
+							  .unlockedBy("has_doufunao", has(FAItems.DOUFUNAO))
+							  .save(output, "sweet_doufunao_from_doufunao");
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SWEET_DOUFUNAO)
+							  .requires(FAItems.TOFU)
+							  .requires(Items.BOWL)
+							  .requires(FAItems.GINGER)
+							  .requires(Ingredient.of(Items.SUGAR, Items.HONEY_BOTTLE))
+							  .unlockedBy("has_tofu", has(FAItems.TOFU))
+							  .save(output);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SALTY_DOUFUNAO)
+							  .requires(FAItems.DOUFUNAO)
+							  .requires(FAItems.SOY_SAUCE_BOTTLE)
+							  .unlockedBy("has_doufunao", has(FAItems.DOUFUNAO))
+							  .save(output, "salty_doufunao_from_doufunao");
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SALTY_DOUFUNAO)
+							  .requires(FAItems.TOFU)
+							  .requires(Items.BOWL)
+							  .requires(FAItems.SOY_SAUCE_BOTTLE)
+							  .unlockedBy("has_tofu", has(FAItems.TOFU))
 							  .save(output);
 
 		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, null, "copper",
@@ -603,6 +641,9 @@ public class FARecipeProvider extends RecipeProvider
 		MillstoneRecipe.of(new ItemStack(Items.BLACK_DYE, 2)).input(Items.WITHER_ROSE).progress(50).beginData().speed(1).torque(40).endData()
 					   .unlockedBy("has_wither_rose", has(Items.WITHER_ROSE)).saveNoteFrom(output, "wither_rose");
 
+		MillstoneRecipe.of(FAItems.GROUND_SOYBEAN.toStack()).input(FAItems.SOYBEANS).progress(50).beginData().speed(1).torque(40).endData()
+					   .unlockedBy("has_soybeans", has(FAItems.SOYBEANS)).save(output);
+
 		// Trip hammer
 		TripHammerRecipe.of(new ItemStack(FAItems.IRON_RAIL.get())).input(FATags.Items.IRON_ROD).progress(100).beginData().endData()
 						.unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD)).save(output);
@@ -665,6 +706,46 @@ public class FARecipeProvider extends RecipeProvider
 							.unlockedBy("has_cleaned_leather", has(FAItems.CLEANED_LEATHER))
 							.save(output);
 
+		// TODO: add salt, and replace with salt
+		TumblingBarrelRecipe.of(FAFluids.BRINE_SOURCE.get(), 100)
+							.fluidInput(Fluids.WATER, 100)
+							.input(Items.SUGAR)
+							.time(20 * 5)
+							.minSpeed(2)
+							.maxSpeed(10)
+							.unlockedBy("has_salt", has(Items.SUGAR))
+							.save(output);
+
+		TumblingBarrelRecipe.of(FAFluids.SOY_MILK_SOURCE.get(), 250)
+							.fluidInput(Fluids.WATER, 250)
+							.input(FAItems.GROUND_SOYBEAN)
+							.time(20 * 5)
+							.minSpeed(2)
+							.maxSpeed(10)
+							.unlockedBy("has_ground_soybeans", has(FAItems.GROUND_SOYBEAN))
+							.save(output);
+
+		// TODO: add gypsum, and replace with gypsum
+		TumblingBarrelRecipe.of(FAItems.TOFU)
+							.fluidInput(FAFluids.SOY_MILK_SOURCE.get(), 250)
+							.input(FATags.Items.CALCIUM_CARBONATE_DUST)
+							.time(20 * 60)
+							.minSpeed(0.2f)
+							.maxSpeed(0.5f)
+							.unlockedBy("has_gypsum", has(FAItems.SOYBEANS))
+							.save(output);
+
+		TumblingBarrelRecipe.of(FAFluids.SOY_SAUCE_SOURCE.get(), 250)
+							.fluidInput(FAFluids.BRINE_SOURCE.get(), 250)
+							.input(FAItems.SOY_SAUCE_CULTURE)
+							.time(20 * 60 * 2)
+							.minSpeed(0.2f)
+							.maxSpeed(0.5f)
+							.unlockedBy("has_soy_sauce_culture", has(FAItems.SOY_SAUCE_CULTURE))
+							.save(output);
+
+		// Frying pan
+
 		FryingPanRecipe.of(new ItemStack(Items.RABBIT_STEW))
 					   .input(Items.RABBIT)
 					   .input(Items.CARROT)
@@ -688,6 +769,14 @@ public class FARecipeProvider extends RecipeProvider
 					   .progress(20 * 10)
 					   .beginData().liquid(FluidIngredient.single(FAFluids.PANCAKE_BATTER_SOURCE.get())).endData()
 					   .unlockedBy("has_pancake_batter", has(FAItems.PANCAKE_BATTER_BOTTLE))
+					   .save(output);
+
+		FryingPanRecipe.of(new ItemStack(FAItems.SOY_SAUCE_CULTURE.get()))
+					   .progress(20 * 10)
+					   .input(FAItems.SOYBEANS)
+					   .input(FATags.Items.WHEAT_DUST)
+					   .beginData().liquid(FluidIngredient.single(Fluids.WATER)).endData()
+					   .unlockedBy("has_soybeans", has(FAItems.SOYBEANS))
 					   .save(output);
 
 		// Vanilla overrides

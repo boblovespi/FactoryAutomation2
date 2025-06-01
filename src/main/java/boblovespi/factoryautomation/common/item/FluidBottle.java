@@ -14,7 +14,7 @@ public class FluidBottle extends Item
 {
 	public FluidBottle(Properties properties, Fluid fluid)
 	{
-		super(properties.component(FactoryAutomation.FLUID_CONTENT_DC, SimpleFluidContent.copyOf(new FluidStack(fluid, 250))));
+		super(properties.component(FactoryAutomation.FLUID_CONTENT_DC, SimpleFluidContent.copyOf(new FluidStack(fluid, 250))).craftRemainder(Items.GLASS_BOTTLE));
 	}
 
 	public IFluidHandlerItem makeHandler(ItemStack stack)

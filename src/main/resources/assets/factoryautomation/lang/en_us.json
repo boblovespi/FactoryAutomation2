@@ -148,6 +148,9 @@
 	"item.factoryautomation.weak_iron_ingot": "Weak Iron Ingot",
 	"item.factoryautomation.weak_iron_nugget": "Weak Iron Nugget",
 	
+	"item.factoryautomation.soybeans": "Soybeans",
+	"item.factoryautomation.ginger": "Ginger",
+	
 	// Items - Refined
 	
 	"item.factoryautomation.pig_tallow_ingot": "Pig Tallow Ingot",
@@ -241,8 +244,11 @@
 	"item.factoryautomation.dried_brick": "Dried Brick",
 	"item.factoryautomation.tanbark_dust": "Tanbark Dust",
 	"item.factoryautomation.cleaned_leather": "Cleaned Leather",
+	"item.factoryautomation.ground_soybean": "Ground Soybean",
+	"item.factoryautomation.soy_sauce_culture": "Soy Sauce Culture",
 	
 	"item.factoryautomation.pancake_batter_bottle": "Bottle of Pancake Batter",
+	"item.factoryautomation.soy_sauce_bottle": "Bottle of Soy Sauce",
 	
 	// Items - Intermediate
 	
@@ -265,6 +271,10 @@
 	"item.factoryautomation.ham_n_eggs": "Ham 'n Eggs",
 	"item.factoryautomation.pancake": "Pancake",
 	"item.factoryautomation.honey_pancake": "Honey Pancake",
+	"item.factoryautomation.tofu": "Tofu",
+	"item.factoryautomation.doufunao": "Doufunao",
+	"item.factoryautomation.sweet_doufunao": "Sweet Doufunao",
+	"item.factoryautomation.salty_doufunao": "Salty Doufunao",
 	
 	// Items - Tools
 	
@@ -303,6 +313,9 @@
 	"fluid.factoryautomation.pancake_batter": "Pancake Batter",
 	"fluid.factoryautomation.limewater": "Limewater",
 	"fluid.factoryautomation.tannin": "Tannin",
+	"fluid.factoryautomation.brine": "Brine",
+	"fluid.factoryautomation.soy_milk": "Soy Milk",
+	"fluid.factoryautomation.soy_sauce": "Soy Sauce",
 	
 	// Creative tabs
 	

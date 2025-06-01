@@ -31,6 +31,8 @@ public class FAItemModelProvider extends ItemModelProvider
 
 		withExistingParent(FAItems.ROCK.getRegisteredName(), modLoc("block/cobblestone_rock"));
 		basicItem(FAItems.MINT_LEAVES.get());
+		basicItem(FAItems.SOYBEANS.get());
+		basicItem(FAItems.GINGER.get());
 
 		basicItem(FAItems.PLANT_FIBER.get());
 		basicItem(FAItems.RAW_CASSITERITE.get());
@@ -64,11 +66,19 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.DRIED_BRICK.get());
 		basicItem(FAItems.TANBARK_DUST.get());
 		basicItem(FAItems.CLEANED_LEATHER.get());
+		basicItem(FAItems.GROUND_SOYBEAN.get());
+		basicItem(FAItems.SOY_SAUCE_CULTURE.get());
 
 		getBuilder(FAItems.PANCAKE_BATTER_BOTTLE.getRegisteredName())
 				.parent(getExistingFile(modLoc("item/bottle")))
 				.customLoader(DynamicFluidContainerModelBuilder::begin)
 				.fluid(FAFluids.PANCAKE_BATTER_SOURCE.get()).end();
+
+		getBuilder(FAItems.SOY_SAUCE_BOTTLE.getRegisteredName())
+				.parent(getExistingFile(modLoc("item/bottle")))
+				.customLoader(DynamicFluidContainerModelBuilder::begin)
+				.fluid(FAFluids.SOY_MILK_SOURCE.get()).end();
+
 
 		basicItem(FAItems.SCREW.get());
 		basicItem(FAItems.BUSHING.get());
@@ -87,6 +97,10 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.HAM_AND_EGGS.get());
 		basicItem(FAItems.PANCAKE.get());
 		basicItem(FAItems.HONEY_PANCAKE.get());
+		basicItem(FAItems.TOFU.get());
+		basicItem(FAItems.DOUFUNAO.get());
+		basicItem(FAItems.SWEET_DOUFUNAO.get());
+		basicItem(FAItems.SALTY_DOUFUNAO.get());
 
 		withExistingParent(FAItems.LOG_PILE.getRegisteredName(), modLoc("block/log_pile"));
 		withExistingParent(FAItems.STONE_CRUCIBLE.getRegisteredName(), modLoc("block/stone_crucible"));

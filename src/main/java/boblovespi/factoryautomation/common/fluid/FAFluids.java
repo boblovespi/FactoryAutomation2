@@ -27,10 +27,25 @@ public class FAFluids
 	public static final DeferredHolder<Fluid, FlowingFluid> TANNIN_SOURCE = source(FAFluids::tanninProperties, "tannin");
 	public static final DeferredHolder<Fluid, FlowingFluid> TANNIN_FLOWING = flowing(FAFluids::tanninProperties, "tannin_flowing");
 
+	public static final DeferredHolder<FluidType, FluidType> BRINE_TYPE = type("brine");
+
+	public static final DeferredHolder<Fluid, FlowingFluid> BRINE_SOURCE = source(FAFluids::brineProperties, "brine");
+	public static final DeferredHolder<Fluid, FlowingFluid> BRINE_FLOWING = flowing(FAFluids::brineProperties, "brine_flowing");
+
 	public static final DeferredHolder<FluidType, FluidType> LIMEWATER_TYPE = type("limewater");
 
 	public static final DeferredHolder<Fluid, FlowingFluid> LIMEWATER_SOURCE = source(FAFluids::limewaterProperties, "limewater");
 	public static final DeferredHolder<Fluid, FlowingFluid> LIMEWATER_FLOWING = flowing(FAFluids::limewaterProperties, "limewater_flowing");
+
+	public static final DeferredHolder<FluidType, FluidType> SOY_MILK_TYPE = type("soy_milk");
+
+	public static final DeferredHolder<Fluid, FlowingFluid> SOY_MILK_SOURCE = source(FAFluids::soyMilkProperties, "soy_milk");
+	public static final DeferredHolder<Fluid, FlowingFluid> SOY_MILK_FLOWING = flowing(FAFluids::soyMilkProperties, "soy_milk_flowing");
+
+	public static final DeferredHolder<FluidType, FluidType> SOY_SAUCE_TYPE = type("soy_sauce");
+
+	public static final DeferredHolder<Fluid, FlowingFluid> SOY_SAUCE_SOURCE = source(FAFluids::soySauceProperties, "soy_sauce");
+	public static final DeferredHolder<Fluid, FlowingFluid> SOY_SAUCE_FLOWING = flowing(FAFluids::soySauceProperties, "soy_sauce_flowing");
 
 	private static DeferredHolder<FluidType, FluidType> type(String name)
 	{
@@ -60,5 +75,20 @@ public class FAFluids
 	private static BaseFlowingFluid.Properties limewaterProperties()
 	{
 		return new BaseFlowingFluid.Properties(LIMEWATER_TYPE, LIMEWATER_SOURCE, LIMEWATER_FLOWING);
+	}
+
+	private static BaseFlowingFluid.Properties brineProperties()
+	{
+		return new BaseFlowingFluid.Properties(BRINE_TYPE, BRINE_SOURCE, BRINE_FLOWING);
+	}
+
+	private static BaseFlowingFluid.Properties soyMilkProperties()
+	{
+		return new BaseFlowingFluid.Properties(SOY_MILK_TYPE, SOY_MILK_SOURCE, SOY_MILK_FLOWING);
+	}
+
+	private static BaseFlowingFluid.Properties soySauceProperties()
+	{
+		return new BaseFlowingFluid.Properties(SOY_SAUCE_TYPE, SOY_SAUCE_SOURCE, SOY_SAUCE_FLOWING);
 	}
 }

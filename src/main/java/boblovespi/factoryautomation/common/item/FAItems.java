@@ -54,6 +54,8 @@ public class FAItems
 	public static final DeferredItem<BlockItem> IRON_SAND = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SAND);
 	public static final DeferredItem<BlockItem> IRON_SAND_CHARCOAL_MIX = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SAND_CHARCOAL_MIX);
 	public static final DeferredItem<BlockItem> MINT_LEAVES = ITEMS.registerSimpleBlockItem(FABlocks.MINT_BUSH);
+	public static final DeferredItem<Item> SOYBEANS = ITEMS.registerSimpleItem("soybeans");
+	public static final DeferredItem<Item> GINGER = ITEMS.registerSimpleItem("ginger");
 
 	// Refined materials
 
@@ -85,6 +87,9 @@ public class FAItems
 	public static final DeferredItem<Item> TANBARK_DUST = ITEMS.registerSimpleItem("tanbark_dust");
 	public static final DeferredItem<Item> CLEANED_LEATHER = ITEMS.registerSimpleItem("cleaned_leather");
 	public static final DeferredItem<FluidBottle> PANCAKE_BATTER_BOTTLE = ITEMS.registerItem("pancake_batter_bottle", p -> new FluidBottle(p, FAFluids.PANCAKE_BATTER_SOURCE.get()));
+	public static final DeferredItem<Item> GROUND_SOYBEAN = ITEMS.registerSimpleItem("ground_soybean");
+	public static final DeferredItem<Item> SOY_SAUCE_CULTURE = ITEMS.registerSimpleItem("soy_sauce_culture");
+	public static final DeferredItem<FluidBottle> SOY_SAUCE_BOTTLE = ITEMS.registerItem("soy_sauce_bottle", p -> new FluidBottle(p, FAFluids.SOY_SAUCE_SOURCE.get()));
 
 	// Building blocks
 
@@ -122,6 +127,10 @@ public class FAItems
 	public static final DeferredItem<Item> HAM_AND_EGGS = ITEMS.registerSimpleItem("ham_n_eggs", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(8).saturationModifier(7 / 5f).usingConvertsTo(Items.BOWL).build()));
 	public static final DeferredItem<Item> PANCAKE = ITEMS.registerSimpleItem("pancake", new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(4 / 5f).build()));
 	public static final DeferredItem<Item> HONEY_PANCAKE = ITEMS.registerSimpleItem("honey_pancake", new Item.Properties().food(new FoodProperties.Builder().nutrition(11).saturationModifier(5 / 5f).build()));
+	public static final DeferredItem<Item> TOFU = ITEMS.registerSimpleItem("tofu", new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(5 / 5f).build()));
+	public static final DeferredItem<Item> DOUFUNAO = ITEMS.registerSimpleItem("doufunao", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(6).saturationModifier(4 / 5f).usingConvertsTo(Items.BOWL).build()));
+	public static final DeferredItem<Item> SWEET_DOUFUNAO = ITEMS.registerSimpleItem("sweet_doufunao", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(7).saturationModifier(5 / 5f).usingConvertsTo(Items.BOWL).build()));
+	public static final DeferredItem<Item> SALTY_DOUFUNAO = ITEMS.registerSimpleItem("salty_doufunao", new Item.Properties().stacksTo(4).food(new FoodProperties.Builder().nutrition(7).saturationModifier(5 / 5f).usingConvertsTo(Items.BOWL).build()));
 
 	// Processing
 
