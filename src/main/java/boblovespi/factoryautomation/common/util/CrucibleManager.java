@@ -300,7 +300,7 @@ public abstract class CrucibleManager
 		public float getHeatCapacity()
 		{
 			return ((float) metalRatio.entrySet().stream()
-									  .mapToDouble(m -> m.getKey().massHeatCapacity() * m.getKey().density() * amount * m.getValue() / 100f)
+									  .mapToDouble(m -> m.getKey().massHeatCapacity() * m.getKey().density() * amount * m.getValue() / 100f / (Metal.UNITS_IN_INGOT * 9))
 									  .sum());
 		}
 
