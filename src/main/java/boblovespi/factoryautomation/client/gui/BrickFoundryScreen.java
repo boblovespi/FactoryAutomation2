@@ -48,7 +48,7 @@ public class BrickFoundryScreen extends AbstractContainerScreen<BrickFoundryMenu
 	{
 		graphics.blit(BACKGROUND_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 		flameBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(0)));
-		temperatureBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(1)) / 1800f);
+		temperatureBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(1)) / 2500f);
 		progressBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(2)));
 		bellowsBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(6)));
 		var metal = Metal.fromId(menu.getData(4));
