@@ -9,6 +9,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.logistics.SmallTankBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.*;
+import boblovespi.factoryautomation.common.blockentity.processing.LeatherBellowsBE;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
@@ -177,6 +178,7 @@ public class FactoryAutomation
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.BEVEL_GEAR_TYPE.get(), BevelGearBE::input);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MILLSTONE_TYPE.get(), MillstoneBE::input);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBE::input);
+		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.LEATHER_BELLOWS_TYPE.get(), LeatherBellowsBE::input);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, FABETypes.MILLSTONE_TYPE.get(), MillstoneBE::itemHandler);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBE::itemHandler);
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBE::fluidHandler);

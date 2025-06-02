@@ -508,6 +508,18 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_copper_sheet", has(FATags.Items.COPPER_SHEET))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.LEATHER_BELLOWS)
+							  .pattern("pww")
+							  .pattern("p c")
+							  .pattern("pww")
+							  .define('p', FAItems.PROCESSED_LEATHER)
+							  .define('w', ItemTags.PLANKS)
+							  .define('c', FATags.Items.COPPER_SHEET)
+							  .tool("hammer", 1, 5)
+							  .part("screw", 1, 4)
+							  .unlockedBy("has_copper_sheet", has(FATags.Items.COPPER_SHEET))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.TRIP_HAMMER)
 							  .pattern("sas")
 							  .pattern("sps")

@@ -125,6 +125,7 @@ public class FABlocks
 	public static final DeferredBlock<BrickCastingVessel> BRICK_CASTING_VESSEL = register("brick_casting_vessel", BrickCastingVessel::new, BlockProperties.BRICK_MACHINE);
 	public static final DeferredBlock<Millstone> MILLSTONE = register("millstone", Millstone::new, BlockProperties.COBBLESTONE_MACHINE);
 	public static final DeferredBlock<PaperBellows> PAPER_BELLOWS = register("paper_bellows", PaperBellows::new, BlockProperties.WOOD_MACHINE);
+	public static final DeferredBlock<LeatherBellows> LEATHER_BELLOWS = register("leather_bellows", LeatherBellows::new, BlockProperties.WOOD_MACHINE);
 	public static final DeferredBlock<TripHammer> TRIP_HAMMER = register("trip_hammer", TripHammer::new, BlockProperties.IRON_MACHINE);
 	public static final DeferredBlock<TumblingBarrel> TUMBLING_BARREL = register("tumbling_barrel", TumblingBarrel::new, BlockProperties.WOOD_MACHINE);
 	public static final DeferredBlock<FryingPan> FRYING_PAN = register("iron_frying_pan", FryingPan::new, BlockProperties.FRYING_PAN);

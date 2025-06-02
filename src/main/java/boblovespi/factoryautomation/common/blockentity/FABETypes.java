@@ -40,6 +40,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<SmallWaterwheelBE>> SMALL_WATERWHEEL_TYPE = type("small_waterwheel", SmallWaterwheelBE::new, FABlocks.SMALL_WATERWHEEL);
 	public static final Supplier<BlockEntityType<BrickFireboxBE>> BRICK_FIREBOX_TYPE = type("brick_firebox", BrickFireboxBE::new, FABlocks.BRICK_FIREBOX);
 	public static final Supplier<BlockEntityType<PaperBellowsBE>> PAPER_BELLOWS_TYPE = type("paper_bellows", PaperBellowsBE::new, FABlocks.PAPER_BELLOWS);
+	public static final Supplier<BlockEntityType<LeatherBellowsBE>> LEATHER_BELLOWS_TYPE = type("leather_bellows", LeatherBellowsBE::new, FABlocks.LEATHER_BELLOWS);
 	public static final Supplier<BlockEntityType<TripHammerBE>> TRIP_HAMMER_TYPE = type("trip_hammer", TripHammerBE::new, FABlocks.TRIP_HAMMER);
 	public static final Supplier<BlockEntityType<TumblingBarrelBE>> TUMBLING_BARREL_TYPE = type("tumbling_barrel", TumblingBarrelBE::new, FABlocks.TUMBLING_BARREL);
 	public static final Supplier<BlockEntityType<SmallTankBE>> SMALL_TANK_TYPE = type("small_tank", SmallTankBE::new, FABlocks.WOODEN_TANK);

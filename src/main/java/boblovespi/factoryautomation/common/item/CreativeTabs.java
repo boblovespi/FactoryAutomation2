@@ -117,6 +117,7 @@ public class CreativeTabs
 						o.accept(FAItems.BRICK_CASTING_VESSEL);
 						o.accept(FAItems.MILLSTONE);
 						o.accept(FAItems.PAPER_BELLOWS);
+						o.accept(FAItems.LEATHER_BELLOWS);
 						o.accept(FAItems.TRIP_HAMMER);
 						o.accept(FAItems.TUMBLING_BARREL);
 						o.accept(FAItems.FRYING_PAN);
