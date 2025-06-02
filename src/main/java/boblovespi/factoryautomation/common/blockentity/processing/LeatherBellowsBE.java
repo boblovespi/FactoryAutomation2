@@ -151,6 +151,8 @@ public class LeatherBellowsBE extends FABE implements ITickable, IClientTickable
 		if (isFastEnoughForTorque())
 		{
 			var speed = mechanicalManager.getSpeed() / 20f;
+			if (speed < 0.01f)
+				return 0;
 			var timeInTicks = 2.5f * 20 * speed;
 			return 100f / timeInTicks;
 		}
