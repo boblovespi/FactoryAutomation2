@@ -299,7 +299,9 @@ public abstract class CrucibleManager
 		@Override
 		public float getHeatCapacity()
 		{
-			return 0;
+			return ((float) metalRatio.entrySet().stream()
+									  .mapToDouble(m -> m.getKey().massHeatCapacity() * m.getKey().density() * amount * m.getValue() / 100f)
+									  .sum());
 		}
 
 		private record AlloyData(Metal metal, Metal base, Map<Metal, Float> lowerBound, Map<Metal, Float> upperBound)

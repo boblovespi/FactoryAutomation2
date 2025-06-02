@@ -99,7 +99,12 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		tag.putFloat("amount", (float) crucible.getAmount() / (Form.INGOT.amount() * 9 * 3));
-		tag.putInt("color", crucible.getCurrentMetal().color());
+		tag.putInt("color", getMetal().color());
+	}
+
+	private Metal getMetal()
+	{
+		return crucible.getCurrentMetal() != Metal.BRONZE || heat.getTemperature() > 2273 ? crucible.getCurrentMetal() : Metal.UNKNOWN;
 	}
 
 	@Override
@@ -129,7 +134,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 	public void pour(ICastingVessel castingVessel)
 	{
 		setChangedAndUpdateClient();
-		castingVessel.cast(crucible::pour);
+		castingVessel.cast(t -> crucible.pour(t).map(m -> m != Metal.BRONZE || getMetal() == Metal.BRONZE ? m : null));
 		heat.setHeatCapacity(crucible.getHeatCapacity() + 2300 * 1000);
 	}
 
@@ -266,7 +271,7 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 				case 1 -> Float.floatToIntBits(heat.getTemperature());
 				case 2 -> Float.floatToIntBits(meltProgress);
 				case 3 -> crucible.getAmount();
-				case 4 -> crucible.getCurrentMetal().id();
+				case 4 -> getMetal().id();
 				case 5 -> Float.floatToIntBits(bellows.getTempEfficiency());
 				case 6 -> Float.floatToIntBits(bellows.getTime());
 				default -> 0;
