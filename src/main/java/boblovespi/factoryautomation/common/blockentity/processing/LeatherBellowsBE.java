@@ -168,7 +168,7 @@ public class LeatherBellowsBE extends FABE implements ITickable, IClientTickable
 	{
 		var efficiency = calculateEfficiency();
 		var speed = mechanicalManager.getSpeed();
-		return speed >= 2 * targetSpeed * efficiency - targetSpeed;
+		return speed >= 2 * targetSpeed * efficiency - targetSpeed && mechanicalManager.getTorque() >= 500;
 	}
 
 	private float calculateEfficiency()
