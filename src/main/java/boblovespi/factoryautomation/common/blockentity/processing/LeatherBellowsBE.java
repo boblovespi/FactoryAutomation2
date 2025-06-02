@@ -33,6 +33,8 @@ public class LeatherBellowsBE extends FABE implements ITickable, IClientTickable
 	private static final RawAnimation STANDBY_STATE = RawAnimation.begin().thenLoop("state.bellows.base");
 	private final AnimatableInstanceCache cache;
 	private final MechanicalManager mechanicalManager;
+	private static final float blowLength = 5;
+	private static final float targetSpeed = 2.4f;
 
 	public LeatherBellowsBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -111,7 +113,7 @@ public class LeatherBellowsBE extends FABE implements ITickable, IClientTickable
 		{
 			var cap = level.getCapability(BellowsCapability.BLOCK, worldPosition.relative(facing), facing.getOpposite());
 			if (cap != null)
-				cap.blow(0.75f, 400);
+				cap.blow(calculateEfficiency(), (int) (blowLength * 20));
 		}
 	}
 
@@ -150,24 +152,27 @@ public class LeatherBellowsBE extends FABE implements ITickable, IClientTickable
 	{
 		if (isFastEnoughForTorque())
 		{
-			var speed = mechanicalManager.getSpeed() / 20f;
-			if (speed < 0.01f)
+			var speed = Mth.clamp(mechanicalManager.getSpeed(), 0, 4.8f);
+			if (speed < 0.1f)
 				return 0;
-			var timeInTicks = 2.5f * 20 * speed;
-			return 100f / timeInTicks;
+			return 100 * speed / (targetSpeed * blowLength * 20);
 		}
 		return 0;
 	}
 
+	/**
+	 * Calculates the speed needed for a given torque. Fit is linear, with 0 speed for 500 Nm (50% eff)
+	 * and 2.4 speed for 1000 Nm (100% eff). As such, minimum power usage scales quadratically.
+	 */
 	private boolean isFastEnoughForTorque()
 	{
-		var efficiency = 2 * (calculateEfficiency() - 0.5f);
+		var efficiency = calculateEfficiency();
 		var speed = mechanicalManager.getSpeed();
-		return efficiency * 20 <= speed;
+		return speed >= 2 * targetSpeed * efficiency - targetSpeed;
 	}
 
 	private float calculateEfficiency()
 	{
-		return Mth.clamp(mechanicalManager.getTorque() / 30f, 0.5f, 1f);
+		return Mth.clamp(mechanicalManager.getTorque() / 1000f, 0.5f, 2f);
 	}
 }
