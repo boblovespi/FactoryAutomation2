@@ -44,6 +44,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.model.data.ModelProperty;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.NeoForgeMod;
@@ -120,7 +122,9 @@ public class FactoryAutomation
 		NeoForge.EVENT_BUS.register(this);
 
 		// Register our mod's ModConfigSpec so that FML can create and load the config file for us
-		modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		modContainer.registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
+		modContainer.registerConfig(ModConfig.Type.SERVER, Config.SERVER_SPEC);
+		modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 	}
 
 	public static ResourceLocation name(String location)
@@ -141,7 +145,7 @@ public class FactoryAutomation
 		//		if (Config.logDirtBlock)
 		//			LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
 
-		LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
+		// LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
 		//		Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
 	}

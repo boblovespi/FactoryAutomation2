@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
+import boblovespi.factoryautomation.Config;
 import boblovespi.factoryautomation.api.capability.BellowsCapability;
 import boblovespi.factoryautomation.common.block.processing.PaperBellows;
 import boblovespi.factoryautomation.common.blockentity.FABE;
@@ -81,7 +82,7 @@ public class PaperBellowsBE extends FABE implements IClientTickable, GeoBlockEnt
 			var facing = getBlockState().getValue(PaperBellows.FACING);
 			var cap = level.getCapability(BellowsCapability.BLOCK, worldPosition.relative(facing), facing.getOpposite());
 			if (cap != null)
-				cap.blow(0.75f, 400);
+				cap.blow(0.75f, Config.paperBellowsBlowTime);
 		}
 	}
 

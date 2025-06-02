@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
+import boblovespi.factoryautomation.Config;
 import boblovespi.factoryautomation.api.IMechanicalInput;
 import boblovespi.factoryautomation.api.capability.BellowsCapability;
 import boblovespi.factoryautomation.common.block.processing.LeatherBellows;
@@ -33,7 +34,6 @@ public class LeatherBellowsBE extends FABE implements ITickable, IClientTickable
 	private static final RawAnimation STANDBY_STATE = RawAnimation.begin().thenLoop("state.bellows.base");
 	private final AnimatableInstanceCache cache;
 	private final MechanicalManager mechanicalManager;
-	private static final float blowLength = 5;
 	private static final float targetSpeed = 2.4f;
 
 	public LeatherBellowsBE(BlockPos pPos, BlockState pBlockState)
@@ -113,7 +113,7 @@ public class LeatherBellowsBE extends FABE implements ITickable, IClientTickable
 		{
 			var cap = level.getCapability(BellowsCapability.BLOCK, worldPosition.relative(facing), facing.getOpposite());
 			if (cap != null)
-				cap.blow(calculateEfficiency(), (int) (blowLength * 20));
+				cap.blow(calculateEfficiency(), (int) (Config.leatherBellowsBlowTime * 20));
 		}
 	}
 
@@ -155,7 +155,7 @@ public class LeatherBellowsBE extends FABE implements ITickable, IClientTickable
 			var speed = Mth.clamp(mechanicalManager.getSpeed(), 0, 4.8f);
 			if (speed < 0.1f)
 				return 0;
-			return 100 * speed / (targetSpeed * blowLength * 20);
+			return 100 * speed / (targetSpeed * Config.leatherBellowsBlowTime * 20);
 		}
 		return 0;
 	}
