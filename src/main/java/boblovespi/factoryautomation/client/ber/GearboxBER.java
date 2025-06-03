@@ -15,28 +15,32 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class GearboxBER implements BlockEntityRenderer<GearboxBE>
 {
 	private final BlockRenderDispatcher blockRenderer;
 	private final ItemRenderer itemRenderer;
 	private final BlockState[] shaftStates;
+	private final DeferredBlock<PowerShaft>[] shafts;
 
 	public GearboxBER(BlockEntityRendererProvider.Context pContext)
 	{
 		blockRenderer = pContext.getBlockRenderDispatcher();
 		itemRenderer = pContext.getItemRenderer();
-		shaftStates = new BlockState[Direction.Axis.VALUES.length];
+		shaftStates = new BlockState[Direction.Axis.VALUES.length * 2];
+		shafts = new DeferredBlock[] {FABlocks.WOOD_POWER_SHAFT, FABlocks.IRON_POWER_SHAFT};
 	}
 
 	@Override
 	public void render(GearboxBE be, float delta, PoseStack stack, MultiBufferSource bufferSource, int light, int overlay)
 	{
+		var index = be.getBlockState().is(FABlocks.IRON_GEARBOX) ? 1 : 0;
 		var facing = be.getBlockState().getValue(Gearbox.FACING);
 		var axis = facing.getAxis();
-		if (shaftStates[axis.ordinal()] == null)
-			shaftStates[axis.ordinal()] = FABlocks.WOOD_POWER_SHAFT.get().defaultBlockState().setValue(PowerShaft.AXIS, axis);
-		var shaft = shaftStates[axis.ordinal()];
+		if (shaftStates[axis.ordinal() + index * 3] == null)
+			shaftStates[axis.ordinal() + index * 3] = shafts[index].get().defaultBlockState().setValue(PowerShaft.AXIS, axis);
+		var shaft = shaftStates[axis.ordinal() + index * 3];
 		var dir = facing.getAxisDirection().getStep();
 		stack.pushPose();
 		{

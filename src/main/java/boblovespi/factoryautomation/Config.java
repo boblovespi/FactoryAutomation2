@@ -52,6 +52,8 @@ public class Config
 	@SubscribeEvent
 	public static void onLoad(final ModConfigEvent event)
 	{
+		if (event instanceof ModConfigEvent.Unloading)
+			return;
 		switch (event.getConfig().getType())
 		{
 			case COMMON ->
