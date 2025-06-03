@@ -29,5 +29,6 @@ public class FABiomeTagProvider extends BiomeTagsProvider
 		tag(FATags.Biomes.IS_WET_OVERWORLD).addTags(BiomeTags.IS_JUNGLE, BiomeTags.IS_TAIGA, Tags.Biomes.IS_SWAMP);
 		tag(FATags.Biomes.IS_SURFACE_OVERWORLD).addTags(FATags.Biomes.IS_TYPICAL_OVERWORLD, FATags.Biomes.IS_YELLOW_DESERT_OVERWORLD, FATags.Biomes.IS_RED_DESERT_OVERWORLD,
 				FATags.Biomes.IS_WET_OVERWORLD);
+		tag(FATags.Biomes.IS_TEMPERATE_GRASSY_OVERWORLD).add(Biomes.MEADOW, Biomes.CHERRY_GROVE, Biomes.PLAINS, Biomes.SUNFLOWER_PLAINS).addTags(Tags.Biomes.IS_PLAINS);
 	}
 }

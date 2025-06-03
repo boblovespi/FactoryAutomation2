@@ -166,6 +166,7 @@ public class FATags
 		public static final TagKey<Biome> IS_RED_DESERT_OVERWORLD = biome("is_red_desert_overworld");
 		public static final TagKey<Biome> IS_WET_OVERWORLD = biome("is_wet_overworld");
 		public static final TagKey<Biome> IS_SURFACE_OVERWORLD = biome("is_surface_overworld");
+		public static final TagKey<Biome> IS_TEMPERATE_GRASSY_OVERWORLD = biome("is_temperate_grassy_overworld");
 	}
 
 	private static TagKey<Item> mcItem(String name)

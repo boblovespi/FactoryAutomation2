@@ -56,6 +56,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<ConfiguredFeature<?, ?>> FLINT_PATCH_CF = configured("flint_patch");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_CASSITERITE_ORE_CF = configured("small_cassiterite_ore");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LIMONITE_ORE_CF = configured("swamp_limonite_ore");
+	private static final ResourceKey<ConfiguredFeature<?, ?>> WILD_GREEN_ONION_FLOWER_CF = configured("wild_green_onion_flower");
 
 	private static final ResourceKey<PlacedFeature> NORMAL_ROCK_PATCH_PF = placed("normal_rock_patch");
 	private static final ResourceKey<PlacedFeature> DESERT_ROCK_PATCH_PF = placed("desert_rock_patch");
@@ -64,6 +65,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<PlacedFeature> NORMAL_FLINT_PATCH_PF = placed("normal_flint_patch");
 	private static final ResourceKey<PlacedFeature> SMALL_CASSITERITE_ORE_PF = placed("small_cassiterite_ore");
 	private static final ResourceKey<PlacedFeature> SWAMP_LIMONITE_ORE_PF = placed("swamp_limonite_ore");
+	private static final ResourceKey<PlacedFeature> WILD_GREEN_ONION_FLOWER_PF = placed("wild_green_onion_flower");
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> configured(String name)
 	{
@@ -94,6 +96,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(FLINT_PATCH_CF, rockPatch(2, b(FABlocks.FLINT_ROCK)));
 			b.register(SMALL_CASSITERITE_ORE_CF, ore(5, d(FABlocks.CASSITERITE_ORE)));
 			b.register(SWAMP_LIMONITE_ORE_CF, swampOre());
+			b.register(WILD_GREEN_ONION_FLOWER_CF, flower(32, b(FABlocks.WILD_GREEN_ONION)));
 		});
 		rsb.add(Registries.PLACED_FEATURE, b -> {
 			var configured = b.lookup(Registries.CONFIGURED_FEATURE);
@@ -104,6 +107,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(NORMAL_FLINT_PATCH_PF, placedRock(configured, FLINT_PATCH_CF, 1));
 			b.register(SMALL_CASSITERITE_ORE_PF, placedOre(configured, SMALL_CASSITERITE_ORE_CF, 8, getHeightRange(32, 96)));
 			b.register(SWAMP_LIMONITE_ORE_PF, placedSeafloor(configured, SWAMP_LIMONITE_ORE_CF, 17));
+			b.register(WILD_GREEN_ONION_FLOWER_PF, placedFlower(configured, WILD_GREEN_ONION_FLOWER_CF, 32));
 		});
 		rsb.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, b -> {
 			var biomes = b.lookup(Registries.BIOME);
@@ -116,6 +120,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(biome("is_red_desert_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_RED_DESERT_OVERWORLD, MESA_ROCK_PATCH_PF));
 			b.register(biome("is_wet_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_WET_OVERWORLD, SWAMP_ROCK_PATCH_PF));
 			b.register(biome("is_surface_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_SURFACE_OVERWORLD, NORMAL_FLINT_PATCH_PF));
+			b.register(biome("is_temperate_grassy_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_TEMPERATE_GRASSY_OVERWORLD, WILD_GREEN_ONION_FLOWER_PF));
 		});
 		return rsb;
 	}
@@ -152,7 +157,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static ConfiguredFeature<RandomPatchConfiguration, Feature<RandomPatchConfiguration>> rockPatch(int tries, BlockStateProvider placer)
 	{
 		return new ConfiguredFeature<>(Feature.RANDOM_PATCH,
-				new RandomPatchConfiguration(tries, 7, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(placer))));
+				new RandomPatchConfiguration(tries, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(placer))));
 	}
 
 	private static ConfiguredFeature<OreConfiguration, Feature<OreConfiguration>> ore(int size, BlockState stoneOre)
@@ -169,6 +174,12 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 		builder.add(d(FABlocks.LIMONITE_ORES.get(OreQualities.RICH)), 1);
 		return new ConfiguredFeature<>(FAWorldgen.WATER_ORE_FEATURE.get(),
 				new WaterOreFeature.Config(new WeightedStateProvider(builder), ConstantInt.of(12), ConstantFloat.of(0.8f)));
+	}
+
+	private static ConfiguredFeature<RandomPatchConfiguration, Feature<RandomPatchConfiguration>> flower(int tries, BlockStateProvider placer)
+	{
+		return new ConfiguredFeature<>(Feature.FLOWER,
+				new RandomPatchConfiguration(tries, 7, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(placer))));
 	}
 
 	private static PlacedFeature placedRock(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int count)
@@ -188,6 +199,22 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	{
 		return new PlacedFeature(configured.getOrThrow(feature), List.of(CountPlacement.of(count), InSquarePlacement.spread(), heightRange, BiomeFilter.biome()));
 	}
+
+	private static PlacedFeature placedFlower(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int rarity)
+	{
+		return new PlacedFeature(configured.getOrThrow(feature),
+				List.of(NoiseThresholdCountPlacement.of(-0.8, 15, 4), RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+	}
+
+	/*            context,
+            FLOWER_PLAINS,
+            holder22,
+            NoiseThresholdCountPlacement.of(-0.8, 15, 4),
+            RarityFilter.onAverageOnceEvery(32),
+            InSquarePlacement.spread(),
+            PlacementUtils.HEIGHTMAP,
+            BiomeFilter.biome()
+        );*/
 
 	@SafeVarargs
 	private static HolderSet<PlacedFeature> features(HolderGetter<PlacedFeature> featureLookup, ResourceKey<PlacedFeature>... features)
