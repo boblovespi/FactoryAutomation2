@@ -214,6 +214,12 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_flint", has(Items.FLINT))
 						   .save(output);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, FAItems.GREEN_ONION)
+						   .pattern("w")
+						   .define('w', FAItems.WILD_GREEN_ONION)
+						   .unlockedBy("has_wild_green_onion", has(FAItems.WILD_GREEN_ONION))
+						   .save(output);
+
 		// shapeless
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FAItems.FIREBOW)

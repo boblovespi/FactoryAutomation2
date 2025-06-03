@@ -125,6 +125,8 @@ public class FABlockStateProvider extends BlockStateProvider
 		existingHorizontalBlockWithItem(FABlocks.TRIP_HAMMER);
 		simplePillarBlock(FABlocks.WOODEN_TANK);
 		existingHorizontalBlock(FABlocks.MINT_BUSH);
+		flower(FABlocks.WILD_GREEN_ONION);
+		crop4(FABlocks.GREEN_ONIONS);
 		pipe(FABlocks.COPPER_PIPE);
 		fryingPan(FABlocks.FRYING_PAN);
 	}
@@ -367,4 +369,21 @@ public class FABlockStateProvider extends BlockStateProvider
 										   .texture("pan", pan.getId().withPrefix("block/")));
 	}
 
+	private void flower(DeferredBlock<FlowerBlock> flower)
+	{
+		var model = models().cross(flower.getRegisteredName(), flower.getId().withPrefix("block/")).renderType("cutout");
+		simpleBlock(flower.get(), model);
+		itemModels().getBuilder(flower.getRegisteredName())
+					.parent(new ModelFile.UncheckedModelFile("item/generated"))
+					.texture("layer0", flower.getId().withPrefix("block/"));
+
+	}
+
+	private void crop4(DeferredBlock<? extends CropBlock> crop)
+	{
+		getVariantBuilder(crop.get()).forAllStates(s -> new ConfiguredModel[] {
+				new ConfiguredModel(models().crop(crop.getRegisteredName() + "_stage" + s.getValue(BlockStateProperties.AGE_3),
+						crop.getId().withPrefix("block/").withSuffix("_stage" + s.getValue(BlockStateProperties.AGE_3))).renderType("cutout"))
+		});
+	}
 }

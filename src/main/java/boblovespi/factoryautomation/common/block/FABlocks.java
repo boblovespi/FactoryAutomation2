@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.block.logistics.SmallTank;
 import boblovespi.factoryautomation.common.block.mechanical.*;
 import boblovespi.factoryautomation.common.block.processing.*;
 import boblovespi.factoryautomation.common.block.resource.FlowerBushBlock;
+import boblovespi.factoryautomation.common.block.resource.GreenOnionBlock;
 import boblovespi.factoryautomation.common.block.resource.ResourceRock;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
@@ -13,6 +14,7 @@ import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
@@ -58,7 +60,8 @@ public class FABlocks
 	public static final DeferredBlock<Block> WEAK_IRON_BLOCK = register("weak_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
 	public static final DeferredBlock<Block> IRON_SAND = register("iron_sand", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
 	public static final DeferredBlock<FlowerBushBlock> MINT_BUSH = register("mint_bush", FlowerBushBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().sound(SoundType.PINK_PETALS).pushReaction(PushReaction.DESTROY));
-
+	public static final DeferredBlock<FlowerBlock> WILD_GREEN_ONION = register("wild_green_onion", p -> new FlowerBlock(MobEffects.FIRE_RESISTANCE, 1, p), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY));
+	public static final DeferredBlock<GreenOnionBlock> GREEN_ONIONS = register("green_onions", GreenOnionBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
 
 	// Refined materials
 

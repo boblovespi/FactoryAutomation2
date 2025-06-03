@@ -182,6 +182,7 @@ public class CreativeTabs
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS)
 		{
 			insertAfter(event, Items.TUFF, FAItems.CHERT);
+			insertAfter(event, Items.ALLIUM, FAItems.WILD_GREEN_ONION);
 		}
 
 		if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS)

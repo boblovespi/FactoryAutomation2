@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.data.loot;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -12,11 +13,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -69,6 +72,20 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.IRON_SAND.get());
 		dropSelf(FABlocks.IRON_SAND_CHARCOAL_MIX.get());
 		dropSelf(FABlocks.MINT_BUSH.get());
+		dropSelf(FABlocks.WILD_GREEN_ONION.get());
+		add(FABlocks.GREEN_ONIONS.get(), applyExplosionDecay(FAItems.GREEN_ONION, LootTable.lootTable().withPool(LootPool.lootPool().add(
+				LootItem.lootTableItem(FAItems.GREEN_ONION)
+						.apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4)))
+						.apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 0.5714286F, 3))
+						.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GREEN_ONIONS.get())
+																 .setProperties(
+																		 StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 2))
+																 .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GREEN_ONIONS.get()).setProperties(
+																		 StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 3))))
+						.otherwise(LootItem.lootTableItem(FAItems.GREEN_ONION))))).withPool(
+				LootPool.lootPool().add(LootItem.lootTableItem(FAItems.WILD_GREEN_ONION).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1))))
+						.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GREEN_ONIONS.get())
+																 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 3)))));
 
 		dropSelf(FABlocks.GREEN_SAND.get());
 		add(FABlocks.CHARCOAL_PILE.get(), LootTable.lootTable().withPool(

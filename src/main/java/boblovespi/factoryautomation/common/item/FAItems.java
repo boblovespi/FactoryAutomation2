@@ -57,6 +57,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> MINT_LEAVES = ITEMS.registerSimpleBlockItem(FABlocks.MINT_BUSH);
 	public static final DeferredItem<Item> SOYBEANS = ITEMS.registerSimpleItem("soybeans");
 	public static final DeferredItem<Item> GINGER = ITEMS.registerSimpleItem("ginger");
+	public static final DeferredItem<BlockItem> WILD_GREEN_ONION = ITEMS.registerSimpleBlockItem(FABlocks.WILD_GREEN_ONION);
 
 	// Refined materials
 
@@ -133,7 +134,7 @@ public class FAItems
 	public static final DeferredItem<Item> SWEET_DOUFUNAO = ITEMS.registerSimpleItem("sweet_doufunao", p().stacksTo(4).food(makeFood(7, 4 / 5f, Items.BOWL)));
 	public static final DeferredItem<Item> SALTY_DOUFUNAO = ITEMS.registerSimpleItem("salty_doufunao", p().stacksTo(4).food(makeFood(7, 4 / 5f, Items.BOWL)));
 	public static final DeferredItem<FluidBottle> SOY_MILK_BOTTLE = ITEMS.registerItem("soy_milk_bottle", p -> new FluidBottle(p, FAFluids.SOY_MILK_SOURCE.get()), p().stacksTo(16).food(makeFood(3, 3 / 5f, Items.GLASS_BOTTLE)));
-	public static final DeferredItem<Item> GREEN_ONION = ITEMS.registerSimpleItem("green_onion", p().food(makeFood(1, 1 / 10f)));
+	public static final DeferredItem<Item> GREEN_ONION = ITEMS.registerItem("green_onion", p -> new ItemNameBlockItem(FABlocks.GREEN_ONIONS.get(), p), p().food(makeFood(1, 1 / 10f)));
 	public static final DeferredItem<Item> YAKITORI = ITEMS.registerSimpleItem("yakitori", p().food(makeFood(7, 4 / 5f, Items.STICK)));
 
 	// Processing
