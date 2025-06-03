@@ -57,6 +57,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_CASSITERITE_ORE_CF = configured("small_cassiterite_ore");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LIMONITE_ORE_CF = configured("swamp_limonite_ore");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> WILD_GREEN_ONION_FLOWER_CF = configured("wild_green_onion_flower");
+	private static final ResourceKey<ConfiguredFeature<?, ?>> MINT_PATCH_CF = configured("mint_patch");
 
 	private static final ResourceKey<PlacedFeature> NORMAL_ROCK_PATCH_PF = placed("normal_rock_patch");
 	private static final ResourceKey<PlacedFeature> DESERT_ROCK_PATCH_PF = placed("desert_rock_patch");
@@ -66,6 +67,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<PlacedFeature> SMALL_CASSITERITE_ORE_PF = placed("small_cassiterite_ore");
 	private static final ResourceKey<PlacedFeature> SWAMP_LIMONITE_ORE_PF = placed("swamp_limonite_ore");
 	private static final ResourceKey<PlacedFeature> WILD_GREEN_ONION_FLOWER_PF = placed("wild_green_onion_flower");
+	private static final ResourceKey<PlacedFeature> MINT_PATCH_PF = placed("mint_patch");
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> configured(String name)
 	{
@@ -97,6 +99,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(SMALL_CASSITERITE_ORE_CF, ore(5, d(FABlocks.CASSITERITE_ORE)));
 			b.register(SWAMP_LIMONITE_ORE_CF, swampOre());
 			b.register(WILD_GREEN_ONION_FLOWER_CF, flower(32, b(FABlocks.WILD_GREEN_ONION)));
+			b.register(MINT_PATCH_CF, flower(64, b(FABlocks.MINT_BUSH)));
 		});
 		rsb.add(Registries.PLACED_FEATURE, b -> {
 			var configured = b.lookup(Registries.CONFIGURED_FEATURE);
@@ -107,7 +110,8 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(NORMAL_FLINT_PATCH_PF, placedRock(configured, FLINT_PATCH_CF, 1));
 			b.register(SMALL_CASSITERITE_ORE_PF, placedOre(configured, SMALL_CASSITERITE_ORE_CF, 8, getHeightRange(32, 96)));
 			b.register(SWAMP_LIMONITE_ORE_PF, placedSeafloor(configured, SWAMP_LIMONITE_ORE_CF, 17));
-			b.register(WILD_GREEN_ONION_FLOWER_PF, placedFlower(configured, WILD_GREEN_ONION_FLOWER_CF, 32));
+			b.register(WILD_GREEN_ONION_FLOWER_PF, placedFlower(configured, WILD_GREEN_ONION_FLOWER_CF, 32, 15, 4));
+			b.register(MINT_PATCH_PF, placedFlower(configured, MINT_PATCH_CF, 40,6, 20));
 		});
 		rsb.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, b -> {
 			var biomes = b.lookup(Registries.BIOME);
@@ -121,6 +125,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(biome("is_wet_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_WET_OVERWORLD, SWAMP_ROCK_PATCH_PF));
 			b.register(biome("is_surface_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_SURFACE_OVERWORLD, NORMAL_FLINT_PATCH_PF));
 			b.register(biome("is_temperate_grassy_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_TEMPERATE_GRASSY_OVERWORLD, WILD_GREEN_ONION_FLOWER_PF));
+			b.register(biome("is_forest_overworld"), vegetalModifier(biomes, features, BiomeTags.IS_FOREST, MINT_PATCH_PF));
 		});
 		return rsb;
 	}
@@ -200,10 +205,11 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 		return new PlacedFeature(configured.getOrThrow(feature), List.of(CountPlacement.of(count), InSquarePlacement.spread(), heightRange, BiomeFilter.biome()));
 	}
 
-	private static PlacedFeature placedFlower(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int rarity)
+	private static PlacedFeature placedFlower(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int rarity, int below, int above)
 	{
 		return new PlacedFeature(configured.getOrThrow(feature),
-				List.of(NoiseThresholdCountPlacement.of(-0.8, 15, 4), RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+				List.of(NoiseThresholdCountPlacement.of(-0.8,
+						below, above), RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
 	}
 
 	/*            context,
