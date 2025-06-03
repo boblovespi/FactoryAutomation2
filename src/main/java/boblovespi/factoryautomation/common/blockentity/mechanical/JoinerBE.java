@@ -21,6 +21,7 @@ public class JoinerBE extends FABE implements IClientTickable
 	private final JoinerMechManager manager;
 	private final float maxSpeed;
 	private final float maxTorque;
+	private float rot;
 
 	public JoinerBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -57,8 +58,8 @@ public class JoinerBE extends FABE implements IClientTickable
 		if (getBlockState().getValue(Joiner.VERTICAL))
 		{
 			var facing = getBlockState().getValue(Joiner.FACING);
-			return facing.getAxisDirection() == Direction.AxisDirection.POSITIVE && direction == Direction.UP ||
-				   facing.getAxisDirection() == Direction.AxisDirection.NEGATIVE && direction == Direction.DOWN ? manager : null;
+			return facing.getAxisDirection() == Direction.AxisDirection.POSITIVE && direction == Direction.DOWN ||
+				   facing.getAxisDirection() == Direction.AxisDirection.NEGATIVE && direction == Direction.UP ? manager : null;
 		}
 		else
 			return direction.getOpposite() == getBlockState().getValue(Joiner.FACING) ? manager : null;
@@ -85,13 +86,13 @@ public class JoinerBE extends FABE implements IClientTickable
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		save(tag, registries);
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		load(tag, registries);
 	}
 
 	@Override
@@ -100,16 +101,24 @@ public class JoinerBE extends FABE implements IClientTickable
 		updateWith(MechanicalManager.ZERO);
 	}
 
+	public float getRenderRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return (rot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360;
+	}
+
 	@Override
 	public void clientTick()
 	{
-
+		rot += (float) (Math.toDegrees(manager.getSpeed()) / 20);
+		rot %= 360;
 	}
 
 	private Direction getOutputDirection()
 	{
 		if (getBlockState().getValue(Joiner.VERTICAL))
-			return getBlockState().getValue(Joiner.FACING).getAxisDirection() == Direction.AxisDirection.POSITIVE ? Direction.UP : Direction.DOWN;
+			return getBlockState().getValue(Joiner.FACING).getAxisDirection() == Direction.AxisDirection.POSITIVE ? Direction.DOWN : Direction.UP;
 		else
 			return getBlockState().getValue(Joiner.FACING);
 	}

@@ -22,6 +22,7 @@ public class SplitterBE extends FABE implements IClientTickable
 	private final MechanicalManager manager;
 	private final float maxSpeed;
 	private final float maxTorque;
+	private float rot;
 
 	public SplitterBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -107,13 +108,13 @@ public class SplitterBE extends FABE implements IClientTickable
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		save(tag, registries);
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		load(tag, registries);
 	}
 
 	@Override
@@ -122,9 +123,17 @@ public class SplitterBE extends FABE implements IClientTickable
 		updateWith(MechanicalManager.ZERO);
 	}
 
+	public float getRenderRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return (rot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360;
+	}
+
 	@Override
 	public void clientTick()
 	{
-
+		rot += (float) (Math.toDegrees(manager.getSpeed()) / 20);
+		rot %= 360;
 	}
 }
