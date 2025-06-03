@@ -58,6 +58,7 @@ public class ClientHandler
 		// event.registerBlockEntityRenderer(FABETypes.BRICK_MAKER_FRAME_TYPE.get(), BrickMakerFrameBER::new);
 		event.registerBlockEntityRenderer(FABETypes.POWER_SHAFT_TYPE.get(), PowerShaftBER::new);
 		event.registerBlockEntityRenderer(FABETypes.GEARBOX_TYPE.get(), GearboxBER::new);
+		event.registerBlockEntityRenderer(FABETypes.BEVEL_GEAR_TYPE.get(), BevelGearBER::new);
 		event.registerBlockEntityRenderer(FABETypes.MILLSTONE_TYPE.get(), MillstoneBER::new);
 		event.registerBlockEntityRenderer(FABETypes.HANDCRANK_TYPE.get(), HandCrankBER::new);
 		event.registerBlockEntityRenderer(FABETypes.PAPER_BELLOWS_TYPE.get(), PaperBellowsBER::new);
