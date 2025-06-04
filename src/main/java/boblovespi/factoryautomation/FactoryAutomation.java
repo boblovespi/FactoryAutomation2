@@ -9,6 +9,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.logistics.SmallTankBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.*;
+import boblovespi.factoryautomation.common.blockentity.processing.BrickCastingVesselBE;
 import boblovespi.factoryautomation.common.blockentity.processing.LeatherBellowsBE;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
@@ -189,6 +190,7 @@ public class FactoryAutomation
 		event.registerBlockEntity(BellowsCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(BellowsCapability.BLOCK, d));
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(MechanicalCapability.INPUT, d));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.SMALL_TANK_TYPE.get(), SmallTankBE::fluidHandler);
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.BRICK_CASTING_VESSEL_TYPE.get(), BrickCastingVesselBE::fluidHandler);
 
 		for (var item : BuiltInRegistries.ITEM)
 			if (item instanceof FluidBottle fb)
