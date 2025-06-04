@@ -7,10 +7,7 @@ import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.worldgen.FAWorldgen;
 import boblovespi.factoryautomation.common.worldgen.WaterOreFeature;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -24,6 +21,7 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -99,7 +97,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(SMALL_CASSITERITE_ORE_CF, ore(5, d(FABlocks.CASSITERITE_ORE)));
 			b.register(SWAMP_LIMONITE_ORE_CF, swampOre());
 			b.register(WILD_GREEN_ONION_FLOWER_CF, flower(32, b(FABlocks.WILD_GREEN_ONION)));
-			b.register(MINT_PATCH_CF, flower(64, b(FABlocks.MINT_BUSH)));
+			b.register(MINT_PATCH_CF, flower(64, randomHorizontalFacing(FABlocks.MINT_BUSH)));
 		});
 		rsb.add(Registries.PLACED_FEATURE, b -> {
 			var configured = b.lookup(Registries.CONFIGURED_FEATURE);
@@ -152,6 +150,13 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static BlockStateProvider b(Supplier<? extends Block> block)
 	{
 		return BlockStateProvider.simple(d(block));
+	}
+
+	private static BlockStateProvider randomHorizontalFacing(Supplier<? extends Block> block)
+	{
+		var builder = new SimpleWeightedRandomList.Builder<BlockState>();
+		Direction.Plane.HORIZONTAL.iterator().forEachRemaining(d -> builder.add(d(block).setValue(BlockStateProperties.HORIZONTAL_FACING, d)));
+		return new WeightedStateProvider(builder);
 	}
 
 	private static BlockState d(Supplier<? extends Block> block)
