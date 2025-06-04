@@ -161,6 +161,7 @@ public class CreativeTabs
 			insertAfter(event, Items.WOODEN_HOE, FAItems.FLINT_SHOVEL, FAItems.FLINT_PICKAXE, FAItems.FLINT_AXE, FAItems.FLINT_HOE);
 			insertAfter(event, Items.STONE_HOE, FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_HAMMER);
 			insertAfter(event, Items.IRON_HOE, FAItems.IRON_HAMMER, FAItems.IRON_WRENCH);
+			insertAfter(event, FAItems.IRON_WRENCH, FAItems.BRONZE_SHOVEL, FAItems.BRONZE_PICKAXE, FAItems.BRONZE_AXE, FAItems.BRONZE_HOE, FAItems.BRONZE_HAMMER, FAItems.BRONZE_WRENCH);
 			event.insertBefore(Items.FLINT_AND_STEEL.getDefaultInstance(), FAItems.FIREBOW.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 			event.insertBefore(Items.SHEARS.getDefaultInstance(), FAItems.COPPER_SHEARS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 		}
@@ -169,6 +170,7 @@ public class CreativeTabs
 		{
 			insertAfter(event, Items.WOODEN_SWORD, FAItems.FLINT_SWORD);
 			insertAfter(event, Items.STONE_SWORD, FAItems.COPPER_SWORD);
+			insertAfter(event, Items.IRON_SWORD, FAItems.BRONZE_SWORD);
 		}
 
 		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)

@@ -304,6 +304,14 @@
 	"item.factoryautomation.iron_hammer": "Iron Hammer",
 	"item.factoryautomation.iron_wrench": "Iron Wrench",
 	
+	"item.factoryautomation.bronze_shovel": "Bronze Shovel",
+	"item.factoryautomation.bronze_pickaxe": "Bronze Pickaxe",
+	"item.factoryautomation.bronze_axe": "Bronze Axe",
+	"item.factoryautomation.bronze_hoe": "Bronze Hoe",
+	"item.factoryautomation.bronze_sword": "Bronze Sword",
+	"item.factoryautomation.bronze_hammer": "Bronze Hammer",
+	"item.factoryautomation.bronze_wrench": "Bronze Wrench",
+	
 	// Items - Gears
 	
 	"item.factoryautomation.wood_gear": "Wooden Gear",

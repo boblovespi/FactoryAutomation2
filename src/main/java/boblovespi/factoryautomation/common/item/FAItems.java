@@ -178,8 +178,16 @@ public class FAItems
 	public static final DeferredItem<ShearsItem> COPPER_SHEARS = ITEMS.registerItem("copper_shears", ShearsItem::new,
 			p().durability(176).component(DataComponents.TOOL, ShearsItem.createToolProperties()));
 
-	public static final DeferredItem<Hammer> IRON_HAMMER = tieredTool("iron_hammer", Hammer::new, Tiers.IRON, p(), 8, -3.5f);
-	public static final DeferredItem<Wrench> IRON_WRENCH = tieredTool("iron_wrench", Wrench::new, Tiers.IRON, p(), 1.5f, -3f);
+	public static final DeferredItem<Hammer> IRON_HAMMER = tieredTool("iron_hammer", Hammer::new, Tiers.IRON, p(), 9, -3.5f);
+	public static final DeferredItem<Wrench> IRON_WRENCH = tieredTool("iron_wrench", Wrench::new, Tiers.IRON, p(), 2f, -3f);
+
+	public static final DeferredItem<ShovelItem> BRONZE_SHOVEL = tieredTool("bronze_shovel", ShovelItem::new, Tools.BRONZE_TIER, p(), 1.5f, -3f);
+	public static final DeferredItem<PickaxeItem> BRONZE_PICKAXE = tieredTool("bronze_pickaxe", PickaxeItem::new, Tools.BRONZE_TIER, p(), 1, -2.8f);
+	public static final DeferredItem<AxeItem> BRONZE_AXE = tieredTool("bronze_axe", AxeItem::new, Tools.BRONZE_TIER, p(), 6.5f, -3.1f);
+	public static final DeferredItem<HoeItem> BRONZE_HOE = tieredTool("bronze_hoe", HoeItem::new, Tools.BRONZE_TIER, p(), -1.5f, -0.8f);
+	public static final DeferredItem<SwordItem> BRONZE_SWORD = tieredTool("bronze_sword", SwordItem::new, Tools.BRONZE_TIER, p(), 3, -2.4f);
+	public static final DeferredItem<Hammer> BRONZE_HAMMER = tieredTool("bronze_hammer", Hammer::new, Tools.BRONZE_TIER, p(), 10, -3.5f);
+	public static final DeferredItem<Wrench> BRONZE_WRENCH = tieredTool("bronze_wrench", Wrench::new, Tools.BRONZE_TIER, p(), 2.5f, -3f);
 
 	// Mechanical
 

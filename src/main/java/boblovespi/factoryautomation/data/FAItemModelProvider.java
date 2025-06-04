@@ -131,6 +131,13 @@ public class FAItemModelProvider extends ItemModelProvider
 		handheld(FAItems.COPPER_SHEARS);
 		handheld(FAItems.IRON_HAMMER);
 		handheld(FAItems.IRON_WRENCH);
+		handheld(FAItems.BRONZE_SHOVEL);
+		handheld(FAItems.BRONZE_PICKAXE);
+		handheld(FAItems.BRONZE_AXE);
+		handheld(FAItems.BRONZE_HOE);
+		handheld(FAItems.BRONZE_SWORD);
+		handheld(FAItems.BRONZE_HAMMER);
+		handheld(FAItems.BRONZE_WRENCH);
 
 		FAItems.GEARS.values().forEach(t -> basicItem(t.get()));
 	}

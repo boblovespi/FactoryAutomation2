@@ -29,7 +29,9 @@ public class FADataMapProvider extends DataMapProvider
 									.add(FAItems.BUSHING, new Workbench.Part(FactoryAutomation.name("bearing"), 1), false);
 		builder(Workbench.TOOL_DATA).add(FAItems.COPPER_HAMMER, new Workbench.Tool(FactoryAutomation.name("hammer"), 1), false)
 									.add(FAItems.IRON_HAMMER, new Workbench.Tool(FactoryAutomation.name("hammer"), 2), false)
-									.add(FAItems.IRON_WRENCH, new Workbench.Tool(FactoryAutomation.name("wrench"), 1), false);
+									.add(FAItems.IRON_WRENCH, new Workbench.Tool(FactoryAutomation.name("wrench"), 1), false)
+									.add(FAItems.BRONZE_HAMMER, new Workbench.Tool(FactoryAutomation.name("hammer"), 3), false)
+									.add(FAItems.BRONZE_WRENCH, new Workbench.Tool(FactoryAutomation.name("wrench"), 2), false);
 		builder(FuelInfo.FUEL_DATA).add(holder(Items.COAL), new FuelInfo(1600, 2172 + 273, 4_300_000_000f), false)
 								   .add(holder(Items.CHARCOAL), new FuelInfo(1600, 2012 + 273, 4_300_000_000f), false);
 	}

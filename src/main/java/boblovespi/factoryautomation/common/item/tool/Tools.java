@@ -17,6 +17,7 @@ public class Tools
 	public static final Tier FLINT_TIER = new SimpleTier(BlockTags.INCORRECT_FOR_WOODEN_TOOL, Tiers.WOOD.getUses(), Tiers.WOOD.getSpeed(), Tiers.WOOD.getAttackDamageBonus(),
 			Tiers.WOOD.getEnchantmentValue(), () -> Ingredient.of(Items.FLINT));
 	public static final Tier COPPER_TIER = new SimpleTier(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL, 240, 3.5f, 1.5f, 5, () -> Ingredient.of(Tags.Items.INGOTS_COPPER));
+	public static final Tier BRONZE_TIER = new SimpleTier(FATags.Blocks.INCORRECT_FOR_BRONZE_TOOL, 600, 7, 2.5f, 12, () -> Ingredient.of(FATags.Items.BRONZE_INGOT));
 
 	public static final ItemAbility MAKE_CHOPPING_BLOCK = ItemAbility.get("make_chopping_block");
 	public static final ItemAbility WRENCH = ItemAbility.get("wrench");

@@ -306,6 +306,8 @@ public class FARecipeProvider extends RecipeProvider
 		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, null, "copper",
 				Tags.Items.INGOTS_COPPER, output);
 		tool(null, null, null, null, null, FAItems.IRON_HAMMER, FAItems.IRON_WRENCH, "iron", Tags.Items.INGOTS_IRON, output);
+		tool(FAItems.BRONZE_SHOVEL, FAItems.BRONZE_PICKAXE, FAItems.BRONZE_AXE, FAItems.BRONZE_HOE, FAItems.BRONZE_SWORD, FAItems.BRONZE_HAMMER, FAItems.BRONZE_WRENCH,
+				"bronze", FATags.Items.BRONZE_INGOT, output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.COPPER_SHEARS)
 						   .pattern(" i")
