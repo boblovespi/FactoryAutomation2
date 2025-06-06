@@ -141,6 +141,7 @@ public class CreativeTabs
 						o.accept(FAItems.IRON_BEVEL_GEAR);
 						o.accept(FAItems.HAND_CRANK);
 						o.accept(FAItems.SMALL_WATERHWHEEL);
+						o.accept(FAItems.HORSE_ENGINE);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> LOGISTICS = CREATIVE_MODE_TABS.register("logistics",

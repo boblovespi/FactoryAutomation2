@@ -31,13 +31,16 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	private static final RawAnimation STOPPED_STATE = RawAnimation.begin().thenLoop("state.small_waterwheel.stopped");
 	private final MechanicalManager manager;
 	private final AnimatableInstanceCache cache;
+	private final List<BlockPos> poses;
 	private boolean running;
 
-	public SmallWaterwheelBE(BlockPos pPos, BlockState pBlockState)
+	public SmallWaterwheelBE(BlockPos pos, BlockState state)
 	{
-		super(FABETypes.SMALL_WATERWHEEL_TYPE.get(), pPos, pBlockState);
+		super(FABETypes.SMALL_WATERWHEEL_TYPE.get(), pos, state);
 		manager = new MechanicalManager("mech", this::updateInputs);
 		cache = GeckoLibUtil.createInstanceCache(this);
+		var dir = state.getValue(SmallWaterwheel.FACING).getClockWise();
+		poses = List.of(pos.above(), pos.below(), pos.relative(dir), pos.relative(dir.getOpposite()));
 	}
 
 	@Override
@@ -100,8 +103,6 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	public void updateWater()
 	{
 		setChangedAndUpdateClient();
-		var dir = getBlockState().getValue(SmallWaterwheel.FACING).getClockWise();
-		var poses = List.of(worldPosition.above(), worldPosition.below(), worldPosition.relative(dir), worldPosition.relative(dir.getOpposite()));
 		var waterCount = 0;
 		for (var pos : poses)
 		{
