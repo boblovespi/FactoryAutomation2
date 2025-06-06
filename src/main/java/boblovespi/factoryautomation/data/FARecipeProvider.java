@@ -270,37 +270,37 @@ public class FARecipeProvider extends RecipeProvider
 							  .save(output);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.DOUFUNAO)
-							  .requires(FAItems.TOFU)
+							  .requires(FATags.Items.TOFU)
 							  .requires(Items.BOWL)
-							  .unlockedBy("has_tofu", has(FAItems.TOFU))
+							  .unlockedBy("has_tofu", has(FATags.Items.TOFU))
 							  .save(output);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SWEET_DOUFUNAO)
 							  .requires(FAItems.DOUFUNAO)
-							  .requires(FAItems.GINGER)
+							  .requires(FATags.Items.GINGER_CROP)
 							  .requires(Ingredient.of(Items.SUGAR, Items.HONEY_BOTTLE))
 							  .unlockedBy("has_doufunao", has(FAItems.DOUFUNAO))
 							  .save(output, "sweet_doufunao_from_doufunao");
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SWEET_DOUFUNAO)
-							  .requires(FAItems.TOFU)
+							  .requires(FATags.Items.TOFU)
 							  .requires(Items.BOWL)
-							  .requires(FAItems.GINGER)
+							  .requires(FATags.Items.GINGER_CROP)
 							  .requires(Ingredient.of(Items.SUGAR, Items.HONEY_BOTTLE))
-							  .unlockedBy("has_tofu", has(FAItems.TOFU))
+							  .unlockedBy("has_tofu", has(FATags.Items.TOFU))
 							  .save(output);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SALTY_DOUFUNAO)
 							  .requires(FAItems.DOUFUNAO)
-							  .requires(FAItems.SOY_SAUCE_BOTTLE)
+							  .requires(FATags.Items.SOY_SAUCE)
 							  .unlockedBy("has_doufunao", has(FAItems.DOUFUNAO))
 							  .save(output, "salty_doufunao_from_doufunao");
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SALTY_DOUFUNAO)
-							  .requires(FAItems.TOFU)
+							  .requires(FATags.Items.TOFU)
 							  .requires(Items.BOWL)
-							  .requires(FAItems.SOY_SAUCE_BOTTLE)
-							  .unlockedBy("has_tofu", has(FAItems.TOFU))
+							  .requires(FATags.Items.SOY_SAUCE)
+							  .unlockedBy("has_tofu", has(FATags.Items.TOFU))
 							  .save(output);
 
 		tool(FAItems.COPPER_SHOVEL, FAItems.COPPER_PICKAXE, FAItems.COPPER_AXE, FAItems.COPPER_HOE, FAItems.COPPER_SWORD, FAItems.COPPER_HAMMER, null, "copper",
@@ -750,7 +750,7 @@ public class FARecipeProvider extends RecipeProvider
 
 		TumblingBarrelRecipe.of(FAFluids.SOY_MILK_SOURCE.get(), 250)
 							.fluidInput(Fluids.WATER, 250)
-							.input(FAItems.GROUND_SOYBEAN)
+							.input(FATags.Items.GROUND_SOYBEAN)
 							.time(20 * 5)
 							.minSpeed(2)
 							.maxSpeed(10)
@@ -791,7 +791,7 @@ public class FARecipeProvider extends RecipeProvider
 		FryingPanRecipe.of(new ItemStack(FAItems.HAM_AND_EGGS.get()))
 					   .input(Items.EGG)
 					   .input(Items.EGG)
-					   .input(Items.PORKCHOP)
+					   .input(FATags.Items.RAW_PORKS)
 					   .progress(20 * 10)
 					   .beginData().plate(Ingredient.of(Items.BOWL)).endData()
 					   .unlockedBy("has_pork", has(Items.PORKCHOP))
@@ -805,7 +805,7 @@ public class FARecipeProvider extends RecipeProvider
 
 		FryingPanRecipe.of(new ItemStack(FAItems.SOY_SAUCE_CULTURE.get()))
 					   .progress(20 * 10)
-					   .input(FAItems.SOYBEANS)
+					   .input(FATags.Items.SOYBEAN_CROP)
 					   .input(FATags.Items.WHEAT_DUST)
 					   .beginData().liquid(FluidIngredient.single(Fluids.WATER)).endData()
 					   .unlockedBy("has_soybeans", has(FAItems.SOYBEANS))
@@ -813,9 +813,9 @@ public class FARecipeProvider extends RecipeProvider
 
 		FryingPanRecipe.of(new ItemStack(FAItems.YAKITORI.get()))
 					   .progress(20 * 10)
-					   .input(Items.CHICKEN)
+					   .input(FATags.Items.RAW_CHICKEN)
 					   .input(Items.SUGAR)
-					   .input(FAItems.GREEN_ONION)
+					   .input(FATags.Items.GREEN_ONION_FOOD)
 					   .beginData().liquid(FluidIngredient.single(FAFluids.SOY_SAUCE_SOURCE)).plate(Ingredient.of(Items.STICK)).endData()
 					   .unlockedBy("has_chicken", has(Items.CHICKEN))
 					   .save(output);

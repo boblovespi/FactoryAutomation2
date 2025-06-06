@@ -126,6 +126,21 @@ public class FATags
 		public static final TagKey<Item> WHEAT_DUST = cItem("dusts/flour");
 		public static final TagKey<Item> CALCIUM_CARBONATE_DUST = cItem("dusts/calcium_carbonate");
 		public static final TagKey<Item> QUICKLIME_DUST = cItem("dusts/quicklime");
+		public static final TagKey<Item> GROUND_SOYBEAN = cItem("dusts/soybean");
+
+		public static final TagKey<Item> RAW_PORKS = cItem("foods/raw_pork");
+		public static final TagKey<Item> RAW_CHICKEN = cItem("foods/raw_chicken");
+		public static final TagKey<Item> GREEN_ONION_FOOD = cItem("foods/green_onion");
+		public static final TagKey<Item> GREEN_ONION_SCALLION_FOOD = cItem("foods/scallion");
+		public static final TagKey<Item> TOFU = cItem("foods/tofu");
+		public static final TagKey<Item> SOY_SAUCE = cItem("foods/soy_sauce");
+
+		public static final TagKey<Item> SOYBEAN_CROP = cItem("crops/soybean");
+		public static final TagKey<Item> GREEN_ONION_CROP = cItem("crops/green_onion");
+		public static final TagKey<Item> GREEN_ONION_SCALLION_CROP = cItem("crops/scallion");
+		public static final TagKey<Item> GINGER_CROP = cItem("crops/ginger");
+
+		public static final TagKey<Item> SOYBEAN_SEED = cItem("seeds/soybean");
 	}
 
 	public static class Blocks

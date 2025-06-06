@@ -213,7 +213,26 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.CALCIUM_CARBONATE_DUST).add(FAItems.CALCITE_DUST.get());
 		tag(FATags.Items.QUICKLIME_DUST).add(FAItems.QUICKLIME.get());
 		tag(Tags.Items.BRICKS).add(FAItems.MUD_BRICK.get(), FAItems.DRIED_BRICK.get());
-		tag(Tags.Items.DUSTS).addTags(FATags.Items.WHEAT_DUST, FATags.Items.CALCIUM_CARBONATE_DUST, FATags.Items.QUICKLIME_DUST);
+		tag(Tags.Items.DUSTS).addTags(FATags.Items.WHEAT_DUST, FATags.Items.CALCIUM_CARBONATE_DUST, FATags.Items.QUICKLIME_DUST, FATags.Items.GROUND_SOYBEAN);
 		tag(Tags.Items.LEATHERS).add(FAItems.PROCESSED_LEATHER.get());
+
+		tag(FATags.Items.GROUND_SOYBEAN).add(FAItems.GROUND_SOYBEAN.get());
+		tag(FATags.Items.RAW_PORKS).add(Items.PORKCHOP);
+		tag(FATags.Items.RAW_CHICKEN).add(Items.CHICKEN);
+		tag(FATags.Items.GREEN_ONION_FOOD).add(FAItems.GREEN_ONION.get());
+		tag(FATags.Items.GREEN_ONION_SCALLION_FOOD).addTag(FATags.Items.GREEN_ONION_FOOD);
+		tag(FATags.Items.TOFU).add(FAItems.TOFU.get());
+		tag(FATags.Items.SOY_SAUCE).add(FAItems.SOY_SAUCE_BOTTLE.get());
+
+		tag(FATags.Items.SOYBEAN_CROP).add(FAItems.SOYBEANS.get());
+		tag(FATags.Items.SOYBEAN_SEED).add(FAItems.SOYBEANS.get());
+		tag(FATags.Items.GREEN_ONION_CROP).add(FAItems.GREEN_ONION.get());
+		tag(FATags.Items.GREEN_ONION_SCALLION_CROP).addTag(FATags.Items.GREEN_ONION_CROP);
+		tag(FATags.Items.GINGER_CROP).add(FAItems.GINGER.get());
+
+		tag(Tags.Items.FOODS_RAW_MEAT).addTags(FATags.Items.RAW_PORKS, FATags.Items.RAW_CHICKEN);
+		tag(Tags.Items.FOODS).addTags(FATags.Items.GREEN_ONION_FOOD, FATags.Items.GREEN_ONION_SCALLION_FOOD, FATags.Items.SOY_SAUCE, FATags.Items.TOFU);
+		tag(Tags.Items.CROPS).addTags(FATags.Items.SOYBEAN_CROP, FATags.Items.GREEN_ONION_CROP, FATags.Items.GREEN_ONION_SCALLION_CROP, FATags.Items.GINGER_CROP);
+		tag(Tags.Items.SEEDS).addTags(FATags.Items.SOYBEAN_SEED);
 	}
 }
