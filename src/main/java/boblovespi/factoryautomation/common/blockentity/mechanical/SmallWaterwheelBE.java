@@ -9,10 +9,12 @@ import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -104,10 +106,15 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	{
 		setChangedAndUpdateClient();
 		var waterCount = 0;
-		for (var pos : poses)
+		var dir = getBlockState().getValue(SmallWaterwheel.FACING).getClockWise();
+		for (int i = 0; i < poses.size(); i++)
 		{
+			var pos = poses.get(i);
 			if (level.getBlockState(pos).is(Blocks.WATER))
-				waterCount++;
+			{
+				var flow = level.getFluidState(pos).getFlow(level, pos);
+				waterCount += (int) Math.abs(flow.dot(Vec3.atLowerCornerOf(i < 2 ? dir.getNormal() : Direction.DOWN.getNormal())));
+			}
 		}
 		if (waterCount >= 2)
 			setRunning();
