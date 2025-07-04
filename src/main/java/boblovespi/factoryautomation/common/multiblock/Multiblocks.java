@@ -10,6 +10,7 @@ public class Multiblocks
 	public static Multiblock STONE_CRUCIBLE;
 	public static Multiblock BRICK_CRUCIBLE;
 	public static Multiblock TRIP_HAMMER;
+	public static Multiblock LARGE_WATERWHEEL;
 
 	public static void register()
 	{
@@ -42,5 +43,19 @@ public class Multiblocks
 												 .setOffset(new Vec3i(0, 0, 0)).build();
 		MultiblockRegistry.register(tripHammer);
 		TRIP_HAMMER = tripHammer;
+
+		var largeWaterwheel = SimpleMultiblock.Builder.make("large_waterwheel", 5, 5, 1)
+									  .layer(" sps ")
+									  .layer("s f s")
+									  .layer("pfcfp")
+									  .layer("s f s")
+									  .layer(" sps ")
+									  .define('s', Blocks.OAK_STAIRS)
+									  .define('p', Blocks.OAK_PLANKS)
+									  .define('f', Blocks.OAK_FENCE)
+									  .define('c', FABlocks.LARGE_WATERWHEEL)
+									  .setOffset(new Vec3i(2, 2, 0)).build();
+		MultiblockRegistry.register(largeWaterwheel);
+		LARGE_WATERWHEEL = largeWaterwheel;
 	}
 }

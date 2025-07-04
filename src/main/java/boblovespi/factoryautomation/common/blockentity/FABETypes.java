@@ -38,6 +38,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<BevelGearBE>> BEVEL_GEAR_TYPE = type("bevel_gear", BevelGearBE::new, FABlocks.WOOD_BEVEL_GEAR, FABlocks.IRON_BEVEL_GEAR);
 	public static final Supplier<BlockEntityType<HandCrankBE>> HANDCRANK_TYPE = type("hand_crank", HandCrankBE::new, FABlocks.HAND_CRANK);
 	public static final Supplier<BlockEntityType<SmallWaterwheelBE>> SMALL_WATERWHEEL_TYPE = type("small_waterwheel", SmallWaterwheelBE::new, FABlocks.SMALL_WATERWHEEL);
+	public static final Supplier<BlockEntityType<LargeWaterwheelBE>> LARGE_WATERWHEEL_TYPE = type("large_waterwheel", LargeWaterwheelBE::new, FABlocks.LARGE_WATERWHEEL);
 	public static final Supplier<BlockEntityType<HorseEngineBE>> HORSE_ENGINE_TYPE = type("horse_engine", HorseEngineBE::new, FABlocks.HORSE_ENGINE);
 	public static final Supplier<BlockEntityType<BrickFireboxBE>> BRICK_FIREBOX_TYPE = type("brick_firebox", BrickFireboxBE::new, FABlocks.BRICK_FIREBOX);
 	public static final Supplier<BlockEntityType<PaperBellowsBE>> PAPER_BELLOWS_TYPE = type("paper_bellows", PaperBellowsBE::new, FABlocks.PAPER_BELLOWS);
