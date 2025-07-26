@@ -9,16 +9,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class GreenOnionBlock extends FACropBlock
+public class GingerBlock extends FACropBlock
 {
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] {
-			Block.box(0.0, 0.0, 0.0, 16.0, 3, 16.0),
-			Block.box(0.0, 0.0, 0.0, 16.0, 12, 16.0),
-			Block.box(0.0, 0.0, 0.0, 16.0, 15, 16.0),
-			Block.box(0.0, 0.0, 0.0, 16.0, 16, 16.0)
+			Block.box(6, 0.0, 6, 10, 5, 10),
+			Block.box(3, 0.0, 3, 13, 10, 13),
+			Block.box(3, 0.0, 0.0, 16.0, 14, 13),
+			Block.box(2, 0.0, 0.0, 16.0, 16, 14)
 	};
 
-	public GreenOnionBlock(Properties properties)
+	public GingerBlock(Properties properties)
 	{
 		super(properties);
 	}
@@ -26,7 +26,7 @@ public class GreenOnionBlock extends FACropBlock
 	@Override
 	protected ItemLike getBaseSeedId()
 	{
-		return FAItems.GREEN_ONION;
+		return FAItems.GINGER;
 	}
 
 	@Override

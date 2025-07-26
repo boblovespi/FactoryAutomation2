@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -127,6 +128,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		existingHorizontalBlock(FABlocks.MINT_BUSH);
 		flower(FABlocks.WILD_GREEN_ONION);
 		crop4(FABlocks.GREEN_ONIONS);
+		crossCrop4(FABlocks.GINGER);
 		pipe(FABlocks.COPPER_PIPE);
 		fryingPan(FABlocks.FRYING_PAN);
 	}
@@ -385,5 +387,18 @@ public class FABlockStateProvider extends BlockStateProvider
 				new ConfiguredModel(models().crop(crop.getRegisteredName() + "_stage" + s.getValue(BlockStateProperties.AGE_3),
 						crop.getId().withPrefix("block/").withSuffix("_stage" + s.getValue(BlockStateProperties.AGE_3))).renderType("cutout"))
 		});
+	}
+
+	private void crossCrop4(DeferredBlock<? extends CropBlock> crop)
+	{
+		getVariantBuilder(crop.get()).forAllStates(s -> new ConfiguredModel[] {
+				new ConfiguredModel(cropCross(crop.getRegisteredName() + "_stage" + s.getValue(BlockStateProperties.AGE_3),
+						crop.getId().withPrefix("block/").withSuffix("_stage" + s.getValue(BlockStateProperties.AGE_3))).renderType("cutout"))
+		});
+	}
+
+	public BlockModelBuilder cropCross(String name, ResourceLocation cross)
+	{
+		return models().singleTexture(name, modLoc("block/cross_crop"), "cross", cross);
 	}
 }

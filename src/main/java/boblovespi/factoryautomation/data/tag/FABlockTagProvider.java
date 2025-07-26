@@ -151,7 +151,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 		addStoneBlockTags(FABlocks.DIORITE_BRICKS);
 
 		tag(BlockTags.SMALL_FLOWERS).add(FABlocks.WILD_GREEN_ONION.get());
-		tag(BlockTags.MAINTAINS_FARMLAND).add(FABlocks.GREEN_ONIONS.get());
+		tag(BlockTags.MAINTAINS_FARMLAND).add(FABlocks.GREEN_ONIONS.get(), FABlocks.GINGER.get());
 	}
 
 	private void addStoneBlockTags(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)

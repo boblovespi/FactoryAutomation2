@@ -56,7 +56,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> IRON_SAND_CHARCOAL_MIX = ITEMS.registerSimpleBlockItem(FABlocks.IRON_SAND_CHARCOAL_MIX);
 	public static final DeferredItem<BlockItem> MINT_LEAVES = ITEMS.registerSimpleBlockItem(FABlocks.MINT_BUSH);
 	public static final DeferredItem<Item> SOYBEANS = ITEMS.registerSimpleItem("soybeans");
-	public static final DeferredItem<Item> GINGER = ITEMS.registerSimpleItem("ginger");
+	public static final DeferredItem<Item> GINGER = ITEMS.registerItem("ginger",p -> new ItemNameBlockItem(FABlocks.GINGER.get(), p), p());
 	public static final DeferredItem<BlockItem> WILD_GREEN_ONION = ITEMS.registerSimpleBlockItem(FABlocks.WILD_GREEN_ONION);
 
 	// Refined materials

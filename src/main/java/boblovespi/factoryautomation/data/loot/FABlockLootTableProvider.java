@@ -86,6 +86,15 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 				LootPool.lootPool().add(LootItem.lootTableItem(FAItems.WILD_GREEN_ONION).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1))))
 						.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GREEN_ONIONS.get())
 																 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 3)))));
+		add(FABlocks.GINGER.get(), applyExplosionDecay(FABlocks.GINGER,
+				LootTable.lootTable()
+						 .withPool(LootPool.lootPool().add(LootItem.lootTableItem(FAItems.GINGER)))
+						 .withPool(
+								 LootPool.lootPool()
+										 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GINGER.get())
+																				  .setProperties(
+																						  StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 3)))
+										 .add(LootItem.lootTableItem(Items.CARROT).apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 0.5714286F, 3))))));
 
 		dropSelf(FABlocks.GREEN_SAND.get());
 		add(FABlocks.CHARCOAL_PILE.get(), LootTable.lootTable().withPool(
