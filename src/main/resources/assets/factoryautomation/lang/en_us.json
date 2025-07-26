@@ -501,5 +501,7 @@
 	// Config
 	
 	"factoryautomation.configuration.paper_bellows_blow_time": "Paper Bellows blow time",
-	"factoryautomation.configuration.leather_bellows_blow_time": "Leather Bellows blow time"
+	"factoryautomation.configuration.leather_bellows_blow_time": "Leather Bellows blow time",
+	"factoryautomation.configuration.wandering_trader_sells_ginger": "Wandering trader sells ginger",
+	"factoryautomation.configuration.farmer_villager_sells_herbs": "Farmer villager sells herbs"
 }

@@ -33,6 +33,10 @@ public class Config
 																						   .defineInRange("paper_bellows_blow_time", 20, 0.5, 120);
 	private static final ModConfigSpec.DoubleValue LEATHER_BELLOWS_BLOW_TIME = SERVER_BUILDER.comment("How long leather bellows blow for at 2.4 rad/s, in seconds.")
 																							 .defineInRange("leather_bellows_blow_time", 5, 0.5, 120);
+	private static final ModConfigSpec.BooleanValue WANDERING_TRADER_SELLS_GINGER = SERVER_BUILDER.comment("If the wandering trader can sell ginger.")
+																								  .define("wandering_trader_sells_ginger", true);
+	private static final ModConfigSpec.BooleanValue FARMER_VILLAGER_SELLS_HERBS = SERVER_BUILDER.comment("If the farmer villager can sell herbs.")
+																								.define("farmer_villager_sells_herbs", true);
 
 	static final ModConfigSpec SERVER_SPEC = SERVER_BUILDER.build();
 
@@ -43,6 +47,8 @@ public class Config
 
 	public static int paperBellowsBlowTime;
 	public static float leatherBellowsBlowTime;
+	public static boolean wanderingTraderSellsGinger;
+	public static boolean farmerVillagerSellsHerbs;
 
 	private static boolean validateItemName(final Object obj)
 	{
@@ -72,6 +78,8 @@ public class Config
 			{
 				paperBellowsBlowTime = (int) (PAPER_BELLOWS_BLOW_TIME.get() * 20);
 				leatherBellowsBlowTime = LEATHER_BELLOWS_BLOW_TIME.get().floatValue();
+				wanderingTraderSellsGinger = WANDERING_TRADER_SELLS_GINGER.getAsBoolean();
+				farmerVillagerSellsHerbs = FARMER_VILLAGER_SELLS_HERBS.getAsBoolean();
 			}
 		}
 	}
