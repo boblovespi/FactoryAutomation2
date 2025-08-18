@@ -1,0 +1,181 @@
+{
+  "main": {
+    "id": "689e226bb1dac812",
+    "type": "split",
+    "children": [
+      {
+        "id": "93baa43ed47e4f4e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6d85a14395a43b1d",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Progress/Techtree.canvas",
+                "viewState": {
+                  "x": 2032.1775660324638,
+                  "y": 253.3727343770479,
+                  "zoom": -1.1135042044551586
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "Techtree"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a76a141bdd6f3043",
+    "type": "split",
+    "children": [
+      {
+        "id": "d9d7d157c471b59c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f8eeb03587246c30",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "572c7260763a07de",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "dabc4062bdfaf34e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db2a22c1385dc972",
+    "type": "split",
+    "children": [
+      {
+        "id": "6f5c337560173ac7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ada3d2a9ce4cdb1f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Progress/Techtree.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Techtree"
+            }
+          },
+          {
+            "id": "846a3829327d2054",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Progress/Techtree.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Techtree"
+            }
+          },
+          {
+            "id": "dee283f2a6d67e29",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "cd7eca0a14e6a9af",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Progress/Techtree.canvas",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Techtree"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "6d85a14395a43b1d",
+  "lastOpenFiles": [
+    "Welcome.md",
+    "Attachments",
+    "Progress",
+    "Progress/Techtree.canvas"
+  ]
+}
