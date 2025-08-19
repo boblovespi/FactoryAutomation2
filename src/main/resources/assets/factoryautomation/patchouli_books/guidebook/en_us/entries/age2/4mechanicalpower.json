@@ -30,19 +30,19 @@
 		},
 		{
 			"type": "spotlight",
-			"item": "factoryautomation:bushing",
+			"item": "factoryautomation:wood_bevel_gear",
 			"text": "A bevel gear can be used to change the direction of power transfer. $(br2)All rotational transfer devices have multiple tiers. Wood devices have a maximum speed of 10 rad/s and torque of 10 Nm, while iron devices have a maximum speed of 25 rad/s and a torque of 25 Nm. Check the references for specifics for other tiers.",
 			"title": "Changing Directions"
 		},
 		{
 			"type": "spotlight",
-			"item": "factoryautomation:bushing",
+			"item": "factoryautomation:wood_splitter",
 			"text": "Power can also be split between two directions. A splitter splits power into two directions, although the torque output in both is halved.",
 			"title": "Branching Paths"
 		},
 		{
 			"type": "spotlight",
-			"item": "factoryautomation:bushing",
+			"item": "factoryautomation:wood_joiner",
 			"text": "Sometimes, the power output of a single generator is not enough, and we need to combine two generators together. A joiner lets us do that. Note that the rotational speed of both inputs must be the same for the joiner to work.",
 			"title": "Merging Master"
 		}
