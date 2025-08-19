@@ -5,6 +5,7 @@ import boblovespi.factoryautomation.common.block.mechanical.Gearbox;
 import boblovespi.factoryautomation.common.block.processing.StoneCastingVessel;
 import boblovespi.factoryautomation.common.blockentity.processing.BrickMakerFrameBE;
 import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
+import boblovespi.factoryautomation.common.blockentity.processing.FryingPanBE;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import snownee.jade.api.IWailaClientRegistration;
 import snownee.jade.api.IWailaCommonRegistration;
@@ -21,6 +22,7 @@ public class FAJadePlugin implements IWailaPlugin
 		registration.registerItemStorage(BrickMakerProvider.INSTANCE, BrickMakerFrameBE.class);
 		registration.registerItemStorage(FAItemStorageProvider.INSTANCE, ChoppingBlockBE.class);
 		registration.registerItemStorage(FAItemStorageProvider.INSTANCE, MillstoneBE.class);
+		registration.registerItemStorage(FAItemStorageProvider.INSTANCE, FryingPanBE.class);
 	}
 
 	@Override
