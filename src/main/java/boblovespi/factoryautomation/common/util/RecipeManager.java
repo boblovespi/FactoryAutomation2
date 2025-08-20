@@ -29,7 +29,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 
 	public float getProgressRatio()
 	{
-		return 1 - progress / (float) maxProgress;
+		return currentRecipe == null ? 0 : 1 - progress / (float) maxProgress;
 	}
 
 	private int progress;
