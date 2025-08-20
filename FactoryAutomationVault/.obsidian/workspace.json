@@ -15,9 +15,9 @@
               "state": {
                 "file": "Progress/Tech Tree.canvas",
                 "viewState": {
-                  "x": -376.904375663732,
-                  "y": 671.3044008187469,
-                  "zoom": -2.7020945930305666
+                  "x": 420,
+                  "y": 0,
+                  "zoom": -2.854188086867475
                 }
               },
               "icon": "lucide-layout-dashboard",
@@ -145,20 +145,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Progress/Techtree.canvas",
+                "file": "Progress/Tech Tree.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Techtree"
+              "title": "Outline of Tech Tree"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
@@ -174,13 +175,13 @@
   },
   "active": "a137b79532a76cbd",
   "lastOpenFiles": [
+    "Progress/Features/Vanilla Tweaks.md",
     "Progress/Tech Tree.canvas",
     "Progress/Features/Blocks/Stone Crucible.md",
     "Progress/Features/Blocks/Stone Casting Vessel.md",
     "Progress/Features/Blocks/Green Sand.md",
     "Progress/Features/Multiblocks/Stone Foundry.md",
     "Attachments/Pasted image 20250820234728.png",
-    "Progress/Features/Vanilla Tweaks.md",
     "Progress/Features/Multiblocks",
     "Progress/Features/Items/Flint Tools.md",
     "Progress/Features/Items/Toasted Bread.md",

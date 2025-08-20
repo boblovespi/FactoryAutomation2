@@ -304,16 +304,6 @@
 			"height":240
 		},
 		{
-			"id":"9ff91f93c49d26f3",
-			"type":"text",
-			"text":"# Stone Foundry\n![[Stone Foundry#Overview]]",
-			"styleAttributes":{},
-			"x":160,
-			"y":15,
-			"width":520,
-			"height":660
-		},
-		{
 			"id":"2764e5300caca4f9",
 			"type":"text",
 			"text":"# Mineable Stone",
@@ -392,6 +382,26 @@
 			"y":828,
 			"width":520,
 			"height":400
+		},
+		{
+			"id":"9ff91f93c49d26f3",
+			"type":"text",
+			"text":"# Stone Foundry\n![[Stone Foundry#Overview]]",
+			"styleAttributes":{},
+			"x":280,
+			"y":15,
+			"width":520,
+			"height":660
+		},
+		{
+			"id":"2b79dcb56b253aa2",
+			"type":"text",
+			"text":"# Mineable Coal Ore",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-1460,
+			"y":-400,
+			"width":460,
+			"height":65
 		}
 	],
 	"edges":[
@@ -787,7 +797,8 @@
 			"fromNode":"552d8fd2821880aa",
 			"fromSide":"bottom",
 			"toNode":"9ff91f93c49d26f3",
-			"toSide":"top"
+			"toSide":"top",
+			"label":"Coal Sidegrade"
 		},
 		{
 			"id":"1b6682ceedc35d2c",
@@ -798,6 +809,33 @@
 			"fromSide":"right",
 			"toNode":"5a4a2e8a3684a236",
 			"toSide":"left"
+		},
+		{
+			"id":"884a9e3673b6f0ec",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"a35c75ce6f9bd5db",
+			"fromSide":"top",
+			"toNode":"6ccc0df825a889ec",
+			"toSide":"left"
+		},
+		{
+			"id":"4206bdc85b466c83",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"0c5f715fca9a9379",
+			"fromSide":"top",
+			"toNode":"2b79dcb56b253aa2",
+			"toSide":"left"
+		},
+		{
+			"id":"a713227307a571f8",
+			"styleAttributes":{"pathfindingMethod":"a-star"},
+			"toFloating":false,
+			"fromNode":"2b79dcb56b253aa2",
+			"fromSide":"right",
+			"toNode":"9ff91f93c49d26f3",
+			"toSide":"top"
 		}
 	],
 	"metadata":{
