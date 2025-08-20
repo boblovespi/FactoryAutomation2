@@ -4,24 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "93baa43ed47e4f4e",
+        "id": "2a796adfec3855f0",
         "type": "tabs",
         "children": [
           {
-            "id": "6d85a14395a43b1d",
+            "id": "0f0215a71c7fa403",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Progress/Techtree.canvas",
-                "viewState": {
-                  "x": 2032.1775660324638,
-                  "y": 253.3727343770479,
-                  "zoom": -1.1135042044551586
-                }
+                "file": "Progress/Features/Rock.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Techtree"
+              "icon": "lucide-file",
+              "title": "Rock"
             }
           }
         ]
@@ -163,6 +160,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -171,11 +169,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6d85a14395a43b1d",
+  "active": "0f0215a71c7fa403",
   "lastOpenFiles": [
+    "Progress/Features/Rock.md",
+    "Progress/Features/Rock.md",
+    "Templates/New Feature.md",
+    "Progress/Techtree.canvas",
+    "Progress/Features/Test and Debug for Obsidian/World Generation.md",
+    "Progress/Features/Test and Debug for Obsidian",
+    "Untitled.md",
+    "Progress/Features/Test and Debug for Obsidian/TestSheet2.md",
+    "Templates",
+    "TestSheet.md",
+    "Progress/Features/TestSheet.md",
     "Welcome.md",
+    "Progress/Features",
+    "![Progress/WG.md",
+    "![Progress/WG#TEST].md",
+    "![Progress",
+    "Progress/WG#^TEST.md",
+    "WG/1.md",
+    "WG",
+    "WG.md",
+    "3.md",
+    "Untitled.base",
     "Attachments",
-    "Progress",
-    "Progress/Techtree.canvas"
+    "Progress"
   ]
 }

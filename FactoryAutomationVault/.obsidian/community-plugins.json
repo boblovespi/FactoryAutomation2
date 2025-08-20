@@ -1,4 +1,6 @@
 [
   "advanced-canvas",
-  "emoji-shortcodes"
+  "emoji-shortcodes",
+  "url-into-selection",
+  "obsidian-meta-bind-plugin"
 ]

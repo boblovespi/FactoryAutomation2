@@ -4,77 +4,16 @@
 		{"id":"56d0194d64d30d87","type":"group","x":-560,"y":2400,"width":1920,"height":1560,"label":"Artist's Takes"},
 		{"id":"afda3880d69273da","type":"group","x":-600,"y":-320,"width":2120,"height":900,"label":"0 - Stone Age"},
 		{"id":"044cc7e1ed7ae896","type":"group","x":1600,"y":-295,"width":1720,"height":755,"label":"1 - Copper Age"},
+		{"id":"ed8bef8ec1761a8b","type":"group","x":-1800,"y":-320,"width":920,"height":1020,"label":"Linking Test"},
 		{
-			"id":"33a917d8c68acc14",
+			"id":"77be94bf6bb26622",
 			"type":"text",
-			"text":"### Worldgen\n- [x] Rocks on the Surface\n  - [x] Biome & Variants\n- [x] Flint Rocks on the surface",
-			"styleAttributes":{
-				"border":null
-			},
-			"x":-560,
-			"y":-280,
-			"width":600,
-			"height":180
-		},
-		{
-			"id":"2ea2ca8adae8c8c0",
-			"type":"text",
-			"text":"- [x] Chopping Blade\n\nEnables you to get wood",
+			"text":"![[World Generation#TEST]]\n[[World Generation#TEST|In]]\n",
 			"styleAttributes":{},
-			"x":120,
-			"y":-280,
-			"width":280,
-			"height":80
-		},
-		{
-			"id":"948edbd8df2811ea",
-			"type":"text",
-			"text":"- [x] Chopping Block\nWood can be made into planks with it",
-			"styleAttributes":{},
-			"x":480,
-			"y":-295,
-			"width":260,
-			"height":110
-		},
-		{
-			"id":"c66281fc52f8c34f",
-			"type":"text",
-			"text":"#### Flint Tools\n(Wood tool replacement)\n\n- [x] Pickaxe\n- [x] Sword\n- [x] Axe\n- [x] Shovel\n- [x] Hoe",
-			"styleAttributes":{},
-			"x":-80,
-			"y":-40,
-			"width":480,
-			"height":280
-		},
-		{
-			"id":"b5b612f404143d3f",
-			"type":"text",
-			"text":"Vanilla crafting table Unlocked",
-			"styleAttributes":{"textAlign":"center"},
-			"x":470,
-			"y":-100,
-			"width":280,
-			"height":60
-		},
-		{
-			"id":"5ddb933ed5793722",
-			"type":"text",
-			"text":"# Stone Foundry",
-			"styleAttributes":{"textAlign":"center"},
-			"x":1100,
-			"y":90,
-			"width":400,
-			"height":80
-		},
-		{
-			"id":"331ad537522825af",
-			"type":"text",
-			"text":"# HEATED METAL\n\n![[Pasted image 20250815223606.png]]\n![[Pasted image 20250815223609.png]]\n",
-			"styleAttributes":{},
-			"x":-440,
-			"y":2640,
-			"width":460,
-			"height":1020
+			"x":-1700,
+			"y":-230,
+			"width":660,
+			"height":260
 		},
 		{
 			"id":"6684d2917f608764",
@@ -87,6 +26,78 @@
 			"height":190
 		},
 		{
+			"id":"33a917d8c68acc14",
+			"type":"text",
+			"text":"![[World Generation#Surface Findables]]",
+			"styleAttributes":{
+				"border":null
+			},
+			"x":-560,
+			"y":-280,
+			"width":600,
+			"height":180
+		},
+		{
+			"id":"b98be7f4db0a23a5",
+			"type":"text",
+			"text":"![[TestSheet2#ASD]]",
+			"styleAttributes":{},
+			"x":-1700,
+			"y":240,
+			"width":520,
+			"height":160
+		},
+		{
+			"id":"331ad537522825af",
+			"type":"text",
+			"text":"# HEATED METAL\n\n![[Pasted image 20250815223606.png]]\n![[Pasted image 20250815223609.png]]\n",
+			"styleAttributes":{},
+			"x":-440,
+			"y":2640,
+			"width":460,
+			"height":1020
+		},
+		{
+			"id":"2ea2ca8adae8c8c0",
+			"type":"text",
+			"text":"- [x] Chopping Blade\n\nEnables you to get wood",
+			"styleAttributes":{},
+			"x":120,
+			"y":-280,
+			"width":280,
+			"height":80
+		},
+		{
+			"id":"c66281fc52f8c34f",
+			"type":"text",
+			"text":"#### Flint Tools\n(Wood tool replacement)\n\n- [x] Pickaxe\n- [x] Sword\n- [x] Axe\n- [x] Shovel\n- [x] Hoe",
+			"styleAttributes":{},
+			"x":-80,
+			"y":-40,
+			"width":480,
+			"height":280
+		},
+		{
+			"id":"0b02a133e652a6f6",
+			"type":"text",
+			"text":"Tin ore melting (Cassiterite)",
+			"styleAttributes":{},
+			"x":1940,
+			"y":-260,
+			"width":280,
+			"height":60
+		},
+		{
+			"id":"948edbd8df2811ea",
+			"type":"text",
+			"text":"- [x] Chopping Block\nWood can be made into planks with it",
+			"styleAttributes":{},
+			"x":480,
+			"y":-295,
+			"width":260,
+			"height":110
+		},
+		{
 			"id":"2852cef10e3c0081",
 			"type":"text",
 			"text":"Stone and stone tools unlocked",
@@ -97,211 +108,11 @@
 			"height":60
 		},
 		{
-			"id":"bf6baca97e676920",
+			"id":"a071a62a32fca7c3",
 			"type":"text",
-			"text":"# Brick Foundry",
-			"styleAttributes":{"textAlign":"center"},
-			"x":4040,
-			"y":230,
-			"width":360,
-			"height":80
-		},
-		{
-			"id":"d434a5f46185e4a9",
-			"type":"text",
-			"text":"# Iron Ingots",
-			"styleAttributes":{"textAlign":"center"},
-			"x":3560,
-			"y":230,
-			"width":280,
-			"height":80
-		},
-		{
-			"id":"7382066e480955ab",
-			"type":"text",
-			"text":"Brick Maker Frame",
+			"text":"Copper ore Melting",
 			"styleAttributes":{},
-			"x":3670,
-			"y":-290,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"1f10b6ab855905b8",
-			"type":"text",
-			"text":"Clay",
-			"styleAttributes":{},
-			"x":3670,
-			"y":10,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"4121b1ca782c2a29",
-			"type":"text",
-			"text":"### Stone Workbench",
-			"styleAttributes":{},
-			"x":1900,
-			"y":120,
-			"width":300,
-			"height":60
-		},
-		{
-			"id":"5a4a2e8a3684a236",
-			"type":"text",
-			"text":"# Stone Foundry",
-			"styleAttributes":{"textAlign":"center"},
-			"x":1620,
-			"y":240,
-			"width":400,
-			"height":80
-		},
-		{
-			"id":"f7d414bd97efbf33",
-			"type":"text",
-			"text":"Bricks",
-			"styleAttributes":{},
-			"x":4090,
-			"y":-100,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"0161fad165d92647",
-			"type":"text",
-			"text":"Iron Ore melting",
-			"styleAttributes":{},
-			"x":4600,
-			"y":240,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"50789ecadd244938",
-			"type":"text",
-			"text":"Tumbling Barrel",
-			"styleAttributes":{},
-			"x":3840,
-			"y":960,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"d635ad931d767c53",
-			"type":"text",
-			"text":"Limonite Ore",
-			"styleAttributes":{},
-			"x":2930,
-			"y":-20,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"600968b8b03ae7a0",
-			"type":"text",
-			"text":"Hand Crank",
-			"styleAttributes":{},
-			"x":3840,
-			"y":440,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"a2b8223e85884d1c",
-			"type":"text",
-			"text":"Iron Shaft",
-			"styleAttributes":{},
-			"x":3840,
-			"y":620,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"a60fe97df04e7085",
-			"type":"text",
-			"text":"Millstone",
-			"styleAttributes":{},
-			"x":4340,
-			"y":620,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"d8f6e1b814893080",
-			"type":"text",
-			"text":"Water Wheel",
-			"styleAttributes":{},
-			"x":3840,
-			"y":780,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"b8be1e0f5ac324a5",
-			"type":"text",
-			"text":"Trip Hammer",
-			"styleAttributes":{},
-			"x":3840,
-			"y":1140,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"df8c439b30d7fcd5",
-			"type":"text",
-			"text":"Limonite Charcoal Mix",
-			"styleAttributes":{},
-			"x":2680,
-			"y":90,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"015abc73e9a85f25",
-			"type":"text",
-			"text":"Charcoal",
-			"styleAttributes":{},
-			"x":2680,
-			"y":-148,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"f17a92cbeaa715df",
-			"type":"text",
-			"text":"Wood",
-			"styleAttributes":{},
-			"x":3000,
-			"y":-260,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"5e1227edc3976837",
-			"type":"text",
-			"text":"# Iron Ingots",
-			"styleAttributes":{"textAlign":"center"},
-			"x":3020,
-			"y":230,
-			"width":280,
-			"height":80
-		},
-		{
-			"id":"55a3f1b8f1dc6a82",
-			"type":"text",
-			"text":"Iron Shard",
-			"styleAttributes":{},
-			"x":2590,
-			"y":240,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"c22457eddacfb5e6",
-			"type":"text",
-			"text":"Copper Plate Blocks",
-			"styleAttributes":{},
-			"x":2460,
+			"x":1940,
 			"y":-20,
 			"width":260,
 			"height":60
@@ -317,22 +128,232 @@
 			"height":60
 		},
 		{
-			"id":"0b02a133e652a6f6",
+			"id":"5ddb933ed5793722",
 			"type":"text",
-			"text":"Tin ore melting (Cassiterite)",
-			"styleAttributes":{},
-			"x":1940,
-			"y":-260,
+			"text":"# Stone Foundry",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1100,
+			"y":90,
+			"width":400,
+			"height":80
+		},
+		{
+			"id":"b5b612f404143d3f",
+			"type":"text",
+			"text":"Vanilla crafting table Unlocked",
+			"styleAttributes":{"textAlign":"center"},
+			"x":470,
+			"y":-100,
 			"width":280,
 			"height":60
 		},
 		{
-			"id":"a071a62a32fca7c3",
+			"id":"5a4a2e8a3684a236",
 			"type":"text",
-			"text":"Copper ore Melting",
+			"text":"# Stone Foundry",
+			"styleAttributes":{"textAlign":"center"},
+			"x":1620,
+			"y":240,
+			"width":400,
+			"height":80
+		},
+		{
+			"id":"4121b1ca782c2a29",
+			"type":"text",
+			"text":"### Stone Workbench",
 			"styleAttributes":{},
-			"x":1940,
+			"x":1900,
+			"y":120,
+			"width":300,
+			"height":60
+		},
+		{
+			"id":"015abc73e9a85f25",
+			"type":"text",
+			"text":"Charcoal",
+			"styleAttributes":{},
+			"x":2680,
+			"y":-148,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"d635ad931d767c53",
+			"type":"text",
+			"text":"Limonite Ore",
+			"styleAttributes":{},
+			"x":2930,
 			"y":-20,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"df8c439b30d7fcd5",
+			"type":"text",
+			"text":"Limonite Charcoal Mix",
+			"styleAttributes":{},
+			"x":2680,
+			"y":90,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"c22457eddacfb5e6",
+			"type":"text",
+			"text":"Copper Plate Blocks",
+			"styleAttributes":{},
+			"x":2460,
+			"y":-20,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"55a3f1b8f1dc6a82",
+			"type":"text",
+			"text":"Iron Shard",
+			"styleAttributes":{},
+			"x":2590,
+			"y":240,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"7382066e480955ab",
+			"type":"text",
+			"text":"Brick Maker Frame",
+			"styleAttributes":{},
+			"x":3670,
+			"y":-290,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"f17a92cbeaa715df",
+			"type":"text",
+			"text":"Wood",
+			"styleAttributes":{},
+			"x":3000,
+			"y":-260,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"d434a5f46185e4a9",
+			"type":"text",
+			"text":"# Iron Ingots",
+			"styleAttributes":{"textAlign":"center"},
+			"x":3560,
+			"y":230,
+			"width":280,
+			"height":80
+		},
+		{
+			"id":"5e1227edc3976837",
+			"type":"text",
+			"text":"# Iron Ingots",
+			"styleAttributes":{"textAlign":"center"},
+			"x":3020,
+			"y":230,
+			"width":280,
+			"height":80
+		},
+		{
+			"id":"50789ecadd244938",
+			"type":"text",
+			"text":"Tumbling Barrel",
+			"styleAttributes":{},
+			"x":3840,
+			"y":960,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"d8f6e1b814893080",
+			"type":"text",
+			"text":"Water Wheel",
+			"styleAttributes":{},
+			"x":3840,
+			"y":780,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"1f10b6ab855905b8",
+			"type":"text",
+			"text":"Clay",
+			"styleAttributes":{},
+			"x":3670,
+			"y":10,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"f7d414bd97efbf33",
+			"type":"text",
+			"text":"Bricks",
+			"styleAttributes":{},
+			"x":4090,
+			"y":-100,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"bf6baca97e676920",
+			"type":"text",
+			"text":"# Brick Foundry",
+			"styleAttributes":{"textAlign":"center"},
+			"x":4040,
+			"y":230,
+			"width":360,
+			"height":80
+		},
+		{
+			"id":"600968b8b03ae7a0",
+			"type":"text",
+			"text":"Hand Crank",
+			"styleAttributes":{},
+			"x":3840,
+			"y":440,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"0161fad165d92647",
+			"type":"text",
+			"text":"Iron Ore melting",
+			"styleAttributes":{},
+			"x":4600,
+			"y":240,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"b8be1e0f5ac324a5",
+			"type":"text",
+			"text":"Trip Hammer",
+			"styleAttributes":{},
+			"x":3840,
+			"y":1140,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"a60fe97df04e7085",
+			"type":"text",
+			"text":"Millstone",
+			"styleAttributes":{},
+			"x":4340,
+			"y":620,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"a2b8223e85884d1c",
+			"type":"text",
+			"text":"Iron Shaft",
+			"styleAttributes":{},
+			"x":3840,
+			"y":620,
 			"width":260,
 			"height":60
 		}
