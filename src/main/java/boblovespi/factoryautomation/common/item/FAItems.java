@@ -156,6 +156,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> TRIP_HAMMER = ITEMS.registerSimpleBlockItem(FABlocks.TRIP_HAMMER);
 	public static final DeferredItem<BlockItem> TUMBLING_BARREL = ITEMS.registerSimpleBlockItem(FABlocks.TUMBLING_BARREL);
 	public static final DeferredItem<BlockItem> FRYING_PAN = ITEMS.registerSimpleBlockItem(FABlocks.FRYING_PAN);
+	public static final DeferredItem<BlockItem> BRICK_KILN = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_KILN);
 
 	// Tools
 

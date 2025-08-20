@@ -44,4 +44,7 @@ public class RecipeThings
 	public static final Supplier<RecipeType<FryingPanRecipe>> FRYING_PAN_TYPE = RECIPE_TYPES.register("frying", () -> RecipeType.simple(FactoryAutomation.name("frying")));
 	public static final Supplier<RecipeSerializer<FryingPanRecipe>> FRYING_PAN_SERIALIZER = RECIPE_SERIALIZERS.register("frying",
 			() -> new MultiInputRecipe.Serializer<>(FryingPanRecipe::new, FryingPanRecipe.DATA_CODEC, FryingPanRecipe.DATA_STREAM_CODEC));
+	public static final Supplier<RecipeType<KilnRecipe>> KILN_TYPE = RECIPE_TYPES.register("kiln", () -> RecipeType.simple(FactoryAutomation.name("kiln")));
+	public static final Supplier<RecipeSerializer<KilnRecipe>> KILN_SERIALIZER = RECIPE_SERIALIZERS.register("kiln",
+			() -> new SimpleRecipe.Serializer<>(KilnRecipe::new, TemperatureData.CODEC, TemperatureData.STREAM_CODEC));
 }

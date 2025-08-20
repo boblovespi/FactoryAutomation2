@@ -80,6 +80,7 @@ public class ClientHandler
 		event.register(MenuTypes.WORKBENCH_MENU.get(), WorkbenchScreen::new);
 		event.register(MenuTypes.BRICK_FOUNDRY.get(), BrickFoundryScreen::new);
 		event.register(MenuTypes.TUMBLING_BARREL.get(), TumblingBarrelScreen::new);
+		event.register(MenuTypes.BRICK_KILN.get(), BrickKilnScreen::new);
 	}
 
 	@SubscribeEvent

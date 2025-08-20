@@ -11,6 +11,7 @@ public class Multiblocks
 	public static Multiblock BRICK_CRUCIBLE;
 	public static Multiblock TRIP_HAMMER;
 	public static Multiblock LARGE_WATERWHEEL;
+	public static Multiblock BRICK_KILN;
 
 	public static void register()
 	{
@@ -57,5 +58,15 @@ public class Multiblocks
 									  .setOffset(new Vec3i(2, 2, 0)).build();
 		MultiblockRegistry.register(largeWaterwheel);
 		LARGE_WATERWHEEL = largeWaterwheel;
+
+		var brickKiln = SimpleMultiblock.Builder.make("brick_kiln", 3, 3, 3)
+								.layer("bbb\nbbb\nbbb")
+								.layer("bbb\ncbb\nbbb")
+								.layer("bbb\nbbb\nbbb")
+								.define('b', Blocks.BRICKS)
+								.define('c', FABlocks.BRICK_KILN)
+								.setOffset(new Vec3i(0, 1, 1)).build();
+		MultiblockRegistry.register(brickKiln);
+		BRICK_KILN = brickKiln;
 	}
 }

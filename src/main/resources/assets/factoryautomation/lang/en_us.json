@@ -377,6 +377,7 @@
 	"gui.stone_workbench.name": "Stone Workbench",
 	"gui.brick_crucible.name": "Brick Crucible",
 	"gui.tumbling_barrel.name": "Tumbling Barrel",
+	"gui.brick_kiln.name": "Brick Kiln",
 	
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",

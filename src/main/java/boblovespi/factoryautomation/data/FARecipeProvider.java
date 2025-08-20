@@ -820,6 +820,21 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_chicken", has(Items.CHICKEN))
 					   .save(output);
 
+		// Kiln recipes
+		KilnRecipe.of(new ItemStack(Items.BRICK))
+				  .progress(20 * 10)
+				  .input(Items.CLAY_BALL)
+				  .beginData().temperature(200).endData() // TODO: fix temps
+				  .unlockedBy("has_clay_ball", has(Items.CLAY_BALL))
+				  .save(output);
+
+		KilnRecipe.of(new ItemStack(Items.CHARCOAL))
+				  .progress(20 * 10)
+				  .input(ItemTags.LOGS_THAT_BURN)
+				  .beginData().temperature(200).endData() // TODO: fix temps
+				  .unlockedBy("has_logs", has(ItemTags.LOGS_THAT_BURN))
+				  .save(output);
+
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
 			RemovalRecipe.unitFor(wood.getPlanks()).save(output);
