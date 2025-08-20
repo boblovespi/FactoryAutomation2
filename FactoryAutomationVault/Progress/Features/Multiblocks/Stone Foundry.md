@@ -15,7 +15,12 @@ Age: Stone
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
+The very fist multiblock structure of FA,
+built from a Furnace, a [[Stone Casting Vessel]] and a [[Stone Crucible]].
+Assembled by right clicking on the crucible.
+Used to melt down raw ores to cast them into ingots and other shapes.
+
+![[Pasted image 20250820234728.png]]
 
 # Status
 

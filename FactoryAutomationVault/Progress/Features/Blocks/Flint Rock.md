@@ -1,12 +1,11 @@
 ---
 tags:
-  - missingLink
 Logic: Done
 Texture: Vanilla
 Model: Done
 Worldgen: Done
 Drops: Done
-Recipe: Done
+Recipe: N/A
 Sound: Done
 Localization: Done
 BlockState: Done
@@ -15,8 +14,10 @@ Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
-A block resembling a piece of rock found on the surface.
-Can be harvested to obtain its item form, which will allow you to craft the ==chopping blade==
+
+A block resembling a piece of flint stuck in the ground, found on the surface.
+Can be harvested to obtain its item form, which will allow you to craft the [[Flint Chopping Blade]]
+![[Pasted image 20250820215342.png]]
 
 # Status
 

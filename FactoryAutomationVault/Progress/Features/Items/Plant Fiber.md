@@ -1,21 +1,24 @@
 ---
 tags:
-Logic: N/A
-Texture: N/A
-Model: N/A
+Logic: Done
+Texture: Done
+Model: Done
 Worldgen: N/A
 Drops: N/A
-Recipe: N/A
+Recipe: Done
 Sound: N/A
-Localization: N/A
+Localization: Done
 BlockState: N/A
-TagsS: N/A
+TagsS: Done
 Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
+An item made form grass on the [[Chopping Block]]
+Used for crafting [[Flint Tools]]
+
+![[Pasted image 20250820222147.png]]
 
 # Status
 

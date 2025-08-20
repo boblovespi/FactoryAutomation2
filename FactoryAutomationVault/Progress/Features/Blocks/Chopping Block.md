@@ -1,22 +1,23 @@
 ---
 tags:
-Logic: N/A
-Texture: N/A
-Model: N/A
+Logic: Done
+Texture: Done
+Model: Done
 Worldgen: N/A
-Drops: N/A
-Recipe: N/A
-Sound: N/A
-Localization: N/A
-BlockState: N/A
-TagsS: N/A
+Drops: Done
+Recipe: Done
+Sound: Done
+Localization: Done
+BlockState: Done
+TagsS: Done
 Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
-
+The first "workbench" in progression, allowing you to chop logs into planks, and other various recipes to be made.
+Created by right clicking on a log with [[Rocks]]
+![[Pasted image 20250820221537.png]]
 # Status
 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic

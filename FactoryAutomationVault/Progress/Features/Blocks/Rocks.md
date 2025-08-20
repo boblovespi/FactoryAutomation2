@@ -1,22 +1,24 @@
 ---
 tags:
-Logic: N/A
-Texture: N/A
-Model: N/A
-Worldgen: N/A
-Drops: N/A
-Recipe: N/A
-Sound: N/A
-Localization: N/A
-BlockState: N/A
-TagsS: N/A
+Logic: Done
+Texture: Vanilla
+Model: Done
+Worldgen: Done
+Drops: Done
+Recipe: Done
+Sound: Done
+Localization: Done
+BlockState: Done
+TagsS: Done
 Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
+A block resembling a piece of rock found on the surface.
+Can be harvested to obtain its item form, which will allow you to craft the [[Flint Chopping Blade]]
 
+![[Pasted image 20250820214606.png]]
 # Status
 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic

@@ -1,21 +1,23 @@
 ---
 tags:
-Logic: N/A
-Texture: N/A
-Model: N/A
+Logic: Done
+Texture: Done
+Model: Done
 Worldgen: N/A
 Drops: N/A
-Recipe: N/A
-Sound: N/A
-Localization: N/A
+Recipe: Done
+Sound: Done
+Localization: Done
 BlockState: N/A
-TagsS: N/A
+TagsS: Done
 Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
+Made from bread on a campfire
+
+![[Pasted image 20250820225005.png]]
 
 # Status
 

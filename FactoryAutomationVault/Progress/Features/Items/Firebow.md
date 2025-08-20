@@ -1,22 +1,23 @@
 ---
 tags:
-Logic: N/A
-Texture: N/A
-Model: N/A
+Logic: Done
+Texture: Done
+Model: Done
 Worldgen: N/A
 Drops: N/A
-Recipe: N/A
-Sound: N/A
-Localization: N/A
+Recipe: Done
+Sound: Done
+Localization: Done
 BlockState: N/A
-TagsS: N/A
+TagsS: Done
 Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
-
+Early access fire lighting device before the iron age
+Crafted with a bow and a stick
+![[Pasted image 20250820225435.png]]
 # Status
 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic

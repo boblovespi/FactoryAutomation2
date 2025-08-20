@@ -1,21 +1,24 @@
 ---
 tags:
-Logic: N/A
-Texture: N/A
-Model: N/A
+Logic: Done
+Texture: Done
+Model: Done
 Worldgen: N/A
-Drops: N/A
-Recipe: N/A
-Sound: N/A
-Localization: N/A
-BlockState: N/A
-TagsS: N/A
+Drops: Done
+Recipe: Done
+Sound: Done
+Localization: Done
+BlockState: Done
+TagsS: Done
 Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
+Used for casting materials with the [[Stone Foundry]].
+Can be placed into the [[Stone Casting Vessel]] to form molds
+Made from clay and sand blocks.
+![[Pasted image 20250820222844.png]]
 
 # Status
 

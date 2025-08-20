@@ -1,22 +1,24 @@
 ---
 tags:
-Logic: N/A
-Texture: N/A
-Model: N/A
-Worldgen: N/A
+Logic: Done
+Texture: Done
+Model: Done
+Worldgen: No
 Drops: N/A
-Recipe: N/A
+Recipe: Done
 Sound: N/A
-Localization: N/A
+Localization: Done
 BlockState: N/A
-TagsS: N/A
+TagsS: Done
 Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
-
+Flint tools are replacing (while not deleting, for compatibility) wooden tools.
+Craftable like other vanilla tools but with an addition of [[Plant Fiber]]
+![[Pasted image 20250820220550.png]]
+![[Pasted image 20250820220608.png]]
 # Status
 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic

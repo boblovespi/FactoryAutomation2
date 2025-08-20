@@ -1,21 +1,21 @@
 ---
 tags:
-Logic: N/A
-Texture: N/A
-Model: N/A
+Logic: Done
+Texture: Done
+Model: Done
 Worldgen: N/A
-Drops: N/A
+Drops: Done
 Recipe: N/A
-Sound: N/A
-Localization: N/A
-BlockState: N/A
-TagsS: N/A
+Sound: Done
+Localization: Done
+BlockState: Done
+TagsS: Done
 Age: Stone
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Lorem Ipsum
+Result of the [[Log Pile]] blocks properly burning, drops charcoal when mined.
 
 # Status
 
