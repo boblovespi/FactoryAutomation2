@@ -835,6 +835,13 @@ public class FARecipeProvider extends RecipeProvider
 				  .unlockedBy("has_logs", has(ItemTags.LOGS_THAT_BURN))
 				  .save(output);
 
+		KilnRecipe.of(new ItemStack(FAItems.QUICKLIME.get()))
+				  .progress(20 * 10)
+				  .input(FATags.Items.CALCIUM_CARBONATE_DUST)
+				  .beginData().temperature(200).endData() // TODO: fix temps
+				  .unlockedBy("has_calcium_carbonate", has(FATags.Items.CALCIUM_CARBONATE_DUST))
+				  .save(output);
+
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
 			RemovalRecipe.unitFor(wood.getPlanks()).save(output);
