@@ -12,6 +12,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.data.DataMapProvider;
+import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
+import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -33,7 +35,9 @@ public class FADataMapProvider extends DataMapProvider
 									.add(FAItems.BRONZE_HAMMER, new Workbench.Tool(FactoryAutomation.name("hammer"), 3), false)
 									.add(FAItems.BRONZE_WRENCH, new Workbench.Tool(FactoryAutomation.name("wrench"), 2), false);
 		builder(FuelInfo.FUEL_DATA).add(holder(Items.COAL), new FuelInfo(1600, 2172 + 273, 4_300_000_000f), false)
-								   .add(holder(Items.CHARCOAL), new FuelInfo(1600, 2012 + 273, 4_300_000_000f), false);
+								   .add(holder(Items.CHARCOAL), new FuelInfo(1600, 2012 + 273, 4_300_000_000f), false)
+								   .add(holder(FAItems.COAL_COKE), new FuelInfo(2400, 2232 + 273, 4_300_000_000f * 2), false);
+		builder(NeoForgeDataMaps.FURNACE_FUELS).add(holder(FAItems.COAL_COKE), new FurnaceFuel(2400), false);
 	}
 
 	private Holder<Item> holder(ItemLike item)

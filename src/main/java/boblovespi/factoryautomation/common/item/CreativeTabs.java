@@ -83,6 +83,7 @@ public class CreativeTabs
 						o.accept(FAItems.WHEAT_FLOUR);
 						o.accept(FAItems.CALCITE_DUST);
 						o.accept(FAItems.QUICKLIME);
+						o.accept(FAItems.COAL_COKE);
 						o.accept(FAItems.MUD_BRICK);
 						o.accept(FAItems.DRIED_BRICK);
 						o.accept(FAItems.DRIED_BRICKS);

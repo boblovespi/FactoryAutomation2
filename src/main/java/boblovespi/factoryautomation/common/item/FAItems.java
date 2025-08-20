@@ -83,6 +83,7 @@ public class FAItems
 	public static final DeferredItem<Item> WHEAT_FLOUR = ITEMS.registerSimpleItem("wheat_flour");
 	public static final DeferredItem<Item> CALCITE_DUST = ITEMS.registerSimpleItem("calcite_dust");
 	public static final DeferredItem<Item> QUICKLIME = ITEMS.registerSimpleItem("quicklime");
+	public static final DeferredItem<Item> COAL_COKE = ITEMS.registerSimpleItem("coal_coke");
 	public static final DeferredItem<Item> MUD_BRICK = ITEMS.registerSimpleItem("mud_brick");
 	public static final DeferredItem<Item> DRIED_BRICK = ITEMS.registerSimpleItem("dried_brick");
 	public static final DeferredItem<BlockItem> DRIED_BRICKS = ITEMS.registerSimpleBlockItem(FABlocks.DRIED_BRICKS);

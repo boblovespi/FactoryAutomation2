@@ -128,6 +128,8 @@ public class FATags
 		public static final TagKey<Item> QUICKLIME_DUST = cItem("dusts/quicklime");
 		public static final TagKey<Item> GROUND_SOYBEAN = cItem("dusts/soybean");
 
+		public static final TagKey<Item> COAL_COKE = cItem("coal_coke");
+
 		public static final TagKey<Item> RAW_PORKS = cItem("foods/raw_pork");
 		public static final TagKey<Item> RAW_CHICKEN = cItem("foods/raw_chicken");
 		public static final TagKey<Item> GREEN_ONION_FOOD = cItem("foods/green_onion");

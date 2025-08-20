@@ -62,6 +62,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.WHEAT_FLOUR.get());
 		basicItem(FAItems.CALCITE_DUST.get());
 		basicItem(FAItems.QUICKLIME.get());
+		basicItem(FAItems.COAL_COKE.get());
 		basicItem(FAItems.MUD_BRICK.get());
 		basicItem(FAItems.DRIED_BRICK.get());
 		basicItem(FAItems.TANBARK_DUST.get());

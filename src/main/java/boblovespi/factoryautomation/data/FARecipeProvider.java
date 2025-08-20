@@ -835,6 +835,13 @@ public class FARecipeProvider extends RecipeProvider
 				  .unlockedBy("has_logs", has(ItemTags.LOGS_THAT_BURN))
 				  .save(output);
 
+		KilnRecipe.of(new ItemStack(FAItems.COAL_COKE.get()))
+				  .progress(20 * 10)
+				  .input(Items.COAL)
+				  .beginData().temperature(200).endData() // TODO: fix temps
+				  .unlockedBy("has_coal", has(Items.COAL))
+				  .save(output);
+
 		KilnRecipe.of(new ItemStack(FAItems.QUICKLIME.get()))
 				  .progress(20 * 10)
 				  .input(FATags.Items.CALCIUM_CARBONATE_DUST)
