@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 
@@ -35,6 +36,12 @@ public class BlockProperties
 
 	public static final BlockBehaviour.Properties BRICK_MACHINE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).instrument(NoteBlockInstrument.BASEDRUM)
 																						   .requiresCorrectToolForDrops().strength(3.5F);
+	public static final BlockBehaviour.Properties BRICK_MACHINE_LIT = BlockBehaviour.Properties.of()
+																							   .mapColor(MapColor.COLOR_RED)
+																							   .instrument(NoteBlockInstrument.BASEDRUM)
+																							   .requiresCorrectToolForDrops()
+																							   .strength(3.5F)
+																							   .lightLevel(s -> s.getValue(BlockStateProperties.LIT) ? 5 : 0);
 
 	public static final BlockBehaviour.Properties COPPER_MACHINE = BlockBehaviour.Properties.of().strength(3, 6).sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE);
 
