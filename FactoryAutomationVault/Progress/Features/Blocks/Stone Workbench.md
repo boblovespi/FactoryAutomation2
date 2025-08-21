@@ -1,26 +1,27 @@
 ---
 tags:
-Logic: Done
+Logic: WIP
 Texture: Done
 Model: Done
-Worldgen: No
-Drops: N/A
+Worldgen: N/A
+Drops: Done
 Recipe: Done
-Sound: N/A
+Sound: Done
 Localization: Done
-BlockState: N/A
+BlockState: Done
 TagsS: Done
-Age: Stone
+Age: Copper
 ---
 # Overview
-- `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
+- `INPUT[inlineSelect(class(age-select),option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-An Item that is made of Flint and [[Rocks]] which lets you harvest logs, and also functions like an axe for using the [[Chopping Block]]. You can cut short grass with this tool to later turn it into [[Plant Fiber]].
-
-![[Pasted image 20250820215554.png]]
+Crafting table mk. II., same size but now there are slots for tools!
+ ![[Pasted image 20250821155905.png]]
+ ![[Pasted image 20250821155932.png]]
+- the GUI #ArtRework
 # Status
 
-`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic
+`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic - Add the various parts and tools
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Texture]` Texture
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Model]` Model 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):BlockState]` Blockstate
@@ -29,4 +30,4 @@ An Item that is made of Flint and [[Rocks]] which lets you harvest logs, and als
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Recipe]` Recipe
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Drops]` Drops
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):TagsS]` Tags
-`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Worldgen]` Worldgen - "populate chest loot tables with them maybe"
+`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Worldgen]` Worldgen

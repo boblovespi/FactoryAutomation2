@@ -1,24 +1,37 @@
 ---
 tags:
-Logic: Done
-Texture: Done
-Model: Done
-Worldgen: No
-Drops: N/A
-Recipe: Done
-Sound: N/A
-Localization: Done
-BlockState: N/A
-TagsS: Done
-Age: Stone
+Logic: WIP
+Texture: WIP
+Model: WIP
+Worldgen: N/A
+Drops: WIP
+Recipe: WIP
+Sound: Done
+Localization: WIP
+BlockState: WIP
+TagsS: WIP
+Age: Copper
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
+  
+![[Pasted image 20250821154130.png]]
+- [ ] ~~Ore Block~~ - Vanilla
+- [ ] ~~Raw Ore Item~~ - Vanilla
+- [ ] ~~Raw Ore Block~~ - Vanilla
+- [ ] ~~Ingot~~ - Vanilla
+- [ ] ~~Nugget~~ - Vanilla
+- [x] Sheet
+- [x] Rod
+- [x] Gear
+- [ ] Coin
+- [ ] ~~Block~~ - Vanilla
+- [x] Sheet Block
+- [x] Space Frame Block
+- [x] Liquid
 
-An Item that is made of Flint and [[Rocks]] which lets you harvest logs, and also functions like an axe for using the [[Chopping Block]]. You can cut short grass with this tool to later turn it into [[Plant Fiber]].
-
-![[Pasted image 20250820215554.png]]
 # Status
+
 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Texture]` Texture
@@ -29,4 +42,4 @@ An Item that is made of Flint and [[Rocks]] which lets you harvest logs, and als
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Recipe]` Recipe
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Drops]` Drops
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):TagsS]` Tags
-`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Worldgen]` Worldgen - "populate chest loot tables with them maybe"
+`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Worldgen]` Worldgen

@@ -2,6 +2,7 @@
   "accentColor": "#80ff00",
   "enabledCssSnippets": [
     "test",
-    "hidePropgressProperties"
+    "hidePropgressProperties",
+    "metaBindCustomized"
   ]
 }

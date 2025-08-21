@@ -3,21 +3,23 @@ tags:
 Logic: Done
 Texture: Done
 Model: Done
-Worldgen: No
-Drops: N/A
+Worldgen: Done
+Drops: Done
 Recipe: Done
-Sound: N/A
+Sound: Done
 Localization: Done
-BlockState: N/A
-TagsS: Done
-Age: Stone
+BlockState: Done
+TagsS: WIP
+Age: Copper
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-An Item that is made of Flint and [[Rocks]] which lets you harvest logs, and also functions like an axe for using the [[Chopping Block]]. You can cut short grass with this tool to later turn it into [[Plant Fiber]].
+Limonite is an ore found exclusively in swamp biomes, in the floor of lakes, embedded in dirt.
+These are the earliest form of getting iron, since these are crude iron deposits.
+The deposits come in 3 Variants, normal, rich and poor, which directly effects how much raw limonite you can get from them. Can be mined with a pickaxe.
+![[Pasted image 20250821154950.png]]
 
-![[Pasted image 20250820215554.png]]
 # Status
 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic
@@ -29,4 +31,4 @@ An Item that is made of Flint and [[Rocks]] which lets you harvest logs, and als
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Recipe]` Recipe
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Drops]` Drops
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):TagsS]` Tags
-`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Worldgen]` Worldgen - "populate chest loot tables with them maybe"
+`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Worldgen]` Worldgen

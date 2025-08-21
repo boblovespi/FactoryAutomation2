@@ -1,23 +1,24 @@
 ---
 tags:
-Logic: Done
-Texture: Done
-Model: Done
-Worldgen: No
+Logic: N/A
+Texture: N/A
+Model: N/A
+Worldgen: N/A
 Drops: N/A
-Recipe: Done
+Recipe: N/A
 Sound: N/A
-Localization: Done
+Localization: N/A
 BlockState: N/A
-TagsS: Done
-Age: Stone
+TagsS: N/A
+Age: Copper
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-An Item that is made of Flint and [[Rocks]] which lets you harvest logs, and also functions like an axe for using the [[Chopping Block]]. You can cut short grass with this tool to later turn it into [[Plant Fiber]].
+A block that is obtained from firing [[Limonite-Charcoal Mix]] surrounded by copper sheet blocks.
+Drops [[Iron Shard]] if mined with a hammer.
+![[Pasted image 20250821161956.png]]
 
-![[Pasted image 20250820215554.png]]
 # Status
 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic
@@ -29,4 +30,4 @@ An Item that is made of Flint and [[Rocks]] which lets you harvest logs, and als
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Recipe]` Recipe
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Drops]` Drops
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):TagsS]` Tags
-`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Worldgen]` Worldgen - "populate chest loot tables with them maybe"
+`INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Worldgen]` Worldgen
