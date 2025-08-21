@@ -131,6 +131,9 @@ public class FABlockStateProvider extends BlockStateProvider
 		crossCrop4(FABlocks.GINGER);
 		pipe(FABlocks.COPPER_PIPE);
 		fryingPan(FABlocks.FRYING_PAN);
+		horizontalBlock(FABlocks.BRICK_KILN.get(),
+				litMultiblockComplete(models().orientable("brick_kiln", mcLoc("block/bricks"), modLoc("block/brick_kiln_front"), mcLoc("block/bricks")),
+						"brick_kiln_multiblock", "front", modLoc("block/brick_kiln_front"), modLoc("block/brick_kiln_front_lit")));
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
@@ -211,6 +214,20 @@ public class FABlockStateProvider extends BlockStateProvider
 							   .texture(key, lit ? litTexture : unlitTexture);
 			else
 				return models().getExistingFile(modLoc("block/" + base));
+		};
+	}
+
+	private Function<BlockState, ModelFile> litMultiblockComplete(ModelFile base, String multiblock, String key, ResourceLocation unlitTexture, ResourceLocation litTexture)
+	{
+		return state -> {
+			var complete = state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE);
+			var lit = state.getValue(BlockStateProperties.LIT);
+			if (complete)
+				return models().getBuilder(multiblock + (lit ? "_lit" : "_unlit"))
+							   .parent(models().getExistingFile(modLoc("block/" + multiblock)))
+							   .texture(key, lit ? litTexture : unlitTexture);
+			else
+				return base;
 		};
 	}
 

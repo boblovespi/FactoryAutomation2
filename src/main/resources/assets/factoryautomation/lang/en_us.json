@@ -114,6 +114,7 @@
 	"block.factoryautomation.trip_hammer": "Trip Hammer",
 	"block.factoryautomation.tumbling_barrel": "Tumbling Barrel",
 	"block.factoryautomation.iron_frying_pan": "Frying Pan",
+	"block.factoryautomation.brick_kiln": "Brick Kiln",
 	
 	// Block - Mechanical
 	
@@ -362,6 +363,7 @@
 	"jei.factoryautomation.trip_hammer.name": "Mechanical Hammering",
 	"jei.factoryautomation.tumbling_barrel.name": "Tumbling",
 	"jei.factoryautomation.frying.name": "Frying",
+	"jei.factoryautomation.kiln.name": "Kiln Firing",
 	
 	"jei.factoryautomation.misc.any_solid": "Any block with a solid face",
 	
