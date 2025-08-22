@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
+import boblovespi.factoryautomation.api.capability.HeatCapability;
 import boblovespi.factoryautomation.common.block.processing.BrickKiln;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
@@ -15,6 +16,7 @@ import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import boblovespi.factoryautomation.common.util.jade.IJadeViewable;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -26,6 +28,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
@@ -43,7 +46,7 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 	{
 		super(FABETypes.BRICK_KILN_TYPE.get(), pos, state);
 		recipeManager = new RecipeManager<>("recipe", this::isValid, this::findMatchingRecipe, this::getRecipe);
-		heatManager = new HeatManager("heat", 1000, 1000);
+		heatManager = new HeatManager("heat", 5.78e7f, 300, 0.8f);
 		inv = new ItemStackHandler(2)
 		{
 			@Override
@@ -106,7 +109,11 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 	{
 		if (recipeManager.hasRecipe())
 		{
-			recipeManager.progress();
+			if (heatManager.getTemperature() > recipeManager.getRecipe().getData().temperature())
+			{
+				recipeManager.progress();
+				heatManager.cool(recipeManager.getRecipe().getData().power() / 20f);
+			}
 			if (recipeManager.isComplete())
 			{
 				var result = recipeManager.getCompleted();
@@ -116,9 +123,34 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 				recipeManager.complete();
 				setChangedAndUpdateClient();
 			}
-			else
-				setChanged();
 		}
+		var facing = getBlockState().getValue(BrickKiln.FACING);
+		Direction.stream().forEach(d ->
+		{
+			if (facing == d)
+			{
+
+			}
+			else if (facing.getOpposite() == d)
+			{
+
+			}
+			else
+			{
+				var pos = worldPosition.relative(d, 2);
+				for (int i = -1; i < 2; i++)
+				{
+					for (int j = 0; j < 3; j++)
+					{
+						var pos2 = pos.relative(facing, j).relative(d.getAxis().isVertical() ? facing.getClockWise().getAxis() : Direction.Axis.Y, i);
+						var cap = level.getCapability(HeatCapability.BLOCK, pos2, d.getOpposite());
+						if (cap != null)
+							cap.conductWith(heatManager);
+					}
+				}
+			}
+		});
+		setChanged();
 	}
 
 	private KilnRecipe.Input getInput()
@@ -173,8 +205,16 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 				Component.translatable("gui.brick_kiln.name"));
 	}
 
+	@org.jetbrains.annotations.Nullable
+	@Override
+	public <T> T getCapability(BlockPos offset, BlockCapability<T, Direction> capability, Direction dir)
+	{
+		return capability == HeatCapability.BLOCK ? (T) heatManager : null;
+	}
+
 	private class Data implements ContainerData
 	{
+
 		@Override
 		public int get(int index)
 		{
@@ -192,5 +232,6 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 		{
 			return 2;
 		}
+
 	}
 }

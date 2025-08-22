@@ -2,6 +2,7 @@ package boblovespi.factoryautomation;
 
 import boblovespi.factoryautomation.api.capability.BellowsCapability;
 import boblovespi.factoryautomation.api.capability.CastingCapability;
+import boblovespi.factoryautomation.api.capability.HeatCapability;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.FATags;
@@ -189,6 +190,7 @@ public class FactoryAutomation
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBE::fluidHandler);
 		event.registerBlockEntity(BellowsCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(BellowsCapability.BLOCK, d));
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(MechanicalCapability.INPUT, d));
+		event.registerBlockEntity(HeatCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(HeatCapability.BLOCK, d));
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.SMALL_TANK_TYPE.get(), SmallTankBE::fluidHandler);
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.BRICK_CASTING_VESSEL_TYPE.get(), BrickCastingVesselBE::fluidHandler);
 

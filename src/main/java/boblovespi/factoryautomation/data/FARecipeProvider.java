@@ -834,28 +834,28 @@ public class FARecipeProvider extends RecipeProvider
 		KilnRecipe.of(new ItemStack(Items.BRICK))
 				  .progress(20 * 10)
 				  .input(Items.CLAY_BALL)
-				  .beginData().temperature(200).endData() // TODO: fix temps
+				  .beginData().temperature(200).power(1000).endData() // TODO: fix temps
 				  .unlockedBy("has_clay_ball", has(Items.CLAY_BALL))
 				  .save(output);
 
 		KilnRecipe.of(new ItemStack(Items.CHARCOAL))
 				  .progress(20 * 10)
 				  .input(ItemTags.LOGS_THAT_BURN)
-				  .beginData().temperature(200).endData() // TODO: fix temps
+				  .beginData().temperature(330 + 273).power(4_300_000_300f / (8 * 10)).endData() // TODO: fix temps
 				  .unlockedBy("has_logs", has(ItemTags.LOGS_THAT_BURN))
 				  .save(output);
 
 		KilnRecipe.of(new ItemStack(FAItems.COAL_COKE.get()))
 				  .progress(20 * 10)
 				  .input(Items.COAL)
-				  .beginData().temperature(200).endData() // TODO: fix temps
+				  .beginData().temperature(200).power(1000).endData() // TODO: fix temps
 				  .unlockedBy("has_coal", has(Items.COAL))
 				  .save(output);
 
 		KilnRecipe.of(new ItemStack(FAItems.QUICKLIME.get()))
 				  .progress(20 * 10)
 				  .input(FATags.Items.CALCIUM_CARBONATE_DUST)
-				  .beginData().temperature(200).endData() // TODO: fix temps
+				  .beginData().temperature(200).power(1000).endData() // TODO: fix temps
 				  .unlockedBy("has_calcium_carbonate", has(FATags.Items.CALCIUM_CARBONATE_DUST))
 				  .save(output);
 

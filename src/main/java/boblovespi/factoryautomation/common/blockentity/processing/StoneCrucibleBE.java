@@ -59,7 +59,7 @@ public class StoneCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 				return super.isItemValid(slot, stack);
 			}
 		};
-		heat = new HeatManager("heat", 2300 * 1000, 300);
+		heat = new HeatManager("heat", 2300 * 1000, 300, 0.5f);
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) -> {
 			if (t * efficiency + 273 * (1 - efficiency) >= heat.getTemperature())
 				heat.heat(e * efficiency * 0.5f);

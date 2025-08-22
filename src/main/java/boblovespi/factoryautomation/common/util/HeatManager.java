@@ -1,19 +1,22 @@
 package boblovespi.factoryautomation.common.util;
 
+import boblovespi.factoryautomation.api.IHeatUser;
 import net.minecraft.nbt.CompoundTag;
 
-public class HeatManager
+public class HeatManager implements IHeatUser
 {
 	private final String nbtId;
 	private float temperature;
 	private float heatCapacity;
 	private float conductivity;
+	private float contactParameter;
 
-	public HeatManager(String nbtId, float heatCapacity, float conductivity)
+	public HeatManager(String nbtId, float heatCapacity, float conductivity, float contactParameter)
 	{
 		this.nbtId = nbtId;
 		this.heatCapacity = heatCapacity;
 		this.conductivity = conductivity;
+		this.contactParameter = contactParameter;
 		temperature = 300;
 	}
 
@@ -56,6 +59,18 @@ public class HeatManager
 	public float getHeatCapacity()
 	{
 		return heatCapacity;
+	}
+
+	@Override
+	public float getConductivity()
+	{
+		return conductivity;
+	}
+
+	@Override
+	public float getContactParameter()
+	{
+		return contactParameter;
 	}
 
 	public void increaseHeatCapacity(float shc)
