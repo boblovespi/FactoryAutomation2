@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.common.blockentity.processing;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.api.IHeatUser;
 import boblovespi.factoryautomation.api.capability.HeatCapability;
+import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
@@ -50,7 +51,7 @@ public class BrickFireboxBE extends FABE implements ITickable
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) -> {
 			if (t * efficiency + 273 * (1 - efficiency) >= heat.getTemperature())
 				heat.heat(e * efficiency * 0.5f);
-		});
+		}, this::notifyBurning);
 	}
 
 	@Override
@@ -120,5 +121,21 @@ public class BrickFireboxBE extends FABE implements ITickable
 	public IItemHandler itemHandler(@Nullable Direction direction)
 	{
 		return inv;
+	}
+
+	private void notifyBurning(boolean b)
+	{
+		if (level.isClientSide)
+			return;
+		if (b)
+		{
+			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCrucible.LIT, true));
+			setChangedAndUpdateClient();
+		}
+		else
+		{
+			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(StoneCrucible.LIT, false));
+			setChangedAndUpdateClient();
+		}
 	}
 }

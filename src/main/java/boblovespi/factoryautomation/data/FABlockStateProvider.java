@@ -25,6 +25,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 @SuppressWarnings("SameParameterValue")
@@ -105,7 +106,9 @@ public class FABlockStateProvider extends BlockStateProvider
 		existingBlockModel(FABlocks.BRICK_MAKER_FRAME);
 		horizontalBlock(FABlocks.BRICK_CRUCIBLE.get(),
 				litMultiblockComplete("brick_crucible", "brick_foundry_multiblock", "front", modLoc("block/brick_firebox_front"), modLoc("block/brick_firebox_front_lit")));
-		horizontalBlock(FABlocks.BRICK_FIREBOX.get(), modLoc("block/brick_firebox_side"), modLoc("block/brick_firebox_front"), modLoc("block/brick_firebox_top"));
+		horizontalBlock(FABlocks.BRICK_FIREBOX.get(),
+				litBlock((s, r) -> models().orientable(s, modLoc("block/brick_firebox_side"), r, modLoc("block/brick_firebox_top")),
+						FABlocks.BRICK_FIREBOX.getRegisteredName(), modLoc("block/brick_firebox_front"), modLoc("block/brick_firebox_front_lit")));
 		//existingBlockWithItem(FABlocks.BRICK_CASTING_VESSEL);
 		existingHorizontalBlockWithItem(FABlocks.BRICK_CASTING_VESSEL);
 		blockWithItem(FABlocks.CREATIVE_MECHANICAL_SOURCE);
@@ -417,5 +420,10 @@ public class FABlockStateProvider extends BlockStateProvider
 	public BlockModelBuilder cropCross(String name, ResourceLocation cross)
 	{
 		return models().singleTexture(name, modLoc("block/cross_crop"), "cross", cross);
+	}
+
+	private Function<BlockState, ModelFile> litBlock(BiFunction<String, ResourceLocation, ModelFile> model, String name, ResourceLocation unlitTexture, ResourceLocation litTexture)
+	{
+		return state -> model.apply(name + (state.getValue(BlockStateProperties.LIT) ? "_lit" : ""), state.getValue(BlockStateProperties.LIT) ? litTexture : unlitTexture);
 	}
 }
