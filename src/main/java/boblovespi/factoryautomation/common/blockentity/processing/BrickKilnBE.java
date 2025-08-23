@@ -46,7 +46,7 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 	{
 		super(FABETypes.BRICK_KILN_TYPE.get(), pos, state);
 		recipeManager = new RecipeManager<>("recipe", this::isValid, this::findMatchingRecipe, this::getRecipe);
-		heatManager = new HeatManager("heat", 5.78e7f, 300, 0.8f);
+		heatManager = new HeatManager("heat", 5.78e7f, 3000, 0.8f);
 		inv = new ItemStackHandler(2)
 		{
 			@Override

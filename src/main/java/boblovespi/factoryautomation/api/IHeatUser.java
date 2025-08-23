@@ -32,7 +32,7 @@ public interface IHeatUser
 		var mcp = 0f;
 		if (getContactParameter() > 0.0001f && that.getContactParameter() > 0.0001f)
 			mcp = 2 / (1 / getContactParameter() + 1 / that.getContactParameter());
-		var h_c = h_gas + mcp > 0.9999f ? 1_000_000 : mcp / (1 - mcp);
+		var h_c = h_gas + mcp > 0.9999f ? 1_000_000_000 : 10_000 * mcp / (1 - mcp);
 		var k_inv = 0.5f / getConductivity() + 1 / h_c + 0.5f / that.getConductivity();
 		var DeltaT = that.getTemperature() - getTemperature();
 		var q = DeltaT / k_inv * 0.05f * 0.5f; // 20 ticks per second, twice a tick
