@@ -492,6 +492,19 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_iron_gear", has(FATags.Items.IRON_GEAR))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.LARGE_WATERWHEEL)
+							  .pattern("iwi")
+							  .pattern("wgw")
+							  .pattern("iwi")
+							  .define('w', ItemTags.LOGS_THAT_BURN)
+							  .define('i', FATags.Items.IRON_SHEET)
+							  .define('g', Tags.Items.STORAGE_BLOCKS_IRON)
+							  .tool("hammer", 2, 20)
+							  .part("screw", 1, 8)
+							  .part("bearing", 1, 2)
+							  .unlockedBy("has_iron_block", has(Tags.Items.STORAGE_BLOCKS_IRON))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.MILLSTONE)
 							  .pattern("ccc")
 							  .pattern("srs")
@@ -578,6 +591,17 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_iron_sheet", has(FATags.Items.IRON_SHEET))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.HORSE_ENGINE)
+							  .pattern("ss ")
+							  .pattern("psp")
+							  .pattern("psp")
+							  .define('s', FATags.Items.IRON_ROD)
+							  .define('p', ItemTags.PLANKS)
+							  .tool("hammer", 2, 5)
+							  .part("screw", 1, 8)
+							  .unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.BRICK_KILN)
 							  .pattern("bbb")
 							  .pattern("s s")
@@ -590,6 +614,7 @@ public class FARecipeProvider extends RecipeProvider
 
 		pipeRecipe(output, FAItems.COPPER_PIPE, FATags.Items.COPPER_SHEET);
 
+		// Vanilla furnace recipes
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(Items.BREAD), RecipeCategory.FOOD, FAItems.TOASTED_BREAD, 0.35f, 300)
 								  .unlockedBy("has_bread", has(Items.BREAD))
 								  .save(output, FactoryAutomation.name("campfire/toasted_bread"));
@@ -597,6 +622,7 @@ public class FARecipeProvider extends RecipeProvider
 								  .unlockedBy("has_calcium_carbonate", has(FATags.Items.CALCIUM_CARBONATE_DUST))
 								  .save(output, FactoryAutomation.name("campfire/quicklime"));
 
+		// Chopping block recipes
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(Blocks.SHORT_GRASS), FAItems.PLANT_FIBER, 1).unlockedBy("has_short_grass", has(Blocks.SHORT_GRASS))
 						   .save(output, FactoryAutomation.name("chopping_block/plant_fiber"));
 
