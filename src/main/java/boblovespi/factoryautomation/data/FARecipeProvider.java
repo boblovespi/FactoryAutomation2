@@ -864,6 +864,13 @@ public class FARecipeProvider extends RecipeProvider
 				  .unlockedBy("has_clay_ball", has(Items.CLAY_BALL))
 				  .save(output);
 
+		KilnRecipe.of(new ItemStack(Items.TERRACOTTA))
+				  .progress(20 * 10 * 4)
+				  .input(Items.CLAY)
+				  .beginData().temperature(200).power(1000).endData() // TODO: fix temps
+				  .unlockedBy("has_clay", has(Items.CLAY))
+				  .save(output);
+
 		KilnRecipe.of(new ItemStack(Items.CHARCOAL))
 				  .progress(20 * 10)
 				  .input(ItemTags.LOGS_THAT_BURN)
