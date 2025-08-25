@@ -644,7 +644,7 @@ public class FARecipeProvider extends RecipeProvider
 		ChoppingBlockRecipe.builder(RecipeCategory.MISC, Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS))
 						   .save(output, FactoryAutomation.name("chopping_block/sticks"));
 
-		BrickDryingRecipe.of(Blocks.DIRT).input(Blocks.MUD).time(20 * 5).blocks(Blocks.MUD, Blocks.DIRT).unlockedBy("has_mud", has(Blocks.MUD)).save(output);
+		BrickDryingRecipe.of(Blocks.CLAY).input(Blocks.MUD).time(20 * 60 * 5).blocks(Blocks.MUD, Blocks.CLAY).unlockedBy("has_mud", has(Blocks.MUD)).save(output);
 		BrickDryingRecipe.of(FAItems.MUD_BRICK).input(Blocks.PACKED_MUD).time(20 * 60 * 8).blocks(Blocks.PACKED_MUD, Blocks.MUD_BRICKS)
 						 .unlockedBy("has_packed_mud", has(Blocks.PACKED_MUD)).save(output);
 		BrickDryingRecipe.of(FAItems.DRIED_BRICK).input(Items.CLAY_BALL).time(20 * 60 * 3).blocks(Blocks.CLAY, FABlocks.DRIED_BRICKS.get())
