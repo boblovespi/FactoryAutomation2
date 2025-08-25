@@ -1,0 +1,6 @@
+# Made in Blockbench 4.12.6
+newmtl m_af8b0f63-8f87-7f5d-f6e9-228fcaccbec8
+map_Kd #front
+newmtl m_58a29a98-e13d-65a4-2dfe-5aab9a4dba5f
+map_Kd minecraft:block/bricks
+newmtl none

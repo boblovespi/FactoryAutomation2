@@ -21,6 +21,7 @@ import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -134,9 +135,15 @@ public class FABlockStateProvider extends BlockStateProvider
 		crossCrop4(FABlocks.GINGER);
 		pipe(FABlocks.COPPER_PIPE);
 		fryingPan(FABlocks.FRYING_PAN);
+		var brickKilnMultiblock = models().getBuilder("brick_kiln_multiblock")
+										  .customLoader(ObjModelBuilder::begin)
+										  .modelLocation(modLoc("models/block/brick_kiln_multiblock.obj"))
+										  .flipV(true)
+										  .end();
 		horizontalBlock(FABlocks.BRICK_KILN.get(),
-				litMultiblockComplete(models().orientable("brick_kiln", mcLoc("block/bricks"), modLoc("block/brick_kiln_front"), mcLoc("block/bricks")),
-						"brick_kiln_multiblock", "front", modLoc("block/brick_kiln_front"), modLoc("block/brick_kiln_front_lit")));
+				litMultiblockComplete(models().orientable("brick_kiln", mcLoc("block/bricks"), modLoc("block/brick_kiln_front"), mcLoc("block/bricks")), "brick_kiln_multiblock",
+						"front", modLoc("block/brick_kiln_front"), modLoc("block/brick_kiln_front_lit"),
+						brickKilnMultiblock));
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
@@ -208,26 +215,18 @@ public class FABlockStateProvider extends BlockStateProvider
 
 	private Function<BlockState, ModelFile> litMultiblockComplete(String base, String multiblock, String key, ResourceLocation unlitTexture, ResourceLocation litTexture)
 	{
-		return state -> {
-			var complete = state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE);
-			var lit = state.getValue(BlockStateProperties.LIT);
-			if (complete)
-				return models().getBuilder(multiblock + (lit ? "_lit" : "_unlit"))
-							   .parent(models().getExistingFile(modLoc("block/" + multiblock)))
-							   .texture(key, lit ? litTexture : unlitTexture);
-			else
-				return models().getExistingFile(modLoc("block/" + base));
-		};
+		return litMultiblockComplete(models().getExistingFile(modLoc("block/" + base)), multiblock, key, unlitTexture, litTexture,
+				models().getExistingFile(modLoc("block/" + multiblock)));
 	}
 
-	private Function<BlockState, ModelFile> litMultiblockComplete(ModelFile base, String multiblock, String key, ResourceLocation unlitTexture, ResourceLocation litTexture)
+	private Function<BlockState, ModelFile> litMultiblockComplete(ModelFile base, String multiblock, String key, ResourceLocation unlitTexture, ResourceLocation litTexture, ModelFile parent)
 	{
 		return state -> {
 			var complete = state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE);
 			var lit = state.getValue(BlockStateProperties.LIT);
 			if (complete)
 				return models().getBuilder(multiblock + (lit ? "_lit" : "_unlit"))
-							   .parent(models().getExistingFile(modLoc("block/" + multiblock)))
+							   .parent(parent)
 							   .texture(key, lit ? litTexture : unlitTexture);
 			else
 				return base;
