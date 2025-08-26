@@ -100,6 +100,7 @@ public class CreativeTabs
 						o.accept(FAItems.IRON_RAIL);
 						o.accept(FAItems.GOLD_RAIL);
 						o.accept(FAItems.PROCESSED_LEATHER);
+						o.accept(FAItems.LEATHER_PULLEY_BELT);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PROCESSING = CREATIVE_MODE_TABS.register("processing",

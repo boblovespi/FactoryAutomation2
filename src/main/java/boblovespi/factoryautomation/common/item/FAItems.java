@@ -116,6 +116,7 @@ public class FAItems
 	public static final DeferredItem<Item> IRON_RAIL = ITEMS.registerSimpleItem("iron_rail");
 	public static final DeferredItem<Item> GOLD_RAIL = ITEMS.registerSimpleItem("gold_rail");
 	public static final DeferredItem<Item> PROCESSED_LEATHER = ITEMS.registerSimpleItem("processed_leather");
+	public static final DeferredItem<Item> LEATHER_PULLEY_BELT = ITEMS.registerSimpleItem("leather_pulley_belt");
 
 	// Food
 
