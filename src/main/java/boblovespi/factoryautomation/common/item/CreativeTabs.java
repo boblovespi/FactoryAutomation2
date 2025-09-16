@@ -39,6 +39,7 @@ public class CreativeTabs
 						FAItems.LIMONITE_ORES.values().forEach(o::accept);
 						o.accept(FAItems.RAW_LIMONITE);
 						o.accept(FAItems.RAW_LIMONITE_BLOCK);
+						o.accept(FAItems.HALITE);
 						o.accept(FAItems.IRON_SAND);
 						o.accept(FAItems.IRON_SAND_CHARCOAL_MIX);
 						o.accept(FAItems.PIG_TALLOW);
@@ -82,6 +83,7 @@ public class CreativeTabs
 						FAItems.CHROMIUM_THINGS.values().forEach(o::accept);
 						o.accept(FAItems.WHEAT_FLOUR);
 						o.accept(FAItems.CALCITE_DUST);
+						o.accept(FAItems.SALT);
 						o.accept(FAItems.QUICKLIME);
 						o.accept(FAItems.COAL_COKE);
 						o.accept(FAItems.MUD_BRICK);

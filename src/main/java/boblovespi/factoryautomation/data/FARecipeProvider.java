@@ -134,6 +134,8 @@ public class FARecipeProvider extends RecipeProvider
 		rawOre(FAItems.RAW_CASSITERITE, FAItems.RAW_CASSITERITE_BLOCK, "raw_cassiterite", output);
 		rawOre(FAItems.RAW_LIMONITE, FAItems.RAW_LIMONITE_BLOCK, "raw_limonite", output);
 
+		twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS, FAItems.HALITE, FAItems.SALT);
+
 		ingot(FAItems.ANCIENT_IRON_INGOT, FAItems.ANCIENT_IRON_NUGGET, "ancient_iron", output);
 		block(FAItems.ANCIENT_IRON_BLOCK, FAItems.ANCIENT_IRON_INGOT, "ancient_iron", output);
 		ingot(FAItems.WEAK_IRON_INGOT, FAItems.WEAK_IRON_NUGGET, "weak_iron", output);
@@ -783,10 +785,9 @@ public class FARecipeProvider extends RecipeProvider
 							.unlockedBy("has_cleaned_leather", has(FAItems.CLEANED_LEATHER))
 							.save(output);
 
-		// TODO: add salt, and replace with salt
 		TumblingBarrelRecipe.of(FAFluids.BRINE_SOURCE.get(), 100)
 							.fluidInput(Fluids.WATER, 100)
-							.input(Items.SUGAR)
+							.input(FATags.Items.SALT_DUST)
 							.time(20 * 5)
 							.minSpeed(2)
 							.maxSpeed(10)

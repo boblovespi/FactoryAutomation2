@@ -125,6 +125,7 @@ public class FATags
 
 		public static final TagKey<Item> WHEAT_DUST = cItem("dusts/flour");
 		public static final TagKey<Item> CALCIUM_CARBONATE_DUST = cItem("dusts/calcium_carbonate");
+		public static final TagKey<Item> SALT_DUST = cItem("dusts/salt");
 		public static final TagKey<Item> QUICKLIME_DUST = cItem("dusts/quicklime");
 		public static final TagKey<Item> GROUND_SOYBEAN = cItem("dusts/soybean");
 

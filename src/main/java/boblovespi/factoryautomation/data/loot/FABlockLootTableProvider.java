@@ -14,10 +14,12 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.LimitCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -66,6 +68,10 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		FABlocks.LIMONITE_ORES.forEach((k, v) -> dropOre(v, FAItems.RAW_LIMONITE, k.getCount()));
 		dropSelf(FABlocks.RAW_CASSITERITE_BLOCK.get());
 		dropSelf(FABlocks.RAW_LIMONITE_BLOCK.get());
+		add(FABlocks.HALITE.get(), p -> createSilkTouchDispatchTable(p, applyExplosionDecay(p, LootItem.lootTableItem(FAItems.SALT)
+																									   .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+																									   .apply(ApplyBonusCount.addUniformBonusCount(fortune))
+																									   .apply(LimitCount.limitCount(IntRange.range(1, 4))))));
 
 		dropSelf(FABlocks.ANCIENT_IRON_BLOCK.get());
 		dropSelf(FABlocks.WEAK_IRON_BLOCK.get());

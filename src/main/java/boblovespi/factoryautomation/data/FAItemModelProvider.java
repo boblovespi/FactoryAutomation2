@@ -61,6 +61,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		FAItems.CHROMIUM_THINGS.forEach(this::metal);
 		basicItem(FAItems.WHEAT_FLOUR.get());
 		basicItem(FAItems.CALCITE_DUST.get());
+		basicItem(FAItems.SALT.get());
 		basicItem(FAItems.QUICKLIME.get());
 		basicItem(FAItems.COAL_COKE.get());
 		basicItem(FAItems.MUD_BRICK.get());

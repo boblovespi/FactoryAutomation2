@@ -211,6 +211,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 
 		tag(FATags.Items.WHEAT_DUST).add(FAItems.WHEAT_FLOUR.get());
 		tag(FATags.Items.CALCIUM_CARBONATE_DUST).add(FAItems.CALCITE_DUST.get());
+		tag(FATags.Items.SALT_DUST).add(FAItems.SALT.get());
 		tag(FATags.Items.QUICKLIME_DUST).add(FAItems.QUICKLIME.get());
 		tag(FATags.Items.COAL_COKE).add(FAItems.COAL_COKE.get());
 		tag(Tags.Items.BRICKS).add(FAItems.MUD_BRICK.get(), FAItems.DRIED_BRICK.get());
