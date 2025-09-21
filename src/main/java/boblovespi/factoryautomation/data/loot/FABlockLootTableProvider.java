@@ -72,7 +72,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 																									   .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
 																									   .apply(ApplyBonusCount.addUniformBonusCount(fortune))
 																									   .apply(LimitCount.limitCount(IntRange.range(1, 4))))));
-
+		dropSelf(FABlocks.GYPSUM.get());
 		dropSelf(FABlocks.ANCIENT_IRON_BLOCK.get());
 		dropSelf(FABlocks.WEAK_IRON_BLOCK.get());
 		dropSelf(FABlocks.IRON_SAND.get());

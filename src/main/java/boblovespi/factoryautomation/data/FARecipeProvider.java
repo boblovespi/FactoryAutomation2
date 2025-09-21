@@ -678,6 +678,8 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT)).save(output);
 		MillstoneRecipe.of(FAItems.CALCITE_DUST.toStack()).input(Items.CALCITE).progress(100).beginData().speed(1).torque(800).endData()
 					   .unlockedBy("has_calcite", has(Items.CALCITE)).save(output);
+		MillstoneRecipe.of(FAItems.GYPSUM_DUST.toStack()).input(FAItems.GYPSUM).progress(100).beginData().speed(1).torque(800).endData()
+					   .unlockedBy("has_gypsum", has(FAItems.GYPSUM)).save(output);
 		MillstoneRecipe.of(FAItems.TANBARK_DUST.toStack()).input(ItemTags.OAK_LOGS).progress(100).beginData().speed(1).torque(800).endData()
 					   .unlockedBy("has_oak_logs", has(ItemTags.OAK_LOGS)).save(output);
 
@@ -803,14 +805,13 @@ public class FARecipeProvider extends RecipeProvider
 							.unlockedBy("has_ground_soybeans", has(FAItems.GROUND_SOYBEAN))
 							.save(output);
 
-		// TODO: add gypsum, and replace with gypsum
 		TumblingBarrelRecipe.of(FAItems.TOFU)
 							.fluidInput(FAFluids.SOY_MILK_SOURCE.get(), 250)
-							.input(FATags.Items.CALCIUM_CARBONATE_DUST)
+							.input(FATags.Items.GYPSUM_DUST)
 							.time(20 * 60)
 							.minSpeed(0.2f)
 							.maxSpeed(0.5f)
-							.unlockedBy("has_gypsum", has(FAItems.SOYBEANS))
+							.unlockedBy("has_gypsum", has(FATags.Items.GYPSUM_DUST))
 							.save(output);
 
 		TumblingBarrelRecipe.of(FAFluids.SOY_SAUCE_SOURCE.get(), 250)

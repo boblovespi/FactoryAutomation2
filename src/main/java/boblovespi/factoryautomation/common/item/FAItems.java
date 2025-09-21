@@ -46,6 +46,7 @@ public class FAItems
 	public static final DeferredItem<Item> RAW_LIMONITE = ITEMS.registerItem("raw_limonite", Item::new);
 	public static final DeferredItem<BlockItem> RAW_LIMONITE_BLOCK = ITEMS.registerSimpleBlockItem(FABlocks.RAW_LIMONITE_BLOCK);
 	public static final DeferredItem<BlockItem> HALITE = ITEMS.registerSimpleBlockItem(FABlocks.HALITE);
+	public static final DeferredItem<BlockItem> GYPSUM = ITEMS.registerSimpleBlockItem(FABlocks.GYPSUM);
 	public static final DeferredItem<BlockItem> ANCIENT_IRON_BLOCK = ITEMS.registerSimpleBlockItem(FABlocks.ANCIENT_IRON_BLOCK);
 	public static final DeferredItem<BlockItem> WEAK_IRON_BLOCK = ITEMS.registerSimpleBlockItem(FABlocks.WEAK_IRON_BLOCK);
 	public static final DeferredItem<Item> PIG_TALLOW = ITEMS.registerSimpleItem("pig_tallow");
@@ -84,6 +85,7 @@ public class FAItems
 	public static final DeferredItem<Item> WHEAT_FLOUR = ITEMS.registerSimpleItem("wheat_flour");
 	public static final DeferredItem<Item> CALCITE_DUST = ITEMS.registerSimpleItem("calcite_dust");
 	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt");
+	public static final DeferredItem<Item> GYPSUM_DUST = ITEMS.registerSimpleItem("gypsum_dust");
 	public static final DeferredItem<Item> QUICKLIME = ITEMS.registerSimpleItem("quicklime");
 	public static final DeferredItem<Item> COAL_COKE = ITEMS.registerSimpleItem("coal_coke");
 	public static final DeferredItem<Item> MUD_BRICK = ITEMS.registerSimpleItem("mud_brick");

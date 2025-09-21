@@ -108,7 +108,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.BRICK_CASTING_VESSEL.get())
 											.add(FABlocks.COPPER_PIPE.get())
 											.add(FABlocks.DRIED_BRICKS.get(), FABlocks.BRICK_TILES.get())
-											.add(FABlocks.CHERT.get(), FABlocks.HALITE.get());
+											.add(FABlocks.CHERT.get(), FABlocks.HALITE.get(), FABlocks.GYPSUM.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get(), FABlocks.PAPER_BELLOWS.get(), FABlocks.LEATHER_BELLOWS.get())
 										.add(FABlocks.HAND_CRANK.get(), FABlocks.SMALL_WATERWHEEL.get())
 										.add(FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get(), FABlocks.WOOD_SPLITTER.get(), FABlocks.WOOD_JOINER.get())

@@ -54,6 +54,7 @@ public class FABlocks
 			Collectors.toMap(k -> k, k -> register(k.getName() + "_limonite_ore", Block::new, BlockProperties.ORE)));
 	public static final DeferredBlock<Block> RAW_LIMONITE_BLOCK = register("raw_limonite_block", Block::new, BlockProperties.RAW_ORE(MapColor.COLOR_ORANGE));
 	public static final DeferredBlock<Block> HALITE = register("halite", Block::new, BlockProperties.HALITE);
+	public static final DeferredBlock<Block> GYPSUM = register("gypsum", Block::new, BlockProperties.GYPSUM);
 	public static final DeferredBlock<Block> ANCIENT_IRON_BLOCK = register("ancient_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
 	public static final DeferredBlock<Block> WEAK_IRON_BLOCK = register("weak_iron_block", Block::new, BlockProperties.METAL(MapColor.METAL));
 	public static final DeferredBlock<Block> IRON_SAND = register("iron_sand", p -> new ColoredFallingBlock(new ColorRGBA(14934489), p), BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));

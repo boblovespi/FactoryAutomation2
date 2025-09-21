@@ -17,6 +17,7 @@ public class BlockProperties
 	public static final BlockBehaviour.Properties LOG = LOG(MapColor.WOOD);
 	public static final BlockBehaviour.Properties CHERT = BlockBehaviour.Properties.of().strength(1.5f, 6).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops();
 	public static final BlockBehaviour.Properties HALITE = BlockBehaviour.Properties.of().strength(0.75f, 0.3f).sound(SoundType.GLASS).mapColor(MapColor.TERRACOTTA_ORANGE);
+	public static final BlockBehaviour.Properties GYPSUM = BlockBehaviour.Properties.of().strength(0.75f).sound(SoundType.CALCITE).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).requiresCorrectToolForDrops();
 	public static final BlockBehaviour.Properties WOOD_MACHINE = BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD).mapColor(MapColor.WOOD);
 	public static final BlockBehaviour.Properties WOOD_MACHINE_NO_OCCLUSION = BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD).mapColor(MapColor.WOOD).noOcclusion();
 
