@@ -903,6 +903,13 @@ public class FARecipeProvider extends RecipeProvider
 				  .unlockedBy("has_calcium_carbonate", has(FATags.Items.CALCIUM_CARBONATE_DUST))
 				  .save(output);
 
+		KilnRecipe.of(new ItemStack(FAItems.CALCIUM_SULFATE_HEMIHYDRATE_DUST.get()))
+				  .progress(20 * 10)
+				  .input(FATags.Items.GYPSUM_DUST)
+				  .beginData().temperature(130 + 273).power(1000).endData()
+				  .unlockedBy("has_gypsum_dust", has(FATags.Items.GYPSUM_DUST))
+				  .save(output);
+
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
 			RemovalRecipe.unitFor(wood.getPlanks()).save(output);

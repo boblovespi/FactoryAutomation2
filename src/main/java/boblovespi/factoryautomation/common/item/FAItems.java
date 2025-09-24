@@ -87,6 +87,7 @@ public class FAItems
 	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt");
 	public static final DeferredItem<Item> GYPSUM_DUST = ITEMS.registerSimpleItem("gypsum_dust");
 	public static final DeferredItem<Item> QUICKLIME = ITEMS.registerSimpleItem("quicklime");
+	public static final DeferredItem<Item> CALCIUM_SULFATE_HEMIHYDRATE_DUST = ITEMS.registerSimpleItem("calcium_sulfate_hemihydrate_dust");
 	public static final DeferredItem<Item> COAL_COKE = ITEMS.registerSimpleItem("coal_coke");
 	public static final DeferredItem<Item> MUD_BRICK = ITEMS.registerSimpleItem("mud_brick");
 	public static final DeferredItem<Item> DRIED_BRICK = ITEMS.registerSimpleItem("dried_brick");

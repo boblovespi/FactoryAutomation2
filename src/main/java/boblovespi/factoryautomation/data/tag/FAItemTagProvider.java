@@ -214,10 +214,11 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.SALT_DUST).add(FAItems.SALT.get());
 		tag(FATags.Items.GYPSUM_DUST).add(FAItems.GYPSUM_DUST.get());
 		tag(FATags.Items.QUICKLIME_DUST).add(FAItems.QUICKLIME.get());
+		tag(FATags.Items.CALCIUM_SULFATE_HEMIHYDRATE_DUST).add(FAItems.CALCIUM_SULFATE_HEMIHYDRATE_DUST.get());
 		tag(FATags.Items.COAL_COKE).add(FAItems.COAL_COKE.get());
 		tag(Tags.Items.BRICKS).add(FAItems.MUD_BRICK.get(), FAItems.DRIED_BRICK.get());
 		tag(Tags.Items.DUSTS).addTags(FATags.Items.WHEAT_DUST, FATags.Items.CALCIUM_CARBONATE_DUST, FATags.Items.SALT_DUST, FATags.Items.GYPSUM_DUST, FATags.Items.QUICKLIME_DUST,
-				FATags.Items.GROUND_SOYBEAN);
+				FATags.Items.CALCIUM_SULFATE_HEMIHYDRATE_DUST, FATags.Items.GROUND_SOYBEAN);
 		tag(Tags.Items.LEATHERS).add(FAItems.PROCESSED_LEATHER.get());
 
 		tag(FATags.Items.GROUND_SOYBEAN).add(FAItems.GROUND_SOYBEAN.get());

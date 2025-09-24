@@ -87,6 +87,7 @@ public class CreativeTabs
 						o.accept(FAItems.SALT);
 						o.accept(FAItems.GYPSUM_DUST);
 						o.accept(FAItems.QUICKLIME);
+						o.accept(FAItems.CALCIUM_SULFATE_HEMIHYDRATE_DUST);
 						o.accept(FAItems.COAL_COKE);
 						o.accept(FAItems.MUD_BRICK);
 						o.accept(FAItems.DRIED_BRICK);

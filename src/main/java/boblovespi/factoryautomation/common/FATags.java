@@ -128,6 +128,7 @@ public class FATags
 		public static final TagKey<Item> SALT_DUST = cItem("dusts/salt");
 		public static final TagKey<Item> GYPSUM_DUST = cItem("dusts/gypsum");
 		public static final TagKey<Item> QUICKLIME_DUST = cItem("dusts/quicklime");
+		public static final TagKey<Item> CALCIUM_SULFATE_HEMIHYDRATE_DUST = cItem("dusts/calcium_sulfate_hemihydrate");
 		public static final TagKey<Item> GROUND_SOYBEAN = cItem("dusts/soybean");
 
 		public static final TagKey<Item> COAL_COKE = cItem("coal_coke");
