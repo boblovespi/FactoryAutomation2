@@ -133,7 +133,7 @@ public class FAItems
 	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0), 1.0F).build()));
 	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0F).build()));
 	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", p().food(makeFood(3, 1 / 2f)));
-	public static final DeferredItem<Item> HAM_AND_EGGS = ITEMS.registerSimpleItem("ham_n_eggs", p().stacksTo(4).food(makeFood(8, 5 / 5f, Items.BOWL)));
+	public static final DeferredItem<Item> HAM_AND_EGGS = ITEMS.registerSimpleItem("ham_n_eggs", p().stacksTo(4).food(makeFood(10, 5 / 5f, Items.BOWL)));
 	public static final DeferredItem<Item> PANCAKE = ITEMS.registerSimpleItem("pancake", p().food(makeFood(5, 3 / 5f)));
 	public static final DeferredItem<Item> HONEY_PANCAKE = ITEMS.registerSimpleItem("honey_pancake", p().food(makeFood(10, 3 / 5f)));
 	public static final DeferredItem<Item> TOFU = ITEMS.registerSimpleItem("tofu", p().food(makeFood(2, 1 / 2f)));
@@ -143,6 +143,7 @@ public class FAItems
 	public static final DeferredItem<FluidBottle> SOY_MILK_BOTTLE = ITEMS.registerItem("soy_milk_bottle", p -> new FluidBottle(p, FAFluids.SOY_MILK_SOURCE.get()), p().stacksTo(16).food(makeFood(3, 3 / 5f, Items.GLASS_BOTTLE)));
 	public static final DeferredItem<Item> GREEN_ONION = ITEMS.registerItem("green_onion", p -> new ItemNameBlockItem(FABlocks.GREEN_ONIONS.get(), p), p().food(makeFood(1, 1 / 10f)));
 	public static final DeferredItem<Item> YAKITORI = ITEMS.registerSimpleItem("yakitori", p().food(makeFood(7, 4 / 5f, Items.STICK)));
+	public static final DeferredItem<Item> STEAMED_FISH = ITEMS.registerSimpleItem("steamed_fish", p().stacksTo(4).food(makeFood(10, 5 / 5f, Items.BOWL)));
 
 	// Processing
 

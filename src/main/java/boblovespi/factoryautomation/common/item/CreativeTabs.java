@@ -206,6 +206,7 @@ public class CreativeTabs
 			insertAfter(event, Items.MELON_SLICE, FAItems.SOYBEANS, FAItems.GROUND_SOYBEAN, FAItems.SOY_SAUCE_CULTURE, FAItems.TOFU, FAItems.DOUFUNAO, FAItems.SALTY_DOUFUNAO, FAItems.SWEET_DOUFUNAO);
 			insertAfter(event, Items.CHICKEN, FAItems.YAKITORI);
 			insertAfter(event, Items.CARROT, FAItems.GINGER, FAItems.GREEN_ONION);
+			insertAfter(event, Items.COOKED_COD, FAItems.STEAMED_FISH);
 		}
 	}
 

@@ -867,6 +867,16 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_chicken", has(Items.CHICKEN))
 					   .save(output);
 
+		FryingPanRecipe.of(new ItemStack(FAItems.STEAMED_FISH.get()))
+					   .input(Items.COD)
+					   .input(FATags.Items.GREEN_ONION_FOOD)
+					   .input(FATags.Items.GREEN_ONION_FOOD)
+					   .input(FATags.Items.GINGER_CROP)
+					   .progress(20 * 10)
+					   .beginData().liquid(FluidIngredient.single(FAFluids.SOY_SAUCE_SOURCE)).plate(Ingredient.of(Items.BOWL)).endData()
+					   .unlockedBy("has_cod", has(Items.COD))
+					   .save(output);
+
 		// Kiln recipes
 		KilnRecipe.of(new ItemStack(Items.BRICK))
 				  .progress(20 * 10)
