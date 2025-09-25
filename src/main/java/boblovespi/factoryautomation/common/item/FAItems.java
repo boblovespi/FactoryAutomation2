@@ -143,7 +143,7 @@ public class FAItems
 	public static final DeferredItem<FluidBottle> SOY_MILK_BOTTLE = ITEMS.registerItem("soy_milk_bottle", p -> new FluidBottle(p, FAFluids.SOY_MILK_SOURCE.get()), p().stacksTo(16).food(makeFood(3, 3 / 5f, Items.GLASS_BOTTLE)));
 	public static final DeferredItem<Item> GREEN_ONION = ITEMS.registerItem("green_onion", p -> new ItemNameBlockItem(FABlocks.GREEN_ONIONS.get(), p), p().food(makeFood(1, 1 / 10f)));
 	public static final DeferredItem<Item> YAKITORI = ITEMS.registerSimpleItem("yakitori", p().food(makeFood(7, 4 / 5f, Items.STICK)));
-	public static final DeferredItem<Item> STEAMED_FISH = ITEMS.registerSimpleItem("steamed_fish", p().stacksTo(4).food(makeFood(10, 5 / 5f, Items.BOWL)));
+	public static final DeferredItem<Item> STEAMED_FISH = ITEMS.registerSimpleItem("steamed_fish", p().stacksTo(4).food(makeFood(12, 5 / 5f, Items.BOWL)));
 
 	// Processing
 
