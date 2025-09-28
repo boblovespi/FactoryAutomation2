@@ -99,6 +99,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.MINT_ICE_CREAM.get());
 		basicItem(FAItems.SWEETBERRY_ICE_CREAM.get());
 		basicItem(FAItems.VANILLA_ICE_CREAM.get());
+		basicItem(FAItems.MILK_ICE_CREAM.get());
 		basicItem(FAItems.HAM_AND_EGGS.get());
 		basicItem(FAItems.PANCAKE.get());
 		basicItem(FAItems.HONEY_PANCAKE.get());

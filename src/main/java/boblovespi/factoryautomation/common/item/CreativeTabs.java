@@ -148,7 +148,7 @@ public class CreativeTabs
 						o.accept(FAItems.IRON_JOINER);
 						o.accept(FAItems.IRON_BEVEL_GEAR);
 						o.accept(FAItems.HAND_CRANK);
-						o.accept(FAItems.SMALL_WATERHWHEEL);
+						o.accept(FAItems.SMALL_WATERWHEEL);
 						o.accept(FAItems.LARGE_WATERWHEEL);
 						o.accept(FAItems.HORSE_ENGINE);
 					}).build());
@@ -200,7 +200,8 @@ public class CreativeTabs
 		if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS)
 		{
 			insertAfter(event, Items.BREAD, FAItems.TOASTED_BREAD, FAItems.SLICED_BREAD, FAItems.PANCAKE, FAItems.HONEY_PANCAKE);
-			insertAfter(event, Items.MILK_BUCKET, FAItems.CHOCOLATE_ICE_CREAM, FAItems.COFFEE_ICE_CREAM, FAItems.COOKIES_N_CREAM_ICE_CREAM, FAItems.MINT_ICE_CREAM, FAItems.SWEETBERRY_ICE_CREAM, FAItems.VANILLA_ICE_CREAM);
+			insertAfter(event, Items.MILK_BUCKET, FAItems.CHOCOLATE_ICE_CREAM, FAItems.COFFEE_ICE_CREAM, FAItems.COOKIES_N_CREAM_ICE_CREAM, FAItems.MINT_ICE_CREAM,
+					FAItems.SWEETBERRY_ICE_CREAM, FAItems.VANILLA_ICE_CREAM, FAItems.MILK_ICE_CREAM);
 			insertAfter(event, Items.RABBIT_STEW, FAItems.HAM_AND_EGGS, FAItems.STEAMED_FISH);
 			insertAfter(event, Items.HONEY_BOTTLE, FAItems.PANCAKE_BATTER_BOTTLE, FAItems.SOY_SAUCE_BOTTLE, FAItems.SOY_MILK_BOTTLE);
 			insertAfter(event, Items.MELON_SLICE, FAItems.SOYBEANS, FAItems.GROUND_SOYBEAN, FAItems.SOY_SAUCE_CULTURE, FAItems.TOFU, FAItems.DOUFUNAO, FAItems.SALTY_DOUFUNAO, FAItems.SWEET_DOUFUNAO);

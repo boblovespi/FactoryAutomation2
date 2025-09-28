@@ -230,39 +230,46 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_bow", has(Items.BOW))
 							  .save(output);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.VANILLA_ICE_CREAM)
+							  .requires(FAItems.MILK_ICE_CREAM)
+							  .requires(Items.EGG)
+							  .requires(Items.SUGAR)
+							  .unlockedBy("has_ice_cream", has(FAItems.MILK_ICE_CREAM))
+							  .save(output);
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.CHOCOLATE_ICE_CREAM)
-				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(FAItems.MILK_ICE_CREAM)
 				.requires(Items.COCOA_BEANS)
 				.requires(Items.SUGAR)
-				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.unlockedBy("has_ice_cream", has(FAItems.MILK_ICE_CREAM))
 				.save(output);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.MINT_ICE_CREAM)
-				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(FAItems.MILK_ICE_CREAM)
 				.requires(FAItems.MINT_LEAVES)
 				.requires(Items.SUGAR)
-				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.unlockedBy("has_ice_cream", has(FAItems.MILK_ICE_CREAM))
 				.save(output);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.COFFEE_ICE_CREAM)
-				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(FAItems.MILK_ICE_CREAM)
 				.requires(Items.COCOA_BEANS)
 				.requires(Items.HONEY_BOTTLE)
-				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.unlockedBy("has_ice_cream", has(FAItems.MILK_ICE_CREAM))
 				.save(output);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.COOKIES_N_CREAM_ICE_CREAM)
-				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(FAItems.MILK_ICE_CREAM)
 				.requires(Items.COOKIE)
 				.requires(Items.SUGAR)
-				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.unlockedBy("has_ice_cream", has(FAItems.MILK_ICE_CREAM))
 				.save(output);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.SWEETBERRY_ICE_CREAM)
-				.requires(FAItems.VANILLA_ICE_CREAM)
+				.requires(FAItems.MILK_ICE_CREAM)
 				.requires(Items.SWEET_BERRIES)
 				.requires(Items.SUGAR)
-				.unlockedBy("has_ice_cream", has(FAItems.VANILLA_ICE_CREAM))
+				.unlockedBy("has_ice_cream", has(FAItems.MILK_ICE_CREAM))
 				.save(output);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.HONEY_PANCAKE)
@@ -490,7 +497,7 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD))
 							  .save(output);
 
-		WorkbenchRecipeBuilder.of(FAItems.SMALL_WATERHWHEEL)
+		WorkbenchRecipeBuilder.of(FAItems.SMALL_WATERWHEEL)
 							  .pattern("wcw")
 							  .pattern("cgc")
 							  .pattern("wcw")
@@ -732,7 +739,7 @@ public class FARecipeProvider extends RecipeProvider
 						.unlockedBy("has_gold_rod", has(FATags.Items.GOLD_ROD)).save(output);
 
 		// Tumbling barrel
-		TumblingBarrelRecipe.of(FAItems.VANILLA_ICE_CREAM.get())
+		TumblingBarrelRecipe.of(FAItems.MILK_ICE_CREAM.get())
 							.fluidInput(NeoForgeMod.MILK.get(), 500)
 							.input(Items.ICE)
 							.time(50)

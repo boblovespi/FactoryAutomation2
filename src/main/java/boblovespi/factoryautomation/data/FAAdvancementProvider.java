@@ -70,7 +70,7 @@ public class FAAdvancementProvider extends AdvancementProvider
 			var ironIngot = task("iron_ingot", "iron_age", () -> Items.IRON_INGOT, ironShard2);
 			var handCrank = task("hand_crank", "iron_age", FAItems.HAND_CRANK, ironIngot);
 			var ironShaft = task("iron_power_shaft", "iron_age", FAItems.IRON_POWER_SHAFT, handCrank);
-			var waterWheel = task("water_wheel", "iron_age", FAItems.SMALL_WATERHWHEEL, handCrank);
+			var waterWheel = task("water_wheel", "iron_age", FAItems.SMALL_WATERWHEEL, handCrank);
 			var millstone = task("millstone", "iron_age", FAItems.MILLSTONE, ironShaft);
 			var tumblingBarrel = task("tumbling_barrel", "iron_age", FAItems.TUMBLING_BARREL, millstone);
 			var tripHammer = task("trip_hammer", "iron_age", FAItems.TRIP_HAMMER, tumblingBarrel);

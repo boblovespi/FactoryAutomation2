@@ -132,7 +132,8 @@ public class FAItems
 	public static final DeferredItem<Item> COOKIES_N_CREAM_ICE_CREAM = ITEMS.registerSimpleItem("cookies_n_cream_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2), 1.0F).build()));
 	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0), 1.0F).build()));
 	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0F).build()));
-	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", p().food(makeFood(3, 1 / 2f)));
+	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 1.0F).build()));
+	public static final DeferredItem<Item> MILK_ICE_CREAM = ITEMS.registerSimpleItem("milk_ice_cream", p().food(makeFood(3, 1 / 2f)));
 	public static final DeferredItem<Item> HAM_AND_EGGS = ITEMS.registerSimpleItem("ham_n_eggs", p().stacksTo(4).food(makeFood(10, 5 / 5f, Items.BOWL)));
 	public static final DeferredItem<Item> PANCAKE = ITEMS.registerSimpleItem("pancake", p().food(makeFood(5, 3 / 5f)));
 	public static final DeferredItem<Item> HONEY_PANCAKE = ITEMS.registerSimpleItem("honey_pancake", p().food(makeFood(10, 3 / 5f)));
@@ -213,7 +214,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> IRON_JOINER = ITEMS.registerSimpleBlockItem(FABlocks.IRON_JOINER);
 	public static final DeferredItem<BlockItem> IRON_BEVEL_GEAR = ITEMS.registerSimpleBlockItem(FABlocks.IRON_BEVEL_GEAR);
 	public static final DeferredItem<BlockItem> HAND_CRANK = ITEMS.registerSimpleBlockItem(FABlocks.HAND_CRANK);
-	public static final DeferredItem<BlockItem> SMALL_WATERHWHEEL = ITEMS.registerSimpleBlockItem(FABlocks.SMALL_WATERWHEEL);
+	public static final DeferredItem<BlockItem> SMALL_WATERWHEEL = ITEMS.registerSimpleBlockItem(FABlocks.SMALL_WATERWHEEL);
 	public static final DeferredItem<BlockItem> LARGE_WATERWHEEL = ITEMS.registerSimpleBlockItem(FABlocks.LARGE_WATERWHEEL);
 	public static final DeferredItem<BlockItem> HORSE_ENGINE = ITEMS.registerSimpleBlockItem(FABlocks.HORSE_ENGINE);
 
