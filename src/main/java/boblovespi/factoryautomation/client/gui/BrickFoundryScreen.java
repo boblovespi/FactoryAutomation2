@@ -76,4 +76,9 @@ public class BrickFoundryScreen extends AbstractContainerScreen<BrickFoundryMenu
 			pGuiGraphics.renderTooltip(font, text, mouseX, mouseY);
 		}
 	}
+
+	public Metal getMetal()
+	{
+		return Metal.fromId(menu.getData(4));
+	}
 }

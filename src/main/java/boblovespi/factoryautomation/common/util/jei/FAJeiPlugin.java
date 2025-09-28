@@ -1,8 +1,7 @@
 package boblovespi.factoryautomation.common.util.jei;
 
 import boblovespi.factoryautomation.FactoryAutomation;
-import boblovespi.factoryautomation.client.gui.CircleMenuScreen;
-import boblovespi.factoryautomation.client.gui.StoneFoundryScreen;
+import boblovespi.factoryautomation.client.gui.*;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;
@@ -12,6 +11,7 @@ import boblovespi.factoryautomation.common.util.Metal;
 import boblovespi.factoryautomation.common.util.jei.category.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.gui.handlers.IGuiClickableArea;
 import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
@@ -127,7 +127,7 @@ public class FAJeiPlugin implements IModPlugin
 						List.of(new ItemStack((ItemLike) FAItems.IRON_SHARD, 3), new ItemStack((ItemLike) FAItems.SLAG)), FABlocks.IRON_BLOOM.get().defaultBlockState()),
 				new LogPileFiringCategory.Holder.Dummy(new ItemStack(FABlocks.COPPER_PLATE_BLOCK), FABlocks.IRON_SAND_CHARCOAL_MIX,
 						List.of(new ItemStack((ItemLike) FAItems.IRON_SHARD, 3), new ItemStack((ItemLike) FAItems.SLAG)), FABlocks.IRON_BLOOM.get().defaultBlockState())
-		);
+																			 );
 		registration.addRecipes(logPileFiringCategory.getRecipeType(), dummyLogPileFiringRecipes);
 
 		var castingRecipes = new ArrayList<CastingJeiRecipe>();
@@ -170,5 +170,19 @@ public class FAJeiPlugin implements IModPlugin
 		var helpers = registration.getJeiHelpers();
 		registration.addGuiContainerHandler(StoneFoundryScreen.class, new StoneFoundryContainerHandler(helpers));
 		registration.addGuiContainerHandler(CircleMenuScreen.class, new CircleMenuContainerHandler(helpers));
+		registration.addGuiContainerHandler(BrickFoundryScreen.class,
+				new SimpleContainerHandler<>(helpers,
+						List.of(new SimpleContainerHandler.ClickableIngredient<>(107, 17, 16, 59, s -> new MetalStack(s.getMetal(), 1))),
+						List.of(IGuiClickableArea.createBasic(84, 18, 22, 16, MeltingJeiCategory.TYPE))));
+		registration.addGuiContainerHandler(BrickKilnScreen.class, new SimpleContainerHandler<>(helpers,
+				List.of(),
+				List.of(IGuiClickableArea.createBasic(79, 34, 24, 16, kilnJeiCategory.getRecipeType()))));
+		registration.addGuiContainerHandler(WorkbenchScreen.class, new SimpleContainerHandler<>(helpers,
+				List.of(),
+				List.of(IGuiClickableArea.createBasic(163, 53, 24, 16, workbenchJeiCategory.getRecipeType()))));
+		registration.addGuiContainerHandler(TumblingBarrelScreen.class, new SimpleContainerHandler<>(helpers,
+				List.of(new SimpleContainerHandler.ClickableIngredient<>(8, 8, 16, 59, TumblingBarrelScreen::getInputFluid),
+						new SimpleContainerHandler.ClickableIngredient<>(152, 8, 16, 59, TumblingBarrelScreen::getOutputFluid)),
+				List.of(IGuiClickableArea.createBasic(79, 34, 24, 16, tumblingBarrelJeiCategory.getRecipeType()))));
 	}
 }

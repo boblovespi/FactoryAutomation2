@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class TumblingBarrelScreen extends AbstractContainerScreen<TumblingBarrelMenu>
 {
@@ -55,5 +56,15 @@ public class TumblingBarrelScreen extends AbstractContainerScreen<TumblingBarrel
 	private Fluid getFluid(int index)
 	{
 		return BuiltInRegistries.FLUID.byId(menu.getData(index));
+	}
+
+	public FluidStack getInputFluid()
+	{
+		return new FluidStack(getFluid(3), 1);
+	}
+
+	public FluidStack getOutputFluid()
+	{
+		return new FluidStack(getFluid(4), 1);
 	}
 }
