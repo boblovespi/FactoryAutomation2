@@ -18,6 +18,7 @@ public class FASounds
 	public static final DeferredHolder<SoundEvent, SoundEvent> BELLOWS_BLOWS = register("block.bellows.blow");
 	public static final DeferredHolder<SoundEvent, SoundEvent> METAL_SIZZLES = register("block.hot_metal.sizzle");
 	public static final DeferredHolder<SoundEvent, SoundEvent> PAN_SIZZLES = register("block.frying_pan.sizzle");
+	public static final DeferredHolder<SoundEvent, SoundEvent> USE_TRIP_HAMMER = register("block.trip_hammer.use");
 
 	private static DeferredHolder<SoundEvent, SoundEvent> register(String soundName)
 	{

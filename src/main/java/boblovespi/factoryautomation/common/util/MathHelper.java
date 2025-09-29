@@ -54,4 +54,16 @@ public class MathHelper
 		var color = x * PRIME1 + y * PRIME2 + z * PRIME3;
 		return color | 0xFF000000;
 	}
+
+	public static boolean crossesThreshold(float oldVal, float newVal, float mod)
+	{
+		while (oldVal >= 0)
+		{
+			if (oldVal < mod && newVal >= mod)
+				return true;
+			oldVal -= mod;
+			newVal -= mod;
+		}
+		return false;
+	}
 }

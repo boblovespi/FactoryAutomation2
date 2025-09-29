@@ -11,6 +11,7 @@ import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.TripHammerRecipe;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.MathHelper;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
@@ -20,6 +21,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -47,6 +50,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	private final ItemStackHandler inv;
 	private float rot;
 	private boolean breaking;
+	private static final float offset = 32;
 
 	public TripHammerBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -274,9 +278,10 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 
 	@Override
 	public void clientTick() {
+		var oldRot = rot;
 		rot += (float) (Math.toDegrees(mechanicalManager.getSpeed()) / 20);
+		if (MathHelper.crossesThreshold(oldRot + offset, rot + offset, 90))
+			level.playLocalSound(worldPosition, FASounds.USE_TRIP_HAMMER.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.8f, 1), false);
 		rot %= 360;
 	}
-
-
 }
