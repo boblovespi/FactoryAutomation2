@@ -18,6 +18,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantFloat;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,8 +26,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.DeltaFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
@@ -54,6 +57,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<ConfiguredFeature<?, ?>> FLINT_PATCH_CF = configured("flint_patch");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_CASSITERITE_ORE_CF = configured("small_cassiterite_ore");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LIMONITE_ORE_CF = configured("swamp_limonite_ore");
+	private static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_EVAPORITE_PATCH_CF = configured("cave_evaporite_patch");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> WILD_GREEN_ONION_FLOWER_CF = configured("wild_green_onion_flower");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> MINT_PATCH_CF = configured("mint_patch");
 
@@ -64,6 +68,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<PlacedFeature> NORMAL_FLINT_PATCH_PF = placed("normal_flint_patch");
 	private static final ResourceKey<PlacedFeature> SMALL_CASSITERITE_ORE_PF = placed("small_cassiterite_ore");
 	private static final ResourceKey<PlacedFeature> SWAMP_LIMONITE_ORE_PF = placed("swamp_limonite_ore");
+	private static final ResourceKey<PlacedFeature> CAVE_EVAPORITE_PATCH_PF = placed("cave_evaporite_patch");
 	private static final ResourceKey<PlacedFeature> WILD_GREEN_ONION_FLOWER_PF = placed("wild_green_onion_flower");
 	private static final ResourceKey<PlacedFeature> MINT_PATCH_PF = placed("mint_patch");
 
@@ -96,6 +101,7 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(FLINT_PATCH_CF, rockPatch(2, b(FABlocks.FLINT_ROCK)));
 			b.register(SMALL_CASSITERITE_ORE_CF, ore(5, d(FABlocks.CASSITERITE_ORE)));
 			b.register(SWAMP_LIMONITE_ORE_CF, swampOre());
+			b.register(CAVE_EVAPORITE_PATCH_CF, caveEvaporite());
 			b.register(WILD_GREEN_ONION_FLOWER_CF, flower(32, b(FABlocks.WILD_GREEN_ONION)));
 			b.register(MINT_PATCH_CF, flower(64, randomHorizontalFacing(FABlocks.MINT_BUSH)));
 		});
@@ -108,13 +114,15 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(NORMAL_FLINT_PATCH_PF, placedRock(configured, FLINT_PATCH_CF, 1));
 			b.register(SMALL_CASSITERITE_ORE_PF, placedOre(configured, SMALL_CASSITERITE_ORE_CF, 8, getHeightRange(32, 96)));
 			b.register(SWAMP_LIMONITE_ORE_PF, placedSeafloor(configured, SWAMP_LIMONITE_ORE_CF, 17));
+			b.register(CAVE_EVAPORITE_PATCH_PF, placedCaveEvaporite(configured, CAVE_EVAPORITE_PATCH_CF));
 			b.register(WILD_GREEN_ONION_FLOWER_PF, placedFlower(configured, WILD_GREEN_ONION_FLOWER_CF, 32, 15, 4));
-			b.register(MINT_PATCH_PF, placedFlower(configured, MINT_PATCH_CF, 40,6, 20));
+			b.register(MINT_PATCH_PF, placedFlower(configured, MINT_PATCH_CF, 40, 6, 20));
 		});
 		rsb.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, b -> {
 			var biomes = b.lookup(Registries.BIOME);
 			var features = b.lookup(Registries.PLACED_FEATURE);
-			b.register(biome("is_overworld"), biomeModifier(biomes, features, BiomeTags.IS_OVERWORLD, GenerationStep.Decoration.UNDERGROUND_ORES, SMALL_CASSITERITE_ORE_PF));
+			b.register(biome("is_overworld"),
+					biomeModifier(biomes, features, BiomeTags.IS_OVERWORLD, GenerationStep.Decoration.UNDERGROUND_ORES, SMALL_CASSITERITE_ORE_PF, CAVE_EVAPORITE_PATCH_PF));
 			b.register(biome("is_swamp"), biomeModifier(biomes, features, Tags.Biomes.IS_SWAMP, GenerationStep.Decoration.UNDERGROUND_ORES, SWAMP_LIMONITE_ORE_PF));
 
 			b.register(biome("is_typical_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_TYPICAL_OVERWORLD, NORMAL_ROCK_PATCH_PF));
@@ -192,6 +200,15 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 				new RandomPatchConfiguration(tries, 7, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(placer))));
 	}
 
+	private static ConfiguredFeature<DeltaFeatureConfiguration, Feature<DeltaFeatureConfiguration>> caveEvaporite()
+	{
+		return new ConfiguredFeature<>(FAWorldgen.EVAPORITE_FEATURE.get(),
+				new DeltaFeatureConfiguration(d(FABlocks.HALITE),
+						d(FABlocks.GYPSUM),
+						UniformInt.of(4, 8),
+						UniformInt.of(1, 3)));
+	}
+
 	private static PlacedFeature placedRock(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature, int count)
 	{
 		return new PlacedFeature(configured.getOrThrow(feature),
@@ -215,6 +232,19 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 		return new PlacedFeature(configured.getOrThrow(feature),
 				List.of(NoiseThresholdCountPlacement.of(-0.8,
 						below, above), RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+	}
+
+	private static PlacedFeature placedCaveEvaporite(HolderGetter<ConfiguredFeature<?, ?>> configured, ResourceKey<ConfiguredFeature<?, ?>> feature)
+	{
+		return new PlacedFeature(configured.getOrThrow(feature),
+				List.of(
+						HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(32), VerticalAnchor.absolute(50)),
+						EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, 32),
+						NoiseBasedCountPlacement.of(10, 50, -0.1),
+						CountPlacement.of(10),
+						RandomOffsetPlacement.of(UniformInt.of(0, 15), UniformInt.of(-10, 10)),
+						BiomeFilter.biome()
+					   ));
 	}
 
 	/*            context,
