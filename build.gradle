@@ -137,13 +137,25 @@ dependencies {
     // TODO: replace when patchouli has 1.21.1 version
     // compileOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}-NEOFORGE-SNAPSHOT:api"
     // runtimeOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}-NEOFORGE-SNAPSHOT"
-     compileOnly "vazkii.patchouli:Patchouli:1.21-${patchouli_version}-NEOFORGE-SNAPSHOT:api"
-     runtimeOnly "vazkii.patchouli:Patchouli:1.21-${patchouli_version}-NEOFORGE-SNAPSHOT"
+    compileOnly "vazkii.patchouli:Patchouli:1.21-${patchouli_version}-NEOFORGE-SNAPSHOT:api"
+    runtimeOnly "vazkii.patchouli:Patchouli:1.21-${patchouli_version}-NEOFORGE-SNAPSHOT"
 
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 
     implementation "curse.maven:jade-324717:${jade_version}"
     implementation "net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}"
+
+    jarJar("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:[1.0.42,1.1)") {
+        version {
+            prefer "net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}"
+        }
+    }
+
+    jarJar("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:[${flywheel_version},1.1)") {
+        version {
+            prefer "dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"
+        }
+    }
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

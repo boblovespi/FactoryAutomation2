@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.block.resource;
 
 import boblovespi.factoryautomation.common.block.BlockProperties;
+import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -44,6 +45,12 @@ public class Rock extends Block
 	protected boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos)
 	{
 		return pLevel.getBlockState(pPos.below()).isFaceSturdy(pLevel, pPos.below(), Direction.UP);
+	}
+
+	@Override
+	public net.minecraft.world.item.Item asItem()
+	{
+		return FAItems.ROCK.get();
 	}
 
 	public enum Variants implements StringRepresentable
