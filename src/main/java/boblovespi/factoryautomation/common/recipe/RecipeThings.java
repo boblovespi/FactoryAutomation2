@@ -47,4 +47,7 @@ public class RecipeThings
 	public static final Supplier<RecipeType<KilnRecipe>> KILN_TYPE = RECIPE_TYPES.register("kiln", () -> RecipeType.simple(FactoryAutomation.name("kiln")));
 	public static final Supplier<RecipeSerializer<KilnRecipe>> KILN_SERIALIZER = RECIPE_SERIALIZERS.register("kiln",
 			() -> new SimpleRecipe.Serializer<>(KilnRecipe::new, TemperatureData.CODEC, TemperatureData.STREAM_CODEC));
+	public static final Supplier<RecipeType<SteamOvenRecipe>> STEAM_OVEN_TYPE = RECIPE_TYPES.register("steam_oven", () -> RecipeType.simple(FactoryAutomation.name("steam_oven")));
+	public static final Supplier<RecipeSerializer<SteamOvenRecipe>> STEAM_OVEN_SERIALZIER = RECIPE_SERIALIZERS.register("steam_oven",
+			() -> new SimpleRecipe.Serializer<>(SteamOvenRecipe::new, SteamOvenRecipe.DATA_CODEC, SteamOvenRecipe.DATA_STREAM_CODEC));
 }

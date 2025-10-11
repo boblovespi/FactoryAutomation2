@@ -72,6 +72,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.IRON_BEVEL_GEAR.get())
 											.add(FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get(), FABlocks.BRICK_CASTING_VESSEL.get())
 											.add(FABlocks.COPPER_PIPE.get())
+											.add(FABlocks.BRICK_KILN.get(), FABlocks.STEAM_OVEN.get())
 											.remove(BlockTags.NEEDS_IRON_TOOL);
 		tag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL).remove(FATags.Blocks.NEEDS_COPPER_TOOL);
 		tag(BlockTags.NEEDS_STONE_TOOL).add(FABlocks.CASSITERITE_ORE.get(), FABlocks.RAW_CASSITERITE_BLOCK.get())
@@ -107,6 +108,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.MILLSTONE.get(), FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get(), FABlocks.TRIP_HAMMER.get())
 											.add(FABlocks.BRICK_CASTING_VESSEL.get())
 											.add(FABlocks.COPPER_PIPE.get())
+											.add(FABlocks.BRICK_KILN.get(), FABlocks.STEAM_OVEN.get())
 											.add(FABlocks.DRIED_BRICKS.get(), FABlocks.BRICK_TILES.get())
 											.add(FABlocks.CHERT.get(), FABlocks.HALITE.get(), FABlocks.GYPSUM.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get(), FABlocks.PAPER_BELLOWS.get(), FABlocks.LEATHER_BELLOWS.get())

@@ -46,6 +46,7 @@ public class FAJeiPlugin implements IModPlugin
 	private TumblingBarrelJeiCategory tumblingBarrelJeiCategory;
 	private FryingJeiCategory fryingJeiCategory;
 	private KilnJeiCategory kilnJeiCategory;
+	private SteamOvenJeiCategory steamOvenJeiCategory;
 
 	@Override
 	public ResourceLocation getPluginUid()
@@ -79,6 +80,8 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCategories(fryingJeiCategory);
 		kilnJeiCategory = new KilnJeiCategory(guiHelper);
 		registration.addRecipeCategories(kilnJeiCategory);
+		steamOvenJeiCategory = new SteamOvenJeiCategory(guiHelper);
+		registration.addRecipeCategories(steamOvenJeiCategory);
 	}
 
 	@Override
@@ -118,6 +121,7 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipes(tumblingBarrelJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.TUMBLING_BARREL_TYPE.get()));
 		registration.addRecipes(fryingJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.FRYING_PAN_TYPE.get()));
 		registration.addRecipes(kilnJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.KILN_TYPE.get()));
+		registration.addRecipes(steamOvenJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.STEAM_OVEN_TYPE.get()));
 
 		var anySolid = new ItemStack(Blocks.STONE);
 		anySolid.set(DataComponents.ITEM_NAME, Component.translatable(FactoryAutomation.locString("jei", "misc.any_solid")));
@@ -162,6 +166,7 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCatalyst(FAItems.TUMBLING_BARREL, tumblingBarrelJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.FRYING_PAN, fryingJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.BRICK_KILN, kilnJeiCategory.getRecipeType());
+		registration.addRecipeCatalyst(FAItems.STEAM_OVEN, steamOvenJeiCategory.getRecipeType());
 	}
 
 	@Override

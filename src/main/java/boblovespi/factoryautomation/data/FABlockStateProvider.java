@@ -146,6 +146,9 @@ public class FABlockStateProvider extends BlockStateProvider
 				litMultiblockComplete(models().orientable("brick_kiln", mcLoc("block/bricks"), modLoc("block/brick_kiln_front"), mcLoc("block/bricks")), "brick_kiln_multiblock",
 						"front", modLoc("block/brick_kiln_front"), modLoc("block/brick_kiln_front_lit"),
 						brickKilnMultiblock));
+		horizontalBlock(FABlocks.STEAM_OVEN.get(),
+				litBlock((s, r) -> models().orientable(s, modLoc("block/bronze_plate_block"), r, modLoc("block/steam_oven_top")),
+						FABlocks.STEAM_OVEN.getRegisteredName(), modLoc("block/steam_oven_front"), modLoc("block/steam_oven_front_lit")));
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)

@@ -122,6 +122,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		withExistingParent(FAItems.BRICK_FIREBOX.getRegisteredName(), modLoc("block/brick_firebox"));
 		withExistingParent(FAItems.HAND_CRANK.getRegisteredName(), modLoc("block/hand_crank"));
 		withExistingParent(FAItems.BRICK_KILN.getRegisteredName(), modLoc("block/brick_kiln"));
+		withExistingParent(FAItems.STEAM_OVEN.getRegisteredName(), modLoc("block/steam_oven"));
 
 		handheld(FAItems.CHOPPING_BLADE);
 		handheld(FAItems.FLINT_SHOVEL);

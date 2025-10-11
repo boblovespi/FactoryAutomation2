@@ -38,9 +38,9 @@ import java.util.concurrent.CompletableFuture;
 @SuppressWarnings("SameParameterValue")
 public class FARecipeProvider extends RecipeProvider
 {
-	public FARecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries)
+	public FARecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries)
 	{
-		super(pOutput, pRegistries);
+		super(output, registries);
 	}
 
 	@Override
@@ -630,6 +630,17 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_bronze_sheet", has(FATags.Items.BRONZE_SHEET))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.STEAM_OVEN)
+							  .pattern("bbb")
+							  .pattern("bSb")
+							  .pattern("bbb")
+							  .define('b', FATags.Items.BRONZE_SHEET)
+							  .define('S', Items.SMOKER)
+							  .tool("hammer", 2, 10)
+							  .part("screw", 1, 8)
+							  .unlockedBy("has_bronze_sheet", has(FATags.Items.BRONZE_SHEET))
+							  .save(output);
+
 		pipeRecipe(output, FAItems.COPPER_PIPE, FATags.Items.COPPER_SHEET);
 
 		// Vanilla furnace recipes
@@ -926,6 +937,17 @@ public class FARecipeProvider extends RecipeProvider
 				  .beginData().temperature(130 + 273).power(1000).endData()
 				  .unlockedBy("has_gypsum_dust", has(FATags.Items.GYPSUM_DUST))
 				  .save(output);
+
+		// Steam oven
+		SteamOvenRecipe.of(new ItemStack(Items.COOKED_BEEF)).input(Items.BEEF).progress(80).beginData().endData().unlockedBy("has_beef", has(Items.BEEF)).save(output);
+		SteamOvenRecipe.of(new ItemStack(Items.COOKED_CHICKEN)).input(Items.CHICKEN).progress(80).beginData().endData().unlockedBy("has_chicken", has(Items.CHICKEN)).save(output);
+		SteamOvenRecipe.of(new ItemStack(Items.COOKED_COD)).input(Items.COD).progress(80).beginData().endData().unlockedBy("has_cod", has(Items.COD)).save(output);
+		SteamOvenRecipe.of(new ItemStack(Items.DRIED_KELP)).input(Items.KELP).progress(80).beginData().endData().unlockedBy("has_kelp", has(Items.KELP)).save(output);
+		SteamOvenRecipe.of(new ItemStack(Items.COOKED_SALMON)).input(Items.SALMON).progress(80).beginData().endData().unlockedBy("has_salmon", has(Items.SALMON)).save(output);
+		SteamOvenRecipe.of(new ItemStack(Items.COOKED_MUTTON)).input(Items.MUTTON).progress(80).beginData().endData().unlockedBy("has_mutton", has(Items.MUTTON)).save(output);
+		SteamOvenRecipe.of(new ItemStack(Items.COOKED_PORKCHOP)).input(Items.PORKCHOP).progress(80).beginData().endData().unlockedBy("has_porkchop", has(Items.PORKCHOP)).save(output);
+		SteamOvenRecipe.of(new ItemStack(Items.BAKED_POTATO)).input(Items.POTATO).progress(80).beginData().endData().unlockedBy("has_potato", has(Items.POTATO)).save(output);
+		SteamOvenRecipe.of(new ItemStack(Items.COOKED_RABBIT)).input(Items.RABBIT).progress(80).beginData().endData().unlockedBy("has_rabbit", has(Items.RABBIT)).save(output);
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
