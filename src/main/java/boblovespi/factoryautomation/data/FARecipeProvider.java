@@ -253,7 +253,7 @@ public class FARecipeProvider extends RecipeProvider
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FAItems.COFFEE_ICE_CREAM)
 				.requires(FAItems.MILK_ICE_CREAM)
-				.requires(Items.COCOA_BEANS)
+				.requires(FATags.Items.GROUND_COFFEE)
 				.requires(Items.HONEY_BOTTLE)
 				.unlockedBy("has_ice_cream", has(FAItems.MILK_ICE_CREAM))
 				.save(output);
@@ -742,6 +742,8 @@ public class FARecipeProvider extends RecipeProvider
 
 		MillstoneRecipe.of(FAItems.GROUND_SOYBEAN.toStack()).input(FAItems.SOYBEANS).progress(50).beginData().speed(1).torque(40).endData()
 					   .unlockedBy("has_soybeans", has(FAItems.SOYBEANS)).save(output);
+		MillstoneRecipe.of(FAItems.GROUND_COFFEE.toStack()).input(FAItems.ROASTED_COFFEE_BEANS).progress(50).beginData().speed(1).torque(40).endData()
+					   .unlockedBy("has_roasted_coffee_beans", has(FAItems.ROASTED_COFFEE_BEANS)).save(output);
 
 		// Trip hammer
 		TripHammerRecipe.of(new ItemStack(FAItems.IRON_RAIL.get())).input(FATags.Items.IRON_ROD).progress(100).beginData().endData()
@@ -874,6 +876,13 @@ public class FARecipeProvider extends RecipeProvider
 					   .input(FATags.Items.WHEAT_DUST)
 					   .beginData().liquid(FluidIngredient.single(Fluids.WATER)).endData()
 					   .unlockedBy("has_soybeans", has(FAItems.SOYBEANS))
+					   .save(output);
+
+		FryingPanRecipe.of(new ItemStack(FAItems.ROASTED_COFFEE_BEANS.get()))
+					   .progress(20 * 10)
+					   .input(FAItems.GREEN_COFFEE_BEANS)
+					   .beginData().endData()
+					   .unlockedBy("has_green_coffee_beans", has(FAItems.GREEN_COFFEE_BEANS))
 					   .save(output);
 
 		FryingPanRecipe.of(new ItemStack(FAItems.YAKITORI.get()))

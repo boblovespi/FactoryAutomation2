@@ -83,6 +83,9 @@ public class FAItemModelProvider extends ItemModelProvider
 				.customLoader(DynamicFluidContainerModelBuilder::begin)
 				.fluid(FAFluids.SOY_MILK_SOURCE.get()).end();
 
+		basicItem(FAItems.GREEN_COFFEE_BEANS.get());
+		basicItem(FAItems.ROASTED_COFFEE_BEANS.get());
+		basicItem(FAItems.GROUND_COFFEE.get());
 
 		basicItem(FAItems.SCREW.get());
 		basicItem(FAItems.BUSHING.get());

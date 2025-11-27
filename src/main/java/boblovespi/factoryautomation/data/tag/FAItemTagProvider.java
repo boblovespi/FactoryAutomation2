@@ -218,10 +218,11 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.COAL_COKE).add(FAItems.COAL_COKE.get());
 		tag(Tags.Items.BRICKS).add(FAItems.MUD_BRICK.get(), FAItems.DRIED_BRICK.get());
 		tag(Tags.Items.DUSTS).addTags(FATags.Items.WHEAT_DUST, FATags.Items.CALCIUM_CARBONATE_DUST, FATags.Items.SALT_DUST, FATags.Items.GYPSUM_DUST, FATags.Items.QUICKLIME_DUST,
-				FATags.Items.CALCIUM_SULFATE_HEMIHYDRATE_DUST, FATags.Items.GROUND_SOYBEAN);
+				FATags.Items.CALCIUM_SULFATE_HEMIHYDRATE_DUST, FATags.Items.GROUND_SOYBEAN, FATags.Items.GROUND_COFFEE);
 		tag(Tags.Items.LEATHERS).add(FAItems.PROCESSED_LEATHER.get());
 
 		tag(FATags.Items.GROUND_SOYBEAN).add(FAItems.GROUND_SOYBEAN.get());
+		tag(FATags.Items.GROUND_COFFEE).add(FAItems.GROUND_COFFEE.get());
 		tag(FATags.Items.RAW_PORKS).add(Items.PORKCHOP);
 		tag(FATags.Items.RAW_CHICKEN).add(Items.CHICKEN);
 		tag(FATags.Items.GREEN_ONION_FOOD).add(FAItems.GREEN_ONION.get());

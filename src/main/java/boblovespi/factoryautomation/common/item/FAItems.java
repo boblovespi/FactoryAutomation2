@@ -98,6 +98,9 @@ public class FAItems
 	public static final DeferredItem<Item> GROUND_SOYBEAN = ITEMS.registerSimpleItem("ground_soybean");
 	public static final DeferredItem<Item> SOY_SAUCE_CULTURE = ITEMS.registerSimpleItem("soy_sauce_culture");
 	public static final DeferredItem<FluidBottle> SOY_SAUCE_BOTTLE = ITEMS.registerItem("soy_sauce_bottle", p -> new FluidBottle(p, FAFluids.SOY_SAUCE_SOURCE.get()));
+	public static final DeferredItem<Item> GREEN_COFFEE_BEANS = ITEMS.registerSimpleItem("green_coffee_beans");
+	public static final DeferredItem<Item> ROASTED_COFFEE_BEANS = ITEMS.registerSimpleItem("roasted_coffee_beans");
+	public static final DeferredItem<Item> GROUND_COFFEE = ITEMS.registerSimpleItem("ground_coffee");
 
 	// Building blocks
 
