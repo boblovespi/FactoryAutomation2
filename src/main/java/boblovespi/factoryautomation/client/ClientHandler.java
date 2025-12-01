@@ -109,6 +109,7 @@ public class ClientHandler
 		registerFluidTexture(event, "brine", FAFluids.BRINE_TYPE);
 		registerFluidTexture(event, "soy_milk", FAFluids.SOY_MILK_TYPE);
 		registerFluidTexture(event, "soy_sauce", FAFluids.SOY_SAUCE_TYPE);
+		registerFluidTexture(event, "coffee", FAFluids.COFFEE_TYPE);
 	}
 
 	private static void registerFluidTexture(RegisterClientExtensionsEvent event, String name, DeferredHolder<FluidType, FluidType> type)

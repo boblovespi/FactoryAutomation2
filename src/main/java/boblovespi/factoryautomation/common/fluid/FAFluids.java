@@ -47,6 +47,11 @@ public class FAFluids
 	public static final DeferredHolder<Fluid, FlowingFluid> SOY_SAUCE_SOURCE = source(FAFluids::soySauceProperties, "soy_sauce");
 	public static final DeferredHolder<Fluid, FlowingFluid> SOY_SAUCE_FLOWING = flowing(FAFluids::soySauceProperties, "soy_sauce_flowing");
 
+	public static final DeferredHolder<FluidType, FluidType> COFFEE_TYPE = type("coffee");
+
+	public static final DeferredHolder<Fluid, FlowingFluid> COFFEE_SOURCE = source(FAFluids::coffeeProperties, "coffee");
+	public static final DeferredHolder<Fluid, FlowingFluid> COFFEE_FLOWING = flowing(FAFluids::coffeeProperties, "coffee_flowing");
+
 	private static DeferredHolder<FluidType, FluidType> type(String name)
 	{
 		return FLUID_TYPES.register(name, () -> new FluidType(FluidType.Properties.create().descriptionId("fluid.factoryautomation." + name)));
@@ -90,5 +95,10 @@ public class FAFluids
 	private static BaseFlowingFluid.Properties soySauceProperties()
 	{
 		return new BaseFlowingFluid.Properties(SOY_SAUCE_TYPE, SOY_SAUCE_SOURCE, SOY_SAUCE_FLOWING);
+	}
+
+	private static BaseFlowingFluid.Properties coffeeProperties()
+	{
+		return new BaseFlowingFluid.Properties(COFFEE_TYPE, COFFEE_SOURCE, COFFEE_FLOWING);
 	}
 }

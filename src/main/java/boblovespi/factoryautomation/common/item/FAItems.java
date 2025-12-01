@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.item.tool.*;
+import boblovespi.factoryautomation.common.potion.FAMobEffects;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.GearMaterial;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
@@ -129,13 +130,13 @@ public class FAItems
 	// Food
 
 	public static final DeferredItem<Item> TOASTED_BREAD = ITEMS.registerSimpleItem("toasted_bread", p().food(makeFood(5, 4 / 5f)));
-	public static final DeferredItem<Item> SLICED_BREAD = ITEMS.registerSimpleItem("sliced_bread", p().food(new FoodProperties.Builder().nutrition(1).saturationModifier(3 / 5f).fast().build()));
-	public static final DeferredItem<Item> CHOCOLATE_ICE_CREAM = ITEMS.registerSimpleItem("chocolate_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.SATURATION, 300, 0), 1.0F).build()));
-	public static final DeferredItem<Item> COFFEE_ICE_CREAM = ITEMS.registerSimpleItem("coffee_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0), 1.0F).build()));
-	public static final DeferredItem<Item> COOKIES_N_CREAM_ICE_CREAM = ITEMS.registerSimpleItem("cookies_n_cream_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2), 1.0F).build()));
-	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0), 1.0F).build()));
-	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0F).build()));
-	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", p().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1 / 2f).effect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 1.0F).build()));
+	public static final DeferredItem<Item> SLICED_BREAD = ITEMS.registerSimpleItem("sliced_bread", p().food(makeFoodBuilder(1, 3 / 5f).fast().build()));
+	public static final DeferredItem<Item> CHOCOLATE_ICE_CREAM = ITEMS.registerSimpleItem("chocolate_ice_cream", p().food(makeFoodBuilder(4, 1 / 2f).effect(new MobEffectInstance(MobEffects.SATURATION, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> COFFEE_ICE_CREAM = ITEMS.registerSimpleItem("coffee_ice_cream", p().food(makeFoodBuilder(4, 1 / 2f).effect(new MobEffectInstance(MobEffects.DIG_SPEED, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> COOKIES_N_CREAM_ICE_CREAM = ITEMS.registerSimpleItem("cookies_n_cream_ice_cream", p().food(makeFoodBuilder(4, 1 / 2f).effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2), 1.0F).build()));
+	public static final DeferredItem<Item> MINT_ICE_CREAM = ITEMS.registerSimpleItem("mint_ice_cream", p().food(makeFoodBuilder(4, 1 / 2f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0), 1.0F).build()));
+	public static final DeferredItem<Item> SWEETBERRY_ICE_CREAM = ITEMS.registerSimpleItem("sweetberry_ice_cream", p().food(makeFoodBuilder(4, 1 / 2f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0F).build()));
+	public static final DeferredItem<Item> VANILLA_ICE_CREAM = ITEMS.registerSimpleItem("vanilla_ice_cream", p().food(makeFoodBuilder(4, 1 / 2f).effect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 1.0F).build()));
 	public static final DeferredItem<Item> MILK_ICE_CREAM = ITEMS.registerSimpleItem("milk_ice_cream", p().food(makeFood(3, 1 / 2f)));
 	public static final DeferredItem<Item> HAM_AND_EGGS = ITEMS.registerSimpleItem("ham_n_eggs", p().stacksTo(4).food(makeFood(10, 5 / 5f, Items.BOWL)));
 	public static final DeferredItem<Item> PANCAKE = ITEMS.registerSimpleItem("pancake", p().food(makeFood(5, 3 / 5f)));
@@ -148,6 +149,7 @@ public class FAItems
 	public static final DeferredItem<Item> GREEN_ONION = ITEMS.registerItem("green_onion", p -> new ItemNameBlockItem(FABlocks.GREEN_ONIONS.get(), p), p().food(makeFood(1, 1 / 10f)));
 	public static final DeferredItem<Item> YAKITORI = ITEMS.registerSimpleItem("yakitori", p().food(makeFood(7, 4 / 5f, Items.STICK)));
 	public static final DeferredItem<Item> STEAMED_FISH = ITEMS.registerSimpleItem("steamed_fish", p().stacksTo(4).food(makeFood(12, 5 / 5f, Items.BOWL)));
+	public static final DeferredItem<FluidBottle> COFFEE_BOTTLE = ITEMS.registerItem("coffee_bottle", p -> new FluidBottle(p, FAFluids.COFFEE_SOURCE.get()), p().stacksTo(16).food(makeFoodBuilder(1, 3 / 5f).usingConvertsTo(Items.GLASS_BOTTLE).effect(() -> new MobEffectInstance(FAMobEffects.FOCUSED, 20 * 60 * 10), 1).build()));
 
 	// Processing
 
@@ -270,11 +272,16 @@ public class FAItems
 
 	private static FoodProperties makeFood(int nutrition, float saturation)
 	{
-		return new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturation).build();
+		return makeFoodBuilder(nutrition, saturation).build();
 	}
 
 	private static FoodProperties makeFood(int nutrition, float saturation, ItemLike remainder)
 	{
-		return new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturation).usingConvertsTo(remainder).build();
+		return makeFoodBuilder(nutrition, saturation).usingConvertsTo(remainder).build();
+	}
+
+	private static FoodProperties.Builder makeFoodBuilder(int nutrition, float saturationModifier)
+	{
+		return new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturationModifier);
 	}
 }

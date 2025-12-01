@@ -74,6 +74,11 @@ public class SmallTank extends Block implements EntityBlock
 							extractBottle(stack, level, player, hand, FAItems.SOY_SAUCE_BOTTLE.toStack());
 							h.drain(250, IFluidHandler.FluidAction.EXECUTE);
 						}
+						if (fluid.is(FAFluids.COFFEE_SOURCE))
+						{
+							extractBottle(stack, level, player, hand, FAItems.COFFEE_BOTTLE.toStack());
+							h.drain(250, IFluidHandler.FluidAction.EXECUTE);
+						}
 					}
 				});
 			}

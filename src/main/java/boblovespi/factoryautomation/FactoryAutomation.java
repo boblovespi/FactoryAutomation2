@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.api.capability.BellowsCapability;
 import boblovespi.factoryautomation.api.capability.CastingCapability;
 import boblovespi.factoryautomation.api.capability.HeatCapability;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
+import boblovespi.factoryautomation.common.FAAttachmentTypes;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
@@ -17,6 +18,7 @@ import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.item.FluidBottle;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
+import boblovespi.factoryautomation.common.potion.FAMobEffects;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.Workbench;
 import boblovespi.factoryautomation.common.sound.FASounds;
@@ -113,6 +115,8 @@ public class FactoryAutomation
 		RecipeThings.RECIPE_SERIALIZERS.register(modEventBus);
 		MenuTypes.TYPES.register(modEventBus);
 		FAParticleTypes.TYPES.register(modEventBus);
+		FAAttachmentTypes.ATTACHMENT_TYPES.register(modEventBus);
+		FAMobEffects.MOB_EFFECTS.register(modEventBus);
 		Multiblocks.register();
 
 		// Register ourselves for server and other game events we are interested in.

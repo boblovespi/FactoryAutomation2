@@ -4,7 +4,7 @@
 	"package": "boblovespi.factoryautomation.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": ["TieredItemMixin"],
-	"client": [],
+	"client": ["MultiPlayerGameModeMixin"],
 	"server": [],
 	"injectors": {
 		"defaultRequire": 1
