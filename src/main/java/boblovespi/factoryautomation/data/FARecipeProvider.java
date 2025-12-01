@@ -843,6 +843,15 @@ public class FARecipeProvider extends RecipeProvider
 							.unlockedBy("has_soy_sauce_culture", has(FAItems.SOY_SAUCE_CULTURE))
 							.save(output);
 
+		TumblingBarrelRecipe.of(FAFluids.COFFEE_SOURCE.get(), 250)
+							.fluidInput(Fluids.WATER, 250)
+							.input(FATags.Items.GROUND_COFFEE)
+							.time(20 * 10)
+							.minSpeed(0.5f)
+							.maxSpeed(1)
+							.unlockedBy("has_ground_coffee", has(FATags.Items.GROUND_COFFEE))
+							.save(output);
+
 		// Frying pan
 
 		FryingPanRecipe.of(new ItemStack(Items.RABBIT_STEW))

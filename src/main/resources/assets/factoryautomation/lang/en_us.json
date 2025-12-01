@@ -263,6 +263,7 @@
 	
 	"item.factoryautomation.pancake_batter_bottle": "Bottle of Pancake Batter",
 	"item.factoryautomation.soy_sauce_bottle": "Bottle of Soy Sauce",
+	"item.factoryautomation.coffee_bottle": "Bottle of Coffee",
 	
 	// Items - Intermediate
 	
@@ -344,6 +345,7 @@
 	"fluid.factoryautomation.brine": "Brine",
 	"fluid.factoryautomation.soy_milk": "Soy Milk",
 	"fluid.factoryautomation.soy_sauce": "Soy Sauce",
+	"fluid.factoryautomation.coffee": "Coffee",
 	
 	// Creative tabs
 	
@@ -496,6 +498,10 @@
 	"death.attack.metal_too_hot": "%s touched scorching hot metal",
 	"death.attack.metal_step_too_hot": "%s discovered the floor was scorching hot metal",
 	"death.attack.punching_wood": "%s discovered punching logs hurts",
+	
+	// Effects
+	
+	"effect.factoryautomation.focused": "Focused",
 	
 	// Ponder
 	
