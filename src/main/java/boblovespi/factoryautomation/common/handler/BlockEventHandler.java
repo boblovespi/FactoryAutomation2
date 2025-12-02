@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.handler;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.FAAttachmentTypes;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
 @EventBusSubscriber(modid = FactoryAutomation.MODID)
 public class BlockEventHandler
@@ -42,5 +44,15 @@ public class BlockEventHandler
 				event.setCanceled(true);
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void onBlockBreak(BlockEvent.BreakEvent event)
+	{
+		var level = event.getLevel();
+		var player = event.getPlayer();
+
+		if (!event.isCanceled())
+			player.getData(FAAttachmentTypes.FOCUSED_PLAYER_DATA).breakBlock();
 	}
 }
