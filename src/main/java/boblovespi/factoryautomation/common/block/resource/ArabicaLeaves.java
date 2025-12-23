@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.block.resource;
 
+import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,8 +16,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -108,12 +111,38 @@ public class ArabicaLeaves extends Block implements SimpleWaterloggedBlock, Bone
 	@Override
 	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state)
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state)
 	{
-		// TODO: bonemeal the root below
+		var height = state.getValue(HEIGHT);
+		var stemPos = pos.below(height);
+		var stem = level.getBlockState(stemPos);
+		if (stem.getBlock() instanceof BonemealableBlock bb)
+			bb.performBonemeal(level, random, stemPos, stem);
+	}
+
+	@Override
+	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
+	{
+		if (state.getValue(PERSISTENT))
+			return true;
+		var below = level.getBlockState(pos.below());
+		return (below.is(this) || below.is(FABlocks.ARABICA_STEM)) && level.getBlockState(pos.below(state.getValue(HEIGHT))).is(FABlocks.ARABICA_STEM);
+	}
+
+	@Override
+	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
+	{
+		if (!state.canSurvive(level, pos))
+			return Blocks.AIR.defaultBlockState();
+		else
+		{
+			if (state.getValue(WATERLOGGED))
+				level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+			return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+		}
 	}
 }

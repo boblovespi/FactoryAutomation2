@@ -1,8 +1,8 @@
 package boblovespi.factoryautomation.data.loot;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.resource.ArabicaStem;
 import boblovespi.factoryautomation.common.item.FAItems;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -18,10 +18,11 @@ import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.LimitCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -31,8 +32,12 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static net.minecraft.advancements.critereon.StatePropertiesPredicate.Builder.properties;
+import static net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition.hasBlockStateProperties;
+
 public class FABlockLootTableProvider extends BlockLootSubProvider
 {
+	private static final float[] NORMAL_LEAVES_STICK_CHANCES = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
 	@SuppressWarnings({"NotNullFieldNotInitialized", "FieldCanBeLocal"})
 	private HolderLookup.RegistryLookup<Enchantment> enchants;
 	@SuppressWarnings("NotNullFieldNotInitialized")
@@ -83,29 +88,31 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 				LootItem.lootTableItem(FAItems.GREEN_ONION)
 						.apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4)))
 						.apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 0.5714286F, 3))
-						.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GREEN_ONIONS.get())
-																 .setProperties(
-																		 StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 2))
-																 .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GREEN_ONIONS.get()).setProperties(
-																		 StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 3))))
+						.when(hasBlockStateProperties(FABlocks.GREEN_ONIONS.get())
+									  .setProperties(properties().hasProperty(BlockStateProperties.AGE_3, 2))
+									  .or(hasBlockStateProperties(FABlocks.GREEN_ONIONS.get()).setProperties(
+											  properties().hasProperty(BlockStateProperties.AGE_3, 3))))
 						.otherwise(LootItem.lootTableItem(FAItems.GREEN_ONION))))).withPool(
 				LootPool.lootPool().add(LootItem.lootTableItem(FAItems.WILD_GREEN_ONION).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1))))
-						.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GREEN_ONIONS.get())
-																 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 3)))));
+						.when(hasBlockStateProperties(FABlocks.GREEN_ONIONS.get())
+									  .setProperties(properties().hasProperty(BlockStateProperties.AGE_3, 3)))));
 		add(FABlocks.GINGER.get(), applyExplosionDecay(FABlocks.GINGER,
 				LootTable.lootTable()
 						 .withPool(LootPool.lootPool().add(LootItem.lootTableItem(FAItems.GINGER)))
 						 .withPool(
 								 LootPool.lootPool()
-										 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(FABlocks.GINGER.get())
-																				  .setProperties(
-																						  StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 3)))
+										 .when(hasBlockStateProperties(FABlocks.GINGER.get())
+													   .setProperties(
+															   properties().hasProperty(BlockStateProperties.AGE_3, 3)))
 										 .add(LootItem.lootTableItem(Items.CARROT).apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 0.5714286F, 3))))));
-		add(FABlocks.ARABICA_LEAVES.get(), LootTable.lootTable()
-													.withPool(LootPool.lootPool()
-																	  .setRolls(ConstantValue.exactly(1))
-																	  .add(LootItem.lootTableItem(FAItems.ARABICA_LEAVES).when(HAS_SHEARS.or(hasSilkTouch())))));
-		add(FABlocks.ARABICA_STEM.get(), noDrop());
+		add(FABlocks.ARABICA_LEAVES.get(), b -> createSilkTouchOrShearsDispatchTable(b, getStickDrops(b)));
+		add(FABlocks.ARABICA_STEM.get(), b -> LootTable.lootTable().withPool(LootPool.lootPool()
+																					 .setRolls(ConstantValue.exactly(1))
+																					 .when(hasBlockStateProperties(b)
+																								   .setProperties(properties().hasProperty(ArabicaStem.AGE, 2))
+																								   .or(hasBlockStateProperties(b).setProperties(
+																										   properties().hasProperty(ArabicaStem.AGE, 3))))
+																					 .add(getStickDrops(b))));
 
 		dropSelf(FABlocks.GREEN_SAND.get());
 		add(FABlocks.CHARCOAL_PILE.get(), LootTable.lootTable().withPool(
@@ -191,6 +198,13 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.COPPER_PIPE.get());
 		dropSelf(FABlocks.BRICK_KILN.get());
 		dropSelf(FABlocks.STEAM_OVEN.get());
+	}
+
+	private LootPoolSingletonContainer.Builder<?> getStickDrops(Block b)
+	{
+		return applyExplosionDecay(b, LootItem.lootTableItem(Items.STICK)
+											  .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2)))
+											  .when(BonusLevelTableCondition.bonusLevelFlatChance(fortune, NORMAL_LEAVES_STICK_CHANCES)));
 	}
 
 	private void dropOre(DeferredBlock<Block> ore, DeferredItem<Item> rawOre, int count)

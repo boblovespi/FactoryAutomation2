@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.item.FAItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
@@ -25,6 +26,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.List;
+
 public class ArabicaStem extends BushBlock implements BonemealableBlock
 {
 	// age 0 = sprout, 1 = sapling, 2 = shrub, 3 = flowering / cherry
@@ -32,10 +35,10 @@ public class ArabicaStem extends BushBlock implements BonemealableBlock
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] {
 			Block.box(2, 0.0, 2, 14, 9, 14),
 			Block.box(2, 0.0, 2, 14, 12, 14),
-			Shapes.block(),
-			Shapes.block()
+			Shapes.or(Block.box(7, 0, 7, 9, 3, 9), Block.box(0, 3, 0, 16, 16, 16)),
+			Shapes.or(Block.box(7, 0, 7, 9, 3, 9), Block.box(0, 3, 0, 16, 16, 16))
 	};
-
+	private static final List<Vec3i> OFFSETS = List.of(new Vec3i(-1, 0, 1), new Vec3i(0, 0, 1), new Vec3i(1, 0, 1), new Vec3i(1, 0, 0));
 
 	public ArabicaStem(Properties properties)
 	{
@@ -99,7 +102,31 @@ public class ArabicaStem extends BushBlock implements BonemealableBlock
 	@Override
 	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
 	{
-		grow(level, state, pos, random);
+		if (level.getRawBrightness(pos, 0) >= 9)
+		{
+			var speed = 5;
+			var below = pos.below();
+			if (level.getBlockState(below).isFertile(level, below))
+				speed += 20;
+			var hasARow = false;
+			for (var o : OFFSETS)
+			{
+				if (level.getBlockState(pos.offset(o)).is(this) && level.getBlockState(pos.subtract(o)).is(this))
+				{
+					hasARow = true;
+					break;
+				}
+			}
+			if (hasARow)
+			{
+				speed *= 2;
+				for (var o : OFFSETS)
+					if (level.getBlockState(pos.offset(o)).is(this) || level.getBlockState(pos.subtract(o)).is(this))
+						speed /= 2;
+			}
+			if (random.nextInt(100) < speed)
+				grow(level, state, pos, random);
+		}
 	}
 
 	@Override

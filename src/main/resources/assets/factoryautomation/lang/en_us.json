@@ -30,6 +30,7 @@
 	
 	"block.factoryautomation.mint_bush": "Mint Leaves",
 	"block.factoryautomation.wild_green_onion": "Wild Green Onion",
+	"block.factoryautomation.arabica_leaves": "Arabica Leaves",
 	
 	"block.factoryautomation.cassiterite_ore": "Cassiterite Ore",
 	"block.factoryautomation.raw_cassiterite_block": "Block of Cassiterite",
@@ -157,6 +158,7 @@
 	
 	"item.factoryautomation.soybeans": "Soybeans",
 	"item.factoryautomation.ginger": "Ginger",
+	"item.factoryautomation.coffee_cherry": "Coffee Cherry",
 	
 	// Items - Refined
 	
