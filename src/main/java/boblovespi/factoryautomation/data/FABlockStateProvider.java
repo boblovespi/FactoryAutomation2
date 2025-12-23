@@ -8,6 +8,8 @@ import boblovespi.factoryautomation.common.block.mechanical.BevelGear;
 import boblovespi.factoryautomation.common.block.mechanical.HandCrank;
 import boblovespi.factoryautomation.common.block.mechanical.Splitter;
 import boblovespi.factoryautomation.common.block.processing.*;
+import boblovespi.factoryautomation.common.block.resource.ArabicaLeaves;
+import boblovespi.factoryautomation.common.block.resource.ArabicaStem;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
@@ -135,6 +137,8 @@ public class FABlockStateProvider extends BlockStateProvider
 		flower(FABlocks.WILD_GREEN_ONION);
 		crop4(FABlocks.GREEN_ONIONS);
 		crossCrop4(FABlocks.GINGER);
+		arabicaLeaves(FABlocks.ARABICA_LEAVES);
+		arabicaStem(FABlocks.ARABICA_STEM);
 		pipe(FABlocks.COPPER_PIPE);
 		fryingPan(FABlocks.FRYING_PAN);
 		var brickKilnMultiblock = models().getBuilder("brick_kiln_multiblock")
@@ -429,5 +433,31 @@ public class FABlockStateProvider extends BlockStateProvider
 	private Function<BlockState, ModelFile> litBlock(BiFunction<String, ResourceLocation, ModelFile> model, String name, ResourceLocation unlitTexture, ResourceLocation litTexture)
 	{
 		return state -> model.apply(name + (state.getValue(BlockStateProperties.LIT) ? "_lit" : ""), state.getValue(BlockStateProperties.LIT) ? litTexture : unlitTexture);
+	}
+
+	private void arabicaLeaves(DeferredBlock<ArabicaLeaves> leaves)
+	{
+		var base = modLoc("block/arabica_leaves_base");
+		var modelBuilder = models().withExistingParent(leaves.getRegisteredName(), base).texture("stem", modLoc("block/arabica_stem")).renderType("cutout");
+		getVariantBuilder(leaves.get()).forAllStates(s -> ConfiguredModel.builder().modelFile(switch (s.getValue(ArabicaLeaves.AGE))
+				{
+					case 0 -> modelBuilder;
+					case 1 -> models().withExistingParent(leaves.getRegisteredName() + "_flowering", base).texture("stem", modLoc("block/arabica_stem_flowering")).renderType("cutout");
+					case 2 -> models().withExistingParent(leaves.getRegisteredName() + "_cherry", base).texture("stem", modLoc("block/arabica_stem_cherry")).renderType("cutout");
+					default -> throw new IllegalStateException("Unreachable value: " + s.getValue(ArabicaLeaves.AGE));
+				}).build()
+													);
+		simpleBlockItem(leaves.get(), modelBuilder);
+	}
+
+	private void arabicaStem(DeferredBlock<? extends Block> stem)
+	{
+		getVariantBuilder(stem.get()).forAllStates(s -> ConfiguredModel.builder().modelFile(switch (s.getValue(ArabicaStem.AGE))
+				{
+					case 0 -> cropCross(stem.getRegisteredName() + "_stage0", modLoc("block/arabica_sprout")).renderType("cutout");
+					case 1 -> cropCross(stem.getRegisteredName() + "_stage1", modLoc("block/arabica_sapling")).renderType("cutout");
+					default -> models().getExistingFile(modLoc("block/arabica_stem"));
+				}).build()
+												  );
 	}
 }

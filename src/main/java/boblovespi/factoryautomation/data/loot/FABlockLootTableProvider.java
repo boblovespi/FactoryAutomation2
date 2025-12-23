@@ -101,6 +101,11 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 																				  .setProperties(
 																						  StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_3, 3)))
 										 .add(LootItem.lootTableItem(Items.CARROT).apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 0.5714286F, 3))))));
+		add(FABlocks.ARABICA_LEAVES.get(), LootTable.lootTable()
+													.withPool(LootPool.lootPool()
+																	  .setRolls(ConstantValue.exactly(1))
+																	  .add(LootItem.lootTableItem(FAItems.ARABICA_LEAVES).when(HAS_SHEARS.or(hasSilkTouch())))));
+		add(FABlocks.ARABICA_STEM.get(), noDrop());
 
 		dropSelf(FABlocks.GREEN_SAND.get());
 		add(FABlocks.CHARCOAL_PILE.get(), LootTable.lootTable().withPool(

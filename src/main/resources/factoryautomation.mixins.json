@@ -3,7 +3,7 @@
 	"minVersion": "0.8",
 	"package": "boblovespi.factoryautomation.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": ["ProjectileMixin", "TieredItemMixin"],
+	"mixins": ["FarmBlockMixin", "ProjectileMixin", "TieredItemMixin"],
 	"client": ["MultiPlayerGameModeMixin"],
 	"server": [],
 	"injectors": {

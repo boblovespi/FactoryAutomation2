@@ -61,6 +61,8 @@ public class FAItems
 	public static final DeferredItem<Item> SOYBEANS = ITEMS.registerSimpleItem("soybeans");
 	public static final DeferredItem<Item> GINGER = ITEMS.registerItem("ginger",p -> new ItemNameBlockItem(FABlocks.GINGER.get(), p), p());
 	public static final DeferredItem<BlockItem> WILD_GREEN_ONION = ITEMS.registerSimpleBlockItem(FABlocks.WILD_GREEN_ONION);
+	public static final DeferredItem<Item> COFFEE_CHERRY = ITEMS.registerItem("coffee_cherry",p -> new ItemNameBlockItem(FABlocks.ARABICA_STEM.get(), p), p());
+	public static final DeferredItem<BlockItem> ARABICA_LEAVES = ITEMS.registerSimpleBlockItem(FABlocks.ARABICA_LEAVES);
 
 	// Refined materials
 

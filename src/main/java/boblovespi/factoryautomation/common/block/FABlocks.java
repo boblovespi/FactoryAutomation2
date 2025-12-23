@@ -62,6 +62,8 @@ public class FABlocks
 	public static final DeferredBlock<FlowerBlock> WILD_GREEN_ONION = register("wild_green_onion", p -> new FlowerBlock(MobEffects.FIRE_RESISTANCE, 1, p), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY));
 	public static final DeferredBlock<GreenOnionBlock> GREEN_ONIONS = register("green_onions", GreenOnionBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
 	public static final DeferredBlock<GingerBlock> GINGER = register("ginger", GingerBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
+	public static final DeferredBlock<ArabicaLeaves> ARABICA_LEAVES = register("arabica_leaves", ArabicaLeaves::new, BlockProperties.LEAVES);
+	public static final DeferredBlock<ArabicaStem> ARABICA_STEM = register("arabica_stem", ArabicaStem::new, BlockProperties.LEAVES);
 
 	// Refined materials
 
