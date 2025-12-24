@@ -34,6 +34,8 @@ public class FAItemModelProvider extends ItemModelProvider
 		basicItem(FAItems.SOYBEANS.get());
 		basicItem(FAItems.GINGER.get());
 		basicItem(FAItems.COFFEE_CHERRY.get());
+		basicItem(FAItems.TEA_SEEDS.get());
+		basicItem(FAItems.TEA_LEAF.get());
 
 		basicItem(FAItems.PLANT_FIBER.get());
 		basicItem(FAItems.RAW_CASSITERITE.get());

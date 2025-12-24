@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.data.loot;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.resource.ArabicaStem;
+import boblovespi.factoryautomation.common.block.resource.TeaShrub;
 import boblovespi.factoryautomation.common.item.FAItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -112,6 +113,14 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 																								   .setProperties(properties().hasProperty(ArabicaStem.AGE, 2))
 																								   .or(hasBlockStateProperties(b).setProperties(
 																										   properties().hasProperty(ArabicaStem.AGE, 3))))
+																					 .add(getStickDrops(b))));
+		add(FABlocks.TEA_SHRUB.get(), b -> LootTable.lootTable().withPool(LootPool.lootPool()
+																					 .setRolls(ConstantValue.exactly(1))
+																					 .when(hasBlockStateProperties(b)
+																								   .setProperties(properties().hasProperty(TeaShrub.AGE, 0))
+																								   .or(hasBlockStateProperties(b).setProperties(
+																										   properties().hasProperty(TeaShrub.AGE, 1)))
+																								   .invert())
 																					 .add(getStickDrops(b))));
 
 		dropSelf(FABlocks.GREEN_SAND.get());

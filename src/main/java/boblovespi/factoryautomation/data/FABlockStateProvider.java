@@ -11,6 +11,7 @@ import boblovespi.factoryautomation.common.block.processing.*;
 import boblovespi.factoryautomation.common.block.resource.ArabicaLeaves;
 import boblovespi.factoryautomation.common.block.resource.ArabicaStem;
 import boblovespi.factoryautomation.common.block.resource.Rock;
+import boblovespi.factoryautomation.common.block.resource.TeaShrub;
 import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.util.StoneBlockForms;
 import net.minecraft.core.Direction;
@@ -139,6 +140,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		crossCrop4(FABlocks.GINGER);
 		arabicaLeaves(FABlocks.ARABICA_LEAVES);
 		arabicaStem(FABlocks.ARABICA_STEM);
+		teaShrub(FABlocks.TEA_SHRUB);
 		pipe(FABlocks.COPPER_PIPE);
 		fryingPan(FABlocks.FRYING_PAN);
 		var brickKilnMultiblock = models().getBuilder("brick_kiln_multiblock")
@@ -228,7 +230,8 @@ public class FABlockStateProvider extends BlockStateProvider
 				models().getExistingFile(modLoc("block/" + multiblock)));
 	}
 
-	private Function<BlockState, ModelFile> litMultiblockComplete(ModelFile base, String multiblock, String key, ResourceLocation unlitTexture, ResourceLocation litTexture, ModelFile parent)
+	private Function<BlockState, ModelFile> litMultiblockComplete(ModelFile base, String multiblock, String key, ResourceLocation unlitTexture, ResourceLocation litTexture,
+																  ModelFile parent)
 	{
 		return state -> {
 			var complete = state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE);
@@ -459,5 +462,18 @@ public class FABlockStateProvider extends BlockStateProvider
 					default -> models().getExistingFile(modLoc("block/arabica_stem"));
 				}).build()
 												  );
+	}
+
+	private void teaShrub(DeferredBlock<TeaShrub> teaShrub)
+	{
+		var mpb = getMultipartBuilder(teaShrub.get());
+		for (int i = 0; i < 4; i++)
+			mpb.part()
+			   .modelFile(cropCross(teaShrub.getRegisteredName() + "_stage" + i, modLoc("block/tea_shrub_stage" + i)).renderType("cutout"))
+			   .addModel()
+			   .condition(TeaShrub.AGE, i)
+			   .end();
+		mpb.part().modelFile(models().getExistingFile(modLoc("block/tea_shrub"))).addModel().condition(TeaShrub.AGE, 4, 5).end();
+		mpb.part().modelFile(models().getExistingFile(modLoc("block/tea_shrub_extra_leaves"))).addModel().condition(TeaShrub.AGE, 5).end();
 	}
 }

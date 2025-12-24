@@ -17,7 +17,7 @@ public abstract class FarmBlockMixin
 	@Inject(method = "canSurvive", at = @At("RETURN"), cancellable = true)
 	private void givenCanSurvive(BlockState state, LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) BlockState state1)
 	{
-		if (!cir.getReturnValue() && state1.is(FABlocks.ARABICA_STEM))
+		if (!cir.getReturnValue() && (state1.is(FABlocks.ARABICA_STEM) || state1.is(FABlocks.TEA_SHRUB)))
 			cir.setReturnValue(true);
 	}
 }

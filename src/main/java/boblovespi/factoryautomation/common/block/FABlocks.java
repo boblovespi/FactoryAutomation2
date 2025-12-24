@@ -64,6 +64,7 @@ public class FABlocks
 	public static final DeferredBlock<GingerBlock> GINGER = register("ginger", GingerBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
 	public static final DeferredBlock<ArabicaLeaves> ARABICA_LEAVES = register("arabica_leaves", ArabicaLeaves::new, BlockProperties.LEAVES);
 	public static final DeferredBlock<ArabicaStem> ARABICA_STEM = register("arabica_stem", ArabicaStem::new, BlockProperties.LEAVES);
+	public static final DeferredBlock<TeaShrub> TEA_SHRUB = register("tea_shrub", TeaShrub::new, BlockProperties.LEAVES);
 
 	// Refined materials
 
