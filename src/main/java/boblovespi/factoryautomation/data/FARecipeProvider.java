@@ -222,7 +222,7 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_wild_green_onion", has(FAItems.WILD_GREEN_ONION))
 						   .save(output);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, FAItems.BAMBOO_BASKET)
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FAItems.BAMBOO_BASKET)
 						   .pattern("bbb")
 						   .pattern("bbb")
 						   .define('b', Items.BAMBOO)

@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.util.jade;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.common.blockentity.processing.BambooBasketBE;
 import boblovespi.factoryautomation.common.blockentity.processing.BrickMakerFrameBE;
 import boblovespi.factoryautomation.common.util.Codecs;
 import net.minecraft.core.component.DataComponents;
@@ -27,7 +28,7 @@ public enum BrickMakerProvider implements IServerExtensionProvider<ItemStack>, I
 														 .read(Codecs.JADE_COOKING)
 														 .map(t -> IThemeHelper.get().seconds(t, accessor.tickRate()).getString())
 														 .map(s -> (new ItemView(stack)).amountText(s)).result()
-														 .orElse(null), null);
+														 .orElse(new ItemView(stack)), null);
 	}
 
 	@Override
@@ -36,6 +37,7 @@ public enum BrickMakerProvider implements IServerExtensionProvider<ItemStack>, I
 		return switch (accessor.getTarget())
 		{
 			case BrickMakerFrameBE bmf -> List.of(new ViewGroup<>(bmf.makeViewStacks()));
+			case BambooBasketBE bb -> List.of(new ViewGroup<>(bb.makeViewStacks()));
 			case null, default -> null;
 		};
 	}

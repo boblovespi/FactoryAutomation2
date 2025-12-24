@@ -5,23 +5,28 @@ import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.recipe.BasketDryingRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
+import boblovespi.factoryautomation.common.util.Codecs;
 import boblovespi.factoryautomation.common.util.ItemHelper;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -148,5 +153,23 @@ public class BambooBasketBE extends FABE implements ITickable
 		if (level.isClientSide)
 			return inv;
 		return new ItemStackHandler();
+	}
+
+	public List<ItemStack> makeViewStacks()
+	{
+		var list = new ArrayList<ItemStack>(5);
+		for (var i = 0; i < inv.getSlots(); i++)
+		{
+			var stack = inv.getStackInSlot(i).copy();
+			if (stack.isEmpty())
+				continue;
+			if (!recipes.get(i).isComplete())
+			{
+				var finalI = i;
+				stack.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, t -> t.update(NbtOps.INSTANCE, Codecs.JADE_COOKING, recipes.get(finalI).getProgress()).getOrThrow());
+			}
+			list.add(stack);
+		}
+		return list;
 	}
 }
