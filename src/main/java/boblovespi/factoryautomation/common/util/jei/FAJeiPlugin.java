@@ -45,6 +45,7 @@ public class FAJeiPlugin implements IModPlugin
 	private TripHammerJeiCategory tripHammerJeiCategory;
 	private TumblingBarrelJeiCategory tumblingBarrelJeiCategory;
 	private FryingJeiCategory fryingJeiCategory;
+	private BasketDryingJeiCategory basketDryingJeiCategory;
 	private KilnJeiCategory kilnJeiCategory;
 	private SteamOvenJeiCategory steamOvenJeiCategory;
 
@@ -78,6 +79,8 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCategories(tumblingBarrelJeiCategory);
 		fryingJeiCategory = new FryingJeiCategory(guiHelper);
 		registration.addRecipeCategories(fryingJeiCategory);
+		basketDryingJeiCategory = new BasketDryingJeiCategory(guiHelper);
+		registration.addRecipeCategories(basketDryingJeiCategory);
 		kilnJeiCategory = new KilnJeiCategory(guiHelper);
 		registration.addRecipeCategories(kilnJeiCategory);
 		steamOvenJeiCategory = new SteamOvenJeiCategory(guiHelper);
@@ -120,6 +123,7 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipes(tripHammerJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.TRIP_HAMMER_TYPE.get()));
 		registration.addRecipes(tumblingBarrelJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.TUMBLING_BARREL_TYPE.get()));
 		registration.addRecipes(fryingJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.FRYING_PAN_TYPE.get()));
+		registration.addRecipes(basketDryingJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.BASKET_DRYING_TYPE.get()));
 		registration.addRecipes(kilnJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.KILN_TYPE.get()));
 		registration.addRecipes(steamOvenJeiCategory.getRecipeType(), recipeManager.getAllRecipesFor(RecipeThings.STEAM_OVEN_TYPE.get()));
 
@@ -165,6 +169,7 @@ public class FAJeiPlugin implements IModPlugin
 		registration.addRecipeCatalyst(FAItems.TRIP_HAMMER, tripHammerJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.TUMBLING_BARREL, tumblingBarrelJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.FRYING_PAN, fryingJeiCategory.getRecipeType());
+		registration.addRecipeCatalyst(FAItems.BAMBOO_BASKET, basketDryingJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.BRICK_KILN, kilnJeiCategory.getRecipeType());
 		registration.addRecipeCatalyst(FAItems.STEAM_OVEN, steamOvenJeiCategory.getRecipeType());
 	}

@@ -120,7 +120,7 @@ public class ChoppingBlockBE extends FABE implements IJadeViewable
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
-		rm.load(tag);
+		rm.load(tag, registries);
 	}
 
 	@Override

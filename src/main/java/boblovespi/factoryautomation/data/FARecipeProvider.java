@@ -222,6 +222,13 @@ public class FARecipeProvider extends RecipeProvider
 						   .unlockedBy("has_wild_green_onion", has(FAItems.WILD_GREEN_ONION))
 						   .save(output);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, FAItems.BAMBOO_BASKET)
+						   .pattern("bbb")
+						   .pattern("bbb")
+						   .define('b', Items.BAMBOO)
+						   .unlockedBy("has_bamboo", has(Items.BAMBOO))
+						   .save(output);
+
 		// shapeless
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, FAItems.FIREBOW)
@@ -913,6 +920,28 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_cod", has(Items.COD))
 					   .save(output);
 
+		FryingPanRecipe.of(new ItemStack(FAItems.PANNED_TEA_LEAF.get()))
+					   .input(FAItems.TEA_LEAF)
+					   .progress(20 * 10)
+					   .beginData().endData()
+					   .unlockedBy("has_tea_leaf", has(FAItems.PANNED_TEA_LEAF))
+					   .save(output);
+
+		// Bamboo basket
+		BasketDryingRecipe.of(new ItemStack(FAItems.GREEN_TEA_LEAF.get()))
+						  .input(FAItems.PANNED_TEA_LEAF)
+						  .progress(20 * 10)
+						  .beginData().endData()
+						  .unlockedBy("has_panned_tea_leaf", has(FAItems.PANNED_TEA_LEAF))
+						  .save(output);
+
+		BasketDryingRecipe.of(new ItemStack(FAItems.GREEN_COFFEE_BEANS.get()))
+						  .input(FAItems.COFFEE_CHERRY)
+						  .progress(20 * 10)
+						  .beginData().endData()
+						  .unlockedBy("has_coffee_cherry", has(FAItems.COFFEE_CHERRY))
+						  .save(output);
+
 		// Kiln recipes
 		KilnRecipe.of(new ItemStack(Items.BRICK))
 				  .progress(20 * 10)
@@ -966,6 +995,7 @@ public class FARecipeProvider extends RecipeProvider
 		SteamOvenRecipe.of(new ItemStack(Items.COOKED_PORKCHOP)).input(Items.PORKCHOP).progress(80).beginData().endData().unlockedBy("has_porkchop", has(Items.PORKCHOP)).save(output);
 		SteamOvenRecipe.of(new ItemStack(Items.BAKED_POTATO)).input(Items.POTATO).progress(80).beginData().endData().unlockedBy("has_potato", has(Items.POTATO)).save(output);
 		SteamOvenRecipe.of(new ItemStack(Items.COOKED_RABBIT)).input(Items.RABBIT).progress(80).beginData().endData().unlockedBy("has_rabbit", has(Items.RABBIT)).save(output);
+		SteamOvenRecipe.of(new ItemStack(FAItems.PANNED_TEA_LEAF.get())).input(FAItems.TEA_LEAF).progress(80).beginData().endData().unlockedBy("has_tea_leaf", has(FAItems.TEA_LEAF)).save(output);
 
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())

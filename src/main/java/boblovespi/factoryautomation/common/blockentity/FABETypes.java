@@ -48,6 +48,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<SmallTankBE>> SMALL_TANK_TYPE = type("small_tank", SmallTankBE::new, FABlocks.WOODEN_TANK);
 	public static final Supplier<BlockEntityType<PipeBE>> PIPE_TYPE = type("pipe", PipeBE::new, FABlocks.COPPER_PIPE);
 	public static final Supplier<BlockEntityType<FryingPanBE>> FRYING_PAN_TYPE = type("frying_pan", FryingPanBE::new, FABlocks.FRYING_PAN);
+	public static final Supplier<BlockEntityType<BambooBasketBE>> BAMBOO_BASKET_TYPE = type("bamboo_basket", BambooBasketBE::new, FABlocks.BAMBOO_BASKET);
 	public static final Supplier<BlockEntityType<BrickKilnBE>> BRICK_KILN_TYPE = type("brick_kiln", BrickKilnBE::new, FABlocks.BRICK_KILN);
 	public static final Supplier<BlockEntityType<SteamOvenBE>> STEAM_OVEN_TYPE = type("steam_oven", SteamOvenBE::new, FABlocks.STEAM_OVEN);
 
@@ -55,12 +56,14 @@ public class FABETypes
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,
 																									   Supplier<? extends Block>... validBlocks)
 	{
+		//noinspection DataFlowIssue (we don't need datafixerupper for our be's)
 		return BLOCK_ENTITY_TYPES.register(name, () -> BlockEntityType.Builder.of(factory, Arrays.stream(validBlocks).map(Supplier::get).toArray(Block[]::new)).build(null));
 	}
 
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,
 																									   Collection<? extends Supplier<? extends Block>> validBlocks)
 	{
+		//noinspection DataFlowIssue
 		return BLOCK_ENTITY_TYPES.register(name, () -> BlockEntityType.Builder.of(factory, validBlocks.stream().map(Supplier::get).toArray(Block[]::new)).build(null));
 	}
 }

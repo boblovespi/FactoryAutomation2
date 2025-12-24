@@ -58,7 +58,7 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 	@Override
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		recipeManager.load(tag);
+		recipeManager.load(tag, registries);
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
 	}
 

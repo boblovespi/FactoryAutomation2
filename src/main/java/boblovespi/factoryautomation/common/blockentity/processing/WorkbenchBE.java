@@ -134,7 +134,7 @@ public abstract class WorkbenchBE extends FABE implements IMenuProviderProvider
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
-		recipeManager.load(tag);
+		recipeManager.load(tag, registries);
 	}
 
 	@Override

@@ -70,6 +70,7 @@ public class ClientHandler
 		event.registerBlockEntityRenderer(FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBER::new);
 		event.registerBlockEntityRenderer(FABETypes.PIPE_TYPE.get(), PipeDebugBER::new);
 		event.registerBlockEntityRenderer(FABETypes.FRYING_PAN_TYPE.get(), FryingPanBER::new);
+		event.registerBlockEntityRenderer(FABETypes.BAMBOO_BASKET_TYPE.get(), BambooBasketBER::new);
 	}
 
 	@SubscribeEvent

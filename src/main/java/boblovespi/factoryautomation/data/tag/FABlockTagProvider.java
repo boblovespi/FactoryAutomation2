@@ -114,7 +114,9 @@ public class FABlockTagProvider extends BlockTagsProvider
 		tag(BlockTags.MINEABLE_WITH_AXE).add(choppingBlocks).add(FABlocks.LOG_PILE.get(), FABlocks.BRICK_MAKER_FRAME.get(), FABlocks.PAPER_BELLOWS.get(), FABlocks.LEATHER_BELLOWS.get())
 										.add(FABlocks.HAND_CRANK.get(), FABlocks.SMALL_WATERWHEEL.get())
 										.add(FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get(), FABlocks.WOOD_SPLITTER.get(), FABlocks.WOOD_JOINER.get())
-										.add(FABlocks.WOOD_BEVEL_GEAR.get(), FABlocks.WOODEN_TANK.get());
+										.add(FABlocks.WOOD_BEVEL_GEAR.get(), FABlocks.WOODEN_TANK.get(), FABlocks.BAMBOO_BASKET.get());
+		tag(BlockTags.MINEABLE_WITH_HOE).add(FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get());
+		tag(BlockTags.SWORD_EFFICIENT).add(FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get());
 
 		tag(BlockTags.BASE_STONE_OVERWORLD).add(FABlocks.CHERT.get());
 		tag(Tags.Blocks.STONES).add(FABlocks.CHERT.get());
@@ -154,6 +156,8 @@ public class FABlockTagProvider extends BlockTagsProvider
 
 		tag(BlockTags.SMALL_FLOWERS).add(FABlocks.WILD_GREEN_ONION.get());
 		tag(BlockTags.MAINTAINS_FARMLAND).add(FABlocks.GREEN_ONIONS.get(), FABlocks.GINGER.get(), FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get());
+		tag(BlockTags.CROPS).add(FABlocks.GREEN_ONIONS.get(), FABlocks.GINGER.get());
+		tag(BlockTags.LEAVES).add(FABlocks.ARABICA_LEAVES.get());
 	}
 
 	private void addStoneBlockTags(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)

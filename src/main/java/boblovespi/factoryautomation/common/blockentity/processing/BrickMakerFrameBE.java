@@ -64,8 +64,8 @@ public class BrickMakerFrameBE extends FABE implements ITickable
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
-		left.load(tag);
-		right.load(tag);
+		left.load(tag, registries);
+		right.load(tag, registries);
 	}
 
 	@Override

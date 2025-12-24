@@ -128,6 +128,7 @@ public class CreativeTabs
 						o.accept(FAItems.TRIP_HAMMER);
 						o.accept(FAItems.TUMBLING_BARREL);
 						o.accept(FAItems.FRYING_PAN);
+						o.accept(FAItems.BAMBOO_BASKET);
 						o.accept(FAItems.BRICK_KILN);
 						o.accept(FAItems.STEAM_OVEN);
 					}).build());
@@ -208,7 +209,7 @@ public class CreativeTabs
 			insertAfter(event, Items.HONEY_BOTTLE, FAItems.PANCAKE_BATTER_BOTTLE, FAItems.SOY_SAUCE_BOTTLE, FAItems.SOY_MILK_BOTTLE, FAItems.COFFEE_BOTTLE);
 			insertAfter(event, Items.MELON_SLICE, FAItems.SOYBEANS, FAItems.GROUND_SOYBEAN, FAItems.SOY_SAUCE_CULTURE, FAItems.TOFU, FAItems.DOUFUNAO, FAItems.SALTY_DOUFUNAO, FAItems.SWEET_DOUFUNAO);
 			insertAfter(event, Items.CHICKEN, FAItems.YAKITORI);
-			insertAfter(event, Items.CARROT, FAItems.GINGER, FAItems.GREEN_ONION, FAItems.COFFEE_CHERRY, FAItems.TEA_SEEDS, FAItems.TEA_LEAF);
+			insertAfter(event, Items.CARROT, FAItems.GINGER, FAItems.GREEN_ONION, FAItems.COFFEE_CHERRY, FAItems.TEA_SEEDS, FAItems.TEA_LEAF, FAItems.PANNED_TEA_LEAF, FAItems.GREEN_TEA_LEAF);
 			insertAfter(event, FAItems.SALTY_DOUFUNAO, FAItems.GREEN_COFFEE_BEANS, FAItems.ROASTED_COFFEE_BEANS, FAItems.GROUND_COFFEE);
 			// insertAfter(event, Items.COOKED_COD, FAItems.STEAMED_FISH);
 		}

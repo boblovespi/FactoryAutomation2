@@ -143,6 +143,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		teaShrub(FABlocks.TEA_SHRUB);
 		pipe(FABlocks.COPPER_PIPE);
 		fryingPan(FABlocks.FRYING_PAN);
+		existingBlockWithItem(FABlocks.BAMBOO_BASKET);
 		var brickKilnMultiblock = models().getBuilder("brick_kiln_multiblock")
 										  .customLoader(ObjModelBuilder::begin)
 										  .modelLocation(modLoc("models/block/brick_kiln_multiblock.obj"))

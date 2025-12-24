@@ -39,8 +39,8 @@ public class TeaShrub extends BushBlock implements BonemealableBlock
 			Block.box(4, 0, 4, 12, 8, 12),
 			Block.box(2, 0.0, 2, 14, 10, 14),
 			Block.box(2, 0, 2, 14, 12, 14),
-			Shapes.or(Block.box(7, 0, 7, 9, 3, 9), Block.box(0, 3, 0, 16, 16, 16)),
-			Shapes.or(Block.box(7, 0, 7, 9, 3, 9), Block.box(0, 3, 0, 16, 16, 16))
+			Shapes.or(Block.box(5, 0, 5, 11, 5, 11), Block.box(0, 5, 0, 16, 16, 16)),
+			Shapes.or(Block.box(5, 0, 7, 11, 5, 11), Block.box(0, 5, 0, 16, 16, 16))
 	};
 	private static final List<Vec3i> OFFSETS = List.of(new Vec3i(-1, 0, 1), new Vec3i(0, 0, 1), new Vec3i(1, 0, 1), new Vec3i(1, 0, 0));
 

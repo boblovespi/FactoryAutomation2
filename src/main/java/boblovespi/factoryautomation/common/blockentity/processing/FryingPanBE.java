@@ -171,7 +171,7 @@ public class FryingPanBE extends FABE implements ITickable, IJadeViewable
 	{
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
 		tank.readFromNBT(registries, tag);
-		rm.load(tag);
+		rm.load(tag, registries);
 	}
 
 	@Override

@@ -235,10 +235,12 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.GREEN_ONION_CROP).add(FAItems.GREEN_ONION.get());
 		tag(FATags.Items.GREEN_ONION_SCALLION_CROP).addTag(FATags.Items.GREEN_ONION_CROP);
 		tag(FATags.Items.GINGER_CROP).add(FAItems.GINGER.get());
+		tag(FATags.Items.TEA_SEED).add(FAItems.TEA_SEEDS.get());
+		tag(FATags.Items.COFFEE_SEED).add(FAItems.COFFEE_CHERRY.get());
 
 		tag(Tags.Items.FOODS_RAW_MEAT).addTags(FATags.Items.RAW_PORKS, FATags.Items.RAW_CHICKEN);
 		tag(Tags.Items.FOODS).addTags(FATags.Items.GREEN_ONION_FOOD, FATags.Items.GREEN_ONION_SCALLION_FOOD, FATags.Items.SOY_SAUCE, FATags.Items.TOFU);
 		tag(Tags.Items.CROPS).addTags(FATags.Items.SOYBEAN_CROP, FATags.Items.GREEN_ONION_CROP, FATags.Items.GREEN_ONION_SCALLION_CROP, FATags.Items.GINGER_CROP);
-		tag(Tags.Items.SEEDS).addTags(FATags.Items.SOYBEAN_SEED);
+		tag(Tags.Items.SEEDS).addTags(FATags.Items.SOYBEAN_SEED, FATags.Items.TEA_SEED, FATags.Items.COFFEE_SEED);
 	}
 }

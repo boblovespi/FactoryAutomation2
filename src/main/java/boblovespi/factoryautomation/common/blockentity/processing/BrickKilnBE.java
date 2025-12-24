@@ -69,7 +69,7 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 	@Override
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		recipeManager.load(tag);
+		recipeManager.load(tag, registries);
 		heatManager.load(tag);
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
 	}

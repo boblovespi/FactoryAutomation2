@@ -145,7 +145,7 @@ public class TumblingBarrelBE extends FABE implements ITickable, IClientTickable
 	@Override
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		recipeManager.load(tag);
+		recipeManager.load(tag, registries);
 		mechanicalManager.load(tag);
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
 		inTank.readFromNBT(registries, tag.getCompound("inTank"));

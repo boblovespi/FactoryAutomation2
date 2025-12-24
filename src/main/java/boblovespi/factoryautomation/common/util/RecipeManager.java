@@ -2,7 +2,10 @@ package boblovespi.factoryautomation.common.util;
 
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.recipe.IProgressRecipe;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -16,7 +19,6 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 	private final String nbtId;
 	private final Validifier<RecipeHolder<R>> validifier;
 	private final RecipeMatcher<RecipeHolder<R>> recipeMatcher;
-	private final RecipeGrabber<Optional<RecipeHolder<?>>> recipeGrabber;
 	@Nullable
 	private RecipeHolder<R> currentRecipe;
 	private ResourceLocation currentRecipeName;
@@ -37,16 +39,20 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 
 	public RecipeManager(String nbtId, Validifier<RecipeHolder<R>> validifier, RecipeMatcher<RecipeHolder<R>> recipeMatcher, RecipeGrabber<Optional<RecipeHolder<?>>> recipeGrabber)
 	{
+		this(nbtId, validifier, recipeMatcher);
+	}
+
+	public RecipeManager(String nbtId, Validifier<RecipeHolder<R>> validifier, RecipeMatcher<RecipeHolder<R>> recipeMatcher)
+	{
 		this.nbtId = nbtId;
 		this.validifier = validifier;
 		this.recipeMatcher = recipeMatcher;
-		this.recipeGrabber = recipeGrabber;
 		currentRecipeName = NO_RECIPE;
 	}
 
 	public static <R extends Recipe<?> & IProgressRecipe> RecipeManager<R> dummy()
 	{
-		return new RecipeManager<>("dummy", r -> false, () -> null, r -> Optional.empty());
+		return new RecipeManager<>("dummy", r -> false, () -> null);
 	}
 
 	public void updateRecipe()
@@ -116,9 +122,10 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 		return currentRecipe != null;
 	}
 
+	@Deprecated(forRemoval = true)
 	public void onLoad()
 	{
-		if (currentRecipeName != NO_RECIPE)
+		/*if (currentRecipeName != NO_RECIPE)
 		{
 			var maybe = recipeGrabber.getRecipe(currentRecipeName);
 			if (maybe.isPresent())
@@ -129,7 +136,8 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 					//noinspection unchecked
 					currentRecipe = (RecipeHolder<R>) recipeHolder;
 					maxProgress = currentRecipe.value().getProgress();
-				} catch (ClassCastException e)
+				}
+				catch (ClassCastException e)
 				{
 					FactoryAutomation.LOGGER.warn("The recipe {} has somehow changed types! It is now a {}", currentRecipeName, recipeHolder.getClass().getName());
 					currentRecipeName = NO_RECIPE;
@@ -140,7 +148,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 				FactoryAutomation.LOGGER.warn("The recipe {} no longer exists!", currentRecipeName);
 				currentRecipeName = NO_RECIPE;
 			}
-		}
+		}*/
 	}
 
 	public void save(CompoundTag tag)
@@ -154,7 +162,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 		tag.put(nbtId, nbt);
 	}
 
-	public void load(CompoundTag tag)
+	public void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		var nbt = tag.getCompound(nbtId);
 		var recipeName = nbt.getString("recipe");
@@ -163,6 +171,26 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 		else
 			currentRecipeName = ResourceLocation.parse(recipeName);
 		progress = nbt.getInt("progress");
+		if (currentRecipeName != NO_RECIPE)
+			registries.lookup(Registries.RECIPE)
+					  .flatMap(r -> r.get(ResourceKey.create(Registries.RECIPE, currentRecipeName)))
+					  .flatMap(r -> {
+						  try
+						  {
+							  //noinspection unchecked
+							  return Optional.of(new RecipeHolder<>(r.key().location(), (R) r.value()));
+						  }
+						  catch (ClassCastException e)
+						  {
+							  FactoryAutomation.LOGGER.warn("The recipe {} has somehow changed types! It is now a {}", currentRecipeName, r.value().getClass().getName());
+						  }
+						  return Optional.empty();
+					  })
+					  .ifPresentOrElse(r -> currentRecipe = r, () ->
+					  {
+						  FactoryAutomation.LOGGER.warn("The recipe {} no longer exists!", currentRecipeName);
+						  currentRecipeName = NO_RECIPE;
+					  });
 	}
 
 	@FunctionalInterface

@@ -109,7 +109,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	@Override
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		recipeManager.load(tag);
+		recipeManager.load(tag, registries);
 		mechanicalManager.load(tag);
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
 	}

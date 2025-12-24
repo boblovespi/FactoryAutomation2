@@ -65,6 +65,8 @@ public class FAItems
 	public static final DeferredItem<BlockItem> ARABICA_LEAVES = ITEMS.registerSimpleBlockItem(FABlocks.ARABICA_LEAVES);
 	public static final DeferredItem<Item> TEA_SEEDS = ITEMS.registerItem("tea_seeds",p -> new ItemNameBlockItem(FABlocks.TEA_SHRUB.get(), p), p());
 	public static final DeferredItem<Item> TEA_LEAF = ITEMS.registerSimpleItem("tea_leaf");
+	public static final DeferredItem<Item> PANNED_TEA_LEAF = ITEMS.registerSimpleItem("panned_tea_leaf");
+	public static final DeferredItem<Item> GREEN_TEA_LEAF = ITEMS.registerSimpleItem("green_tea_leaf");
 
 	// Refined materials
 
@@ -174,6 +176,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> TRIP_HAMMER = ITEMS.registerSimpleBlockItem(FABlocks.TRIP_HAMMER);
 	public static final DeferredItem<BlockItem> TUMBLING_BARREL = ITEMS.registerSimpleBlockItem(FABlocks.TUMBLING_BARREL);
 	public static final DeferredItem<BlockItem> FRYING_PAN = ITEMS.registerSimpleBlockItem(FABlocks.FRYING_PAN);
+	public static final DeferredItem<BlockItem> BAMBOO_BASKET = ITEMS.registerSimpleBlockItem(FABlocks.BAMBOO_BASKET);
 	public static final DeferredItem<BlockItem> BRICK_KILN = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_KILN);
 	public static final DeferredItem<BlockItem> STEAM_OVEN = ITEMS.registerSimpleBlockItem(FABlocks.STEAM_OVEN);
 

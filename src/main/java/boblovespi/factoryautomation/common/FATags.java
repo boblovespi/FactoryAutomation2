@@ -147,6 +147,8 @@ public class FATags
 		public static final TagKey<Item> GINGER_CROP = cItem("crops/ginger");
 
 		public static final TagKey<Item> SOYBEAN_SEED = cItem("seeds/soybean");
+		public static final TagKey<Item> TEA_SEED = cItem("seeds/tea");
+		public static final TagKey<Item> COFFEE_SEED = cItem("seeds/coffee");
 	}
 
 	public static class Blocks

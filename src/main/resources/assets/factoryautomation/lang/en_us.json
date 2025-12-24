@@ -118,6 +118,7 @@
 	"block.factoryautomation.trip_hammer": "Trip Hammer",
 	"block.factoryautomation.tumbling_barrel": "Tumbling Barrel",
 	"block.factoryautomation.iron_frying_pan": "Frying Pan",
+	"block.factoryautomation.bamboo_basket": "Bamboo Basket",
 	"block.factoryautomation.brick_kiln": "Brick Kiln",
 	"block.factoryautomation.steam_oven": "Steam Oven",
 	
@@ -159,6 +160,10 @@
 	"item.factoryautomation.soybeans": "Soybeans",
 	"item.factoryautomation.ginger": "Ginger",
 	"item.factoryautomation.coffee_cherry": "Coffee Cherry",
+	"item.factoryautomation.tea_seeds": "Tea Seeds",
+	"item.factoryautomation.tea_leaf": "Tea Leaf",
+	"item.factoryautomation.panned_tea_leaf": "Panned Tea Leaf",
+	"item.factoryautomation.green_tea_leaf": "Green Tea Leaf",
 	
 	// Items - Refined
 	
@@ -381,6 +386,7 @@
 	"jei.factoryautomation.trip_hammer.name": "Mechanical Hammering",
 	"jei.factoryautomation.tumbling_barrel.name": "Tumbling",
 	"jei.factoryautomation.frying.name": "Frying",
+	"jei.factoryautomation.basket_drying.name": "Basket Drying",
 	"jei.factoryautomation.kiln.name": "Kiln Firing",
 	"jei.factoryautomation.steam_oven.name": "Steam Oven Cooking",
 	

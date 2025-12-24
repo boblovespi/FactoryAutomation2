@@ -84,7 +84,7 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 	@Override
 	protected void load(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		recipeManager.load(tag);
+		recipeManager.load(tag, registries);
 		mechanicalManager.load(tag);
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
 	}
