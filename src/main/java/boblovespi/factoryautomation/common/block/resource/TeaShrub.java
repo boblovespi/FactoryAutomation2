@@ -62,6 +62,8 @@ public class TeaShrub extends BushBlock implements BonemealableBlock
 		{
 			var dropCount = 1 + level.random.nextInt(2);
 			popResource(level, pos, new ItemStack(FAItems.TEA_LEAF.get(), dropCount));
+			if (level.random.nextFloat() < 0.05f)
+				popResource(level, pos, new ItemStack(FAItems.TEA_SEEDS.get()));
 			level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F); // TODO: change sound
 			var blockState = state.setValue(AGE, MAX_AGE - 1);
 			level.setBlock(pos, blockState, 2);

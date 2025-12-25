@@ -63,6 +63,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> WILD_GREEN_ONION = ITEMS.registerSimpleBlockItem(FABlocks.WILD_GREEN_ONION);
 	public static final DeferredItem<Item> COFFEE_CHERRY = ITEMS.registerItem("coffee_cherry",p -> new ItemNameBlockItem(FABlocks.ARABICA_STEM.get(), p), p());
 	public static final DeferredItem<BlockItem> ARABICA_LEAVES = ITEMS.registerSimpleBlockItem(FABlocks.ARABICA_LEAVES);
+	public static final DeferredItem<BlockItem> WILD_TEA_SHRUB = ITEMS.registerSimpleBlockItem(FABlocks.WILD_TEA_SHRUB);
 	public static final DeferredItem<Item> TEA_SEEDS = ITEMS.registerItem("tea_seeds",p -> new ItemNameBlockItem(FABlocks.TEA_SHRUB.get(), p), p());
 	public static final DeferredItem<Item> TEA_LEAF = ITEMS.registerSimpleItem("tea_leaf");
 	public static final DeferredItem<Item> PANNED_TEA_LEAF = ITEMS.registerSimpleItem("panned_tea_leaf");

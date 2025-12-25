@@ -140,6 +140,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		crossCrop4(FABlocks.GINGER);
 		arabicaLeaves(FABlocks.ARABICA_LEAVES);
 		arabicaStem(FABlocks.ARABICA_STEM);
+		flower(FABlocks.WILD_TEA_SHRUB);
 		teaShrub(FABlocks.TEA_SHRUB);
 		pipe(FABlocks.COPPER_PIPE);
 		fryingPan(FABlocks.FRYING_PAN);
@@ -403,7 +404,7 @@ public class FABlockStateProvider extends BlockStateProvider
 										   .texture("pan", pan.getId().withPrefix("block/")));
 	}
 
-	private void flower(DeferredBlock<FlowerBlock> flower)
+	private void flower(DeferredBlock<? extends Block> flower)
 	{
 		var model = models().cross(flower.getRegisteredName(), flower.getId().withPrefix("block/")).renderType("cutout");
 		simpleBlock(flower.get(), model);

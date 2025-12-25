@@ -38,6 +38,19 @@ public class BlockProperties
 																					.ignitedByLava()
 																					.pushReaction(PushReaction.DESTROY)
 																					.isRedstoneConductor(BlockProperties::never);
+	public static final BlockBehaviour.Properties SHRUB = BlockBehaviour.Properties.of()
+																				   .mapColor(MapColor.PLANT)
+																				   .strength(0.2F)
+																				   .sound(SoundType.GRASS)
+																				   .noOcclusion()
+																				   .noCollission()
+																				   .isValidSpawn(Blocks::ocelotOrParrot)
+																				   .isSuffocating(BlockProperties::never)
+																				   .isViewBlocking(BlockProperties::never)
+																				   .ignitedByLava()
+																				   .pushReaction(PushReaction.DESTROY)
+																				   .isRedstoneConductor(BlockProperties::never)
+																				   .offsetType(BlockBehaviour.OffsetType.XZ);
 
 	public static final BlockBehaviour.Properties GREEN_SAND = BlockBehaviour.Properties.of().strength(0.6f).sound(SoundType.PACKED_MUD).mapColor(MapColor.GLOW_LICHEN);
 	public static final BlockBehaviour.Properties CHARCOAL_PILE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).sound(SoundType.GRAVEL).strength(0.5f)

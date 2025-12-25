@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.data.loot;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.resource.ArabicaLeaves;
 import boblovespi.factoryautomation.common.block.resource.ArabicaStem;
 import boblovespi.factoryautomation.common.block.resource.TeaShrub;
 import boblovespi.factoryautomation.common.item.FAItems;
@@ -106,7 +107,12 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 													   .setProperties(
 															   properties().hasProperty(BlockStateProperties.AGE_3, 3)))
 										 .add(LootItem.lootTableItem(Items.CARROT).apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 0.5714286F, 3))))));
-		add(FABlocks.ARABICA_LEAVES.get(), b -> createSilkTouchOrShearsDispatchTable(b, getStickDrops(b)));
+		add(FABlocks.ARABICA_LEAVES.get(), b -> createSilkTouchOrShearsDispatchTable(b, getStickDrops(b))
+														.withPool(LootPool.lootPool()
+																		  .setRolls(ConstantValue.exactly(1))
+																		  .when(hasBlockStateProperties(b).setProperties(properties().hasProperty(ArabicaLeaves.AGE, 2)))
+																		  .add(LootItem.lootTableItem(FAItems.COFFEE_CHERRY))
+																		  .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2)))));
 		add(FABlocks.ARABICA_STEM.get(), b -> LootTable.lootTable().withPool(LootPool.lootPool()
 																					 .setRolls(ConstantValue.exactly(1))
 																					 .when(hasBlockStateProperties(b)
@@ -114,14 +120,20 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 																								   .or(hasBlockStateProperties(b).setProperties(
 																										   properties().hasProperty(ArabicaStem.AGE, 3))))
 																					 .add(getStickDrops(b))));
-		add(FABlocks.TEA_SHRUB.get(), b -> LootTable.lootTable().withPool(LootPool.lootPool()
-																					 .setRolls(ConstantValue.exactly(1))
-																					 .when(hasBlockStateProperties(b)
-																								   .setProperties(properties().hasProperty(TeaShrub.AGE, 0))
-																								   .or(hasBlockStateProperties(b).setProperties(
-																										   properties().hasProperty(TeaShrub.AGE, 1)))
-																								   .invert())
-																					 .add(getStickDrops(b))));
+		add(FABlocks.WILD_TEA_SHRUB.get(), b -> createSilkTouchOrShearsDispatchTable(b,
+				LootItem.lootTableItem(FAItems.TEA_SEEDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))));
+		add(FABlocks.TEA_SHRUB.get(), b -> LootTable.lootTable()
+													.withPool(LootPool.lootPool()
+																	  .setRolls(ConstantValue.exactly(1))
+																	  .when(hasBlockStateProperties(b)
+																					.setProperties(properties().hasProperty(TeaShrub.AGE, 0))
+																					.or(hasBlockStateProperties(b).setProperties(properties().hasProperty(TeaShrub.AGE, 1)))
+																					.or(hasBlockStateProperties(b).setProperties(properties().hasProperty(TeaShrub.AGE, 2)))
+																					.invert())
+																	  .add(getStickDrops(b)))
+													.withPool(LootPool.lootPool()
+																	  .setRolls(ConstantValue.exactly(1))
+																	  .add(LootItem.lootTableItem(FAItems.TEA_SEEDS))));
 
 		dropSelf(FABlocks.GREEN_SAND.get());
 		add(FABlocks.CHARCOAL_PILE.get(), LootTable.lootTable().withPool(

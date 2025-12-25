@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.data;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.FATags;
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.resource.ArabicaLeaves;
 import boblovespi.factoryautomation.common.block.resource.Rock;
 import boblovespi.factoryautomation.common.block.types.OreQualities;
 import boblovespi.factoryautomation.common.worldgen.FAWorldgen;
@@ -20,6 +21,7 @@ import net.minecraft.util.valueproviders.ConstantFloat;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -29,10 +31,7 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.DeltaFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -59,6 +58,8 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LIMONITE_ORE_CF = configured("swamp_limonite_ore");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_EVAPORITE_PATCH_CF = configured("cave_evaporite_patch");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> WILD_GREEN_ONION_FLOWER_CF = configured("wild_green_onion_flower");
+	private static final ResourceKey<ConfiguredFeature<?, ?>> WILD_ARABICA_CF = configured("wild_arabica");
+	private static final ResourceKey<ConfiguredFeature<?, ?>> WILD_TEA_SHRUB_CF = configured("wild_tea_shrub");
 	private static final ResourceKey<ConfiguredFeature<?, ?>> MINT_PATCH_CF = configured("mint_patch");
 
 	private static final ResourceKey<PlacedFeature> NORMAL_ROCK_PATCH_PF = placed("normal_rock_patch");
@@ -70,6 +71,8 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	private static final ResourceKey<PlacedFeature> SWAMP_LIMONITE_ORE_PF = placed("swamp_limonite_ore");
 	private static final ResourceKey<PlacedFeature> CAVE_EVAPORITE_PATCH_PF = placed("cave_evaporite_patch");
 	private static final ResourceKey<PlacedFeature> WILD_GREEN_ONION_FLOWER_PF = placed("wild_green_onion_flower");
+	private static final ResourceKey<PlacedFeature> WILD_ARABICA_PF = placed("wild_arabica");
+	private static final ResourceKey<PlacedFeature> WILD_TEA_SHRUB_PF = placed("wild_tea_shrub");
 	private static final ResourceKey<PlacedFeature> MINT_PATCH_PF = placed("mint_patch");
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> configured(String name)
@@ -103,6 +106,9 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(SWAMP_LIMONITE_ORE_CF, swampOre());
 			b.register(CAVE_EVAPORITE_PATCH_CF, caveEvaporite());
 			b.register(WILD_GREEN_ONION_FLOWER_CF, flower(32, b(FABlocks.WILD_GREEN_ONION)));
+			b.register(WILD_ARABICA_CF,
+					leafBush(16, BlockStateProvider.simple(FABlocks.ARABICA_LEAVES.get().defaultBlockState().setValue(ArabicaLeaves.AGE, 2))));
+			b.register(WILD_TEA_SHRUB_CF, flower(24, b(FABlocks.WILD_TEA_SHRUB)));
 			b.register(MINT_PATCH_CF, flower(64, randomHorizontalFacing(FABlocks.MINT_BUSH)));
 		});
 		rsb.add(Registries.PLACED_FEATURE, b -> {
@@ -116,6 +122,8 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(SWAMP_LIMONITE_ORE_PF, placedSeafloor(configured, SWAMP_LIMONITE_ORE_CF, 17));
 			b.register(CAVE_EVAPORITE_PATCH_PF, placedCaveEvaporite(configured, CAVE_EVAPORITE_PATCH_CF));
 			b.register(WILD_GREEN_ONION_FLOWER_PF, placedFlower(configured, WILD_GREEN_ONION_FLOWER_CF, 32, 15, 4));
+			b.register(WILD_ARABICA_PF, placedFlower(configured, WILD_ARABICA_CF, 16, 14, 5));
+			b.register(WILD_TEA_SHRUB_PF, placedFlower(configured, WILD_TEA_SHRUB_CF, 40, 14, 5));
 			b.register(MINT_PATCH_PF, placedFlower(configured, MINT_PATCH_CF, 40, 6, 20));
 		});
 		rsb.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, b -> {
@@ -132,6 +140,9 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 			b.register(biome("is_surface_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_SURFACE_OVERWORLD, NORMAL_FLINT_PATCH_PF));
 			b.register(biome("is_temperate_grassy_overworld"), vegetalModifier(biomes, features, FATags.Biomes.IS_TEMPERATE_GRASSY_OVERWORLD, WILD_GREEN_ONION_FLOWER_PF));
 			b.register(biome("is_forest_overworld"), vegetalModifier(biomes, features, BiomeTags.IS_FOREST, MINT_PATCH_PF));
+
+			b.register(biome("is_bamboo_forest"), biomeModifier(biomes, features, Biomes.BAMBOO_JUNGLE, GenerationStep.Decoration.VEGETAL_DECORATION, WILD_TEA_SHRUB_PF));
+			b.register(biome("is_savanna_plateau"), biomeModifier(biomes, features, Biomes.SAVANNA_PLATEAU, GenerationStep.Decoration.VEGETAL_DECORATION, WILD_ARABICA_PF));
 		});
 		return rsb;
 	}
@@ -153,6 +164,13 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 																		 GenerationStep.Decoration step, ResourceKey<PlacedFeature>... feature)
 	{
 		return new BiomeModifiers.AddFeaturesBiomeModifier(biomes.getOrThrow(biome), features(features, feature), step);
+	}
+
+	@SafeVarargs
+	private static BiomeModifiers.AddFeaturesBiomeModifier biomeModifier(HolderGetter<Biome> biomes, HolderGetter<PlacedFeature> features, ResourceKey<Biome> biome,
+																		 GenerationStep.Decoration step, ResourceKey<PlacedFeature>... feature)
+	{
+		return new BiomeModifiers.AddFeaturesBiomeModifier(HolderSet.direct(biomes.getOrThrow(biome)), features(features, feature), step);
 	}
 
 	private static BlockStateProvider b(Supplier<? extends Block> block)
@@ -198,6 +216,20 @@ public class FAWorldgenProvider extends DatapackBuiltinEntriesProvider
 	{
 		return new ConfiguredFeature<>(Feature.FLOWER,
 				new RandomPatchConfiguration(tries, 7, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(placer))));
+	}
+
+	private static ConfiguredFeature<RandomPatchConfiguration, Feature<RandomPatchConfiguration>> leafBush(int tries, BlockStateProvider placer)
+	{
+		return new ConfiguredFeature<>(Feature.FLOWER,
+				new RandomPatchConfiguration(tries, 3, 5, PlacementUtils.filtered(Feature.BLOCK_COLUMN,
+						new BlockColumnConfiguration(
+								List.of(BlockColumnConfiguration.layer(UniformInt.of(1, 3), placer)),
+								Direction.UP,
+								BlockPredicate.ONLY_IN_AIR_PREDICATE,
+								false
+						),
+						BlockPredicate.allOf(BlockPredicate.matchesTag(Direction.DOWN.getNormal(), BlockTags.DIRT),
+								BlockPredicate.ONLY_IN_AIR_PREDICATE))));
 	}
 
 	private static ConfiguredFeature<DeltaFeatureConfiguration, Feature<DeltaFeatureConfiguration>> caveEvaporite()

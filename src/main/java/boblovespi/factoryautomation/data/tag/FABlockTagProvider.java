@@ -115,8 +115,8 @@ public class FABlockTagProvider extends BlockTagsProvider
 										.add(FABlocks.HAND_CRANK.get(), FABlocks.SMALL_WATERWHEEL.get())
 										.add(FABlocks.WOOD_POWER_SHAFT.get(), FABlocks.WOOD_GEARBOX.get(), FABlocks.WOOD_SPLITTER.get(), FABlocks.WOOD_JOINER.get())
 										.add(FABlocks.WOOD_BEVEL_GEAR.get(), FABlocks.WOODEN_TANK.get(), FABlocks.BAMBOO_BASKET.get());
-		tag(BlockTags.MINEABLE_WITH_HOE).add(FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get());
-		tag(BlockTags.SWORD_EFFICIENT).add(FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get());
+		tag(BlockTags.MINEABLE_WITH_HOE).add(FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get(), FABlocks.WILD_TEA_SHRUB.get());
+		tag(BlockTags.SWORD_EFFICIENT).add(FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get(), FABlocks.WILD_TEA_SHRUB.get());
 
 		tag(BlockTags.BASE_STONE_OVERWORLD).add(FABlocks.CHERT.get());
 		tag(Tags.Blocks.STONES).add(FABlocks.CHERT.get());
