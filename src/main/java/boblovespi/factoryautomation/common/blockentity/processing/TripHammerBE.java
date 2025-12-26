@@ -12,10 +12,7 @@ import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.TripHammerRecipe;
 import boblovespi.factoryautomation.common.sound.FASounds;
-import boblovespi.factoryautomation.common.util.ItemHelper;
-import boblovespi.factoryautomation.common.util.MathHelper;
-import boblovespi.factoryautomation.common.util.MechanicalManager;
-import boblovespi.factoryautomation.common.util.RecipeManager;
+import boblovespi.factoryautomation.common.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -51,6 +48,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	private float rot;
 	private boolean breaking;
 	private static final float offset = 32;
+	private int easterEgg;
 
 	public TripHammerBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -71,6 +69,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 				recipeManager.updateRecipe();
 			}
 		};
+		easterEgg = (int) (Math.random() * 1000);
 	}
 
 	private Optional<RecipeHolder<?>> getRecipe(ResourceLocation location)
@@ -215,7 +214,8 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 		controllers.add(new AnimationController<>(this, this::handleAnim));
 	}
 
-	private PlayState handleAnim(AnimationState<TripHammerBE> s) {
+	private PlayState handleAnim(AnimationState<TripHammerBE> s)
+	{
 		return s.setAndContinue(ACTIVE_STATE);
 	}
 
@@ -249,27 +249,29 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	{
 		if (!level.isClientSide)
 			return 0;
-		
+
 		var inputDeg = (-getRenderInputRot(delta) + 350) % 360;
 
-		var pastRot = calcPhasedRotation(inputDeg-1);
-		var futureRot = calcPhasedRotation(inputDeg+1);
+		var pastRot = calcPhasedRotation(inputDeg - 1);
+		var futureRot = calcPhasedRotation(inputDeg + 1);
 		var presentRot = MathHelper.smoothInterpolate(pastRot, futureRot, 0.5);
 
-		return ((float) presentRot*17.5f);
+		return ((float) presentRot * 17.5f);
 	}
 
-	public double calcPhasedRotation(double input) {
+	public double calcPhasedRotation(double input)
+	{
 		var inputRad = Math.toRadians(input);
-		var linPhaseH = Math.asin(Math.abs(Math.sin(inputRad*2)));
-		var powPhaseH = Math.asin(Math.abs(Math.pow(Math.sin(inputRad*2),30)));
+		var linPhaseH = Math.asin(Math.abs(Math.sin(inputRad * 2)));
+		var powPhaseH = Math.asin(Math.abs(Math.pow(Math.sin(inputRad * 2), 30)));
 
 		var lPhase = MathHelper.map(linPhaseH, 0.0d, 1.6d, 0, 1.00d);
 		var pPhase = MathHelper.map(powPhaseH, 0.0d, 1.6d, 0, 1.00d);
 
 		var ret = lPhase;
 
-		if (input > 45 && input < 90 || input > 135 && input < 180 || input > 225 && input < 270 || input > 315) {
+		if (input > 45 && input < 90 || input > 135 && input < 180 || input > 225 && input < 270 || input > 315)
+		{
 			ret = MathHelper.easeInOutBack(pPhase);
 		}
 
@@ -277,11 +279,18 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	}
 
 	@Override
-	public void clientTick() {
+	public void clientTick()
+	{
 		var oldRot = rot;
 		rot += (float) (Math.toDegrees(mechanicalManager.getSpeed()) / 20);
 		if (MathHelper.crossesThreshold(oldRot + offset, rot + offset, 90))
-			level.playLocalSound(worldPosition, FASounds.USE_TRIP_HAMMER.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.8f, 1), false);
+		{
+			var pitch = (EasterEggHelper.isChristmas() && easterEgg < EasterEggHelper.getChristmasLength()) ? EasterEggHelper.getChristmasPitch(easterEgg)
+								: Mth.nextFloat(level.random, 0.8f, 1);
+			easterEgg++;
+			easterEgg %= 1000;
+			level.playLocalSound(worldPosition, FASounds.USE_TRIP_HAMMER.get(), SoundSource.BLOCKS, 1, pitch, false);
+		}
 		rot %= 360;
 	}
 }
