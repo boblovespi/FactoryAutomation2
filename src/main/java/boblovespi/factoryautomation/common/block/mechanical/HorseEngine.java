@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.common.block.mechanical;
 
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.mechanical.HorseEngineBE;
 import net.minecraft.core.BlockPos;
@@ -12,11 +13,13 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -28,11 +31,21 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class HorseEngine extends Block implements EntityBlock
 {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+	private static final VoxelShape BOTTOM_SHAPE = Shapes.or(
+			Block.box(0, 0, 0, 16, 13, 16),
+			Block.box(2, 13, 2, 14, 16, 14));
+	private static final VoxelShape TOP_SHAPE = Shapes.or(
+			Block.box(2, 0, 2, 14, 10, 14),
+			Block.box(0, 10, 0, 16, 16, 16));
+
 
 	public HorseEngine(Properties properties)
 	{
@@ -46,14 +59,26 @@ public class HorseEngine extends Block implements EntityBlock
 		builder.add(HALF);
 	}
 
+	@Override
+	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
+	{
+		return state.getValue(HALF) == DoubleBlockHalf.UPPER ? TOP_SHAPE : BOTTOM_SHAPE;
+	}
+
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> beType)
 	{
 		if (level.isClientSide)
-			return null;
+			return IClientTickable.makeTicker(FABETypes.HORSE_ENGINE_TYPE.get(), beType);
 		else
 			return ITickable.makeTicker(FABETypes.HORSE_ENGINE_TYPE.get(), beType);
+	}
+
+	@Override
+	protected RenderShape getRenderShape(BlockState pState)
+	{
+		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 
 	@Nullable

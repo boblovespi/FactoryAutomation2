@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.client.gui.*;
 import boblovespi.factoryautomation.client.model.PartialDynamicTextureGeometryLoader;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.mechanical.HorseEngineBE;
 import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TripHammerBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
@@ -40,6 +41,7 @@ public class ClientHandler
 		FactoryAutomation.LOGGER.info("Minecraft username is {}", Minecraft.getInstance().getUser().getName());
 		// MathParser.registerVariable(new Variable("query.rot", 0));
 		MolangQueries.<MillstoneBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
+		MolangQueries.<HorseEngineBE>setActorVariable("query.horse_engine_rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 		MolangQueries.<TumblingBarrelBE>setActorVariable("query.barrel_rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 		MolangQueries.<TripHammerBE>setActorVariable("query.hammer_input", b -> b.animatable().getRenderInputRot(b.animationState().getPartialTick()));
 		MolangQueries.<TripHammerBE>setActorVariable("query.hammer_tool", b -> b.animatable().getRenderToolRot(b.animationState().getPartialTick()));
@@ -71,6 +73,7 @@ public class ClientHandler
 		event.registerBlockEntityRenderer(FABETypes.PIPE_TYPE.get(), PipeDebugBER::new);
 		event.registerBlockEntityRenderer(FABETypes.FRYING_PAN_TYPE.get(), FryingPanBER::new);
 		event.registerBlockEntityRenderer(FABETypes.BAMBOO_BASKET_TYPE.get(), BambooBasketBER::new);
+		event.registerBlockEntityRenderer(FABETypes.HORSE_ENGINE_TYPE.get(), HorseEngineBER::new);
 	}
 
 	@SubscribeEvent

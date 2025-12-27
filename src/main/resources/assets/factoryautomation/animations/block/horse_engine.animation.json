@@ -1,0 +1,17 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"state.horse_engine.active": {
+			"loop": true,
+			"animation_length": 0.04,
+			"bones": {
+				"rotating_part": {
+					"rotation": {
+						"vector": [0, "query.horse_engine_rot", 0]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

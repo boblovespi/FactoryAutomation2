@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.api.IMechanicalOutput;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
 import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
 import net.minecraft.core.BlockPos;
@@ -17,14 +18,22 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.UUID;
 
-public class HorseEngineBE extends FABE implements ITickable
+public class HorseEngineBE extends FABE implements ITickable, IClientTickable, GeoBlockEntity
 {
+	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("state.horse_engine.active");
 	private static final float blocksPerTick = 43 / 20f;
 	private static final float radiusCircle = 4;
 	private static final float radiansPerTick = blocksPerTick / radiusCircle;
+	private final AnimatableInstanceCache cache;
 	private final MechanicalManager mech;
 	private boolean hasHorse = false;
 	@Nullable
@@ -33,10 +42,12 @@ public class HorseEngineBE extends FABE implements ITickable
 	private Mob horse;
 	private int moveTimer = 0;
 	private float angle = 0;
+	private float horseSpeed;
 
 	public HorseEngineBE(BlockPos pos, BlockState state)
 	{
 		super(FABETypes.HORSE_ENGINE_TYPE.get(), pos, state);
+		cache = GeckoLibUtil.createInstanceCache(this);
 		mech = new MechanicalManager("mech", () -> {});
 	}
 
@@ -47,6 +58,7 @@ public class HorseEngineBE extends FABE implements ITickable
 		if (hasHorse)
 			tag.putUUID("horseId", horseId);
 		tag.putBoolean("hasHorse", hasHorse);
+		tag.putFloat("horseSpeed", horseSpeed);
 		tag.putFloat("moveTimer", moveTimer);
 		tag.putFloat("angle", angle);
 	}
@@ -56,6 +68,7 @@ public class HorseEngineBE extends FABE implements ITickable
 	{
 		mech.load(tag);
 		hasHorse = tag.getBoolean("hasHorse");
+		horseSpeed = tag.getFloat("horseSpeed");
 		if (hasHorse)
 			horseId = tag.getUUID("horseId");
 		moveTimer = tag.getInt("moveTimer");
@@ -65,13 +78,15 @@ public class HorseEngineBE extends FABE implements ITickable
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		tag.putFloat("horseSpeed", horseSpeed);
+		tag.putFloat("angle", angle);
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-
+		horseSpeed = tag.getFloat("horseSpeed");
+		angle = tag.getFloat("angle");
 	}
 
 	@Override
@@ -92,6 +107,7 @@ public class HorseEngineBE extends FABE implements ITickable
 			if (horseId == null)
 			{
 				hasHorse = false;
+				horseSpeed = 0;
 				mech.update(MechanicalManager.ZERO);
 				updateInputs();
 				return;
@@ -101,19 +117,46 @@ public class HorseEngineBE extends FABE implements ITickable
 			{
 				horseId = null;
 				hasHorse = false;
+				horseSpeed = 0;
 				mech.update(MechanicalManager.ZERO);
 				updateInputs();
 				return;
 			}
 		}
 		float x, y, z;
-		angle -= (float) (radiansPerTick * horse.getAttributeValue(Attributes.MOVEMENT_SPEED));
+		angle -= radiansPerTick * horseSpeed;
 		angle = angle % (2 * Mth.PI);
 		x = worldPosition.getX() + 0.5f + radiusCircle * Mth.cos(angle);
 		y = worldPosition.getY();
 		z = worldPosition.getZ() + 0.5f + radiusCircle * Mth.sin(angle);
 		horse.getMoveControl().setWantedPosition(x, y, z, 2);
 		horse.getNavigation().stop();
+	}
+
+	@Override
+	public void clientTick()
+	{
+		angle -= radiansPerTick * horseSpeed;
+		angle = angle % (2 * Mth.PI);
+	}
+
+	public float getRenderRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return (float) Math.toDegrees(angle - radiansPerTick * horseSpeed * delta);
+	}
+
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers)
+	{
+		controllers.add(new AnimationController<>(this, s -> s.setAndContinue(ACTIVE_STATE)));
+	}
+
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache()
+	{
+		return cache;
 	}
 
 	public void updateInputs()
@@ -132,7 +175,8 @@ public class HorseEngineBE extends FABE implements ITickable
 		hasHorse = true;
 		this.horse = horse;
 		horseId = horse.getUUID();
-		var output = new Output((float) (horse.getAttributeValue(Attributes.JUMP_STRENGTH) * 40), (float) (horse.getAttributeValue(Attributes.MOVEMENT_SPEED) * radiansPerTick * 20f));
+		horseSpeed = (float) horse.getAttributeValue(Attributes.MOVEMENT_SPEED);
+		var output = new Output((float) (horse.getAttributeValue(Attributes.JUMP_STRENGTH) * 40), horseSpeed * radiansPerTick * 20f);
 		mech.update(output);
 		updateInputs();
 		setChangedAndUpdateClient();
@@ -146,6 +190,7 @@ public class HorseEngineBE extends FABE implements ITickable
 		hasHorse = false;
 		horse = null;
 		horseId = null;
+		horseSpeed = 0;
 		mech.update(MechanicalManager.ZERO);
 		updateInputs();
 		setChangedAndUpdateClient();
