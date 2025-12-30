@@ -1,5 +1,6 @@
 package boblovespi.factoryautomation.common.util.jei;
 
+import boblovespi.factoryautomation.FactoryAutomation;
 import mezz.jei.api.gui.handlers.IGuiClickableArea;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.helpers.IJeiHelpers;
@@ -57,7 +58,7 @@ public class SimpleContainerHandler<T extends AbstractContainerScreen<?>> implem
 		private Optional<IClickableIngredient<U>> makeIngredient(IIngredientManager ingredientHelper, T t)
 		{
 			var t2 = factory.apply(t);
-			System.out.println("ing: " + t2 + ", type: " + t2.getClass().getName());
+			FactoryAutomation.LOGGER.debug("making ingredient; ing: {}, type: {}", t2, t2.getClass().getName());
 			return ingredientHelper.createTypedIngredient(t2).map(ing -> new ClickableIngredientImpl<>(ing, new Rect2i(x, y, width, height)));
 		}
 	}

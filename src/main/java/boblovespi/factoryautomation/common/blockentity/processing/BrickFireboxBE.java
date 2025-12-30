@@ -104,7 +104,7 @@ public class BrickFireboxBE extends FABE implements ITickable
 		if (stack.getItemHolder().getData(FuelInfo.FUEL_DATA) == null)
 		{
 			inv.setStackInSlot(0, ItemStack.EMPTY);
-			FactoryAutomation.LOGGER.error("Stack has no fuel data!");
+			FactoryAutomation.LOGGER.error("Stack <{}> has no fuel data!", stack);
 		}
 		return Objects.requireNonNullElse(stack.getItemHolder().getData(FuelInfo.FUEL_DATA), new FuelInfo(0, 0, 0));
 	}

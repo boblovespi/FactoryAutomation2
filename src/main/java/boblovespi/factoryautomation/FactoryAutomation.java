@@ -92,6 +92,7 @@ public class FactoryAutomation
 	// FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
 	public FactoryAutomation(IEventBus modEventBus, ModContainer modContainer)
 	{
+		LOGGER.debug("Constructing FactoryAutomation class");
 		NeoForgeMod.enableMilkFluid();
 
 		// Register the commonSetup method for mod loading
@@ -163,8 +164,8 @@ public class FactoryAutomation
 		var tags = List.of(FATags.Items.IRON_MELTABLE, FATags.Items.GOLD_MELTABLE);
 		for (TagKey<Item> tag : tags)
 		{
-			LOGGER.info("Tag {}: ", tag.location());
-			BuiltInRegistries.ITEM.getOrCreateTag(tag).stream().forEach(t -> LOGGER.info("\t- {}", t.getRegisteredName()));
+			LOGGER.debug("Tag {}: ", tag.location());
+			BuiltInRegistries.ITEM.getOrCreateTag(tag).stream().forEach(t -> LOGGER.debug("\t- {}", t.getRegisteredName()));
 		}
 	}
 
