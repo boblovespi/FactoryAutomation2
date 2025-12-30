@@ -2,5 +2,6 @@
   "advanced-canvas",
   "emoji-shortcodes",
   "url-into-selection",
-  "obsidian-meta-bind-plugin"
+  "obsidian-meta-bind-plugin",
+  "obsidian-git"
 ]
