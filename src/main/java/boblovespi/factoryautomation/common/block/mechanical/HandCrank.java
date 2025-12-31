@@ -90,6 +90,7 @@ public class HandCrank extends Block implements EntityBlock
 		if (level.isClientSide)
 			return InteractionResult.SUCCESS;
 		level.getBlockEntity(pPos, FABETypes.HANDCRANK_TYPE.get()).ifPresent(HandCrankBE::setRunning);
+		pPlayer.causeFoodExhaustion(0.8f);
 		return InteractionResult.CONSUME;
 	}
 
