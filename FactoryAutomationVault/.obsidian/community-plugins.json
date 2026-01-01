@@ -3,5 +3,7 @@
   "emoji-shortcodes",
   "url-into-selection",
   "obsidian-meta-bind-plugin",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-functionplot",
+  "obsidian-desmos"
 ]

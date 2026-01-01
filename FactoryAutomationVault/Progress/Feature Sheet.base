@@ -1,0 +1,25 @@
+views:
+  - type: table
+    name: Table
+    filters:
+      and:
+        - file.inFolder("Progress/Features")
+    groupBy:
+      property: Age
+      direction: ASC
+    order:
+      - file.name
+      - Age
+      - BlockState
+      - Drops
+      - Localization
+      - Model
+      - Logic
+      - Recipe
+      - Sound
+      - Texture
+      - Worldgen
+      - tags
+    sort: []
+    columnSize:
+      note.Age: 92

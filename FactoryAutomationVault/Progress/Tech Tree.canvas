@@ -14,16 +14,6 @@
 			"height":1180
 		},
 		{
-			"id":"1f10b6ab855905b8",
-			"type":"text",
-			"text":"Clay",
-			"styleAttributes":{},
-			"x":7090,
-			"y":-910,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"41a94656de7754cb",
 			"type":"text",
 			"text":"# Limonite Firing\n![[Limonite-Charcoal Mix#Overview]]",
@@ -224,36 +214,6 @@
 			"height":590
 		},
 		{
-			"id":"d434a5f46185e4a9",
-			"type":"text",
-			"text":"# Iron Ingots",
-			"styleAttributes":{"textAlign":"center"},
-			"x":6980,
-			"y":-690,
-			"width":280,
-			"height":80
-		},
-		{
-			"id":"7382066e480955ab",
-			"type":"text",
-			"text":"# Brick Maker Frame\n![[Brick Maker Frame#Overview]]",
-			"styleAttributes":{},
-			"x":6980,
-			"y":-1400,
-			"width":370,
-			"height":250
-		},
-		{
-			"id":"0161fad165d92647",
-			"type":"text",
-			"text":"Iron Ore melting",
-			"styleAttributes":{},
-			"x":8020,
-			"y":-680,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"551b847de9b7e49b",
 			"type":"text",
 			"text":"# Chopping Block\n![[Chopping Block#Overview]]",
@@ -336,16 +296,6 @@
 			"height":240
 		},
 		{
-			"id":"f7d414bd97efbf33",
-			"type":"text",
-			"text":"Bricks",
-			"styleAttributes":{},
-			"x":7514,
-			"y":-1040,
-			"width":277,
-			"height":60
-		},
-		{
 			"id":"50789ecadd244938",
 			"type":"text",
 			"text":"# Tumbling Barrel\n![[Tumbling Barrel#Overview]]",
@@ -374,6 +324,66 @@
 			"y":-160,
 			"width":560,
 			"height":240
+		},
+		{
+			"id":"d434a5f46185e4a9",
+			"type":"text",
+			"text":"# Iron Ingots",
+			"styleAttributes":{"textAlign":"center"},
+			"x":6980,
+			"y":-690,
+			"width":280,
+			"height":80
+		},
+		{
+			"id":"0161fad165d92647",
+			"type":"text",
+			"text":"Iron Ore melting",
+			"styleAttributes":{},
+			"x":8020,
+			"y":-680,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"1f10b6ab855905b8",
+			"type":"text",
+			"text":"Clay",
+			"styleAttributes":{},
+			"x":7090,
+			"y":-910,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"f7d414bd97efbf33",
+			"type":"text",
+			"text":"Bricks",
+			"styleAttributes":{},
+			"x":7514,
+			"y":-1040,
+			"width":277,
+			"height":60
+		},
+		{
+			"id":"7382066e480955ab",
+			"type":"text",
+			"text":"# Brick Maker Frame\n![[Brick Maker Frame#Overview]]",
+			"styleAttributes":{},
+			"x":6980,
+			"y":-1400,
+			"width":370,
+			"height":250
+		},
+		{
+			"id":"bebd85c77e5925c0",
+			"type":"text",
+			"text":"# Brick Casting Vessel\n![[Brick Casting Vessel#Overview]]",
+			"styleAttributes":{},
+			"x":7960,
+			"y":-1400,
+			"width":560,
+			"height":316
 		}
 	],
 	"edges":[
@@ -765,6 +775,15 @@
 			"fromSide":"bottom",
 			"toNode":"bf6baca97e676920",
 			"toSide":"top"
+		},
+		{
+			"id":"b4290373bc5ae8be",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"f7d414bd97efbf33",
+			"fromSide":"right",
+			"toNode":"bebd85c77e5925c0",
+			"toSide":"left"
 		}
 	],
 	"metadata":{
