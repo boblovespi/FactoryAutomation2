@@ -50,18 +50,27 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	public void updateInputs()
 	{
 		setChangedAndUpdateClient();
-		if (manager.getSpeed() > maxSpeed || manager.getTorque() > maxTorque)
+		if (getRealManager().getSpeed() > maxSpeed || getRealManager().getTorque() > maxTorque)
 			level.destroyBlock(worldPosition, true);
 		if (inputSide != null)
 		{
 			var be = level.getBlockEntity(worldPosition.relative(inputSide.getOpposite()));
 			if (be instanceof IPowerChainElement pce)
-				pce.setSource(source == null ? this : source, inputSide);
+			{
+				// we are the source, so we control our manager. we need to check if the input was (0, 0) which would correspond to a broken output
+				if (source == null && manager.getTorque() == 0 && manager.getSpeed() == 0)
+				{
+					pce.notifyBroken(inputSide);
+					inputSide = null;
+				}
+				else
+					pce.setSource(source == null ? this : source, inputSide);
+			}
 			else
 			{
 				var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(inputSide.getOpposite()), null, be, inputSide);
 				if (cap != null)
-					cap.update(source == null ? manager : source.getManager());
+					cap.update(getRealManager());
 			}
 		}
 	}
@@ -157,8 +166,8 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	@Nullable
 	public IMechanicalOutput output(@Nullable Direction dir)
 	{
-		if (dir.getOpposite() == inputSide)
-			return source == null ? manager : source.getManager();
+		if (dir != null && dir.getOpposite() == inputSide)
+			return getRealManager();
 		return null;
 	}
 
@@ -178,6 +187,7 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 		rot %= 360;
 	}
 
+	@Nullable
 	@Override
 	public IPowerChainElement setSource(IPowerChainElement source, Direction dir)
 	{
@@ -224,6 +234,11 @@ public class PowerShaftBE extends FABE implements IClientTickable, IPowerChainEl
 	public MechanicalManager getManager()
 	{
 		return manager;
+	}
+
+	private MechanicalManager getRealManager()
+	{
+		return source == null ? manager : source.getManager();
 	}
 
 	@Override

@@ -50,19 +50,28 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 	public void updateInputs()
 	{
 		setChangedAndUpdateClient();
-		if (manager.getSpeed() > maxSpeed || manager.getTorque() > maxTorque)
+		if (getRealManager().getSpeed() > maxSpeed || getRealManager().getTorque() > maxTorque)
 			level.destroyBlock(worldPosition, true);
 		if (inputSide != null)
 		{
 			var outputSide = getOutputSide();
 			var be = level.getBlockEntity(worldPosition.relative(outputSide));
 			if (be instanceof IPowerChainElement pce)
-				pce.setSource(source == null ? this : source, outputSide.getOpposite());
+			{
+				// we are the source, so we control our manager. we need to check if the input was (0, 0) which would correspond to a broken output
+				if (source == null && manager.getTorque() == 0 && manager.getSpeed() == 0)
+				{
+					pce.notifyBroken(outputSide.getOpposite());
+					inputSide = null;
+				}
+				else
+					pce.setSource(source == null ? this : source, outputSide.getOpposite());
+			}
 			else
 			{
 				var cap = level.getCapability(MechanicalCapability.INPUT, worldPosition.relative(outputSide), null, be, outputSide.getOpposite());
 				if (cap != null)
-					cap.update(source == null ? manager : source.getManager());
+					cap.update(getRealManager());
 			}
 		}
 	}
@@ -144,11 +153,9 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 	@Nullable
 	public IMechanicalInput input(@Nullable Direction dir)
 	{
-		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
-		var front = orientation.front();
-		var top = front.getAxis() == Direction.Axis.Y ? orientation.top() : front.getCounterClockWise();
+		var orientation = getOrientation();
 		if (dir == inputSide ||
-			((top == dir || front == dir) && inputSide == null))
+			((orientation.top() == dir || orientation.front() == dir) && inputSide == null))
 		{
 			if (inputSide == null)
 			{
@@ -164,7 +171,7 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 	public IMechanicalOutput output(@Nullable Direction dir)
 	{
 		if (inputSide != null && dir == getOutputSide())
-			return source == null ? manager : source.getManager();
+			return getRealManager();
 		return null;
 	}
 
@@ -184,11 +191,12 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 		rot %= 360;
 	}
 
+	@Nullable
 	@Override
 	public IPowerChainElement setSource(IPowerChainElement source, Direction dir)
 	{
-		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
-		if (orientation.top() != dir && orientation.front() != dir)
+		var orientation = getOrientation();
+		if (orientation.top != dir && orientation.front != dir)
 			return null;
 		this.source = source;
 		inputSide = dir;
@@ -241,21 +249,26 @@ public class BevelGearBE extends FABE implements IClientTickable, IPowerChainEle
 		return worldPosition;
 	}
 
+	private MechanicalManager getRealManager()
+	{
+		return source == null ? manager : source.getManager();
+	}
+
 	private Direction getOutputSide()
 	{
 		assert inputSide != null : "Called getOutputSide without checking if inputSide is null";
-		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
-		if (inputSide.getAxis() == Direction.Axis.Y)
-		{
-			return orientation.top();
-		}
-		else
-		{
-			if (inputSide == orientation.front())
-				return inputSide.getCounterClockWise();
-			else
-				return orientation.front();
-		}
+		var orientation = getOrientation();
+		return inputSide == orientation.front ? orientation.top : orientation.front;
 	}
+
+	private Orientation getOrientation()
+	{
+		var orientation = getBlockState().getValue(BevelGear.ORIENTATION);
+		var front = orientation.front();
+		var top = front.getAxis() == Direction.Axis.Y ? orientation.top() : front.getCounterClockWise();
+		return new Orientation(front, top);
+	}
+
+	private record Orientation(Direction front, Direction top) {}
 }
 

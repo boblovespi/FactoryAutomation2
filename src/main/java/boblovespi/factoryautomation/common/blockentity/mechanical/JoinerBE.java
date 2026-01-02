@@ -151,14 +151,19 @@ public class JoinerBE extends FABE implements IClientTickable
 				leftTorque = iTorque;
 				if (rightTorque == 0)
 					speed = 0;
+				onUpdate.update();
 			}
 			else if (rightTorque == 0)
 			{
 				leftTorque = iTorque;
 				speed = iSpeed;
+				onUpdate.update();
 			}
 			else if (iSpeed * 0.99 <= speed && speed * 0.99 <= iSpeed)
+			{
 				leftTorque = iTorque;
+				onUpdate.update();
+			}
 			else
 				destroyer.run();
 		}
@@ -172,14 +177,19 @@ public class JoinerBE extends FABE implements IClientTickable
 				rightTorque = iTorque;
 				if (leftTorque == 0)
 					speed = 0;
+				onUpdate.update();
 			}
 			else if (leftTorque == 0)
 			{
 				rightTorque = iTorque;
 				speed = iSpeed;
+				onUpdate.update();
 			}
 			else if (iSpeed * 0.99 <= speed && speed * 0.99 <= iSpeed)
+			{
 				rightTorque = iTorque;
+				onUpdate.update();
+			}
 			else
 				destroyer.run();
 		}
