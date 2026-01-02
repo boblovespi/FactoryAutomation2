@@ -161,6 +161,7 @@ public class CreativeTabs
 					{
 						o.accept(FAItems.WOODEN_TANK);
 						o.accept(FAItems.COPPER_PIPE);
+						o.accept(FAItems.SCREW_PUMP);
 					}).build());
 
 

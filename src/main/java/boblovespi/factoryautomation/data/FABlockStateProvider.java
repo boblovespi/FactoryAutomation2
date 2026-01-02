@@ -157,6 +157,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		horizontalBlock(FABlocks.STEAM_OVEN.get(),
 				litBlock((s, r) -> models().orientable(s, modLoc("block/bronze_plate_block"), r, modLoc("block/steam_oven_top")),
 						FABlocks.STEAM_OVEN.getRegisteredName(), modLoc("block/steam_oven_front"), modLoc("block/steam_oven_front_lit")));
+		existingHorizontalBlockWithItem(FABlocks.SCREW_PUMP);
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)

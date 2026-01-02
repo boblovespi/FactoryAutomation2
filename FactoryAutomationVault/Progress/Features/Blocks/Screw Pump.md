@@ -2,16 +2,18 @@
 tags:
   - needsAnimation
   - needsPonder
-Logic: No
+  - checkIfNeedsSounds
+  - ArtRework
+Logic: Done
 Texture: No
 Model: No
 Worldgen: N/A
-Drops: No
-Recipe: No
+Drops: Done
+Recipe: Done
 Sound: No
-Localization: No
-BlockState: No
-TagsS: No
+Localization: Done
+BlockState: Done
+TagsS: Done
 Age: Iron
 ---
 # Overview

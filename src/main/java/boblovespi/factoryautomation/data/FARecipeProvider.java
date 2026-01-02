@@ -590,6 +590,21 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.SCREW_PUMP)
+							  .pattern("psp")
+							  .pattern("lgl")
+							  .pattern("p p")
+							  .define('p', FATags.Items.IRON_SHEET)
+							  .define('s', FATags.Items.IRON_ROD)
+							  .define('g', FATags.Items.IRON_GEAR)
+							  .define('l', Tags.Items.GLASS_BLOCKS_COLORLESS)
+							  .tool("hammer", 2, 5)
+							  .tool("wrench", 1, 5)
+							  .part("bushing", 1, 1)
+							  .part("screw", 1, 2)
+							  .unlockedBy("has_iron_gear", has(FATags.Items.IRON_GEAR))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.TUMBLING_BARREL)
 							  .pattern("i i")
 							  .pattern("rbr")

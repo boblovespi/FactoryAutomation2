@@ -236,6 +236,7 @@ public class FAItems
 
 	public static final DeferredItem<BlockItem> WOODEN_TANK = ITEMS.registerSimpleBlockItem(FABlocks.WOODEN_TANK);
 	public static final DeferredItem<BlockItem> COPPER_PIPE = ITEMS.registerSimpleBlockItem(FABlocks.COPPER_PIPE);
+	public static final DeferredItem<BlockItem> SCREW_PUMP = ITEMS.registerSimpleBlockItem(FABlocks.SCREW_PUMP);
 
 	// Misc
 

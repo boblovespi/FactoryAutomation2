@@ -3,6 +3,7 @@ package boblovespi.factoryautomation.common.blockentity;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.blockentity.logistics.PipeBE;
+import boblovespi.factoryautomation.common.blockentity.logistics.ScrewPumpBE;
 import boblovespi.factoryautomation.common.blockentity.logistics.SmallTankBE;
 import boblovespi.factoryautomation.common.blockentity.mechanical.*;
 import boblovespi.factoryautomation.common.blockentity.processing.*;
@@ -47,6 +48,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<TumblingBarrelBE>> TUMBLING_BARREL_TYPE = type("tumbling_barrel", TumblingBarrelBE::new, FABlocks.TUMBLING_BARREL);
 	public static final Supplier<BlockEntityType<SmallTankBE>> SMALL_TANK_TYPE = type("small_tank", SmallTankBE::new, FABlocks.WOODEN_TANK);
 	public static final Supplier<BlockEntityType<PipeBE>> PIPE_TYPE = type("pipe", PipeBE::new, FABlocks.COPPER_PIPE);
+	public static final Supplier<BlockEntityType<ScrewPumpBE>> SCREW_PUMP_TYPE = type("screw_pump", ScrewPumpBE::new, FABlocks.SCREW_PUMP);
 	public static final Supplier<BlockEntityType<FryingPanBE>> FRYING_PAN_TYPE = type("frying_pan", FryingPanBE::new, FABlocks.FRYING_PAN);
 	public static final Supplier<BlockEntityType<BambooBasketBE>> BAMBOO_BASKET_TYPE = type("bamboo_basket", BambooBasketBE::new, FABlocks.BAMBOO_BASKET);
 	public static final Supplier<BlockEntityType<BrickKilnBE>> BRICK_KILN_TYPE = type("brick_kiln", BrickKilnBE::new, FABlocks.BRICK_KILN);

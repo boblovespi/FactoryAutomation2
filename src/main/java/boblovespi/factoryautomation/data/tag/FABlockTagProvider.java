@@ -71,7 +71,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.IRON_POWER_SHAFT.get(), FABlocks.IRON_GEARBOX.get(), FABlocks.IRON_SPLITTER.get(), FABlocks.IRON_JOINER.get())
 											.add(FABlocks.IRON_BEVEL_GEAR.get())
 											.add(FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get(), FABlocks.BRICK_CASTING_VESSEL.get())
-											.add(FABlocks.COPPER_PIPE.get())
+											.add(FABlocks.COPPER_PIPE.get(), FABlocks.SCREW_PUMP.get())
 											.add(FABlocks.BRICK_KILN.get(), FABlocks.STEAM_OVEN.get())
 											.remove(BlockTags.NEEDS_IRON_TOOL);
 		tag(FATags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL).remove(FATags.Blocks.NEEDS_COPPER_TOOL);
@@ -107,7 +107,7 @@ public class FABlockTagProvider extends BlockTagsProvider
 											.add(FABlocks.IRON_BEVEL_GEAR.get())
 											.add(FABlocks.MILLSTONE.get(), FABlocks.BRICK_FIREBOX.get(), FABlocks.BRICK_CRUCIBLE.get(), FABlocks.TRIP_HAMMER.get())
 											.add(FABlocks.BRICK_CASTING_VESSEL.get())
-											.add(FABlocks.COPPER_PIPE.get())
+											.add(FABlocks.COPPER_PIPE.get(), FABlocks.SCREW_PUMP.get())
 											.add(FABlocks.BRICK_KILN.get(), FABlocks.STEAM_OVEN.get())
 											.add(FABlocks.DRIED_BRICKS.get(), FABlocks.BRICK_TILES.get())
 											.add(FABlocks.CHERT.get(), FABlocks.HALITE.get(), FABlocks.GYPSUM.get());
