@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
+import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.block.processing.StoneCrucible;
 import boblovespi.factoryautomation.common.block.processing.TripHammer;
 import boblovespi.factoryautomation.common.blockentity.FABE;
@@ -41,14 +42,17 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 {
 	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("animation.hammer.active");
 	private static final RawAnimation STANDBY_STATE = RawAnimation.begin().thenLoop("animation.hammer.standby");
+	private static final float offset = 32;
 	private final AnimatableInstanceCache cache;
 	private final RecipeManager<TripHammerRecipe> recipeManager;
 	private final MechanicalManager mechanicalManager;
 	private final ItemStackHandler inv;
-	private float rot;
 	private boolean breaking;
-	private static final float offset = 32;
+
+	// client-side only
+	private float rot;
 	private int easterEgg;
+	private boolean hasRecipe;
 
 	public TripHammerBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -91,13 +95,6 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	}
 
 	@Override
-	public void onLoad()
-	{
-		super.onLoad();
-		recipeManager.onLoad();
-	}
-
-	@Override
 	protected void save(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		recipeManager.save(tag);
@@ -118,6 +115,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	{
 		mechanicalManager.save(tag);
 		tag.put("inv", inv.serializeNBT(registries));
+		tag.putBoolean("hasRecipe", recipeManager.hasRecipe());
 	}
 
 	@Override
@@ -125,6 +123,7 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 	{
 		mechanicalManager.load(tag);
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
+		hasRecipe = tag.getBoolean("hasRecipe");
 	}
 
 	@Override
@@ -290,6 +289,16 @@ public class TripHammerBE extends FABE implements IMultiblockBE, ITickable, ICli
 			easterEgg++;
 			easterEgg %= 1000;
 			level.playLocalSound(worldPosition, FASounds.USE_TRIP_HAMMER.get(), SoundSource.BLOCKS, 1, pitch, false);
+			if (hasRecipe)
+			{
+				var particleCount = level.random.nextInt(5, 20);
+				for (var i = 0; i < particleCount; i++)
+				{
+					var x = level.random.triangle(0.5, 0.3);
+					var z = level.random.triangle(0.5, 0.3);
+					level.addParticle(FAParticleTypes.METAL_SPARK.get(), worldPosition.getX() + x, worldPosition.getY() + 1, worldPosition.getZ() + z, 0, 0, 0);
+				}
+			}
 		}
 		rot %= 360;
 	}

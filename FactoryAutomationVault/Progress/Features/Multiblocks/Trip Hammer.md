@@ -1,6 +1,5 @@
 ---
 tags:
-  - needsParticles
   - processing
 Logic: Done
 Texture: Done
