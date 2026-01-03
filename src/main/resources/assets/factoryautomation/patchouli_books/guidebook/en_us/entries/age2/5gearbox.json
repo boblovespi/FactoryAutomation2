@@ -1,0 +1,17 @@
+{
+	"name": "Gearboxes",
+	"icon": "factoryautomation:wood_gearbox",
+	"category": "factoryautomation:age2",
+	"sortnum": 5,
+	"pages": [
+		{
+			"type": "text",
+			"text": "You may find that you need fine control over the torque and speed output. A gearbox can help you achieve this, by allowing you to exchange torque for speed or vice versa. $(p)Gearboxes work by leveraging mechanical advantage, which means they cannot produce or consume power, but only change the distribution of speed and torque for a given input power."
+		},
+		{
+			"type": "spotlight",
+			"item": "factoryautomation:wood_gearbox",
+			"text": "To use a gearbox, add two gears to it by $(k:use)ing the gearbox while holding a gear. The larger face is the input, and the smaller face is the output."
+		}
+	]
+}
