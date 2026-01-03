@@ -156,7 +156,7 @@ public class FABlocks
 	public static final DeferredBlock<HandCrank> HAND_CRANK = register("hand_crank",HandCrank::new, BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
 	public static final DeferredBlock<SmallWaterwheel> SMALL_WATERWHEEL = register("small_waterwheel", SmallWaterwheel::new, BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
 	public static final DeferredBlock<LargeWaterwheel> LARGE_WATERWHEEL = register("large_waterwheel", LargeWaterwheel::new, BlockProperties.WOOD_MACHINE);
-	public static final DeferredBlock<HorseEngine> HORSE_ENGINE = register("horse_engine", HorseEngine::new, BlockProperties.WOOD_MACHINE);
+	public static final DeferredBlock<HorseEngine> HORSE_ENGINE = register("horse_engine", HorseEngine::new, BlockProperties.WOOD_MACHINE_NO_OCCLUSION);
 
 	// Logistics
 
