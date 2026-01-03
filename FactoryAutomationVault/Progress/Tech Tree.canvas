@@ -2,26 +2,139 @@
 	"nodes":[
 		{"id":"dbd3b0e4f355d113","type":"group","x":1440,"y":-1560,"width":5020,"height":4320,"label":"1 - Copper Age V2"},
 		{"id":"04a49f5d3b42482c","type":"group","x":-4760,"y":-1560,"width":6080,"height":3120,"label":"0 - Stone Age V2"},
-		{"id":"7cf6529457780fb1","type":"group","x":6880,"y":-1480,"width":2140,"height":2840,"label":"2 - Iron Age"},
+		{"id":"7cf6529457780fb1","type":"group","x":6880,"y":-1480,"width":4280,"height":4240,"label":"2 - Iron Age"},
+		{"id":"e724dca601f615ca","type":"group","x":11520,"y":-1480,"width":2440,"height":4240,"label":"3 - Bronze Age"},
 		{
-			"id":"3392ea9019aa47ba",
+			"id":"a2b8223e85884d1c",
 			"type":"text",
-			"text":"# Rocks & Flint\n\n![[Rocks#Overview]]\n![[Flint Rock#Overview]]",
+			"text":"# Iron Shaft\n![[Iron Shaft#Overview]]",
 			"styleAttributes":{},
-			"x":-4680,
-			"y":-440,
-			"width":460,
-			"height":1180
+			"x":7260,
+			"y":-160,
+			"width":580,
+			"height":240
 		},
 		{
-			"id":"41a94656de7754cb",
+			"id":"600968b8b03ae7a0",
 			"type":"text",
-			"text":"# Limonite Firing\n![[Limonite-Charcoal Mix#Overview]]",
+			"text":"# Hand Crank\n![[Hand Crank#Overview]]",
 			"styleAttributes":{},
-			"x":4660,
-			"y":640,
+			"x":7260,
+			"y":-480,
+			"width":580,
+			"height":280
+		},
+		{
+			"id":"bf6baca97e676920",
+			"type":"text",
+			"text":"# Brick Foundry\n![[Brick Foundry#Overview]]",
+			"styleAttributes":{
+				"textAlign":null
+			},
+			"x":7390,
+			"y":-795,
+			"width":525,
+			"height":290
+		},
+		{
+			"id":"d8f6e1b814893080",
+			"type":"text",
+			"text":"# Water Wheel\n![[Small Waterwheel#Overview]]",
+			"styleAttributes":{},
+			"x":7260,
+			"y":120,
+			"width":580,
+			"height":240
+		},
+		{
+			"id":"50789ecadd244938",
+			"type":"text",
+			"text":"# Tumbling Barrel\n![[Tumbling Barrel#Overview]]",
+			"styleAttributes":{},
+			"x":7260,
+			"y":400,
+			"width":580,
+			"height":240
+		},
+		{
+			"id":"b8be1e0f5ac324a5",
+			"type":"text",
+			"text":"# Trip Hammer\n![[Trip Hammer#Overview]]",
+			"styleAttributes":{},
+			"x":7260,
+			"y":680,
+			"width":580,
+			"height":240
+		},
+		{
+			"id":"a60fe97df04e7085",
+			"type":"text",
+			"text":"# Millstone\n![[Millstone#Overview]]",
+			"styleAttributes":{},
+			"x":7960,
+			"y":-160,
 			"width":560,
-			"height":840
+			"height":240
+		},
+		{
+			"id":"0161fad165d92647",
+			"type":"text",
+			"text":"Iron Ore melting",
+			"styleAttributes":{},
+			"x":8020,
+			"y":-680,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"1f10b6ab855905b8",
+			"type":"text",
+			"text":"Clay",
+			"styleAttributes":{},
+			"x":7090,
+			"y":-910,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"f7d414bd97efbf33",
+			"type":"text",
+			"text":"Bricks",
+			"styleAttributes":{},
+			"x":7514,
+			"y":-1040,
+			"width":277,
+			"height":60
+		},
+		{
+			"id":"d434a5f46185e4a9",
+			"type":"text",
+			"text":"# Iron Ingots",
+			"styleAttributes":{"textAlign":"center"},
+			"x":6980,
+			"y":-690,
+			"width":280,
+			"height":80
+		},
+		{
+			"id":"7382066e480955ab",
+			"type":"text",
+			"text":"# Brick Maker Frame\n![[Brick Maker Frame#Overview]]",
+			"styleAttributes":{},
+			"x":6980,
+			"y":-1400,
+			"width":370,
+			"height":250
+		},
+		{
+			"id":"bebd85c77e5925c0",
+			"type":"text",
+			"text":"# Brick Casting Vessel\n![[Brick Casting Vessel#Overview]]",
+			"styleAttributes":{},
+			"x":7960,
+			"y":-1400,
+			"width":560,
+			"height":316
 		},
 		{
 			"id":"cb80ca58f4a2bff3",
@@ -34,6 +147,16 @@
 			"height":540
 		},
 		{
+			"id":"41a94656de7754cb",
+			"type":"text",
+			"text":"# Limonite Firing\n![[Limonite-Charcoal Mix#Overview]]",
+			"styleAttributes":{},
+			"x":4660,
+			"y":640,
+			"width":560,
+			"height":840
+		},
+		{
 			"id":"2293870578576641",
 			"type":"text",
 			"text":"![[Screw#Overview]]",
@@ -42,16 +165,6 @@
 			"y":-140,
 			"width":600,
 			"height":700
-		},
-		{
-			"id":"a85badc8be800801",
-			"type":"text",
-			"text":"# Firebow\n![[Firebow#Overview]]",
-			"styleAttributes":{},
-			"x":4200,
-			"y":1908,
-			"width":520,
-			"height":370
 		},
 		{
 			"id":"4aeedfeceef5ce64",
@@ -64,16 +177,6 @@
 			"height":740
 		},
 		{
-			"id":"cf3f326343aae43d",
-			"type":"text",
-			"text":"# Charcoal Piles\n![[Charcoal Pile#Overview]]",
-			"styleAttributes":{},
-			"x":3180,
-			"y":1480,
-			"width":640,
-			"height":240
-		},
-		{
 			"id":"ca02deaa88477e4f",
 			"type":"text",
 			"text":"# Limonite\n\n![[Limonite Ore#Overview]]",
@@ -84,6 +187,16 @@
 			"height":440
 		},
 		{
+			"id":"cf3f326343aae43d",
+			"type":"text",
+			"text":"# Charcoal Piles\n![[Charcoal Pile#Overview]]",
+			"styleAttributes":{},
+			"x":3180,
+			"y":1480,
+			"width":640,
+			"height":240
+		},
+		{
 			"id":"560b6a1ae0d476f3",
 			"type":"text",
 			"text":"# Copper Metal Set\n\n![[Copper Metal Set#Overview]]",
@@ -92,6 +205,26 @@
 			"y":-40,
 			"width":440,
 			"height":680
+		},
+		{
+			"id":"ab9293f7b936275b",
+			"type":"text",
+			"text":"# Tin Metal Set\n\n![[Tin Metal Set#Overview]]",
+			"styleAttributes":{},
+			"x":2620,
+			"y":-1480,
+			"width":440,
+			"height":680
+		},
+		{
+			"id":"a85badc8be800801",
+			"type":"text",
+			"text":"# Firebow\n![[Firebow#Overview]]",
+			"styleAttributes":{},
+			"x":4200,
+			"y":1908,
+			"width":520,
+			"height":370
 		},
 		{
 			"id":"01ad994aafa5c4af",
@@ -112,16 +245,6 @@
 			"y":-980,
 			"width":520,
 			"height":660
-		},
-		{
-			"id":"ab9293f7b936275b",
-			"type":"text",
-			"text":"# Tin Metal Set\n\n![[Tin Metal Set#Overview]]",
-			"styleAttributes":{},
-			"x":2620,
-			"y":-1480,
-			"width":440,
-			"height":680
 		},
 		{
 			"id":"4af524e4c88f7406",
@@ -214,16 +337,6 @@
 			"height":590
 		},
 		{
-			"id":"551b847de9b7e49b",
-			"type":"text",
-			"text":"# Chopping Block\n![[Chopping Block#Overview]]",
-			"styleAttributes":{},
-			"x":-3960,
-			"y":560,
-			"width":520,
-			"height":440
-		},
-		{
 			"id":"944ab4eb657ccd45",
 			"type":"text",
 			"text":"# Plant Fiber\n![[Plant Fiber#Overview]]",
@@ -244,6 +357,16 @@
 			"height":80
 		},
 		{
+			"id":"551b847de9b7e49b",
+			"type":"text",
+			"text":"# Chopping Block\n![[Chopping Block#Overview]]",
+			"styleAttributes":{},
+			"x":-3960,
+			"y":560,
+			"width":520,
+			"height":440
+		},
+		{
 			"id":"7e6289d8aeae4e30",
 			"type":"text",
 			"text":"# Chopping Blade\n![[Flint Chopping Blade#Overview]]",
@@ -254,136 +377,64 @@
 			"height":410
 		},
 		{
-			"id":"a2b8223e85884d1c",
+			"id":"3392ea9019aa47ba",
 			"type":"text",
-			"text":"# Iron Shaft\n![[Iron Shaft#Overview]]",
+			"text":"# Rocks & Flint\n\n![[Rocks#Overview]]\n![[Flint Rock#Overview]]",
 			"styleAttributes":{},
-			"x":7260,
-			"y":-160,
-			"width":580,
-			"height":240
+			"x":-4680,
+			"y":-440,
+			"width":460,
+			"height":1180
 		},
 		{
-			"id":"600968b8b03ae7a0",
+			"id":"a7bc76756ca6a369",
 			"type":"text",
-			"text":"# Hand Crank\n![[Hand Crank#Overview]]",
+			"text":"Tannin",
 			"styleAttributes":{},
-			"x":7260,
-			"y":-480,
-			"width":580,
-			"height":280
+			"x":8720,
+			"y":-70,
+			"width":260,
+			"height":60
 		},
 		{
-			"id":"bf6baca97e676920",
+			"id":"474bee8edfc6b765",
 			"type":"text",
-			"text":"# Brick Foundry\n![[Brick Foundry#Overview]]",
-			"styleAttributes":{
-				"textAlign":null
-			},
-			"x":7390,
-			"y":-795,
-			"width":525,
-			"height":290
-		},
-		{
-			"id":"d8f6e1b814893080",
-			"type":"text",
-			"text":"# Water Wheel\n![[Small Waterwheel#Overview]]",
+			"text":"Processed Leather",
 			"styleAttributes":{},
-			"x":7260,
-			"y":120,
-			"width":580,
-			"height":240
+			"x":9200,
+			"y":-70,
+			"width":260,
+			"height":60
 		},
 		{
-			"id":"50789ecadd244938",
+			"id":"06c14886bda0fe21",
 			"type":"text",
-			"text":"# Tumbling Barrel\n![[Tumbling Barrel#Overview]]",
+			"text":"# Leather Bellows\n![[Leather Bellows#Overview]]",
 			"styleAttributes":{},
-			"x":7260,
-			"y":400,
-			"width":580,
-			"height":240
+			"x":9880,
+			"y":-390,
+			"width":680,
+			"height":700
 		},
 		{
-			"id":"b8be1e0f5ac324a5",
+			"id":"9712c1b8296ebc8f",
 			"type":"text",
-			"text":"# Trip Hammer\n![[Trip Hammer#Overview]]",
+			"text":"Bronze",
 			"styleAttributes":{},
-			"x":7260,
-			"y":680,
-			"width":580,
-			"height":240
-		},
-		{
-			"id":"a60fe97df04e7085",
-			"type":"text",
-			"text":"# Millstone\n![[Millstone#Overview]]",
-			"styleAttributes":{},
-			"x":7960,
-			"y":-160,
-			"width":560,
-			"height":240
-		},
-		{
-			"id":"d434a5f46185e4a9",
-			"type":"text",
-			"text":"# Iron Ingots",
-			"styleAttributes":{"textAlign":"center"},
-			"x":6980,
-			"y":-690,
-			"width":280,
-			"height":80
-		},
-		{
-			"id":"0161fad165d92647",
-			"type":"text",
-			"text":"Iron Ore melting",
-			"styleAttributes":{},
-			"x":8020,
+			"x":11720,
 			"y":-680,
 			"width":260,
 			"height":60
 		},
 		{
-			"id":"1f10b6ab855905b8",
+			"id":"09a62aebb57b941c",
 			"type":"text",
-			"text":"Clay",
+			"text":"# Screw Pump\n![[Screw Pump#Overview]]",
 			"styleAttributes":{},
-			"x":7090,
-			"y":-910,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"f7d414bd97efbf33",
-			"type":"text",
-			"text":"Bricks",
-			"styleAttributes":{},
-			"x":7514,
-			"y":-1040,
-			"width":277,
-			"height":60
-		},
-		{
-			"id":"7382066e480955ab",
-			"type":"text",
-			"text":"# Brick Maker Frame\n![[Brick Maker Frame#Overview]]",
-			"styleAttributes":{},
-			"x":6980,
-			"y":-1400,
-			"width":370,
-			"height":250
-		},
-		{
-			"id":"bebd85c77e5925c0",
-			"type":"text",
-			"text":"# Brick Casting Vessel\n![[Brick Casting Vessel#Overview]]",
-			"styleAttributes":{},
-			"x":7960,
-			"y":-1400,
-			"width":560,
-			"height":316
+			"x":8700,
+			"y":-530,
+			"width":300,
+			"height":280
 		}
 	],
 	"edges":[
@@ -784,6 +835,78 @@
 			"fromSide":"right",
 			"toNode":"bebd85c77e5925c0",
 			"toSide":"left"
+		},
+		{
+			"id":"368a89c4e3b96700",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"a60fe97df04e7085",
+			"fromSide":"right",
+			"toNode":"a7bc76756ca6a369",
+			"toSide":"left"
+		},
+		{
+			"id":"588feb4be7913431",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"50789ecadd244938",
+			"fromSide":"right",
+			"toNode":"474bee8edfc6b765",
+			"toSide":"bottom"
+		},
+		{
+			"id":"9ac43f1f00e4c169",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"a7bc76756ca6a369",
+			"fromSide":"right",
+			"toNode":"474bee8edfc6b765",
+			"toSide":"left"
+		},
+		{
+			"id":"3af152f115594caf",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"06c14886bda0fe21",
+			"fromSide":"right",
+			"toNode":"9712c1b8296ebc8f",
+			"toSide":"left"
+		},
+		{
+			"id":"a2b6853cfca262af",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"bf6baca97e676920",
+			"fromSide":"right",
+			"toNode":"9712c1b8296ebc8f",
+			"toSide":"left"
+		},
+		{
+			"id":"30a09c9550bd6489",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"474bee8edfc6b765",
+			"fromSide":"right",
+			"toNode":"06c14886bda0fe21",
+			"toSide":"left"
+		},
+		{
+			"id":"4cc4527bbc59ebcd",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"09a62aebb57b941c",
+			"fromSide":"bottom",
+			"toNode":"a7bc76756ca6a369",
+			"toSide":"top"
+		},
+		{
+			"id":"ccdc0c7a67cb4731",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"50789ecadd244938",
+			"fromSide":"right",
+			"toNode":"a7bc76756ca6a369",
+			"toSide":"bottom"
 		}
 	],
 	"metadata":{
