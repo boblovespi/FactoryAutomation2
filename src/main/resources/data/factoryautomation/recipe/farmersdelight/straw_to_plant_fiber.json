@@ -1,0 +1,16 @@
+{
+	"neoforge:conditions": [
+		{
+			"type": "neoforge:mod_loaded",
+			"modid": "farmersdelight"
+		}
+	],
+	"type": "factoryautomation:chopping_block",
+	"ingredient": {
+		"item": "farmersdelight:straw"
+	},
+	"result": {
+		"count": 1,
+		"id": "factoryautomation:plant_fiber"
+	}
+}

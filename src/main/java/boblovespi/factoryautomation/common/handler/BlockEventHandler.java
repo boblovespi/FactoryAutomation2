@@ -8,6 +8,7 @@ import boblovespi.factoryautomation.common.block.types.WoodTypes;
 import boblovespi.factoryautomation.common.item.tool.Tools;
 import boblovespi.factoryautomation.common.sound.FASounds;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -40,6 +41,14 @@ public class BlockEventHandler
 				level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 				level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(event.getEntity(), Blocks.AIR.defaultBlockState()));
 				Block.popResource(level, pos, new ItemStack(FABlocks.CHOPPING_BLOCKS.get(WoodTypes.fromLog(state.getBlock())), 2));
+				level.playSound(event.getEntity(), pos, FASounds.MAKE_CHOPPING_BLOCK.get(), SoundSource.BLOCKS);
+				event.setCanceled(true);
+			}
+			else if (state.is(BlockTags.OVERWORLD_NATURAL_LOGS))
+			{
+				level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+				level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(event.getEntity(), Blocks.AIR.defaultBlockState()));
+				Block.popResource(level, pos, new ItemStack(FABlocks.CHOPPING_BLOCK, 2));
 				level.playSound(event.getEntity(), pos, FASounds.MAKE_CHOPPING_BLOCK.get(), SoundSource.BLOCKS);
 				event.setCanceled(true);
 			}

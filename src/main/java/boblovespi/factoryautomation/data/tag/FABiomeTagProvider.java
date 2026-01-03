@@ -24,7 +24,7 @@ public class FABiomeTagProvider extends BiomeTagsProvider
 	protected void addTags(HolderLookup.Provider pProvider)
 	{
 		tag(FATags.Biomes.IS_TYPICAL_OVERWORLD).addTags(BiomeTags.IS_FOREST, BiomeTags.IS_HILL, Tags.Biomes.IS_PLAINS, Tags.Biomes.IS_MOUNTAIN);
-		tag(FATags.Biomes.IS_YELLOW_DESERT_OVERWORLD).add(Biomes.DESERT);
+		tag(FATags.Biomes.IS_YELLOW_DESERT_OVERWORLD).addTags(Tags.Biomes.IS_DESERT);
 		tag(FATags.Biomes.IS_RED_DESERT_OVERWORLD).addTags(BiomeTags.IS_BADLANDS, BiomeTags.IS_SAVANNA);
 		tag(FATags.Biomes.IS_WET_OVERWORLD).addTags(BiomeTags.IS_JUNGLE, BiomeTags.IS_TAIGA, Tags.Biomes.IS_SWAMP);
 		tag(FATags.Biomes.IS_SURFACE_OVERWORLD).addTags(FATags.Biomes.IS_TYPICAL_OVERWORLD, FATags.Biomes.IS_YELLOW_DESERT_OVERWORLD, FATags.Biomes.IS_RED_DESERT_OVERWORLD,
