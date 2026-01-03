@@ -13,7 +13,7 @@ TagsS: N/A
 Age: Copper
 ---
 # Overview
-- `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
+- `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Bronze), option(Steel)):Age]`Age
 
 - [ ] Ore Block
 - [ ] Raw Ore Item

@@ -1,12 +1,15 @@
 package boblovespi.factoryautomation.common.util.ponder;
 
 import boblovespi.factoryautomation.FactoryAutomation;
+import boblovespi.factoryautomation.api.IMechanicalOutput;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.mechanical.PowerShaft;
 import boblovespi.factoryautomation.common.block.processing.*;
 import boblovespi.factoryautomation.common.blockentity.mechanical.PowerShaftBE;
-import boblovespi.factoryautomation.common.blockentity.processing.*;
+import boblovespi.factoryautomation.common.blockentity.processing.BrickCastingVesselBE;
+import boblovespi.factoryautomation.common.blockentity.processing.ChoppingBlockBE;
+import boblovespi.factoryautomation.common.blockentity.processing.StoneCastingVesselBE;
 import boblovespi.factoryautomation.common.item.FAItems;
 import boblovespi.factoryautomation.common.util.Form;
 import boblovespi.factoryautomation.common.util.Metal;
@@ -18,7 +21,6 @@ import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,9 +29,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -62,6 +61,7 @@ public class FAPonderPlugin implements PonderPlugin
 		helper.forComponents(Items.BRICK, Items.BRICKS, FABlocks.BRICK_MAKER_FRAME, FAItems.DRIED_BRICK, FABlocks.DRIED_BRICKS).addStoryBoard("brick_making", this::brickMakingScene);
 		helper.forComponents(FAItems.BRICK_CRUCIBLE, FAItems.BRICK_FIREBOX, FAItems.BRICK_CASTING_VESSEL).addStoryBoard("brick_foundry", this::brickFoundry);
 		helper.forComponents(FAItems.TRIP_HAMMER).addStoryBoard("trip_hammer", this::tripHammer);
+		helper.forComponents(FAItems.TUMBLING_BARREL).addStoryBoard("tumbling_barrel", this::tumblingBarrel);
 	}
 
 
@@ -539,6 +539,51 @@ public class FAPonderPlugin implements PonderPlugin
 
 	}
 
+	private void tumblingBarrel(SceneBuilder scene, SceneBuildingUtil util)
+	{
+		var output = new PonderMechanicalUser(1, 0);
+
+		scene.title("tumbling_barrel", "Using a Tumbling Barrel");
+		scene.rotateCameraY(-40);
+
+		scene.showBasePlate();
+		scene.world().showSection(util.select().position(2, 2, 2), Direction.DOWN);
+		scene.idle(40);
+
+		scene.addKeyframe();
+		// scene.overlay().;
+		scene.overlay().showOutline(PonderPalette.GREEN, new Object(), util.select().position(2, 2, 3),40);
+		scene.overlay().showText(40)
+			 .text("Input here")
+			 .colored(PonderPalette.WHITE)
+			 .pointAt(util.select().position(2, 2, 3).getCenter());
+		scene.idle(50);
+		scene.world().showSection(util.select().fromTo(2, 2, 3, 2, 2, 4), Direction.NORTH);
+		scene.idle(10);
+		scene.world().modifyBlockEntity(util.grid().at(2, 2, 4), PowerShaftBE.class, be -> be.input(Direction.SOUTH).update(output));
+		scene.idle(30);
+
+		scene.addKeyframe();
+		scene.world().showSection(util.select().position(2, 3, 2), Direction.DOWN);
+		scene.idle(10);
+		scene.overlay().showControls(util.vector().topOf(2, 3, 2), Pointing.DOWN, 20).withItem(Items.ICE.getDefaultInstance());
+		scene.idle(40);
+
+		scene.addKeyframe();
+		scene.world().showSection(util.select().fromTo(2, 2, 0, 2, 3, 1), Direction.SOUTH);
+		scene.idle(10);
+		scene.overlay().showControls(util.vector().centerOf(2, 3, 0), Pointing.RIGHT, 20).withItem(Items.MILK_BUCKET.getDefaultInstance()).rightClick();
+		scene.idle(40);
+
+		// scene.world().modifyBlockEntity(util.grid().at(2, 2, 2), TumblingBarrelBE.class, be -> be.input(Direction.SOUTH).update(output));
+		scene.idle(80);
+		scene.addKeyframe();
+		scene.world().showSection(util.select().position(2, 1, 2), Direction.UP);
+		scene.idle(10);
+		scene.overlay().showControls(util.vector().centerOf(2, 1, 2), Pointing.LEFT, 20).withItem(FAItems.MILK_ICE_CREAM.get().getDefaultInstance());
+		scene.idle(40);
+	}
+
 	private ParticleEmitter inWholeBlock(ParticleEmitter emitter) {
 		var r = Ponder.RANDOM;
 		return (w, x, y, z) -> emitter.create(w, x + r.nextDouble(), y + r.nextDouble(), z + r.nextDouble());
@@ -553,5 +598,20 @@ public class FAPonderPlugin implements PonderPlugin
 				spd * r.nextGaussian(),
 				spd * r.nextGaussian(),
 				spd * r.nextGaussian());
+	}
+
+	private record PonderMechanicalUser(float speed, float torque) implements IMechanicalOutput
+	{
+		@Override
+		public float getTorque()
+		{
+			return torque;
+		}
+
+		@Override
+		public float getSpeed()
+		{
+			return speed;
+		}
 	}
 }

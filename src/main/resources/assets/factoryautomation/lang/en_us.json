@@ -535,6 +535,8 @@
 	"factoryautomation.ponder.trip_hammer.header": "Construction of The Trip Hammer",
 	"factoryautomation.ponder.trip_hammer.text_1": "Place the Trip Hammer Block here, below the iron block.",
 	"factoryautomation.ponder.trip_hammer.text_2": "Mechanical input is here at the back, place a power shaft next to it to start hammering.",
+	"factoryautomation.ponder.tumbling_barrel.header": "Using a Tumbling Barrel",
+	"factoryautomation.ponder.tumbling_barrel.text_1": "Mechanical input is here.",
 	
 	// Config
 	

@@ -5,7 +5,7 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": true,
+  "collapse-color-groups": false,
   "colorGroups": [
     {
       "query": "[\"age\":\"stone\"]",
@@ -25,7 +25,14 @@
       "query": "[\"age\":\"copper\"]",
       "color": {
         "a": 1,
-        "rgb": 15769410
+        "rgb": 15756866
+      }
+    },
+    {
+      "query": "[\"age\":\"bronze\"]",
+      "color": {
+        "a": 1,
+        "rgb": 15976271
       }
     }
   ],
