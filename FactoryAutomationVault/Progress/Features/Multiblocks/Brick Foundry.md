@@ -15,7 +15,7 @@ Age: Iron
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-The brick foundry is the iron-age equivalent of the [[Stone Foundry]]. Assembled with a [[Brick Crucible]] atop a [[Solid Fuel Firebox]], it is capable of both alloying and accepting bellows input. 
+The brick foundry is the iron-age equivalent of the [[Stone Foundry]]. Assembled with a [[Brick Crucible]] atop a [[Brick Firebox]], it is capable of both alloying and accepting bellows input. Its corresponding casting vessel is the [[Brick Casting Vessel]]. It can also accept [[Paper Bellows|bellows]] input. 
 
 # Status
 

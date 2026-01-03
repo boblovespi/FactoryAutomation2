@@ -18,6 +18,8 @@ Age: Iron
 
 The millstone is the first processing machine of the iron age, capable of milling wheat as well as being vital for the leather processing chain, the gate goal of the iron age. Recipes take a variable amount of torque and speed to process. 
 
+Producing [[Tannin]] is part of the end goal of the iron age, and takes two [[Large Waterwheel]]s. 
+
 # Status
 
 `INPUT[inlineSelect(option(No), option(Done), option(Vanilla), option(N/A), option(WIP)):Logic]` Logic

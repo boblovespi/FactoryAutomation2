@@ -15,7 +15,7 @@ Age: Iron
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-The brick crucible is used in the brick foundry multiblock, which is the iron-age equivalent of the [[Stone Foundry]].
+The brick crucible is used in the [[Brick Foundry]] multiblock, which is the iron-age equivalent of the [[Stone Foundry]].
 
 # Status
 

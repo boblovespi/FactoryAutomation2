@@ -16,7 +16,7 @@ Age: Iron
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-The trip hammer is one of three iron age mechanical processing machines, and the only multiblock one at that. It can produce both sheets and rods for relatively cheap, as well as some other recipes. 
+The trip hammer is one of three iron age mechanical processing machines, and the only multiblock one at that. It can produce both sheets and rods for relatively cheap as an alternative to [[Brick Casting Vessel|casting]], as well as some other recipes. 
 
 # Status
 

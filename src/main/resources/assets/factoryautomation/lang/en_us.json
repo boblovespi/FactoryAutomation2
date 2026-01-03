@@ -420,6 +420,7 @@
 	"misc.gear_ratio": "%s:%s ratio",
 	"misc.efficiency": "Efficiency: %s%%",
 	"misc.millibucket": "%s mB",
+	"misc.empty": "Empty",
 	"info.too_hot": "Too hot: %s",
 	
 	// Metal names

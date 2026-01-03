@@ -68,9 +68,14 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 		}
 		if (isHovering(107, 17, 16, 59, mouseX, mouseY))
 		{
-			var metal = getMetal();
-			var text = Component.translatable("misc.metal_quantity", I18n.get("metal." + metal.getName() + ".name"), menu.getData(3));
-			pGuiGraphics.renderTooltip(font, text, mouseX, mouseY);
+			if (menu.getData(3) == 0)
+				pGuiGraphics.renderTooltip(font, Component.translatable("misc.empty"), mouseX, mouseY);
+			else
+			{
+				var metal = getMetal();
+				var text = Component.translatable("misc.metal_quantity", I18n.get("metal." + metal.getName() + ".name"), menu.getData(3));
+				pGuiGraphics.renderTooltip(font, text, mouseX, mouseY);
+			}
 		}
 	}
 }

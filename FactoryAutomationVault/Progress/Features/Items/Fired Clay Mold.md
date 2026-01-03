@@ -1,22 +1,21 @@
 ---
 tags:
-  - needsPonder
 Logic: Done
 Texture: Done
 Model: Done
 Worldgen: N/A
 Drops: Done
 Recipe: Done
-Sound: No
+Sound: N/A
 Localization: Done
-BlockState: Done
+BlockState: N/A
 TagsS: Done
 Age: Iron
 ---
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Iron age processing block. Takes low speed and torque; can input items and fluids and output items and fluids. Needed to produce [[Processed Leather]].
+The fired clay molds are made of [[Green Sand]] and [[Tallow]], before then being fired in a furnace. They are reusable molds for casting in the [[Brick Casting Vessel]], with a higher efficiency than the [[Stone Casting Vessel]] at 66%, and also have 10 durability before they break.
 
 # Status
 

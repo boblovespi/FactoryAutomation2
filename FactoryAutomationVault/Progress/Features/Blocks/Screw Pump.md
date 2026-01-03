@@ -19,7 +19,7 @@ Age: Iron
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-The screw pump is a mechanical device that can pump water from the ground into pipes.
+The screw pump is a mechanical device that can pump water from the ground into [[Copper Pipe|pipes]].
 
 # Status
 

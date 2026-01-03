@@ -1,13 +1,14 @@
 ---
 tags:
+  - checkIfNeedsSounds
   - needsPonder
-Logic: Done
+Logic: WIP
 Texture: Done
 Model: Done
 Worldgen: N/A
 Drops: Done
 Recipe: Done
-Sound: No
+Sound: Done
 Localization: Done
 BlockState: Done
 TagsS: Done
@@ -16,7 +17,7 @@ Age: Iron
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-Iron age processing block. Takes low speed and torque; can input items and fluids and output items and fluids. Needed to produce [[Processed Leather]].
+The brick firebox is both used in the [[Brick Foundry]] multiblock as well as a heat source of its own. In the bronze age, it can be used to power things like the [[Kiln]] or the [[Copper Boiler]].
 
 # Status
 

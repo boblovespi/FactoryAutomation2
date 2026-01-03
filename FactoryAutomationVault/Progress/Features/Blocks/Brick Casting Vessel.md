@@ -15,7 +15,7 @@ Age: Iron
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-The brick casting vessel is the iron-age equivalent of the [[Stone Casting Vessel]]. Rather than using green sand, it uses clay molds. It can also drain up to 200 mB/s of water to cool metals, taking about 500 mB of water to cool down copper and 553 mB of water to cool down iron. 
+The brick casting vessel is the iron-age equivalent of the [[Stone Casting Vessel]]. Rather than using green sand, it uses [[Fired Clay Mold|Fired Clay Molds]]. It can also drain up to 200 mB/s of water to cool metals, taking about 500 mB of water to cool down copper and 553 mB of water to cool down iron. 
 
 # Status
 

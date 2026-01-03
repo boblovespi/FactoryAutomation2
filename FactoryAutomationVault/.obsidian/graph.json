@@ -1,22 +1,44 @@
 {
   "collapse-filter": true,
-  "search": "",
+  "search": "path:Progress/Features  ",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
   "collapse-color-groups": true,
-  "colorGroups": [],
-  "collapse-display": true,
+  "colorGroups": [
+    {
+      "query": "[\"age\":\"stone\"]",
+      "color": {
+        "a": 1,
+        "rgb": 5395026
+      }
+    },
+    {
+      "query": "[\"age\":\"iron\"]",
+      "color": {
+        "a": 1,
+        "rgb": 12634067
+      }
+    },
+    {
+      "query": "[\"age\":\"copper\"]",
+      "color": {
+        "a": 1,
+        "rgb": 15769410
+      }
+    }
+  ],
+  "collapse-display": false,
   "showArrow": true,
   "textFadeMultiplier": 0,
   "nodeSizeMultiplier": 1.58020833333333,
   "lineSizeMultiplier": 3.315625,
   "collapse-forces": false,
-  "centerStrength": 0.640625,
-  "repelStrength": 15.9375,
-  "linkStrength": 0.442708333333333,
-  "linkDistance": 365,
+  "centerStrength": 0.55363321799308,
+  "repelStrength": 14.878892733564,
+  "linkStrength": 0.816608996539792,
+  "linkDistance": 225,
   "scale": 0.7132754626224421,
   "close": true
 }
