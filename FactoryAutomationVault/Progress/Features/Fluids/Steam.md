@@ -1,22 +1,22 @@
 ---
 tags:
-  - processing
-Logic: Done
-Texture: Done
-Model: Done
+  - needsPonder
+Logic: No
+Texture: No
+Model: No
 Worldgen: N/A
-Drops: Done
-Recipe: Done
+Drops: No
+Recipe: No
 Sound: No
-Localization: Done
-BlockState: Done
-TagsS: Done
-Age: Iron
+Localization: No
+BlockState: No
+TagsS: No
+Age: Bronze
 ---
 # Overview
-- `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
+- `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Bronze), option(Steel)):Age]`Age
 
-Iron age processing block. Takes low speed and torque; can input items and fluids and output items and fluids. Needed to produce [[Processed Leather]].
+Steam is produced in either the [[Copper Boiler]] or the [[Bronze Boiler]]. It is one of the two new power sources in the bronze age, along with heat power. 
 
 # Status
 

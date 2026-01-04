@@ -1,22 +1,24 @@
 ---
 tags:
+  - needsBalancing
+  - needsPonder
   - processing
-Logic: Done
+Logic: WIP
 Texture: Done
 Model: Done
 Worldgen: N/A
 Drops: Done
 Recipe: Done
-Sound: No
+Sound: Done
 Localization: Done
 BlockState: Done
 TagsS: Done
-Age: Iron
+Age: Bronze
 ---
 # Overview
-- `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
+- `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Bronze), option(Steel)):Age]`Age
 
-Iron age processing block. Takes low speed and torque; can input items and fluids and output items and fluids. Needed to produce [[Processed Leather]].
+The kiln is the first bronze-age multiblock, taking heat from a [[Brick Firebox]] to produce [[Charcoal Pile|charcoal]] or [[Brick Maker Frame|bricks]]. 
 
 # Status
 

@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
 import java.util.Locale;
@@ -28,15 +29,18 @@ import java.util.Locale;
 public class CastingJeiCategory implements IRecipeCategory<CastingJeiRecipe>
 {
 	private static final RecipeType<CastingJeiRecipe> TYPE = RecipeType.create(FactoryAutomation.MODID, "casting", CastingJeiRecipe.class);
+	private static final ResourceLocation TEXTURE = FactoryAutomation.name("textures/gui/jei/casting.png");
 	private final IGuiHelper helper;
 	private final IDrawable background;
+	private final IDrawable shortArrow;
 	private final IDrawable icon;
 	private final MetalIngredientRenderer metalIngredientRenderer = MetalIngredientRenderer.create(false, false, 32, 8);
 
 	public CastingJeiCategory(IGuiHelper helper)
 	{
 		this.helper = helper;
-		background = helper.createDrawable(FactoryAutomation.name("textures/gui/jei/casting.png"), 0, 0, 150, 74);
+		background = helper.createDrawable(TEXTURE, 0, 0, 150, 78);
+		shortArrow = helper.createDrawable(TEXTURE, 151, 0, 25, 22);
 		icon = helper.createDrawableItemStack(FAItems.STONE_CASTING_VESSEL.toStack());
 	}
 
@@ -68,8 +72,8 @@ public class CastingJeiCategory implements IRecipeCategory<CastingJeiRecipe>
 	public void setRecipe(IRecipeLayoutBuilder builder, CastingJeiRecipe recipe, IFocusGroup focuses)
 	{
 		var in = builder.addSlot(RecipeIngredientRole.INPUT, 11, 12).setSlotName("input");
-		var out = builder.addSlot(RecipeIngredientRole.OUTPUT, 121, 44);
-		var cast = builder.addSlot(RecipeIngredientRole.CATALYST, 11, 44);
+		var out = builder.addSlot(RecipeIngredientRole.OUTPUT, 121, 48);
+		var cast = builder.addSlot(RecipeIngredientRole.CATALYST, 11, 48);
 		cast.addItemStack(recipe.cast());
 		in.setCustomRenderer(FAJeiPlugin.METAL_INGREDIENT, metalIngredientRenderer);
 		var metals = Metal.allMetals();
@@ -94,13 +98,17 @@ public class CastingJeiCategory implements IRecipeCategory<CastingJeiRecipe>
 			state = FABlocks.STONE_CASTING_VESSEL.get().defaultBlockState().setValue(StoneCastingVessel.MOLD,
 					StoneCastingVessel.CastingVesselStates.valueOf(recipe.form().getName().toUpperCase(Locale.ROOT)));
 		if (recipe.type() == CasterType.BRICK)
+		{
+			// graphics.blitSprite(TEXTURE, 256, 256, 151, 0, 46, 13, 25, 18);
+			shortArrow.draw(graphics, 46, 13);
 			state = FABlocks.BRICK_CASTING_VESSEL.get().defaultBlockState();
+		}
 		var pose = graphics.pose();
 		var input = recipeSlotsView.findSlotByName("input").orElseThrow().getDisplayedIngredient(FAJeiPlugin.METAL_INGREDIENT).map(MetalStack::quantity).orElse(0);
 		graphics.drawString(Minecraft.getInstance().font, I18n.get("misc.metal_quantity_nameless", input), 10, 23, 0xff545454, false);
 		pose.pushPose();
 		{
-			pose.translate(49.75f, 41 + 10, 100);
+			pose.translate(49.75f, 41 + 14, 100);
 			var scale = -16 * 0.625f * 2.3f;
 			pose.scale(scale, scale, scale);
 			pose.mulPose(BERUtils.quatFromAngleAxis(-30, 1, 0, 0));

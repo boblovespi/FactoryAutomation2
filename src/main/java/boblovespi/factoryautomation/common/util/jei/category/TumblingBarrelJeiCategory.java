@@ -26,7 +26,7 @@ public class TumblingBarrelJeiCategory extends FAJeiCategory<TumblingBarrelRecip
 	@Override
 	protected IDrawable createBackground()
 	{
-		return new Background(helper.createDrawable(FactoryAutomation.name("textures/gui/jei/tumbling_barrel.png"), 0, 0, 147, 93));
+		return new Background(helper.createDrawable(FactoryAutomation.name("textures/gui/jei/tumbling_barrel.png"), 0, 0, 147, 92));
 	}
 
 	@Override
@@ -36,10 +36,16 @@ public class TumblingBarrelJeiCategory extends FAJeiCategory<TumblingBarrelRecip
 			builder.addSlot(RecipeIngredientRole.INPUT, 19, 12).addIngredients(recipe.value().input());
 		if (recipe.value().fluidInput() instanceof OptionalSizedFluidIngredient.Present p)
 			builder.addSlot(RecipeIngredientRole.INPUT, 11, 34).addIngredients(NeoForgeTypes.FLUID_STACK, List.of(p.value().getFluids())).setFluidRenderer(500, true, 16, 16);
+		var x = 113;
+		var y = 42;
 		if (!recipe.value().result().isEmpty())
-			builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 48).addItemStack(recipe.value().result());
+		{
+			builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 42).addItemStack(recipe.value().result());
+			x = 122;
+			y = 64;
+		}
 		if (!recipe.value().fluidResult().isEmpty())
-			builder.addSlot(RecipeIngredientRole.OUTPUT, 122, 70).addIngredient(NeoForgeTypes.FLUID_STACK, recipe.value().fluidResult()).setFluidRenderer(500, true, 16, 16);
+			builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredient(NeoForgeTypes.FLUID_STACK, recipe.value().fluidResult()).setFluidRenderer(500, true, 16, 16);
 	}
 
 	private record Background(IDrawable bg) implements IDrawable
@@ -53,7 +59,7 @@ public class TumblingBarrelJeiCategory extends FAJeiCategory<TumblingBarrelRecip
 		@Override
 		public int getHeight()
 		{
-			return 93;
+			return 92;
 		}
 
 		@Override
@@ -65,7 +71,7 @@ public class TumblingBarrelJeiCategory extends FAJeiCategory<TumblingBarrelRecip
 				var scale = 2.3f;
 				guiGraphics.pose().translate(-8 * scale, -8 * scale, 0);
 				guiGraphics.pose().scale(scale, scale, scale);
-				guiGraphics.pose().translate(7 + (35 + 7) / scale, 13.5 + 16 / scale, -100);
+				guiGraphics.pose().translate(7 + (35 + 7) / scale, 13.5 + 18 / scale, -100);
 				guiGraphics.renderFakeItem(FABlocks.TUMBLING_BARREL.toStack(), 0, 0);
 			}
 			guiGraphics.pose().popPose();

@@ -69,14 +69,14 @@ public class LogPileFiringCategory implements IRecipeCategory<LogPileFiringCateg
 			case Holder.Dummy dummy ->
 			{
 				builder.addSlot(RecipeIngredientRole.CATALYST, 0, 0).addItemStack(dummy.surrounder);
-				builder.addSlot(RecipeIngredientRole.INPUT, 30, 30).addItemLike(dummy.input);
-				builder.addSlot(RecipeIngredientRole.OUTPUT, 60, 60).addItemStacks(dummy.drops);
+				builder.addSlot(RecipeIngredientRole.INPUT, 25, 30).addItemLike(dummy.input);
+				builder.addSlot(RecipeIngredientRole.OUTPUT, 88, 48).addItemStacks(dummy.drops);
 			}
 			case Holder.Real real ->
 			{
 				builder.addSlot(RecipeIngredientRole.CATALYST, 0, 0).addItemLike(real.recipe.value().getData().logPileLike());
-				builder.addSlot(RecipeIngredientRole.INPUT, 30, 30).addIngredients(real.recipe.value().getInput());
-				builder.addSlot(RecipeIngredientRole.OUTPUT, 60, 60).addItemStack(getResultItem(real.recipe.value()));
+				builder.addSlot(RecipeIngredientRole.INPUT, 25, 30).addIngredients(real.recipe.value().getInput());
+				builder.addSlot(RecipeIngredientRole.OUTPUT, 88, 30).addItemStack(getResultItem(real.recipe.value()));
 			}
 		}
 	}
@@ -84,19 +84,56 @@ public class LogPileFiringCategory implements IRecipeCategory<LogPileFiringCateg
 	@Override
 	public void draw(Holder recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY)
 	{
+		var scale = -16 * 0.625f * 1f;
 		if (recipe instanceof Holder.Dummy dummy)
 		{
 			var pose = graphics.pose();
 			pose.pushPose();
 			{
-				pose.translate(49.75f, 41 + 10, 100);
-				var scale = -16 * 0.625f * 2.3f;
+				pose.translate(0.5f, -0.5f, -100);
+				pose.scale(1.5f, 1.5f, 1.5f);
+				graphics.renderFakeItem(dummy.surrounder, 7, 14);
+				graphics.renderFakeItem(dummy.surrounder, 21, 14);
+				graphics.renderFakeItem(dummy.surrounder, 14, 26);
+				// pose.translate(0, 0, 100/1.5f);
+				// graphics.renderFakeItem(dummy.input.asItem().getDefaultInstance(), 17, 17.5f);
+			}
+			pose.popPose();
+			pose.pushPose();
+			{
+				pose.translate(49.75f + 40, 41, 100);
 				pose.scale(scale, scale, scale);
 				pose.mulPose(BERUtils.quatFromAngleAxis(-30, 1, 0, 0));
 				pose.mulPose(BERUtils.quatFromAngleAxis(225, 0, 1, 0));
 				Minecraft.getInstance().getBlockRenderer().renderSingleBlock(dummy.state, pose, graphics.bufferSource(), LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 			}
 			pose.popPose();
+		}
+		else if (recipe instanceof Holder.Real real)
+		{
+			var pose = graphics.pose();
+			var surrounder = real.recipe.value().getData().logPileLike().asItem().getDefaultInstance();
+			var state = getResultItem(real.recipe.value());
+			pose.pushPose();
+			{
+				pose.translate(0.5f, -0.5f, -100);
+				pose.scale(1.5f, 1.5f, 1.5f);
+				graphics.renderFakeItem(surrounder, 7, 14);
+				graphics.renderFakeItem(surrounder, 21, 14);
+				graphics.renderFakeItem(surrounder, 14, 26);
+				// pose.translate(0, 0, 100/1.5f);
+				// graphics.renderFakeItem(dummy.input.asItem().getDefaultInstance(), 17, 17.5f);
+			}
+			pose.popPose();
+			/*pose.pushPose();
+			{
+				pose.translate(49.75f + 40, 41, 100);
+				pose.scale(scale, scale, scale);
+				pose.mulPose(BERUtils.quatFromAngleAxis(-30, 1, 0, 0));
+				pose.mulPose(BERUtils.quatFromAngleAxis(225, 0, 1, 0));
+				Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, pose, graphics.bufferSource(), LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+			}
+			pose.popPose();*/
 		}
 	}
 
@@ -121,6 +158,7 @@ public class LogPileFiringCategory implements IRecipeCategory<LogPileFiringCateg
 		{
 
 		}
+
 		record Real(RecipeHolder<LogPileFiringRecipe> recipe) implements Holder
 		{
 
