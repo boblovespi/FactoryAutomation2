@@ -720,6 +720,8 @@ public class FARecipeProvider extends RecipeProvider
 					   .unlockedBy("has_calcite", has(Items.CALCITE)).save(output);
 		MillstoneRecipe.of(FAItems.GYPSUM_DUST.toStack()).input(FAItems.GYPSUM).progress(100).beginData().speed(1).torque(800).endData()
 					   .unlockedBy("has_gypsum", has(FAItems.GYPSUM)).save(output);
+		MillstoneRecipe.of(FAItems.SALT.toStack()).input(FAItems.HALITE).progress(100).beginData().speed(1).torque(800).endData()
+					   .unlockedBy("has_halite", has(FAItems.HALITE)).save(output);
 		MillstoneRecipe.of(FAItems.TANBARK_DUST.toStack()).input(ItemTags.OAK_LOGS).progress(100).beginData().speed(1).torque(800).endData()
 					   .unlockedBy("has_oak_logs", has(ItemTags.OAK_LOGS)).save(output);
 
