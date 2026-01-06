@@ -155,8 +155,8 @@ public class FABlockTagProvider extends BlockTagsProvider
 		addStoneBlockTags(FABlocks.DIORITE_BRICKS);
 
 		tag(BlockTags.SMALL_FLOWERS).add(FABlocks.WILD_GREEN_ONION.get());
-		tag(BlockTags.MAINTAINS_FARMLAND).add(FABlocks.GREEN_ONIONS.get(), FABlocks.GINGER.get(), FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get());
-		tag(BlockTags.CROPS).add(FABlocks.GREEN_ONIONS.get(), FABlocks.GINGER.get());
+		tag(BlockTags.MAINTAINS_FARMLAND).add(FABlocks.GREEN_ONIONS.get(), FABlocks.GINGER.get(), FABlocks.ARABICA_STEM.get(), FABlocks.TEA_SHRUB.get(), FABlocks.SOYBEAN.get());
+		tag(BlockTags.CROPS).add(FABlocks.GREEN_ONIONS.get(), FABlocks.GINGER.get(), FABlocks.SOYBEAN.get());
 		tag(BlockTags.LEAVES).add(FABlocks.ARABICA_LEAVES.get());
 	}
 

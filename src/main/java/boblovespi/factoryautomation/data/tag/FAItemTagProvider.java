@@ -239,6 +239,7 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.COFFEE_SEED).add(FAItems.COFFEE_CHERRY.get());
 
 		tag(Tags.Items.FOODS_RAW_MEAT).addTags(FATags.Items.RAW_PORKS, FATags.Items.RAW_CHICKEN);
+		tag(Tags.Items.FOODS_VEGETABLE).add(FAItems.EDAMAME.get());
 		tag(Tags.Items.FOODS).addTags(FATags.Items.GREEN_ONION_FOOD, FATags.Items.GREEN_ONION_SCALLION_FOOD, FATags.Items.SOY_SAUCE, FATags.Items.TOFU);
 		tag(Tags.Items.CROPS).addTags(FATags.Items.SOYBEAN_CROP, FATags.Items.GREEN_ONION_CROP, FATags.Items.GREEN_ONION_SCALLION_CROP, FATags.Items.GINGER_CROP);
 		tag(Tags.Items.SEEDS).addTags(FATags.Items.SOYBEAN_SEED, FATags.Items.TEA_SEED, FATags.Items.COFFEE_SEED);

@@ -32,6 +32,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		withExistingParent(FAItems.ROCK.getRegisteredName(), modLoc("block/cobblestone_rock"));
 		basicItem(FAItems.MINT_LEAVES.get());
 		basicItem(FAItems.SOYBEANS.get());
+		basicItem(FAItems.EDAMAME.get());
 		basicItem(FAItems.GINGER.get());
 		basicItem(FAItems.COFFEE_CHERRY.get());
 		basicItem(FAItems.TEA_SEEDS.get());

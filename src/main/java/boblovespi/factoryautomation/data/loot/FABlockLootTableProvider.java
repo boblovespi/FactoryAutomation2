@@ -106,7 +106,22 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 										 .when(hasBlockStateProperties(FABlocks.GINGER.get())
 													   .setProperties(
 															   properties().hasProperty(BlockStateProperties.AGE_3, 3)))
-										 .add(LootItem.lootTableItem(Items.CARROT).apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 0.5714286F, 3))))));
+										 .add(LootItem.lootTableItem(FAItems.GINGER).apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 0.5714286F, 3))))));
+		add(FABlocks.SOYBEAN.get(), b -> applyExplosionDecay(b,
+				LootTable.lootTable()
+						 .withPool(LootPool.lootPool().add(LootItem.lootTableItem(FAItems.SOYBEANS)))
+						 .withPool(
+								 LootPool.lootPool()
+										 .when(hasBlockStateProperties(b)
+													   .setProperties(
+															   properties().hasProperty(BlockStateProperties.AGE_7, 7)))
+										 .add(LootItem.lootTableItem(FAItems.SOYBEANS).apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 4 / 7f, 3))))
+						 .withPool(
+								 LootPool.lootPool()
+										 .when(hasBlockStateProperties(b)
+													   .setProperties(
+															   properties().hasProperty(BlockStateProperties.AGE_7, 6)))
+										 .add(LootItem.lootTableItem(FAItems.EDAMAME).apply(ApplyBonusCount.addBonusBinomialDistributionCount(fortune, 4 / 7f, 2))))));
 		add(FABlocks.ARABICA_LEAVES.get(), b -> createSilkTouchOrShearsDispatchTable(b, getStickDrops(b))
 														.withPool(LootPool.lootPool()
 																		  .setRolls(ConstantValue.exactly(1))

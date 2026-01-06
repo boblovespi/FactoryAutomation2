@@ -138,6 +138,7 @@ public class FABlockStateProvider extends BlockStateProvider
 		flower(FABlocks.WILD_GREEN_ONION);
 		crop4(FABlocks.GREEN_ONIONS);
 		crossCrop4(FABlocks.GINGER);
+		crop8(FABlocks.SOYBEAN);
 		arabicaLeaves(FABlocks.ARABICA_LEAVES);
 		arabicaStem(FABlocks.ARABICA_STEM);
 		flower(FABlocks.WILD_TEA_SHRUB);
@@ -428,6 +429,14 @@ public class FABlockStateProvider extends BlockStateProvider
 		getVariantBuilder(crop.get()).forAllStates(s -> new ConfiguredModel[] {
 				new ConfiguredModel(cropCross(crop.getRegisteredName() + "_stage" + s.getValue(BlockStateProperties.AGE_3),
 						crop.getId().withPrefix("block/").withSuffix("_stage" + s.getValue(BlockStateProperties.AGE_3))).renderType("cutout"))
+		});
+	}
+
+	private void crop8(DeferredBlock<? extends CropBlock> crop)
+	{
+		getVariantBuilder(crop.get()).forAllStates(s -> new ConfiguredModel[] {
+				new ConfiguredModel(models().crop(crop.getRegisteredName() + "_stage" + s.getValue(BlockStateProperties.AGE_7),
+						crop.getId().withPrefix("block/").withSuffix("_stage" + s.getValue(BlockStateProperties.AGE_7))).renderType("cutout"))
 		});
 	}
 
