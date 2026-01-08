@@ -238,6 +238,9 @@ public class FAItemTagProvider extends ItemTagsProvider
 		tag(FATags.Items.TEA_SEED).add(FAItems.TEA_SEEDS.get());
 		tag(FATags.Items.COFFEE_SEED).add(FAItems.COFFEE_CHERRY.get());
 
+		tag(FATags.Items.TEA_LEAF_GREEN).add(FAItems.GREEN_TEA_LEAF.get());
+		tag(FATags.Items.TEA_LEAF).addTags(FATags.Items.TEA_LEAF_GREEN);
+
 		tag(Tags.Items.FOODS_RAW_MEAT).addTags(FATags.Items.RAW_PORKS, FATags.Items.RAW_CHICKEN);
 		tag(Tags.Items.FOODS_VEGETABLE).add(FAItems.EDAMAME.get());
 		tag(Tags.Items.FOODS).addTags(FATags.Items.GREEN_ONION_FOOD, FATags.Items.GREEN_ONION_SCALLION_FOOD, FATags.Items.SOY_SAUCE, FATags.Items.TOFU);
