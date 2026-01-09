@@ -40,7 +40,7 @@ public class LogPileFiringCategory implements IRecipeCategory<LogPileFiringCateg
 		this.helper = helper;
 		localizationName = FactoryAutomation.locString("jei", "log_pile_firing.name");
 		icon = helper.createDrawableItemLike(FABlocks.LOG_PILE);
-		background = helper.createBlankDrawable(100, 80);
+		background = helper.createDrawable(FactoryAutomation.name("textures/gui/jei/log_pile_firing.png"), 0, 0, 117, 80);
 	}
 
 	@Override
@@ -68,15 +68,15 @@ public class LogPileFiringCategory implements IRecipeCategory<LogPileFiringCateg
 		{
 			case Holder.Dummy dummy ->
 			{
-				builder.addSlot(RecipeIngredientRole.CATALYST, 0, 0).addItemStack(dummy.surrounder);
-				builder.addSlot(RecipeIngredientRole.INPUT, 25, 30).addItemLike(dummy.input);
-				builder.addSlot(RecipeIngredientRole.OUTPUT, 88, 48).addItemStacks(dummy.drops);
+				builder.addSlot(RecipeIngredientRole.CATALYST, 11, 53).addItemStack(dummy.surrounder);
+				builder.addSlot(RecipeIngredientRole.INPUT, 25, 19).addItemLike(dummy.input);
+				builder.addSlot(RecipeIngredientRole.OUTPUT, 88, 39).addItemStacks(dummy.drops);
 			}
 			case Holder.Real real ->
 			{
-				builder.addSlot(RecipeIngredientRole.CATALYST, 0, 0).addItemLike(real.recipe.value().getData().logPileLike());
-				builder.addSlot(RecipeIngredientRole.INPUT, 25, 30).addIngredients(real.recipe.value().getInput());
-				builder.addSlot(RecipeIngredientRole.OUTPUT, 88, 30).addItemStack(getResultItem(real.recipe.value()));
+				builder.addSlot(RecipeIngredientRole.CATALYST, 11, 53).addItemLike(real.recipe.value().getData().logPileLike());
+				builder.addSlot(RecipeIngredientRole.INPUT, 25, 19).addIngredients(real.recipe.value().getInput());
+				builder.addSlot(RecipeIngredientRole.OUTPUT, 88, 19).addItemStack(getResultItem(real.recipe.value()));
 			}
 		}
 	}
@@ -90,18 +90,18 @@ public class LogPileFiringCategory implements IRecipeCategory<LogPileFiringCateg
 			var pose = graphics.pose();
 			pose.pushPose();
 			{
-				pose.translate(0.5f, -0.5f, -100);
+				pose.translate(0f, 0f, -100);
 				pose.scale(1.5f, 1.5f, 1.5f);
-				graphics.renderFakeItem(dummy.surrounder, 7, 14);
-				graphics.renderFakeItem(dummy.surrounder, 21, 14);
-				graphics.renderFakeItem(dummy.surrounder, 14, 26);
+				graphics.renderFakeItem(dummy.surrounder, 7, 14 - 8);
+				graphics.renderFakeItem(dummy.surrounder, 21, 14 - 8);
+				graphics.renderFakeItem(dummy.surrounder, 14, 26 - 8);
 				// pose.translate(0, 0, 100/1.5f);
 				// graphics.renderFakeItem(dummy.input.asItem().getDefaultInstance(), 17, 17.5f);
 			}
 			pose.popPose();
 			pose.pushPose();
 			{
-				pose.translate(49.75f + 40, 41, 100);
+				pose.translate(49f + 40, 31.4f, 100);
 				pose.scale(scale, scale, scale);
 				pose.mulPose(BERUtils.quatFromAngleAxis(-30, 1, 0, 0));
 				pose.mulPose(BERUtils.quatFromAngleAxis(225, 0, 1, 0));
@@ -116,11 +116,11 @@ public class LogPileFiringCategory implements IRecipeCategory<LogPileFiringCateg
 			var state = getResultItem(real.recipe.value());
 			pose.pushPose();
 			{
-				pose.translate(0.5f, -0.5f, -100);
+				pose.translate(0f, 0f, -100);
 				pose.scale(1.5f, 1.5f, 1.5f);
-				graphics.renderFakeItem(surrounder, 7, 14);
-				graphics.renderFakeItem(surrounder, 21, 14);
-				graphics.renderFakeItem(surrounder, 14, 26);
+				graphics.renderFakeItem(surrounder, 7, 14 - 8);
+				graphics.renderFakeItem(surrounder, 21, 14 - 8);
+				graphics.renderFakeItem(surrounder, 14, 26 - 8);
 				// pose.translate(0, 0, 100/1.5f);
 				// graphics.renderFakeItem(dummy.input.asItem().getDefaultInstance(), 17, 17.5f);
 			}
