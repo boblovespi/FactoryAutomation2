@@ -142,21 +142,24 @@ public class FARecipeProvider extends RecipeProvider
 		block(FAItems.WEAK_IRON_BLOCK, FAItems.WEAK_IRON_INGOT, "weak_iron", output);
 
 		ingot(Items.COPPER_INGOT, FAItems.COPPER_THINGS.get(Form.NUGGET), Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, "copper", output);
-		metal(FAItems.COPPER_THINGS, Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, Tags.Items.STORAGE_BLOCKS_COPPER, FATags.Items.COPPER_SHEET, "copper", output);
-		metal(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, FATags.Items.TIN_SHEET, "tin", output);
-		metal(FAItems.IRON_THINGS, Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON, Tags.Items.STORAGE_BLOCKS_IRON, FATags.Items.IRON_SHEET, "iron", output);
-		metal(FAItems.LEAD_THINGS, FATags.Items.LEAD_INGOT, FATags.Items.LEAD_NUGGET, FATags.Items.LEAD_BLOCK, FATags.Items.LEAD_SHEET, "lead", output);
-		metal(FAItems.BRONZE_THINGS, FATags.Items.BRONZE_INGOT, FATags.Items.BRONZE_NUGGET, FATags.Items.BRONZE_BLOCK, FATags.Items.BRONZE_SHEET, "bronze", output);
-		metal(FAItems.NICKEL_THINGS, FATags.Items.NICKEL_INGOT, FATags.Items.NICKEL_NUGGET, FATags.Items.NICKEL_BLOCK, FATags.Items.NICKEL_SHEET, "nickel", output);
-		metal(FAItems.SILVER_THINGS, FATags.Items.SILVER_INGOT, FATags.Items.SILVER_NUGGET, FATags.Items.SILVER_BLOCK, FATags.Items.SILVER_SHEET, "silver", output);
+		metal(FAItems.COPPER_THINGS, Tags.Items.INGOTS_COPPER, FATags.Items.COPPER_NUGGET, Tags.Items.STORAGE_BLOCKS_COPPER, FATags.Items.COPPER_SHEET, FATags.Items.COPPER_ROD, "copper", output);
+		metal(FAItems.TIN_THINGS, FATags.Items.TIN_INGOT, FATags.Items.TIN_NUGGET, FATags.Items.TIN_BLOCK, FATags.Items.TIN_SHEET, FATags.Items.TIN_ROD, "tin", output);
+		metal(FAItems.IRON_THINGS, Tags.Items.INGOTS_IRON, Tags.Items.NUGGETS_IRON, Tags.Items.STORAGE_BLOCKS_IRON, FATags.Items.IRON_SHEET, FATags.Items.IRON_ROD, "iron", output);
+		metal(FAItems.LEAD_THINGS, FATags.Items.LEAD_INGOT, FATags.Items.LEAD_NUGGET, FATags.Items.LEAD_BLOCK, FATags.Items.LEAD_SHEET, FATags.Items.LEAD_ROD, "lead", output);
+		metal(FAItems.BRONZE_THINGS, FATags.Items.BRONZE_INGOT, FATags.Items.BRONZE_NUGGET, FATags.Items.BRONZE_BLOCK, FATags.Items.BRONZE_SHEET, FATags.Items.BRONZE_ROD, "bronze", output);
+		metal(FAItems.NICKEL_THINGS, FATags.Items.NICKEL_INGOT, FATags.Items.NICKEL_NUGGET, FATags.Items.NICKEL_BLOCK, FATags.Items.NICKEL_SHEET, FATags.Items.NICKEL_ROD, "nickel", output);
+		metal(FAItems.SILVER_THINGS, FATags.Items.SILVER_INGOT, FATags.Items.SILVER_NUGGET, FATags.Items.SILVER_BLOCK, FATags.Items.SILVER_SHEET, FATags.Items.SILVER_ROD, "silver", output);
 		metal(FAItems.MAGMATIC_BRASS_THINGS, FATags.Items.MAGMATIC_BRASS_INGOT, FATags.Items.MAGMATIC_BRASS_NUGGET, FATags.Items.MAGMATIC_BRASS_BLOCK,
-				FATags.Items.MAGMATIC_BRASS_SHEET, "magmatic_brass", output);
-		metal(FAItems.PIG_IRON_THINGS, FATags.Items.PIG_IRON_INGOT, FATags.Items.PIG_IRON_NUGGET, FATags.Items.PIG_IRON_BLOCK, FATags.Items.PIG_IRON_SHEET, "pig_iron", output);
-		metal(FAItems.STEEL_THINGS, FATags.Items.STEEL_INGOT, FATags.Items.STEEL_NUGGET, FATags.Items.STEEL_BLOCK, FATags.Items.STEEL_SHEET, "steel", output);
-		metal(FAItems.ALUMINUM_THINGS, FATags.Items.ALUMINUM_INGOT, FATags.Items.ALUMINUM_NUGGET, FATags.Items.ALUMINUM_BLOCK, FATags.Items.ALUMINUM_SHEET, "aluminum", output);
+				FATags.Items.MAGMATIC_BRASS_SHEET, FATags.Items.MAGMATIC_BRASS_ROD, "magmatic_brass", output);
+		metal(FAItems.PIG_IRON_THINGS, FATags.Items.PIG_IRON_INGOT, FATags.Items.PIG_IRON_NUGGET, FATags.Items.PIG_IRON_BLOCK, FATags.Items.PIG_IRON_SHEET,
+				FATags.Items.PIG_IRON_ROD, "pig_iron", output);
+		metal(FAItems.STEEL_THINGS, FATags.Items.STEEL_INGOT, FATags.Items.STEEL_NUGGET, FATags.Items.STEEL_BLOCK, FATags.Items.STEEL_SHEET, FATags.Items.STEEL_ROD, "steel", output);
+		metal(FAItems.ALUMINUM_THINGS, FATags.Items.ALUMINUM_INGOT, FATags.Items.ALUMINUM_NUGGET, FATags.Items.ALUMINUM_BLOCK, FATags.Items.ALUMINUM_SHEET,
+				FATags.Items.ALUMINUM_ROD, "aluminum", output);
 		metal(FAItems.ALUMINUM_BRONZE_THINGS, FATags.Items.ALUMINUM_BRONZE_INGOT, FATags.Items.ALUMINUM_BRONZE_NUGGET, FATags.Items.ALUMINUM_BRONZE_BLOCK,
-				FATags.Items.ALUMINUM_BRONZE_SHEET, "aluminum_bronze", output);
-		metal(FAItems.CHROMIUM_THINGS, FATags.Items.CHROMIUM_INGOT, FATags.Items.CHROMIUM_NUGGET, FATags.Items.CHROMIUM_BLOCK, FATags.Items.CHROMIUM_SHEET, "chromium", output);
+				FATags.Items.ALUMINUM_BRONZE_SHEET, FATags.Items.ALUMINUM_BRONZE_ROD, "aluminum_bronze", output);
+		metal(FAItems.CHROMIUM_THINGS, FATags.Items.CHROMIUM_INGOT, FATags.Items.CHROMIUM_NUGGET, FATags.Items.CHROMIUM_BLOCK, FATags.Items.CHROMIUM_SHEET,
+				FATags.Items.CHROMIUM_ROD, "chromium", output);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FAItems.CHOPPING_BLADE)
 						   .pattern("rf")
@@ -1131,7 +1134,7 @@ public class FARecipeProvider extends RecipeProvider
 								  .save(output);
 	}
 
-	private void metal(Map<Form, DeferredItem<? extends Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, TagKey<Item> block, TagKey<Item> sheet, String name,
+	private void metal(Map<Form, DeferredItem<? extends Item>> things, TagKey<Item> ingot, TagKey<Item> nugget, TagKey<Item> block, TagKey<Item> sheet, TagKey<Item> rod, String name,
 					   RecipeOutput output)
 	{
 		if (things.containsKey(Form.INGOT))
@@ -1139,6 +1142,7 @@ public class FARecipeProvider extends RecipeProvider
 		if (things.containsKey(Form.BLOCK))
 			block(things.get(Form.BLOCK), things.get(Form.INGOT), block, ingot, name, output);
 		plateBlock(things.get(Form.PLATE_BLOCK), sheet, name, output);
+		spaceFrame(things.get(Form.SPACE_FRAME), sheet, rod, name, output);
 		sheet(things.get(Form.SHEET), ingot, name, output);
 		rod(things.get(Form.ROD), ingot, name, output);
 		tripHammerMetals(things.get(Form.SHEET), things.get(Form.ROD), block, ingot, name, output);
@@ -1221,6 +1225,20 @@ public class FARecipeProvider extends RecipeProvider
 							  .define('s', sheetI)
 							  .tool("hammer", 1, 1)
 							  .part("screw", 1, 6)
+							  .unlockedBy("has_" + name + "_sheet", has(sheetI))
+							  .save(output);
+	}
+
+	private void spaceFrame(ItemLike spaceFrame, TagKey<Item> sheetI, TagKey<Item> rodI, String name, RecipeOutput output)
+	{
+		WorkbenchRecipeBuilder.of(spaceFrame)
+							  .pattern("sss")
+							  .pattern(" r ")
+							  .pattern("r r")
+							  .define('s', sheetI)
+							  .define('r', rodI)
+							  .tool("hammer", 1, 1)
+							  .part("screw", 1, 4)
 							  .unlockedBy("has_" + name + "_sheet", has(sheetI))
 							  .save(output);
 	}
