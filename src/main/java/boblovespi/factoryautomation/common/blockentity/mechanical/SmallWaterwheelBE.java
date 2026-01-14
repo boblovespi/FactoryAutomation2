@@ -8,11 +8,13 @@ import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
+import boblovespi.factoryautomation.common.util.Triplet;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -24,16 +26,19 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickable, GeoBlockEntity
 {
 	private static final IMechanicalOutput STOPPED = MechanicalManager.ZERO;
-	private static final IMechanicalOutput RUNNING = new RunningOutput();
+	private static final IMechanicalOutput RUNNING = new RunningOutput(25 / 18f / 12f * 16, 100);
+	private static final float UNDERSHOT_SPEED = 9 * 25 / 18f / 1.5f * 2 * Mth.PI / 60f;
+	private static final float OVERSHOT_SPEED = 21 / Mth.sqrt(1.5f) * Mth.PI * 2 / 60f;
 	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("state.small_waterwheel.active");
 	private static final RawAnimation STOPPED_STATE = RawAnimation.begin().thenLoop("state.small_waterwheel.stopped");
 	private final MechanicalManager manager;
 	private final AnimatableInstanceCache cache;
-	private final List<BlockPos> poses;
+	private final List<Triplet<BlockPos, Direction, Vec3>> values;
 	private boolean running;
 
 	public SmallWaterwheelBE(BlockPos pos, BlockState state)
@@ -41,8 +46,12 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 		super(FABETypes.SMALL_WATERWHEEL_TYPE.get(), pos, state);
 		manager = new MechanicalManager("mech", this::updateInputs);
 		cache = GeckoLibUtil.createInstanceCache(this);
-		var dir = state.getValue(SmallWaterwheel.FACING).getClockWise();
-		poses = List.of(pos.above(), pos.below(), pos.relative(dir), pos.relative(dir.getOpposite()));
+		var axisDir = state.getValue(SmallWaterwheel.FACING);
+		var axis = axisDir.getAxis();
+		values = Direction.stream()
+						  .filter(d -> d.getAxis() != axis)
+						  .map(Triplet.apply3(pos::relative, Function.identity(), d -> Vec3.atLowerCornerOf(d.getClockWise(axis).getNormal())))
+						  .toList();
 	}
 
 	@Override
@@ -105,19 +114,17 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	public void updateWater()
 	{
 		setChangedAndUpdateClient();
-		var waterCount = 0;
-		var dir = getBlockState().getValue(SmallWaterwheel.FACING).getClockWise();
-		for (int i = 0; i < poses.size(); i++)
-		{
-			var pos = poses.get(i);
-			if (level.getBlockState(pos).is(Blocks.WATER))
-			{
-				var flow = level.getFluidState(pos).getFlow(level, pos);
-				waterCount += (int) Math.abs(flow.dot(Vec3.atLowerCornerOf(i < 2 ? dir.getNormal() : Direction.DOWN.getNormal())));
-			}
-		}
-		if (waterCount >= 2)
-			setRunning();
+		var pair = values.stream()
+						 .map(t -> t.match((p, d, n) -> {
+							 var flow = level.getFluidState(p).getFlow(level, p);
+							 var flowDot = flow.dot(n);
+							 return new Pair<>(flowDot, (d == Direction.DOWN || Math.abs(flowDot) < 0.2f));
+						 }))
+						 .reduce(new Pair<>(0d, true), (l, r) -> new Pair<>(l.getFirst() + r.getFirst(), l.getSecond() && r.getSecond()));
+		var velocity = Mth.abs(pair.getFirst().floatValue());
+		var isUndershot = pair.getSecond();
+		if (velocity >= 0.5f)
+			setRunning(isUndershot ? UNDERSHOT_SPEED : Mth.clampedLerp(velocity / 2, 0, OVERSHOT_SPEED), velocity * 100);
 		else
 			setStopped();
 	}
@@ -128,10 +135,10 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 		manager.update(STOPPED);
 	}
 
-	private void setRunning()
+	private void setRunning(float speed, float torque)
 	{
 		running = true;
-		manager.update(RUNNING);
+		manager.update(new RunningOutput(speed, torque));
 	}
 
 	@Override
@@ -151,18 +158,5 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 		return cache;
 	}
 
-	private static class RunningOutput implements IMechanicalOutput
-	{
-		@Override
-		public float getTorque()
-		{
-			return 100;
-		}
-
-		@Override
-		public float getSpeed()
-		{
-			return 0.5f;
-		}
-	}
+	private record RunningOutput(float getSpeed, float getTorque) implements IMechanicalOutput {}
 }
