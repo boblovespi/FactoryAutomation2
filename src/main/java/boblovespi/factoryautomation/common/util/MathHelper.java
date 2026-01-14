@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.common.util;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 
 public class MathHelper
@@ -65,5 +66,24 @@ public class MathHelper
 			newVal -= mod;
 		}
 		return false;
+	}
+
+	public static float normalizeAngle(float radians)
+	{
+		radians = radians % (2 * Mth.PI);
+		if (radians < 0)
+			radians += 2 * Mth.PI;
+		return radians;
+	}
+
+	public static boolean isAngleBetween(float angle, float min, float max)
+	{
+		angle = normalizeAngle(angle);
+		min = normalizeAngle(min);
+		max = normalizeAngle(max);
+		if (min > max)
+			return min <= angle || angle <= max;
+		else
+			return min <= angle && angle <= max;
 	}
 }

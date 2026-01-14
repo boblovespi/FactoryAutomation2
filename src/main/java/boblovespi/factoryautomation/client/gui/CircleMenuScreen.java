@@ -94,12 +94,15 @@ public class CircleMenuScreen extends AbstractContainerScreen<StoneCastingVessel
         for (net.minecraft.client.gui.components.Renderable renderable : this.renderables) {
             renderable.render(graphics, mouseX, mouseY, partialTick);
         }
+		graphics.pose().translate(0, 0, 1);
+		image.draw(graphics, centeredY -32, centeredX -32);
+		graphics.pose().translate(0, 0, -1);
         this.renderLabels(graphics, mouseX, mouseY);
     }
 
     protected void renderBg(GuiGraphics graphics, float pPartialTick, int pMouseX, int pMouseY) {
         image.setTexture(menu.getForm());
-        image.draw(graphics, centeredY -32, centeredX -32);
+
     }
 
     private void setForm(int form) {
@@ -117,13 +120,17 @@ public class CircleMenuScreen extends AbstractContainerScreen<StoneCastingVessel
     }
 
     public Button placeItemLookingButtonRadially(ItemLike itemLike, String literal, int formIndex, int sliceSelect){
-        int sliceSizeInDeg = 360/this.sliceNum;
-        double x = radius * Math.cos(Math.PI * 2 * ((double) (sliceSizeInDeg * sliceSelect) /360));
-        double y = radius * Math.sin(Math.PI * 2 * ((double) (sliceSizeInDeg * sliceSelect) /360));
-        return new ItemLookingButton(itemLike, (int)Math.round(centeredX + x)-8, (int)Math.round(centeredY + y)-8, (int)Math.round((-x)), (int)Math.round((-y)+40), Component.literal(literal), (unused) -> {
-            setForm(formIndex);
-            this.onClose();
-        });
+        // int sliceSizeInDeg = 360/this.sliceNum;
+        // double x = radius * Math.cos(Math.PI * 2 * ((double) (sliceSizeInDeg * sliceSelect) /360));
+        // double y = radius * Math.sin(Math.PI * 2 * ((double) (sliceSizeInDeg * sliceSelect) /360));
+        // return new ItemLookingButton(itemLike, (int)Math.round(centeredX + x)-8, (int)Math.round(centeredY + y)-8, (int)Math.round((-x)), (int)Math.round((-y)+40), Component.literal(literal), (unused) -> {
+        //     setForm(formIndex);
+        //     this.onClose();
+        // });
+		return new RadialButton(itemLike, centeredX, centeredY, radius, 80, sliceNum, sliceSelect - 1, Component.literal(literal), a -> {
+			setForm(formIndex);
+			onClose();
+		});
     }
 
     public void drawRadialSeparator(GuiGraphics graphics, int sliceSelect) {
