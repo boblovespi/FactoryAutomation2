@@ -6,8 +6,8 @@ import boblovespi.factoryautomation.client.gui.*;
 import boblovespi.factoryautomation.client.model.PartialDynamicTextureGeometryLoader;
 import boblovespi.factoryautomation.common.FAParticleTypes;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IRotate;
 import boblovespi.factoryautomation.common.blockentity.mechanical.HorseEngineBE;
-import boblovespi.factoryautomation.common.blockentity.processing.MillstoneBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TripHammerBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
@@ -40,7 +40,7 @@ public class ClientHandler
 		FactoryAutomation.LOGGER.info("Setting up client...");
 		FactoryAutomation.LOGGER.info("Minecraft username is {}", Minecraft.getInstance().getUser().getName());
 		// MathParser.registerVariable(new Variable("query.rot", 0));
-		MolangQueries.<MillstoneBE>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
+		MolangQueries.<IRotate>setActorVariable("query.rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 		MolangQueries.<HorseEngineBE>setActorVariable("query.horse_engine_rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 		MolangQueries.<TumblingBarrelBE>setActorVariable("query.barrel_rot", b -> b.animatable().getRenderRot(b.animationState().getPartialTick()));
 		MolangQueries.<TripHammerBE>setActorVariable("query.hammer_input", b -> b.animatable().getRenderInputRot(b.animationState().getPartialTick()));

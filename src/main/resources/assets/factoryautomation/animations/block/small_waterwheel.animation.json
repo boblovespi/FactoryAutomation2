@@ -3,16 +3,11 @@
 	"animations": {
 		"state.small_waterwheel.active": {
 			"loop": true,
-			"animation_length": 10,
+			"animation_length": 0.04,
 			"bones": {
 				"wheel": {
 					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"10.0": {
-							"vector": [0, 0, -360]
-						}
+						"vector": [0, 0, "-query.rot"]
 					}
 				}
 			}

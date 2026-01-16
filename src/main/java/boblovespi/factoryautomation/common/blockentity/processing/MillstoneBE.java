@@ -1,10 +1,7 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
 import boblovespi.factoryautomation.api.IMechanicalInput;
-import boblovespi.factoryautomation.common.blockentity.FABE;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.IClientTickable;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.recipe.MillstoneRecipe;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.sound.FASounds;
@@ -41,7 +38,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class MillstoneBE extends FABE implements ITickable, IClientTickable, GeoBlockEntity, IJadeViewable
+public class MillstoneBE extends FABE implements ITickable, IClientTickable, GeoBlockEntity, IJadeViewable, IRotate
 {
 	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("state.millstone.active");
 	private final AnimatableInstanceCache cache;
@@ -152,6 +149,7 @@ public class MillstoneBE extends FABE implements ITickable, IClientTickable, Geo
 		}
 	}
 
+	@Override
 	public float getRenderRot(float delta)
 	{
 		if (!level.isClientSide)

@@ -3,10 +3,7 @@ package boblovespi.factoryautomation.common.blockentity.mechanical;
 import boblovespi.factoryautomation.api.IMechanicalOutput;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
 import boblovespi.factoryautomation.common.block.mechanical.SmallWaterwheel;
-import boblovespi.factoryautomation.common.blockentity.FABE;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.IClientTickable;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
 import boblovespi.factoryautomation.common.util.Triplet;
 import com.mojang.datafixers.util.Pair;
@@ -28,7 +25,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.List;
 import java.util.function.Function;
 
-public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickable, GeoBlockEntity
+public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickable, IRotate, GeoBlockEntity
 {
 	private static final IMechanicalOutput STOPPED = MechanicalManager.ZERO;
 	private static final IMechanicalOutput RUNNING = new RunningOutput(25 / 18f / 12f * 16, 100);
@@ -40,6 +37,7 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	private final AnimatableInstanceCache cache;
 	private final List<Triplet<BlockPos, Direction, Vec3>> values;
 	private boolean running;
+	private float rot;
 
 	public SmallWaterwheelBE(BlockPos pos, BlockState state)
 	{
@@ -71,13 +69,13 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		tag.putBoolean("running", running);
+		save(tag, registries);
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		running = tag.getBoolean("running");
+		load(tag, registries);
 	}
 
 	@Override
@@ -92,7 +90,8 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	@Override
 	public void clientTick()
 	{
-
+		rot += (float) (Math.toDegrees(manager.getSpeed()) / 20);
+		rot %= 360;
 	}
 
 	@Override
@@ -124,7 +123,7 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 		var velocity = Mth.abs(pair.getFirst().floatValue());
 		var isUndershot = pair.getSecond();
 		if (velocity >= 0.5f)
-			setRunning(isUndershot ? UNDERSHOT_SPEED : Mth.clampedLerp(velocity / 2, 0, OVERSHOT_SPEED), velocity * 100);
+			setRunning(isUndershot ? UNDERSHOT_SPEED : Mth.clampedLerp(0, OVERSHOT_SPEED, velocity / 2), velocity * 100);
 		else
 			setStopped();
 	}
@@ -156,6 +155,14 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	public AnimatableInstanceCache getAnimatableInstanceCache()
 	{
 		return cache;
+	}
+
+	@Override
+	public float getRenderRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return (rot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360;
 	}
 
 	private record RunningOutput(float getSpeed, float getTorque) implements IMechanicalOutput {}
