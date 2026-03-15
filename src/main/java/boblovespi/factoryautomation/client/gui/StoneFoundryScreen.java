@@ -42,6 +42,13 @@ public class StoneFoundryScreen extends AbstractContainerScreen<StoneFoundryMenu
 	}
 
 	@Override
+	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+		//guiGraphics.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 4210752, false);
+		guiGraphics.blit(BACKGROUND_TEXTURE, 42, -17, 41, 181, 94, 16);
+		guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
+	}
+
+	@Override
 	protected void renderBg(GuiGraphics graphics, float pPartialTick, int pMouseX, int pMouseY)
 	{
 		graphics.blit(BACKGROUND_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
