@@ -56,6 +56,13 @@ public class BrickFoundryScreen extends AbstractContainerScreen<BrickFoundryMenu
 	}
 
 	@Override
+	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+		//guiGraphics.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 4210752, false);
+		guiGraphics.blit(BACKGROUND_TEXTURE, 42, -17, 41, 181, 94, 16);
+		guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0x191919, false);
+	}
+
+	@Override
 	protected void renderTooltip(GuiGraphics pGuiGraphics, int mouseX, int mouseY)
 	{
 		super.renderTooltip(pGuiGraphics, mouseX, mouseY);
