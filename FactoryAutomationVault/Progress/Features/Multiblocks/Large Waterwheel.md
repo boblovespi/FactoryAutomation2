@@ -4,7 +4,7 @@ tags:
   - needsAnimation
 Logic: WIP
 Texture: No
-Model: No
+Model: WIP
 Worldgen: N/A
 Drops: Done
 Recipe: Done

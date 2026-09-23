@@ -3,16 +3,17 @@ package boblovespi.factoryautomation.common.blockentity.mechanical;
 import boblovespi.factoryautomation.api.IMechanicalOutput;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
 import boblovespi.factoryautomation.common.block.mechanical.LargeWaterwheel;
+import boblovespi.factoryautomation.common.block.mechanical.SmallWaterwheel;
 import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
+import boblovespi.factoryautomation.common.util.Triplet;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -28,12 +29,15 @@ import java.util.List;
 public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickable, IMultiblockBE, GeoBlockEntity, IRotate
 {
 	private static final IMechanicalOutput STOPPED = MechanicalManager.ZERO;
-	private static final IMechanicalOutput RUNNING = new RunningOutput();
+	// see https://en.wikipedia.org/wiki/Water_wheel#The_power_of_a_wheel
+	private static final float UNDERSHOT_SPEED = 9 * 25 / 18f / 6 * 2 * Mth.PI / 60f;
+	private static final float OVERSHOT_SPEED = 21 / Mth.sqrt(6) * Mth.PI * 2 / 60f;
 	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("state.large_waterwheel.active");
 	private static final RawAnimation STOPPED_STATE = RawAnimation.begin().thenLoop("state.large_waterwheel.stopped");
 	private final MechanicalManager manager;
 	private final AnimatableInstanceCache cache;
-	private final List<BlockPos> poses;
+	// block pos of water, does this pos make it overshot, the normal
+	private final List<Triplet<BlockPos, Boolean, Vec3>> values;
 	private boolean running;
 	private float rot;
 	private boolean counterclockwise;
@@ -45,18 +49,36 @@ public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickabl
 		manager = new MechanicalManager("mech", this::updateInputs);
 		cache = GeckoLibUtil.createInstanceCache(this);
 		var dir = state.getValue(LargeWaterwheel.FACING).getClockWise();
-		poses = List.of(
-				pos.relative(dir, -1).above(3),
-				pos.above(3),
-				pos.relative(dir).above(3),
-				pos.relative(dir, 2).above(2),
-				pos.relative(dir, 3).above(),
-				pos.relative(dir, 3),
-				pos.relative(dir, 3).above(-1),
-				pos.relative(dir, 2).above(-2),
-				pos.relative(dir, 1).above(-3),
-				pos.above(-3),
-				pos.relative(dir, -1).above(-3));
+		//       0  1  2
+		//    15 .  .  .  3
+		// 14 .     .     .  4
+		// 13 .  .  C  .  .  5
+		// 12 .     .     .  6
+		//    11 .  .  .  7
+		//       10 9  8
+
+		var forwardNormal = Vec3.atLowerCornerOf(dir.getNormal());
+		var backwardNormal = Vec3.atLowerCornerOf(dir.getOpposite().getNormal());
+		var downNormal = new Vec3(0, -1, 0);
+		var upNormal = downNormal.scale(-1);
+		values = List.of(
+				new Triplet<>(pos.relative(dir, -1).above(3), true, forwardNormal),
+				new Triplet<>(pos.relative(dir, 0).above(3), true, forwardNormal),
+				new Triplet<>(pos.relative(dir, 1).above(3), true, forwardNormal),
+				new Triplet<>(pos.relative(dir, 2).above(2), true, downNormal),
+				new Triplet<>(pos.relative(dir, 3).above(1), true, downNormal),
+				new Triplet<>(pos.relative(dir, 3).above(0), true, downNormal),
+				new Triplet<>(pos.relative(dir, 3).above(-1), true, downNormal),
+				new Triplet<>(pos.relative(dir, 2).above(-2), false, backwardNormal),
+				new Triplet<>(pos.relative(dir, 1).above(-3), false, backwardNormal),
+				new Triplet<>(pos.relative(dir, 0).above(-3), false, backwardNormal),
+				new Triplet<>(pos.relative(dir, -1).above(-3), false, backwardNormal),
+				new Triplet<>(pos.relative(dir, -2).above(-2), false, backwardNormal),
+				new Triplet<>(pos.relative(dir, -3).above(-1), true, upNormal),
+				new Triplet<>(pos.relative(dir, -3).above(0), true, upNormal),
+				new Triplet<>(pos.relative(dir, -3).above(1), true, upNormal),
+				new Triplet<>(pos.relative(dir, -2).above(2), true, upNormal)
+						);
 	}
 
 	@Override
@@ -127,46 +149,32 @@ public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	private void updateWater()
 	{
 		setChangedAndUpdateClient();
-		if (level.getBiome(worldPosition).is(Biomes.RIVER))
-		{
-			setRunning();
-			return;
-		}
-		var waterCount = 0;
-		var dir = getBlockState().getValue(LargeWaterwheel.FACING).getClockWise();
-		for (int i = 0; i < poses.size(); i++)
-		{
-			var pos = poses.get(i);
-			if (level.getBlockState(pos).is(Blocks.WATER))
-			{
-				var flow = level.getFluidState(pos).getFlow(level, pos);
-				waterCount += (int) Math.abs(flow.dot(Vec3.atLowerCornerOf(i < 3 || i > 6 ? dir.getNormal() : Direction.DOWN.getNormal())));
-			}
-		}
-		if (waterCount >= 2)
-			setRunning();
+		var pair = values.stream()
+						 .map(t -> t.match((p, d, n) -> {
+							 var flow = level.getFluidState(p).getFlow(level, p);
+							 var flowDot = flow.dot(n);
+							 return new Pair<>(flowDot, !d || Math.abs(flowDot) < 0.2f);
+						 }))
+						 .reduce(new Pair<>(0d, true), (l, r) -> new Pair<>(l.getFirst() + r.getFirst(), l.getSecond() && r.getSecond()));
+		var netFlow = Mth.abs(Mth.clamp(pair.getFirst().floatValue() / 10.5f, 0, 1));
+		counterclockwise = pair.getFirst() * getBlockState().getValue(SmallWaterwheel.FACING).getAxisDirection().getStep() >= 0;
+		var isUndershot = pair.getSecond();
+		if (netFlow >= 3 / 11f - 0.01f)
+			setRunning(isUndershot ? UNDERSHOT_SPEED : Mth.clampedLerp(0, OVERSHOT_SPEED, netFlow), netFlow * 1800);
 		else
 			setStopped();
 	}
 
 	private void setStopped()
 	{
-		if (running)
-		{
-			running = false;
-			manager.update(STOPPED);
-			updateInputs();
-		}
+		running = false;
+		manager.update(STOPPED);
 	}
 
-	private void setRunning()
+	private void setRunning(float speed, float torque)
 	{
-		if (!running)
-		{
-			running = true;
-			manager.update(RUNNING);
-			updateInputs();
-		}
+		running = true;
+		manager.update(new RunningOutput(speed, torque));
 	}
 
 	@Override
@@ -210,18 +218,5 @@ public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickabl
 		return (counterclockwise ? 1 : -1) * ((rot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360);
 	}
 
-	private static class RunningOutput implements IMechanicalOutput
-	{
-		@Override
-		public float getTorque()
-		{
-			return 100;
-		}
-
-		@Override
-		public float getSpeed()
-		{
-			return 0.5f;
-		}
-	}
+	private record RunningOutput(float getSpeed, float getTorque) implements IMechanicalOutput {}
 }

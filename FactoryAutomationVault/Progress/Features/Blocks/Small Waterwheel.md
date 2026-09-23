@@ -4,7 +4,7 @@ tags:
   - needsPonder
 Logic: Done
 Texture: Done
-Model: WIP
+Model: Done
 Worldgen: N/A
 Drops: Done
 Recipe: Done
@@ -17,7 +17,7 @@ Age: Iron
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Brass), option(Steel)):Age]`Age
 
-The small waterwheel is the simpler and smaller variety of the two waterwheels; the earlygame passive power sources. It generates 50 W of power at 100 Nm of torque and 0.5 rad/s of speed. 
+The small waterwheel is the simpler and smaller variety of the two waterwheels; the earlygame passive power sources. It generates at most about 538 W of power at 300 Nm of torque and 1.795 rad/s of speed. 
 
 # Status
 
