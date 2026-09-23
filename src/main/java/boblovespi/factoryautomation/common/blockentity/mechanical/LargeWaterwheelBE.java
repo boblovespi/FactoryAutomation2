@@ -3,10 +3,7 @@ package boblovespi.factoryautomation.common.blockentity.mechanical;
 import boblovespi.factoryautomation.api.IMechanicalOutput;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
 import boblovespi.factoryautomation.common.block.mechanical.LargeWaterwheel;
-import boblovespi.factoryautomation.common.blockentity.FABE;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.IClientTickable;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.MechanicalManager;
@@ -28,7 +25,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 
-public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickable, IMultiblockBE, GeoBlockEntity
+public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickable, IMultiblockBE, GeoBlockEntity, IRotate
 {
 	private static final IMechanicalOutput STOPPED = MechanicalManager.ZERO;
 	private static final IMechanicalOutput RUNNING = new RunningOutput();
@@ -38,6 +35,8 @@ public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	private final AnimatableInstanceCache cache;
 	private final List<BlockPos> poses;
 	private boolean running;
+	private float rot;
+	private boolean counterclockwise;
 	private boolean breaking;
 
 	public LargeWaterwheelBE(BlockPos pos, BlockState state)
@@ -77,13 +76,15 @@ public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		tag.putBoolean("running", running);
+		save(tag, registries);
+		tag.putBoolean("counterclockwise", counterclockwise);
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
-		running = tag.getBoolean("running");
+		load(tag, registries);
+		counterclockwise = tag.getBoolean("counterclockwise");
 	}
 
 	@Override
@@ -103,7 +104,8 @@ public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	@Override
 	public void clientTick()
 	{
-
+		rot += (float) (Math.toDegrees(manager.getSpeed()) / 20);
+		rot %= 360;
 	}
 
 	@Override
@@ -198,6 +200,14 @@ public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickabl
 			setStopped();
 			level.setBlock(worldPosition, getBlockState().setValue(LargeWaterwheel.MULTIBLOCK_COMPLETE, false), 2);
 		}
+	}
+
+	@Override
+	public float getRenderRot(float delta)
+	{
+		if (!level.isClientSide)
+			return 0;
+		return (counterclockwise ? 1 : -1) * ((rot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360);
 	}
 
 	private static class RunningOutput implements IMechanicalOutput

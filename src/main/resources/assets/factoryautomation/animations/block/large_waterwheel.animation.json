@@ -1,0 +1,18 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"state.large_waterwheel.stopped": {
+			"loop": true
+		},
+		"state.large_waterwheel.active": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": {
+						"vector": [0, 0, "-query.rot"]
+					}
+				}
+			}
+		}
+	}
+}
