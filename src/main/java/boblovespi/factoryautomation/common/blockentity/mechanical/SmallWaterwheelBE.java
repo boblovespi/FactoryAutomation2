@@ -29,6 +29,7 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 {
 	private static final IMechanicalOutput STOPPED = MechanicalManager.ZERO;
 	private static final IMechanicalOutput RUNNING = new RunningOutput(25 / 18f / 12f * 16, 100);
+	// see https://en.wikipedia.org/wiki/Water_wheel#The_power_of_a_wheel
 	private static final float UNDERSHOT_SPEED = 9 * 25 / 18f / 1.5f * 2 * Mth.PI / 60f;
 	private static final float OVERSHOT_SPEED = 21 / Mth.sqrt(1.5f) * Mth.PI * 2 / 60f;
 	private static final RawAnimation ACTIVE_STATE = RawAnimation.begin().thenLoop("state.small_waterwheel.active");

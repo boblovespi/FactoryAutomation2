@@ -15,6 +15,7 @@ public class GearMaterial
 	public static final GearMaterial WOOD = new GearMaterial("wood", 1, 40);
 	public static final GearMaterial STONE = new GearMaterial("stone", 2, 50);
 	public static final GearMaterial COPPER = new GearMaterial("copper", 1, 200);
+	public static final GearMaterial TIN = new GearMaterial("tin", 3, 150);
 	public static final GearMaterial IRON = new GearMaterial("iron", 2, 600);
 	// public static final GearMaterial GOLD = new GearMaterial("gold", 3, 400);
 	public static final GearMaterial BRONZE = new GearMaterial("bronze", 5, 600);
