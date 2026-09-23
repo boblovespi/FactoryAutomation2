@@ -38,6 +38,7 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	private final List<Triplet<BlockPos, Direction, Vec3>> values;
 	private boolean running;
 	private float rot;
+	private boolean counterclockwise;
 
 	public SmallWaterwheelBE(BlockPos pos, BlockState state)
 	{
@@ -70,12 +71,14 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		save(tag, registries);
+		tag.putBoolean("counterclockwise", counterclockwise);
 	}
 
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
 		load(tag, registries);
+		counterclockwise = tag.getBoolean("counterclockwise");
 	}
 
 	@Override
@@ -121,6 +124,7 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 						 }))
 						 .reduce(new Pair<>(0d, true), (l, r) -> new Pair<>(l.getFirst() + r.getFirst(), l.getSecond() && r.getSecond()));
 		var velocity = Mth.abs(pair.getFirst().floatValue());
+		counterclockwise = pair.getFirst() * getBlockState().getValue(SmallWaterwheel.FACING).getAxisDirection().getStep() <= 0;
 		var isUndershot = pair.getSecond();
 		if (velocity >= 0.5f)
 			setRunning(isUndershot ? UNDERSHOT_SPEED : Mth.clampedLerp(0, OVERSHOT_SPEED, velocity / 2), velocity * 100);
@@ -162,7 +166,7 @@ public class SmallWaterwheelBE extends FABE implements ITickable, IClientTickabl
 	{
 		if (!level.isClientSide)
 			return 0;
-		return (rot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360;
+		return (counterclockwise ? 1 : -1) * ((rot + delta * (float) (Math.toDegrees(manager.getSpeed()) / 20)) % 360);
 	}
 
 	private record RunningOutput(float getSpeed, float getTorque) implements IMechanicalOutput {}
