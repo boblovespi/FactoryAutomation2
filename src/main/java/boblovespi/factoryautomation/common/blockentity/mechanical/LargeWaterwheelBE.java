@@ -3,7 +3,6 @@ package boblovespi.factoryautomation.common.blockentity.mechanical;
 import boblovespi.factoryautomation.api.IMechanicalOutput;
 import boblovespi.factoryautomation.api.capability.MechanicalCapability;
 import boblovespi.factoryautomation.common.block.mechanical.LargeWaterwheel;
-import boblovespi.factoryautomation.common.block.mechanical.SmallWaterwheel;
 import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
@@ -157,7 +156,7 @@ public class LargeWaterwheelBE extends FABE implements ITickable, IClientTickabl
 						 }))
 						 .reduce(new Pair<>(0d, true), (l, r) -> new Pair<>(l.getFirst() + r.getFirst(), l.getSecond() && r.getSecond()));
 		var netFlow = Mth.abs(Mth.clamp(pair.getFirst().floatValue() / 10.5f, 0, 1));
-		counterclockwise = pair.getFirst() * getBlockState().getValue(SmallWaterwheel.FACING).getAxisDirection().getStep() >= 0;
+		counterclockwise = pair.getFirst() * getBlockState().getValue(LargeWaterwheel.FACING).getAxisDirection().getStep() >= 0;
 		var isUndershot = pair.getSecond();
 		if (netFlow >= 3 / 11f - 0.01f)
 			setRunning(isUndershot ? UNDERSHOT_SPEED : Mth.clampedLerp(0, OVERSHOT_SPEED, netFlow), netFlow * 1800);
