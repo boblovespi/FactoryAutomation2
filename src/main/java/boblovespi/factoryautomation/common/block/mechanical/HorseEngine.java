@@ -6,6 +6,7 @@ import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.mechanical.HorseEngineBE;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -97,11 +99,23 @@ public class HorseEngine extends Block implements EntityBlock
 	}
 
 	@Override
+	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
+	{
+		var half = state.getValue(HALF);
+		if (direction == Direction.UP && half == DoubleBlockHalf.LOWER)
+			return neighborState.is(this) && neighborState.getValue(HALF) == DoubleBlockHalf.UPPER ? state : Blocks.AIR.defaultBlockState();
+		else if (direction == Direction.DOWN && half == DoubleBlockHalf.UPPER)
+			return neighborState.is(this) && neighborState.getValue(HALF) == DoubleBlockHalf.LOWER ? state : Blocks.AIR.defaultBlockState();
+		return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+	}
+
+	@Override
 	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
 	{
-		var blockpos = pos.below();
-		var blockstate = level.getBlockState(blockpos);
-		return state.getValue(HALF) == DoubleBlockHalf.LOWER || blockstate.is(this);
+		// var below = pos.below();
+		// var belowState = level.getBlockState(below);
+		// return state.getValue(HALF) == DoubleBlockHalf.LOWER || belowState.is(this);
+		return true;
 	}
 
 	@Override
@@ -155,18 +169,18 @@ public class HorseEngine extends Block implements EntityBlock
 		return ItemInteractionResult.SUCCESS;
 	}
 
-	protected static void preventDropFromBottomPart(Level level, BlockPos pos, BlockState state, Player player)
+	protected void preventDropFromBottomPart(Level level, BlockPos pos, BlockState state, Player player)
 	{
-		var doubleblockhalf = state.getValue(HALF);
-		if (doubleblockhalf == DoubleBlockHalf.UPPER)
+		var half = state.getValue(HALF);
+		if (half == DoubleBlockHalf.UPPER)
 		{
-			var blockpos = pos.below();
-			var blockstate = level.getBlockState(blockpos);
-			if (blockstate.is(state.getBlock()) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER)
+			var below = pos.below();
+			var belowState = level.getBlockState(below);
+			if (belowState.is(this) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER)
 			{
-				var blockstate1 = blockstate.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
-				level.setBlock(blockpos, blockstate1, 35);
-				level.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
+				var newState = belowState.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+				level.setBlock(below, newState, 35);
+				level.levelEvent(player, 2001, below, Block.getId(belowState));
 			}
 		}
 	}

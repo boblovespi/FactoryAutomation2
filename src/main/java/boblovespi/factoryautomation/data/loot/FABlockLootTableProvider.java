@@ -1,6 +1,7 @@
 package boblovespi.factoryautomation.data.loot;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
+import boblovespi.factoryautomation.common.block.mechanical.HorseEngine;
 import boblovespi.factoryautomation.common.block.resource.ArabicaLeaves;
 import boblovespi.factoryautomation.common.block.resource.ArabicaStem;
 import boblovespi.factoryautomation.common.block.resource.TeaShrub;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -39,7 +41,7 @@ import static net.minecraft.world.level.storage.loot.predicates.LootItemBlockSta
 
 public class FABlockLootTableProvider extends BlockLootSubProvider
 {
-	private static final float[] NORMAL_LEAVES_STICK_CHANCES = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
+	private static final float[] NORMAL_LEAVES_STICK_CHANCES = new float[] {0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
 	@SuppressWarnings({"NotNullFieldNotInitialized", "FieldCanBeLocal"})
 	private HolderLookup.RegistryLookup<Enchantment> enchants;
 	@SuppressWarnings("NotNullFieldNotInitialized")
@@ -226,7 +228,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.HAND_CRANK.get());
 		dropSelf(FABlocks.SMALL_WATERWHEEL.get());
 		dropSelf(FABlocks.LARGE_WATERWHEEL.get());
-		dropSelf(FABlocks.HORSE_ENGINE.get());
+		add(FABlocks.HORSE_ENGINE.get(), b -> createSinglePropConditionTable(b, HorseEngine.HALF, DoubleBlockHalf.LOWER));
 		dropSelf(FABlocks.TRIP_HAMMER.get());
 		dropSelf(FABlocks.TUMBLING_BARREL.get());
 		dropSelf(FABlocks.FRYING_PAN.get());
