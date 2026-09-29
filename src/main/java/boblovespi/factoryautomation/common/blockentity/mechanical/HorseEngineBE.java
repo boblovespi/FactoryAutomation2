@@ -59,7 +59,7 @@ public class HorseEngineBE extends FABE implements ITickable, IClientTickable, G
 			tag.putUUID("horseId", horseId);
 		tag.putBoolean("hasHorse", hasHorse);
 		tag.putFloat("horseSpeed", horseSpeed);
-		tag.putFloat("moveTimer", moveTimer);
+		tag.putInt("moveTimer", moveTimer);
 		tag.putFloat("angle", angle);
 	}
 
@@ -78,6 +78,7 @@ public class HorseEngineBE extends FABE implements ITickable, IClientTickable, G
 	@Override
 	protected void saveMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
+		tag.putBoolean("hasHorse", hasHorse);
 		tag.putFloat("horseSpeed", horseSpeed);
 		tag.putFloat("angle", angle);
 	}
@@ -85,6 +86,7 @@ public class HorseEngineBE extends FABE implements ITickable, IClientTickable, G
 	@Override
 	protected void loadMini(CompoundTag tag, HolderLookup.Provider registries)
 	{
+		hasHorse = tag.getBoolean("hasHorse");
 		horseSpeed = tag.getFloat("horseSpeed");
 		angle = tag.getFloat("angle");
 	}
@@ -124,27 +126,32 @@ public class HorseEngineBE extends FABE implements ITickable, IClientTickable, G
 			}
 		}
 		float x, y, z;
-		angle -= radiansPerTick * horseSpeed;
-		angle = angle % (2 * Mth.PI);
+		// angle -= radiansPerTick * horseSpeed;
+		// angle = angle % (2 * Mth.PI);
+		angle = (float) (((double) level.getGameTime() * -radiansPerTick * horseSpeed) % Mth.TWO_PI);
 		x = worldPosition.getX() + 0.5f + radiusCircle * Mth.cos(angle);
 		y = worldPosition.getY();
 		z = worldPosition.getZ() + 0.5f + radiusCircle * Mth.sin(angle);
 		horse.getMoveControl().setWantedPosition(x, y, z, 2);
 		horse.getNavigation().stop();
+		setChanged();
 	}
 
 	@Override
 	public void clientTick()
 	{
-		angle -= radiansPerTick * horseSpeed;
-		angle = angle % (2 * Mth.PI);
+		// angle -= radiansPerTick * horseSpeed;
+		// angle = angle % (2 * Mth.PI);
+		angle = (float) (((double) level.getGameTime() * -radiansPerTick * horseSpeed) % Mth.TWO_PI);
 	}
 
 	public float getRenderRot(float delta)
 	{
 		if (!level.isClientSide)
 			return 0;
-		return (float) Math.toDegrees(angle - radiansPerTick * horseSpeed * delta);
+		if (!hasHorse)
+			return 0;
+		return (float) Math.toDegrees(angle - radiansPerTick * horseSpeed * delta) - 10;
 	}
 
 	@Override
