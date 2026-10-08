@@ -980,7 +980,7 @@ public class FARecipeProvider extends RecipeProvider
 		KilnRecipe.of(new ItemStack(Items.CHARCOAL))
 				  .progress(20 * 10)
 				  .input(ItemTags.LOGS_THAT_BURN)
-				  .beginData().temperature(330 + 273).power(4_300_000_300f / (8 * 10)).endData() // TODO: fix temps
+				  .beginData().temperature(330 + 273).power(4_300_000_300f / (8 * 10 * 4)).endData() // TODO: fix temps
 				  .unlockedBy("has_logs", has(ItemTags.LOGS_THAT_BURN))
 				  .save(output);
 
