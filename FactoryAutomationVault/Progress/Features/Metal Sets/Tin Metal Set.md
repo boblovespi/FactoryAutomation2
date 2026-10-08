@@ -23,7 +23,7 @@ Age: Copper
 - [x] Nugget
 - [x] Sheet
 - [x] Rod
-- [ ] ~~Gear~~ No Gear Form
+- [x] Gear
 - [ ] Coin
 - [x] Block
 - [x] Sheet Block
