@@ -86,4 +86,9 @@ public class MathHelper
 		else
 			return min <= angle && angle <= max;
 	}
+
+	public static float pow(float a, float b)
+	{
+		return (float) Math.pow(a, b);
+	}
 }

@@ -47,7 +47,9 @@ public class BrickFireboxBE extends FABE implements ITickable
 				return stack.getItemHolder().getData(FuelInfo.FUEL_DATA) != null;
 			}
 		};
-		heat = new HeatManager("heat", 2300 * 1000, 50000, 0.9f);
+		// assuming a 1/8m thick shell with brick with shc of 753 J/kg K and density 1850 kg/m3
+		// epsilon comes from coal; https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html
+		heat = new HeatManager("heat", 805 * 1000, 50000, 0.9f, 0.8f);
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) -> {
 			if (t * efficiency + 273 * (1 - efficiency) >= heat.getTemperature())
 				heat.heat(e * efficiency * 0.5f);
@@ -94,7 +96,15 @@ public class BrickFireboxBE extends FABE implements ITickable
 		burner.progress();
 		var cap = level.getCapability(HeatCapability.BLOCK, worldPosition.above(), Direction.DOWN);
 		if (cap != null)
-			cap.conductWith(heat);
+		{
+			if (cap.canConvect(worldPosition.above(), Direction.DOWN) && heat.canConvect(worldPosition, Direction.UP))
+			{
+				heat.radiateWith(cap);
+				heat.convectWith(cap, Direction.UP);
+			}
+			else
+				heat.conductWith(cap);
+		}
 		setChanged();
 	}
 

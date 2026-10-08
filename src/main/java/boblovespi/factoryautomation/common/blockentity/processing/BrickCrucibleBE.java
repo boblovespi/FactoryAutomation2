@@ -64,7 +64,8 @@ public class BrickCrucibleBE extends FABE implements IMultiblockBE, ITickable, I
 				return super.isItemValid(slot, stack);
 			}
 		};
-		heat = new HeatManager("heat", 2300 * 1000, 300, 0.5f);
+		// fire clay brick; https://testing.instrumart.com/pages/208/materials-emissivity-table
+		heat = new HeatManager("heat", 2300 * 1000, 300, 0.5f, 0.75f);
 		bellows = new BellowsConsumerManager("bellowsUser", 0.5f);
 		burner = new BurnerManager("burner", () -> inv.getStackInSlot(0), this::takeFuel, (t, e) ->
 		{

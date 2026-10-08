@@ -46,7 +46,8 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 	{
 		super(FABETypes.BRICK_KILN_TYPE.get(), pos, state);
 		recipeManager = new RecipeManager<>("recipe", this::isValid, this::findMatchingRecipe, this::getRecipe);
-		heatManager = new HeatManager("heat", 5.78e7f, 3000, 0.8f);
+		// assuming a 1/4m thick shell with brick with shc of 753 J/kg K and density 1850 kg/m3
+		heatManager = new HeatManager("heat", 1.5846e7f, 3000, 0.8f, 0.75f);
 		inv = new ItemStackHandler(2)
 		{
 			@Override
@@ -145,7 +146,15 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 						var pos2 = pos.relative(facing, j).relative(d.getAxis().isVertical() ? facing.getClockWise().getAxis() : Direction.Axis.Y, i);
 						var cap = level.getCapability(HeatCapability.BLOCK, pos2, d.getOpposite());
 						if (cap != null)
-							cap.conductWith(heatManager);
+						{
+							if (cap.canConvect(pos2, d.getOpposite()) && heatManager.canConvect(pos2.relative(d, -1), d))
+							{
+								heatManager.radiateWith(cap);
+								heatManager.convectWith(cap, d);
+							}
+							else
+								heatManager.conductWith(cap);
+						}
 					}
 				}
 			}

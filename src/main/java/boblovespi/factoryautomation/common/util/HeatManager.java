@@ -1,6 +1,8 @@
 package boblovespi.factoryautomation.common.util;
 
 import boblovespi.factoryautomation.api.IHeatUser;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 
 public class HeatManager implements IHeatUser
@@ -10,13 +12,15 @@ public class HeatManager implements IHeatUser
 	private float heatCapacity;
 	private float conductivity;
 	private float contactParameter;
+	private float emissivity;
 
-	public HeatManager(String nbtId, float heatCapacity, float conductivity, float contactParameter)
+	public HeatManager(String nbtId, float heatCapacity, float conductivity, float contactParameter, float emissivity)
 	{
 		this.nbtId = nbtId;
 		this.heatCapacity = heatCapacity;
 		this.conductivity = conductivity;
 		this.contactParameter = contactParameter;
+		this.emissivity = emissivity;
 		temperature = 300;
 	}
 
@@ -25,6 +29,18 @@ public class HeatManager implements IHeatUser
 		temperature += energy / heatCapacity;
 		if (temperature < 0)
 			temperature = 0;
+	}
+
+	@Override
+	public boolean canConvect(BlockPos pos, Direction face)
+	{
+		return true;
+	}
+
+	@Override
+	public float getConvectionSpeed(Direction face)
+	{
+		return 0;
 	}
 
 	public float cool(float energy)
@@ -71,6 +87,12 @@ public class HeatManager implements IHeatUser
 	public float getContactParameter()
 	{
 		return contactParameter;
+	}
+
+	@Override
+	public float getEmissivity()
+	{
+		return emissivity;
 	}
 
 	public void increaseHeatCapacity(float shc)
