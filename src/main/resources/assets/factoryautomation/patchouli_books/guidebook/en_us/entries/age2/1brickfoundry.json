@@ -10,9 +10,9 @@
 			"item": "factoryautomation:brick_crucible"
 		},
 		{
-			"type": "text",
+			"type": "multiblock",
 			"name": "Foundry Tier II",
-			"multiblock_id": "factoryautomation:brick_foundry",
+			"multiblock_id": "factoryautomation:brick_crucible",
 			"text": "Use the book to visualise how to build the brick foundry. You also need a brick firebox."
 		},
 		{

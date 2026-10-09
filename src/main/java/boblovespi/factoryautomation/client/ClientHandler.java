@@ -12,12 +12,14 @@ import boblovespi.factoryautomation.common.blockentity.processing.TripHammerBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
+import boblovespi.factoryautomation.common.util.patchouli.FAPatchouliPlugin;
 import boblovespi.factoryautomation.common.util.ponder.FAPonderPlugin;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -47,6 +49,11 @@ public class ClientHandler
 		MolangQueries.<TripHammerBE>setActorVariable("query.hammer_tool", b -> b.animatable().getRenderToolRot(b.animationState().getPartialTick()));
 
 		PonderIndex.addPlugin(new FAPonderPlugin());
+		if (ModList.get().isLoaded("patchouli"))
+		{
+			var patchouiPlugin = new FAPatchouliPlugin();
+			patchouiPlugin.registerMultiblocks();
+		}
 	}
 
 	@SubscribeEvent

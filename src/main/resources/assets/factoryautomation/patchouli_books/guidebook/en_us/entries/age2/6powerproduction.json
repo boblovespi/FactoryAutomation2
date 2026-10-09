@@ -1,0 +1,28 @@
+{
+	"name": "Power Production",
+	"icon": "factoryautomation:small_waterwheel",
+	"category": "factoryautomation:age2",
+	"sortnum": 6,
+	"pages": [
+		{
+			"type": "text",
+			"text": "Mechanical power is useless without a way to produce it. The iron age provides some simple power sources for you to use."
+		},
+		{
+			"type": "spotlight",
+			"text": "The hand crank is the simplest power source, a manually-driven crank. It takes hunger to use and produces 40 Nm of torque at 1.57 rad/s.",
+			"item": "factoryautomation:hand_crank"
+		},
+		{
+			"type": "spotlight",
+			"text": "Of course, relying on manual work is the antithesis of mechanical power. Hence, the small waterwheel uses the power of flowing water to generate power completely passively. It can generate at most 300 Nm of torque at 1.79 rad/s",
+			"item": "factoryautomation:small_waterwheel"
+		},
+		{
+			"type": "multiblock",
+			"name": "Large Waterwheel",
+			"multiblock_id": "factoryautomation:large_waterwheel",
+			"text": "The large waterwheel is the large brother of the small waterwheel. It generates even more power!"
+		}
+	]
+}

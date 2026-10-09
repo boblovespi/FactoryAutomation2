@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.function.Predicate;
@@ -23,12 +24,14 @@ public class SimpleMultiblock extends Multiblock
 {
 	private static final Predicate<BlockState> ANY_STATE = b -> true;
 	private final Predicate<BlockState>[][][] pattern;
+	private final Supplier<BlockState>[][][] displayPattern;
 	private final Vec3i offset;
 
-	public SimpleMultiblock(ResourceLocation name, Predicate<BlockState>[][][] pattern, Vec3i offset)
+	public SimpleMultiblock(ResourceLocation name, Predicate<BlockState>[][][] pattern, Supplier<BlockState>[][][] displayPattern, Vec3i offset)
 	{
 		super(name);
 		this.pattern = pattern;
+		this.displayPattern = displayPattern;
 		this.offset = offset;
 	}
 
@@ -48,6 +51,16 @@ public class SimpleMultiblock extends Multiblock
 	public void destroy(Level level, BlockPos controllerPos, Direction facing)
 	{
 		iterateOverMultiblock(level, controllerPos, facing, IterateAction.DESTROY);
+	}
+
+	public Vec3i getSize()
+	{
+		return new Vec3i(displayPattern.length, displayPattern[0].length, displayPattern[0][0].length);
+	}
+
+	public BlockState getDisplayAt(int x, int y, int z)
+	{
+		return displayPattern[x][y][z].get();
 	}
 
 	private boolean iterateOverMultiblock(Level world, BlockPos controllerPos, Direction facing, IterateAction action)
@@ -150,6 +163,7 @@ public class SimpleMultiblock extends Multiblock
 		private final int sizeZ;
 		private final char[][][] pattern;
 		private final Predicate<BlockState>[] patternDef;
+		private final Supplier<BlockState>[] displayDef;
 		private Vec3i offset;
 		private int y;
 
@@ -161,7 +175,9 @@ public class SimpleMultiblock extends Multiblock
 			this.sizeZ = sizeZ;
 			pattern = new char[sizeX][sizeY][sizeZ];
 			patternDef = new Predicate[128];
+			displayDef = new Supplier[128];
 			patternDef[' '] = patternDef[0] = ANY_STATE;
+			displayDef[' '] = displayDef[0] = Blocks.AIR::defaultBlockState;
 			y = sizeY - 1;
 			offset = Vec3i.ZERO;
 		}
@@ -200,42 +216,44 @@ public class SimpleMultiblock extends Multiblock
 			return this;
 		}
 
-		public Builder define(char c, Predicate<BlockState> p)
+		public Builder define(char c, Predicate<BlockState> p, Supplier<BlockState> d)
 		{
 			if (c >= 128)
 				throw new RuntimeException("Characters in multiblock definition for " + name + " must be in standard ASCII.");
 			patternDef[c] = p;
+			displayDef[c] = d;
 			return this;
 		}
 
 		public Builder define(char c, BlockState s)
 		{
-			return define(c, s::equals);
+			return define(c, s::equals, () -> s);
 		}
 
 		public Builder define(char c, Block b)
 		{
-			return define(c, s -> s.is(b));
+			return define(c, s -> s.is(b), b::defaultBlockState);
 		}
 
 		public Builder define(char c, Supplier<? extends Block> b)
 		{
-			return define(c, s -> s.is(b.get()));
+			return define(c, s -> s.is(b.get()), () -> b.get().defaultBlockState());
 		}
 
-		public Builder define(char c, TagKey<Block> b)
+		public Builder define(char c, TagKey<Block> b, Supplier<BlockState> d)
 		{
-			return define(c, s -> s.is(b));
+			return define(c, s -> s.is(b), d);
 		}
 
 		public Builder defineAsAny(char c)
 		{
-			return define(c, ANY_STATE);
+			return define(c, ANY_STATE, Blocks.AIR::defaultBlockState);
 		}
 
 		public SimpleMultiblock build()
 		{
 			Predicate<BlockState>[][][] realPattern = new Predicate[sizeX][sizeY][sizeZ];
+			Supplier<BlockState>[][][] displayPattern = new Supplier[sizeX][sizeY][sizeZ];
 			for (int x = 0; x < pattern.length; x++)
 			{
 				for (int y = 0; y < pattern[x].length; y++)
@@ -246,10 +264,11 @@ public class SimpleMultiblock extends Multiblock
 						if (pred == null)
 							throw new RuntimeException("Character" + pattern[x][y][z] + " in multiblock definition for " + name + " is lacking a predicate.");
 						realPattern[x][y][z] = pred;
+						displayPattern[x][y][z] = displayDef[pattern[x][y][z]];
 					}
 				}
 			}
-			return new SimpleMultiblock(name, realPattern, offset);
+			return new SimpleMultiblock(name, realPattern, displayPattern, offset);
 		}
 	}
 
