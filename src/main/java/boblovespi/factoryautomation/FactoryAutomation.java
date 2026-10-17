@@ -31,11 +31,13 @@ import boblovespi.factoryautomation.data.loot.ReplaceDropsLootModifier;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.neoforged.bus.api.IEventBus;
@@ -54,6 +56,7 @@ import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.fluids.SimpleFluidContent;
+import net.neoforged.neoforge.items.ComponentItemHandler;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -86,6 +89,8 @@ public class FactoryAutomation
 
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<SimpleFluidContent>> FLUID_CONTENT_DC = DATA_COMPONENTS.registerComponentType("fluid_contents",
 			i -> i.networkSynchronized(SimpleFluidContent.STREAM_CODEC));
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemContainerContents>> ITEM_HANDLER_DC = DATA_COMPONENTS.registerComponentType("item_handler",
+			i -> i.networkSynchronized(ItemContainerContents.STREAM_CODEC).persistent(ItemContainerContents.CODEC));
 
 	public static final ModelProperty<Block[]> PARTIAL_DYNAMIC_TEXTURE_PROPERTY = new ModelProperty<>();
 
@@ -200,6 +205,8 @@ public class FactoryAutomation
 		event.registerBlockEntity(HeatCapability.BLOCK, FABETypes.BRICK_FIREBOX_TYPE.get(), BrickFireboxBE::heatManager);
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.SMALL_TANK_TYPE.get(), SmallTankBE::fluidHandler);
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.BRICK_CASTING_VESSEL_TYPE.get(), BrickCastingVesselBE::fluidHandler);
+
+		event.registerItem(Capabilities.ItemHandler.ITEM, (s, c) -> new ComponentItemHandler(s, DataComponents.CONTAINER, 9), FAItems.LEATHER_SACK.get());
 
 		for (var item : BuiltInRegistries.ITEM)
 			if (item instanceof FluidBottle fb)

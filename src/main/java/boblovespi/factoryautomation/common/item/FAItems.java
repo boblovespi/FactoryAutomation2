@@ -214,6 +214,10 @@ public class FAItems
 	public static final DeferredItem<Hammer> BRONZE_HAMMER = tieredTool("bronze_hammer", Hammer::new, Tools.BRONZE_TIER, p(), 10, -3.5f);
 	public static final DeferredItem<Wrench> BRONZE_WRENCH = tieredTool("bronze_wrench", Wrench::new, Tools.BRONZE_TIER, p(), 2.5f, -3f);
 
+	// Utility
+
+	public static final DeferredItem<LeatherSack> LEATHER_SACK = ITEMS.registerItem("leather_sack", LeatherSack::new, p().stacksTo(1));
+
 	// Mechanical
 
 	public static final Map<GearMaterial, DeferredItem<Item>> GEARS = gear();

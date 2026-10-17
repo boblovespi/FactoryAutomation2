@@ -177,6 +177,7 @@ public class CreativeTabs
 			insertAfter(event, FAItems.IRON_WRENCH, FAItems.BRONZE_SHOVEL, FAItems.BRONZE_PICKAXE, FAItems.BRONZE_AXE, FAItems.BRONZE_HOE, FAItems.BRONZE_HAMMER, FAItems.BRONZE_WRENCH);
 			event.insertBefore(Items.FLINT_AND_STEEL.getDefaultInstance(), FAItems.FIREBOW.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 			event.insertBefore(Items.SHEARS.getDefaultInstance(), FAItems.COPPER_SHEARS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+			event.insertBefore(Items.COMPASS.getDefaultInstance(), FAItems.LEATHER_SACK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 		}
 
 		if (event.getTabKey() == CreativeModeTabs.COMBAT)
