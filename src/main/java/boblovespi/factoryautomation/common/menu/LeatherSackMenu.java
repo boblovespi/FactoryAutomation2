@@ -20,21 +20,22 @@ public class LeatherSackMenu extends FAMenu
 	{
 		super(MenuTypes.LEATHER_SACK.get(), containerId, inv, new SimpleContainerData(0), ContainerLevelAccess.NULL, null);
 		this.sackSlot = sackSlot;
-		for (int i = 0; i < 3; i++)
-			for (int j = 0; j < 3; j++)
+		for (int j = 0; j < 3; j++)
+			for (int i = 0; i < 3; i++)
 				addSlot(new ItemHandlerCopySlot(inv, i + j * 3, 62 + 18 * i, 17 + 18 * j));
 
+		var invY = 84 + 8 + 3;
 		for (int j = 0; j < 3; ++j)
 		{
 			for (int i = 0; i < 9; ++i)
-				addSlot(new Slot(playerInv, i + j * 9 + 9, 8 + i * 18, 84 + j * 18));
+				addSlot(new Slot(playerInv, i + j * 9 + 9, 8 + i * 18, invY + j * 18));
 		}
 		for (int i = 0; i < 9; i++)
 		{
 			if (i == sackSlot)
-				addSlot(new NonInteractiveResultSlot(playerInv, i, 8 + i * 18, 84 + 58));
+				addSlot(new NonInteractiveResultSlot(playerInv, i, 8 + i * 18, invY + 58));
 			else
-				addSlot(new Slot(playerInv, i, 8 + i * 18, 84 + 58));
+				addSlot(new Slot(playerInv, i, 8 + i * 18, invY + 58));
 		}
 	}
 

@@ -15,6 +15,9 @@ public class LeatherSackScreen extends AbstractContainerScreen<LeatherSackMenu>
 	public LeatherSackScreen(LeatherSackMenu menu, Inventory playerInventory, Component title)
 	{
 		super(menu, playerInventory, title);
+		titleLabelX = 62 - 7;
+		imageHeight = 177;
+		inventoryLabelY += 8 + 3;
 	}
 
 	@Override

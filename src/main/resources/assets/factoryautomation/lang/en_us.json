@@ -25,7 +25,7 @@
 	"block.factoryautomation.sandstone_rock": "Sandstone Rock",
 	"block.factoryautomation.mossy_cobblestone_rock": "Mossy Cobblestone Rock",
 	"block.factoryautomation.terracotta_rock": "Terracotta Rock",
-
+	
 	"block.factoryautomation.flint_rock": "Flint Rock",
 	
 	"block.factoryautomation.mint_bush": "Mint Leaves",
@@ -340,6 +340,10 @@
 	"item.factoryautomation.bronze_hammer": "Bronze Hammer",
 	"item.factoryautomation.bronze_wrench": "Bronze Wrench",
 	
+	// Items - Utilities
+	
+	"item.factoryautomation.leather_sack": "Leather Sack",
+	
 	// Items - Gears
 	
 	"item.factoryautomation.wood_gear": "Wooden Gear",
@@ -412,6 +416,7 @@
 	"gui.brick_crucible.name": "Brick Crucible",
 	"gui.tumbling_barrel.name": "Tumbling Barrel",
 	"gui.brick_kiln.name": "Brick Kiln",
+	"gui.leather_sack.name": "Leather Sack",
 	
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",
@@ -461,7 +466,7 @@
 	"advancements.factoryautomation.stone_age.stone_foundry.description": "Form a Stone Foundry by placing a Stone Crucible on top of a Furnace.",
 	"advancements.factoryautomation.stone_age.copper_ingot.title": "Copper Age",
 	"advancements.factoryautomation.stone_age.copper_ingot.description": "Enter the copper age by obtaining a Copper Ingot.",
-
+	
 	"advancements.factoryautomation.copper_age.root.title": "Copper Age",
 	"advancements.factoryautomation.copper_age.root.description": "Enter the copper age by obtaining a Copper Ingot.",
 	"advancements.factoryautomation.copper_age.wood_power_shaft.title": "Hey, Nice Shaft...",
@@ -480,7 +485,7 @@
 	"advancements.factoryautomation.copper_age.copper_hammer.description": "Make a Copper Hammer.",
 	"advancements.factoryautomation.copper_age.iron_shard.title": "Iron Shard",
 	"advancements.factoryautomation.copper_age.iron_shard.description": "Obtain Iron Shards from hammering an Iron Bloom.",
-
+	
 	"advancements.factoryautomation.iron_age.root.title": "Iron Age",
 	"advancements.factoryautomation.iron_age.root.description": "Enter the iron age by obtaining an Iron Shard.",
 	"advancements.factoryautomation.iron_age.iron_ingot.title": "Tougher Material",

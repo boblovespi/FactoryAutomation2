@@ -407,6 +407,17 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_processed_leather", has(FAItems.PROCESSED_LEATHER))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(FAItems.LEATHER_SACK)
+							  .pattern(" s ")
+							  .pattern("lcl")
+							  .pattern(" l ")
+							  .define('l', FAItems.PROCESSED_LEATHER)
+							  .define('c', Tags.Items.CHESTS_WOODEN)
+							  .define('s', Tags.Items.STRINGS)
+							  .part("screw", 1, 2)
+							  .unlockedBy("has_processed_leather", has(FAItems.PROCESSED_LEATHER))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.LIMONITE_CHARCOAL_MIX)
 							  .pattern("lc")
 							  .pattern("cc")

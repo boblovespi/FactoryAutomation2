@@ -12,6 +12,7 @@ import boblovespi.factoryautomation.common.blockentity.processing.TripHammerBE;
 import boblovespi.factoryautomation.common.blockentity.processing.TumblingBarrelBE;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.menu.MenuTypes;
+import boblovespi.factoryautomation.common.util.ItemContainerTooltipData;
 import boblovespi.factoryautomation.common.util.patchouli.FAPatchouliPlugin;
 import boblovespi.factoryautomation.common.util.ponder.FAPonderPlugin;
 import net.createmod.ponder.foundation.PonderIndex;
@@ -22,10 +23,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.ModelEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -112,6 +110,12 @@ public class ClientHandler
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event)
 	{
 		registerFluidTextures(event);
+	}
+
+	@SubscribeEvent
+	public static void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event)
+	{
+		event.register(ItemContainerTooltipData.class, ItemContainerTooltip::new);
 	}
 
 	private static void registerFluidTextures(RegisterClientExtensionsEvent event)
