@@ -20,7 +20,7 @@ public record ItemContainerTooltip(ItemContainerTooltipData data) implements Cli
 	@Override
 	public int getHeight()
 	{
-		return getYSlots() * 18 + 5;
+		return data.contents().isEmpty() ? 0 : getYSlots() * 18 + 5;
 	}
 
 	@Override

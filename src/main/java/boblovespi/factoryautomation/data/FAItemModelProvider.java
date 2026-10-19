@@ -160,6 +160,7 @@ public class FAItemModelProvider extends ItemModelProvider
 		handheld(FAItems.BRONZE_SWORD);
 		handheld(FAItems.BRONZE_HAMMER);
 		handheld(FAItems.BRONZE_WRENCH);
+		handheld(FAItems.LEATHER_SACK);
 
 		FAItems.GEARS.values().forEach(t -> basicItem(t.get()));
 	}
