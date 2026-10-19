@@ -7,6 +7,11 @@ views:
     groupBy:
       property: Age
       direction: ASC
+    groupOrder:
+      - Stone
+      - Copper
+      - Iron
+      - Bronze
     order:
       - file.name
       - Age

@@ -1,6 +1,5 @@
 ---
 tags:
-  - checkIfNeedsSounds
   - needsPonder
 Logic: Done
 Texture: Done

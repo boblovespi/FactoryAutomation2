@@ -2,7 +2,6 @@
 tags:
   - needsAnimation
   - needsPonder
-  - checkIfNeedsSounds
   - ArtRework
 Logic: Done
 Texture: No
@@ -10,7 +9,7 @@ Model: No
 Worldgen: N/A
 Drops: Done
 Recipe: Done
-Sound: No
+Sound: N/A
 Localization: Done
 BlockState: Done
 TagsS: Done

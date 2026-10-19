@@ -15,7 +15,7 @@ Age: Bronze
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Bronze), option(Steel)):Age]`Age
 
-The copper boiler is a multiblock which takes heat from a [[Brick Firebox]] or similar and produces [[Steam]]. 
+The copper boiler is a multiblock which takes heat from a [[Brick Firebox]] or similar and produces [[Steam]]. It can calcinate which decreases its efficiency, as well as explode.
 
 # Status
 

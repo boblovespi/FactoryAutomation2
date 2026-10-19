@@ -417,16 +417,6 @@
 			"height":700
 		},
 		{
-			"id":"9712c1b8296ebc8f",
-			"type":"text",
-			"text":"Bronze",
-			"styleAttributes":{},
-			"x":11720,
-			"y":-680,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"09a62aebb57b941c",
 			"type":"text",
 			"text":"# Screw Pump\n![[Screw Pump#Overview]]",
@@ -435,6 +425,16 @@
 			"y":-530,
 			"width":300,
 			"height":280
+		},
+		{
+			"id":"9712c1b8296ebc8f",
+			"type":"text",
+			"text":"# Bronze\n![[Bronze Metal Set#Overview]]\n",
+			"styleAttributes":{},
+			"x":11720,
+			"y":-800,
+			"width":640,
+			"height":300
 		}
 	],
 	"edges":[
@@ -864,24 +864,6 @@
 			"toSide":"left"
 		},
 		{
-			"id":"3af152f115594caf",
-			"styleAttributes":{"pathfindingMethod":"square"},
-			"toFloating":false,
-			"fromNode":"06c14886bda0fe21",
-			"fromSide":"right",
-			"toNode":"9712c1b8296ebc8f",
-			"toSide":"left"
-		},
-		{
-			"id":"a2b6853cfca262af",
-			"styleAttributes":{"pathfindingMethod":"square"},
-			"toFloating":false,
-			"fromNode":"bf6baca97e676920",
-			"fromSide":"right",
-			"toNode":"9712c1b8296ebc8f",
-			"toSide":"left"
-		},
-		{
 			"id":"30a09c9550bd6489",
 			"styleAttributes":{"pathfindingMethod":"square"},
 			"toFloating":false,
@@ -907,6 +889,24 @@
 			"fromSide":"right",
 			"toNode":"a7bc76756ca6a369",
 			"toSide":"bottom"
+		},
+		{
+			"id":"3af152f115594caf",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"06c14886bda0fe21",
+			"fromSide":"right",
+			"toNode":"9712c1b8296ebc8f",
+			"toSide":"left"
+		},
+		{
+			"id":"a2b6853cfca262af",
+			"styleAttributes":{"pathfindingMethod":"square"},
+			"toFloating":false,
+			"fromNode":"bf6baca97e676920",
+			"fromSide":"right",
+			"toNode":"9712c1b8296ebc8f",
+			"toSide":"left"
 		}
 	],
 	"metadata":{

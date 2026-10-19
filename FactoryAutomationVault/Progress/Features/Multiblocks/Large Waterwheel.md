@@ -1,7 +1,6 @@
 ---
 tags:
   - needsPonder
-  - checkIfNeedsSounds
 Logic: WIP
 Texture: WIP
 Model: Done

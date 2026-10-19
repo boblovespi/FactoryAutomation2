@@ -1,6 +1,5 @@
 ---
 tags:
-  - checkIfNeedsSounds
 Logic: Done
 Texture: Done
 Model: Done
