@@ -2,7 +2,7 @@
 tags:
   - needsPonder
 Logic: No
-Texture: No
+Texture: Done
 Model: No
 Worldgen: N/A
 Drops: No
