@@ -159,6 +159,15 @@ public class FABlockStateProvider extends BlockStateProvider
 				litBlock((s, r) -> models().orientable(s, modLoc("block/bronze_plate_block"), r, modLoc("block/steam_oven_top")),
 						FABlocks.STEAM_OVEN.getRegisteredName(), modLoc("block/steam_oven_front"), modLoc("block/steam_oven_front_lit")));
 		existingHorizontalBlockWithItem(FABlocks.SCREW_PUMP);
+		var copperBoilerMultiblock = models().getBuilder("copper_boiler_multiblock")
+										  .customLoader(ObjModelBuilder::begin)
+										  .modelLocation(modLoc("models/block/copper_boiler_multiblock.obj"))
+										  .flipV(true)
+										  .end();
+		horizontalBlock(FABlocks.COPPER_BOILER.get(),
+				multiblockComplete(
+						models().orientable("copper_boiler", modLoc("block/copper_plate_block"), modLoc("block/copper_boiler_front"), modLoc("block/copper_plate_block")),
+						copperBoilerMultiblock));
 	}
 
 	private void stoneBlockForms(Map<StoneBlockForms, DeferredBlock<? extends Block>> blocks)
@@ -226,6 +235,16 @@ public class FABlockStateProvider extends BlockStateProvider
 	private Function<BlockState, ModelFile> multiblockComplete(String base, String multiblock)
 	{
 		return state -> models().getExistingFile(modLoc("block/" + (state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE) ? multiblock : base)));
+	}
+
+	private Function<BlockState, ModelFile> multiblockComplete(ModelFile base, String multiblock)
+	{
+		return multiblockComplete(models().getExistingFile(modLoc("block/" + multiblock)), base);
+	}
+
+	private Function<BlockState, ModelFile> multiblockComplete(ModelFile base, ModelFile multiblock)
+	{
+		return state -> state.getValue(StoneCrucible.MULTIBLOCK_COMPLETE) ? multiblock : base;
 	}
 
 	private Function<BlockState, ModelFile> litMultiblockComplete(String base, String multiblock, String key, ResourceLocation unlitTexture, ResourceLocation litTexture)

@@ -1,15 +1,15 @@
 ---
 tags:
-Logic: No
+Logic: WIP
 Texture: WIP
 Model: WIP
 Worldgen: N/A
-Drops: No
+Drops: Done
 Recipe: No
 Sound: No
-Localization: No
-BlockState: No
-TagsS: No
+Localization: Done
+BlockState: Done
+TagsS: Done
 Age: Bronze
 ---
 # Overview

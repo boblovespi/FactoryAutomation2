@@ -238,6 +238,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.SCREW_PUMP.get());
 		dropSelf(FABlocks.BRICK_KILN.get());
 		dropSelf(FABlocks.STEAM_OVEN.get());
+		dropSelf(FABlocks.COPPER_BOILER.get());
 	}
 
 	private LootPoolSingletonContainer.Builder<?> getStickDrops(Block b)

@@ -181,6 +181,7 @@ public class FAItems
 	public static final DeferredItem<BlockItem> BAMBOO_BASKET = ITEMS.registerSimpleBlockItem(FABlocks.BAMBOO_BASKET);
 	public static final DeferredItem<BlockItem> BRICK_KILN = ITEMS.registerSimpleBlockItem(FABlocks.BRICK_KILN);
 	public static final DeferredItem<BlockItem> STEAM_OVEN = ITEMS.registerSimpleBlockItem(FABlocks.STEAM_OVEN);
+	public static final DeferredItem<BlockItem> COPPER_BOILER = ITEMS.registerSimpleBlockItem(FABlocks.COPPER_BOILER);
 
 	// Tools
 

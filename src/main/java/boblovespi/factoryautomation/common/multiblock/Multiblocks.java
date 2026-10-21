@@ -12,6 +12,7 @@ public class Multiblocks
 	public static Multiblock TRIP_HAMMER;
 	public static Multiblock LARGE_WATERWHEEL;
 	public static Multiblock BRICK_KILN;
+	public static Multiblock COPPER_BOILER;
 
 	public static void register()
 	{
@@ -68,5 +69,17 @@ public class Multiblocks
 								.setOffset(new Vec3i(0, 1, 1)).build();
 		MultiblockRegistry.register(brickKiln);
 		BRICK_KILN = brickKiln;
+
+		var copperBoiler = SimpleMultiblock.Builder.make("copper_boiler", 5, 3, 3)
+												   .layer("spsps\nppppp\nspsps")
+												   .layer("ppppp\ncaaap\nppppp")
+												   .layer("spsps\nppppp\nspsps")
+												   .define('p', FABlocks.COPPER_PLATE_BLOCK)
+												   .define('s', Blocks.CUT_COPPER_STAIRS)
+												   .define('c', FABlocks.COPPER_BOILER)
+												   .define('a', Blocks.AIR)
+												   .setOffset(new Vec3i(0, 1, 1)).build();
+		MultiblockRegistry.register(copperBoiler);
+		COPPER_BOILER = copperBoiler;
 	}
 }

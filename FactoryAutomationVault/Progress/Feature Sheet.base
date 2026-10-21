@@ -15,14 +15,14 @@ views:
     order:
       - file.name
       - Age
-      - BlockState
-      - Drops
-      - Localization
-      - Model
       - Logic
-      - Recipe
-      - Sound
       - Texture
+      - Model
+      - BlockState
+      - Localization
+      - Sound
+      - Recipe
+      - Drops
       - Worldgen
       - tags
     sort: []

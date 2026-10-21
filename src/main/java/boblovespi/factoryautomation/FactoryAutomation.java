@@ -202,6 +202,7 @@ public class FactoryAutomation
 		event.registerBlockEntity(BellowsCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(BellowsCapability.BLOCK, d));
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(MechanicalCapability.INPUT, d));
 		event.registerBlockEntity(HeatCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(HeatCapability.BLOCK, d));
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(Capabilities.FluidHandler.BLOCK, d));
 		event.registerBlockEntity(HeatCapability.BLOCK, FABETypes.BRICK_FIREBOX_TYPE.get(), BrickFireboxBE::heatManager);
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.SMALL_TANK_TYPE.get(), SmallTankBE::fluidHandler);
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.BRICK_CASTING_VESSEL_TYPE.get(), BrickCastingVesselBE::fluidHandler);
