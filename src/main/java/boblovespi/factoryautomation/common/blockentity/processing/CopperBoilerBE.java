@@ -136,7 +136,7 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 	{
 		if (waterTank.getFluidAmount() > 0)
 		{
-			var pressure = computePressure(); // TODO: add boiler explosions if pressure is too high
+			var pressure = computePressure();
 			if (pressure > 1_000_000)
 			{
 				var power = Math.clamp(pressure / 1_000_000, 1f, 2f);
