@@ -7,6 +7,7 @@ import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
+import boblovespi.factoryautomation.common.menu.CopperBoilerMenu;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.HeatManager;
@@ -15,8 +16,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.BlockCapability;
@@ -127,8 +132,8 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 	@Override
 	public MenuProvider getMenuProvider()
 	{
-		// TODO: add gui
-		return null;
+		return new SimpleMenuProvider((i, v, p) -> new CopperBoilerMenu(i, v, new Data(), ContainerLevelAccess.create(level, worldPosition)),
+				Component.translatable("gui.copper_boiler.name"));
 	}
 
 	@Override
@@ -270,5 +275,34 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 				return (T) waterTank;
 		}
 		return null;
+	}
+
+	private class Data implements ContainerData
+	{
+		@Override
+		public int get(int index)
+		{
+			return switch (index)
+			{
+				case 0 -> Float.floatToIntBits(heatManager.getTemperature());
+				case 1 -> Float.floatToIntBits(waterTemp);
+				case 2 -> waterTank.getFluidAmount();
+				case 3 -> steamTank.getFluidAmount();
+				case 4 -> Float.floatToIntBits(computePressure());
+				default -> throw new IndexOutOfBoundsException("copper boiler data only has 5 elements");
+			};
+		}
+
+		@Override
+		public void set(int index, int value)
+		{
+
+		}
+
+		@Override
+		public int getCount()
+		{
+			return 5;
+		}
 	}
 }

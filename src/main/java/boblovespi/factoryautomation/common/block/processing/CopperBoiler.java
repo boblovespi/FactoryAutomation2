@@ -57,9 +57,7 @@ public class CopperBoiler extends Block implements EntityBlock
 		{
 			var facing = state.getValue(FACING);
 			if (state.getValue(MULTIBLOCK_COMPLETE))
-			{
-				// player.openMenu(state.getMenuProvider(level, pos));
-			}
+				player.openMenu(state.getMenuProvider(level, pos));
 			else if (Multiblocks.COPPER_BOILER.isValid(level, pos, facing))
 			{
 				Multiblocks.COPPER_BOILER.build(level, pos, facing);

@@ -41,6 +41,16 @@ public class GuiBar
 		}
 	}
 
+	public boolean isHovering(AbstractContainerScreen<?> gui, double mouseX, double mouseY)
+	{
+		mouseX -= gui.getGuiLeft();
+		mouseY -= gui.getGuiTop();
+		return mouseX >= (double)(x - 1)
+			   && mouseX < (double)(x + w + 1)
+			   && mouseY >= (double)(y - 1)
+			   && mouseY < (double)(y + h + 1);
+	}
+
 	public enum ProgressDirection
 	{
 		LEFT, RIGHT, UP, DOWN

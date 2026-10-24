@@ -92,6 +92,7 @@ public class ClientHandler
 		event.register(MenuTypes.TUMBLING_BARREL.get(), TumblingBarrelScreen::new);
 		event.register(MenuTypes.BRICK_KILN.get(), BrickKilnScreen::new);
 		event.register(MenuTypes.LEATHER_SACK.get(), LeatherSackScreen::new);
+		event.register(MenuTypes.COPPER_BOILER.get(), CopperBoilerScreen::new);
 	}
 
 	@SubscribeEvent

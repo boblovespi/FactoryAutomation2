@@ -419,6 +419,7 @@
 	"gui.tumbling_barrel.name": "Tumbling Barrel",
 	"gui.brick_kiln.name": "Brick Kiln",
 	"gui.leather_sack.name": "Leather Sack",
+	"gui.copper_boiler.name": "Copper Boiler",
 	
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",
@@ -431,6 +432,7 @@
 	"misc.millibucket": "%s mB",
 	"misc.empty": "Empty",
 	"info.too_hot": "Too hot: %s",
+	"misc.pressure": "%s bar",
 	
 	// Metal names
 	
