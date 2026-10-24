@@ -91,4 +91,9 @@ public class MathHelper
 	{
 		return (float) Math.pow(a, b);
 	}
+
+	public static float log(float a)
+	{
+		return (float) Math.log(a);
+	}
 }

@@ -10,11 +10,14 @@ import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.multiblock.IMultiblockBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import boblovespi.factoryautomation.common.util.HeatManager;
+import boblovespi.factoryautomation.common.util.MathHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Mth;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -25,10 +28,22 @@ import org.jetbrains.annotations.Nullable;
 
 public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IMenuProviderProvider
 {
+	public static final float VOLUME = 10f;
+	public static final float LATENT_HEAT = 2256_000f;
+	private static final float SPECIFIC_HEAT_OF_WATER = 4180f;
+	private static final float WATER_DENSITY = 1000f; // kg/m3
+	private static final float R_water = 461.52f; // J/kg K; https://www.engineeringtoolbox.com/individual-universal-gas-constant-d_588.html
+	private static final float R = 8.314462618f; // ideal gas constant; wikipedia
+	private static final int STEAM_IN_WATER = 100;
 	private final HeatManager heatManager;
 	private final FluidTank waterTank;
 	private final FluidTank steamTank;
+	private float toBoil = 0;
+	private float waterTemp = 300;
+	private float steamTemp = 373;
 	private boolean breaking;
+	private float calcification;
+	private static final float BLEVE_THRESHOLD = 0.5f;
 
 	public CopperBoilerBE(BlockPos pos, BlockState state)
 	{
@@ -42,8 +57,18 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 			{
 				setChanged();
 			}
+
+			@Override
+			public int fill(FluidStack resource, FluidAction action)
+			{
+				var old = this.getFluidAmount();
+				var filled = super.fill(resource, action);
+				if (action == FluidAction.EXECUTE && filled > 0)
+					waterTemp = (old * waterTemp + filled * 300) / (old + filled);
+				return filled;
+			}
 		};
-		steamTank = new FluidTank(100000)
+		steamTank = new FluidTank(10000)
 		{
 			@Override
 			protected void onContentsChanged()
@@ -59,6 +84,10 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 		heatManager.save(tag);
 		tag.put("waterTank", waterTank.writeToNBT(registries, new CompoundTag()));
 		tag.put("steamTank", steamTank.writeToNBT(registries, new CompoundTag()));
+		tag.putFloat("calcification", calcification);
+		tag.putFloat("waterTemp", waterTemp);
+		tag.putFloat("steamTemp", steamTemp);
+		tag.putFloat("toBoil", toBoil);
 	}
 
 	@Override
@@ -67,6 +96,10 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 		heatManager.load(tag);
 		waterTank.readFromNBT(registries, tag.getCompound("waterTank"));
 		steamTank.readFromNBT(registries, tag.getCompound("steamTank"));
+		calcification = tag.getFloat("calcification");
+		waterTemp = tag.getFloat("waterTemp");
+		steamTemp = tag.getFloat("steamTemp");
+		toBoil = tag.getFloat("toBoil");
 	}
 
 	@Override
@@ -101,18 +134,58 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 	@Override
 	public void tick()
 	{
-		if (heatManager.getTemperature() > 100 + 273)
+		if (waterTank.getFluidAmount() > 0)
 		{
-			var deltaT = heatManager.getTemperature() - (100 + 273);
-			var energy = deltaT * heatManager.getHeatCapacity();
-			var latentHeat = 2256_000f;
-			var density = 1000f;
-			var waterCanConvert = energy / (latentHeat * density); // m3
-			var testDrain = waterTank.drain((int) (waterCanConvert * 1000), IFluidHandler.FluidAction.SIMULATE);
-			var actualFill = steamTank.fill(new FluidStack(FAFluids.STEAM_SOURCE, testDrain.getAmount() * 10), IFluidHandler.FluidAction.EXECUTE);
-			var actualDrain = waterTank.drain(actualFill / 10, IFluidHandler.FluidAction.EXECUTE);
-			heatManager.cool(actualDrain.getAmount() / 1000f * (latentHeat * density));
+			var pressure = computePressure(); // TODO: add boiler explosions if pressure is too high
+			if (pressure > 1_000_000)
+			{
+				var power = Math.clamp(pressure / 1_000_000, 1f, 2f);
+				var pos = worldPosition.relative(getBlockState().getValue(CopperBoiler.FACING), -2).getCenter();
+				level.explode(null, pos.x, pos.y, pos.z, power, false, Level.ExplosionInteraction.BLOCK);
+			}
+			var waterBoilTemp = computeWaterBoilTemp(pressure);
+			var deltaTWater = heatManager.getTemperature() - waterTemp;
+			var h_copper = 5000f;
+			var h = 1 / (1 / h_copper + calcification / 100f);
+			var q = h * deltaTWater;
+			var A = 50;
+			var energy = q * A * 0.05f;
+			var shc = calculateHcOfWater();
+			var tempChange = energy / shc;
+			waterTemp += tempChange;
+			heatManager.cool(energy);
+			if (waterTemp > waterBoilTemp)
+			{
+				var deltaTBoil = waterTemp - waterBoilTemp;
+				var waterCanConvert = shc * deltaTBoil / (LATENT_HEAT * WATER_DENSITY); // m3
+				waterCanConvert = Math.clamp(waterCanConvert, 0, waterTank.getFluidAmount() / 1000f);
+				if (waterCanConvert >= BLEVE_THRESHOLD)
+				{
+					// explode!
+					waterTank.drain((int) (waterCanConvert * 1000), IFluidHandler.FluidAction.EXECUTE);
+					var power = Math.clamp(waterCanConvert / BLEVE_THRESHOLD * 10 - 8, 2, 20);
+					var pos = worldPosition.relative(getBlockState().getValue(CopperBoiler.FACING), -2).getCenter();
+					level.explode(null, pos.x, pos.y, pos.z, power, false, Level.ExplosionInteraction.BLOCK);
+					return;
+				}
+				// waterCanConvert = Math.clamp(waterCanConvert, 0, FLOW_RATE);
+				waterCanConvert = Math.clamp(waterCanConvert, 0, steamTank.getSpace() / 1000f / STEAM_IN_WATER);
+				toBoil += waterCanConvert;
+				waterTemp -= waterCanConvert * LATENT_HEAT * WATER_DENSITY / shc;
+				var mbCanConvert = Mth.floor(toBoil * 1000);
+				if (mbCanConvert > 0)
+				{
+					toBoil -= mbCanConvert / 1000f;
+					var newSteamMass = mbCanConvert * STEAM_IN_WATER;
+					steamTemp = (steamTank.getFluidAmount() * steamTemp + newSteamMass * waterBoilTemp) / (steamTank.getFluidAmount() + newSteamMass);
+					waterTank.drain(mbCanConvert, IFluidHandler.FluidAction.EXECUTE);
+					steamTank.fill(new FluidStack(FAFluids.STEAM_SOURCE, newSteamMass), IFluidHandler.FluidAction.EXECUTE);
+					calcification += mbCanConvert / 1000f / 1000f;
+					calcification = Math.clamp(calcification, 0, 1);
+				}
+			}
 		}
+
 		var facing = getBlockState().getValue(CopperBoiler.FACING);
 
 		var pos = worldPosition.below(2);
@@ -136,6 +209,23 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 		}
 	}
 
+	private float calculateHcOfWater()
+	{
+		return waterTank.getFluidAmount() / 1000f * WATER_DENSITY * SPECIFIC_HEAT_OF_WATER;
+	}
+
+	private float computeWaterBoilTemp(float pressure)
+	{
+		// Clausius-Clapeyron
+		return 1 / (1 / (100 + 273f) + R_water / LATENT_HEAT * MathHelper.log(101_325f / pressure));
+	}
+
+	private float computePressure()
+	{
+		var steamMass = WATER_DENSITY * steamTank.getFluidAmount() / 1000f / STEAM_IN_WATER;
+		return Math.max(steamMass * R_water * steamTemp / VOLUME, 101_325f);
+	}
+
 	@Override
 	public void onMultiblockBuilt()
 	{
@@ -145,6 +235,21 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 	@Override
 	public void onMultiblockDestroyed()
 	{
+		var waterBoilTemp = computeWaterBoilTemp(101325);
+		if (waterTemp > waterBoilTemp)
+		{
+			var deltaTBoil = waterTemp - waterBoilTemp;
+			var shc = calculateHcOfWater();
+			var waterCanConvert = shc * deltaTBoil / (LATENT_HEAT * WATER_DENSITY); // m3
+			if (waterCanConvert >= BLEVE_THRESHOLD)
+			{
+				// explode!
+				var power = Math.clamp(waterCanConvert / BLEVE_THRESHOLD * 10 - 8, 2, 20);
+				var pos = worldPosition.relative(getBlockState().getValue(CopperBoiler.FACING), -2).getCenter();
+				level.explode(null, pos.x, pos.y, pos.z, power, false, Level.ExplosionInteraction.BLOCK);
+			}
+		}
+
 		if (!breaking)
 			level.setBlock(worldPosition, getBlockState().setValue(CopperBoiler.MULTIBLOCK_COMPLETE, false), 2);
 	}
