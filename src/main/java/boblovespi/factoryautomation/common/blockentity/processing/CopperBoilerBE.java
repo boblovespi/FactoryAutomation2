@@ -137,9 +137,11 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 		if (waterTank.getFluidAmount() > 0)
 		{
 			var pressure = computePressure();
-			if (pressure > 1_000_000)
+			var pressureLimit = Mth.clampedMap(heatManager.getTemperature(), 450, 700, 1, 0);
+			pressureLimit = pressureLimit * 300_000 + 150_000;
+			if (pressure > pressureLimit)
 			{
-				var power = Math.clamp(pressure / 1_000_000, 1f, 2f);
+				var power = Math.clamp(pressure / pressureLimit, 1f, 2f);
 				var pos = worldPosition.relative(getBlockState().getValue(CopperBoiler.FACING), -2).getCenter();
 				level.explode(null, pos.x, pos.y, pos.z, power, false, Level.ExplosionInteraction.BLOCK);
 			}
