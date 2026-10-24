@@ -56,8 +56,8 @@ public class CopperBoilerScreen extends AbstractContainerScreen<CopperBoilerMenu
 			graphics.pose().translate(leftPos + 119.5, topPos + 46.5, 0);
 			var bar0 = 5 * Mth.PI / 4;
 			var bar6 = -Mth.PI / 4;
-			var bar4p5 = Mth.lerp(4.5f/6, bar0, bar6);
-			var barPressureLimit =  Mth.clampedMap(temp, 450, 700, 1, 0);
+			var bar4p5 = Mth.lerp(4.5f / 6, bar0, bar6);
+			var barPressureLimit = Mth.clampedMap(temp, 450, 700, 1, 0);
 			barPressureLimit = barPressureLimit * 3 + 1.5f;
 			var barplm1 = Mth.lerp((barPressureLimit - 1) / 6f, bar0, bar6);
 			barPressureLimit = Mth.lerp(barPressureLimit / 6f, bar0, bar6);
@@ -69,13 +69,13 @@ public class CopperBoilerScreen extends AbstractContainerScreen<CopperBoilerMenu
 			for (int i = 0; i <= 6; i++)
 			{
 				var angle = Mth.lerp(i / 6f, bar0, bar6);
-				var number = "%d".formatted(i);
+				var number = String.format("%d", i + 1);
 				var x = 23 * Mth.cos(angle) - font.width(number) / 2f;
 				var y = -23 * Mth.sin(angle) - font.lineHeight / 2f + 1.5f;
 				graphics.drawString(font, number, (int) x, (int) y, 0xff373737, false);
 			}
 
-			var pressureScale = Float.intBitsToFloat(menu.getData(4)) / 600_000f;
+			var pressureScale = Float.intBitsToFloat(menu.getData(4)) / 600_000f - 1 / 6f;
 			var pressureAngle = Mth.clampedLerp(bar0, bar6, pressureScale);
 			graphics.pose().mulPose(BERUtils.quatFromAngleAxis((float) Math.toDegrees(pressureAngle), 0, 0, -1));
 			var mat = graphics.pose().last();
