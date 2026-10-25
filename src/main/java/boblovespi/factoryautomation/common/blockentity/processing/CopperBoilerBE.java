@@ -180,7 +180,7 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 					// explode!
 					steamTank.drain(10000, IFluidHandler.FluidAction.EXECUTE);
 					waterTank.drain(10000, IFluidHandler.FluidAction.EXECUTE);
-					var power = Math.clamp(waterCanConvert / BLEVE_THRESHOLD * 10 - 8, 2, 20);
+					var power = Math.clamp(waterCanConvert / BLEVE_THRESHOLD * 5 - 3, 2, 15);
 					var pos = worldPosition.relative(getBlockState().getValue(CopperBoiler.FACING), -2).getCenter();
 					level.explode(null, pos.x, pos.y, pos.z, power, false, Level.ExplosionInteraction.BLOCK);
 					return;
@@ -202,7 +202,7 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 			{
 				toDrain -= mbCanDrain * STEAM_IN_WATER;
 				waterTank.drain(mbCanDrain, IFluidHandler.FluidAction.EXECUTE);
-				calcification += mbCanDrain / 1000f / 1000f;
+				calcification += mbCanDrain / 1000f / 10000f;
 				calcification = Math.clamp(calcification, 0, 1);
 			}
 		}
@@ -267,7 +267,7 @@ public class CopperBoilerBE extends FABE implements ITickable, IMultiblockBE, IM
 				// explode!
 				steamTank.drain(10000, IFluidHandler.FluidAction.EXECUTE);
 				waterTank.drain(10000, IFluidHandler.FluidAction.EXECUTE);
-				var power = Math.clamp(waterCanConvert / BLEVE_THRESHOLD * 10 - 8, 2, 20);
+				var power = Math.clamp(waterCanConvert / BLEVE_THRESHOLD * 5 - 3, 2, 15);
 				var pos = worldPosition.relative(getBlockState().getValue(CopperBoiler.FACING), -2).getCenter();
 				level.explode(null, pos.x, pos.y, pos.z, power, false, Level.ExplosionInteraction.BLOCK);
 			}

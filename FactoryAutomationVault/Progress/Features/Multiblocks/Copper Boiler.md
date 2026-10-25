@@ -1,5 +1,8 @@
 ---
 tags:
+  - checkIfNeedsSounds
+  - needsBalancing
+  - needsPonder
 Logic: WIP
 Texture: WIP
 Model: WIP

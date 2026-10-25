@@ -4,6 +4,7 @@ import boblovespi.factoryautomation.common.blockentity.FABE;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.IClientTickable;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.SteamOvenRecipe;
 import boblovespi.factoryautomation.common.util.ItemHelper;
@@ -20,6 +21,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.RangedWrapper;
@@ -32,6 +35,7 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 {
 	private final RecipeManager<SteamOvenRecipe> recipeManager;
 	private final ItemStackHandler inv;
+	private final FluidTank steamTank;
 
 	public SteamOvenBE(BlockPos pPos, BlockState pBlockState)
 	{
@@ -46,6 +50,14 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 				recipeManager.updateRecipe();
 			}
 		};
+		steamTank = new FluidTank(1000, f -> f.is(FAFluids.STEAM_TYPE.get()))
+		{
+			@Override
+			protected void onContentsChanged()
+			{
+				setChanged();
+			}
+		};
 	}
 
 	@Override
@@ -53,6 +65,7 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 	{
 		recipeManager.save(tag);
 		tag.put("inv", inv.serializeNBT(registries));
+		tag.put("steamTank", steamTank.writeToNBT(registries, new CompoundTag()));
 	}
 
 	@Override
@@ -60,6 +73,7 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 	{
 		recipeManager.load(tag, registries);
 		inv.deserializeNBT(registries, tag.getCompound("inv"));
+		steamTank.readFromNBT(registries, tag.getCompound("steamTank"));
 	}
 
 	@Override
@@ -79,30 +93,25 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 	}
 
 	@Override
-	public void onLoad()
-	{
-		super.onLoad();
-		recipeManager.onLoad();
-	}
-
-	@Override
 	public void tick()
 	{
 		if (recipeManager.hasRecipe())
 		{
-			recipeManager.progress();
-			if (level instanceof ServerLevel sl && !inv.getStackInSlot(0).isEmpty() && sl.random.nextDouble() < 0.2)
-				sl.sendParticles(ParticleTypes.CLOUD, worldPosition.getX() + 0.5, worldPosition.getY() + 1,
-						worldPosition.getZ() + 0.5, 3, 0.5, 0.1, 0.5, 0.03);
-			if (recipeManager.isComplete())
+			if (steamTank.drain(5, IFluidHandler.FluidAction.EXECUTE).getAmount() >= 5)
 			{
-				var result = recipeManager.getCompleted();
-				var assembled = result.value().assemble(new SteamOvenRecipe.Input(inv.extractItem(0, 1, false)),
-						level.registryAccess());
-				inv.insertItem(1, assembled, false);
-				recipeManager.complete();
+				recipeManager.progress();
+				if (level instanceof ServerLevel sl && !inv.getStackInSlot(0).isEmpty() && sl.random.nextDouble() < 0.2)
+					sl.sendParticles(ParticleTypes.CLOUD, worldPosition.getX() + 0.5, worldPosition.getY() + 1,
+							worldPosition.getZ() + 0.5, 3, 0.5, 0.1, 0.5, 0.03);
+				if (recipeManager.isComplete())
+				{
+					var result = recipeManager.getCompleted();
+					var assembled = result.value().assemble(new SteamOvenRecipe.Input(inv.extractItem(0, 1, false)),
+							level.registryAccess());
+					inv.insertItem(1, assembled, false);
+					recipeManager.complete();
+				}
 			}
-
 		}
 		setChanged();
 	}
@@ -153,5 +162,10 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 	public List<ItemStack> makeViewStacks()
 	{
 		return List.of(inv.getStackInSlot(0));
+	}
+
+	public @Nullable IFluidHandler fluidHandler(@Nullable Direction direction)
+	{
+		return steamTank;
 	}
 }
