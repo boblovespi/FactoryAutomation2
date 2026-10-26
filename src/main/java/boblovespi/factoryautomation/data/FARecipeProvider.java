@@ -662,6 +662,17 @@ public class FARecipeProvider extends RecipeProvider
 							  .unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD))
 							  .save(output);
 
+		WorkbenchRecipeBuilder.of(Items.RAIL, 32)
+							  .pattern("r r")
+							  .pattern("rsr")
+							  .pattern("r r")
+							  .define('s', Tags.Items.RODS_WOODEN)
+							  .define('r', FAItems.IRON_RAIL)
+							  .tool("hammer", 2, 5)
+							  .part("screw", 1, 4)
+							  .unlockedBy("has_iron_rail", has(FAItems.IRON_RAIL))
+							  .save(output);
+
 		WorkbenchRecipeBuilder.of(FAItems.BRICK_KILN)
 							  .pattern("bbb")
 							  .pattern("s s")
