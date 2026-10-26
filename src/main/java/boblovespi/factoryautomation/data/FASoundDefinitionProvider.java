@@ -36,5 +36,7 @@ public class FASoundDefinitionProvider extends SoundDefinitionsProvider
 		add(FASounds.PAN_SIZZLES, SoundDefinition.definition().with(sound("random/fizz")).subtitle("subtitles.block.frying_pan.sizzle").replace(true));
 		add(FASounds.USE_TRIP_HAMMER,
 				SoundDefinition.definition().with(sound(FactoryAutomation.name("use/trip_hammer"))).subtitle("subtitles.block.trip_hammer.use").replace(true));
+		add(FASounds.STEAM_RELEASES,
+				SoundDefinition.definition().with(sound(FactoryAutomation.name("use/steam_release"))).subtitle("subtitles.block.machine.steam_release").replace(true));
 	}
 }

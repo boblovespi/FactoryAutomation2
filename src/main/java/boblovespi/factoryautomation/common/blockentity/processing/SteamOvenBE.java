@@ -7,7 +7,9 @@ import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.SteamOvenRecipe;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.ItemHelper;
+import boblovespi.factoryautomation.common.util.MathHelper;
 import boblovespi.factoryautomation.common.util.RecipeManager;
 import boblovespi.factoryautomation.common.util.jade.IJadeViewable;
 import net.minecraft.core.BlockPos;
@@ -17,6 +19,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
@@ -100,9 +103,6 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 			if (steamTank.drain(5, IFluidHandler.FluidAction.EXECUTE).getAmount() >= 5)
 			{
 				recipeManager.progress();
-				if (level instanceof ServerLevel sl && !inv.getStackInSlot(0).isEmpty() && sl.random.nextDouble() < 0.2)
-					sl.sendParticles(ParticleTypes.CLOUD, worldPosition.getX() + 0.5, worldPosition.getY() + 1,
-							worldPosition.getZ() + 0.5, 3, 0.5, 0.1, 0.5, 0.03);
 				if (recipeManager.isComplete())
 				{
 					var result = recipeManager.getCompleted();
@@ -110,6 +110,10 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 							level.registryAccess());
 					inv.insertItem(1, assembled, false);
 					recipeManager.complete();
+					if (level instanceof ServerLevel sl)
+						sl.sendParticles(ParticleTypes.CLOUD, worldPosition.getX() + 0.5, worldPosition.getY() + 1,
+								worldPosition.getZ() + 0.5, 3, 0.5, 0.1, 0.5, 0.03);
+					level.playSound(null, worldPosition, FASounds.STEAM_RELEASES.get(), SoundSource.BLOCKS, 1f, (float) (MathHelper.uniformZeroD(level.random, 0.2) + 1));
 				}
 			}
 		}
