@@ -102,6 +102,7 @@ public class CreativeTabs
 					{
 						o.accept(FAItems.SCREW);
 						o.accept(FAItems.BUSHING);
+						o.accept(FAItems.VALVE);
 						o.accept(FAItems.IRON_RAIL);
 						o.accept(FAItems.GOLD_RAIL);
 						o.accept(FAItems.PROCESSED_LEATHER);

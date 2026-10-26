@@ -25,10 +25,11 @@ public class FADataMapProvider extends DataMapProvider
 	}
 
 	@Override
-	protected void gather()
+	protected void gather(HolderLookup.Provider lookupProvider)
 	{
 		builder(Workbench.PART_DATA).add(FAItems.SCREW, new Workbench.Part(FactoryAutomation.name("screw"), 1), false)
-									.add(FAItems.BUSHING, new Workbench.Part(FactoryAutomation.name("bearing"), 1), false);
+									.add(FAItems.BUSHING, new Workbench.Part(FactoryAutomation.name("bearing"), 1), false)
+									.add(FAItems.VALVE, new Workbench.Part(FactoryAutomation.name("valve"), 1), false);
 		builder(Workbench.TOOL_DATA).add(FAItems.COPPER_HAMMER, new Workbench.Tool(FactoryAutomation.name("hammer"), 1), false)
 									.add(FAItems.IRON_HAMMER, new Workbench.Tool(FactoryAutomation.name("hammer"), 2), false)
 									.add(FAItems.IRON_WRENCH, new Workbench.Tool(FactoryAutomation.name("wrench"), 1), false)

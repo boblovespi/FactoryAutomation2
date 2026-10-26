@@ -1,15 +1,15 @@
 ---
 tags:
-Logic: No
-Texture: No
-Model: No
+Logic: Done
+Texture: Done
+Model: Done
 Worldgen: N/A
 Drops: N/A
-Recipe: No
+Recipe: Done
 Sound: N/A
-Localization: No
-BlockState: No
-TagsS: No
+Localization: Done
+BlockState: N/A
+TagsS: Done
 Age: Bronze
 ---
 # Overview

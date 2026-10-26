@@ -376,8 +376,14 @@ public class FARecipeProvider extends RecipeProvider
 
 		screw(output, 4, FATags.Items.COPPER_NUGGET, FATags.Items.COPPER_ROD, "copper");
 		screw(output, 6, Tags.Items.NUGGETS_IRON, FATags.Items.IRON_ROD, "iron");
+		screw(output, 8, FATags.Items.BRONZE_NUGGET, FATags.Items.BRONZE_ROD, "bronze");
+		screw(output, 12, FATags.Items.STEEL_NUGGET, FATags.Items.STEEL_ROD, "steel");
 
 		bushing(output, 4, FATags.Items.TIN_SHEET, "tin");
+
+		valve(output, 4, FATags.Items.BRONZE_SHEET, FATags.Items.BRONZE_INGOT, "bronze");
+		valve(output, 6, FATags.Items.ALUMINUM_BRONZE_SHEET, FATags.Items.ALUMINUM_BRONZE_INGOT, "aluminum_bronze");
+		// valve(output, 8, FATags.Items.STAINLESS_STEEL, FATags.Items.STAINLESS_STEEL, "stainless_steel");
 
 		WorkbenchRecipeBuilder.of(FAItems.GEARS.get(GearMaterial.WOOD))
 							  .pattern(" s ")
@@ -674,7 +680,20 @@ public class FARecipeProvider extends RecipeProvider
 							  .define('S', Items.SMOKER)
 							  .tool("hammer", 2, 10)
 							  .part("screw", 1, 8)
+							  .part("valve", 1, 1)
 							  .unlockedBy("has_bronze_sheet", has(FATags.Items.BRONZE_SHEET))
+							  .save(output);
+
+		WorkbenchRecipeBuilder.of(FAItems.COPPER_BOILER)
+							  .pattern("ccc")
+							  .pattern("ppp")
+							  .pattern("ccc")
+							  .define('c', FATags.Items.COPPER_SHEET)
+							  .define('p', FAItems.COPPER_PIPE)
+							  .tool("hammer", 2, 10)
+							  .part("screw", 1, 8)
+							  .part("valve", 1, 4)
+							  .unlockedBy("has_valve", has(FAItems.VALVE))
 							  .save(output);
 
 		pipeRecipe(output, FAItems.COPPER_PIPE, FATags.Items.COPPER_SHEET);
@@ -1317,6 +1336,18 @@ public class FARecipeProvider extends RecipeProvider
 							  .pattern("s s")
 							  .pattern(" s ")
 							  .define('s', sheet)
+							  .tool("hammer", 1, 1)
+							  .unlockedBy("has_" + name + "_sheet", has(sheet))
+							  .save(output, FactoryAutomation.name("bushing_from_" + name));
+	}
+
+	private void valve(RecipeOutput output, int count, TagKey<Item> sheet, TagKey<Item> ingot, String name)
+	{
+		WorkbenchRecipeBuilder.of(FAItems.VALVE, count)
+							  .pattern(" i ")
+							  .pattern("sss")
+							  .define('s', sheet)
+							  .define('i', ingot)
 							  .tool("hammer", 1, 1)
 							  .unlockedBy("has_" + name + "_sheet", has(sheet))
 							  .save(output, FactoryAutomation.name("bushing_from_" + name));

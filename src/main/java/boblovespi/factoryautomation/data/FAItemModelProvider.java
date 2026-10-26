@@ -95,6 +95,7 @@ public class FAItemModelProvider extends ItemModelProvider
 
 		basicItem(FAItems.SCREW.get());
 		basicItem(FAItems.BUSHING.get());
+		basicItem(FAItems.VALVE.get());
 		basicItem(FAItems.IRON_RAIL.get());
 		basicItem(FAItems.GOLD_RAIL.get());
 		basicItem(FAItems.PROCESSED_LEATHER.get());

@@ -130,6 +130,7 @@ public class FAItems
 
 	public static final DeferredItem<Item> SCREW = ITEMS.registerSimpleItem("screw");
 	public static final DeferredItem<Item> BUSHING = ITEMS.registerSimpleItem("bushing");
+	public static final DeferredItem<Item> VALVE = ITEMS.registerSimpleItem("valve");
 	public static final DeferredItem<Item> IRON_RAIL = ITEMS.registerSimpleItem("iron_rail");
 	public static final DeferredItem<Item> GOLD_RAIL = ITEMS.registerSimpleItem("gold_rail");
 	public static final DeferredItem<Item> PROCESSED_LEATHER = ITEMS.registerSimpleItem("processed_leather");
