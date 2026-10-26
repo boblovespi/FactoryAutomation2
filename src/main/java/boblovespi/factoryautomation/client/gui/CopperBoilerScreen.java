@@ -11,13 +11,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.material.Fluids;
 
 public class CopperBoilerScreen extends AbstractContainerScreen<CopperBoilerMenu>
 {
 	private static final ResourceLocation BACKGROUND_TEXTURE = FactoryAutomation.name("textures/gui/container/copper_boiler.png");
 	private final GuiBar boilerTemperatureBar;
 	private final GuiBar waterTemperatureBar;
-	private final GuiBar waterTankBar;
+	private final GuiFluidTank waterTankBar;
 	private final GuiFluidTank steamTankBar;
 
 	public CopperBoilerScreen(CopperBoilerMenu menu, Inventory playerInventory, Component title)
@@ -27,7 +28,7 @@ public class CopperBoilerScreen extends AbstractContainerScreen<CopperBoilerMenu
 		inventoryLabelY += 14;
 		boilerTemperatureBar = new GuiBar(BACKGROUND_TEXTURE, 32, 16, 176, 31, 6, 61, GuiBar.ProgressDirection.UP);
 		waterTemperatureBar = new GuiBar(BACKGROUND_TEXTURE, 47, 16, 176, 31, 6, 61, GuiBar.ProgressDirection.UP);
-		waterTankBar = new GuiBar(BACKGROUND_TEXTURE, 57, 16, 188, 31, 6, 61, GuiBar.ProgressDirection.UP);
+		waterTankBar = new GuiFluidTank(BACKGROUND_TEXTURE, 57, 16, 6, 61, 182, 31);
 		steamTankBar = new GuiFluidTank(BACKGROUND_TEXTURE, 73, 16, 6, 61, 182, 31);
 	}
 
@@ -46,7 +47,7 @@ public class CopperBoilerScreen extends AbstractContainerScreen<CopperBoilerMenu
 		var temp = Float.intBitsToFloat(menu.getData(0));
 		boilerTemperatureBar.draw(this, graphics, temp / 1800f);
 		waterTemperatureBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(1)) / 1800f);
-		waterTankBar.draw(this, graphics, menu.getData(2) / 10000f);
+		waterTankBar.draw(this, graphics, Fluids.WATER, menu.getData(2) / 10000f);
 		steamTankBar.draw(this, graphics, FAFluids.STEAM_SOURCE.get(), menu.getData(3) / 10000f);
 
 		// pressure gauge
@@ -110,7 +111,7 @@ public class CopperBoilerScreen extends AbstractContainerScreen<CopperBoilerMenu
 			var text = Component.translatable("misc.temperature", String.format("%1$.1f", Float.intBitsToFloat(menu.getData(1))));
 			graphics.renderTooltip(font, text, mouseX, mouseY);
 		}
-		if (waterTankBar.isHovering(this, mouseX, mouseY))
+		if (isHovering(57, 16, 6, 61, mouseX, mouseY))
 		{
 			var text = Component.translatable("misc.millibucket", menu.getData(2));
 			graphics.renderTooltip(font, text, mouseX, mouseY);
