@@ -53,7 +53,7 @@ public class FAFluids
 	public static final DeferredHolder<Fluid, FlowingFluid> COFFEE_FLOWING = flowing(FAFluids::coffeeProperties, "coffee_flowing");
 
 
-	public static final DeferredHolder<FluidType, FluidType> STEAM_TYPE = type("steam");
+	public static final DeferredHolder<FluidType, FluidType> STEAM_TYPE = gasType("steam");
 
 	public static final DeferredHolder<Fluid, FlowingFluid> STEAM_SOURCE = source(FAFluids::steamProperties, "steam");
 	public static final DeferredHolder<Fluid, FlowingFluid> STEAM_FLOWING = flowing(FAFluids::steamProperties, "steam_flowing");
@@ -61,6 +61,11 @@ public class FAFluids
 	private static DeferredHolder<FluidType, FluidType> type(String name)
 	{
 		return FLUID_TYPES.register(name, () -> new FluidType(FluidType.Properties.create().descriptionId("fluid.factoryautomation." + name)));
+	}
+
+	private static DeferredHolder<FluidType, FluidType> gasType(String name)
+	{
+		return FLUID_TYPES.register(name, () -> new FluidType(FluidType.Properties.create().descriptionId("fluid.factoryautomation." + name).density(-10)));
 	}
 
 	private static DeferredHolder<Fluid, FlowingFluid> source(Supplier<BaseFlowingFluid.Properties> properties, String name)
