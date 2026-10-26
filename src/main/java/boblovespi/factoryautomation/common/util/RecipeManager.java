@@ -3,12 +3,11 @@ package boblovespi.factoryautomation.common.util;
 import boblovespi.factoryautomation.FactoryAutomation;
 import boblovespi.factoryautomation.common.recipe.IProgressRecipe;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -171,7 +170,7 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 		else
 			currentRecipeName = ResourceLocation.parse(recipeName);
 		progress = nbt.getInt("progress");
-		if (currentRecipeName != NO_RECIPE)
+		/*if (currentRecipeName != NO_RECIPE)
 			registries.lookup(Registries.RECIPE)
 					  .flatMap(r -> r.get(ResourceKey.create(Registries.RECIPE, currentRecipeName)))
 					  .flatMap(r -> {
@@ -190,7 +189,38 @@ public class RecipeManager<R extends Recipe<?> & IProgressRecipe> implements IRe
 					  {
 						  FactoryAutomation.LOGGER.warn("The recipe {} no longer exists!", currentRecipeName);
 						  currentRecipeName = NO_RECIPE;
-					  });
+					  });*/
+		currentRecipe = null;
+		if (currentRecipeName != NO_RECIPE)
+		{
+			var server = ServerLifecycleHooks.getCurrentServer();
+			if (server != null)
+			{
+				server.getRecipeManager().byKey(currentRecipeName).flatMap(r -> {
+					try
+					{
+						//noinspection unchecked
+						return Optional.of((RecipeHolder<R>) r);
+					}
+					catch (ClassCastException e)
+					{
+						FactoryAutomation.LOGGER.warn("The recipe {} has somehow changed types! It is now a {}", currentRecipeName, r.value().getClass().getName());
+					}
+					return Optional.empty();
+				}).ifPresentOrElse(r -> currentRecipe = r, () ->
+				{
+					FactoryAutomation.LOGGER.warn("The recipe {} no longer exists!", currentRecipeName);
+					currentRecipeName = NO_RECIPE;
+				});
+			}
+			else
+			{
+				FactoryAutomation.LOGGER.warn("Server is null when loading recipe {}!", currentRecipeName);
+				currentRecipeName = NO_RECIPE;
+			}
+		}
+		if (currentRecipe != null)
+			maxProgress = currentRecipe.value().getProgress();
 	}
 
 	@FunctionalInterface
