@@ -45,8 +45,8 @@ public class CopperBoilerScreen extends AbstractContainerScreen<CopperBoilerMenu
 	{
 		graphics.blit(BACKGROUND_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 		var temp = Float.intBitsToFloat(menu.getData(0));
-		boilerTemperatureBar.draw(this, graphics, temp / 1800f);
-		waterTemperatureBar.draw(this, graphics, Float.intBitsToFloat(menu.getData(1)) / 1800f);
+		boilerTemperatureBar.draw(this, graphics, Mth.clampedMap(temp, 300, 1000, 0, 1));
+		waterTemperatureBar.draw(this, graphics, Mth.clampedMap(Float.intBitsToFloat(menu.getData(1)), 300, 1000, 0, 1));
 		waterTankBar.draw(this, graphics, Fluids.WATER, menu.getData(2) / 10000f);
 		steamTankBar.draw(this, graphics, FAFluids.STEAM_SOURCE.get(), menu.getData(3) / 10000f);
 
