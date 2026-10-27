@@ -15,7 +15,7 @@ Age: Bronze
 # Overview
 - `INPUT[inlineSelect(option(Stone), option(Copper), option(Iron), option(Bronze), option(Steel)):Age]`Age
 
-Hammer dies are used for crafting specific things with the [[Steam Hammer]].
+Hammer heads are used for crafting specific things with the [[Steam Hammer]].
 
 # Status
 

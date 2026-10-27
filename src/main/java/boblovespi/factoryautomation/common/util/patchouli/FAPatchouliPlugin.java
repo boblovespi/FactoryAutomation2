@@ -19,6 +19,7 @@ public class FAPatchouliPlugin
 		process(Multiblocks.STONE_CRUCIBLE, makePatchouliMultiblock(api));
 		process(Multiblocks.BRICK_CRUCIBLE, makePatchouliMultiblock(api));
 		process(Multiblocks.LARGE_WATERWHEEL, makePatchouliMultiblock(api));
+		process(Multiblocks.BRICK_KILN, makePatchouliMultiblock(api));
 	}
 
 	private static Consumer<SimpleMultiblock> makePatchouliMultiblock(PatchouliAPI.IPatchouliAPI api)

@@ -1,0 +1,24 @@
+{
+	"name": "Obtaining Bricks (again)",
+	"icon": "factoryautomation:brick_kiln",
+	"category": "factoryautomation:age3",
+	"sortnum": 0,
+	"pages": [
+		{
+			"type": "spotlight",
+			"text": "Waiting for bricks to dry before firing them sure takes a long time. With the brick kiln, you can skip the drying and go straight to firing!$(br)$(br)The brick kiln is a multiblock that allows you to automate various kinds of firing. It requires a heat source below it.",
+			"item": "factoryautomation:brick_kiln"
+		},
+		{
+			"type": "multiblock",
+			"name": "Brick Kiln",
+			"multiblock_id": "factoryautomation:brick_kiln",
+			"text": "Use the book to visualise how to build the brick kiln. You also need a brick firebox."
+		},
+		{
+			"type": "spotlight",
+			"text": "The kiln can also produce $(l:references/2fuels#coal_coke)coal coke$(), a better fuel than coal that burns longer, as well as producing charcoal.",
+			"item": "factoryautomation:coal_coke"
+		}
+	]
+}

@@ -1,7 +1,6 @@
 ---
 tags:
-  - checkIfNeedsSounds
-Logic: WIP
+Logic: Done
 Texture: WIP
 Model: Done
 Worldgen: N/A
