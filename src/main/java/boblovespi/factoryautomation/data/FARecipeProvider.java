@@ -818,6 +818,12 @@ public class FARecipeProvider extends RecipeProvider
 						.unlockedBy("has_iron_rod", has(FATags.Items.IRON_ROD)).save(output);
 		TripHammerRecipe.of(new ItemStack(FAItems.GOLD_RAIL.get())).input(FATags.Items.GOLD_ROD).progress(100).beginData().endData()
 						.unlockedBy("has_gold_rod", has(FATags.Items.GOLD_ROD)).save(output);
+		TripHammerRecipe.of(new ItemStack(FAItems.SCREW.get())).input(Tags.Items.NUGGETS_IRON).progress(100).beginData().endData()
+						.unlockedBy("has_iron_nugget", has(Tags.Items.NUGGETS_IRON)).saveNoteFrom(output, "iron_nugget");
+		TripHammerRecipe.of(new ItemStack(FAItems.SCREW.get())).input(FATags.Items.BRONZE_NUGGET).progress(100).beginData().endData()
+						.unlockedBy("has_bronze_nugget", has(FATags.Items.BRONZE_NUGGET)).saveNoteFrom(output, "bronze_nugget");
+		TripHammerRecipe.of(new ItemStack(FAItems.SCREW.get(), 2)).input(FATags.Items.STEEL_NUGGET).progress(100).beginData().endData()
+						.unlockedBy("has_steel_nugget", has(FATags.Items.STEEL_NUGGET)).saveNoteFrom(output, "steel_nugget");
 
 		// Tumbling barrel
 		TumblingBarrelRecipe.of(FAItems.MILK_ICE_CREAM.get())
