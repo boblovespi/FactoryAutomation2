@@ -194,5 +194,8 @@ public class FAJeiPlugin implements IModPlugin
 				List.of(new SimpleContainerHandler.ClickableIngredient<>(8, 8, 16, 59, TumblingBarrelScreen::getInputFluid),
 						new SimpleContainerHandler.ClickableIngredient<>(152, 8, 16, 59, TumblingBarrelScreen::getOutputFluid)),
 				List.of(IGuiClickableArea.createBasic(79, 34, 24, 16, tumblingBarrelJeiCategory.getRecipeType()))));
+		registration.addGuiContainerHandler(SteamOvenScreen.class, new SimpleContainerHandler<>(helpers,
+				List.of(),
+				List.of(IGuiClickableArea.createBasic(79, 34, 24, 16, steamOvenJeiCategory.getRecipeType()))));
 	}
 }
