@@ -1,10 +1,8 @@
 package boblovespi.factoryautomation.common.blockentity.processing;
 
-import boblovespi.factoryautomation.common.blockentity.FABE;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.IClientTickable;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.fluid.FAFluids;
+import boblovespi.factoryautomation.common.menu.SteamOvenMenu;
 import boblovespi.factoryautomation.common.recipe.RecipeThings;
 import boblovespi.factoryautomation.common.recipe.SteamOvenRecipe;
 import boblovespi.factoryautomation.common.sound.FASounds;
@@ -17,9 +15,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,7 +37,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJadeViewable
+public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJadeViewable, IMenuProviderProvider
 {
 	private final RecipeManager<SteamOvenRecipe> recipeManager;
 	private final ItemStackHandler inv;
@@ -171,5 +174,38 @@ public class SteamOvenBE extends FABE implements ITickable, IClientTickable, IJa
 	public @Nullable IFluidHandler fluidHandler(@Nullable Direction direction)
 	{
 		return steamTank;
+	}
+
+	@Override
+	public MenuProvider getMenuProvider()
+	{
+		return new SimpleMenuProvider((i, v, p) -> new SteamOvenMenu(i, v, inv, new SteamOvenBE.Data(), ContainerLevelAccess.create(level, worldPosition)),
+				Component.translatable("gui.steam_oven.name"));
+	}
+
+	private class Data implements ContainerData
+	{
+		@Override
+		public int get(int index)
+		{
+			return switch (index)
+			{
+				case 0 ->Float.floatToIntBits(recipeManager.getProgressRatio());
+				case 1 -> steamTank.getFluidAmount();
+				default -> throw new IndexOutOfBoundsException();
+			};
+		}
+
+		@Override
+		public void set(int index, int value)
+		{
+
+		}
+
+		@Override
+		public int getCount()
+		{
+			return 2;
+		}
 	}
 }

@@ -22,6 +22,7 @@ public class MenuTypes
 	public static final DeferredHolder<MenuType<?>, MenuType<BrickKilnMenu>> BRICK_KILN = register("brick_kiln", BrickKilnMenu::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<LeatherSackMenu>> LEATHER_SACK = register("leather_sack", LeatherSackMenu::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<CopperBoilerMenu>> COPPER_BOILER = register("copper_boiler", CopperBoilerMenu::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<SteamOvenMenu>> STEAM_OVEN = register("steam_oven", SteamOvenMenu::new);
 
 	private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> register(String name, MenuType.MenuSupplier<T> supplier)
 	{

@@ -422,6 +422,7 @@
 	"gui.brick_kiln.name": "Brick Kiln",
 	"gui.leather_sack.name": "Leather Sack",
 	"gui.copper_boiler.name": "Copper Boiler",
+	"gui.steam_oven.name": "Steam Oven",
 	
 	"misc.temperature": "Temp: %s K",
 	"misc.metal_quantity": "%s: %s units",

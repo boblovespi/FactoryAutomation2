@@ -1,11 +1,11 @@
 package boblovespi.factoryautomation.common.block.processing;
 
-import boblovespi.factoryautomation.common.blockentity.FABE;
-import boblovespi.factoryautomation.common.blockentity.FABETypes;
-import boblovespi.factoryautomation.common.blockentity.IClientTickable;
-import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.*;
 import boblovespi.factoryautomation.common.blockentity.processing.SteamOvenBE;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class SteamOven extends Block implements EntityBlock
@@ -46,6 +47,17 @@ public class SteamOven extends Block implements EntityBlock
 	}
 
 	@Override
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult pHitResult)
+	{
+		if (!level.isClientSide)
+		{
+			player.openMenu(state.getMenuProvider(level, pos));
+			return InteractionResult.CONSUME;
+		}
+		return InteractionResult.SUCCESS;
+	}
+
+	@Override
 	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston)
 	{
 		if (!state.is(newState.getBlock()))
@@ -61,5 +73,12 @@ public class SteamOven extends Block implements EntityBlock
 			return IClientTickable.makeTicker(FABETypes.STEAM_OVEN_TYPE.get(), beType);
 		else
 			return ITickable.makeTicker(FABETypes.STEAM_OVEN_TYPE.get(), beType);
+	}
+
+	@Nullable
+	@Override
+	protected MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos)
+	{
+		return level.getBlockEntity(pos, FABETypes.STEAM_OVEN_TYPE.get()).map(IMenuProviderProvider::getMenuProvider).orElse(null);
 	}
 }
