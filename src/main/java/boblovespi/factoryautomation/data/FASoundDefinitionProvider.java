@@ -38,5 +38,11 @@ public class FASoundDefinitionProvider extends SoundDefinitionsProvider
 				SoundDefinition.definition().with(sound(FactoryAutomation.name("use/trip_hammer"))).subtitle("subtitles.block.trip_hammer.use").replace(true));
 		add(FASounds.STEAM_RELEASES,
 				SoundDefinition.definition().with(sound(FactoryAutomation.name("use/steam_release"))).subtitle("subtitles.block.machine.steam_release").replace(true));
+		add(FASounds.BRICK_FIREBOX_CRACKLES, SoundDefinition.definition()
+															.with(sound("block/blastfurnace/blastfurnace1"), sound("block/blastfurnace/blastfurnace2"),
+																	sound("block/blastfurnace/blastfurnace3"), sound("block/blastfurnace/blastfurnace4"),
+																	sound("block/blastfurnace/blastfurnace5"))
+															.subtitle("subtitles.block.brick_firebox.fire_crackle")
+															.replace(true));
 	}
 }

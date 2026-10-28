@@ -7,11 +7,11 @@ import boblovespi.factoryautomation.common.blockentity.IMenuProviderProvider;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.BrickCrucibleBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import boblovespi.factoryautomation.common.util.MathHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
@@ -143,7 +143,7 @@ public class BrickCrucible extends Block implements EntityBlock
 			var lowerY = pos.getY() - 1;
 			var lowerZ = pos.getZ() + 0.5;
 			if (random.nextDouble() < 0.1)
-				level.playLocalSound(lowerX, lowerY, lowerZ, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 0.8F, false);
+				level.playLocalSound(lowerX, lowerY, lowerZ, FASounds.BRICK_FIREBOX_CRACKLES.get(), SoundSource.BLOCKS, 1.0F, 0.8F, false);
 
 			var direction = state.getValue(FACING).getClockWise();
 			var chimneyDirection = direction.getOpposite();

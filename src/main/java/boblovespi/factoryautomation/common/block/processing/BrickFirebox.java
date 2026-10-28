@@ -3,10 +3,10 @@ package boblovespi.factoryautomation.common.block.processing;
 import boblovespi.factoryautomation.common.blockentity.FABETypes;
 import boblovespi.factoryautomation.common.blockentity.ITickable;
 import boblovespi.factoryautomation.common.blockentity.processing.BrickFireboxBE;
+import boblovespi.factoryautomation.common.sound.FASounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -79,7 +79,7 @@ public class BrickFirebox extends Block implements EntityBlock
 			var lowerY = pos.getY();
 			var lowerZ = pos.getZ() + 0.5;
 			if (random.nextDouble() < 0.1)
-				level.playLocalSound(lowerX, lowerY, lowerZ, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 0.8F, false);
+				level.playLocalSound(lowerX, lowerY, lowerZ, FASounds.BRICK_FIREBOX_CRACKLES.get(), SoundSource.BLOCKS, 1.0F, 0.8F, false);
 
 			var direction = state.getValue(FACING);
 			var axis = direction.getAxis();
