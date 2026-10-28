@@ -108,10 +108,12 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 	@Override
 	public void tick()
 	{
+		var lit = false;
 		if (recipeManager.hasRecipe())
 		{
 			if (heatManager.getTemperature() > recipeManager.getRecipe().getData().temperature())
 			{
+				lit = true;
 				recipeManager.progress();
 				heatManager.cool(recipeManager.getRecipe().getData().power() / 20f);
 			}
@@ -124,6 +126,11 @@ public class BrickKilnBE extends FABE implements ITickable, IJadeViewable, IMult
 				recipeManager.complete();
 				setChangedAndUpdateClient();
 			}
+		}
+		if (lit != getBlockState().getValue(BrickKiln.LIT))
+		{
+			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(BrickKiln.LIT, lit));
+			setChangedAndUpdateClient();
 		}
 		var facing = getBlockState().getValue(BrickKiln.FACING);
 		Direction.stream().forEach(d ->

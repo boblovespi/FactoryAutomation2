@@ -7,6 +7,8 @@ import boblovespi.factoryautomation.common.blockentity.processing.BrickKilnBE;
 import boblovespi.factoryautomation.common.multiblock.Multiblocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -96,5 +98,26 @@ public class BrickKiln extends Block implements EntityBlock
 		if (level.isClientSide || !pState.getValue(MULTIBLOCK_COMPLETE))
 			return null;
 		return ITickable.makeTicker(FABETypes.BRICK_KILN_TYPE.get(), beType);
+	}
+
+	@Override
+	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
+	{
+		if (state.getValue(LIT))
+		{
+			var lowerX = pos.getX() + 0.5;
+			var lowerY = pos.getY();
+			var lowerZ = pos.getZ() + 0.5;
+
+			var direction = state.getValue(FACING);
+			var axis = direction.getAxis();
+			var d4 = random.nextDouble() * 0.6 - 0.3;
+			var d5 = axis == Direction.Axis.X ? direction.getStepX() * 0.52 : d4;
+			var d6 = random.nextDouble() * 6.0 / 16.0;
+			var d7 = axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : d4;
+			if (random.nextFloat() < 0.3f)
+				level.addParticle(ParticleTypes.SMOKE, lowerX + d5, lowerY + d6, lowerZ + d7, 0.0, 0.0, 0.0);
+			// level.addParticle(ParticleTypes.FLAME, lowerX + d5, lowerY + d6, lowerZ + d7, 0.0, 0.0, 0.0);
+		}
 	}
 }
