@@ -2,6 +2,7 @@ package boblovespi.factoryautomation.data.loot;
 
 import boblovespi.factoryautomation.common.block.FABlocks;
 import boblovespi.factoryautomation.common.block.mechanical.HorseEngine;
+import boblovespi.factoryautomation.common.block.processing.StampMill;
 import boblovespi.factoryautomation.common.block.resource.ArabicaLeaves;
 import boblovespi.factoryautomation.common.block.resource.ArabicaStem;
 import boblovespi.factoryautomation.common.block.resource.TeaShrub;
@@ -239,6 +240,7 @@ public class FABlockLootTableProvider extends BlockLootSubProvider
 		dropSelf(FABlocks.BRICK_KILN.get());
 		dropSelf(FABlocks.STEAM_OVEN.get());
 		dropSelf(FABlocks.COPPER_BOILER.get());
+		add(FABlocks.STAMP_MILL.get(), b -> createSinglePropConditionTable(b, StampMill.HALF, DoubleBlockHalf.LOWER));
 	}
 
 	private LootPoolSingletonContainer.Builder<?> getStickDrops(Block b)

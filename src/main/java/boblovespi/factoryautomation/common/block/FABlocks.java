@@ -142,6 +142,7 @@ public class FABlocks
 	public static final DeferredBlock<BrickKiln> BRICK_KILN = register("brick_kiln", BrickKiln::new, BlockProperties.BRICK_MACHINE_LIT);
 	public static final DeferredBlock<SteamOven> STEAM_OVEN = register("steam_oven", SteamOven::new, BlockProperties.BRICK_MACHINE);
 	public static final DeferredBlock<CopperBoiler> COPPER_BOILER = register("copper_boiler", CopperBoiler::new, BlockProperties.COPPER_MACHINE);
+	public static final DeferredBlock<StampMill> STAMP_MILL = register("stamp_mill", StampMill::new, BlockProperties.IRON_MACHINE);
 
 	// Mechanical
 

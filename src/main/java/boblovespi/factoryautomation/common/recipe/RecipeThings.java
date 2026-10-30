@@ -54,4 +54,7 @@ public class RecipeThings
 	public static final Supplier<RecipeType<SteamOvenRecipe>> STEAM_OVEN_TYPE = RECIPE_TYPES.register("steam_oven", () -> RecipeType.simple(FactoryAutomation.name("steam_oven")));
 	public static final Supplier<RecipeSerializer<SteamOvenRecipe>> STEAM_OVEN_SERIALZIER = RECIPE_SERIALIZERS.register("steam_oven",
 			() -> new SimpleRecipe.Serializer<>(SteamOvenRecipe::new, UnitData.DATA_CODEC, UnitData.DATA_STREAM_CODEC));
+	public static final Supplier<RecipeType<StampMillRecipe>> STAMP_MILL_TYPE = RECIPE_TYPES.register("stamp_mill", () -> RecipeType.simple(FactoryAutomation.name("stamp_mill")));
+	public static final Supplier<RecipeSerializer<StampMillRecipe>> STAMP_MILL_SERIALIZER = RECIPE_SERIALIZERS.register("stamp_mill",
+			() -> new SimpleRecipe.Serializer<>(StampMillRecipe::new, UnitData.DATA_CODEC, UnitData.DATA_STREAM_CODEC));
 }

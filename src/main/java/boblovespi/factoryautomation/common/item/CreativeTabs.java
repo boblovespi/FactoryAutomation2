@@ -133,6 +133,7 @@ public class CreativeTabs
 						o.accept(FAItems.BRICK_KILN);
 						o.accept(FAItems.STEAM_OVEN);
 						o.accept(FAItems.COPPER_BOILER);
+						o.accept(FAItems.STAMP_MILL);
 					}).build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MECHANICAL = CREATIVE_MODE_TABS.register("mechanical",

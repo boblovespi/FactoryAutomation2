@@ -1064,6 +1064,9 @@ public class FARecipeProvider extends RecipeProvider
 		SteamOvenRecipe.of(new ItemStack(Items.COOKED_RABBIT)).input(Items.RABBIT).progress(80).beginData().endData().unlockedBy("has_rabbit", has(Items.RABBIT)).save(output);
 		SteamOvenRecipe.of(new ItemStack(FAItems.PANNED_TEA_LEAF.get())).input(FAItems.TEA_LEAF).progress(80).beginData().endData().unlockedBy("has_tea_leaf", has(FAItems.TEA_LEAF)).save(output);
 
+		// Hammer mill
+		StampMillRecipe.of(new ItemStack(Items.GRAVEL)).input(Tags.Items.COBBLESTONES).progress(20).beginData().endData().unlockedBy("has_cobblestone", has(Tags.Items.COBBLESTONES)).save(output);
+
 		// Vanilla overrides
 		for (var wood : WoodTypes.values())
 			RemovalRecipe.unitFor(wood.getPlanks()).save(output);

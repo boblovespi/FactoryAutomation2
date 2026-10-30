@@ -195,10 +195,12 @@ public class FactoryAutomation
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.LEATHER_BELLOWS_TYPE.get(), LeatherBellowsBE::input);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.SCREW_PUMP_TYPE.get(), ScrewPumpBE::input);
 		event.registerBlockEntity(MechanicalCapability.INPUT, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(MechanicalCapability.INPUT, d));
+		event.registerBlock(MechanicalCapability.INPUT, StampMillBE.getCap(MechanicalCapability.INPUT), FABlocks.STAMP_MILL.get());
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, FABETypes.MILLSTONE_TYPE.get(), MillstoneBE::itemHandler);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBE::itemHandler);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, FABETypes.BRICK_FIREBOX_TYPE.get(), BrickFireboxBE::itemHandler);
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, FABETypes.STEAM_OVEN_TYPE.get(), SteamOvenBE::itemHandler);
+		event.registerBlock(Capabilities.ItemHandler.BLOCK, StampMillBE.getCap(Capabilities.ItemHandler.BLOCK), FABlocks.STAMP_MILL.get());
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, FABETypes.TUMBLING_BARREL_TYPE.get(), TumblingBarrelBE::fluidHandler);
 		event.registerBlockEntity(BellowsCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(BellowsCapability.BLOCK, d));
 		event.registerBlockEntity(HeatCapability.BLOCK, FABETypes.MULTIBLOCK_PART_TYPE.get(), (b, d) -> b.getCapability(HeatCapability.BLOCK, d));

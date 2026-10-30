@@ -123,6 +123,7 @@
 	"block.factoryautomation.brick_kiln": "Brick Kiln",
 	"block.factoryautomation.steam_oven": "Steam Oven",
 	"block.factoryautomation.copper_boiler": "Copper Boiler",
+	"block.factoryautomation.stamp_mill": "Stamp Mill",
 	
 	// Block - Mechanical
 	
@@ -404,6 +405,7 @@
 	"jei.factoryautomation.basket_drying.name": "Basket Drying",
 	"jei.factoryautomation.kiln.name": "Kiln Firing",
 	"jei.factoryautomation.steam_oven.name": "Steam Oven Cooking",
+	"jei.factoryautomation.stamp_mill.name": "Stamp Milling",
 	
 	"jei.factoryautomation.misc.any_solid": "Any block with a solid face",
 	

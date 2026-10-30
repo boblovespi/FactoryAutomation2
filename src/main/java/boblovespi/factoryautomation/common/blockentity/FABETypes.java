@@ -54,6 +54,7 @@ public class FABETypes
 	public static final Supplier<BlockEntityType<BrickKilnBE>> BRICK_KILN_TYPE = type("brick_kiln", BrickKilnBE::new, FABlocks.BRICK_KILN);
 	public static final Supplier<BlockEntityType<SteamOvenBE>> STEAM_OVEN_TYPE = type("steam_oven", SteamOvenBE::new, FABlocks.STEAM_OVEN);
 	public static final Supplier<BlockEntityType<CopperBoilerBE>> COPPER_BOILER_TYPE = type("copper_boiler", CopperBoilerBE::new, FABlocks.COPPER_BOILER);
+	public static final Supplier<BlockEntityType<StampMillBE>> STAMP_MILL_TYPE = type("stamp_mill", StampMillBE::new, FABlocks.STAMP_MILL);
 
 	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> type(String name, BlockEntityType.BlockEntitySupplier<T> factory,

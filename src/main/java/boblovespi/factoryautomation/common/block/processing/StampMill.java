@@ -1,0 +1,165 @@
+package boblovespi.factoryautomation.common.block.processing;
+
+import boblovespi.factoryautomation.common.blockentity.FABE;
+import boblovespi.factoryautomation.common.blockentity.FABETypes;
+import boblovespi.factoryautomation.common.blockentity.IClientTickable;
+import boblovespi.factoryautomation.common.blockentity.ITickable;
+import boblovespi.factoryautomation.common.blockentity.processing.StampMillBE;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
+
+public class StampMill extends Block implements EntityBlock
+{
+	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
+	private static final VoxelShape BOTTOM_SHAPE = Shapes.or(
+			Block.box(0, 0, 0, 16, 13, 16),
+			Block.box(2, 13, 2, 14, 16, 14));
+	private static final VoxelShape TOP_SHAPE = Shapes.or(
+			Block.box(2, 0, 2, 14, 10, 14),
+			Block.box(0, 10, 0, 16, 16, 16));
+
+
+	public StampMill(BlockBehaviour.Properties properties)
+	{
+		super(properties);
+		registerDefaultState(defaultBlockState().setValue(HALF, DoubleBlockHalf.LOWER).setValue(FACING, Direction.NORTH));
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
+	{
+		builder.add(FACING, HALF);
+	}
+
+	@Override
+	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
+	{
+		return state.getValue(HALF) == DoubleBlockHalf.UPPER ? TOP_SHAPE : BOTTOM_SHAPE;
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> beType)
+	{
+		if (level.isClientSide)
+			return IClientTickable.makeTicker(FABETypes.STAMP_MILL_TYPE.get(), beType);
+		else
+			return ITickable.makeTicker(FABETypes.STAMP_MILL_TYPE.get(), beType);
+	}
+
+	@Override
+	protected RenderShape getRenderShape(BlockState pState)
+	{
+		return RenderShape.ENTITYBLOCK_ANIMATED;
+	}
+
+	@Nullable
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
+	{
+		return state.getValue(HALF) == DoubleBlockHalf.LOWER ? new StampMillBE(pos, state) : null;
+	}
+
+	@Override
+	protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston)
+	{
+		if (!pState.is(pNewState.getBlock()))
+			pLevel.getBlockEntity(pPos, FABETypes.STAMP_MILL_TYPE.get()).ifPresent(FABE::onDestroy);
+		super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+	}
+
+	@Override
+	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
+	{
+		var half = state.getValue(HALF);
+		if (direction == Direction.UP && half == DoubleBlockHalf.LOWER)
+			return neighborState.is(this) && neighborState.getValue(HALF) == DoubleBlockHalf.UPPER ? state : Blocks.AIR.defaultBlockState();
+		else if (direction == Direction.DOWN && half == DoubleBlockHalf.UPPER)
+			return neighborState.is(this) && neighborState.getValue(HALF) == DoubleBlockHalf.LOWER ? state : Blocks.AIR.defaultBlockState();
+		return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+	}
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+	{
+		level.setBlock(pos.above(), state.setValue(HALF, DoubleBlockHalf.UPPER), 3);
+	}
+
+	@Nullable
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context)
+	{
+		var pos = context.getClickedPos();
+		var level = context.getLevel();
+		return pos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(pos.above()).canBeReplaced(context) ? super.getStateForPlacement(context) : null;
+	}
+
+	@Override
+	public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
+	{
+		if (!level.isClientSide && (player.isCreative() || !player.hasCorrectToolForDrops(state, level, pos)))
+			preventDropFromBottomPart(level, pos, state, player);
+		return super.playerWillDestroy(level, pos, state, player);
+	}
+
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
+	{
+		if (state.getValue(HALF) != DoubleBlockHalf.UPPER)
+			return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
+		if (level.isClientSide)
+			return ItemInteractionResult.SUCCESS;
+
+		var te = level.getBlockEntity(pos.below(), FABETypes.STAMP_MILL_TYPE.get());
+		te.ifPresent(he ->
+		{
+
+		});
+		return ItemInteractionResult.SUCCESS;
+	}
+
+	protected void preventDropFromBottomPart(Level level, BlockPos pos, BlockState state, Player player)
+	{
+		var half = state.getValue(HALF);
+		if (half == DoubleBlockHalf.UPPER)
+		{
+			var below = pos.below();
+			var belowState = level.getBlockState(below);
+			if (belowState.is(this) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER)
+			{
+				var newState = belowState.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+				level.setBlock(below, newState, 35);
+				level.levelEvent(player, 2001, below, Block.getId(belowState));
+			}
+		}
+	}
+}
